@@ -1,5 +1,7 @@
 # SIWECOS-Business-Layer
 
+[![Build Status](https://travis-ci.org/SIWECOS/siwecos-business-layer.svg?branch=master)](https://travis-ci.org/SIWECOS/siwecos-business-layer)
+
 ### Vagrant / Valet
 
 For usage with a mac, we recommend the usage of Valet, a leightweight Vagrant wrapper for Laravel
