@@ -1,0 +1,114 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "SIWECOS Business Layer",
+        "version": "1.0.0"
+    },
+    "host": "http://siwecos-business-layer.dev",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users/create": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "create user",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "CreateUserParameters",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email and usertoken"
+                    },
+                    "500": {
+                        "description": "Database or Core Api Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CreateUserRequest": {
+            "required": [
+                "salutation_id"
+            ],
+            "properties": {
+                "salutation_id": {
+                    "type": "integer",
+                    "format": "integer"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "first_name": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "last_name": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "address": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "plz": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "city": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "phone": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_name": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_address": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_plz": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_city": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_industry": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "org_size_id": {
+                    "type": "integer",
+                    "format": "integer"
+                },
+                "org_phone": {
+                    "type": "string",
+                    "format": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
