@@ -56,6 +56,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgPlz($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgSizeId($value)
+ * @property string $password
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
  */
 class User extends Authenticatable
 {
@@ -67,7 +69,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'salutation_id', 'first_name', 'last_name', 'address', 'plz', 'city', 'phone', 'token', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id'
+        'name', 'email', 'salutation_id', 'first_name', 'password', 'last_name', 'address', 'plz', 'city', 'phone', 'token', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id'
     ];
 
     public function __construct(array $attributes = [])
