@@ -18,8 +18,8 @@ class CoreApiController extends Controller
 
     public function __construct()
     {
-        $this->coreApiUrl = env('CORE_URL', 'http://coreapi.dev');
-        $this->coreApiMasterToken = env('CORE_MASTER_TOKEN');
+        $this->coreApiUrl = env('CORE_URL', 'http://siwecos-core-api.dev/');
+        $this->coreApiMasterToken = env('CORE_MASTER_TOKEN', 'RIdHtlCq9p1iQD2I3DLPwZV0');
         $this->httpClient = new Client();
     }
 

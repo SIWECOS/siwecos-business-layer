@@ -104,6 +104,13 @@ class CreateUserRequest extends FormRequest
     var $org_phone;
 
 
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    var $password;
+
+
 
     /**
      * Determine if the user is authorized to make this request.
@@ -125,6 +132,7 @@ class CreateUserRequest extends FormRequest
         return [
             'salutation_id' => 'required|integer',
             'email' => 'email|required',
+            'password' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'address' => 'required',

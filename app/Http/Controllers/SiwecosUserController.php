@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\GetTokenByUserRequest;
+use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Siweocs\Models\UserTokenResponse;
 use App\User;
 use GuzzleHttp\Exception\RequestException;
+use Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Swagger\Annotations as SWG;
@@ -54,6 +56,8 @@ class SiwecosUserController extends Controller
     public function create(CreateUserRequest $request)
     {
         $newUser = new User($request->toArray());
+        $password = $newUser->password;
+        $newUser->password = Hash::make($password);
 
         $response = $this->coreApi->CreateUserToken(50);
 
@@ -73,6 +77,15 @@ class SiwecosUserController extends Controller
         return response()->json($response);
     }
 
+    public function loginUser(LoginUserRequest $request){
+        $loggedInUser = User::where(['email'=>$request->json('email')])->first();
+        $password = $request->json('password');
+        if ($loggedInUser instanceof User && Hash::check($password, $loggedInUser->password)){
+            return response()->json($loggedInUser);
+        }
+        return response("Wrong credentials", 403);
+    }
+
     public function activateUser(Request $request)
     {
         $userToken = $request->header('userToken');
@@ -82,7 +95,7 @@ class SiwecosUserController extends Controller
             $tokenUser->save();
             return response()->json($tokenUser);
         }
-        return response("User not Found", 404);
+        return response("User not found", 404);
     }
 
     public function getTokenByEmail(GetTokenByUserRequest $request)
@@ -91,7 +104,7 @@ class SiwecosUserController extends Controller
         if ($tokenUser instanceof User) {
             return response()->json(new UserTokenResponse($tokenUser));
         }
-        return response("User not Found", 404);
+        return response("User not found", 404);
     }
 
     public function getUserInfoByToken(Request $request)
