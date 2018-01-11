@@ -131,7 +131,7 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'salutation_id' => 'required|integer|min:1|max:2',
-            'email' => 'email|required',
+            'email' => 'email|required|unique:users',
             'password' => 'required|min:8',
             'first_name' => 'required',
             'last_name' => 'required',
