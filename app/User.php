@@ -58,6 +58,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgSizeId($value)
  * @property string $password
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
+ * @property string|null $activation_key
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereActivationKey($value)
  */
 class User extends Authenticatable
 {

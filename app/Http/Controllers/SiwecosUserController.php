@@ -7,12 +7,14 @@ use App\Http\Requests\GetTokenByUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Notifications\activationmail;
 use App\Siweocs\Models\UserTokenResponse;
 use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Keygen\Keygen;
 use Swagger\Annotations as SWG;
 
 class SiwecosUserController extends Controller
@@ -58,7 +60,7 @@ class SiwecosUserController extends Controller
         $newUser = new User($request->toArray());
         $password = $newUser->password;
         $newUser->password = Hash::make($password);
-
+        $newUser->activation_key = Keygen::alphanum(96)->generate();
         $response = $this->coreApi->CreateUserToken(50);
 
         if ($response instanceof RequestException) {
@@ -69,6 +71,7 @@ class SiwecosUserController extends Controller
 
         try {
             $newUser->save();
+            $newUser->notify(new activationmail($newUser->activation_key));
         } catch (QueryException $queryException) {
             return response('Database error' . $queryException->getMessage(), 500);
         }
@@ -90,6 +93,18 @@ class SiwecosUserController extends Controller
     {
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $tokenUser->active = 1;
+            $tokenUser->save();
+            return response()->json($tokenUser);
+        }
+        return response("User not found", 404);
+    }
+
+    public function activateUserUrl(string $token)
+    {
+        $activation_key = $token;
+        $tokenUser = User::where('activation_key', $activation_key)->first();
         if ($tokenUser instanceof User) {
             $tokenUser->active = 1;
             $tokenUser->save();
@@ -171,6 +186,7 @@ class SiwecosUserController extends Controller
         }
         return response("User not Found", 404);
     }
+
 
 
 }
