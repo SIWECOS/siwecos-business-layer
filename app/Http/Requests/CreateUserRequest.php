@@ -130,22 +130,12 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'salutation_id' => 'required|integer',
-            'email' => 'email|required',
-            'password' => 'required',
+            'salutation_id' => 'required|integer|min:1|max:2',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|min:8',
             'first_name' => 'required',
             'last_name' => 'required',
-            'address' => 'required',
-            'plz' => 'required',
-            'city' => 'required',
-            'phone' => 'required',
-            'org_name' => 'required',
-            'org_address' => 'required',
-            'org_plz' => 'required',
-            'org_city' => 'required',
-            'org_industry' => 'required',
-            'org_phone' => 'required',
-            'org_size_id' => 'integer|required'
+            'org_size_id' => 'integer|min:1|max:7'
         ];
     }
 }
