@@ -7,6 +7,7 @@ use App\Http\Requests\DeleteDomainRequest;
 use App\Http\Requests\VerifyDomainRequest;
 use App\User;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Swagger\Annotations as SWG;
 
@@ -35,7 +36,8 @@ class SiwecosDomainController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->CreateDomain($userToken, $request->domain, $request->danger_level);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }
@@ -52,7 +54,8 @@ class SiwecosDomainController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->DeleteDomain($userToken, $request->domain);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }
@@ -69,7 +72,8 @@ class SiwecosDomainController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->GetDomains($userToken);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }
@@ -86,7 +90,8 @@ class SiwecosDomainController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->VerifyDomain($userToken, $request->domain);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }

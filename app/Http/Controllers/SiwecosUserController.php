@@ -13,6 +13,7 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Keygen\Keygen;
 use Swagger\Annotations as SWG;
@@ -64,7 +65,8 @@ class SiwecosUserController extends Controller
         $response = $this->coreApi->CreateUserToken(50);
 
         if ($response instanceof RequestException) {
-            return response($response->getMessage(), 500);
+            $responseText = json_decode($response->getResponse()->getBody());
+            throw new HttpResponseException(response()->json($responseText, $response->getCode()));
         }
         $newUser->token = $response['token'];
 
@@ -154,7 +156,8 @@ class SiwecosUserController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->GetTokenCredits($userToken);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }
@@ -180,7 +183,8 @@ class SiwecosUserController extends Controller
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->UpdateTokenCredits($userToken, $request->credits);
             if ($response instanceof RequestException) {
-                return response($response->getMessage(), 500);
+                $responseText = json_decode($response->getResponse()->getBody());
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
             return $response;
         }
