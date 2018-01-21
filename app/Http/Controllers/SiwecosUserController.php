@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\CreateUserRequestCaptcha;
 use App\Http\Requests\GetTokenByUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
@@ -81,6 +82,32 @@ class SiwecosUserController extends Controller
         $response = new UserTokenResponse($newUser);
         return response()->json($response);
     }
+
+	public function createCaptcha(CreateUserRequestCaptcha $request)
+	{
+		$newUser = new User($request->toArray());
+		$password = $newUser->password;
+		$newUser->password = Hash::make($password);
+		$newUser->activation_key = Keygen::alphanum(96)->generate();
+		$response = $this->coreApi->CreateUserToken(50);
+
+		if ($response instanceof RequestException) {
+			$responseText = json_decode($response->getResponse()->getBody());
+			throw new HttpResponseException(response()->json($responseText, $response->getCode()));
+		}
+		$newUser->token = $response['token'];
+
+
+		try {
+			$newUser->save();
+			$newUser->notify(new activationmail($newUser->activation_key));
+		} catch (QueryException $queryException) {
+			return response('Database error' . $queryException->getMessage(), 500);
+		}
+
+		$response = new UserTokenResponse($newUser);
+		return response()->json($response);
+	}
 
     public function loginUser(LoginUserRequest $request){
         $loggedInUser = User::where(['email'=>$request->json('email')])->first();

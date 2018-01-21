@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::prefix('v1')->group(function () {
     Route::Post('/users/login', 'SiwecosUserController@loginUser');
     Route::Get('/users/activate/{token}', 'SiwecosUserController@activateUserUrl')->name('activateurl');
+	Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
     Route::middleware(['mastertoken'])->group(function () {
         Route::Post('/users/create', 'SiwecosUserController@create');
         Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.32 on 2018-01-19.
+ * Generated for Laravel 5.5.32 on 2018-01-21.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12279,6 +12279,153 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Arcanedev\NoCaptcha\Facades { 
+
+    class NoCaptcha {
+        
+        /**
+         * Set language code.
+         *
+         * @param string $lang
+         * @return self 
+         * @static 
+         */ 
+        public static function setLang($lang)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::setLang($lang);
+        }
+        
+        /**
+         * Set HTTP Request Client.
+         *
+         * @param \Arcanedev\NoCaptcha\Contracts\Utilities\RequestInterface $request
+         * @return self 
+         * @static 
+         */ 
+        public static function setRequestClient($request)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::setRequestClient($request);
+        }
+        
+        /**
+         * Set noCaptcha Attributes.
+         *
+         * @param \Arcanedev\NoCaptcha\Contracts\Utilities\AttributesInterface $attributes
+         * @return self 
+         * @static 
+         */ 
+        public static function setAttributes($attributes)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::setAttributes($attributes);
+        }
+        
+        /**
+         * Display Captcha.
+         *
+         * @param string|null $name
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function display($name = null, $attributes = array())
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::display($name, $attributes);
+        }
+        
+        /**
+         * Display image Captcha.
+         *
+         * @param string|null $name
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function image($name = null, $attributes = array())
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::image($name, $attributes);
+        }
+        
+        /**
+         * Display audio Captcha.
+         *
+         * @param string|null $name
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function audio($name = null, $attributes = array())
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::audio($name, $attributes);
+        }
+        
+        /**
+         * Display an invisible Captcha (bind the challenge to a button).
+         *
+         * @param string $value
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function button($value, $attributes = array())
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::button($value, $attributes);
+        }
+        
+        /**
+         * Verify Response.
+         *
+         * @param string $response
+         * @param string $clientIp
+         * @return bool 
+         * @static 
+         */ 
+        public static function verify($response, $clientIp = null)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::verify($response, $clientIp);
+        }
+        
+        /**
+         * Calls the reCAPTCHA siteverify API to verify whether the user passes CAPTCHA
+         * test using a PSR-7 ServerRequest object.
+         *
+         * @param \Psr\Http\Message\ServerRequestInterface $request
+         * @return bool 
+         * @static 
+         */ 
+        public static function verifyRequest($request)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::verifyRequest($request);
+        }
+        
+        /**
+         * Get script tag.
+         *
+         * @param string|null $callbackName
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function script($callbackName = null)
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::script($callbackName);
+        }
+        
+        /**
+         * Get script tag with a callback function.
+         *
+         * @param array $captchas
+         * @param string $callbackName
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */ 
+        public static function scriptWithCallback($captchas, $callbackName = 'captchaRenderCallback')
+        {
+            return \Arcanedev\NoCaptcha\NoCaptcha::scriptWithCallback($captchas, $callbackName);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -14391,6 +14538,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Captcha extends \Arcanedev\NoCaptcha\Facades\NoCaptcha {}
  
 }
 
