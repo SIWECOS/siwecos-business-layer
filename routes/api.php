@@ -33,6 +33,9 @@ Route::prefix('v1')->group(function () {
             Route::Post('/domains/deleteDomain', 'SiwecosDomainController@deleteDomain');
             Route::Post('/domains/verifyDomain', 'SiwecosDomainController@verifyDomain');
             Route::Post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
+
+            Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
+            Route::Post('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
         });
 
     });
