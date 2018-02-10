@@ -144,8 +144,7 @@ class CoreApiController extends Controller {
 
 	public function GetScanResultRaw( $userToken, $url ) {
 		try {
-			$response = $this->httpClient->POST( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'results/raw' . $url, [
-				'json'    => [ 'domain' => $url],
+			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'results/raw?domain=' . $url, [
 				'headers' => [ 'masterToken' => $this->coreApiMasterToken, 'siwecosToken' => $userToken ]
 			] );
 
