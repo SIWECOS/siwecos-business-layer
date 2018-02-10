@@ -137,6 +137,7 @@ class CoreApiController extends Controller {
 			return json_decode( $response->getBody(), true );
 		} catch ( RequestException $requestEx ) {
 			Log::error($requestEx->getMessage());
+			Log::error($requestEx->hasResponse() ? $response->getBody() : 'NO RESPONSE');
 			return $requestEx;
 		}
 	}
