@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function () {
 
             Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
             Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
+            Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
         });
 
     });
