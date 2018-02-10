@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Log;
 
 const BASE_ROUTE  = '/api/v1/';
 const CORE_TOKEN  = 'token/';
@@ -132,8 +133,10 @@ class CoreApiController extends Controller {
 				'headers' => [ 'masterToken' => $this->coreApiMasterToken, 'siwecosToken' => $userToken ]
 			] );
 
+			Log::warning('Response: ' . $response->getBody());
 			return json_decode( $response->getBody(), true );
 		} catch ( RequestException $requestEx ) {
+			Log::error($requestEx->getMessage());
 			return $requestEx;
 		}
 	}
