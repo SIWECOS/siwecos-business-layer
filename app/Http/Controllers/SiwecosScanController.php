@@ -6,6 +6,7 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SiwecosScanController extends Controller {
 
@@ -19,6 +20,7 @@ class SiwecosScanController extends Controller {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();
 		if ( $tokenUser instanceof User ) {
+			Log::info('User ' . $tokenUser->email . ' requested Scan Start');
 			$response = $this->coreApi->CreateScan( $userToken, $request->url, $request->danger_level );
 			if ( $response instanceof RequestException ) {
 				$responseText = json_decode( $response->getResponse()->getBody() );
