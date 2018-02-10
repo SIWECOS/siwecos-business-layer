@@ -36,7 +36,7 @@ class SiwecosScanController extends Controller {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();
 		if ( $tokenUser instanceof User ) {
-			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->url);
+			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->domain);
 			if ( $response instanceof RequestException ) {
 				$responseText = json_decode( $response->getResponse()->getBody() );
 				throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
