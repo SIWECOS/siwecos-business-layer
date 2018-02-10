@@ -127,7 +127,7 @@ class CoreApiController extends Controller {
 
 	public function CreateScan( $userToken, $url, $danger_level ) {
 		try {
-			$response = $this->httpClient->POST( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'add', [
+			$response = $this->httpClient->POST( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'start', [
 				'json'    => [ 'domain' => $url, 'dangerLevel' => $danger_level, 'callbackurls' => [] ],
 				'headers' => [ 'masterToken' => $this->coreApiMasterToken, 'siwecosToken' => $userToken ]
 			] );
