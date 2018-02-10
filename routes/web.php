@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function () {
-	Log::critical("Startup Papertrail");
+	Log::info("Startup Papertrail");
     return view('welcome');
 });
