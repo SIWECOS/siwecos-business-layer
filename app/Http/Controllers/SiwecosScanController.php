@@ -21,7 +21,7 @@ class SiwecosScanController extends Controller {
 		$tokenUser = User::where( 'token', $userToken )->first();
 		if ( $tokenUser instanceof User ) {
 			Log::info('User ' . $tokenUser->email . ' requested Scan Start');
-			$response = $this->coreApi->CreateScan( $userToken, $request->url, $request->danger_level );
+			$response = $this->coreApi->CreateScan( $userToken, $request->domain, $request->dangerLevel );
 			if ( $response instanceof RequestException ) {
 				$responseText = json_decode( $response->getResponse()->getBody() );
 				throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
