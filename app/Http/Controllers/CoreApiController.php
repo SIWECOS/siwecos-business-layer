@@ -142,6 +142,18 @@ class CoreApiController extends Controller {
 		}
 	}
 
+	public function GetResultById( int $id ) {
+		try {
+			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'result/' . $id, [
+				'headers' => [ 'masterToken' => $this->coreApiMasterToken ]
+			] );
+
+			return json_decode( $response->getBody(), true );
+		} catch ( RequestException $requestEx ) {
+			return $requestEx;
+		}
+	}
+
 	public function GetScanResultRaw( $userToken, $url ) {
 		try {
 			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'result/raw?domain=' . $url, [
