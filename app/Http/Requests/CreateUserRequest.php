@@ -142,7 +142,7 @@ class CreateUserRequest extends FormRequest
             'password' => 'required|min:8',
             'first_name' => 'required',
             'last_name' => 'required',
-            'org_size_id' => 'integer|min:1|max:4'
+            'org_size_id' => 'integer|min:1|max:7'
         ];
     }
 }
