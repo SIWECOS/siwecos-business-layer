@@ -35,6 +35,10 @@ class SiwecosScanController extends Controller {
 		return response( "User not Found", 404 );
 	}
 
+	public function CreateNewFreeScan(Request $request){
+		$url = $request->json('domain');
+	}
+
 	public function GetScanResultRaw(Request $request) {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();

@@ -22,6 +22,7 @@ Route::prefix( 'v1' )->group( function () {
 		Route::Post( '/users/getToken', 'SiwecosUserController@getTokenByEmail' );
 		Route::Post( '/users/activateUser', 'SiwecosUserController@activateUser' );
 		Route::Post( '/users/updateTokenCredits', 'SiwecosUserController@updateCredits' )->middleware( 'usertoken' );
+		Route::post('/users/freeScan', 'SiwecosScanController@CreateNewFreeScan');
 	} );
 	Route::middleware( [ 'usertoken' ] )->group( function () {
 		Route::Post( '/users/getUserData', 'SiwecosUserController@getUserInfoByToken' );
@@ -38,8 +39,8 @@ Route::prefix( 'v1' )->group( function () {
 			Route::Get( '/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw' );
 			Route::Get( '/scan/result/{lang?}', 'SiwecosScanController@GetScanResult' );
 		} );
-
 	} );
+
 	Route::get( '/getSalutation', function () {
 		return \App\Salutation::all();
 	} );
