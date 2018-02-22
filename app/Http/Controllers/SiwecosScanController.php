@@ -36,9 +36,15 @@ class SiwecosScanController extends Controller {
 	}
 
 	public function BrodcastScanResult( int $id ) {
+
+		event( new App\Events\FreeScanReady( $id ));
+	}
+
+	public function GetScanResultById(int $id){
+		//Validation if free scan
 		$response = $this->coreApi->GetResultById( $id );
 		$rawCollection = collect( $response );
-		event( new App\Events\FreeScanReady( $id ));
+		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {

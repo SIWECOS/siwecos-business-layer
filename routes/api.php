@@ -18,6 +18,7 @@ Route::prefix( 'v1' )->group( function () {
 	Route::Get( '/users/activate/{token}', 'SiwecosUserController@activateUserUrl' )->name( 'activateurl' );
 	Route::Post( '/users/createCaptcha', 'SiwecosUserController@createCaptcha' );
 	Route::Get( '/freescan/{id}', 'SiwecosScanController@BrodcastScanResult');
+	Route::Get( '/freescan/result/{id}', 'SiwecosScanController@GetScanResultById');
 	Route::middleware( [ 'mastertoken' ] )->group( function () {
 		Route::Post( '/users/create', 'SiwecosUserController@create' );
 		Route::Post( '/users/getToken', 'SiwecosUserController@getTokenByEmail' );
