@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'SCANNER_NAME_hsts' => 'HSTS Scanner',
-    'SCANNER_NAME_ini-s' => 'Initiative-S Scanner',
-    'SCANNER_NAME_domxss' => 'DOMXSS Scanner',
-    'SCANNER_NAME_infoLeak' => 'Info Leak Scanner',
-
+    'SCANNER_NAME_INI_S' => 'Initiative-S Scanner',
+    'SCANNER_NAME_DOMXSS' => 'DOMXSS Scanner',
+    'SCANNER_NAME_INFOLEAK' => 'Info Leak Scanner',
+	'SCANNER_NAME_HEADER' => 'Header Scanner',
+	'SCANNER_NAME_WS_TLS' => 'TLS Scaner',
 
 	'SCORE_critical' => 'Critical',
 	'SCORE_info' => 'Info',
