@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 class SiwecosScanController extends Controller {
 
 	var $coreApi;
+	var $currentDomain;
 
 	public function __construct() {
 		$this->coreApi = new CoreApiController();
@@ -46,7 +47,7 @@ class SiwecosScanController extends Controller {
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
-		return response()->json( $this->translateResult( $rawCollection, 'de', 'LOREM' ) );
+		return response()->json( $this->translateResult( $rawCollection, 'de') );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -92,14 +93,15 @@ class SiwecosScanController extends Controller {
 		return response( "Result not found", 412 );
 	}
 
-	protected function translateResult( Collection $resultCollection, string $language, string $domain ) {
+	protected function translateResult( Collection $resultCollection, string $language ) {
+		$this->currentDomain = $resultCollection['domain'];
 		$scannerCollection = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
 				$item['name']        = __( 'siwecos.' . $item['name'] );
-				$item['description'] = $this->buildDescription($item['name'], $item['score'], 'LOREM');
+				$item['description'] = $this->buildDescription($item['name'], $item['score']);
 				$item['report'] = $this->buildReport($item['name'], $item['score'], 'LOREM');
 				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails'] = collect( $item['testDetails'] );
@@ -120,24 +122,24 @@ class SiwecosScanController extends Controller {
 		return $resultCollection;
 	}
 
-	protected function buildDescription( string $testDesc, int $score, string $domain ) {
+	protected function buildDescription( string $testDesc, int $score) {
 		if ( $score == 100 ) {
 			$testDesc = __( $testDesc . '_SUCCESS' );
-			$testDesc = str_replace('%HOST%', $domain, $testDesc);
+			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 			return $testDesc;
 		} else {
 			$testDesc = __( $testDesc . '_ERROR' );
-			$testDesc = str_replace('%HOST%', $domain, $testDesc);
+			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 			return $testDesc;
 		}
 	}
 
-	protected function buildReport( string $testDesc, int $score, string $domain ) {
+	protected function buildReport( string $testDesc, int $score ) {
 		if ( $score == 100 ) {
 
 		} else {
 			$testDesc = __( $testDesc . '_ERROR_DESC' );
-			$testDesc = str_replace('%HOST%', $domain, $testDesc);
+			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 			return $testDesc;
 		}
 	}
