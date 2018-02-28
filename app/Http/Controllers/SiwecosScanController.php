@@ -122,7 +122,7 @@ class SiwecosScanController extends Controller {
 	protected function buildDescription( string $testDesc, int $score, string $domain ) {
 		if ( $score == 100 ) {
 			$testDesc = __( 'siwecos.' . $testDesc . '_SUCCESS' );
-			$testDesc = str_replace( '%HOST%', $domain );
+			$testDesc = str_replace('%HOST%', $domain, $testDesc);
 			return $testDesc;
 		} else {
 
