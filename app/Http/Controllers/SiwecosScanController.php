@@ -46,7 +46,7 @@ class SiwecosScanController extends Controller {
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
-		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
+		return response()->json( $this->translateResult( $rawCollection, 'de', 'LOREM' ) );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -92,13 +92,14 @@ class SiwecosScanController extends Controller {
 		return response( "Result not found", 412 );
 	}
 
-	protected function translateResult( Collection $resultCollection, string $language ) {
+	protected function translateResult( Collection $resultCollection, string $language, string $domain ) {
 		$scannerCollection = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$item['name']        = __('siwecos.' .  $item['name'] );
+				$item['name']        = __( 'siwecos.' . $item['name'] );
+				$item['description'] = $this->buildDescription($item['name'], $item['score'], 'LOREM');
 				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails'] = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
@@ -116,5 +117,15 @@ class SiwecosScanController extends Controller {
 		$resultCollection->put( 'scanners', $scannerCollection );
 
 		return $resultCollection;
+	}
+
+	protected function buildDescription( string $testDesc, int $score, string $domain ) {
+		if ( $score == 100 ) {
+			$testDesc = __( 'siwecos.' . $testDesc . '_SUCCESS' );
+			$testDesc = str_replace( '%HOST%', $domain );
+			return $testDesc;
+		} else {
+
+		}
 	}
 }
