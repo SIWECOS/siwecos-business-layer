@@ -100,6 +100,7 @@ class SiwecosScanController extends Controller {
 			$item['result']->transform( function ( $item, $key ) {
 				$item['name']        = __( 'siwecos.' . $item['name'] );
 				$item['description'] = $this->buildDescription($item['name'], $item['score'], 'LOREM');
+				$item['report'] = $this->buildReport($item['name'], $item['score'], 'LOREM');
 				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails'] = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
