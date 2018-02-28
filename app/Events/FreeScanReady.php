@@ -36,7 +36,4 @@ class FreeScanReady implements ShouldBroadcast {
 		return new Channel( 'freescan-ready.' . $this->id );
 	}
 
-	public function broadcastAs() {
-		return 'freescan.ready';
-	}
 }

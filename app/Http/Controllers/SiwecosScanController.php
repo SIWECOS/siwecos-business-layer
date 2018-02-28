@@ -44,7 +44,8 @@ class SiwecosScanController extends Controller {
 		//Validation if free scan
 		$response = $this->coreApi->GetResultById( $id );
 		$rawCollection = collect( $response );
-		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
+		App::setLocale( 'de' );
+		return response()->json( $this->translateResult( $rawCollection, 'de') );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -80,7 +81,7 @@ class SiwecosScanController extends Controller {
 		$tokenUser = User::where( 'token', $userToken )->first();
 		App::setLocale( $lang );
 		if ( $tokenUser instanceof User ) {
-			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->domain );
+			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->get('domain') );
 			$rawCollection = collect( $response );
 
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );

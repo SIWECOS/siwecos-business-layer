@@ -19,7 +19,7 @@ return [
     'SCANNER_NAME_infoLeak' => 'Info Leak Scanner',
 
 
-	'SCORE_critical' => 'Kritisch',
+	'SCORE_critical' => 'Critical',
 	'SCORE_info' => 'Info',
 
 
