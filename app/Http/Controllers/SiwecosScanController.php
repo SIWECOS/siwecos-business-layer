@@ -125,7 +125,19 @@ class SiwecosScanController extends Controller {
 			$testDesc = str_replace('%HOST%', $domain, $testDesc);
 			return $testDesc;
 		} else {
+			$testDesc = __( $testDesc . '_ERROR' );
+			$testDesc = str_replace('%HOST%', $domain, $testDesc);
+			return $testDesc;
+		}
+	}
 
+	protected function buildReport( string $testDesc, int $score, string $domain ) {
+		if ( $score == 100 ) {
+
+		} else {
+			$testDesc = __( $testDesc . '_ERROR_DESC' );
+			$testDesc = str_replace('%HOST%', $domain, $testDesc);
+			return $testDesc;
 		}
 	}
 }

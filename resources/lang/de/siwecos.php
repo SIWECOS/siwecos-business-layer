@@ -28,5 +28,8 @@ return [
 	'HTTPS_NO_RESPONSE_ERROR'      => 'Server antwortet nicht',
 	'HTTPS_NO_RESPONSE_ERROR_DESC' => 'Der Server \“%HOST%\“ scheint überhaupt nicht zu antworten. Haben sie die Domain richtig eingegeben?',
 
+	'PROTOCOLVERSION_TLS13_SUCCESS'=>'Moderne TLS 1.3 unterstützt',
+	'PROTOCOLVERSION_TLS13_ERROR' => 'TLS 1.3 nicht unterstützt',
+	'PROTOCOLVERSION_TLS13_ERROR_DESC' => 'Der Server unterstützt die neueste TLS Protokollversion. Diese befindet sich noch im Standartisierungsprozess. Sollten sie nicht wissen was dies bedeutet, können sie die Version ausschalten, da die meisten Browser diese Version noch nicht unterstützten und TLS 1.3 sich noch in der Entwicklung befindet. '
 
 ];
