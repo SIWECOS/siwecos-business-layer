@@ -47,7 +47,7 @@ class SiwecosScanController extends Controller {
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
-		return response()->json( $this->translateResult( $rawCollection, 'de') );
+		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -95,14 +95,14 @@ class SiwecosScanController extends Controller {
 
 	protected function translateResult( Collection $resultCollection, string $language ) {
 		$this->currentDomain = $resultCollection['domain'];
-		$scannerCollection = collect( $resultCollection['scanners'] );
+		$scannerCollection   = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
 				$item['name']        = __( 'siwecos.' . $item['name'] );
-				$item['description'] = $this->buildDescription($item['name'], $item['score']);
-				$item['report'] = $this->buildReport($item['name'], $item['score'], 'LOREM');
+				$item['description'] = $this->buildDescription( $item['name'], $item['score'] );
+				$item['report']      = $this->buildReport( $item['name'], $item['score'] );
 				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails'] = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
@@ -122,14 +122,16 @@ class SiwecosScanController extends Controller {
 		return $resultCollection;
 	}
 
-	protected function buildDescription( string $testDesc, int $score) {
+	protected function buildDescription( string $testDesc, int $score ) {
 		if ( $score == 100 ) {
 			$testDesc = __( $testDesc . '_SUCCESS' );
-			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
+			$testDesc = str_replace( '%HOST%', $this->currentDomain, $testDesc );
+
 			return $testDesc;
 		} else {
 			$testDesc = __( $testDesc . '_ERROR' );
-			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
+			$testDesc = str_replace( '%HOST%', $this->currentDomain, $testDesc );
+
 			return $testDesc;
 		}
 	}
@@ -139,7 +141,8 @@ class SiwecosScanController extends Controller {
 
 		} else {
 			$testDesc = __( $testDesc . '_ERROR_DESC' );
-			$testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
+			$testDesc = str_replace( '%HOST%', $this->currentDomain, $testDesc );
+
 			return $testDesc;
 		}
 	}
