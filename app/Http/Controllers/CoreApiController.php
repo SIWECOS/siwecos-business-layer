@@ -144,7 +144,7 @@ class CoreApiController extends Controller {
 
 	public function GetResultById( int $id ) {
 		try {
-			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'result/' . $id, [
+			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . CORE_SCAN . 'result/free/' . $id, [
 				'headers' => [ 'masterToken' => $this->coreApiMasterToken ]
 			] );
 

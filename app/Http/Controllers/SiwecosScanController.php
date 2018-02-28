@@ -37,15 +37,16 @@ class SiwecosScanController extends Controller {
 
 	public function BrodcastScanResult( int $id ) {
 
-		event( new App\Events\FreeScanReady( $id ));
+		event( new App\Events\FreeScanReady( $id ) );
 	}
 
-	public function GetScanResultById(int $id){
+	public function GetScanResultById( int $id ) {
 		//Validation if free scan
-		$response = $this->coreApi->GetResultById( $id );
+		$response      = $this->coreApi->GetResultById( $id );
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
-		return response()->json( $this->translateResult( $rawCollection, 'de') );
+
+		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -56,6 +57,7 @@ class SiwecosScanController extends Controller {
 	public function GetScanResultRaw( Request $request ) {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();
+		App::setLocale( 'de' );
 		if ( $tokenUser instanceof User ) {
 			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->domain );
 			if ( $response instanceof RequestException ) {
@@ -81,7 +83,7 @@ class SiwecosScanController extends Controller {
 		$tokenUser = User::where( 'token', $userToken )->first();
 		App::setLocale( $lang );
 		if ( $tokenUser instanceof User ) {
-			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->get('domain') );
+			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
 			$rawCollection = collect( $response );
 
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );
@@ -96,8 +98,8 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$item['name']        = __( $item['name'] );
-				$item['scoreType']   = array_has($item, 'scoreType') ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
+				$item['name']        = __('siwecos.' .  $item['name'] );
+				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails'] = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
 					$item['name'] = __( $item['placeholder'] );
