@@ -44,6 +44,7 @@ class SiwecosScanController extends Controller {
 	public function GetScanResultById( int $id ) {
 		//Validation if free scan
 		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
@@ -84,7 +85,9 @@ class SiwecosScanController extends Controller {
 		$tokenUser = User::where( 'token', $userToken )->first();
 		App::setLocale( $lang );
 		if ( $tokenUser instanceof User ) {
-			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+
+
 			$rawCollection = collect( $response );
 
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );
@@ -120,6 +123,40 @@ class SiwecosScanController extends Controller {
 		$resultCollection->put( 'scanners', $scannerCollection );
 
 		return $resultCollection;
+	}
+
+	protected function calculateScorings( array $results ) {
+		foreach ( $results['scanners'] as &$scanner ) {
+			$totalScore = 0;
+			$scanCount  = 0;
+			$hasCrit    = false;
+			foreach ( $scanner['result'] as &$result ) {
+				$totalScore += $result['score'];
+				$scanCount  += 1;
+				if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] == 'critical' ) {
+					$hasCrit = true;
+				}
+			}
+			$scanner['score']   = $totalScore / $scanCount;
+			$scanner['hasCrit'] = $hasCrit;
+			$scanner['weight']  = $hasCrit ? 20 : 1;
+		}
+		$results['weightedMedia'] = $this->weightedMedian($results['scanners']);
+		return $results;
+	}
+
+	protected function weightedMedian( array $scanners ) {
+		$dividend = 0;
+		$divisor  = 0;
+
+		foreach ( $scanners as $value ) {
+			$dividend += ( $value['weight'] * $value['score'] );
+			$divisor  += $value['weight'];
+		}
+
+		$average = $dividend / $divisor;
+
+		return $average;
 	}
 
 	protected function buildDescription( string $testDesc, int $score ) {
