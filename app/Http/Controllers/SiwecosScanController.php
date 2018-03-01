@@ -97,6 +97,20 @@ class SiwecosScanController extends Controller {
 		return response( "Result not found", 412 );
 	}
 
+	public function GetSimpleOutput( Request $request, string $lang = 'de' ) {
+		Log::info( 'GET RESULTS FOR ' . $request->get( 'domain' ) . ' LANG ' . $lang );
+		App::setLocale( $lang );
+
+			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+			$response = $this->calculateScorings( $response );
+
+
+			$rawCollection = collect( $response );
+			return response()->json( $this->translateResult( $rawCollection, $lang ) );
+
+		return response( "Result not found", 412 );
+	}
+
 	protected function translateResult( Collection $resultCollection, string $language ) {
 		$this->currentDomain = $resultCollection['domain'];
 		$scannerCollection   = collect( $resultCollection['scanners'] );
