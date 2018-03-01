@@ -165,4 +165,16 @@ class CoreApiController extends Controller {
 			return $requestEx;
 		}
 	}
+
+	public function GetScanResultRawFree( $url ) {
+		try {
+			$response = $this->httpClient->GET( $this->coreApiUrl . BASE_ROUTE . 'domainscan?domain=' . $url, [
+				'headers' => [ 'masterToken' => $this->coreApiMasterToken ]
+			] );
+
+			return json_decode( $response->getBody(), true );
+		} catch ( RequestException $requestEx ) {
+			return $requestEx;
+		}
+	}
 }

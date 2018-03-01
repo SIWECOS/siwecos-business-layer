@@ -100,15 +100,22 @@ class SiwecosScanController extends Controller {
 	public function GetSimpleOutput( Request $request, string $lang = 'de' ) {
 		Log::info( 'GET RESULTS FOR ' . $request->get( 'domain' ) . ' LANG ' . $lang );
 		App::setLocale( $lang );
-
-			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
-			$response = $this->calculateScorings( $response );
-
-
+		$domain   = 'https://' . $request->get( 'domain' );
+		$response = $this->coreApi->GetScanResultRawFree( $domain );
+		if ( array_key_exists( 'scanStarted', $response ) ) {
+			$response      = $this->calculateScorings( $response );
 			$rawCollection = collect( $response );
-			return response()->json( $this->translateResult( $rawCollection, $lang ) );
-
+			return response()->json( new App\Http\Resources\SimpleDomainOutput($this->translateResult( $rawCollection, $lang ) ));
+		}
+		$domain   = 'http://' . $request->get( 'domain' );
+		$response = $this->coreApi->GetScanResultRawFree( $domain );
+		if ( array_key_exists( 'scanStarted', $response ) ) {
+			$response      = $this->calculateScorings( $response );
+			$rawCollection = collect( $response );
+			return response()->json( new App\Http\Resources\SimpleDomainOutput($this->translateResult( $rawCollection, $lang ) ));
+		}
 		return response( "Result not found", 412 );
+
 	}
 
 	protected function translateResult( Collection $resultCollection, string $language ) {
@@ -118,12 +125,12 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$item['name']        = __( 'siwecos.' . $item['name'] );
-				$item['description'] = $this->buildDescription( $item['name'], $item['score'] );
-				$item['report']      = $this->buildReport( $item['name'], $item['score'] );
-                $item['scoreTypeRaw']   = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
-				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
-				$item['testDetails'] = collect( $item['testDetails'] );
+				$item['name']         = __( 'siwecos.' . $item['name'] );
+				$item['description']  = $this->buildDescription( $item['name'], $item['score'] );
+				$item['report']       = $this->buildReport( $item['name'], $item['score'] );
+				$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
+				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
+				$item['testDetails']  = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
 					$item['name'] = __( $item['placeholder'] );
 					unset( $item['placeholder'] );
