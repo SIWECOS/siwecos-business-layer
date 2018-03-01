@@ -86,6 +86,7 @@ class SiwecosScanController extends Controller {
 		App::setLocale( $lang );
 		if ( $tokenUser instanceof User ) {
 			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+			$response = $this->calculateScorings( $response );
 
 
 			$rawCollection = collect( $response );
@@ -141,7 +142,8 @@ class SiwecosScanController extends Controller {
 			$scanner['hasCrit'] = $hasCrit;
 			$scanner['weight']  = $hasCrit ? 20 : 1;
 		}
-		$results['weightedMedia'] = $this->weightedMedian($results['scanners']);
+		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'] );
+
 		return $results;
 	}
 
