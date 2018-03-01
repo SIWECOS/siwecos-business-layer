@@ -64,8 +64,7 @@ return [
   'CIPHERSUITE_NULL_ERROR_DESC' => 'Ihr Webserver / Ihre Webseite ist so konfiguriert, dass er zulässt das keine Verschlüsselung eingesetzt wird obwohl TLS gesprochen wird. Dies ermöglicht Man-in-the-Middle Attacken.',
   // Row 12
   'CIPHERSUITE_RC4_SUCCESS'    => 'Keine veraltete RC4 Verschlüsselungsmethodik unterstützt',
-  'CIPHERSUITE_RC4_ERROR'      => 'Veraltete RC4 Verschlüsselungsmethodik
-unterstützt',
+  'CIPHERSUITE_RC4_ERROR'      => 'Veraltete RC4 Verschlüsselungsmethodik unterstützt',
   'CIPHERSUITE_RC4_ERROR_DESC' => 'Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion RC4 Verschlüsselungsmethodik (Ciphersuites) weiterhin unterstützt. Dies ermöglicht Man-in-the-Middle Attacken.',
   // Row 13
   'CIPHERSUITE_DES_SUCCESS'    => 'Keine veraltete DES Verschlüsselungsmethodik unterstützt',
