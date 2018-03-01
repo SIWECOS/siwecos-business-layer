@@ -74,6 +74,10 @@ class User extends Authenticatable
         'name', 'email', 'salutation_id', 'first_name', 'password', 'last_name', 'address', 'plz', 'city', 'phone', 'token', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id'
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
