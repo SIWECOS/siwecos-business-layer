@@ -44,6 +44,7 @@ class SiwecosScanController extends Controller {
 	public function GetScanResultById( int $id ) {
 		//Validation if free scan
 		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
@@ -84,13 +85,40 @@ class SiwecosScanController extends Controller {
 		$tokenUser = User::where( 'token', $userToken )->first();
 		App::setLocale( $lang );
 		if ( $tokenUser instanceof User ) {
-			$response      = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+			$response = $this->coreApi->GetScanResultRaw( $userToken, $request->get( 'domain' ) );
+			$response = $this->calculateScorings( $response );
+
+
 			$rawCollection = collect( $response );
 
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );
 		}
 
 		return response( "Result not found", 412 );
+	}
+
+	public function GetSimpleOutput( Request $request, string $lang = 'de' ) {
+		Log::info( 'GET RESULTS FOR ' . $request->get( 'domain' ) . ' LANG ' . $lang );
+		App::setLocale( $lang );
+		$domain   = 'https://' . $request->get( 'domain' );
+		$response = $this->coreApi->GetScanResultRawFree( $domain );
+		if ( array_key_exists( 'scanStarted', $response ) ) {
+			$response      = $this->calculateScorings( $response );
+			$rawCollection = collect( $response );
+
+			return response()->json( new App\Http\Resources\SimpleDomainOutput( $this->translateResult( $rawCollection, $lang ) ) );
+		}
+		$domain   = 'http://' . $request->get( 'domain' );
+		$response = $this->coreApi->GetScanResultRawFree( $domain );
+		if ( array_key_exists( 'scanStarted', $response ) ) {
+			$response      = $this->calculateScorings( $response );
+			$rawCollection = collect( $response );
+
+			return response()->json( new App\Http\Resources\SimpleDomainOutput( $this->translateResult( $rawCollection, $lang ) ) );
+		}
+
+		return response( "Result not found", 412 );
+
 	}
 
 	protected function translateResult( Collection $resultCollection, string $language ) {
@@ -100,11 +128,12 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$item['name']        = __( 'siwecos.' . $item['name'] );
-				$item['description'] = $this->buildDescription( $item['name'], $item['score'] );
-				$item['report']      = $this->buildReport( $item['name'], $item['score'] );
-				$item['scoreType']   = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
-				$item['testDetails'] = collect( $item['testDetails'] );
+				$item['name']         = __( 'siwecos.' . $item['name'] );
+				$item['description']  = $this->buildDescription( $item['name'], $item['score'] );
+				$item['report']       = $this->buildReport( $item['name'], $item['score'] );
+				$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
+				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
+				$item['testDetails']  = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
 					$item['name'] = __( $item['placeholder'] );
 					unset( $item['placeholder'] );
@@ -120,6 +149,41 @@ class SiwecosScanController extends Controller {
 		$resultCollection->put( 'scanners', $scannerCollection );
 
 		return $resultCollection;
+	}
+
+	protected function calculateScorings( array $results ) {
+		foreach ( $results['scanners'] as &$scanner ) {
+			$totalScore = 0;
+			$scanCount  = 0;
+			$hasCrit    = false;
+			foreach ( $scanner['result'] as &$result ) {
+				$totalScore += $result['score'];
+				$scanCount  += 1;
+				if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] == 'critical' ) {
+					$hasCrit = true;
+				}
+			}
+			$scanner['score']   = $totalScore / $scanCount;
+			$scanner['hasCrit'] = $hasCrit;
+			$scanner['weight']  = $hasCrit ? 20 : 1;
+		}
+		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'] );
+
+		return $results;
+	}
+
+	protected function weightedMedian( array $scanners ) {
+		$dividend = 0;
+		$divisor  = 0;
+
+		foreach ( $scanners as $value ) {
+			$dividend += ( $value['weight'] * $value['score'] );
+			$divisor  += $value['weight'];
+		}
+
+		$average = $dividend / $divisor;
+
+		return $average;
 	}
 
 	protected function buildDescription( string $testDesc, int $score ) {

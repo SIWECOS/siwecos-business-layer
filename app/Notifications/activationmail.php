@@ -44,10 +44,8 @@ class activationmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('User activation')
-            ->line('Please activate your account')
-            ->action('Activate Account', route('activateurl', ['token' => $this->token]))
-            ->line('Thank you for using our application!');
+	        ->markdown('mail.registration', ['activateurl' => route('activateurl', ['token' => $this->token])])
+	        ->subject('[SIWECOS]');
     }
 
     /**
