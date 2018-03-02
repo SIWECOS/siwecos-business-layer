@@ -105,15 +105,18 @@ class SiwecosScanController extends Controller {
 		if ( array_key_exists( 'scanStarted', $response ) ) {
 			$response      = $this->calculateScorings( $response );
 			$rawCollection = collect( $response );
-			return response()->json( new App\Http\Resources\SimpleDomainOutput($this->translateResult( $rawCollection, $lang ) ));
+
+			return response()->json( new App\Http\Resources\SimpleDomainOutput( $this->translateResult( $rawCollection, $lang ) ) );
 		}
 		$domain   = 'http://' . $request->get( 'domain' );
 		$response = $this->coreApi->GetScanResultRawFree( $domain );
 		if ( array_key_exists( 'scanStarted', $response ) ) {
 			$response      = $this->calculateScorings( $response );
 			$rawCollection = collect( $response );
-			return response()->json( new App\Http\Resources\SimpleDomainOutput($this->translateResult( $rawCollection, $lang ) ));
+
+			return response()->json( new App\Http\Resources\SimpleDomainOutput( $this->translateResult( $rawCollection, $lang ) ) );
 		}
+
 		return response( "Result not found", 412 );
 
 	}
