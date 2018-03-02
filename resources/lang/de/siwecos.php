@@ -23,8 +23,8 @@ return [
 	'SCORE_critical'               => 'Critical',
 	'SCORE_info'                   => 'Info',
 
-  // Source . . . .: siwecos_scanner_beschreibung-2018-03-02.xlsx
-  // Translations .: 72
+  // Source . . . .: siwecos_scanner_beschreibung_2018_03-02-pm.xlsx
+  // Translations .: 77
   // 2: Generell
   // 2: HTTPS_NO_RESPONSE
   'HTTPS_NO_RESPONSE_SUCCESS'    => 'Server antwortet',
@@ -152,9 +152,9 @@ return [
   'SWEET32_VULNERABLE_TIPS'       => 'Deaktivieren sie Blockchiffren mit einer LÃ¤nge von 64Bit.',
   // 26: XSS-Scanner
   // 26: HAS_SINKS
-  'HAS_SINKS'            => 'HAS_SINKS',
+  'HAS_SINKS'            => 'ÃberprÃ¼fung des JavaScripts',
   // 27: HAS_SOURCES
-  'HAS_SOURCES'            => 'HAS_SOURCES',
+  'HAS_SOURCES'            => 'ÃberprÃ¼fung der Eingabe-Einstellung der Webseite',
   // 28: HAS_SINKS
   'HAS_SINKS_SUCCESS'    => 'Es wurden automatisiert keine unsicheren Codestellen gefunden, die auf eine Verwundbarkeit Ihrer Webseite hindeuten.',
   'HAS_SINKS_ERROR'      => 'Unsichere JavaScript-Methoden',
@@ -167,19 +167,19 @@ return [
   'HAS_SOURCES_TIPS'       => 'Das Ergebnis der Untersuchung kann nur als Hinweis auf SicherheitslÃ¼cken verwendet werden. Weitere Tests sind erforderlich, um die Schwachstellen auf der Webseite zu bestÃ¤tigen.&#10;',
   // 30: HTTP-Security-Header-Scanner
   // 30: CONTENT_SECURITY_POLICY
-  'CONTENT_SECURITY_POLICY'            => 'CONTENT_SECURITY_POLICY',
+  'CONTENT_SECURITY_POLICY'            => 'ÃberprÃ¼fung der Content Security Policy (CSP)',
   // 31: CONTENT_TYPE
-  'CONTENT_TYPE'            => 'CONTENT_TYPE',
+  'CONTENT_TYPE'            => 'ÃberprÃ¼fung des Content-Header',
   // 32: PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => 'PUBLIC_KEY_PINS',
+  'PUBLIC_KEY_PINS'            => 'ÃberprÃ¼fung des Public Key Pinning (HPKP)',
   // 33: STRICT_TRANSPORT_SECURITY
-  'STRICT_TRANSPORT_SECURITY'            => 'STRICT_TRANSPORT_SECURITY',
+  'STRICT_TRANSPORT_SECURITY'            => 'ÃberprÃ¼fung des HSTS Schutzes',
   // 34: X_CONTENT_TYPE_OPTIONS
-  'X_CONTENT_TYPE_OPTIONS'            => 'X_CONTENT_TYPE_OPTIONS',
+  'X_CONTENT_TYPE_OPTIONS'            => 'ÃberprÃ¼fung des X-Content-Type Headers',
   // 35: X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => 'X_FRAME_OPTIONS',
+  'X_FRAME_OPTIONS'            => 'ÃberprÃ¼fung der X-Frame Optionen',
   // 36: X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => 'X_XSS_PROTECTION',
+  'X_XSS_PROTECTION'            => 'ÃberprÃ¼fung des Cross-Site-Scripting Filters',
   // 37: CONTENT_SECURITY_POLICY&#10;
   'CONTENT_SECURITY_POLICY&#10;_SUCCESS'    => 'Eine sichere Konfiguration der Content Security Policy (CSP) wurde gefunden.',
   'CONTENT_SECURITY_POLICY&#10;_ERROR'      => 'Content Security Policy Inaktiv&#10;',
@@ -217,17 +217,17 @@ return [
   'X_XSS_PROTECTION_TIPS'       => '1; mode=block&#10;Beispielcode einer .htaccess auf einem Apache Webserver.&#10;&#10;--snip&#10;&lt;IfModule mod_headers.c&gt;&#10;# HTTP Strict Transport Security (HSTS) aktivieren&#10;Header set Strict-Transport-Security âmax-age=31556926, includeSubDomainsâ&#10;# Avoid Clickjacking, Seite darf nur in frame oder iframe geÃ¶ffnet werden auf eigener Domain&#10;Header append X-Frame-Options âSAMEORIGINâ&#10;# Turn on XSS prevention tools, activated by default in IE and Chrome&#10;Header set X-XSS-Protection â1; mode=blockâ&#10;# prevent mime based attacks like drive-by download attacks, IE and Chrome&#10;Header set X-Content-Type-Options ânosniffâ&#10;&lt;/IfModule&gt;&#10;--snap',
   // 44: Information-Leakage-Scanner &#10;
   // 44: CMS
-  'CMS'            => 'CMS',
+  'CMS'            => 'ÃberprÃ¼fung der Score-Warnings',
   // 45: SCORE_warning
-  'SCORE_warning'            => 'SCORE_warning',
+  'SCORE_warning'            => 'ÃberprÃ¼fung der CMS Plugins',
   // 46: CMS_PLUGINS
-  'CMS_PLUGINS'            => 'CMS_PLUGINS',
+  'CMS_PLUGINS'            => 'ÃberprÃ¼fung der CMS Plugins',
   // 47: JS_LIB
-  'JS_LIB'            => 'JS_LIB',
+  'JS_LIB'            => 'ÃberprÃ¼fung auf auslesbare Javascript-Daten',
   // 48: EMAIL_ADDRESS
-  'EMAIL_ADDRESS'            => 'EMAIL_ADDRESS',
+  'EMAIL_ADDRESS'            => 'ÃberprÃ¼fung auf auslesbare Email-Daten',
   // 49: PHONE_NUMBER
-  'PHONE_NUMBER'            => 'PHONE_NUMBER',
+  'PHONE_NUMBER'            => 'ÃberprÃ¼fung auf auslesbare Telefonnummern',
   // 50: CMS
   'CMS_SUCCESS'    => 'Das verwendete CMS kann nicht detektiert werden.',
   'CMS_ERROR'      => 'Content Management System (CMS)- erkennbar',
@@ -250,45 +250,55 @@ return [
   'PLUGIN_TIPS'       => 'Plugins sollten auf jene beschrÃ¤nkt werden, die tatsÃ¤chlich benÃ¶tigt werden. Damit kann die AngriffsflÃ¤che erheblich reduzieren werden. Zudem sollten installierte Plugins immer auf dem aktuellsten Stand gehalten werden.&#10;',
   // 54: Initiative-S Scanner
   // 54: PHISHING
-  'PHISHING'            => 'PHISHING',
+  'PHISHING'            => 'ÃberprÃ¼fung auf mÃ¶gliche Phishing-Inhalte',
   // 55: SPAM
-  'SPAM'            => 'SPAM',
+  'SPAM'            => 'ÃberprÃ¼fung auf mÃ¶gliche Spam-Inhalte',
   // 56: MALWARE
-  'MALWARE'            => 'MALWARE',
+  'MALWARE'            => 'ÃberprÃ¼fung auf mÃ¶gliche Malware',
   // 57: TLS Scanner
   // 57: HTTPS_NO_RESPONSE
-  'HTTPS_NO_RESPONSE'            => 'HTTPS_NO_RESPONSE',
+  'HTTPS_NO_RESPONSE'            => 'ÃberprÃ¼fung der Reaktionszeit des Headers',
   // 58: CERTIFICATE_EXPIRED
-  'CERTIFICATE_EXPIRED'            => 'CERTIFICATE_EXPIRED',
+  'CERTIFICATE_EXPIRED'            => 'ÃberprÃ¼fung der Zertifikat Laufzeit',
   // 59: CERTIFICATE_NOT_VALID_YET
-  'CERTIFICATE_NOT_VALID_YET'            => 'CERTIFICATE_NOT_VALID_YET',
+  'CERTIFICATE_NOT_VALID_YET'            => 'ÃberprÃ¼fung der Zertifikat GÃ¼ltigkeit',
   // 60: CERTIFICATE_WEAK_HASH_FUNCTION
-  'CERTIFICATE_WEAK_HASH_FUNCTION'            => 'CERTIFICATE_WEAK_HASH_FUNCTION',
+  'CERTIFICATE_WEAK_HASH_FUNCTION'            => 'ÃberprÃ¼fung der Zertifikat VerschlÃ¼sselungstÃ¤rke',
   // 61: CIPHERSUITE_ANON
-  'CIPHERSUITE_ANON'            => 'CIPHERSUITE_ANON',
+  'CIPHERSUITE_ANON'            => 'ÃberprÃ¼fung auf anonyme VerschlÃ¼sselungsmethodik',
   // 62: CIPHERSUITE_EXPORT
-  'CIPHERSUITE_EXPORT'            => 'CIPHERSUITE_EXPORT',
+  'CIPHERSUITE_EXPORT'            => 'ÃberprÃ¼fung auf geschwÃ¤chte kryptographische Funktionen',
   // 63: CIPHERSUITE_NULL
-  'CIPHERSUITE_NULL'            => 'CIPHERSUITE_NULL',
+  'CIPHERSUITE_NULL'            => 'ÃberprÃ¼fung auf NULL-Chiffren',
   // 64: CIPHERSUITE_RC4
-  'CIPHERSUITE_RC4'            => 'CIPHERSUITE_RC4',
+  'CIPHERSUITE_RC4'            => 'ÃberprÃ¼fung auf RC4 VerschlÃ¼sselungsmethodik',
   // 65: CIPHERSUITE_DES
-  'CIPHERSUITE_DES'            => 'CIPHERSUITE_DES',
+  'CIPHERSUITE_DES'            => 'ÃberprÃ¼fung auf DES VerschlÃ¼sselungsmethodik',
   // 66: SWEET32_VULNERABLE
-  'SWEET32_VULNERABLE'            => 'SWEET32_VULNERABLE',
+  'SWEET32_VULNERABLE'            => 'ÃberprÃ¼fung auf SWEET32 Schwachstelle',
   // 67: CIPHERSUITEORDER_ENFORCED
-  'CIPHERSUITEORDER_ENFORCED'            => 'CIPHERSUITEORDER_ENFORCED',
+  'CIPHERSUITEORDER_ENFORCED'            => 'ÃberprÃ¼fung der Client-VerschlÃ¼sselungsmethodik',
   // 68: PROTOCOLVERSION_SSL2
-  'PROTOCOLVERSION_SSL2'            => 'PROTOCOLVERSION_SSL2',
+  'PROTOCOLVERSION_SSL2'            => 'ÃberprÃ¼fung auf veraltetes SSL2 Protokoll',
   // 69: PROTOCOLVERSION_SSL3
-  'PROTOCOLVERSION_SSL3'            => 'PROTOCOLVERSION_SSL3',
+  'PROTOCOLVERSION_SSL3'            => 'ÃberprÃ¼fung auf veraltetes SSL3 Protokoll',
   // 70: SCORE_bonus
-  'SCORE_bonus'            => 'SCORE_bonus',
+  'SCORE_bonus'            => 'ÃberprÃ¼fung des SCORE Bonus',
   // 71: PROTOCOLVERSION_TLS13
-  'PROTOCOLVERSION_TLS13'            => 'PROTOCOLVERSION_TLS13',
+  'PROTOCOLVERSION_TLS13'            => 'ÃberprÃ¼fung auf Einsatz  des TLS1.3 Protokoll',
   // 72: CRIME_VULNERABLE
-  'CRIME_VULNERABLE'            => 'CRIME_VULNERABLE',
+  'CRIME_VULNERABLE'            => 'ÃberprÃ¼fug auf die CRIME Schwachstelle',
   // 73: POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => 'POODLE_VULNERABLE',
+  'POODLE_VULNERABLE'            => 'ÃberprÃ¼fung auf die POODLE Schwachstelle',
+  // 74: CERTIFICATE_NOT_SENT_BY_SERVER
+  'CERTIFICATE_NOT_SENT_BY_SERVER'            => 'ÃberprÃ¼fung der Zertifikats Ãbermittlung',
+  // 75: CERTIFICATE_WEAK_SIGN_ALGO
+  'CERTIFICATE_WEAK_SIGN_ALGO'            => 'ÃberprÃ¼fung der Zertfikat VerschlÃ¼sselung',
+  // 76: CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
+  'CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS'            => 'ÃberprÃ¼fung der Zertfikat VerschlÃ¼sselung',
+  // 77: HTTPS_NOT_SUPPORTED
+  'HTTPS_NOT_SUPPORTED'            => 'ÃberprÃ¼fung auf HTTPS UnterstÃ¼tzung',
+  // 78: SCORE_hidden
+  'SCORE_hidden'            => 'ÃberprÃ¼fung des SCORE',
 
 ];
