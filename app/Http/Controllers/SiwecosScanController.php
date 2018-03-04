@@ -128,7 +128,6 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$item['name']         = __( 'siwecos.' . $item['name'] );
 				$item['description']  = $this->buildDescription( $item['name'], $item['score'] );
 				$item['report']       = $this->buildReport( $item['name'], $item['score'] );
 				$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
@@ -140,7 +139,7 @@ class SiwecosScanController extends Controller {
 
 					return $item;
 				} );
-
+				$item['name'] = __( 'siwecos.' . $item['name'] );
 				return $item;
 			} );
 
@@ -165,7 +164,7 @@ class SiwecosScanController extends Controller {
 			}
 			$scanner['score']   = $totalScore / $scanCount;
 			$scanner['hasCrit'] = $hasCrit;
-			$scanner['weight']  = $hasCrit ? 20 : 1;
+			$scanner['weight']  = $hasCrit ? 1 : 1;
 		}
 		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'] );
 
@@ -175,13 +174,19 @@ class SiwecosScanController extends Controller {
 	protected function weightedMedian( array $scanners ) {
 		$dividend = 0;
 		$divisor  = 0;
-
+		$hasCrit = false;
+		$maxScore = 100;
 		foreach ( $scanners as $value ) {
 			$dividend += ( $value['weight'] * $value['score'] );
 			$divisor  += $value['weight'];
+			if ($value['hasCrit']){
+				$maxScore = 20;
+			}
 		}
 
 		$average = $dividend / $divisor;
+
+		$average = $maxScore * ($average / 100);
 
 		return $average;
 	}
