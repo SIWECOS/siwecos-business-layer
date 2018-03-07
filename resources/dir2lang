@@ -127,23 +127,36 @@ if ( -e $LANGUAGE_DIR ) {
 }
 mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
 
+# Go through each language
 foreach my $language (keys %$categories) {
     my $cats= $categories->{$language};
+    # Create a directory for the language
     mkdir "$LANGUAGE_DIR/$language" or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
+    # Create the language file for the current language
     open my $out, '>', "$LANGUAGE_DIR/$language/$LANGUAGE_FILE"
     or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
     binmode($out, ':utf8');
+    # Work through the template lines
     foreach (@template) {
+        # Until the placeholder /* DATA HERE */ is found
 		if( m#^(\s*)/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            # Remember the indent
             my $indent= $1;
+            # Go through each category in alphabetical order
             foreach my $category (sort keys %$cats) {
+                # Print the category as comment
                 print $out "$indent//\n$indent// Category: $category\n";
                 my $placeholders= $cats->{$category};
+                # Go through each placeholder in alphabetical order
                 foreach my $placeholder (sort keys %$placeholders){
+                    # Print the placeholder as a comment
                     print $out "$indent//\n$indent// $placeholder\n";
                     my $p= $placeholders->{$placeholder};
+                    # Go through each of the purposes we want to print
+                    # They are defined at the top under "# Prepare some output stuff"
                     foreach my $purpose (@SUFFIX) {
                         my $text= $p->{$purpose};
+                        # Skip this entry if there is nothing to be printed
                         next unless defined $text;
                         my $suffix= $SUFFIX{$purpose};
                         my $fillstring= ' ' x ($fill - length $suffix);
@@ -152,35 +165,42 @@ foreach my $language (keys %$categories) {
                 }
             }
 		} else {
+            # Print an unmodified template line
     		print $out $_;
 		}
 	}
 }
 
+# trim leading and trealing whitespace
 sub trim {
     local($_)= @_;
     s/^\s+|\s+$//gs;
     return $_;
 }
 
+# trim + replace quotes and linefeeds
+# Check %replace at the top
 sub trim_escape {
     local($_)= trim(@_);
     s/$replace/$replace{$1}/ge;
     return $_;
 }
 
+# Replace all whitespace (after trimming) by underscores
 sub no_whitespace {
     local($_)= trim(@_);
     s/\s+/_/gs;
     return $_;
 }
 
+# replace all linefeeds by underscores
 sub no_linefeeds {
     local($_)= trim(@_);
     s/\n/_/gs;
     return $_;
 }
 
+# prepend the wiki url
 sub wiki_link {
     local($_)= no_linefeeds(@_);
     return "$WIKI/$_";
