@@ -78,7 +78,7 @@ my %replace= (
 my $replace= qr/(\\|\n|')/;
 
 # First prepare the template
-open my $template, '<', "$0.txt" or die "Cannot read template $0.txt: $!\n";
+open my $template, '<', __FILE__ . ".txt" or die "Cannot read template $0.txt: $!\n";
 my @template= <$template>;
 close $template;
 
