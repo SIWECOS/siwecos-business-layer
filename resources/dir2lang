@@ -7,7 +7,7 @@ use utf8;
 
 binmode(STDOUT, ":utf8");
 
-my $MYDIR= dirname $0;
+my $MYDIR= dirname(__FILE__);
 my $TRANSLATIONS= "$MYDIR/translations";
 my $LANGUAGE_DIR= "$MYDIR/lang";
 my $LANGUAGE_FILE="siwecos.php";
