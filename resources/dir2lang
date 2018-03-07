@@ -2,12 +2,14 @@
 use strict;
 use warnings;
 use POSIX;
+use File::Basename;
 use utf8;
 
 binmode(STDOUT, ":utf8");
 
-my $TRANSLATIONS= "resource/translations";
-my $LANGUAGE_DIR= "resource/lang";
+my $MYDIR= dirname $0;
+my $TRANSLATIONS= "$MYDIR/translations";
+my $LANGUAGE_DIR= "$MYDIR/lang";
 my $LANGUAGE_FILE="siwecos.php";
 
 # Expected headers
@@ -119,7 +121,6 @@ while (<*/*/*.txt>) {
         warn "Can't read $_: $!";
     }
 }
-chdir ('..') or die "Failed to chdir to .. from $TRANSLATIONS: $!\n";
 
 if ( -e $LANGUAGE_DIR ) {
     rename $LANGUAGE_DIR, $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
