@@ -1,0 +1,1 @@
+Dieses Problem lässt sich lösen, indem Sie das eingesetzte [[Zertifikate|Zertifikat]] erneuern oder ein neues [[Zertifikate|Zertifikat]] installieren. Wie Sie Zertifikate verlängern können, lesen Sie hier: [https://www.siwecos.de/wiki/Zertifikate#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F Zertifikat abgelaufen]

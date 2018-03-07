@@ -1,0 +1,1 @@
+Mehr als 50 Prozent aller JavaScript-Funktionen von den 10.000 beliebtesten Webseiten werden gar nicht genutzt. Manch anderes Feature ist eher sinnlos und mit Blick auf die Sicherheit erscheinen so manches Javascript-Features mehr als fraglich. Zum Beispiel gab es für die "Web Audio API" in den vergangenen drei Jahren mindestens zehn gemeldete Sicherheitslücken nach CVE-Standard.

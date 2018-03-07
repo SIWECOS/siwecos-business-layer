@@ -1,0 +1,1 @@
+Durch die Angabe der korrekten Header-Deklaration können diverse [[Cross-Site-Scripting|XSS-Angriffe]] verhindert werden. Wird der verwendete [https://de.wikipedia.org/wiki/Zeichenkodierung Zeichensatz] nicht angegeben, so interpretieren manche [[Browser|Webbrowser]] den Quellcode selbst, wodurch bestimmte Angriffe möglich werden, die einen anderen Zeichensatz voraussetzen.

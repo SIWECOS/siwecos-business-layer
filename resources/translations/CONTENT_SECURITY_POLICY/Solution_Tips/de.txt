@@ -1,0 +1,10 @@
+Verwenden Sie den CSP mit default-src 'none' und ohne unsicher-eval oder unsicher-inline-Richtlinien. Mehr zu '''Content Security Policy''' (zu deutsch etwa "Richtlinie für die Sicherheit der Inhalte") finden Sie bei '''[https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy SELFHTML>>]'''
+
+'''Beispiel:'''
+
+--snip
+<pre>
+# Download / Lade Inhalte nur von Seiten die explizit erlaubt sind
+# Beispiel das alles von der eigenen Domain erlaubt allerdings keinerlei Externas:
+Header set Content-Security-Policy "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';" </pre>
+--snap

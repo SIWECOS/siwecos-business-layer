@@ -1,0 +1,13 @@
+nosniff; <br><br>
+'''Beispielcode einer .htaccess auf einem Apache Webserver.'''<br>
+'''--snip'''<pre>
+<IfModule mod_headers.c>
+   # HTTP Strict Transport Security (HSTS) aktivieren
+   Header set Strict-Transport-Security „max-age=31556926, includeSubDomains“
+   # Avoid Clickjacking, Seite darf nur in frame oder iframe geöffnet werden auf eigener Domain
+   Header append X-Frame-Options „SAMEORIGIN“
+   # Turn on XSS prevention tools, activated by default in IE and Chrome
+   Header set X-XSS-Protection „1; mode=block“</pre>
+   # prevent mime based attacks like drive-by download attacks, IE and Chrome
+   '''Header set X-Content-Type-Options „nosniff“'''
+<pre></IfModule></pre>

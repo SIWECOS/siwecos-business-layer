@@ -1,0 +1,3 @@
+Es gibt sowohl einen Header-Check als auch eine Überprüfung der META-Tags. Bitte beide Variablen in der technischen Übersicht angeben. 
+
+Die HEADER-Überprüfung ist ggf. Sicherer als die Angabe via META-TAG.

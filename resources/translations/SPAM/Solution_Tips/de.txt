@@ -1,0 +1,29 @@
+'''<span style="color:#c31622"> Nehmen Sie die Webseite offline!<span>'''
+
+Um den Besuch Ihrer infizierten Webseite zu vermeiden bzw. damit Google Ihre Webseite nicht aus dem Index nimmt, was ein eventuelles positives Ranking annullieren würde, schalten Sie die Webseite offline. So kommen Sie auch einer eventuellen Sperre Ihrer Webseite seitens Ihres Providers/Hosters zuvor.
+
+Um zu prüfen ob die Seite über diverse Spam-Merkmale verfügt, rufen Sie die Seite im Browser auf, klicken über die rechte Maustaste den "Quelltext anzeigen". In diesem Fenster können Sie Ihren Quellcode mit Drücken der Tasten '''Strg+f''' (suchen) auf gängige Online-Betrügereien durch Werbung für Medikamente oder dubiose Kreditgeschäft überprüfen.
+
+'''Einige Suchvorschläge''':<br>
+- „payday“<br>
+- „Pharma“<br>
+- „Viagra“<br>
+- „Cialis“<br><br>
+'''- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre Domain zuzugreifen. '''<br>
+
+Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten Quell-IP-Adressen. Als Ausgangspunkt  Ihrer Recherche könnte Ihnen der Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor geben.
+
+'''- Ändern Sie Ihre Zugangsdaten!'''<br>
+'''- Webfrontend (Hosting-Vertrag, Content-Management-System)'''<br>
+'''- FTP-, SSH-Zugänge'''<br>
+'''- Datenbank-Passwörter'''<br>
+
+Spielen Sie ein schadcodefreies Backup wieder ein!
+Löschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie sicher, dass Sie keine Fremddateien, die den Angreifern als "Hintertüren" dienen aus der vormals kompromittierten Umgebung übernehmen.
+Überprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine noch ältere Sicherung zurück.
+Sollte das Backup "schadcodefrei" sein, stellen Sie dieses wieder her und führen danach die Updates im System durch. Erst dann stellen Sie die Webseite wieder online.
+
+''' - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle Bereinigungen nehmen in der Regel sehr viel Zeit in Anspruch und sollten nur von Fachpersonal durchgeführt werden.'''<br>
+
+Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite [https://www.botfrei.de botfrei.de] finden Sie dazu Hilfestellungen und Programme. 
+Mit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen Schadprogrammen säubern. ( https://www.botfrei.de/de/eucleaner/index.html )

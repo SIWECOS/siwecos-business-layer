@@ -1,0 +1,1 @@
+Verwundbare JavaScript-Bibliothek %js_lib_name% der Version %js_lib_version% in DOM-node %node% mit dem Inhalt %node_content% detektiert.

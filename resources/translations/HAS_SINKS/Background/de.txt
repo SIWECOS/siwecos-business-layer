@@ -1,0 +1,1 @@
+[https://www.siwecos.de/wiki/Cross-Site_Scripting Cross-Site-Scripting] stellt eine Möglichkeit dar, den HTML Code auf Ihrer Webseite zu manipulieren und zu infiltrieren. Es ermöglicht einem Angreifer, Skripte indirekt an den Browser Ihres Webseiten-Besuchers zu senden und damit Schadcode auf der Seite des Besuchers auszuführen.

@@ -1,0 +1,80 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Spreadsheet::Read;
+use POSIX;
+use utf8;
+
+binmode(STDOUT, ":utf8");
+
+my $TRANSLATIONS= "translations";
+
+if ( -e $TRANSLATIONS ) {
+    rename $TRANSLATIONS, $TRANSLATIONS . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+}
+mkdir "$TRANSLATIONS" or die "Failed to create directory $TRANSLATIONS: $!\n";
+
+# filenames of excel files are parameters
+foreach my $languagefile (@ARGV) {
+    # Is the file readable?
+    if( ! -r $languagefile ) {
+        warn "Cannot read $languagefile.\n";
+        next;
+    }
+
+    # Read file into memory
+	my $data= ReadData($languagefile);
+	my @row = Spreadsheet::Read::rows($data->[1]);
+
+    # Get the header sequence
+	my @header= map { s/[^a-z0-9_\-]/_/gi; $_; } @{$row[0]};
+
+    my %line;
+	my @data;
+    my $translations= 0;
+
+    my $language= "de";
+    my $category= "Generell";
+    # Check each line of the spreadsheet
+    for (my $line=1; $line < scalar @row; ++$line) {
+        # Make each field accessible by field name (by the header text)
+		@line{@header}= @{$row[$line]};
+
+        # Trim each field
+		foreach (values %line) {
+            next unless $_;
+			s/^\s+|\s+$//gs;
+		}
+
+        if( $line{"Category"} ) {
+            $category= $line{"Category"};
+        }
+        else {
+            $line{"Category"}= $category;
+        }
+
+        # get the name of the placeholder
+		my $placeholder= $line{"Placeholder"};
+        # If we don't have one - check next line
+		next unless $placeholder;
+
+        # got a new translation
+        ++$translations;
+
+        mkdir "$TRANSLATIONS/$placeholder" or warn "Duplicate placeholder $placeholder\n";
+        foreach (@header) {
+            next if $_ eq "Placeholder";
+            next unless $line{$_};
+            mkdir "$TRANSLATIONS/$placeholder/$_";
+            if( open my $t, '>', "$TRANSLATIONS/$placeholder/$_/$language.txt" ) {
+                binmode($t, ":utf8");
+                print $t $line{$_};
+                close $t;
+            }
+            else {
+                warn "Could not create $TRANSLATIONS/$placeholder/$_/$language.txt: $!\n";
+            }
+        }
+	}
+
+}

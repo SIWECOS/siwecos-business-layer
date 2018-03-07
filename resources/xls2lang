@@ -1,0 +1,149 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Spreadsheet::Read;
+use utf8;
+
+binmode(STDOUT, ":utf8");
+
+# Expected headers
+my $PLACEHOLDER  = 'Placeholder';
+my $HEADLINE     = 'Headline';
+my $DESCRIPTION  = 'Description';
+my $ERROR_TEXT   = 'Negative';
+my $SUCCESS_TEXT = 'Positive';
+my $SECTION      = 'Section';
+my $TIPP         = 'Solution/Tips';
+my $LINK         = 'Link';
+
+my $WIKI= 'https://siwecos.de/wiki';
+
+my %replace= (
+    "\\" => "\\\\",
+    "\n" => "\\n",
+    "'"  => "\\'",
+);
+my $replace= qr/(\\|\n|')/;
+
+# First prepare the template
+open my $template, '<', "$0.txt" or die "Cannot read $0.txt: $!\n";
+my @template= <$template>;
+close $template;
+
+# filenames of excel files are parameters
+foreach my $languagefile (@ARGV) {
+    # Is the file readable?
+    if( ! -r $languagefile ) {
+        warn "Cannot read $languagefile.\n";
+        next;
+    }
+
+    # Try to get current git hash
+    my $hash= '*not found*';
+    if (open my $git, '-|', git => 'log', '--follow', '--pretty=%H', '-n 1', $languagefile) {
+        $hash= <$git>;
+        chomp($hash);
+        close $git;
+    }
+
+    # Read file into memory
+	my $data= ReadData($languagefile);
+	my @row = Spreadsheet::Read::rows($data->[1]);
+
+    # Get the header sequence
+	my @header= @{$row[0]};
+
+    my %line;
+	my @data;
+    my $translations= 0;
+
+    # Check each line of the spreadsheet
+    for (my $line=1; $line < scalar @row; ++$line) {
+        # Make each field accessible by field name (by the header text)
+		@line{@header}= @{$row[$line]};
+
+        # Trim each field
+		foreach (@line{
+            $SECTION,
+            $SUCCESS_TEXT,
+            $ERROR_TEXT,
+            $DESCRIPTION,
+            $PLACEHOLDER,
+            $HEADLINE,
+            $TIPP,
+            $LINK,
+        }) {
+            next unless $_;
+			s/^\s+|\s+$//gs;
+            s/$replace/$replace{$1}/ge; # escape some characters
+		}
+
+        # If there is something in the section field, we will print this as well
+		if( $line{$SECTION} ) {
+    		push @data, sprintf("// %d: %s", 1+$line, $line{$SECTION});
+		}
+
+        # get the name of the placeholder
+		my $placeholder= $line{$PLACEHOLDER};
+        # If we don't have one - check next line
+		next unless $placeholder;
+
+        # got a new translation
+        ++$translations;
+        push @data, sprintf("// %d: %s", 1+$line, $placeholder);
+        if( $line{$HEADLINE} ) {
+            push @data, sprintf("'%s'            => '%s',", $placeholder, replace($placeholder, \%line, $HEADLINE));
+        }
+        if( $line{$SUCCESS_TEXT} or $line{$ERROR_TEXT} or $line{$DESCRIPTION} or $line{$TIPP} ) {
+    		push @data, sprintf("'%s_SUCCESS'    => '%s',", $placeholder, replace($placeholder, \%line, $SUCCESS_TEXT));
+    		push @data, sprintf("'%s_ERROR'      => '%s',", $placeholder, replace($placeholder, \%line, $ERROR_TEXT));
+            push @data, sprintf("'%s_ERROR_DESC' => '%s',", $placeholder, replace($placeholder, \%line, $DESCRIPTION));
+            push @data, sprintf("'%s_TIPS'       => '%s',", $placeholder, replace($placeholder, \%line, $TIPP));
+        }
+        if( $line{$LINK} ) {
+            push @data, sprintf("'%s_LINK'       => '%s/%s',", $placeholder, $WIKI, replace($placeholder, \%line, $LINK));
+        }
+	}
+
+    # do we have to translate more than 1 file, then redirect output
+    my $last_out;
+    my $out;
+    if( 1 < scalar @ARGV) {
+        my $fname= $languagefile;
+        # change extension to .php
+        $fname=~ s#(?:\.[^./]*)$#.php#;
+        # open the file or warn
+        if( open $out, '>',  $fname ) {
+            binmode($out, ':utf8');
+            $last_out= select($out);
+        } else {
+            warn "Cannot write to $fname: $!";
+            $out= undef;
+        }
+    }
+    # Read the template and fill it
+	foreach (@template) {
+		if( m#^(\s*)/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            print "$1// Source . . . .: $languagefile\n";
+            print "$1// Commit . . . .: $hash\n";
+            print "$1// Translations .: $translations\n";
+            foreach (@data) {
+        		print "$1$_\n";
+    		}
+		} else {
+    		print;
+		}
+	}
+    # close outputfile if we had one
+    if( $out ) {
+        close $out;
+        select($last_out);
+        # Show number of translations
+        print "$languagefile => $translations\n";
+    }
+}
+
+sub replace {
+    my($placeholder, $line, $key)= @_;
+    return $line->{$key} || "** missing $key for $placeholder **";
+}

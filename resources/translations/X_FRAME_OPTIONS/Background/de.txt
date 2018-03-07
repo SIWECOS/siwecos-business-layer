@@ -1,0 +1,4 @@
+Ob einem Browser erlaubt wird, eine Seite in einem ''frame'' oder ''iframe'' darzustellen, legt dieser Headereintrag fest. Damit können sog. Clickjacking-Attacken vermieden werde, indem sichergestellt wird, dass die Webseite nicht in einer anderen Webseite eingebettet wird. Es gibt verschiedene Werte:
+'''DENY:''' Kein Rendering der Seite, wenn sie in einem ''frame'' oder ''iframe'' geladen wird<br>
+'''SAMEORIGIN:''' Rendering der Seite erfolgt nur, wenn der ''frame'' oder ''iframe'' innerhalb Ihrer Domain ist<br>
+'''ALLOW-FROM DOMAIN:''' Verhindert, dass die Seite dargestellt werden kann, wenn es sich um eine andere Domain handelt, als die hier angegeben wurde.

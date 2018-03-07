@@ -1,0 +1,8 @@
+pin-sha256="<HASH>"; pin-sha256="<HASH>"; max-age=2592000; includeSubDomains;
+'''HPKP aktivieren''' - Dieses Feature kann einfach aktiviert werden indem ein Public-Key-Pins HTTP-Header beim Aufruf der Seite über [[HTTPS]] zurückgegeben wird. ([https://developer.mozilla.org/de/docs/Web/Security/Public_Key_Pinning Weitere Infos]).
+
+'''--snip'''
+
+<pre>Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]</pre>
+
+'''--snap'''  

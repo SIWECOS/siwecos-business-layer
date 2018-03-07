@@ -1,0 +1,1 @@
+Die Meldung bedeutet, dass Ihr [[Zertifikate|Server-Zertifikat]] abgelaufen ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt wird. Sollte ein Nutzer Ihre Webseite über [[HTTPS]] aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt.

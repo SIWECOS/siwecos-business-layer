@@ -1,0 +1,1 @@
+Der Server ist verwundbar durch eine Schwachstelle, welche es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.

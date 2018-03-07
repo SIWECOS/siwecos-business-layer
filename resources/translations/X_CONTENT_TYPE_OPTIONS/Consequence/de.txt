@@ -1,0 +1,1 @@
+Einfach und ohne weitere Anpassungen zu implementieren. Verhindert Angriffe auf Nutzer des Internet Explorers.

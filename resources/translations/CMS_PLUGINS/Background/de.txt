@@ -1,0 +1,1 @@
+Ein Plugin ist ein optionales Software-Modul, das eine bestehende Software erweitert bzw. verändert. Plugins werden häufig auch von unerfahrenen Entwicklern geschrieben und haben deswegen besonders häufig Schwachstellen, welche oft nicht rechtzeitig geschlossen werden. [https://de.wikipedia.org/wiki/Plug-in Weitere Informationen]

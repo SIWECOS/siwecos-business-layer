@@ -1,0 +1,9 @@
+max-age=63072000; includeSubdomains;
+HTTP Strict Transport Security (HSTS) ist ein einfach zu integrierender Web-Security-Policy-Mechanismus.
+
+'''--snip'''<pre>
+# HTTP Strict Transport Security (HSTS) aktivieren
+# Pflichtangabe: „max-age“
+# Optional: „includeSubDomains“</pre>
+   '''Header set Strict-Transport-Security „max-age=31556926, includeSubDomains“'''
+'''--snap'''

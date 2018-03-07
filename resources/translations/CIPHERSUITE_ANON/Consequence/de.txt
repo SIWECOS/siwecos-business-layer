@@ -1,0 +1,1 @@
+Angreifer können ohne viel Aufwand die Kommunikation zwischen Ihrem Webserver und dem [[Browser]] Ihres Besuchers entschlüsseln, sogenannte [[Man-in-the-middle|Man-in-the-Middle Attacken]]. Damit lassen sich z.B. eingebene Passwörter oder Kreditkarten-Informationen auslesen und für kriminelle Zwecke missbrauchen.

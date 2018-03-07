@@ -1,0 +1,1 @@
+Die Einbettung des Content Types im Quellcode ist durch eine relativ kurze Angabe möglich. Es sollte der UTF-8 Zeichensatz verwendet werden.

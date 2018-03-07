@@ -1,0 +1,1 @@
+Aktualisieren Sie dringend die von Ihnen eingesetzte [[Transport_Layer_Security|TLS-Implementierung]]. Moderne Software erlaubt diese Art der Konfiguration nicht mehr.

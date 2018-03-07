@@ -1,0 +1,1 @@
+Die Verbindung zu Ihrer Seite ist nicht verschlüsselt. Sämtliche Kommunikation zwischen Ihrer Seite und den Benutzern kann abgehört und manipuliert werden.

@@ -1,0 +1,1 @@
+Eine sichere Konfiguration der Content Security Policy (CSP) wurde gefunden.

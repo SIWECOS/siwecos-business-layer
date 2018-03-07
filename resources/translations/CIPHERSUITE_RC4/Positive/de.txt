@@ -1,0 +1,1 @@
+Keine veraltete RC4 Verschlüsselungsmethodik unterstützt

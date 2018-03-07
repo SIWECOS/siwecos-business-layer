@@ -1,0 +1,1 @@
+Überprüfung der Content Security Policy (CSP)

@@ -1,0 +1,1 @@
+Veraltete Protokollversion SSL2 unterstützt

@@ -1,0 +1,1 @@
+Ihr Webserver / Ihre Webseite ist so konfiguriert, dass er zulässt das keine Verschlüsselung eingesetzt wird obwohl TLS gesprochen wird. Dies ermöglicht Man-in-the-Middle Attacken.

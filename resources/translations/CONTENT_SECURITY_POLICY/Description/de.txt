@@ -1,0 +1,1 @@
+Test1 Die Content-Security-Policy ist ein Sicherheitskonzept, das primär das Einschleusen von Dateien unterbinden soll, aber noch einiges mehr kann. Es stellt quasi die Whitelist (Liste erlaubter Quellen) dar, von welchen [[Quellen]] Javascripte, Bilder, Schriftarten und andere Inhalte auf Ihrer Seite eingebunden werden dürfen.

@@ -1,0 +1,292 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use POSIX;
+use utf8;
+
+binmode(STDOUT, ":utf8");
+
+my $TRANSLATIONS= "resource/translations";
+my $LANGUAGE_DIR= "resource/lang";
+my $LANGUAGE_FILE="siwecos.php";
+
+# Expected headers
+my $BACKGROUND   = 'Background';
+my $CATEGORY     = 'Category';
+my $COMMENT      = 'Comment';
+my $CONSEQUENCE  = 'Consequence';
+my $DESCRIPTION  = 'Description';
+my $DETAILS      = 'Details';
+my $HEADLINE     = 'Headline';
+my $IMPACT       = 'Impact';
+my $LINK         = 'Link';
+my $ERROR_TEXT   = 'Negative';
+my $SUCCESS_TEXT = 'Positive';
+my $TIPP         = 'Solution_Tips';
+my $TECHNICAL    = 'Technical';
+
+my %CLEAN= (
+    $BACKGROUND   => \&trim_escape,
+    $CATEGORY     => \&no_linefeeds,
+    $COMMENT      => \&trim_escape,
+    $CONSEQUENCE  => \&trim_escape,
+    $DESCRIPTION  => \&trim_escape,
+    $DETAILS      => \&trim_escape,
+    $HEADLINE     => \&trim_escape,
+    $IMPACT       => \&trim_escape,
+    $LINK         => \&no_linefeeds,
+    $ERROR_TEXT   => \&trim_escape,
+    $SUCCESS_TEXT => \&trim_escape,
+    $TIPP         => \&trim_escape,
+    $TECHNICAL    => \&trim_escape,
+);
+
+# Prepare some output stuff
+my @SUFFIX;
+my %SUFFIX;
+my $fill= 0;
+my $v=0;
+foreach (
+    $HEADLINE     => '',
+    $SUCCESS_TEXT => 'SUCCESS',
+    $ERROR_TEXT   => 'ERROR',
+    $DESCRIPTION  => 'ERROR_DESC',
+    $TIPP         => 'TIPS',
+    $LINK         => 'LINK',
+) {
+    if ($v) {
+        my $suffix= $_;
+        $suffix= "_$_" if $_;
+        $SUFFIX{$SUFFIX[$#SUFFIX]}= $suffix;
+        my $l= length $suffix;
+        $fill= $l if $l > $fill;
+    } else {
+        push @SUFFIX, $_;
+    }
+    $v= 1-$v;
+}
+
+my $WIKI= 'https://siwecos.de/wiki';
+
+my %replace= (
+    "\\" => "\\\\",
+    "\n" => "\\n",
+    "'"  => "\\'",
+);
+my $replace= qr/(\\|\n|')/;
+
+# First prepare the template
+open my $template, '<', "$0.txt" or die "Cannot read template $0.txt: $!\n";
+my @template= <$template>;
+close $template;
+
+
+
+chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
+# get all translation filenames
+# Directory structure is $TRANSLATIONS / placeholder / purpose / language ".txt"
+# Also collect categories
+my $language_data= {};
+my $categories= {};
+while (<*/*/*.txt>) {
+    # Split pathname into parts
+    my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
+    # remove filename extension
+    $lang=~ s#\.[^./]+$##;
+    # Read the file
+    if( open my $trans, '<', $_ ) {
+        binmode($trans, ":utf8");
+        # into our data structures
+        my $text= do {
+            local $/;
+            <$trans>;
+        };
+        my $clean= $CLEAN{$purpose};
+        if( $clean ) {
+            $text= $clean->($text);
+        } else {
+            $CLEAN{$purpose}= \&trim_escape;
+            warn "Unknown purpose: $purpose used in $placeholder.\n";
+        }
+        if( $purpose eq "Category" ) {
+            $language_data->{$lang}->{$placeholder} ||= {};
+            $categories->{$lang}->{$text}->{$placeholder}= $language_data->{$lang}->{$placeholder};
+        } else {
+            $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
+        }
+    }
+    else {
+        warn "Can't read $_: $!";
+    }
+}
+chdir ('..') or die "Failed to chdir to .. from $TRANSLATIONS: $!\n";
+
+if ( -e $LANGUAGE_DIR ) {
+    rename $LANGUAGE_DIR, $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+}
+mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
+
+foreach my $language (keys %$categories) {
+    my $cats= $categories->{$language};
+    mkdir "$LANGUAGE_DIR/$language" or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
+    open my $out, '>', "$LANGUAGE_DIR/$language/$LANGUAGE_FILE"
+    or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
+    binmode($out, ':utf8');
+    foreach (@template) {
+		if( m#^(\s*)/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            my $indent= $1;
+            foreach my $category (sort keys %$cats) {
+                print $out "$indent//\n$indent// Category: $category\n";
+                my $placeholders= $cats->{$category};
+                foreach my $placeholder (sort keys %$placeholders){
+                    print $out "$indent//\n$indent// $placeholder\n";
+                    my $p= $placeholders->{$placeholder};
+                    foreach my $purpose (@SUFFIX) {
+                        my $text= $p->{$purpose};
+                        next unless defined $text;
+                        my $suffix= $SUFFIX{$purpose};
+                        my $fillstring= ' ' x ($fill - length $suffix);
+                        print $out "$indent'$placeholder$suffix'$fillstring => '$text',\n";
+                    }
+                }
+            }
+		} else {
+    		print $out $_;
+		}
+	}
+}
+
+sub trim {
+    local($_)= @_;
+    s/^\s+|\s+$//gs;
+    return $_;
+}
+
+sub trim_escape {
+    local($_)= trim(@_);
+    s/$replace/$replace{$1}/ge;
+    return $_;
+}
+
+sub no_whitespace {
+    local($_)= trim(@_);
+    s/\s+/_/gs;
+    return $_;
+}
+
+sub no_linefeeds {
+    local($_)= trim(@_);
+    s/\n/_/gs;
+    return $_;
+}
+
+__END__
+    # Try to get current git hash
+    my $hash= '*not found*';
+    if (open my $git, '-|', git => 'log', '--follow', '--pretty=%H', '-n 1', $languagefile) {
+        $hash= <$git>;
+        chomp($hash);
+        close $git;
+    }
+
+    # Read file into memory
+	my $data= ReadData($languagefile);
+	my @row = Spreadsheet::Read::rows($data->[1]);
+
+    # Get the header sequence
+	my @header= @{$row[0]};
+
+    my %line;
+	my @data;
+    my $translations= 0;
+
+    # Check each line of the spreadsheet
+    for (my $line=1; $line < scalar @row; ++$line) {
+        # Make each field accessible by field name (by the header text)
+		@line{@header}= @{$row[$line]};
+
+        # Trim each field
+		foreach (@line{
+            $SECTION,
+            $SUCCESS_TEXT,
+            $ERROR_TEXT,
+            $DESCRIPTION,
+            $PLACEHOLDER,
+            $HEADLINE,
+            $TIPP,
+            $LINK,
+        }) {
+            next unless $_;
+			s/^\s+|\s+$//gs;
+            s/$replace/$replace{$1}/ge; # escape some characters
+		}
+
+        # If there is something in the section field, we will print this as well
+		if( $line{$SECTION} ) {
+    		push @data, sprintf("// %d: %s", 1+$line, $line{$SECTION});
+		}
+
+        # get the name of the placeholder
+		my $placeholder= $line{$PLACEHOLDER};
+        # If we don't have one - check next line
+		next unless $placeholder;
+
+        # got a new translation
+        ++$translations;
+        push @data, sprintf("// %d: %s", 1+$line, $placeholder);
+        if( $line{$HEADLINE} ) {
+            push @data, sprintf("'%s'            => '%s',", $placeholder, replace($placeholder, \%line, $HEADLINE));
+        }
+        if( $line{$SUCCESS_TEXT} or $line{$ERROR_TEXT} or $line{$DESCRIPTION} or $line{$TIPP} ) {
+    		push @data, sprintf("'%s_SUCCESS'    => '%s',", $placeholder, replace($placeholder, \%line, $SUCCESS_TEXT));
+    		push @data, sprintf("'%s_ERROR'      => '%s',", $placeholder, replace($placeholder, \%line, $ERROR_TEXT));
+            push @data, sprintf("'%s_ERROR_DESC' => '%s',", $placeholder, replace($placeholder, \%line, $DESCRIPTION));
+            push @data, sprintf("'%s_TIPS'       => '%s',", $placeholder, replace($placeholder, \%line, $TIPP));
+        }
+        if( $line{$LINK} ) {
+            push @data, sprintf("'%s_LINK'       => '%s/%s',", $placeholder, $WIKI, replace($placeholder, \%line, $LINK));
+        }
+	}
+
+    # do we have to translate more than 1 file, then redirect output
+    my $last_out;
+    my $out;
+    if( 1 < scalar @ARGV) {
+        my $fname= $languagefile;
+        # change extension to .php
+        $fname=~ s#(?:\.[^./]*)$#.php#;
+        # open the file or warn
+        if( open $out, '>',  $fname ) {
+            binmode($out, ':utf8');
+            $last_out= select($out);
+        } else {
+            warn "Cannot write to $fname: $!";
+            $out= undef;
+        }
+    }
+    # Read the template and fill it
+	foreach (@template) {
+		if( m#^(\s*)/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            print "$1// Source . . . .: $languagefile\n";
+            print "$1// Commit . . . .: $hash\n";
+            print "$1// Translations .: $translations\n";
+            foreach (@data) {
+        		print "$1$_\n";
+    		}
+		} else {
+    		print;
+		}
+	}
+    # close outputfile if we had one
+    if( $out ) {
+        close $out;
+        select($last_out);
+        # Show number of translations
+        print "$languagefile => $translations\n";
+    }
+}
+
+sub replace {
+    my($placeholder, $line, $key)= @_;
+    return $line->{$key} || "** missing $key for $placeholder **";
+}

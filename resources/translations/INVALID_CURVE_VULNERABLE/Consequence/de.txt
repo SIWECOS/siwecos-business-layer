@@ -1,0 +1,1 @@
+Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche es einem Angreifer erlaubt die Kommunikation zu entschlüsseln und den privaten Schlüssel ihres Zeritifikats zu stehlen.

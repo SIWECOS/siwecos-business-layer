@@ -1,0 +1,1 @@
+Dieser Header konfiguriert den [[Cross-Site-Scripting]] integrierten XSS-Schutz in den meisten aktuellen Browsern (Internet Explorer, Chrome und Safari). Der Header ist nicht gesetzt.

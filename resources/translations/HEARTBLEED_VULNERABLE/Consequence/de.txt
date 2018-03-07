@@ -1,0 +1,1 @@
+Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche es einem Angreifer ihren Server anzugreifen.

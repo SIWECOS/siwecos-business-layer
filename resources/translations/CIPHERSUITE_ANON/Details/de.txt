@@ -1,0 +1,1 @@
+Ihr Webserver / Ihre Webseite ist so konfiguriert, dass eine anonyme Verschlüsselungsmethodik (Ciphersuites) ohne Authentikation bei der Verbindung erfolgt. Dies ermöglicht Man-in-the-Middle Attacken.

@@ -1,0 +1,1 @@
+Telefonnummern werden in der Regel veröffentlicht, um dem Kunden die Möglichkeit zu geben direkt mit Mitarbeitern zu kommunizieren. Sollte der Kunde jedoch ein Angreifer sein, kann es zu sozialen Manipulationen kommen die dann dazu führen, dass vertrauliche Informationen preisgegeben werden.
