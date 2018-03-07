@@ -2,15 +2,15 @@
 use strict;
 use warnings;
 use POSIX;
-use File::Basename;
+use FindBin qw($Bin $Script);
 use utf8;
 
 binmode(STDOUT, ":utf8");
 
-my $MYDIR= dirname(__FILE__);
-my $TRANSLATIONS= "$MYDIR/translations";
-my $LANGUAGE_DIR= "$MYDIR/lang";
+my $TRANSLATIONS= "$Bin/translations";
+my $LANGUAGE_DIR= "$Bin/lang";
 my $LANGUAGE_FILE="siwecos.php";
+my $TEMPLATEFILE= "$Bin/$Script.txt";
 
 # Expected headers
 my $BACKGROUND   = 'Background';
@@ -78,7 +78,7 @@ my %replace= (
 my $replace= qr/(\\|\n|')/;
 
 # First prepare the template
-open my $template, '<', __FILE__ . ".txt" or die "Cannot read template $0.txt: $!\n";
+open my $template, '<', $TEMPLATEFILE or die "Cannot read template $0.txt: $!\n";
 my @template= <$template>;
 close $template;
 
