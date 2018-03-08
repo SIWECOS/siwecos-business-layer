@@ -1,1 +1,1 @@
-Es wurde in ihrem CMS-System installierte Plugin entdeckt. Ein Angreifer könnte diese Information nutzen um gezielt nach Schwachstellen für ihre Webseite zu nutzen.
+Es wurde in ihrem CMS-System installierte Plugins entdeckt. Ein Angreifer könnte diese Information nutzen um gezielt nach Schwachstellen für ihre Webseite zu nutzen.
