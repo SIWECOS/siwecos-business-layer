@@ -1,1 +1,1 @@
-Die Meldung bedeutet, dass Ihr [[Zertifikate|Server-Zertifikat]] noch nicht gültig ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt wird. Sollte ein Nutzer Ihre Webseite über [[HTTPS]] aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt.
+Der Server hat kein [[Zertifikate|Zertifikat]] gesendet. Dies ist ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte seine [[Transport_Layer_Security|TLS-Konfiguration]] überprüfen und ggfs. [[CIPHERSUITE_ANON|anonyme Ciphersuites]] ausschalten.

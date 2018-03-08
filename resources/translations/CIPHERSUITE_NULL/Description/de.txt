@@ -1,1 +1,1 @@
-Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass keine Verschlüsselungsmethodik ([[Cipher Suite]]) unterstützt wird. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]].
+Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass keine Verschlüsselungstechniken ([[Cipher Suite]]) unterstützt wird. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]].
