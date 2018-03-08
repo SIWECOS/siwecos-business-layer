@@ -1,1 +1,1 @@
-Es wurde eine JavaScript-Bibliothek gefunden für dessen Version eine Schwachstelle existiert
+Es wurde eine JavaScript-Bibliothek gefunden für dessen Version eine Schwachstelle existiert.
