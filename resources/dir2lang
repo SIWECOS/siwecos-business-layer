@@ -1,18 +1,26 @@
 #!/usr/bin/perl
+# Script to convert a directory structur of translations
+# into a php file for the siwecos application
 use strict;
 use warnings;
-use POSIX;
 use FindBin qw($Bin $Script);
+use POSIX;
 use utf8;
 
 binmode(STDOUT, ":utf8");
 
+# Location and names of some directories / files
+# $Bin = absolute path of this script
+# $Script = filename of this script
 my $TRANSLATIONS= "$Bin/translations";
 my $LANGUAGE_DIR= "$Bin/lang";
 my $LANGUAGE_FILE="siwecos.php";
 my $TEMPLATEFILE= "$Bin/$Script.txt";
 
-# Expected headers
+# WIKI Base URL
+my $WIKI= 'https://siwecos.de/wiki';
+
+# Expected purposes
 my $BACKGROUND   = 'Background';
 my $CATEGORY     = 'Category';
 my $COMMENT      = 'Comment';
@@ -27,6 +35,7 @@ my $SUCCESS_TEXT = 'Positive';
 my $TIPP         = 'Solution_Tips';
 my $TECHNICAL    = 'Technical';
 
+# How to clean the content before using it
 my %CLEAN= (
     $BACKGROUND   => \&trim_escape,
     $CATEGORY     => \&no_linefeeds,
@@ -44,11 +53,13 @@ my %CLEAN= (
 );
 
 # Prepare some output stuff
-my @SUFFIX;
-my %SUFFIX;
-my $fill= 0;
+my @SEQUENCE; # Sequence of placeholders in output
+my %SUFFIX;   # Suffix for the placholder
+my $fill= 0;  # number of spaces to use to align values vertically
 my $v=0;
 foreach (
+    # This defines the sequence in the output file
+    # As well as the SUFFIX appended to the placholder
     $HEADLINE     => '',
     $SUCCESS_TEXT => 'SUCCESS',
     $ERROR_TEXT   => 'ERROR',
@@ -56,20 +67,20 @@ foreach (
     $TIPP         => 'TIPS',
     $LINK         => 'LINK',
 ) {
+    # This will set up the required data structures
     if ($v) {
         my $suffix= $_;
         $suffix= "_$_" if $_;
-        $SUFFIX{$SUFFIX[$#SUFFIX]}= $suffix;
+        $SUFFIX{$SEQUENCE[$#SEQUENCE]}= $suffix;
         my $l= length $suffix;
         $fill= $l if $l > $fill;
     } else {
-        push @SUFFIX, $_;
+        push @SEQUENCE, $_;
     }
     $v= 1-$v;
 }
 
-my $WIKI= 'https://siwecos.de/wiki';
-
+# Replacements to use in the output
 my %replace= (
     "\\" => "\\\\",
     "\n" => "\\n",
@@ -78,11 +89,10 @@ my %replace= (
 my $replace= qr/(\\|\n|')/;
 
 # First prepare the template
-open my $template, '<', $TEMPLATEFILE or die "Cannot read template $0.txt: $!\n";
+open my $template, '<', $TEMPLATEFILE
+    or die "Cannot read template $TEMPLATEFILE: $!\n";
 my @template= <$template>;
 close $template;
-
-
 
 chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
 # get all translation filenames
@@ -90,7 +100,7 @@ chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
 # Also collect categories
 my $language_data= {};
 my $categories= {};
-while (<*/*/*.txt>) {
+while( <*/*/*.txt> ) {
     # Split pathname into parts
     my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
     # remove filename extension
@@ -103,13 +113,16 @@ while (<*/*/*.txt>) {
             local $/;
             <$trans>;
         };
+        # Is something defined to clean the text?
         my $clean= $CLEAN{$purpose};
         if( $clean ) {
             $text= $clean->($text);
         } else {
+            # warn if not.
             $CLEAN{$purpose}= \&trim_escape;
             warn "Unknown purpose: $purpose used in $placeholder.\n";
         }
+        # If a category is set, setup the category data structure
         if( $purpose eq "Category" ) {
             $language_data->{$lang}->{$placeholder} ||= {};
             $categories->{$lang}->{$text}->{$placeholder}= $language_data->{$lang}->{$placeholder};
@@ -121,20 +134,26 @@ while (<*/*/*.txt>) {
         warn "Can't read $_: $!";
     }
 }
+# All translations are in memory now
 
+# create a backup of existing language files
 if ( -e $LANGUAGE_DIR ) {
-    rename $LANGUAGE_DIR, $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+    my $newname= $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+    rename $LANGUAGE_DIR, $newname
+        or die "Failed to create backup $newname: $!\n";
 }
+# Create a new language file directory
 mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
 
 # Go through each language
 foreach my $language (keys %$categories) {
     my $cats= $categories->{$language};
     # Create a directory for the language
-    mkdir "$LANGUAGE_DIR/$language" or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
+    mkdir "$LANGUAGE_DIR/$language"
+        or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
     # Create the language file for the current language
     open my $out, '>', "$LANGUAGE_DIR/$language/$LANGUAGE_FILE"
-    or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
+        or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
     binmode($out, ':utf8');
     # Work through the template lines
     foreach (@template) {
@@ -154,7 +173,7 @@ foreach my $language (keys %$categories) {
                     my $p= $placeholders->{$placeholder};
                     # Go through each of the purposes we want to print
                     # They are defined at the top under "# Prepare some output stuff"
-                    foreach my $purpose (@SUFFIX) {
+                    foreach my $purpose (@SEQUENCE) {
                         my $text= $p->{$purpose};
                         # Skip this entry if there is nothing to be printed
                         next unless defined $text;
