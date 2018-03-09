@@ -267,13 +267,13 @@ sub make_wiki_link {
         my($link,$text)= split /[|]/, $1, 2;
         $text||= $link;
         $link= wiki_link($link);
-        return qq'<a href="$link" target="siwecos_wiki">$text</a>';
+        return qq'<a href="$link" target="siwecos_wiki" class="wikI">$text</a>';
     }
     # external links must start with http…
     if( m#^https?://# ) {
         my($link, $text)= split ' ', $_, 2;
         $text||= $link;
-        return qq'<a href="$link" target="siwecos_external">$text</a>';
+        return qq'<a href="$link" target="siwecos_external" class="external">$text</a>';
     }
     # Otherwise don't change
     return "[$_]";
