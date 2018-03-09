@@ -108,6 +108,8 @@ my $language_data= {};
 my $categories= {};
 my %category_missing;
 my %category_found;
+my %translations_found;
+my %translations_language;
 while( <*/*/*.txt> ) {
     # Split pathname into parts
     my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
@@ -138,6 +140,9 @@ while( <*/*/*.txt> ) {
         } else {
             $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
             ++$category_missing{$lang}->{$placeholder};
+            my $text= "$purpose for $placeholder";
+            ++$translations_found{$text};
+            ++$translations_language{$lang}->{$text};
         }
     }
     else {
@@ -162,7 +167,10 @@ foreach my $language (keys %$categories) {
         warn "Missing $language category for $placeholder\n";
         $categories->{$language}->{"* NO CATEGORY *"}->{$placeholder}=$language_data->{$language}->{$placeholder};
     }
-
+    foreach (sort keys %translations_found) {
+        next if exists $translations_language{$language}->{$_};
+        warn "Missing $language $_\n";
+    }
     my $cats= $categories->{$language};
     # Create a directory for the language
     mkdir "$LANGUAGE_DIR/$language"
