@@ -255,7 +255,7 @@ sub wiki_text {
     s/$html_replace/$html_replace{$1}/ge;
     s#^(.*?)\n\n+#<p>$1</p>#gm;
     s#\n#<br/>#gs;
-    s/\[(.*?)\]/make_wiki_link($1)/ge;
+    s/\[(.*?\]?)\]/make_wiki_link($1)/ge;
     return trim_escape($_);
 }
 
@@ -265,14 +265,14 @@ sub make_wiki_link {
     # internal links start with [ and end with ]
     if( m/^\[(.*)\]$/ ) {
         my($link,$text)= split /[|]/, $1, 2;
-        $text|= $link;
-        $link= wiki_link($_);
+        $text||= $link;
+        $link= wiki_link($link);
         return qq'<a href="$link" target="siwecos_wiki">$text</a>';
     }
     # external links must start with http…
     if( m#^https?://# ) {
         my($link, $text)= split ' ', $_, 2;
-        $text|= $link;
+        $text||= $link;
         return qq'<a href="$link" target="siwecos_external">$text</a>';
     }
     # Otherwise don't change
