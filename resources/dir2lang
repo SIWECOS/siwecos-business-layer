@@ -106,6 +106,8 @@ chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
 # Also collect categories
 my $language_data= {};
 my $categories= {};
+my %category_missing;
+my %category_found;
 while( <*/*/*.txt> ) {
     # Split pathname into parts
     my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
@@ -132,8 +134,10 @@ while( <*/*/*.txt> ) {
         if( $purpose eq "Category" ) {
             $language_data->{$lang}->{$placeholder} ||= {};
             $categories->{$lang}->{$text}->{$placeholder}= $language_data->{$lang}->{$placeholder};
+            ++$category_found{$lang}->{$placeholder};
         } else {
             $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
+            ++$category_missing{$lang}->{$placeholder};
         }
     }
     else {
@@ -153,6 +157,12 @@ mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
 
 # Go through each language
 foreach my $language (keys %$categories) {
+    delete @{$category_missing{$language}}{ keys %{$category_found{$language}} };
+    foreach my $placeholder (sort keys %{$category_missing{$language}}) {
+        warn "Missing $language category for $placeholder\n";
+        $categories->{$language}->{"* NO CATEGORY *"}->{$placeholder}=$language_data->{$language}->{$placeholder};
+    }
+
     my $cats= $categories->{$language};
     # Create a directory for the language
     mkdir "$LANGUAGE_DIR/$language"
@@ -237,17 +247,26 @@ sub wiki_text {
     s/$html_replace/$html_replace{$1}/ge;
     s#^(.*?)\n\n+#<p>$1</p>#gm;
     s#\n#<br/>#gs;
-    s/\[\[(.*?)\]\]/make_wiki_link($1)/ge;
+    s/\[(.*?)\]/make_wiki_link($1)/ge;
     return trim_escape($_);
 }
 
 # Helper for wiki_text
 sub make_wiki_link {
     local($_)= @_;
-    my($text,$link)= split /[|]/, $_, 2;
-    $link|= $text;
-    if( $link !~ m#^https?://# ) {
+    # internal links start with [ and end with ]
+    if( m/^\[(.*)\]$/ ) {
+        my($link,$text)= split /[|]/, $1, 2;
+        $text|= $link;
         $link= wiki_link($_);
+        return qq'<a href="$link" target="siwecos_wiki">$text</a>';
     }
-    return qq'<a href="$link" target="siwecos_wiki">$text</a>';
+    # external links must start with http…
+    if( m#^https?://# ) {
+        my($link, $text)= split ' ', $_, 2;
+        $text|= $link;
+        return qq'<a href="$link" target="siwecos_external">$text</a>';
+    }
+    # Otherwise don't change
+    return "[$_]";
 }
