@@ -86,8 +86,7 @@ class SiwecosUserController extends Controller
 	public function createCaptcha(CreateUserRequestCaptcha $request)
 	{
 		$newUser = new User($request->toArray());
-		$password = $newUser->password;
-		$newUser->password = Hash::make($password);
+		$newUser->password = Hash::make($request->input('password'));
 		$newUser->activation_key = Keygen::alphanum(96)->generate();
 		$response = $this->coreApi->CreateUserToken(50);
 
