@@ -197,6 +197,11 @@ class SiwecosUserController extends Controller
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
             $tokenUser->update($request->toArray());
+
+            if ($request->input('newpassword')) {
+                $tokenUser->password = Hash::make($request->input('newpassword'));
+            }
+
             $tokenUser->save();
             return response()->json($tokenUser);
         }
