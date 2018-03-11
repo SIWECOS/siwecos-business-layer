@@ -130,14 +130,20 @@ class SiwecosUserController extends Controller
         return response("User not found", 404);
     }
 
-    public function activateUserUrl(string $token)
+    public function activateUserUrl(string $activation_key)
     {
-        $activation_key = $token;
+        if (!$activation_key) {
+            return response("Invalid activation key", 403);
+        }
+
         $tokenUser = User::where('activation_key', $activation_key)->first();
         if ($tokenUser instanceof User) {
             $tokenUser->active = 1;
+            $tokenUser->activation_key = "";
+
             $tokenUser->save();
-            return response()->json($tokenUser);
+
+            return redirect(config('app.activation_redirect_uri'));
         }
         return response("User not found", 404);
     }

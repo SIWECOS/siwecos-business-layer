@@ -232,4 +232,5 @@ return [
 
     ],
 
+    'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://staging2.siwecos.de/willkommen-bei-siwecos/')
 ];
