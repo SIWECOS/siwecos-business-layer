@@ -75,7 +75,7 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password'
+        'password', 'passwordreset_token'
     ];
 
     public function __construct(array $attributes = [])

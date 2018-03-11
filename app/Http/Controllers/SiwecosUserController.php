@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\CreateUserRequestCaptcha;
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\GetTokenByUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Notifications\activationmail;
+use App\Notifications\forgotpasswordmail;
 use App\Siweocs\Models\UserTokenResponse;
 use App\User;
 use GuzzleHttp\Exception\RequestException;
@@ -228,6 +230,34 @@ class SiwecosUserController extends Controller
         return response("User not Found", 404);
     }
 
+    public function sendForgotPasswordMail(ForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))->first();
 
+        if ($user instanceof User) {
+            $user->passwordreset_token = Keygen::alphanum(96)->generate();
+            $user->save();
+            $user->notify(new forgotpasswordmail($user->passwordreset_token));
 
+            return response('Send', 200);
+        }
+
+        return response("User not Found", 404);
+    }
+
+    public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))
+            ->where('passwordreset_token', $request->input('token'))
+            ->first();
+
+        if ($user instanceof User) {
+            $user->password = Hash::make($request->input('newpassword'));
+            $user->save();
+
+            return response('Reset completed', 200);
+        }
+
+        return response("User not Found", 404);
+    }
 }

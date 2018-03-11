@@ -1,6 +1,7 @@
-<p>Diese Email wurde automatisch vom SIWECOS System zur Überprüfung Ihrer E-Mailadresse generiert.<br/>
-    Bitte antworten Sie nicht an diese Adresse.</p>
-<p><a href="{{$activateurl}}">Aktivierung</a></p>
+<p>Auf SIWECOS.de wurde ein Reset Ihres Passworts angefordert. Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
+<p>Wenn Sie Ihr Passwort jedoch zurücksetzen wollen, klicken Sie auf den folgenden Link:</p>
+<p><a href="{{$reseturl}}">Passwort zurücksetzen</a></p>
+<p>Bitte antworten Sie nicht an diese Adresse.</p>
 <br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
