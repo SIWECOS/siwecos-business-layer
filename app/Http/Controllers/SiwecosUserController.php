@@ -7,6 +7,7 @@ use App\Http\Requests\CreateUserRequestCaptcha;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\GetTokenByUserRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\ProcessForgotPasswordRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Notifications\activationmail;
