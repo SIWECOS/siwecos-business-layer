@@ -1,1 +1,1 @@
-Dieser Header konfiguriert den Cross-Site-Scripting integrierten XSS-Schutz in den meisten aktuellen Browsern (Internet Explorer, Chrome und Safari) vorhanden ist. Der Header ist nicht gesetzt und damit offen für Cross-Site-Scripting- Angriffe.
+Dieser Header konfiguriert den [[Cross-Site-Scripting]] integrierten XSS-Schutz der aktuellen Browsern (Internet Explorer, Chrome und Safari). Der Header ist nicht gesetzt.
