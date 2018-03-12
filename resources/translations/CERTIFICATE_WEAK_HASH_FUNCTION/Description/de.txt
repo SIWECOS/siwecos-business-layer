@@ -1,1 +1,1 @@
-Die Meldung bedeutet, dass Ihr Server-Zertifikat eine schwache Verschlüsselung besitzt. Es stellt möglicherweise ein leichtes Ziel für Hacker-Angriffe dar. Ein Warnung beim Aufruf Ihrer Webseite erfolgt infolge einer schwachen Verschlüsselung jedoch nicht.
+Die Meldung bedeutet, dass Ihr Server-Zertifikat einen schwachen Hash-Algorithmus besitzt. Es stellt möglicherweise ein leichtes Ziel für Hacker-Angriffe dar.
