@@ -18,7 +18,7 @@ class SiwecosScanController extends Controller
 	const SCANNER_WEIGHTS = [
 		"HEADER" => 5,
 		"DOMXSS" => 5,
-		"INFOLEAK" => ,
+		"INFOLEAK" => 5,
 		"INI_S" => 5,
 		"WS_TLS" => 5
 	];
