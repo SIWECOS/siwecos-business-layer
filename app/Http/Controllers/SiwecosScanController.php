@@ -10,7 +10,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class SiwecosScanController extends Controller {
+class SiwecosScanController extends Controller
+{
+	/**
+	 * Weighting array for the individual scanners - lower value means lower impact to scoring
+	 */
+	const SCANNER_WEIGHTS = [
+		"HEADER" => 5,
+		"DOMXSS" => 5,
+		"INFOLEAK" => ,
+		"INI_S" => 5,
+		"WS_TLS" => 5
+	];
 
 	var $coreApi;
 	var $currentDomain;
@@ -152,42 +163,47 @@ class SiwecosScanController extends Controller {
 		return $resultCollection;
 	}
 
-	protected function calculateScorings( array $results ) {
+	protected function calculateScorings(array $results) {
+		$hasCrit    = false;
+
 		foreach ( $results['scanners'] as &$scanner ) {
 			$totalScore = 0;
 			$scanCount  = 0;
-			$hasCrit    = false;
+
 			foreach ( $scanner['result'] as &$result ) {
 				$totalScore += $result['score'];
 				$scanCount  += 1;
-				if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] == 'critical' ) {
+
+				if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
 					$hasCrit = true;
 				}
 			}
+
 			$scanner['score']   = $totalScore / $scanCount;
-			$scanner['hasCrit'] = $hasCrit;
-			$scanner['weight']  = $hasCrit ? 1 : 1;
+			$scanner['weight']  = self::SCANNER_WEIGHTS[$scanner['scanner_type']];
 		}
-		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'] );
+
+		$results['hasCrit'] = $hasCrit;
+		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'], $hasCrit);
 
 		return $results;
 	}
 
-	protected function weightedMedian( array $scanners ) {
+	protected function weightedMedian(array $scanners, bool $hasCrit) {
 		$dividend = 0;
 		$divisor  = 0;
-		$hasCrit = false;
 		$maxScore = 100;
+
+		if ($hasCrit){
+			$maxScore = 20;
+		}
+
 		foreach ( $scanners as $value ) {
 			$dividend += ( $value['weight'] * $value['score'] );
 			$divisor  += $value['weight'];
-			if ($value['hasCrit']){
-				$maxScore = 20;
-			}
 		}
 
 		$average = $dividend / $divisor;
-
 		$average = $maxScore * ($average / 100);
 
 		return $average;
