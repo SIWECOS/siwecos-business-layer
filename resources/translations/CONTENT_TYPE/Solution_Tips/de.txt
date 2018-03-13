@@ -1,4 +1,4 @@
-Fügen sie den entsprechenden <meta> Tag hinzu.
+Fügen sie den entsprechenden HTTP-Header oder alternativ ein <meta> Tag hinzu. Bitte beachten Sie, dass <meta> im Gegensatz zu einem HTTP-Header leichter angegriffen werden kann.
 
 '''text/html; charset=utf-8''';
 

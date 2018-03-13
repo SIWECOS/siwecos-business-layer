@@ -1,1 +1,1 @@
-CMS-Plugins werden erfolgreich verborgen.
+CMS-Plugins können nicht detektiert werden.

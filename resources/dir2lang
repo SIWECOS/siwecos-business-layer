@@ -1,18 +1,26 @@
 #!/usr/bin/perl
+# Script to convert a directory structur of translations
+# into a php file for the siwecos application
 use strict;
 use warnings;
-use POSIX;
 use FindBin qw($Bin $Script);
+use POSIX;
 use utf8;
 
 binmode(STDOUT, ":utf8");
 
+# Location and names of some directories / files
+# $Bin = absolute path of this script
+# $Script = filename of this script
 my $TRANSLATIONS= "$Bin/translations";
 my $LANGUAGE_DIR= "$Bin/lang";
 my $LANGUAGE_FILE="siwecos.php";
 my $TEMPLATEFILE= "$Bin/$Script.txt";
 
-# Expected headers
+# WIKI Base URL
+my $WIKI= 'https://siwecos.de/wiki';
+
+# Expected purposes
 my $BACKGROUND   = 'Background';
 my $CATEGORY     = 'Category';
 my $COMMENT      = 'Comment';
@@ -27,12 +35,13 @@ my $SUCCESS_TEXT = 'Positive';
 my $TIPP         = 'Solution_Tips';
 my $TECHNICAL    = 'Technical';
 
+# How to clean the content before using it
 my %CLEAN= (
     $BACKGROUND   => \&trim_escape,
     $CATEGORY     => \&no_linefeeds,
     $COMMENT      => \&trim_escape,
     $CONSEQUENCE  => \&trim_escape,
-    $DESCRIPTION  => \&trim_escape,
+    $DESCRIPTION  => \&wiki_text,
     $DETAILS      => \&trim_escape,
     $HEADLINE     => \&trim_escape,
     $IMPACT       => \&trim_escape,
@@ -44,11 +53,13 @@ my %CLEAN= (
 );
 
 # Prepare some output stuff
-my @SUFFIX;
-my %SUFFIX;
-my $fill= 0;
+my @SEQUENCE; # Sequence of placeholders in output
+my %SUFFIX;   # Suffix for the placholder
+my $fill= 0;  # number of spaces to use to align values vertically
 my $v=0;
 foreach (
+    # This defines the sequence in the output file
+    # As well as the SUFFIX appended to the placholder
     $HEADLINE     => '',
     $SUCCESS_TEXT => 'SUCCESS',
     $ERROR_TEXT   => 'ERROR',
@@ -56,33 +67,38 @@ foreach (
     $TIPP         => 'TIPS',
     $LINK         => 'LINK',
 ) {
+    # This will set up the required data structures
     if ($v) {
         my $suffix= $_;
         $suffix= "_$_" if $_;
-        $SUFFIX{$SUFFIX[$#SUFFIX]}= $suffix;
+        $SUFFIX{$SEQUENCE[$#SEQUENCE]}= $suffix;
         my $l= length $suffix;
         $fill= $l if $l > $fill;
     } else {
-        push @SUFFIX, $_;
+        push @SEQUENCE, $_;
     }
     $v= 1-$v;
 }
 
-my $WIKI= 'https://siwecos.de/wiki';
-
+# Replacements to use in the output
 my %replace= (
     "\\" => "\\\\",
     "\n" => "\\n",
     "'"  => "\\'",
 );
 my $replace= qr/(\\|\n|')/;
+my %html_replace= (
+    "<"  => "&lt;",
+    "&"  => "&amp;",
+    ">"  => "&gt;'",
+);
+my $html_replace= qr/(<|&|>)/;
 
 # First prepare the template
-open my $template, '<', $TEMPLATEFILE or die "Cannot read template $0.txt: $!\n";
+open my $template, '<', $TEMPLATEFILE
+    or die "Cannot read template $TEMPLATEFILE: $!\n";
 my @template= <$template>;
 close $template;
-
-
 
 chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
 # get all translation filenames
@@ -90,7 +106,11 @@ chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
 # Also collect categories
 my $language_data= {};
 my $categories= {};
-while (<*/*/*.txt>) {
+my %category_missing;
+my %category_found;
+my %translations_found;
+my %translations_language;
+while( <*/*/*.txt> ) {
     # Split pathname into parts
     my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
     # remove filename extension
@@ -103,47 +123,83 @@ while (<*/*/*.txt>) {
             local $/;
             <$trans>;
         };
+        # Is something defined to clean the text?
         my $clean= $CLEAN{$purpose};
         if( $clean ) {
             $text= $clean->($text);
         } else {
+            # warn if not.
             $CLEAN{$purpose}= \&trim_escape;
             warn "Unknown purpose: $purpose used in $placeholder.\n";
         }
+        # If a category is set, setup the category data structure
         if( $purpose eq "Category" ) {
             $language_data->{$lang}->{$placeholder} ||= {};
             $categories->{$lang}->{$text}->{$placeholder}= $language_data->{$lang}->{$placeholder};
+            ++$category_found{$lang}->{$placeholder};
         } else {
             $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
+            ++$category_missing{$lang}->{$placeholder};
+            my $text= "$purpose for $placeholder";
+            ++$translations_found{$text};
+            ++$translations_language{$lang}->{$text};
         }
     }
     else {
         warn "Can't read $_: $!";
     }
 }
+# All translations are in memory now
 
+# create a backup of existing language files
 if ( -e $LANGUAGE_DIR ) {
-    rename $LANGUAGE_DIR, $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+    my $newname= $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+    rename $LANGUAGE_DIR, $newname
+        or die "Failed to create backup $newname: $!\n";
 }
+# Create a new language file directory
 mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
 
+# Go through each language
 foreach my $language (keys %$categories) {
+    delete @{$category_missing{$language}}{ keys %{$category_found{$language}} };
+    foreach my $placeholder (sort keys %{$category_missing{$language}}) {
+        warn "Missing $language category for $placeholder\n";
+        $categories->{$language}->{"* NO CATEGORY *"}->{$placeholder}=$language_data->{$language}->{$placeholder};
+    }
+    foreach (sort keys %translations_found) {
+        next if exists $translations_language{$language}->{$_};
+        warn "Missing $language $_\n";
+    }
     my $cats= $categories->{$language};
-    mkdir "$LANGUAGE_DIR/$language" or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
+    # Create a directory for the language
+    mkdir "$LANGUAGE_DIR/$language"
+        or die "Failed to create directory $LANGUAGE_DIR/$language: $!\n";
+    # Create the language file for the current language
     open my $out, '>', "$LANGUAGE_DIR/$language/$LANGUAGE_FILE"
-    or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
+        or die "Failed to create $LANGUAGE_DIR/$language/$LANGUAGE_FILE: $!\n";
     binmode($out, ':utf8');
+    # Work through the template lines
     foreach (@template) {
+        # Until the placeholder /* DATA HERE */ is found
 		if( m#^(\s*)/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            # Remember the indent
             my $indent= $1;
+            # Go through each category in alphabetical order
             foreach my $category (sort keys %$cats) {
+                # Print the category as comment
                 print $out "$indent//\n$indent// Category: $category\n";
                 my $placeholders= $cats->{$category};
+                # Go through each placeholder in alphabetical order
                 foreach my $placeholder (sort keys %$placeholders){
+                    # Print the placeholder as a comment
                     print $out "$indent//\n$indent// $placeholder\n";
                     my $p= $placeholders->{$placeholder};
-                    foreach my $purpose (@SUFFIX) {
+                    # Go through each of the purposes we want to print
+                    # They are defined at the top under "# Prepare some output stuff"
+                    foreach my $purpose (@SEQUENCE) {
                         my $text= $p->{$purpose};
+                        # Skip this entry if there is nothing to be printed
                         next unless defined $text;
                         my $suffix= $SUFFIX{$purpose};
                         my $fillstring= ' ' x ($fill - length $suffix);
@@ -152,36 +208,73 @@ foreach my $language (keys %$categories) {
                 }
             }
 		} else {
+            # Print an unmodified template line
     		print $out $_;
 		}
 	}
 }
 
+# trim leading and trealing whitespace
 sub trim {
     local($_)= @_;
     s/^\s+|\s+$//gs;
     return $_;
 }
 
+# trim + replace quotes and linefeeds
+# Check %replace at the top
 sub trim_escape {
     local($_)= trim(@_);
     s/$replace/$replace{$1}/ge;
     return $_;
 }
 
+# Replace all whitespace (after trimming) by underscores
 sub no_whitespace {
     local($_)= trim(@_);
     s/\s+/_/gs;
     return $_;
 }
 
+# replace all linefeeds by underscores
 sub no_linefeeds {
     local($_)= trim(@_);
     s/\n/_/gs;
     return $_;
 }
 
+# prepend the wiki url
 sub wiki_link {
     local($_)= no_linefeeds(@_);
     return "$WIKI/$_";
+}
+
+# convert a bit of wiki text to html
+sub wiki_text {
+    local($_)= trim(@_);
+    s/$html_replace/$html_replace{$1}/ge;
+    s#^(.*?)\n\n+#<p>$1</p>#gm;
+    s#\n#<br/>#gs;
+    s/\[(.*?\]?)\]/make_wiki_link($1)/ge;
+    return trim_escape($_);
+}
+
+# Helper for wiki_text
+sub make_wiki_link {
+    local($_)= @_;
+    # internal links start with [ and end with ]
+    if( m/^\[(.*)\]$/ ) {
+        my($link,$text)= split /[|]/, $1, 2;
+        $text||= $link;
+        $link= wiki_link($link);
+        return qq'<a href="$link" target="siwecos_wiki" class="wikI">$text</a>';
+    }
+    # external links must start with http…
+    if( m#^https?://# ) {
+        my($link, $text)= split ' ', $_, 2;
+        $text||= $link;
+        return qq'<a href="$link" target="siwecos_external" class="external">$text</a>';
+    }
+    # Otherwise don't change
+    return "[$_]";
 }

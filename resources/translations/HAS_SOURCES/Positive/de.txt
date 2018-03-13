@@ -1,1 +1,1 @@
-Es wurden automatisiert keine unsicheren Eingabemöglichkeiten gefunden, die auf einer Verwundbarkeit Ihrer Webseite hindeuten.
+Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sources detektiert.

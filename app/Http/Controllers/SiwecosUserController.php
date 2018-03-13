@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\CreateUserRequestCaptcha;
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\GetTokenByUserRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\ProcessForgotPasswordRequest;
 use App\Http\Requests\UpdateUserCreditsRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Notifications\activationmail;
+use App\Notifications\forgotpasswordmail;
 use App\Siweocs\Models\UserTokenResponse;
 use App\User;
 use GuzzleHttp\Exception\RequestException;
@@ -86,8 +89,7 @@ class SiwecosUserController extends Controller
 	public function createCaptcha(CreateUserRequestCaptcha $request)
 	{
 		$newUser = new User($request->toArray());
-		$password = $newUser->password;
-		$newUser->password = Hash::make($password);
+		$newUser->password = Hash::make($request->input('password'));
 		$newUser->activation_key = Keygen::alphanum(96)->generate();
 		$response = $this->coreApi->CreateUserToken(50);
 
@@ -130,14 +132,20 @@ class SiwecosUserController extends Controller
         return response("User not found", 404);
     }
 
-    public function activateUserUrl(string $token)
+    public function activateUserUrl(string $activation_key)
     {
-        $activation_key = $token;
+        if (!$activation_key) {
+            return response("Invalid activation key", 403);
+        }
+
         $tokenUser = User::where('activation_key', $activation_key)->first();
         if ($tokenUser instanceof User) {
             $tokenUser->active = 1;
+            $tokenUser->activation_key = "";
+
             $tokenUser->save();
-            return response()->json($tokenUser);
+
+            return redirect(config('app.activation_redirect_uri'));
         }
         return response("User not found", 404);
     }
@@ -197,6 +205,11 @@ class SiwecosUserController extends Controller
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
             $tokenUser->update($request->toArray());
+
+            if ($request->input('newpassword')) {
+                $tokenUser->password = Hash::make($request->input('newpassword'));
+            }
+
             $tokenUser->save();
             return response()->json($tokenUser);
         }
@@ -218,6 +231,34 @@ class SiwecosUserController extends Controller
         return response("User not Found", 404);
     }
 
+    public function sendForgotPasswordMail(ForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))->first();
 
+        if ($user instanceof User) {
+            $user->passwordreset_token = Keygen::alphanum(96)->generate();
+            $user->save();
+            $user->notify(new forgotpasswordmail($user->passwordreset_token));
 
+            return response('Send', 200);
+        }
+
+        return response("User not Found", 404);
+    }
+
+    public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))
+            ->where('passwordreset_token', $request->input('token'))
+            ->first();
+
+        if ($user instanceof User) {
+            $user->password = Hash::make($request->input('newpassword'));
+            $user->save();
+
+            return response('Reset completed', 200);
+        }
+
+        return response("User not Found", 404);
+    }
 }

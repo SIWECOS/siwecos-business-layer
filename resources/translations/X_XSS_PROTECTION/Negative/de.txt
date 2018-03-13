@@ -1,1 +1,1 @@
-Cross-Site-Scripting Schutz Header inaktiv
+Cross-Site-Scripting Schutz nicht aktiviert oder unzureichend konfiguriert.

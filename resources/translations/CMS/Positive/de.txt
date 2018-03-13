@@ -1,1 +1,1 @@
-Das verwendete CMS kann nicht detektiert werden.
+Falls Se ein CMS verwenden, kann dieses nicht automatisiert detektiert werden.

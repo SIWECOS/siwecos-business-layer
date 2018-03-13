@@ -1,1 +1,1 @@
-Überprüfung der Eingabe-Einstellung der Webseite
+Überprüfung des JavaScript-Codes nach DOMXSS-Sources

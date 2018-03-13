@@ -1,1 +1,1 @@
-Jeder kann ihre Daten mitlesen.
+Jeder kann ihre Daten mitlesen oder Inhalte ihrer Website während der Übertragung manipulieren.

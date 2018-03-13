@@ -1,1 +1,1 @@
-TLS-Verschlüsselung gilt heute als Standard für den Einsatz bei HTTPS eingesetzt, Sie sollten deshalb auf den Einsatz von SSL3 verzichten. Weitere Informationen finden Sie hier: [https://www.siwecos.de/wiki/SSL SSL]
+[[Transport Layer Security|TLS-Verschlüsselung]] gilt heute als Standard. Sie sollten deshalb auf den Einsatz von [[SSL|SSL3]] verzichten. Weitere Informationen finden Sie hier: [https://www.siwecos.de/wiki/SSL SSL]

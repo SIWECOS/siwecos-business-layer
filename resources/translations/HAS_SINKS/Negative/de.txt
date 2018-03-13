@@ -1,1 +1,1 @@
-Unsichere JavaScript-Methoden
+Unsicheren JavaScript-Code verwendet (Sinks)
