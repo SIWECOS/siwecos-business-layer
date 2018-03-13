@@ -147,7 +147,7 @@ class SiwecosScanController extends Controller
 				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails']  = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
-					$item['name'] = __( $item['placeholder'] );
+					$item['name'] = __( 'siwecos.' . $item['placeholder'] );
 					unset( $item['placeholder'] );
 
 					return $item;
