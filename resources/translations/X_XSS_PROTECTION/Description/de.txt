@@ -1,1 +1,1 @@
-Dieser Header konfiguriert den [[Cross-Site-Scripting]] integrierten XSS-Schutz der aktuellen Browsern (Internet Explorer, Chrome und Safari). Der Header ist nicht gesetzt.
+Der HTTP-Header X-XSS-Protection definiert wie in Browser eingebaute XSS-Filter konfiguriert werden. Eine Default-Installation kann eine unzureichende Konfiguration offenbaren.

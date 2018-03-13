@@ -1,1 +1,1 @@
-Überprüfung auf Offenlegung der verwendeten CMS
+Das verwendete CMS ist detektierbar.

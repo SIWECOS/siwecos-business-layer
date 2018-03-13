@@ -1,1 +1,1 @@
-X-Frame Optionen nicht gesetzt / Clickjacking Schutz
+HTTP-Header X-Frame Optionen nicht gesetzt.
