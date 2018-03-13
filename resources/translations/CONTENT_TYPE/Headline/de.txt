@@ -1,1 +1,1 @@
-Überprüfung des Content-Header
+Überprüfung des HTTP Content-Types

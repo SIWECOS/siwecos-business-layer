@@ -1,0 +1,1 @@
+Überprüfung auf die TLS-POODLE Schwachstelle

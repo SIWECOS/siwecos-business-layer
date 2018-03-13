@@ -1,1 +1,1 @@
-Überprüfung des JavaScripts
+Überprüfung des JavaScript-Codes nach DOMXSS-Sinks

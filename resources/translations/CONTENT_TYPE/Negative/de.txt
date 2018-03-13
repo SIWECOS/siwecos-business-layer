@@ -1,1 +1,1 @@
-Fehlende HTTP-Header Konfiguration
+Inkorekte HTTP Content-Type Konfiguration

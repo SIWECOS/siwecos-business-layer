@@ -1,1 +1,1 @@
-Es wurden automatisiert keine unsicheren Codestellen gefunden, die auf eine Verwundbarkeit Ihrer Webseite hindeuten.
+Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sinks detektiert.
