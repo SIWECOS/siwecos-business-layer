@@ -1,4 +1,8 @@
-<p>Diese Email wurde automatisch vom SIWECOS System zur Überprüfung Ihrer E-Mailadresse generiert.<br/>
+<p>Hallo %Platzhalter_Emailadresse_name%,</p>
+
+<p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
+
+<p>Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link<br/>
     Bitte antworten Sie nicht an diese Adresse.</p>
 <p><a href="{{$activateurl}}">Aktivierung</a></p>
 <br>
