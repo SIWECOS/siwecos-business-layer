@@ -1,0 +1,4802 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-03-13 13:56:00+0100\n"
+"PO-Revision-Date: 2018-03-13 16:08:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Category
+msgctxt "BLEICHENBACHER_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Positive
+msgctxt "BLEICHENBACHER_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Bleichenbacher (ROBOT)"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Negative
+msgctxt "BLEICHENBACHER_VULNERABLE_ERROR"
+msgid "Verwundbar durch Bleichenbacher (ROBOT)"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Description
+msgctxt "BLEICHENBACHER_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch einen Bleichenbacher Angriff(ROBOT). "
+"Hierbei kann die Kommunikation entschlüsselt und bei der Übertragung die "
+"Nutzereingaben wie Passwörter im Klartext gelesen werden."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "BLEICHENBACHER_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Link
+msgctxt "BLEICHENBACHER_VULNERABLE_LINK"
+msgid "BLEICHENBACHER-VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Consequence
+msgctxt "BLEICHENBACHER_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: BLEICHENBACHER_VULNERABLE
+# Purpose: Details
+msgctxt "BLEICHENBACHER_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch einen Bleichenbacher Angriff(ROBOT), "
+"welche es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Headline
+msgctxt "CERTIFICATE_EXPIRED"
+msgid "Überprüfung der Zertifikat Laufzeit"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Category
+msgctxt "CERTIFICATE_EXPIRED_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Positive
+msgctxt "CERTIFICATE_EXPIRED_SUCCESS"
+msgid "Zertifikat nicht abgelaufen"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Negative
+msgctxt "CERTIFICATE_EXPIRED_ERROR"
+msgid "Zertifikat abgelaufen"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Description
+msgctxt "CERTIFICATE_EXPIRED_ERROR_DESC"
+msgid ""
+"Die Meldung bedeutet, dass Ihr [[Zertifikate|Server-Zertifikat]]t "
+"abgelaufen ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht "
+"vertrauenswürdig angezeigt wird. Sollte ein Nutzer Ihre Webseite über "
+"[[HTTPS]] aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt, "
+"z.B. \"Ihr Zertifikat ist am Datum abgelaufen\". Die Seite wird Besuchern "
+"als unsicher bzw. nicht vertrauenswürdig angezeigt."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Solution_Tips
+msgctxt "CERTIFICATE_EXPIRED_TIPS"
+msgid ""
+"Dieses Problem lässt sich lösen, indem Sie das eingesetzte "
+"[[Zertifikate|Zertifikat]] erneuern. Wie Sie Zertifikate verlängern "
+"können, lesen Sie hier: "
+"[https://www.siwecos.de/wiki/Zertifikate#Was_tun.2C_wenn_ein_SSL-Zertifika "
+"t_abgelaufen_ist.3F Zertifikat abgelaufen]"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Link
+msgctxt "CERTIFICATE_EXPIRED_LINK"
+msgid "CERTIFICATE_EXPIRED"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Background
+msgctxt "CERTIFICATE_EXPIRED_Background"
+msgid ""
+"[[Zertifikate|Server-Zertifikate]] sorgen für mehr Sicherheit im Internet "
+"und dienen zur Verifizierung von Webseiten. Ein [[Zertifikate|Zertifikat]] "
+"wird von offiziellen, vertrauenswürdigen Institutionen ausgestellt und "
+"verifiziert. Ein [[Zertifikate|Zertifikat]] ist nicht fälschbar. Im "
+"normalen Leben ist ein [[Zertifikate|Zertifikat]] mit dem Personalausweis "
+"bzw. einer notariellen Beglaubigung vergleichbar. Ähnlich wie ein "
+"Reisepass haben auch [[Zertifikate]] eine bestimmte Gültigkeitsdauer. "
+"[[Zertifikate]] sorgen somit für einen sicheren Datenaustausch und bilden "
+"eine wichtige Vertrauensgrundlage für Betreiber z.B. von Online-Shops."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Consequence
+msgctxt "CERTIFICATE_EXPIRED_Consequence"
+msgid ""
+"Die meisten [[Browser|Internet-Browser]] sind so konfiguriert, dass Sie "
+"per Standard-Einstellung Webseiten mit einem abgelaufenen "
+"[[Zertifikate|Zertifikat]] nicht vertrauen. Eine Webseite mit abgelaufenen "
+"[[Zertifikate|Zertifikat]] erzeugt somit eine Warnung bei jedem Aufruf "
+"Ihrer Webseite, manche [[Browser]] oder [[Plugin|Plugins]] können je nach "
+"Einstellung sogar verhindern, dass man Ihre Webseite überhaupt aufrufen "
+"kann. Eine Warnmeldung beim Besuch Ihrer Webseite wirkt sich somit negativ "
+"auf Ihre Unternehmensdarstellung im Internet aus. Wenn schon "
+"[[Browser|Internet-Browser]] Ihrer Webseite nicht vertrauen, warum sollten "
+"es dann Ihre Kunden tun? Ein abgelaufenes [[SSL|SSL-Zertifikat]] wirkt "
+"sich auch als ein negatives Kriterium in Suchmaschinen-Rankings aus. "
+"Womöglich wird Ihr Unternehmen nicht mehr als erstes Ergebnis in einer "
+"Suchmaschine angezeigt und rutscht je nach Dauer des Problems immer weiter "
+"nach unten. Möglicherweise wird Besuchern bereits im Suchergebnis vor "
+"einem Sicherheitsproblem auf Ihrer Webseite hingewiesen."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Details
+msgctxt "CERTIFICATE_EXPIRED_Details"
+msgid ""
+"Ihr Zertifikat ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als "
+"unsicher bzw. nicht vertrauenswürdig angezeigt."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Impact
+msgctxt "CERTIFICATE_EXPIRED_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_EXPIRED
+# Purpose: Technical
+msgctxt "CERTIFICATE_EXPIRED_Technical"
+msgid "%certificate%"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Headline
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER"
+msgid "Überprüfung der Zertifikats Übermittlung"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Category
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Positive
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_SUCCESS"
+msgid "Server sendet ein Zertifikat"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Negative
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_ERROR"
+msgid "Server sendet kein Zertifikat"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Description
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC"
+msgid ""
+"Der Server hat kein [[Zertifikate|Zertifikat]] gesendet. Dies ist "
+"ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte "
+"seine [[Transport_Layer_Security|TLS-Konfiguration]] überprüfen und ggfs. "
+"[[CIPHERSUITE_ANON|anonyme Ciphersuites]] ausschalten."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Solution_Tips
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_TIPS"
+msgid ""
+"Aktualisieren Sie dringend die von Ihnen eingesetzte "
+"[[Transport_Layer_Security|TLS-Implementierung]]. Moderne Software erlaubt "
+"diese Art der Konfiguration nicht mehr."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Link
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_LINK"
+msgid "CERTIFICATE_NOT_SENT_BY_SERVER"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Background
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_Background"
+msgid ""
+"Es ist theoretisch möglich einen [[Transport_Layer_Security|TLS-Server]] "
+"so zu konfigurieren, dass er kein [[Zertifikate|Zertifikat]] sendet, um "
+"sich auszuweisen und lediglich verschlüsselt ohne seinen öffentlichen "
+"Schlüssel zu signieren. Ein Client der sich mit dem Server verbinden "
+"möchte, kann dann nicht überprüfen, ob er wirklich mit dem Server redet "
+"den er erwartet. Diese Art der Konfiguration ist äußerst selten."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Comment
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_Comment"
+msgid ""
+"Ich denke nicht das wir noch Server scannen die diese Fehlkonfiguration "
+"haben. Der Test wird nur der Vollständigkeit halber durchgeführt."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Consequence
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_Consequence"
+msgid ""
+"Ohne [[Zertifikate|Zertifikat]] für Ihre Webseiten können Angreifer Ihre "
+"Kommunikation belauschen. Kriminelle könnten so anonym persönliche Daten "
+"Ihrer Kunden wie z.B. Passwörter oder auch Kreditkarten-Informationen "
+"abgreifen. Eine weiteres Risiko droht, wenn Kriminelle auf Ihrer Webseite "
+"Viren oder Trojaner installieren. In so einem Fall könnten Sie "
+"möglicherweise für einen Schaden beim Besucher haften. Außerdem können "
+"Kriminelle z.B. \"legitime\" Duplikate Ihrer Webseite erstellen. Auch auf "
+"diesen gefälschten \"Phishing\"-Seiten lassen sich dann persönliche Daten "
+"wie Passwörter oder auch Kreditkarten-Informationen abgreifen, während der "
+"Kunde glaubt, auf Ihrer Unternehmenswebseite zu sein."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Details
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_Details"
+msgid ""
+"Der Server hat kein Zertifikat gesendet. Dies ist ungewöhnlich und sollte "
+"eigentlich nicht vorkommen. Der Server sollte seine TLS-Konfiguration "
+"überprüfen und ggf. anonyme Ciphersuites ausschalten."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_SENT_BY_SERVER
+# Purpose: Impact
+msgctxt "CERTIFICATE_NOT_SENT_BY_SERVER_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Headline
+msgctxt "CERTIFICATE_NOT_VALID_YET"
+msgid "Überprüfung der Zertifikat Gültigkeit"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Category
+msgctxt "CERTIFICATE_NOT_VALID_YET_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Positive
+msgctxt "CERTIFICATE_NOT_VALID_YET_SUCCESS"
+msgid "Zertifikat ist schon gültig"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Negative
+msgctxt "CERTIFICATE_NOT_VALID_YET_ERROR"
+msgid "Zertifikat noch nicht gültig"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Description
+msgctxt "CERTIFICATE_NOT_VALID_YET_ERROR_DESC"
+msgid ""
+"Die Meldung bedeutet, dass Ihr [[Zertifikate|Server-Zertifikat]] noch "
+"nicht gültig ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht "
+"vertrauenswürdig angezeigt. Sollte ein Nutzer Ihre Webseite über [[HTTPS]] "
+"aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Solution_Tips
+msgctxt "CERTIFICATE_NOT_VALID_YET_TIPS"
+msgid ""
+"Deaktivieren Sie das [[Zertifikate|Zertifikat]] solange es '''noch "
+"nicht''' gültig ist. Ihre Webseite ist dann zwar nicht zertifiziert, "
+"jedoch erhalten Besucher zumindest keine Warnmeldung beim Aufruf Ihrer "
+"Webseite. Alternativ bietet sich die Möglichkeit an, Ihr altes "
+"[[Zertifikate|Zertifikat]] einzusetzen, so lange dies noch gültig ist. Wie "
+"Sie [[Zertifikate|Zertifikate]] verlängern können, lesen Sie hier: "
+"[[CERTIFICATE_EXPIRED|Zertifikat abgelaufen]]."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Link
+msgctxt "CERTIFICATE_NOT_VALID_YET_LINK"
+msgid "CERTIFICATE_NOT_VALID_YET"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Background
+msgctxt "CERTIFICATE_NOT_VALID_YET_Background"
+msgid ""
+"[[Zertifikate|Server-Zertifikate]] sorgen für mehr Sicherheit im Internet "
+"und dienen zur Verifizierung von Webseiten. Ein [[Zertifikate|Zertifikat]] "
+"wird von offiziellen, vertrauenswürdigen Institutionen ausgestellt und "
+"verifiziert. Ein [[Zertifikate|Zertifikat]] ist nicht fälschbar. Im "
+"normalen Leben ist ein [[Zertifikate|Zertifikat]] mit dem Personalausweis "
+"bzw. einer notariellen Beglaubigung vergleichbar. Ähnlich wie ein "
+"Reisepass haben auch [[Zertifikate|Zertifikate]] eine bestimmte "
+"Gültigkeitsdauer. [[Zertifikate|Zertifikate]] sorgen somit für einen "
+"sicheren Datenaustausch und bilden eine wichtige Vertrauensgrundlage für "
+"Betreiber z.B. von Online-Shops."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Comment
+msgctxt "CERTIFICATE_NOT_VALID_YET_Comment"
+msgid ""
+"Das Zertifikat zu deaktivieren ist nicht so ein guter Tipp. Ein Kunde "
+"sollte sein altes Zertifikat  einsetzen oder ein direkt gültiges "
+"Zertifikat verwenden. Wir sollte nicht empfehlen nicht zu verschlüsseln, "
+"sonst sind Kundendaten in direkter Gefahr."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Consequence
+msgctxt "CERTIFICATE_NOT_VALID_YET_Consequence"
+msgid ""
+"Die meisten [[Browser|Internet-Browser]] sind so konfiguriert, dass Sie "
+"per Standard-Einstellung Webseiten mit einem abgelaufenen "
+"[[Zertifikate|Zertifikat]] nicht vertrauen. Eine Webseite mit abgelaufenen "
+"[[Zertifikate|Zertifikat]] erzeugt somit eine Warnung bei jedem Aufruf "
+"Ihrer Webseite, manche [[Browser]] oder [[Plugin|Plugins]] können je nach "
+"Einstellung verhindern sogar, dass man Ihre Webseite überhaupt aufrufen "
+"kann.\n"
+"Eine Warnmeldung beim Besuch Ihrer Webseite wirkt sich somit negativ auf "
+"ihre Unternehmensdarstellung im Internet aus. Wenn schon Internet-Browser "
+"Ihrer Webseite nicht vertrauen, warum sollten es dann Ihre Kunden tun? Ein "
+"abgelaufenes SSL-Zertifikat wirkt sich auch als ein negatives Kriterium in "
+"Suchmaschinen-Rankings aus. Womöglich wird Ihr Unternehmen nicht mehr als "
+"erstes Ergebnis in einer Suchmaschine angezeigt und rutscht je nach Dauer "
+"des Problems immer weiter nach unten. Möglicherweise wird Besuchern "
+"bereits im Suchergebnis vor einem Sicherheitsproblem auf ihrer Webseite "
+"hingewiesen."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Details
+msgctxt "CERTIFICATE_NOT_VALID_YET_Details"
+msgid ""
+"Ihr Zertifikat wird erst am %DATE% gültig. Ihre Webseite wird Besuchern "
+"bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Impact
+msgctxt "CERTIFICATE_NOT_VALID_YET_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_NOT_VALID_YET
+# Purpose: Technical
+msgctxt "CERTIFICATE_NOT_VALID_YET_Technical"
+msgid "%certificate%"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Headline
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION"
+msgid "Überprüfung der Zertifikat Verschlüsselungsstärke"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Category
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Positive
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_SUCCESS"
+msgid "Starker Hash-Algorithmus"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Negative
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_ERROR"
+msgid "Schwacher Hash-Algorithmus"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Description
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_ERROR_DESC"
+msgid ""
+"Die Meldung bedeutet, dass Ihr Server-Zertifikat einen schwachen "
+"Hash-Algorithmus besitzt. Es stellt möglicherweise ein leichtes Ziel für "
+"Hacker-Angriffe dar."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Solution_Tips
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_TIPS"
+msgid ""
+"Um dieses Problem zu lösen sollten sie ein neues Zertifikat mit einer "
+"sicheren Hash-Funktion installieren. Wie Sie ein sicheres Zertifikat "
+"bekommen, lesen Sie hier: "
+"[[Zertifikate#Wie_wird_ein_SSL-Zertifikat_installiert.3F|Zertifikat "
+"installieren]]."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Link
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_LINK"
+msgid "CERTIFICATE_WEAK_HASH_FUNCTION"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Background
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Background"
+msgid ""
+"Server-Zertifikate sorgen für mehr Sicherheit im Internet und dienen zur "
+"Verifizierung von Webseiten. Ein Zertifikat wird von offiziellen, "
+"vertrauenswürdigen Institutionen ausgestellt und verifiziert. Ein "
+"Zertifikat ist nicht fälschbar - bei einem schwachen Hash-Algorithmus "
+"durch Dritte austauschbar. Im normalen Leben ist ein Zertifikat mit dem "
+"Personalausweis bzw. einer notariellen Beglaubigung vergleichbar. Ähnlich "
+"wie ein Reisepass haben auch Zertifikate eine bestimmte Gültigkeitsdauer. "
+"Zertifikate sorgen somit für einen sicheren Datenaustausch und bilden eine "
+"wichtige Vertrauensgrundlage für Betreiber z.B. von Online-Shops."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Comment
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Comment"
+msgid ""
+"Je nach verwendeten Browser wird eine Warnung angezeigt. In der Regel "
+"Browser neuer als 2016. Wenn ein schwacher Hash-Algorithmus verwendet wird "
+"ist ein Zertifikat fälschbar! Vielleicht sollte  der Text über den "
+"Hintergrund dahin gehend angepasst werden."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Consequence
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Consequence"
+msgid ""
+"Ein schwacher Hash-Algorithmus kann im schlimmsten Fall dazu führen, dass "
+"Angreifer ein gefälschtes Zertifikat für Ihre Webseiten erstellen können "
+"und somit Ihre Webseite \"hacken\". Kriminellen könnten so anonym "
+"persönliche Daten Ihrer Kunden wie z.B. Passwörter oder auch "
+"Kreditkarten-Informationen abgreifen. Eine weiteres Risiko droht, wenn "
+"Kriminelle auf Ihrer Webseite Viren oder Trojaner installieren. In so "
+"einem Fall könnten Sie für möglicherweise für einen Schaden beim Besucher "
+"haften. Außerdem können Kriminelle z.B. \"legitime\" Duplikate Ihrer "
+"Webseite erstellen. Auch auf diesen gefälschten \"Phishing\"-Seiten lassen "
+"sich dann persönliche Daten wie Passwörter oder auch "
+"Kreditkarten-Informationen abgreifen, während der Kunde glaubt, auf Ihrer "
+"Unternehmenswebseite zu sein."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Details
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Details"
+msgid ""
+"Ihr Server-Zertifikat nutzt den schwachen Hash-Algorithmus %HASH%. Das "
+"Zertifikat kann so sehr einfach gefälscht werden. Ein Warnung beim Aufruf "
+"Ihrer Webseite erfolgt infolge eines schwachen Hash-Algorithmus jedoch "
+"nicht."
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Impact
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Impact"
+msgid "4-10"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_HASH_FUNCTION
+# Purpose: Technical
+msgctxt "CERTIFICATE_WEAK_HASH_FUNCTION_Technical"
+msgid "%certificate%"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_SIGN_ALGO
+# Purpose: Headline
+msgctxt "CERTIFICATE_WEAK_SIGN_ALGO"
+msgid "Überprüfung der Zertifikat Verschlüsselung"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_SIGN_ALGO
+# Purpose: Category
+msgctxt "CERTIFICATE_WEAK_SIGN_ALGO_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
+# Purpose: Headline
+msgctxt "CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS"
+msgid "Überprüfung der Zertifikat Verschlüsselung"
+msgstr ""
+
+
+# Category: Zertifikate
+# Placeholder: CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
+# Purpose: Category
+msgctxt "CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS_CATEGORY"
+msgid "Zertifikate"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Headline
+msgctxt "CIPHERSUITEORDER_ENFORCED"
+msgid "Überprüfung der Client-Verschlüsselungsmethodik"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Category
+msgctxt "CIPHERSUITEORDER_ENFORCED_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Positive
+msgctxt "CIPHERSUITEORDER_ENFORCED_SUCCESS"
+msgid "Verantwortungsvolle Auswahl der Verschlüsselungsmethoden"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Negative
+msgctxt "CIPHERSUITEORDER_ENFORCED_ERROR"
+msgid "Verantwortungslose Auswahl der Verschlüsselungsmethoden"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Description
+msgctxt "CIPHERSUITEORDER_ENFORCED_ERROR_DESC"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass die "
+"Verschlüsselungsmethodik des Webseiten-Besuchers bevorzugt wird, statt die "
+"Ihres Webservers. Server sollten die Auswahl der Verschlüsselungsmethoden "
+"nicht ihren Kunden überlassen, sondern aktiv starke Verbindungen "
+"auswählen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITEORDER_ENFORCED_TIPS"
+msgid ""
+"Konfigurieren Sie Ihren Webservern so, dass der Webserver die "
+"Verschlüsselungsmethodik bei der Kommunikation zwischen Ihrer Webseite und "
+"dem Webbrowser des Besuchers bestimmt."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Link
+msgctxt "CIPHERSUITEORDER_ENFORCED_LINK"
+msgid "CIPHERSUITEORDER_ENFORCED"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Background
+msgctxt "CIPHERSUITEORDER_ENFORCED_Background"
+msgid ""
+"Gewöhnlich bestimmt Ihr Server die Verschlüsselungsmethodik des Clients, "
+"nicht anders herum. Ähnlich wie in der realen Welt haben Sie auf Ihrem "
+"Server Hausrecht - Sie bestimmen die Regeln, der Gast muss sich dran "
+"halten."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Consequence
+msgctxt "CIPHERSUITEORDER_ENFORCED_Consequence"
+msgid ""
+"Sie überlassen es dem Besucher ihrer Website zu entscheiden wie sicher sie "
+"kommunizieren."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITEORDER_ENFORCED
+# Purpose: Details
+msgctxt "CIPHERSUITEORDER_ENFORCED_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass die "
+"Verschlüsselungsmethodik des Clients (Webseiten-Besuchers) bevorzugt wird, "
+"statt die Ihres Webservers. Server sollten die Auswahl der "
+"Verschlüsselungsmethoden nicht ihren Kunden überlassen, sondern aktiv "
+"starke Verbindungen auswählen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Headline
+msgctxt "CIPHERSUITE_ANON"
+msgid "Überprüfung auf anonyme Verschlüsselungsmethodik."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Category
+msgctxt "CIPHERSUITE_ANON_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Positive
+msgctxt "CIPHERSUITE_ANON_SUCCESS"
+msgid "Kein Anonymer Schlüsselaustausch unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Negative
+msgctxt "CIPHERSUITE_ANON_ERROR"
+msgid "Anonymer Schlüsselaustausch unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Description
+msgctxt "CIPHERSUITE_ANON_ERROR_DESC"
+msgid ""
+"Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass eine unsichere "
+"Verschlüsselungsmethode ([[Cipher Suite]]) ohne Rechtekontrolle bei der "
+"Verbindung erfolgt. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle "
+"Attacken]]."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITE_ANON_TIPS"
+msgid ""
+"Deaktivieren Sie die Unterstützung des Anonymen Schlüsselaustauschs in der "
+" Verschlüsselungsmethodik."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Link
+msgctxt "CIPHERSUITE_ANON_LINK"
+msgid "CIPHERSUITE_ANON"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Background
+msgctxt "CIPHERSUITE_ANON_Background"
+msgid ""
+"Der Begriff [[Cipher Suite]] steht für ein Sammlung eingesetzter "
+"kryptografischer Methoden. Diese Sammlung beinhaltetet das "
+"Schlüsselaustauschverfahren, das Signaturverfahren, die Verschlüsselung "
+"und kryptografische [[Hashing|Hash-Funktionen]]. Diese Kombination von "
+"kryptografischen Einzelkomponenten stellt die sichere Verbindung bei der "
+"Kommunikation zwischen zwei Parteien, z.B. Ihrem [[Browser]] und einem "
+"Webserver/einer Webseite sicher. Im TLS-Protokoll ([[Transport Layer "
+"Security]]) legt die [[Cipher Suite]] fest, welche Algorithmen zum Aufbau "
+"einer gesicherten Datenverbindung verwendet werden sollen und ist "
+"maßgeblich für die Sicherheit der Verbindung verantwortlich."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Consequence
+msgctxt "CIPHERSUITE_ANON_Consequence"
+msgid ""
+"Angreifer können ohne viel Aufwand die Kommunikation zwischen Ihrem "
+"Webserver und dem [[Browser]] Ihres Besuchers entschlüsseln, sogenannte "
+"[[Man-in-the-middle|Man-in-the-Middle Attacken]]. Damit lassen sich z.B. "
+"eingebene Passwörter oder Kreditkarten-Informationen auslesen und für "
+"kriminelle Zwecke missbrauchen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Details
+msgctxt "CIPHERSUITE_ANON_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass eine anonyme "
+"Verschlüsselungsmethodik (Ciphersuites) ohne Authentikation bei der "
+"Verbindung erfolgt. Dies ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Impact
+msgctxt "CIPHERSUITE_ANON_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_ANON
+# Purpose: Technical
+msgctxt "CIPHERSUITE_ANON_Technical"
+msgid "%ANON_SUITES%"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Headline
+msgctxt "CIPHERSUITE_DES"
+msgid "Überprüfung auf DES Verschlüsselungsmethodik"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Category
+msgctxt "CIPHERSUITE_DES_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Positive
+msgctxt "CIPHERSUITE_DES_SUCCESS"
+msgid "Keine veraltete DES Verschlüsselungsmethodik unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Negative
+msgctxt "CIPHERSUITE_DES_ERROR"
+msgid "Veraltete DES Verschlüsselungsmethodik unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Description
+msgctxt "CIPHERSUITE_DES_ERROR_DESC"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die "
+"mittlerweile als unsicher geltende Verschlüsselungsfunktion DES "
+"(Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITE_DES_TIPS"
+msgid "Deaktivieren Sie die Unterstützung der DES Verschlüsselungsmethodik"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Link
+msgctxt "CIPHERSUITE_DES_LINK"
+msgid "CIPHERSUITE_DES"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Background
+msgctxt "CIPHERSUITE_DES_Background"
+msgid ""
+"Der Begriff Ciphersuite steht für ein kryptografisches Gesamt-Protokoll, "
+"welches das Schlüsselaustauschverfahren, das Signaturverfahren, die "
+"Verschlüsselung und kryptografische Hash-Funktionen umfasst. Diese "
+"Kombination von kryptografischen Einzelkomponenten stellt die sichere "
+"Verbindung bei der Kommunikation zwischen zwei Parteien, z.B. ihrem "
+"Browser und einem Webserver/einer Webseite sicher. Im TLS-Protokoll "
+"(Transport Layer Security) legt die Cipher Suite fest, welche Algorithmen "
+"zum Aufbau einer gesicherten Datenverbindung verwendet werden sollen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Consequence
+msgctxt "CIPHERSUITE_DES_Consequence"
+msgid ""
+"Angreifer können mit dem Einsatz der DES Verschlüsselungsmethodik die "
+"Kommunikation zwischen Ihrer Webseite und dem Browser Ihres Kunden "
+"entschlüsseln, da DES keine aussreichende Sicherheit bietet. Darüber "
+"lassen sich z.B. eingebene Passwörter, Formular-Daten oder "
+"Kreditkarten-Informationen auslesen und für kriminelle Zwecke "
+"missbrauchen. Diese Methode wird als [[Man-in-the-middle|Man-in-the-Middle "
+"Attacke]] bezeichnet."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Details
+msgctxt "CIPHERSUITE_DES_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die "
+"mittlerweile als unsicher geltende Verschlüsselungsfunktion DES  "
+"(Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_DES
+# Purpose: Technical
+msgctxt "CIPHERSUITE_DES_Technical"
+msgid "%CIPHERSUITE_DES%"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Headline
+msgctxt "CIPHERSUITE_EXPORT"
+msgid "Überprüfung auf geschwächte kryptographische Funktionen"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Category
+msgctxt "CIPHERSUITE_EXPORT_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Positive
+msgctxt "CIPHERSUITE_EXPORT_SUCCESS"
+msgid "Keine schwache EXPORT Verschlüsselung unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Negative
+msgctxt "CIPHERSUITE_EXPORT_ERROR"
+msgid "Schwache Export Verschlüsselung unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Description
+msgctxt "CIPHERSUITE_EXPORT_ERROR_DESC"
+msgid ""
+"Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass sich vorsätzlich "
+"unsichere Verschlüsselungsmethoden ([[Cipher Suite|Cipher Suites]]) nutzen "
+"lassen. Dies ermöglicht [[Man-in-the-Middle|Man-in-the-Middle Attacken]]."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITE_EXPORT_TIPS"
+msgid ""
+"Deaktivieren Sie die Unterstützung von EXPORT Verschlüsselungsmethoden."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Link
+msgctxt "CIPHERSUITE_EXPORT_LINK"
+msgid "CIPHERSUITE_EXPORT"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Background
+msgctxt "CIPHERSUITE_EXPORT_Background"
+msgid ""
+"Der Begriff [[Cipher Suite]] steht für ein Sammlung eingesetzter "
+"kryptografischer Methoden. Diese Sammlung beinhaltetet das "
+"Schlüsselaustauschverfahren, das Signaturverfahren, die Verschlüsselung "
+"und kryptografische [[Hashing|Hash-Funktionen]]. Diese Kombination von "
+"kryptografischen Einzelkomponenten stellt die sichere Verbindung bei der "
+"Kommunikation zwischen zwei Parteien, z.B. Ihrem [[Browser]] und einem "
+"Webserver/einer Webseite sicher. Im TLS-Protokoll ([[Transport Layer "
+"Security]]) legt die [[Cipher Suite]] fest, welche Algorithmen zum Aufbau "
+"einer gesicherten Datenverbindung verwendet werden sollen und ist "
+"maßgeblich für die Sicherheit der Verbindung verantwortlich."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Consequence
+msgctxt "CIPHERSUITE_EXPORT_Consequence"
+msgid ""
+"Angreifer können bei einer schwachen Verschlüsselungsmethodik die "
+"Kommunikation zwischen Ihrer Webseite und dem [[Browser]] Ihres Kunden "
+"problemlos entschlüsseln. Damit lassen sich z.B. eingebene Passwörter, "
+"Formular-Daten oder Kreditkarten-Informationen auslesen und für kriminelle "
+"Zwecke missbrauchen. Diese Methode wird als "
+"[[Man-in-the-Middle|Man-in-the-Middle Attacke]] bezeichnet."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Details
+msgctxt "CIPHERSUITE_EXPORT_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass sich vorsätzlich "
+"geschwächte kryptographische Funktionen (Ciphersuites) nutzen lassen. Dies "
+"ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Impact
+msgctxt "CIPHERSUITE_EXPORT_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_EXPORT
+# Purpose: Technical
+msgctxt "CIPHERSUITE_EXPORT_Technical"
+msgid "%EXPORT_SUITES%"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Headline
+msgctxt "CIPHERSUITE_NULL"
+msgid "Überprüfung auf NULL-Chiffren"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Category
+msgctxt "CIPHERSUITE_NULL_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Positive
+msgctxt "CIPHERSUITE_NULL_SUCCESS"
+msgid "Keine unsicheren Null Chiffren unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Negative
+msgctxt "CIPHERSUITE_NULL_ERROR"
+msgid "Unsichere NULL Chiffren unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Description
+msgctxt "CIPHERSUITE_NULL_ERROR_DESC"
+msgid ""
+"Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass zugelassen wird das "
+"unverschlüsselt über einen geschützten Kanal gesprochen werden kann. Dies "
+"ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]]."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITE_NULL_TIPS"
+msgid ""
+"Deaktivieren Sie die Unterstützung von NULL Verschlüsselungsmethoden."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Link
+msgctxt "CIPHERSUITE_NULL_LINK"
+msgid "CIPHERSUITE_NULL"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Background
+msgctxt "CIPHERSUITE_NULL_Background"
+msgid ""
+"Der Begriff [[Cipher Suite]] steht für ein kryptografisches "
+"Gesamt-Protokoll, welches das Schlüsselaustauschverfahren, das "
+"Signaturverfahren, die Verschlüsselung und kryptografische "
+"[[Hashing|Hash-Funktionen]] umfasst. Diese Kombination von "
+"kryptografischen Einzelkomponenten stellt die sichere Verbindung bei der "
+"Kommunikation zwischen zwei Parteien, z.B. Ihrem [[Browser]] und einem "
+"Webserver/einer Webseite sicher. Im TLS-Protokoll ([[Transport Layer "
+"Security]]) legt die [[Cipher Suite]] fest, welche Algorithmen zum Aufbau "
+"einer gesicherten Datenverbindung verwendet werden sollen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Comment
+msgctxt "CIPHERSUITE_NULL_Comment"
+msgid ""
+"Bei Auswirkung: Wenn NULL Ciphersuites verwendet werden wird sogar gar "
+"nicht verschlüsselt. Dh. Man kann die Daten wortwörtlich direkt mitlesen."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Consequence
+msgctxt "CIPHERSUITE_NULL_Consequence"
+msgid ""
+"Angreifer können bei fehlender Verschüsselung die Kommunikation zwischen "
+"Ihrer Webseite und dem [[Browser]] Ihres Kunden problemlos entschlüsseln. "
+"Damit lassen sich z.B. eingegebene Passwörter, Formular-Daten oder "
+"Kreditkarten-Informationen auslesen und für kriminelle Zwecke "
+"missbrauchen. Diese Methode wird als [[Man-in-the-middle|Man-in-the-Middle "
+"Attacke]] bezeichnet."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Details
+msgctxt "CIPHERSUITE_NULL_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass er zulässt das "
+"keine Verschlüsselung eingesetzt wird obwohl TLS gesprochen wird. Dies "
+"ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Impact
+msgctxt "CIPHERSUITE_NULL_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_NULL
+# Purpose: Technical
+msgctxt "CIPHERSUITE_NULL_Technical"
+msgid "%CIPHERSUITE_NULL%"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Headline
+msgctxt "CIPHERSUITE_RC4"
+msgid "Überprüfung auf RC4 Verschlüsselungsmethodik"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Category
+msgctxt "CIPHERSUITE_RC4_CATEGORY"
+msgid "Verschlüsselungsmethode"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Positive
+msgctxt "CIPHERSUITE_RC4_SUCCESS"
+msgid "Keine veraltete RC4 Verschlüsselungsmethodik unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Negative
+msgctxt "CIPHERSUITE_RC4_ERROR"
+msgid ""
+"Veraltete RC4 Verschlüsselungsmethodik\n"
+"unterstützt"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Description
+msgctxt "CIPHERSUITE_RC4_ERROR_DESC"
+msgid ""
+"Ihr Webserver/Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile "
+"als unsicher geltende Verschlüsselungsfunktion RC4 ([[Ciper Suite|Cipher "
+"Suites]]) weiterhin unterstützt. Dies ermöglicht "
+"[[Man-in-the-Middle|Man-in-the-Middle Attacken]]."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Solution_Tips
+msgctxt "CIPHERSUITE_RC4_TIPS"
+msgid ""
+"Deaktivieren Sie die Unterstützung der RC4 Verschlüsselungsmethodik."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Link
+msgctxt "CIPHERSUITE_RC4_LINK"
+msgid "CIPHERSUITE_RC4"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Background
+msgctxt "CIPHERSUITE_RC4_Background"
+msgid ""
+"Der lange sehr verbereitete Verschlüsselungsalgorithmus RC4 gilt seit "
+"vielen Jahren als unsicher. Sicherheitsforschern sind viele kritische "
+"Lücken bekannt, über die einige Cyber-Angriffe stattgefunden haben. Im "
+"Jahr 2015 hat die IETF (Internet Engineering Task Force) den Einsatz von "
+"RC4 für [[Transport Layer Security|TLS-Verbindungen]] im "
+"[https://tools.ietf.org/html/rfc7465 RFC7465] verboten. "
+"[https://www.golem.de/news/ietf-rc4-in-tls-offiziell-nicht-mehr-erlaubt-15 "
+"02-112469.html Weitere Information bei golem.de]"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Comment
+msgctxt "CIPHERSUITE_RC4_Comment"
+msgid ""
+"„Problemlos“ würde ich bei Auswirkungen mal in Anführungsstriche stellen. "
+"Der Angriff ist immer noch schwer :)"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Consequence
+msgctxt "CIPHERSUITE_RC4_Consequence"
+msgid ""
+"Angreifer können mit dem Einsatz der RC4 Verschlüsselungsmethodik die "
+"Kommunikation zwischen Ihrer Webseite und dem Browser Ihres Kunden "
+"problemlos entschlüsseln, da RC4 bekannte Schwachstellen aufweist. Darüber "
+"lassen sich z.B. eingebene Passwörter, Formular-Daten oder "
+"Kreditkarten-Informationen auslesen und für kriminelle Zwecke "
+"missbrauchen. Diese Methode wird als [[Man-in-the-middle|Man-in-the-Middle "
+"Attacke]] bezeichnet."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Details
+msgctxt "CIPHERSUITE_RC4_Details"
+msgid ""
+"Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die "
+"mittlerweile als unsicher geltende Verschlüsselungsfunktion RC4 "
+"Verschlüsselungsmethodik (Ciphersuites) weiterhin unterstützt. Dies "
+"ermöglicht Man-in-the-Middle Attacken."
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Impact
+msgctxt "CIPHERSUITE_RC4_Impact"
+msgid "4"
+msgstr ""
+
+
+# Category: Verschlüsselungsmethode
+# Placeholder: CIPHERSUITE_RC4
+# Purpose: Technical
+msgctxt "CIPHERSUITE_RC4_Technical"
+msgid "%CIPHERSUITE_RC4%"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Headline
+msgctxt "CMS"
+msgid "Das verwendete CMS ist detektierbar."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Category
+msgctxt "CMS_CATEGORY"
+msgid "Information-Leakage-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Positive
+msgctxt "CMS_SUCCESS"
+msgid ""
+"Falls Se ein CMS verwenden, kann dieses nicht automatisiert detektiert "
+"werden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Negative
+msgctxt "CMS_ERROR"
+msgid "Content Management System (CMS) erkennbar"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Description
+msgctxt "CMS_ERROR_DESC"
+msgid ""
+"Das verwendete [https://www.siwecos.de/wiki/Content-Management-Systeme "
+"Content Management System] kann identifiziert werden. Diese Information "
+"könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen "
+"für dieses spezielle CMS zu suchen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Solution_Tips
+msgctxt "CMS_TIPS"
+msgid ""
+"Halten Sie installierte Webserver und das Content Management System immer "
+"auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es "
+"Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls "
+"verfügbar."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Link
+msgctxt "CMS_LINK"
+msgid "Cms"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Background
+msgctxt "CMS_Background"
+msgid ""
+"Ein Content-Management-System (kurz CMS, deutsch Inhaltsverwaltungssystem) "
+"ist eine Software zur gemeinschaftlichen Erstellung, Bearbeitung und "
+"Organisation von Inhalten (Content) zumeist in Webseiten, aber auch in "
+"anderen Medienformen. Wenn ein Angreifer herausfinden kann welche "
+"CMS-Version eingesetzt wird, kann er gezielter nach Schwachstellen suchen. "
+"[https://de.wikipedia.org/wiki/Content-Management-System mehr >>]"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Consequence
+msgctxt "CMS_Consequence"
+msgid ""
+"Es ist möglich die Version des CMS-System von außen auszulesen. Wenn das "
+"CMS-System nicht auf dem aktuellsten Software-Stand ist, haben Kriminelle "
+"die Möglichkeit diverse Sicherheitslücken zu nutzen, um das System zu "
+"kompromittieren und Schadcode zu hinterlegen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Details
+msgctxt "CMS_Details"
+msgid "Das CMS %cms% mit der Version %version% wurde detektiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS
+# Purpose: Technical
+msgctxt "CMS_Technical"
+msgid "Das verwendete CMS %cms% der Version %version% wurde detektiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Headline
+msgctxt "CMS_PLUGINS"
+msgid "Überprüfung auf unsichere CMS-Plugins"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Category
+msgctxt "CMS_PLUGINS_CATEGORY"
+msgid "Information-Leakage-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Positive
+msgctxt "CMS_PLUGINS_SUCCESS"
+msgid "CMS-Plugins können nicht detektiert werden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Negative
+msgctxt "CMS_PLUGINS_ERROR"
+msgid "CMS Plugin detektiert"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Description
+msgctxt "CMS_PLUGINS_ERROR_DESC"
+msgid ""
+"Es wurde in ihrem CMS-System installierte Plugins entdeckt. Ein Angreifer "
+"könnte diese Information nutzen um gezielt nach Schwachstellen für ihre "
+"Webseite zu nutzen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Solution_Tips
+msgctxt "CMS_PLUGINS_TIPS"
+msgid ""
+"Plugins sollten auf jene beschränkt werden, die tatsächlich benötigt "
+"werden. Damit kann die Angriffsfläche erheblich reduzieren werden. Zudem "
+"sollten installierte Plugins immer auf dem aktuellsten Stand gehalten "
+"werden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Link
+msgctxt "CMS_PLUGINS_LINK"
+msgid "Plugin"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Background
+msgctxt "CMS_PLUGINS_Background"
+msgid ""
+"Ein Plugin ist ein optionales Software-Modul, das eine bestehende Software "
+"erweitert bzw. verändert. Plugins werden häufig auch von unerfahrenen "
+"Entwicklern geschrieben und haben deswegen besonders häufig "
+"Schwachstellen, welche oft nicht rechtzeitig geschlossen werden. "
+"[https://de.wikipedia.org/wiki/Plug-in Weitere Informationen]"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Consequence
+msgctxt "CMS_PLUGINS_Consequence"
+msgid ""
+"Content-Management-System (CMS) bietet dem Nutzer eine breite Auswahl an "
+"Funktionserweiterungen. Schwachstellen bzw. Sicherheitslücken in Plugins "
+"werden von Angreifern gerne ausgenutzt, um eine CMS-Installation unter "
+"fremde Kontrolle zu bringen oder für andere Zwecke zu missbrauchen. Diese "
+"Schwachstellen in Software sind leider unvermeidbar. Eine große "
+"Angriffsfläche ist nachteilig und sollte vermieden werden. "
+"[https://www.kuketz-blog.de/schwachstellen-in-plugins-und-themes-wordpress "
+"-sicherheit-teil3/ Weitere Informationen]."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Details
+msgctxt "CMS_PLUGINS_Details"
+msgid ""
+"Verwundbares Plugin %plugin% der Version %plugin_version% detektiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: CMS_PLUGINS
+# Purpose: Technical
+msgctxt "CMS_PLUGINS_Technical"
+msgid ""
+"Verwundbares Plugin %plugin% der Version %plugin_version% in DOM-node "
+"%node% mit dem Inhalt %node_content% detektiert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Headline
+msgctxt "CONTENT_SECURITY_POLICY"
+msgid "Überprüfung der Content Security Policy (CSP)"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Category
+msgctxt "CONTENT_SECURITY_POLICY_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Positive
+msgctxt "CONTENT_SECURITY_POLICY_SUCCESS"
+msgid ""
+"Eine sichere Konfiguration der Content Security Policy (CSP) wurde "
+"gefunden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Negative
+msgctxt "CONTENT_SECURITY_POLICY_ERROR"
+msgid "Content Security Policy Inaktiv"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Description
+msgctxt "CONTENT_SECURITY_POLICY_ERROR_DESC"
+msgid ""
+"Die Content-Security-Policy ist ein Sicherheitskonzept, das "
+"Content-Injection-Angriffe mildern soll.. Es stellt über eine Whitelist "
+"(Liste erlaubter Quellen) dar, von welchen [[Quellen]] Javascripte, "
+"Bilder, Schriftarten und andere Inhalte auf Ihrer Seite eingebunden werden "
+"dürfen."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Solution_Tips
+msgctxt "CONTENT_SECURITY_POLICY_TIPS"
+msgid ""
+"Verwenden Sie den CSP mit default-src 'none' und ohne unsicher-eval oder "
+"unsicher-inline-Richtlinien. Mehr zu '''Content Security Policy''' (zu "
+"deutsch etwa \"Richtlinie für die Sicherheit der Inhalte\") finden Sie bei "
+"'''[https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy "
+"SELFHTML>>]'''\n"
+"\n"
+"'''Beispiel:'''\n"
+"\n"
+"--snip\n"
+"<pre>\n"
+"# Download / Lade Inhalte nur von Seiten die explizit erlaubt sind\n"
+"# Beispiel das alles von der eigenen Domain erlaubt allerdings keinerlei "
+"Externas:\n"
+"Header set Content-Security-Policy \"default-src 'none'; script-src "
+"'self'; connect-src 'self'; img-src 'self'; style-src 'self';\" </pre>\n"
+"--snap"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Link
+msgctxt "CONTENT_SECURITY_POLICY_LINK"
+msgid "Content-Security-Policy"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Background
+msgctxt "CONTENT_SECURITY_POLICY_Background"
+msgid ""
+"Content Security Policy (CSP) erfordert eine sorgfältige Abstimmung und "
+"genaue Definition der Policy. Wenn diese Option aktiviert wurde, hat CSP "
+"eine erhebliche Auswirkungen auf die Art und Weise wie der Browser die "
+"Seiten rendert (zum Beispiel Inline JavaScript ist standardmäßig "
+"deaktiviert und muss explizit in der Policy erlaubt werden). CSP kann eine "
+"Reihe Angriffe wie [[Cross-Site Scripting]] und Cross-Site Injektion "
+"verhindern."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Consequence
+msgctxt "CONTENT_SECURITY_POLICY_Consequence"
+msgid ""
+"Die Content-Security-Policy ist eine leistungsfähige Möglichkeit, die "
+"Sicherheit auf Webseiten zu erhöhen. Wichtig dabei zu wissen ist, dass die "
+"Liste regelmäßig kontrolliert werden sollte (verhindert das Einschleusen "
+"von externen Inhalten und Code). Auf der anderen Seite ist es nur selten "
+"möglich, einen sicheren CSP-Header zu integrieren ohne den Quellcode der "
+"Webseite zu modifizieren."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Details
+msgctxt "CONTENT_SECURITY_POLICY_Details"
+msgid ""
+"Die Content Security Policy ist nicht sicher konfiguriert. Ihre "
+"Webanwendung lädt eventuell Inhalte aus unsicheren Quellen nach."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_SECURITY_POLICY
+# Purpose: Technical
+msgctxt "CONTENT_SECURITY_POLICY_Technical"
+msgid "%HEADER%"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Headline
+msgctxt "CONTENT_TYPE"
+msgid "Überprüfung des HTTP Content-Types"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Category
+msgctxt "CONTENT_TYPE_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Positive
+msgctxt "CONTENT_TYPE_SUCCESS"
+msgid "Die Content Type Angabe ist korrekt konfiguriert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Negative
+msgctxt "CONTENT_TYPE_ERROR"
+msgid "Inkorekte HTTP Content-Type Konfiguration"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Description
+msgctxt "CONTENT_TYPE_ERROR_DESC"
+msgid ""
+"Der Content-Type ist eine Angabe, die für gewöhnlich im Kopfbereich der "
+"Webseite, dem sogenannten HTTP-Header, untergebracht wird. Durch diese "
+"Angaben wird der Zeichensatz und der Typ des Inhalts der Seite definiert. "
+"Sollte eine Definition fehlen, wird der Webbrowser versuchen den "
+"Content-Type zu eraten; dies kann zu Sicherheitslücken wie "
+"Code-Page-Sniffing führen. Diese Angaben sind zudem wichtig, damit die "
+"Webseite in jedem [[Browser]] und auf jedem Computer einwandfrei "
+"dargestellt wird. Wenn ein Server ein Dokument an einen "
+"[https://de.wikipedia.org/wiki/User_Agent User-Agent] sendet (zum Beispiel "
+"zum [[Browser]]) ist es nützlich, im Content-Type-Feld des HTTP-Header die "
+"Art des Dateiformates zu hinterlegen. Diese Informationen deklarieren den "
+"[https://de.wikipedia.org/wiki/Internet_Media_Type MIME-Typ] und senden "
+"entsprechend die Zeichenkodierung des Dokuments wie text/html, text/plain, "
+"etc. an den Browser."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Solution_Tips
+msgctxt "CONTENT_TYPE_TIPS"
+msgid ""
+"Fügen sie den entsprechenden HTTP-Header oder alternativ ein <meta> Tag "
+"hinzu. Bitte beachten Sie, dass <meta> im Gegensatz zu einem HTTP-Header "
+"leichter angegriffen werden kann.\n"
+"\n"
+"'''text/html; charset=utf-8''';\n"
+"\n"
+"'''--snip'''\n"
+"\n"
+"<pre><meta http-equiv=\"Content-Type\" content=\"text/html; "
+"charset=utf-8\"></pre>\n"
+"\n"
+"'''—snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Link
+msgctxt "CONTENT_TYPE_LINK"
+msgid "Content-Type"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Background
+msgctxt "CONTENT_TYPE_Background"
+msgid ""
+"Die Einbettung des Content Types im Quellcode ist durch eine relativ kurze "
+"Angabe möglich. Es sollte der UTF-8 Zeichensatz verwendet werden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Comment
+msgctxt "CONTENT_TYPE_Comment"
+msgid ""
+"Es gibt sowohl einen Header-Check als auch eine Überprüfung der META-Tags. "
+"Bitte beide Variablen in der technischen Übersicht angeben. \n"
+"\n"
+"Die HEADER-Überprüfung ist ggf. Sicherer als die Angabe via META-TAG."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Consequence
+msgctxt "CONTENT_TYPE_Consequence"
+msgid ""
+"Durch die Angabe der korrekten Header-Deklaration können diverse "
+"[[Cross-Site-Scripting|XSS-Angriffe]] verhindert werden. Wird der "
+"verwendete [https://de.wikipedia.org/wiki/Zeichenkodierung Zeichensatz] "
+"nicht angegeben, so interpretieren manche [[Browser|Webbrowser]] den "
+"Quellcode selbst, wodurch bestimmte Angriffe möglich werden, die einen "
+"anderen Zeichensatz voraussetzen."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Details
+msgctxt "CONTENT_TYPE_Details"
+msgid ""
+"Die Content Type Angabe ist nicht korrekt konfiguriert. Angriffe auf Ihre "
+"Webseite sind wahrscheinlich möglich."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: CONTENT_TYPE
+# Purpose: Technical
+msgctxt "CONTENT_TYPE_Technical"
+msgid ""
+"%HEADER% \n"
+"\n"
+"%META%"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Headline
+msgctxt "CRIME_VULNERABLE"
+msgid "Überprüfung auf die CRIME Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Category
+msgctxt "CRIME_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Positive
+msgctxt "CRIME_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch CRIME"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Negative
+msgctxt "CRIME_VULNERABLE_ERROR"
+msgid "Verwundbar durch CRIME"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Description
+msgctxt "CRIME_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch CRIME. Ein Angriff welcher es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "CRIME_VULNERABLE_TIPS"
+msgid "Deaktivieren sie TLS-Compression auf ihrem Server"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Link
+msgctxt "CRIME_VULNERABLE_LINK"
+msgid "CRIME-VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Consequence
+msgctxt "CRIME_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Schwachstelle, welche es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: CRIME_VULNERABLE
+# Purpose: Details
+msgctxt "CRIME_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch CRIME. Ein Angriff welcher es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+
+# Placeholder: CT_META_TAG_SET_CORRECT
+# Purpose: Headline
+msgctxt "CT_META_TAG_SET_CORRECT"
+msgid "Das META Tag wurde richtig gesetzt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+
+# Placeholder: CT_META_TAG_SET_CORRECT
+# Purpose: Category
+msgctxt "CT_META_TAG_SET_CORRECT_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Headline
+msgctxt "EMAIL_ADDRESS"
+msgid "Überprüfung auf vorhandene Email-Adressen"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Category
+msgctxt "EMAIL_ADDRESS_CATEGORY"
+msgid "Information-Leakage-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Positive
+msgctxt "EMAIL_ADDRESS_SUCCESS"
+msgid "Keine Email-Adressen gefunden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Negative
+msgctxt "EMAIL_ADDRESS_ERROR"
+msgid "Auslesbare Email-Adresse"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Description
+msgctxt "EMAIL_ADDRESS_ERROR_DESC"
+msgid ""
+"Ihre Webseite enthält mindestens eine maschinell auslesbare Email-Adresse. "
+"Dieses ermöglicht es Dritten, die hinterlegten Email-Adressen "
+"automatisiert durch WebCrawler (auch Spider, Searchbot oder Robot) zu "
+"sammeln und in einer internen Datenbank mit anderen Informationen zu Ihrer "
+"Webseite zusammenzufügen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Solution_Tips
+msgctxt "EMAIL_ADDRESS_TIPS"
+msgid ""
+"Hinterlegen Sie Ihre Kontaktadressen, bspw. im Impressum wie folgt: mail "
+"at siwecos.de / mail @ siwecos.de oder hinterlegen Sie die Information in "
+"einer Grafik-Datei."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Link
+msgctxt "EMAIL_ADDRESS_LINK"
+msgid "Email"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Background
+msgctxt "EMAIL_ADDRESS_Background"
+msgid ""
+"Automatisierte Crawler durchsuchen und scannen regelmäßig Webseiten im "
+"Internet. Dies ist ähnlich wie der Bummel auf der Einkaufstraße, auch dort "
+"lässt es sich nicht vermeiden, dass Sie von anderen Personen betrachtet "
+"werden. Dieses ist grundsätzlich auch im Internet nicht gefährlich oder zu "
+"Ihrem Nachteil. Auch der SIWECOS-Service scannt regelmäßig Ihre Webseite "
+"nach Sicherheitslücken oder Schadsoftware. Die Ergebnisse eines "
+"automatischen Scans dienen zum Beispiel zur Indizierung Ihrer Webseite, "
+"was wiederum zur besseren oder schnelleren Anzeige in "
+"Suchmaschinen-Ergebnissen führt. Ein anderes bekanntes Beispiel ist das "
+"[https://archive.org/web/ Internet Archive], welches regelmäßig Webseiten "
+"crawlt, scannt und abspeichert, um Sie für die Nachwelt zu archivieren."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Comment
+msgctxt "EMAIL_ADDRESS_Comment"
+msgid ""
+"Anmerkungen: Die Angegebene Lösung ist nicht so gut. Kriminelle kennen "
+"solche Umschreibweisen und schreiben diese automatisch richtig. Der Scan "
+"sollte eher die Nutzer darauf aufmerksam machen welche Email Adressen man "
+"auf der Website entdecken kann. Private Emails sollten dann vom Nutzer "
+"evaluiert werden ob sie wirklich auf der Website stehen sollten. Oft ist "
+"gar nicht bewusst wie viele Informationen preisgegeben werden durch z.B. "
+"alte Html Kommentare.."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Consequence
+msgctxt "EMAIL_ADDRESS_Consequence"
+msgid ""
+"Auch Kriminelle nutzen solche Crawler und sammeln z.B. auslesbare "
+"E-Mail-Adressen. Dies könnte vermehrt zu unerwünschtem [[Spam]] oder sogar "
+"zu einer gezielten [[Phishing|Phishing-Attacke]] führen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Details
+msgctxt "EMAIL_ADDRESS_Details"
+msgid "Email-Adresse gefunden: %email_address%."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: EMAIL_ADDRESS
+# Purpose: Technical
+msgctxt "EMAIL_ADDRESS_Technical"
+msgid "Email-Adresse: %email_address%."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Headline
+msgctxt "HAS_SINKS"
+msgid "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Category
+msgctxt "HAS_SINKS_CATEGORY"
+msgid "XSS-Scanner"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Positive
+msgctxt "HAS_SINKS_SUCCESS"
+msgid ""
+"Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sinks "
+"detektiert."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Negative
+msgctxt "HAS_SINKS_ERROR"
+msgid "Unsicheren JavaScript-Code verwendet (Sinks)"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Description
+msgctxt "HAS_SINKS_ERROR_DESC"
+msgid ""
+"Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der "
+"unter bestimmten Voraussetzungen auf eine DOM-basierende Cross-Site "
+"Scripting Anfälligkeit hindeutet. Diese Stelle kann eine Schwachstelle auf "
+"Ihrer Webseite darstellen."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Solution_Tips
+msgctxt "HAS_SINKS_TIPS"
+msgid ""
+"Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken "
+"verwendet werden. Weitere Tests sind erforderlich, um die Schwachstellen "
+"auf der Webseite zu bestätigen."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Link
+msgctxt "HAS_SINKS_LINK"
+msgid "Sinks"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Background
+msgctxt "HAS_SINKS_Background"
+msgid ""
+"[https://www.siwecos.de/wiki/Cross-Site_Scripting Cross-Site-Scripting] "
+"stellt eine Möglichkeit dar, den HTML Code auf Ihrer Webseite zu "
+"manipulieren und zu infiltrieren. Es ermöglicht einem Angreifer, Skripte "
+"indirekt an den Browser Ihres Webseiten-Besuchers zu senden und damit "
+"Schadcode auf der Seite des Besuchers auszuführen."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Consequence
+msgctxt "HAS_SINKS_Consequence"
+msgid ""
+"Cross-Site-Scripting ermöglicht es Kriminellen auf Ihrer Webseite "
+"Schadcode zu hinterlegen. Dieser Code kann Ihre Besucher oder Kunden "
+"infizieren und so möglicherweise massiven Schaden anrichten, z.B. wenn der "
+"Schadcode zur Installation eines Erpressungstrojaners in dessen "
+"Unternehmensnetzwerk führt. In diesem Fall könnten Sie für den Schaden "
+"haftbar gemacht werden. IT-Sicherheitsunternehmen könnten Sie auf den "
+"Index von gefährlichen Webseiten aufnehmen und so Dritten den Zugriff auf "
+"ihre Webseite aus Sicherheitsgründen verweigern. Die Information, dass "
+"ihre Webseite Schadsoftware enthält / enthielt, ist auch viele Jahre nach "
+"dem Entfernen des Schadcodes bei Internet-Suchmaschinen ersichtlich. Eine "
+"Listung auf solch einer Blacklist kann zudem dazu führen, dass Sie auch "
+"keine Emails mehr empfangen oder senden können, da ihr gesamtes Netzwerk "
+"und die IP als Gefährdung anderer eingestuft wird."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SINKS
+# Purpose: Details
+msgctxt "HAS_SINKS_Details"
+msgid "Die Webanwendung ist eventuell anfällig für sog. DOMXSS-Angriffe."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Headline
+msgctxt "HAS_SOURCES"
+msgid "Überprüfung des JavaScript-Codes nach DOMXSS-Sources"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Category
+msgctxt "HAS_SOURCES_CATEGORY"
+msgid "XSS-Scanner"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Positive
+msgctxt "HAS_SOURCES_SUCCESS"
+msgid ""
+"Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sources "
+"detektiert."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Negative
+msgctxt "HAS_SOURCES_ERROR"
+msgid "Unsicheren JavaScript-Code verwendet (Sources)"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Description
+msgctxt "HAS_SOURCES_ERROR_DESC"
+msgid ""
+"Bei der Überprüfung wurde mindestens eine Schwachstelle auf der Webseite "
+"gefunden, die von einer externen, möglicherweise nicht vertrauenswürdigen "
+"Quelle gesteuert werden könnte."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Solution_Tips
+msgctxt "HAS_SOURCES_TIPS"
+msgid ""
+"Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken "
+"verwendet werden. Weitere Tests sind erforderlich, um die Schwachstellen "
+"auf der Webseite zu bestätigen."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Link
+msgctxt "HAS_SOURCES_LINK"
+msgid "Sources"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Background
+msgctxt "HAS_SOURCES_Background"
+msgid ""
+"Durch das Laden von Dateien und Codes aus unsicheren bzw. externen Quelle "
+"entsteht für Ihre Webseite eine potentielle Sicherheitslücke. Ein "
+"Angreifer, der die externe Quelle kontrolliert, könnte einen Schadcode "
+"hochladen, der dann auf Ihrer Seite ausgeführt werden kann"
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Consequence
+msgctxt "HAS_SOURCES_Consequence"
+msgid ""
+"Cross-Site-Scripting ermöglicht es Kriminellen auf Ihrer Webseite "
+"Schadcode zu hinterlegen. Dieser Code kann Ihre Besucher oder Kunden "
+"infizieren und so möglicherweise massiven Schaden anrichten, z.B. wenn der "
+"Schadcode zur Installation eines Erpressungstrojaners in dessen "
+"Unternehmensnetzwerk führt. In diesem Fall könnten Sie für den Schaden "
+"haftbar gemacht werden. IT-Sicherheitsunternehmen könnten Sie auf den "
+"Index von gefährlichen Webseiten aufnehmen und so Dritten den Zugriff auf "
+"ihre Webseite aus Sicherheitsgründen verweigern. Die Information, dass "
+"ihre Webseite Schadsoftware enthält / enthielt, ist auch viele Jahre nach "
+"dem Entfernen des Schadcodes bei Internet-Suchmaschinen ersichtlich. Eine "
+"Listung auf solch einer Blacklist kann zudem dazu führen, dass Sie auch "
+"keine Emails mehr empfangen oder senden können, da ihr gesamtes Netzwerk "
+"und die IP als Gefährdung anderer eingestuft wird."
+msgstr ""
+
+
+# Category: XSS-Scanner
+# Placeholder: HAS_SOURCES
+# Purpose: Details
+msgctxt "HAS_SOURCES_Details"
+msgid "Die Webanwendung ist eventuell anfällig für sog. DOMXSS-Angriffe."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Headline
+msgctxt "HEARTBLEED_VULNERABLE"
+msgid "Überprüfung auf die Heartbleed Schwachstelle."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Category
+msgctxt "HEARTBLEED_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Positive
+msgctxt "HEARTBLEED_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Heartbleed"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Negative
+msgctxt "HEARTBLEED_VULNERABLE_ERROR"
+msgid "Verwundbar durch Heartbleed"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Description
+msgctxt "HEARTBLEED_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch Heartbleed. Dadurch kann ein Angreifer "
+"sensible Daten aus dem Arbeitsspeicher des Servers auslesen, wie z.B. "
+"geheime Schlüssel und Kundendaten."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "HEARTBLEED_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Link
+msgctxt "HEARTBLEED_VULNERABLE_LINK"
+msgid "HEARTBLEED-VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Consequence
+msgctxt "HEARTBLEED_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer ihren Server anzugreifen."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: HEARTBLEED_VULNERABLE
+# Purpose: Details
+msgctxt "HEARTBLEED_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch Heartbleed. Dadurch kann ein Angreifer "
+"sensible Daten aus dem Arbeisspeicher des Servers auslesen, wie z.B. "
+"geheime Schlüssel und Kundendaten."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Headline
+msgctxt "HTTPS_NOT_SUPPORTED"
+msgid "Überprüfung auf HTTPS Unterstützung"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Category
+msgctxt "HTTPS_NOT_SUPPORTED_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Positive
+msgctxt "HTTPS_NOT_SUPPORTED_SUCCESS"
+msgid "Server spricht TLS"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Negative
+msgctxt "HTTPS_NOT_SUPPORTED_ERROR"
+msgid "Server scheint kein TLS zu sprechen"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Description
+msgctxt "HTTPS_NOT_SUPPORTED_ERROR_DESC"
+msgid ""
+"Der Server scheint kein TLS zu unterstützen. Dies bedeutet das sie "
+"keinerlei Verschlüsselung einsetzen um ihre Daten und die ihrer Kunden zu "
+"schützen."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Solution_Tips
+msgctxt "HTTPS_NOT_SUPPORTED_TIPS"
+msgid "Aktivieren sie TLS."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Link
+msgctxt "HTTPS_NOT_SUPPORTED_LINK"
+msgid "HTTPS_NOT_SUPPORTED"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Background
+msgctxt "HTTPS_NOT_SUPPORTED_Background"
+msgid ""
+"Der Server \\“%HOSTt%\\“ scheint kein TLS zu unterstützen. Dies bedeutet "
+"das sie keinerlei Verschlüsselung einsetzen um ihre Daten von ihnen und "
+"die ihrer Kunden zu schützen."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Consequence
+msgctxt "HTTPS_NOT_SUPPORTED_Consequence"
+msgid ""
+"Jeder kann ihre Daten mitlesen oder Inhalte ihrer Website während der "
+"Übertragung manipulieren."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NOT_SUPPORTED
+# Purpose: Details
+msgctxt "HTTPS_NOT_SUPPORTED_Details"
+msgid ""
+"Der Server \\“%HOSTt%\\“ scheint kein TLS zu unterstützen. Dies bedeutet "
+"das sie keinerlei Verschlüsselung einsetzen um ihre Daten von ihnen und "
+"die ihrer Kunden zu schützen."
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Headline
+msgctxt "HTTPS_NO_RESPONSE"
+msgid "Überprüfung der Reaktionszeit des Headers"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Category
+msgctxt "HTTPS_NO_RESPONSE_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Positive
+msgctxt "HTTPS_NO_RESPONSE_SUCCESS"
+msgid "Server antwortet"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Negative
+msgctxt "HTTPS_NO_RESPONSE_ERROR"
+msgid "Server antwortet nicht"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Description
+msgctxt "HTTPS_NO_RESPONSE_ERROR_DESC"
+msgid ""
+"Der Server scheint überhaupt nicht zu antworten. Haben sie die Domain "
+"richtig eingegeben?"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Link
+msgctxt "HTTPS_NO_RESPONSE_LINK"
+msgid "HTTPS_NO_RESPONSE"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: HTTPS_NO_RESPONSE
+# Purpose: Details
+msgctxt "HTTPS_NO_RESPONSE_Details"
+msgid ""
+"Der Server \\“%HOST%\\“ scheint überhaupt nicht zu antworten. Haben sie "
+"die Domain richtig eingegeben?"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Headline
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE"
+msgid "Überprüfung auf die Ephemeral Invalid Curve Schwachstelle."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Category
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Positive
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Ephemeral Invalid Curve Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Negative
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR"
+msgid "Verwundbar durch Ephemeral Invalid Curve Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Description
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch einen Ephemeral Invalid Curve Angriff. "
+"Dadurch kann ein Angreifer die Verbindungen angreifen."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Link
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_LINK"
+msgid "INVALID_CURVE_EPHEMERAL_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Consequence
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_EPHEMERAL_VULNERABLE
+# Purpose: Details
+msgctxt "INVALID_CURVE_EPHEMERAL_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch einen Ephemeral Invalid Curve Angriff. "
+"Dadurch kann ein Angreifer Verbindungen angreifen."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Headline
+msgctxt "INVALID_CURVE_VULNERABLE"
+msgid "Überprüfung auf die Invalid Curve Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Category
+msgctxt "INVALID_CURVE_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Positive
+msgctxt "INVALID_CURVE_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Invalid Curve Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Negative
+msgctxt "INVALID_CURVE_VULNERABLE_ERROR"
+msgid "Verwundbar durch Invalid Curve Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Description
+msgctxt "INVALID_CURVE_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch einen Invalid Curve Angriff. Dadurch kann "
+"ein Angreifer den geheimen Schlüssel ihres Zertifikats stehlen."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "INVALID_CURVE_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Link
+msgctxt "INVALID_CURVE_VULNERABLE_LINK"
+msgid "INVALID_CURVE_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Consequence
+msgctxt "INVALID_CURVE_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer erlaubt die Kommunikation zu entschlüsseln und den "
+"privaten Schlüssel ihres Zeritifikats zu stehlen."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: INVALID_CURVE_VULNERABLE
+# Purpose: Details
+msgctxt "INVALID_CURVE_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch einen Invalid Curve Angriff. Dadurch kann "
+"ein Angreifer den geheimen Schlüssel ihres Zertifikats stehlen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Headline
+msgctxt "JS_LIB"
+msgid "Überprüfung auf unsichere JavaScript-Bibliotheken"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Category
+msgctxt "JS_LIB_CATEGORY"
+msgid "Information-Leakage-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Positive
+msgctxt "JS_LIB_SUCCESS"
+msgid ""
+"Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich "
+"nicht durch bekannte Schwachstellen angreifbar."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Negative
+msgctxt "JS_LIB_ERROR"
+msgid "Unsichere JavaScript-Bibliothek gefunden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Description
+msgctxt "JS_LIB_ERROR_DESC"
+msgid ""
+"Es wurde eine JavaScript-Bibliothek gefunden für dessen Version eine "
+"Schwachstelle existiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Solution_Tips
+msgctxt "JS_LIB_TIPS"
+msgid "Updaten Sie Ihre verwendeten Javascript Bibliotheken."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Link
+msgctxt "JS_LIB_LINK"
+msgid "Javascript"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Background
+msgctxt "JS_LIB_Background"
+msgid ""
+"JavaScript (kurz JS) ist eine Skriptsprache, die ursprünglich 1995 von "
+"Netscape für dynamisches HTML in Webbrowsern entwickelt wurde, um "
+"Benutzerinteraktionen auszuwerten, Inhalte zu verändern, nachzuladen oder "
+"zu generieren und so die Möglichkeiten von HTML und CSS zu erweitern. "
+"Häufig von Entwicklern genutzter Javascriptcode wird in Bibliotheken "
+"ausgelagert. Wenn eine Website eine unsichere Javascript Bibliothek "
+"verwendet ist sie potenziell angreifbar."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Consequence
+msgctxt "JS_LIB_Consequence"
+msgid ""
+"Mehr als 50 Prozent aller JavaScript-Funktionen von den 10.000 "
+"beliebtesten Webseiten werden gar nicht genutzt. Manch anderes Feature ist "
+"eher sinnlos und mit Blick auf die Sicherheit erscheinen so manches "
+"Javascript-Features mehr als fraglich. Zum Beispiel gab es für die \"Web "
+"Audio API\" in den vergangenen drei Jahren mindestens zehn gemeldete "
+"Sicherheitslücken nach CVE-Standard."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Details
+msgctxt "JS_LIB_Details"
+msgid ""
+"Verwundbare JavaScript-Bibliothek %js_lib_name% der Version "
+"%js_lib_version% detektiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: JS_LIB
+# Purpose: Technical
+msgctxt "JS_LIB_Technical"
+msgid ""
+"Verwundbare JavaScript-Bibliothek %js_lib_name% der Version "
+"%js_lib_version% in DOM-node %node% mit dem Inhalt %node_content% "
+"detektiert."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Headline
+msgctxt "MALWARE"
+msgid "Überprüfung auf mögliche Malware"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Category
+msgctxt "MALWARE_CATEGORY"
+msgid "Initiative-S Scanner"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Positive
+msgctxt "MALWARE_SUCCESS"
+msgid "Ihre Domain wurde in keiner uns bekannten Malware Liste gefunden."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Negative
+msgctxt "MALWARE_ERROR"
+msgid "Ihre Domain wurde in Malware Listen gefunden"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Description
+msgctxt "MALWARE_ERROR_DESC"
+msgid ""
+"Malware bezeichnet Software, die dem Benutzer und natürlich in erster "
+"Linie dem Computer Schaden zufügen kann. Malware bezeichnet dabei alle "
+"Arten von schadhaften Programmen wie etwa Viren, Trojaner, Spyware, "
+"Dialer, Dropper, Rootkits und Keylogger."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Solution_Tips
+msgctxt "MALWARE_TIPS"
+msgid ""
+"'''<span style=\"color:#c31622\"> Nehmen Sie die Webseite "
+"offline!<span>'''\n"
+"\n"
+"Bei einem Aufruf der Seite besteht die Gefahr, dass Sie den aufrufenden PC "
+"mit Schadsoftware infizieren. Auch vermeiden Sie damit, dass Google Ihre "
+"Webseite aus dem Index nimmt, was ein eventuelles positives Ranking "
+"annullieren würde. Sie kommen auch einer eventuellen Sperre Ihrer Webseite "
+"seitens Ihres Providers/Hosters zuvor.\n"
+"\n"
+"'''- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre "
+"Domain zuzugreifen. '''<br>\n"
+"\n"
+"Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten "
+"Quell-IP-Adressen. Als Ausgangspunkt  Ihrer Recherche könnte Ihnen der "
+"Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen "
+"Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor "
+"geben.\n"
+"\n"
+"'''- Ändern Sie Ihre Zugangsdaten!'''<br>\n"
+"'''- Webfrontend (Hosting-Vertrag, Content-Management-System)'''<br>\n"
+"'''- FTP-, SSH-Zugänge'''<br>\n"
+"'''- Datenbank-Passwörter'''<br>\n"
+"\n"
+"Spielen Sie ein schadcodefreies Backup wieder ein!\n"
+"Löschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie "
+"sicher, dass Sie keine Fremddateien, die den Angreifern als "
+"\"Hintertüren\" dienen aus der vormals kompromittierten Umgebung "
+"übernehmen.\n"
+"Überprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von "
+"uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine "
+"noch ältere Sicherung zurück.\n"
+"Sollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her "
+"und führen danach die Updates im System durch. Erst dann stellen Sie die "
+"Webseite wieder online.\n"
+"\n"
+"''' - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, "
+"ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle "
+"Bereinigungen nehmen in der Regel sehr viel Zeit in Anspruch und sollten "
+"nur von Fachpersonal durchgeführt werden.'''<br>\n"
+"\n"
+"Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite "
+"[https://www.botfrei.de botfrei.de] finden Sie dazu Hilfestellungen und "
+"Programme. \n"
+"Mit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen "
+"Schadprogrammen säubern. ( https://www.botfrei.de/de/eucleaner/index.html "
+")"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Link
+msgctxt "MALWARE_LINK"
+msgid "Malware-Inhalte"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Background
+msgctxt "MALWARE_Background"
+msgid ""
+"Es gibt Internetseiten, die anderen Unternehmen zum Verwechseln ähnlich "
+"sind und dem Besucher der Webseite über "
+"[https://www.siwecos.de/wiki/Drive-by-Download Drive-by-Downloads] eine "
+"Infektion auf den Computer aufspielen. Diese Downloads sind oftmals nicht "
+"zu erkennen, da sie meist über diverse Skripte eingebunden sind. Gerne "
+"wird der Webspace/Host auch als Ablageort für Schadcode bzw. schadhafte "
+"Programme verwendet, die dann z.B. in Spam-Mails verlinkt werden."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: MALWARE
+# Purpose: Consequence
+msgctxt "MALWARE_Consequence"
+msgid ""
+"Bei einem Aufruf der Seite besteht die Gefahr, dass Sie den Rechner des "
+"Besuchers Ihrer Seite mit Schadcode infizieren."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Headline
+msgctxt "PADDING_ORACLE_VULNERABLE"
+msgid "Überprüfung auf die Padding-Oracle  Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Category
+msgctxt "PADDING_ORACLE_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Positive
+msgctxt "PADDING_ORACLE_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Padding Oracle Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Negative
+msgctxt "PADDING_ORACLE_VULNERABLE_ERROR"
+msgid "Verwundbar durch Padding Oracle Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Description
+msgctxt "PADDING_ORACLE_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch einen Padding-Oracle Angriff, welcher es "
+"einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "PADDING_ORACLE_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Link
+msgctxt "PADDING_ORACLE_VULNERABLE_LINK"
+msgid "PADDING_ORACLE_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Consequence
+msgctxt "PADDING_ORACLE_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: PADDING_ORACLE_VULNERABLE
+# Purpose: Details
+msgctxt "PADDING_ORACLE_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch einen Padding-Oracle Angriff, welcher es "
+"einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Headline
+msgctxt "PHISHING"
+msgid "Überprüfung auf mögliche Phishing-Inhalte"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Category
+msgctxt "PHISHING_CATEGORY"
+msgid "Initiative-S Scanner"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Positive
+msgctxt "PHISHING_SUCCESS"
+msgid "Ihre Domain wurde in keiner uns bekannten Phising Liste gefunden."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Negative
+msgctxt "PHISHING_ERROR"
+msgid "Ihre Domain wurde in Phising Listen gefunden"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Description
+msgctxt "PHISHING_ERROR_DESC"
+msgid ""
+"Beim Phishing wird in der Regel trickreich versucht, sensible persönliche "
+"Daten wie Passwörter, Kreditkartennummern und persönliche Daten des "
+"Besuchers der Seite zu entwenden. Dabei versenden Kriminelle üblicherweise "
+"Spam-E-Mails. Diese E-Mails enthalten u.a. Links zu einer Phishing-Seite, "
+"die sich als legitime Webseite ausgibt."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Solution_Tips
+msgctxt "PHISHING_TIPS"
+msgid ""
+"'''<span style=\"color:#c31622\"> Nehmen Sie die Webseite "
+"offline!<span>'''\n"
+"\n"
+"Es ist weiterhin möglich, dass Sie mit der Webseite Phishing-Inhalte zu "
+"Verfügung stellen und Kriminelle persönliche Daten darüber sammeln. Auch "
+"vermeiden Sie damit, dass Google Ihre Webseite aus dem Index nimmt, was "
+"ein eventuelles positives Ranking annullieren würde. So kommen Sie auch "
+"einer eventuellen Sperre Ihrer Webseite seitens Ihres Providers/Hosters "
+"zuvor.\n"
+"\n"
+"'''- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre "
+"Domain zuzugreifen. '''<br>\n"
+"\n"
+"Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten "
+"Quell-IP-Adressen. Als Ausgangspunkt  Ihrer Recherche könnte Ihnen der "
+"Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen "
+"Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor "
+"geben.\n"
+"\n"
+"'''- Ändern Sie Ihre Zugangsdaten!'''<br>\n"
+"'''- Webfrontend (Hosting-Vertrag, Content-Management-System)'''<br>\n"
+"'''- FTP-, SSH-Zugänge'''<br>\n"
+"'''- Datenbank-Passwörter'''<br>\n"
+"\n"
+"Spielen Sie ein schadcodefreies Backup wieder ein!\n"
+"Löschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie "
+"sicher, dass Sie keine Fremddateien, die den Angreifern als "
+"\"Hintertüren\" dienen aus der vormals kompromittierten Umgebung "
+"übernehmen.\n"
+"Überprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von "
+"uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine "
+"noch ältere Sicherung zurück.\n"
+"Sollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her "
+"und führen danach die Updates im System durch. Erst dann stellen Sie die "
+"Webseite wieder online.\n"
+"\n"
+"''' - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, "
+"ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle "
+"Bereinigungen nehmen in der Regel sehr viel Zeit in Anspruch und sollten "
+"nur von Fachpersonal durchgeführt werden.'''<br>\n"
+"\n"
+"Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite "
+"[https://www.botfrei.de botfrei.de] finden Sie dazu Hilfestellungen und "
+"Programme. \n"
+"Mit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen "
+"Schadprogrammen säubern. ( https://www.botfrei.de/de/eucleaner/index.html "
+")"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Link
+msgctxt "PHISHING_LINK"
+msgid "Phishing-Inhalte"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Background
+msgctxt "PHISHING_Background"
+msgid ""
+"Kriminelle hacken ungeahnt vom Besitzer den Zugang zur Webseite und "
+"hinterlegen auf dem Webspace Schadcode bzw. Phishing-Inhalte, um an "
+"gewünschte Daten der Besucher heranzukommen."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: PHISHING
+# Purpose: Consequence
+msgctxt "PHISHING_Consequence"
+msgid ""
+"Wird der FTP-Bereich Ihrer Webseite angegriffen und beeinträchtigt, können "
+"Hacker Ihr Konto als Host für eine Phishing-Webseite missbrauchen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Headline
+msgctxt "PHONE_NUMBER"
+msgid "Überprüfung auf auslesbare Telefonnummern"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Category
+msgctxt "PHONE_NUMBER_CATEGORY"
+msgid "Information-Leakage-Scanner"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Positive
+msgctxt "PHONE_NUMBER_SUCCESS"
+msgid "Telefonnummern wurden nicht gefunden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Negative
+msgctxt "PHONE_NUMBER_ERROR"
+msgid "Telefonnummer detektiert"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Description
+msgctxt "PHONE_NUMBER_ERROR_DESC"
+msgid ""
+"Es wurde eine Telefonnummer gefunden. Ein Angreifer könnte diese "
+"Information nutzen, um Mitarbeiter zu manipulieren und an Informationen "
+"gelangen die Geheim bleiben sollten."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Solution_Tips
+msgctxt "PHONE_NUMBER_TIPS"
+msgid ""
+"Die veröffentlichten Telefonnummern sollten auf jene beschränkt werden, "
+"die auch tatsächlich für die Kommunikation mit Kunden gedacht sind. "
+"Außerdem sollte der telefonierende Mitarbeiter sich der Gefahr von Social "
+"Engineering Angriffen bewusst sein und die Vorgehensweise von Social "
+"Engineers kennen."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Link
+msgctxt "PHONE_NUMBER_LINK"
+msgid "Telefonnummer"
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Background
+msgctxt "PHONE_NUMBER_Background"
+msgid ""
+"Telefonnummern werden in der Regel veröffentlicht, um dem Kunden die "
+"Möglichkeit zu geben direkt mit Mitarbeitern zu kommunizieren. Sollte der "
+"Kunde jedoch ein Angreifer sein, kann es zu sozialen Manipulationen kommen "
+"die dann dazu führen, dass vertrauliche Informationen preisgegeben werden."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Consequence
+msgctxt "PHONE_NUMBER_Consequence"
+msgid ""
+"Social Engineering Angriffe werden gerne über das Telefon geführt. Diese "
+"Art von Angriff ist schnell und effizient, da oftmals das Bewusstsein "
+"hinsichtlich der Vorgehensweise von Social Engineers nicht vorhanden ist. "
+"Ein amerikanischer Schüler schaffte es beispielsweise 2015 auf den "
+"privaten E-Mail Account eines CIA Direktors zuzugreifen, indem er die "
+"Mitarbeiter eines Internetanbieters manipulierte, die ihm dann sensible "
+"Informationen über den CIA Direktor preisgaben."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Details
+msgctxt "PHONE_NUMBER_Details"
+msgid ""
+"Verwundbares Plugin %plugin% der Version %plugin_version% detektiert."
+msgstr ""
+
+
+# Category: Information-Leakage-Scanner
+# Placeholder: PHONE_NUMBER
+# Purpose: Technical
+msgctxt "PHONE_NUMBER_Technical"
+msgid ""
+"Verwundbares Plugin %plugin% der Version %plugin_version% in DOM-node "
+"%node% mit dem Inhalt %node_content% detektiert."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Headline
+msgctxt "POODLE_VULNERABLE"
+msgid "Überprüfung auf die POODLE Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Category
+msgctxt "POODLE_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Positive
+msgctxt "POODLE_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch Poodle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Negative
+msgctxt "POODLE_VULNERABLE_ERROR"
+msgid "Verwundbar durch Poodle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Description
+msgctxt "POODLE_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch einen Poodle Angriff, welcher es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "POODLE_VULNERABLE_TIPS"
+msgid "Deaktivieren Sie umgehend SSL3 auf ihrem Server!"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Link
+msgctxt "POODLE_VULNERABLE_LINK"
+msgid "TLS_POODLE_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Consequence
+msgctxt "POODLE_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Schwachstelle, welche es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: POODLE_VULNERABLE
+# Purpose: Details
+msgctxt "POODLE_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch einen Poodle Angriff, welcher es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Headline
+msgctxt "PROTOCOLVERSION_SSL2"
+msgid "Überprüfung auf veraltetes SSL2 Protokoll"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Category
+msgctxt "PROTOCOLVERSION_SSL2_CATEGORY"
+msgid "Protokollversionen"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Positive
+msgctxt "PROTOCOLVERSION_SSL2_SUCCESS"
+msgid "Veraltete Protokollversion SSL2 nicht unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Negative
+msgctxt "PROTOCOLVERSION_SSL2_ERROR"
+msgid "Veraltete Protokollversion SSL2 unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Description
+msgctxt "PROTOCOLVERSION_SSL2_ERROR_DESC"
+msgid ""
+"Der Server unterstützt die veraltete Protokollversion SSL2, welche als "
+"höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die "
+"Sicherheit des ganzen Servers und möglicherweise Ihres gesamten "
+"Unternehmensnetzwerks."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Solution_Tips
+msgctxt "PROTOCOLVERSION_SSL2_TIPS"
+msgid ""
+"[[Transport Layer Security|TLS-Verschlüsselung]] gilt heute als Standard. "
+"Sie sollten deshalb auf den Einsatz von [[SSL|SSL2]] verzichten. Weitere "
+"Informationen finden Sie hier: [https://www.siwecos.de/wiki/SSL SSL]"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Link
+msgctxt "PROTOCOLVERSION_SSL2_LINK"
+msgid "PROTOCOLVERSION_SSL2"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Background
+msgctxt "PROTOCOLVERSION_SSL2_Background"
+msgid ""
+"SSL (Secure Sockets Layer) steht für ein hybrides "
+"Verschlüsselungsprotokoll zur sicheren Datenübertragung im Internet und "
+"dient als Grundlage für den sicheren Aufruf über HTTPS. Die Version SSL2 "
+"stammt aus dem Jahr 1994 und wird offiziell seit 2011 nicht mehr "
+"unterstützt. Der Begriff SSL wurde inzwischen durch den Begriff TLS "
+"(Transport Layer Security, dt.: Transportschichtsicherheit) ersetzt. Die "
+"SSL2 Lücke dient z.B. als Einfallstor für die Drown-Attacke [1], welche es "
+"Kriminellen erlaubt, den gesamten Datenverkehr Ihrer Webseite mitzulesen."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Comment
+msgctxt "PROTOCOLVERSION_SSL2_Comment"
+msgid ""
+"Ich weiß nicht ob wir das vielleicht noch irgendwo unterbringen können. "
+"Aber DROWN wurde unter anderem von Juraj Somorovsky von der Hackmanit GmbH "
+"/Rub mitentwickelt. Des weiteren kann es sein das manche Firmen SSL 2/3 "
+"nicht abschalten wollen, weil sie denken das sie Kunden dadurch verlieren "
+"(da Kunden mit sehr sehr sehr alten Browsern sich nicht mehr verbinden "
+"können). Wir sollten dringend darauf hinweisen, das es diese mysteriösen "
+"Kunden schon lange nicht mehr gibt."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Consequence
+msgctxt "PROTOCOLVERSION_SSL2_Consequence"
+msgid ""
+"SSL2 wird von fast allen Internet-Browsern nicht mehr unterstützt. Die "
+"meisten Internet-Browser sind so konfiguriert, dass Sie Besucher vor dem "
+"Aufruf von SSL2-Webseiten warnen bzw. den Zugriff komplett verhindern. Die "
+"Warnmeldung beim Besuch Ihrer Webseite wirkt sich somit negativ auf ihre "
+"Unternehmensdarstellung im Internet aus. Wenn schon Internet-Browser Ihrer "
+"Webseite nicht vertrauen, warum sollten es dann Ihre Kunden tun? Der "
+"weitere Einsatz von SSL2 wirkt sich zudem negativ auf die Ergbenisse in "
+"Suchmaschinen aus und Nutzer werden bereits im Suchergebnis vor einem "
+"Sicherheitsrisiko auf ihrer Webseite gewarnt."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Details
+msgctxt "PROTOCOLVERSION_SSL2_Details"
+msgid ""
+"Der Server unterstützt die veraltete Protokollversion SSL2, welche als "
+"höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die "
+"Sicherheit des ganzen Servers und möglicherweise Ihres gesamten "
+"Unternehmensnetzwerks."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL2
+# Purpose: Impact
+msgctxt "PROTOCOLVERSION_SSL2_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Headline
+msgctxt "PROTOCOLVERSION_SSL3"
+msgid "Überprüfung auf veraltetes SSL3 Protokoll"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Category
+msgctxt "PROTOCOLVERSION_SSL3_CATEGORY"
+msgid "Protokollversionen"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Positive
+msgctxt "PROTOCOLVERSION_SSL3_SUCCESS"
+msgid "Veraltete Protokollversion SSL3 nicht unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Negative
+msgctxt "PROTOCOLVERSION_SSL3_ERROR"
+msgid "Veraltete Protokollversion SSL3 unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Description
+msgctxt "PROTOCOLVERSION_SSL3_ERROR_DESC"
+msgid ""
+"Der Server unterstützt die veraltete Protokollversion SSL3, welche als "
+"höchst unsicher gilt. Sie gefähren mit dem Einsatz der Version massiv die "
+"Sicherheit des ganzen Servers und möglicherweise Ihres gesamten "
+"Unternehmensnetzwerks."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Solution_Tips
+msgctxt "PROTOCOLVERSION_SSL3_TIPS"
+msgid ""
+"[[Transport Layer Security|TLS-Verschlüsselung]] gilt heute als Standard. "
+"Sie sollten deshalb auf den Einsatz von [[SSL|SSL3]] verzichten. Weitere "
+"Informationen finden Sie hier: [https://www.siwecos.de/wiki/SSL SSL]"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Link
+msgctxt "PROTOCOLVERSION_SSL3_LINK"
+msgid "PROTOCOLVERSION_SSL3"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Background
+msgctxt "PROTOCOLVERSION_SSL3_Background"
+msgid ""
+"SSL (Secure Sockets Layer) steht für ein hybrides "
+"Verschlüsselungsprotokoll zur sicheren Datenübertragung im Internet und "
+"dient als Grundlage für den sicheren Aufruf über HTTPS.Die Version SSL3 "
+"stammt aus dem Jahr 1995 und wird offiziell seit 2015 nicht mehr "
+"unterstützt. Der Begriff SSL wurde inzwischen durch den Begriff TLS "
+"(Transport Layer Security, dt.: Transportschichtsicherheit) ersetzt. Die "
+"SSL3 Lücke wurde insbesondere durch POODLE bekannt, welche das Auslesen "
+"verschlüsselter Verbindungen private Daten von Clients und Servern durch "
+"Dritte ermöglicht (Man-in-the-Middle Angriffe)"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Consequence
+msgctxt "PROTOCOLVERSION_SSL3_Consequence"
+msgid ""
+"SSL3 wird von fast allen Internet-Browsern nicht mehr unterstützt. Die "
+"meisten Internet-Browser sind so konfiguriert, dass Sie Besucher vor dem "
+"Aufruf von SSL3-Webseiten warnen bzw. den Zugriff komplett verhindern. Die "
+"Warnmeldung beim Besuch Ihrer Webseite wirkt sich somit negativ auf ihre "
+"Unternehmensdarstellung im Internet aus. Wenn schon Internet-Browser Ihrer "
+"Webseite nicht vertrauen, warum sollten es dann Ihre Kunden tun? Der "
+"weitere Einsatz von SSL3 wirkt sich zudem negativ auf die Ergbenisse in "
+"Suchmaschinen aus und Nutzer werden bereits im Suchergebnis vor einem "
+"Sicherheitsrisiko auf ihrer Webseite gewarnt."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Details
+msgctxt "PROTOCOLVERSION_SSL3_Details"
+msgid ""
+"Der Server unterstützt die veraltete Protokollversion SSL3, welche als "
+"höchst unsicher gilt. Sie gefähren mit dem Einsatz der Version massiv die "
+"Sicherheit des ganzen Servers und möglicherweise Ihres gesamten "
+"Unternehmensnetzwerks."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_SSL3
+# Purpose: Impact
+msgctxt "PROTOCOLVERSION_SSL3_Impact"
+msgid "10"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Headline
+msgctxt "PROTOCOLVERSION_TLS13"
+msgid "Überprüfung auf Einsatz  des TLS1.3 Protokoll"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Category
+msgctxt "PROTOCOLVERSION_TLS13_CATEGORY"
+msgid "Protokollversionen"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Positive
+msgctxt "PROTOCOLVERSION_TLS13_SUCCESS"
+msgid "TLS 1.3 nicht unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Negative
+msgctxt "PROTOCOLVERSION_TLS13_ERROR"
+msgid "Moderne TLS 1.3 unterstützt"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Description
+msgctxt "PROTOCOLVERSION_TLS13_ERROR_DESC"
+msgid ""
+"Der Server unterstützt die neueste TLS Protokollversion. Diese befindet "
+"sich noch im Standartisierungsprozess. Sollten sie nicht wissen was dies "
+"bedeutet, können sie die Version ausschalten, da die meisten Browser diese "
+"Version noch nicht unterstützten und TLS 1.3 sich noch in der Entwicklung "
+"befindet."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Solution_Tips
+msgctxt "PROTOCOLVERSION_TLS13_TIPS"
+msgid "Es besteht kein Handlungsbedarf."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Link
+msgctxt "PROTOCOLVERSION_TLS13_LINK"
+msgid "PROTOCOLVERSION_TLS13"
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Background
+msgctxt "PROTOCOLVERSION_TLS13_Background"
+msgid "TLS 1.3 ist noch nicht marktreif."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Consequence
+msgctxt "PROTOCOLVERSION_TLS13_Consequence"
+msgid ""
+"TLS 1.3 wird von keinem Internetbrowser in der Standartkonfiguration "
+"unterstützt, weswegen sie keine Kunden gewinnen/verlieren falls sie diese "
+"Version nicht unterstützen."
+msgstr ""
+
+
+# Category: Protokollversionen
+# Placeholder: PROTOCOLVERSION_TLS13
+# Purpose: Details
+msgctxt "PROTOCOLVERSION_TLS13_Details"
+msgid ""
+"Der Server unterstützt die neueste TLS Protokollversion. Diese befindet "
+"sich noch im Standartisierungsprozess. Sollten sie nicht wissen was dies "
+"bedeutet, können sie die Version ausschalten, da die meisten Browser diese "
+"Version noch nicht unterstützten und TLS 1.3 sich noch in der Entwicklung "
+"befindet."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Headline
+msgctxt "PUBLIC_KEY_PINS"
+msgid "Überprüfung des Public Key Pinning (HPKP)"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Category
+msgctxt "PUBLIC_KEY_PINS_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Positive
+msgctxt "PUBLIC_KEY_PINS_SUCCESS"
+msgid "Public-Key-Pinning ist aktiviert"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Negative
+msgctxt "PUBLIC_KEY_PINS_ERROR"
+msgid "Public-Key-Pinning nicht vorhanden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Description
+msgctxt "PUBLIC_KEY_PINS_ERROR_DESC"
+msgid ""
+"Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine Signatur, mit "
+"der Hilfe einer von den Benutzern akzeptierten Zertifizierungsstelle, "
+"erstellen lassen. Um dies zu verhindern kann eine Webseite definieren, "
+"dass beim ersten Aufruf des Zertifikats das Zertifikat dauerhaft "
+"gespeichert (pinning). Mit der Hilfe von Key-Pinning wird für die von der "
+"Webseiten definierten Zeit lediglich das gespeicherte Zertifikat "
+"akzeptiert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Solution_Tips
+msgctxt "PUBLIC_KEY_PINS_TIPS"
+msgid ""
+"pin-sha256=\"<HASH>\"; pin-sha256=\"<HASH>\"; max-age=2592000; "
+"includeSubDomains;\n"
+"'''HPKP aktivieren''' - Dieses Feature kann einfach aktiviert werden indem "
+"ein Public-Key-Pins HTTP-Header beim Aufruf der Seite über [[HTTPS]] "
+"zurückgegeben wird. "
+"([https://developer.mozilla.org/de/docs/Web/Security/Public_Key_Pinning "
+"Weitere Infos]).\n"
+"\n"
+"'''--snip'''\n"
+"\n"
+"<pre>Public-Key-Pins: pin-sha256=\"base64==\"; max-age=expireTime [; "
+"includeSubdomains][; report-uri=\"reportURI\"]</pre>\n"
+"\n"
+"'''--snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Link
+msgctxt "PUBLIC_KEY_PINS_LINK"
+msgid "Public-Key-Pins"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Background
+msgctxt "PUBLIC_KEY_PINS_Background"
+msgid ""
+"Einer der für Laien am schwierigsten zu konfigurierende Header. Besitzt "
+"man ein [[Zertifikate|SSL-Zertifikat]] kann man dem anfragenden "
+"[[Browser]] mitteilen, wie lange dieses noch gilt und einen “Schlüssel” = "
+"eine eindeutige Kennung senden. Damit kann beim erneuten Aufruf "
+"festgestellt werden, ob das [[Zertifikate|Zertifikat]] noch das zuvor "
+"angegebene [[Zertifikate|Zertifikat]] ist. Sollte ein Angreifer nun "
+"versuchen, ein gefälschtes [[Zertifikate|Zertifikat]] dem Nutzer zu "
+"unterbreiten, so wird der [[Browser|Webbrowser]] keine Daten senden und "
+"keine Informationen darstellen. Weitere Infos zu Public Key Pinning "
+"[https://developer.mozilla.org/de/docs/Web/Security/Public_Key_Pinning "
+"Public Key Pinning (HPKP)]"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Comment
+msgctxt "PUBLIC_KEY_PINS_Comment"
+msgid ""
+"Wichtig: Mehrere Pins angeben,Empfehlung: Keine Code Snippets "
+"bereitstellen, da Header für Zielgruppe potentiell gefährlich; im "
+"Allgemeinen höhere Gefahr als Nutzen"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Consequence
+msgctxt "PUBLIC_KEY_PINS_Consequence"
+msgid ""
+"Für kleine und mittelständische Unternehmen, die Zielgruppe von SIWECOS, "
+"ist dieser Header zwar einsetzbar, aber kein absolutes Muss. Wird dieser "
+"Header falsch konfiguriert, steht Ihre Website für die Benutzer unter "
+"Umständen für einen langen Zeitraum nicht zur Verfügung, und zwar solange "
+"bis die korrekten [[Zertifikate]] verwendet werden oder das Ablaufdatum "
+"des zuvor gesendeten Headers erreicht ist."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Details
+msgctxt "PUBLIC_KEY_PINS_Details"
+msgid ""
+"Public-Key-Pins sind deaktiviert. Es ist ratsam, diese nicht oder nur nach "
+"Absprache mit einem Experten zu aktivieren."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: PUBLIC_KEY_PINS
+# Purpose: Technical
+msgctxt "PUBLIC_KEY_PINS_Technical"
+msgid "%HEADER%"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_DOMXSS
+# Purpose: Headline
+msgctxt "SCANNER_NAME_DOMXSS"
+msgid "DOMXSS Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_DOMXSS
+# Purpose: Category
+msgctxt "SCANNER_NAME_DOMXSS_CATEGORY"
+msgid "Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_HEADER
+# Purpose: Headline
+msgctxt "SCANNER_NAME_HEADER"
+msgid "Header Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_HEADER
+# Purpose: Category
+msgctxt "SCANNER_NAME_HEADER_CATEGORY"
+msgid "Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_INFOLEAK
+# Purpose: Headline
+msgctxt "SCANNER_NAME_INFOLEAK"
+msgid "Info Leak Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_INFOLEAK
+# Purpose: Category
+msgctxt "SCANNER_NAME_INFOLEAK_CATEGORY"
+msgid "Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_INI_S
+# Purpose: Headline
+msgctxt "SCANNER_NAME_INI_S"
+msgid "Initiative-S Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_INI_S
+# Purpose: Category
+msgctxt "SCANNER_NAME_INI_S_CATEGORY"
+msgid "Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_WS_TLS
+# Purpose: Headline
+msgctxt "SCANNER_NAME_WS_TLS"
+msgid "TLS Scanner"
+msgstr ""
+
+
+# Category: Scanner
+# Placeholder: SCANNER_NAME_WS_TLS
+# Purpose: Category
+msgctxt "SCANNER_NAME_WS_TLS_CATEGORY"
+msgid "Scanner"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_bonus
+# Purpose: Headline
+msgctxt "SCORE_bonus"
+msgid "Bonus"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_bonus
+# Purpose: Category
+msgctxt "SCORE_bonus_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_critical
+# Purpose: Headline
+msgctxt "SCORE_critical"
+msgid "Critical"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_critical
+# Purpose: Category
+msgctxt "SCORE_critical_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_hidden
+# Purpose: Headline
+msgctxt "SCORE_hidden"
+msgid "Versteckt"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_hidden
+# Purpose: Category
+msgctxt "SCORE_hidden_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Headline
+msgctxt "SCORE_info"
+msgid "Info"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Category
+msgctxt "SCORE_info_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Positive
+msgctxt "SCORE_info_SUCCESS"
+msgid "Server antwortet"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Negative
+msgctxt "SCORE_info_ERROR"
+msgid "Server antwortet nicht"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Description
+msgctxt "SCORE_info_ERROR_DESC"
+msgid ""
+"Der Server scheint überhaupt nicht zu antworten. Haben sie die Domain "
+"richtig eingegeben?"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Link
+msgctxt "SCORE_info_LINK"
+msgid "HTTPS_NO_RESPONSE"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_info
+# Purpose: Details
+msgctxt "SCORE_info_Details"
+msgid ""
+"Der Server \\“%HOST%\\“ scheint überhaupt nicht zu antworten. Haben sie "
+"die Domain richtig eingegeben?"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_success
+# Purpose: Headline
+msgctxt "SCORE_success"
+msgid "Erfolgreich"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_success
+# Purpose: Category
+msgctxt "SCORE_success_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_warning
+# Purpose: Headline
+msgctxt "SCORE_warning"
+msgid "Warnung"
+msgstr ""
+
+
+# Category: Generell
+# Placeholder: SCORE_warning
+# Purpose: Category
+msgctxt "SCORE_warning_CATEGORY"
+msgid "Generell"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Headline
+msgctxt "SPAM"
+msgid "Überprüfung auf mögliche Spam-Inhalte"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Category
+msgctxt "SPAM_CATEGORY"
+msgid "Initiative-S Scanner"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Positive
+msgctxt "SPAM_SUCCESS"
+msgid "Ihre Domain wurde in keiner uns bekannten Spam Liste gefunden."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Negative
+msgctxt "SPAM_ERROR"
+msgid "Ihre Domain wurde in Spam Listen gefunden"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Description
+msgctxt "SPAM_ERROR_DESC"
+msgid ""
+"Als Spam bezeichnet man ungewollte und zum Teil unseriöse Werbung im "
+"E-Mail Postfach (z.B. Viagra-Werbung, Medikamente, Versicherung und "
+"Kreditvergleiche). Diese Werbungen werden massenhaft verschickt bzw. "
+"können aber auch zielgerichtet verschickt werden. In der Regel "
+"verschleiern die Absender ihre wahre Identität in der E-Mail und versuchen "
+"Sie zu täuschen."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Solution_Tips
+msgctxt "SPAM_TIPS"
+msgid ""
+"'''<span style=\"color:#c31622\"> Nehmen Sie die Webseite "
+"offline!<span>'''\n"
+"\n"
+"Um den Besuch Ihrer infizierten Webseite zu vermeiden bzw. damit Google "
+"Ihre Webseite nicht aus dem Index nimmt, was ein eventuelles positives "
+"Ranking annullieren würde, schalten Sie die Webseite offline. So kommen "
+"Sie auch einer eventuellen Sperre Ihrer Webseite seitens Ihres "
+"Providers/Hosters zuvor.\n"
+"\n"
+"Um zu prüfen ob die Seite über diverse Spam-Merkmale verfügt, rufen Sie "
+"die Seite im Browser auf, klicken über die rechte Maustaste den "
+"\"Quelltext anzeigen\". In diesem Fenster können Sie Ihren Quellcode mit "
+"Drücken der Tasten '''Strg+f''' (suchen) auf gängige Online-Betrügereien "
+"durch Werbung für Medikamente oder dubiose Kreditgeschäft überprüfen.\n"
+"\n"
+"'''Einige Suchvorschläge''':<br>\n"
+"- „payday“<br>\n"
+"- „Pharma“<br>\n"
+"- „Viagra“<br>\n"
+"- „Cialis“<br><br>\n"
+"'''- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre "
+"Domain zuzugreifen. '''<br>\n"
+"\n"
+"Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten "
+"Quell-IP-Adressen. Als Ausgangspunkt  Ihrer Recherche könnte Ihnen der "
+"Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen "
+"Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor "
+"geben.\n"
+"\n"
+"'''- Ändern Sie Ihre Zugangsdaten!'''<br>\n"
+"'''- Webfrontend (Hosting-Vertrag, Content-Management-System)'''<br>\n"
+"'''- FTP-, SSH-Zugänge'''<br>\n"
+"'''- Datenbank-Passwörter'''<br>\n"
+"\n"
+"Spielen Sie ein schadcodefreies Backup wieder ein!\n"
+"Löschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie "
+"sicher, dass Sie keine Fremddateien, die den Angreifern als "
+"\"Hintertüren\" dienen aus der vormals kompromittierten Umgebung "
+"übernehmen.\n"
+"Überprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von "
+"uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine "
+"noch ältere Sicherung zurück.\n"
+"Sollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her "
+"und führen danach die Updates im System durch. Erst dann stellen Sie die "
+"Webseite wieder online.\n"
+"\n"
+"''' - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, "
+"ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle "
+"Bereinigungen nehmen in der Regel sehr viel Zeit in Anspruch und sollten "
+"nur von Fachpersonal durchgeführt werden.'''<br>\n"
+"\n"
+"Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite "
+"[https://www.botfrei.de botfrei.de] finden Sie dazu Hilfestellungen und "
+"Programme. \n"
+"Mit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen "
+"Schadprogrammen säubern. ( https://www.botfrei.de/de/eucleaner/index.html "
+")"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Link
+msgctxt "SPAM_LINK"
+msgid "Spam-Inhalte"
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Background
+msgctxt "SPAM_Background"
+msgid ""
+"Die Zugangsdaten der Webseite wurden evtl. über eine Infektion auf dem "
+"Computer bzw. von Kriminellen von außen gehacked. Ohne dass die Besitzer "
+"der Webseite etwas davon bemerken, wird Schadcode in Form von "
+"Spam-Inhalten im Host/Webspace hinterlegt. Es kann auch durchaus sein, "
+"dass sich Angreifer Zugriff über die Administratoranmeldung des "
+"[https://www.siwecos.de/wiki/Content-Management-Systeme CMS] verschafft "
+"haben bzw. Sicherheitslücken in veralteten Plugins dazu genutzt haben, um "
+"Schadcode hochzuladen. Mithilfe dieser Dateien werden Spam-Inhalte in das "
+"WordPress-Thema und/oder in die Datenbank eingeschleust und so verborgene "
+"Links zu betrügerischen Seiten erzeugt."
+msgstr ""
+
+
+# Category: Initiative-S Scanner
+# Placeholder: SPAM
+# Purpose: Consequence
+msgctxt "SPAM_Consequence"
+msgid ""
+"Oftmals ist die Gefahr nach außen nicht sichtbar, dennoch werden "
+"Spam-Inhalte erzeugt bzw. zur Verteilung über anderen Medien herangezogen."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Headline
+msgctxt "STRICT_TRANSPORT_SECURITY"
+msgid "Überprüfung des HSTS Schutzes"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Category
+msgctxt "STRICT_TRANSPORT_SECURITY_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Positive
+msgctxt "STRICT_TRANSPORT_SECURITY_SUCCESS"
+msgid ""
+"Ihre Webseite ist ausschließlich über das sichere HTTPS-Protokoll "
+"erreichbar. Kommunikation zwischen Ihrer Webseite und den Besuchern kann "
+"nicht abgehört und manipuliert werden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Negative
+msgctxt "STRICT_TRANSPORT_SECURITY_ERROR"
+msgid "HSTS Schutz Fehler"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Description
+msgctxt "STRICT_TRANSPORT_SECURITY_ERROR_DESC"
+msgid ""
+"HSTS stellt sicher, dass die Webseite für eine bestimmte Zeit lediglich "
+"über HTTPS aufgerufen werden kann. Der Webseitenbetreiber kann "
+"diesbezüglich u. a. definieren, wie lange das Zeitinterval ist und ob "
+"diese Regelung auch für Subdomains gelten soll."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Solution_Tips
+msgctxt "STRICT_TRANSPORT_SECURITY_TIPS"
+msgid ""
+"max-age=63072000; includeSubdomains;\n"
+"HTTP Strict Transport Security (HSTS) ist ein einfach zu integrierender "
+"Web-Security-Policy-Mechanismus.\n"
+"\n"
+"'''--snip'''<pre>\n"
+"# HTTP Strict Transport Security (HSTS) aktivieren\n"
+"# Pflichtangabe: „max-age“\n"
+"# Optional: „includeSubDomains“</pre>\n"
+"   '''Header set Strict-Transport-Security „max-age=31556926, "
+"includeSubDomains“'''\n"
+"'''--snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Link
+msgctxt "STRICT_TRANSPORT_SECURITY_LINK"
+msgid "Strict-Transport-Security"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Background
+msgctxt "STRICT_TRANSPORT_SECURITY_Background"
+msgid ""
+"Der HSTS Schutz ist inaktiv, die Kommunikation zwischen Ihrer Webseite und "
+"den Besuchern kann abgehört und manipuliert werden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Consequence
+msgctxt "STRICT_TRANSPORT_SECURITY_Consequence"
+msgid ""
+"Aktuell ist Ihre Website gegen Protokoll-Downgrade-Angriffe und "
+"Cookie-Hijacking nicht geschützt. Dies ermöglicht Angreifern die "
+"Kommunikation Ihrer Benutzer abzuhören und diese zu manipulieren. Mit "
+"Hilfe dieser Informationen könnte ein Angreifer weitere Attacken starten "
+"oder Ihren Nutzern ungewünschte Werbung und Schadcode zusenden. Die "
+"HTTP-Strict-Transport-Sicherheit ist eine hervorragende Funktion zur "
+"Unterstützung Ihrer Seite und stärkt Ihre Implementierung von "
+"[https://www.siwecos.de/wiki/SSL TLS], indem der Benutzeragent die "
+"Verwendung von HTTPS erzwingt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Details
+msgctxt "STRICT_TRANSPORT_SECURITY_Details"
+msgid ""
+"Die Verbindung zu Ihrer Seite ist nicht verschlüsselt. Sämtliche "
+"Kommunikation zwischen Ihrer Seite und den Benutzern kann abgehört und "
+"manipuliert werden."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: STRICT_TRANSPORT_SECURITY
+# Purpose: Technical
+msgctxt "STRICT_TRANSPORT_SECURITY_Technical"
+msgid "%HEADER%"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Headline
+msgctxt "SWEET32_VULNERABLE"
+msgid "Überprüfung auf SWEET32 Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Category
+msgctxt "SWEET32_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Positive
+msgctxt "SWEET32_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch SWEET32"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Negative
+msgctxt "SWEET32_VULNERABLE_ERROR"
+msgid "Verwundbar durch SWEET32"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Description
+msgctxt "SWEET32_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer "
+"erlaubt teile der Kommunikation zu entschlüsseln falls über eine "
+"Verbindung große Mengen Daten transferiert werden."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "SWEET32_VULNERABLE_TIPS"
+msgid "Deaktivieren sie Blockchiffren mit einer Länge von 64Bit."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Link
+msgctxt "SWEET32_VULNERABLE_LINK"
+msgid "SWEET32_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Consequence
+msgctxt "SWEET32_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Schwachstelle, welche es einem "
+"Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: SWEET32_VULNERABLE
+# Purpose: Details
+msgctxt "SWEET32_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer "
+"erlaubt teile der Kommunikation zu entschlüsseln falls über eine "
+"Verbindung große Mengen Daten transferiert werden."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Headline
+msgctxt "TLS_POODLE_VULNERABLE"
+msgid "Überprüfung auf die TLS-POODLE Schwachstelle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Category
+msgctxt "TLS_POODLE_VULNERABLE_CATEGORY"
+msgid "Angriffe"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Positive
+msgctxt "TLS_POODLE_VULNERABLE_SUCCESS"
+msgid "Nicht verwundbar durch TLS-Poodle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Negative
+msgctxt "TLS_POODLE_VULNERABLE_ERROR"
+msgid "Verwundbar durch TLS-Poodle"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Description
+msgctxt "TLS_POODLE_VULNERABLE_ERROR_DESC"
+msgid ""
+"Der Server ist verwundbar durch eine Variante des Poodle Angriffs auf TLS, "
+"welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Solution_Tips
+msgctxt "TLS_POODLE_VULNERABLE_TIPS"
+msgid ""
+"Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren "
+"Server ein."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Link
+msgctxt "TLS_POODLE_VULNERABLE_LINK"
+msgid "TLS_POODLE_VULNERABLE"
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Consequence
+msgctxt "TLS_POODLE_VULNERABLE_Consequence"
+msgid ""
+"Der Server ist verwundbar durch eine Implementierungsschwachstelle, welche "
+"es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: Angriffe
+# Placeholder: TLS_POODLE_VULNERABLE
+# Purpose: Details
+msgctxt "TLS_POODLE_VULNERABLE_Details"
+msgid ""
+"Der Server ist verwundbar durch eine Variante des Poodle Angriffs auf TLS, "
+"welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Headline
+msgctxt "X_CONTENT_TYPE_OPTIONS"
+msgid "Überprüfung des X-Content-Type Headers"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Category
+msgctxt "X_CONTENT_TYPE_OPTIONS_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Positive
+msgctxt "X_CONTENT_TYPE_OPTIONS_SUCCESS"
+msgid "Der HTTP-Header ist korrekt gesetzt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Negative
+msgctxt "X_CONTENT_TYPE_OPTIONS_ERROR"
+msgid "X-Content-Type Header fehlt"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Description
+msgctxt "X_CONTENT_TYPE_OPTIONS_ERROR_DESC"
+msgid ""
+"Die X-Content-Type-Options Einstellungen im Header verhindern, dass der "
+"[[Browser]] Dateien als etwas anderes interpretiert, als vom Inhaltstyp im "
+"[[HTTP|HTTP-Header]] deklariert wurde. Die Headereinstellungen sind hier "
+"nicht gesetzt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Solution_Tips
+msgctxt "X_CONTENT_TYPE_OPTIONS_TIPS"
+msgid ""
+"nosniff; <br><br>\n"
+"'''Beispielcode einer .htaccess auf einem Apache Webserver.'''<br>\n"
+"'''--snip'''<pre>\n"
+"<IfModule mod_headers.c>\n"
+"   # prevent mime based attacks like drive-by download attacks, IE and "
+"Chrome\n"
+"   '''Header set X-Content-Type-Options „nosniff“'''\n"
+"<pre></IfModule></pre>\n"
+"'''—snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Link
+msgctxt "X_CONTENT_TYPE_OPTIONS_LINK"
+msgid "X-Content-Type-Options"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Background
+msgctxt "X_CONTENT_TYPE_OPTIONS_Background"
+msgid ""
+"Es existiert nur ein definierbarer Wert „nosniff“, dieser verhindert, dass "
+"der Internet Explorer und Google Chrome unabhängig vom deklarierten "
+"Content-Type (z.B. text/html) nach weiteren möglichen MIME-Types suchen. "
+"Für Chrome gilt dies auch für das Herunterladen von Erweiterungen. Der "
+"Headereintrag reduziert die Belastung durch sog. "
+"[[Drive-by-Download|Drive-by-Download-Attacken]]. Webseiten, die den "
+"Upload von Dateien unterstützen und die, wenn deren Namen geschickt "
+"gewählt wurden, vom [[Browser]] als ausführbare Datei oder dynamische "
+"[[HTML|HTML-Datei]] behandelt werden, könnten damit Ihren Rechner oder "
+"andere mit Schadcode infizieren. Weitere Informationen zu "
+"'''X-Content-Type-Options''' finden Sie im Bericht von "
+"[https://www.golem.de/news/cross-site-scripting-javascript-code-in-bilder- "
+"einbetten-1411-110264-2.html Golem.de]."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Consequence
+msgctxt "X_CONTENT_TYPE_OPTIONS_Consequence"
+msgid ""
+"Einfach und ohne weitere Anpassungen zu implementieren. Verhindert "
+"Angriffe auf Nutzer des Internet Explorers."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_CONTENT_TYPE_OPTIONS
+# Purpose: Technical
+msgctxt "X_CONTENT_TYPE_OPTIONS_Technical"
+msgid "%HEADER%"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Headline
+msgctxt "X_FRAME_OPTIONS"
+msgid "Überprüfung der X-Frame Optionen"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Category
+msgctxt "X_FRAME_OPTIONS_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Positive
+msgctxt "X_FRAME_OPTIONS_SUCCESS"
+msgid ""
+"Der Header ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite "
+"gegen Clickjacking-Angriffe."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Negative
+msgctxt "X_FRAME_OPTIONS_ERROR"
+msgid "HTTP-Header X-Frame Optionen nicht gesetzt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Description
+msgctxt "X_FRAME_OPTIONS_ERROR_DESC"
+msgid ""
+"X-Frame-Options hilft dabei Angriffe über Framing-Mechanismen zu "
+"unterbinden. Dies gewährleistet bspw., dass Clickjacking-Angriffe "
+"größtenteils gemildert werden können. Darüber hinaus werden "
+"Downgrading-Angriffe wie etwa im Internet Explorer minimiert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Solution_Tips
+msgctxt "X_FRAME_OPTIONS_TIPS"
+msgid ""
+"Im HTTP-Header entsprechend den Bedürfnissen setzen. Die "
+"'''X-Frame-Options''' im [[HTTP]] Header kann verwendet werden, um zu "
+"bestimmen, ob ein aufrufender [[Browser]] die Zielseite in einem <frame>, "
+"<iframe> oder bspw. <object> rendern bzw. einbetten darf. Webseiten können "
+"diesen Header verwenden, um u. a. Clickjacking-Angriffe abzuwehren, indem "
+"sie unterbinden, dass ihr Content in fremden Seiten eingebettet wird.\n"
+"\n"
+"'''Beispielcode einer .htaccess auf einem Apache Webserver.'''\n"
+"\n"
+"'''--snip'''\n"
+"<pre>\n"
+"<IfModule mod_headers.c>\n"
+"   # Avoid Clickjacking, Seite darf nur in frame oder iframe geöffnet "
+"werden auf eigener Domain\n"
+"   '''Header append X-Frame-Options „SAMEORIGIN\n"
+"</IfModule>\n"
+"</pre>\n"
+"\n"
+"'''—snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Link
+msgctxt "X_FRAME_OPTIONS_LINK"
+msgid "X-Frame-Options"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Background
+msgctxt "X_FRAME_OPTIONS_Background"
+msgid ""
+"Ob einem Browser erlaubt wird, eine Seite in einem ''frame'' oder "
+"''iframe'' darzustellen, legt dieser Headereintrag fest. Damit können sog. "
+"Clickjacking-Attacken vermieden werde, indem sichergestellt wird, dass die "
+"Webseite nicht in einer anderen Webseite eingebettet wird. Es gibt "
+"verschiedene Werte:\n"
+"'''DENY:''' Kein Rendering der Seite, wenn sie in einem ''frame'' oder "
+"''iframe'' geladen wird<br>\n"
+"'''SAMEORIGIN:''' Rendering der Seite erfolgt nur, wenn der ''frame'' oder "
+"''iframe'' innerhalb Ihrer Domain ist<br>\n"
+"'''ALLOW-FROM DOMAIN:''' Verhindert, dass die Seite dargestellt werden "
+"kann, wenn es sich um eine andere Domain handelt, als die hier angegeben "
+"wurde."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Consequence
+msgctxt "X_FRAME_OPTIONS_Consequence"
+msgid ""
+"Verhindert z.B. Clickjacking Angriffe. Einfach zu implementieren und keine "
+"weiteren Anpassungen auf der Website erforderlich."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Details
+msgctxt "X_FRAME_OPTIONS_Details"
+msgid ""
+"Ihre Webseite ist nicht ausreichend gegen Clickjacking-Angriffe geschützt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_FRAME_OPTIONS
+# Purpose: Technical
+msgctxt "X_FRAME_OPTIONS_Technical"
+msgid "%HEADER%"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Headline
+msgctxt "X_XSS_PROTECTION"
+msgid ""
+"Überprüfung ob der Cross-Site Scripting Filter aktiviert und korrekt "
+"konfiguriert ist."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Category
+msgctxt "X_XSS_PROTECTION_CATEGORY"
+msgid "HTTP-Security-Header-Scanner"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Positive
+msgctxt "X_XSS_PROTECTION_SUCCESS"
+msgid ""
+"Der Cross-Site-Scripting (XSS) -Schutz des Webbrowsers ist auf Ihrer Seite "
+"aktiviert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Negative
+msgctxt "X_XSS_PROTECTION_ERROR"
+msgid ""
+"Cross-Site-Scripting Schutz nicht aktiviert oder unzureichend "
+"konfiguriert."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Description
+msgctxt "X_XSS_PROTECTION_ERROR_DESC"
+msgid ""
+"Der HTTP-Header X-XSS-Protection definiert wie in Browser eingebaute "
+"XSS-Filter konfiguriert werden. Eine Default-Installation kann eine "
+"unzureichende Konfiguration offenbaren."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Solution_Tips
+msgctxt "X_XSS_PROTECTION_TIPS"
+msgid ""
+"1; mode=block\n"
+"\n"
+"'''Beispielcode einer .htaccess auf einem Apache Webserver.'''\n"
+"\n"
+"'''--snip'''<br><pre>\n"
+"<IfModule mod_headers.c>\n"
+"   # Turn on XSS prevention tools, activated by default in IE and Chrome\n"
+"   '''Header set X-XSS-Protection „1; mode=block“'''\n"
+"</IfModule></pre>\n"
+"'''—snap'''"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Link
+msgctxt "X_XSS_PROTECTION_LINK"
+msgid "X-Xss-Protection"
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Background
+msgctxt "X_XSS_PROTECTION_Background"
+msgid ""
+"Dieser Header aktiviert die in den meisten aktuellen Browsern (Internet "
+"Explorer, Chrome und Safari) eingebauten [[Cross-Site-Scripting]] "
+"(XSS)-Schutz. Zwar sind diese standardmäßig aktiviert, daher ist dieser "
+"Header nur dazu da, den Filter für die Seite wieder zu aktivieren, falls "
+"der Benutzer ihn abgeschaltet hat. Zudem wird nur ab dem Internet Explorer "
+"8 und in Chrome unterstützt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Consequence
+msgctxt "X_XSS_PROTECTION_Consequence"
+msgid ""
+"Verhindert reflektierte [[Cross-Site-Scripting|XSS-Angriffe]]. Einfach zu "
+"implementieren und keine weiteren Anpassungen auf der Website "
+"erforderlich."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Details
+msgctxt "X_XSS_PROTECTION_Details"
+msgid ""
+"Ihre Webseite ist wahrscheinlich nicht ausreichend gegen XSS-Angriffe "
+"geschützt."
+msgstr ""
+
+
+# Category: HTTP-Security-Header-Scanner
+# Placeholder: X_XSS_PROTECTION
+# Purpose: Technical
+msgctxt "X_XSS_PROTECTION_Technical"
+msgid "%HEADER%"
+msgstr ""
+

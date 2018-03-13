@@ -1,16 +1,233 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-13 13:56:00+0100\n"
-"PO-Revision-Date: /* now %Y-%m-%d %H:%M:%S%z */\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: /*LANGUAGE*/\n"
+#!/usr/bin/perl
+# Script to convert a directory structur of translations
+# into a php file for the siwecos application
+use strict;
+use warnings;
+use FindBin qw($Bin $Script);
+use POSIX;
+use Text::Wrap;
+use utf8;
 
-/* DATA HERE */
+binmode(STDOUT, ":utf8");
+
+my $LEAD_LANGUAGE= "de";
+$Text::Wrap::columns= 75;
+
+# Location and names of some directories / files
+# $Bin = absolute path of this script
+# $Script = filename of this script
+my $TRANSLATIONS= "$Bin/translations";
+my $LANGUAGE_DIR= "$Bin/poedit";
+my $LANGUAGE_FILE="siwecos";
+my $TEMPLATEFILE= "$Bin/$Script.txt";
+
+# Expected purposes
+my $BACKGROUND   = 'Background';
+my $CATEGORY     = 'Category';
+my $COMMENT      = 'Comment';
+my $CONSEQUENCE  = 'Consequence';
+my $DESCRIPTION  = 'Description';
+my $DETAILS      = 'Details';
+my $HEADLINE     = 'Headline';
+my $IMPACT       = 'Impact';
+my $LINK         = 'Link';
+my $ERROR_TEXT   = 'Negative';
+my $SUCCESS_TEXT = 'Positive';
+my $TIPP         = 'Solution_Tips';
+my $TECHNICAL    = 'Technical';
+
+# Prepare some output stuff
+my @SEQUENCE; # Sequence of placeholders in output
+my %SUFFIX;   # Suffix for the placholder
+my $v=0;
+foreach (
+    # This defines the sequence in the output file
+    # As well as the SUFFIX appended to the placholder
+    $HEADLINE     => '',
+    $CATEGORY     => 'CATEGORY', # not yet used but will be used in Wiki
+    $SUCCESS_TEXT => 'SUCCESS',
+    $ERROR_TEXT   => 'ERROR',
+    $DESCRIPTION  => 'ERROR_DESC',
+    $TIPP         => 'TIPS',
+    $LINK         => 'LINK',
+    # above suffixes are required by the application
+    # below suffixes are not used yet
+    $BACKGROUND   => 'Background',
+    $COMMENT      => 'Comment',
+    $CONSEQUENCE  => 'Consequence',
+    $DETAILS      => 'Details',
+    $IMPACT       => 'Impact',
+    $TECHNICAL    => 'Technical',
+) {
+    # This will set up the required data structures
+    if ($v) {
+        my $suffix= $_;
+        $suffix= "_$_" if $_;
+        $SUFFIX{$SEQUENCE[$#SEQUENCE]}= $suffix;
+    } else {
+        push @SEQUENCE, $_;
+    }
+    $v= 1-$v;
+}
+
+# First prepare the template
+open my $template, '<', $TEMPLATEFILE
+    or die "Cannot read template $TEMPLATEFILE: $!\n";
+my @template= <$template>;
+close $template;
+
+chdir $TRANSLATIONS or die "Cannot change directory to $TRANSLATIONS: $!\n";
+# get all translation filenames
+# Directory structure is $TRANSLATIONS / placeholder / purpose / language ".txt"
+# Also collect categories
+my $language_data= {};
+my $categories= {};
+my %category_missing;
+my %category_found;
+my %translations_found;
+my %translations_language;
+my %all_placeholders;
+while( <*/*/*.txt> ) {
+    # Split pathname into parts
+    my ($placeholder, $purpose, $lang)= split m#/#, $_, 3;
+    # remove filename extension
+    $lang=~ s#\.[^./]+$##;
+    # Read the file
+    if( open my $trans, '<', $_ ) {
+        binmode($trans, ":utf8");
+        # into our data structures
+        my $text= do {
+            local $/;
+            <$trans>;
+        };
+        # If a category is set, setup the category data structure
+        if( $purpose eq "Category" ) {
+            $language_data->{$lang}->{$placeholder} ||= {};
+            $categories->{$lang}->{$text}->{$placeholder}= $language_data->{$lang}->{$placeholder};
+            $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
+            ++$category_found{$lang}->{$placeholder};
+        } else {
+            $language_data->{$lang}->{$placeholder}->{$purpose}= $text;
+            ++$category_missing{$lang}->{$placeholder};
+            my $text= "$purpose for $placeholder";
+            ++$translations_found{$text};
+            ++$translations_language{$lang}->{$text};
+            $all_placeholders{$placeholder}->{$purpose}= "$placeholder" . $SUFFIX{$purpose};
+        }
+    }
+    else {
+        warn "Can't read $_: $!";
+    }
+}
+# All translations are in memory now
+
+# create a backup of existing language files
+if ( -e $LANGUAGE_DIR ) {
+    my $newname= $LANGUAGE_DIR . "_" . strftime("%Y-%m-%d_%H-%M-%S", localtime time);
+    rename $LANGUAGE_DIR, $newname
+        or die "Failed to create backup $newname: $!\n";
+}
+# Create a new language file directory
+mkdir "$LANGUAGE_DIR" or die "Failed to create directory $LANGUAGE_DIR: $!\n";
+
+# Go through each language
+my $lead= $language_data->{$LEAD_LANGUAGE};
+foreach my $language (keys %$categories) {
+    # Check which categories in this language we are missing
+    delete @{$category_missing{$language}}{ keys %{$category_found{$language}} };
+    foreach my $placeholder (sort keys %{$category_missing{$language}}) {
+        warn "Missing $language category for $placeholder\n";
+        $categories->{$language}->{"* NO CATEGORY *"}->{$placeholder}=$language_data->{$language}->{$placeholder};
+    }
+    # Check which translations we are missing
+    foreach (sort keys %translations_found) {
+        next if exists $translations_language{$language}->{$_};
+        warn "Missing $language $_\n";
+    }
+    my $cats= $categories->{$language};
+    # Create the language file for the current language
+    my $language_file= "$LANGUAGE_DIR/$LANGUAGE_FILE";
+    my $ist_template= 0;
+    # The lead language will become the po template
+    if( $language eq $LEAD_LANGUAGE ){
+        $language_file.= '.pot';
+        $ist_template= 1;
+    } else {
+        $language_file.=  "_$language.po";
+    }
+    open my $out, '>', $language_file
+        or die "Failed to create $language_file: $!\n";
+    binmode($out, ':utf8');
+    # Work through the text-template lines
+    foreach (@template) {
+        # Until the placeholder /* DATA HERE */ is found
+        if( m#^\s*/\*\s*DATA\s*HERE\s*\*/\s*#)  {
+            # Go through each placeholder in alphabetical order
+            my $placeholders= $language_data->{$language};
+            foreach my $placeholder (sort keys %$placeholders) {
+                my $p= $placeholders->{$placeholder};
+                my $category= $p->{$CATEGORY};
+                # Go through each of the purposes we want to print
+                # They are defined at the top under "# Prepare some output stuff"
+                foreach my $purpose (@SEQUENCE) {
+                    my $text= $p->{$purpose};
+                    my $suffix= $SUFFIX{$purpose};
+                    my $ph= "$placeholder$suffix";
+                    if( $text ) {
+                        # Print the placeholder as a comment
+                        # Print the category as comment
+                        print $out "\n# Category: $category\n";
+                        print $out "# Placeholder: $placeholder\n";
+                        print $out "# Purpose: $purpose\n";
+                        print $out qq'msgctxt "$ph"\n';
+                        print $out msg(msgid => $lead->{$placeholder}->{$purpose});
+                        if( $ist_template ) {
+                            print $out msg(msgstr => "");
+                        } else {
+                            print $out msg(msgstr => $text);
+                        }
+                        print $out "\n";
+                    } else {
+                        #print $out "# No text for $ph\n\n";
+                    }
+                }
+            }
+        } else {
+            my $line= $_;
+            for ($line) {
+                s#/\*\s*LANGUAGE\s*\*/#$language#g;
+                s#/\*\s*now\s+(.*?)\s*?\*/#strftime $1, localtime time#ge;
+            }
+            # Print an unmodified template line
+    		print $out $line;
+		}
+	}
+}
+
+# trim leading and trealing whitespace
+sub trim {
+    local($_)= @_;
+    s/^\s+|\s+$//gs;
+    return $_;
+}
+
+sub msg {
+    my($id, $text)= @_;
+    local($_)= trim($text);
+    s/("|\\)/\\$1/gs;
+    my(@text)= split /\n/, $_;
+    if( $#text > 0 ) {
+        foreach (@text) {
+            $_= wrap('','',$_);
+            s/\n/ "\n"/gs;
+        }
+        $_= join(qq'\\n"\n"', @text);
+        return qq'$id ""\n"$_"\n';
+    }
+    if( length($id) + 3 + length($_) > $Text::Wrap::columns ) {
+        $_= wrap('', '', $_);
+        s/\n/ "\n"/gs;
+        return qq'$id ""\n"$_"\n';
+    }
+    return qq'$id "$_"\n';
+}
