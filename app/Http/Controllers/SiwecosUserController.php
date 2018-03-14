@@ -91,6 +91,7 @@ class SiwecosUserController extends Controller
 		if ($tokenUser instanceof User){
 			if (!$tokenUser->active){
 				$tokenUser->notify(new activationmail($tokenUser->activation_key));
+				return response('Mail sent', 200);
 			}
 			return response('User already activated', 400);
 		}
