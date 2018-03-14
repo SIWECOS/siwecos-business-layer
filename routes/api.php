@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::prefix( 'v1' )->group( function () {
 	Route::Post( '/users/login', 'SiwecosUserController@loginUser' );
 	Route::Get( '/users/activate/{token}', 'SiwecosUserController@activateUserUrl' )->name( 'activateurl' );
-	Route::post( '/users/activate/resend/{userid}', 'SiwecosUserController@resendActivationMail');
+	Route::post( '/users/activate/resend', 'SiwecosUserController@resendActivationMail');
 	Route::Post( '/users/createCaptcha', 'SiwecosUserController@createCaptcha' );
     Route::Post( '/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail' );
     Route::Post( '/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest' );

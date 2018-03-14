@@ -86,11 +86,11 @@ class SiwecosUserController extends Controller
         return response()->json($response);
     }
 
-    public function resendActivationMail(int $userId){
-		$currentUser = User::whereId($userId)->first();
-		if ($currentUser instanceof User){
-			if (!$currentUser->active){
-				$currentUser->notify(new activationmail($currentUser->activation_key));
+    public function resendActivationMail(GetTokenByUserRequest $request){
+	    $tokenUser = User::where('email', $request->json('email'))->first();
+		if ($tokenUser instanceof User){
+			if (!$tokenUser->active){
+				$tokenUser->notify(new activationmail($tokenUser->activation_key));
 			}
 			return response('User already activated', 400);
 		}
