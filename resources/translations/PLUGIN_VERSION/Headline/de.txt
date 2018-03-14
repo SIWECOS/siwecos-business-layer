@@ -1,0 +1,1 @@
+Verwendetes CMS Plugin {plugin} mit der Version {plugin_version} in DOM-Node {node} mit dem Inhalt {node_content} detektiert.

@@ -1,0 +1,1 @@
+Verwundbare CMS {cms} der Version {version} detektiert.

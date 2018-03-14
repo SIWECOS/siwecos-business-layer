@@ -1,0 +1,1 @@
+Verwendete JavaScript-Bibliothek {js_lib_name} in DOM-Node {node} mit dem Inhalt {node_content} detektiert.

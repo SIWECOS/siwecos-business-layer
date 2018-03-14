@@ -1,0 +1,1 @@
+Verwendete CMS {cms} und dessen Version {version} detektiert.
