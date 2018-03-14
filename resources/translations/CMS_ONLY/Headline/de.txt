@@ -1,1 +1,5 @@
 Sie verwenden "{{ $cms }}" als CMS
+Sie verwenden "%cms" als CMS
+Sie verwenden "${cms}" als CMS
+Sie verwenden "%{cms}" als CMS
+Sie verwenden "%cms%" als CMS
