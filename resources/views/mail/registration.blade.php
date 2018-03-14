@@ -1,4 +1,4 @@
-<p>Hallo %Platzhalter_Emailadresse_name%,</p>
+<p>Hallo %emailadresse,</p>
 
 <p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
 
