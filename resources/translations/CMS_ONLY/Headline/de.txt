@@ -1,1 +1,1 @@
-Sie verwenden "{cms}" als CMS
+Verwendete CMS {cms} detektiert.
