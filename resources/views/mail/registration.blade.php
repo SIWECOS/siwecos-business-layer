@@ -1,16 +1,20 @@
-<p>Hallo %emai%,</p>
+@component('mail::message')
+<p>Hallo {{ $email }},</p>
 
 <p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
 
-<p>Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link<br/>
-    Bitte antworten Sie nicht an diese Adresse.</p>
-<p><a href="{{$activateurl}}">Aktivierung</a></p>
+<p>Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link</p>
+
+@component('mail::button', [ 'url' => $activateurl, 'color' => 'red' ])
+Aktivierung
+@endcomponent
+
+<p>Bitte antworten Sie nicht an diese Adresse.</p>
 <br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
-<br><br>
 
-
+@component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
 <p>Lichtstraße 43h</p>
 <p>50825 Köln, Deutschland</p>
@@ -35,3 +39,5 @@
     Siwecos bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting
     Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
     mittelständische Unternehmen beim Betrieb von Webseiten mit Content Management Systemen.</p>
+  @endcomponent
+  @endcomponent
