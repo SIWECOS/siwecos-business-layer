@@ -1,5 +1,5 @@
 @component('mail::message')
-<p>Hallo {{ $email }},</p>
+<p>Hallo {{ $first_name }} {{ $last_name }},</p>
 
 <p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
 
