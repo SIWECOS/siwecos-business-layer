@@ -1,7 +1,7 @@
 @component('mail::message')
 <p>Hallo {{ $email }},</p>
 
-<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account %email% erhalten.</p>
+<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.</p>
 
 <p>Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:</p>
 
