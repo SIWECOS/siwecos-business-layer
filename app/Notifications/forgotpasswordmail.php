@@ -46,9 +46,7 @@ class forgotpasswordmail extends Notification
         return (new MailMessage)
 	        ->markdown('mail.forgotpassword', [
             'reseturl' => config('app.password_reset_uri') . $this->token,
-            //'email' => $this->email
-            'email' => "Email Versuch",
-          'everything' => $notifiable
+            'user' => $notifiable
           ])
 	        ->subject('[SIWECOS]');
     }

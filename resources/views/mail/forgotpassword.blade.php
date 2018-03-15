@@ -1,7 +1,7 @@
 @component('mail::message')
-<p>Hallo {{ $email }},</p>
+<p>Hallo {{ $user.first_name }} {{ $user.last_name }},</p>
 
-<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.</p>
+<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $user.email }} erhalten.</p>
 
 <p>Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:</p>
 
@@ -15,9 +15,6 @@ Passwort zurücksetzen
 <br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
-
-
-{{ $everything }}
 
 @component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
