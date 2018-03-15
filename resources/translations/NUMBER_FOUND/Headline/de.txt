@@ -1,1 +1,1 @@
-Telefonnummer {number} gefunden.
+Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen?

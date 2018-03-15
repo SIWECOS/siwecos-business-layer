@@ -1,1 +1,1 @@
-Verwendete CMS {cms} detektiert.
+Die verwendete CMS %cms% wurde detektiert.

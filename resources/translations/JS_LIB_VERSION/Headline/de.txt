@@ -1,1 +1,1 @@
-Verwendete JavaScript-Bibliothek {js_lib_name} mit der Version {js_lib_version} in DOM-Node {node} mit dem Inhalt {node_content} detektiert.
+Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde detektiert. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.

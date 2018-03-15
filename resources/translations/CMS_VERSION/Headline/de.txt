@@ -1,1 +1,1 @@
-Verwendete CMS {cms} und dessen Version {version} detektiert.
+Die verwendete CMS %cms% und dessen Version %version% wurde detektiert. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.

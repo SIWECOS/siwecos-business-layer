@@ -1,1 +1,1 @@
-Verwundbare CMS {cms} der Version {version} detektiert.
+Die verwendete CMS %cms% der Version %version% wurde detektiert. Für diese Version ist eine Schwachstelle bekannt.
