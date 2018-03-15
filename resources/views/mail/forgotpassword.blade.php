@@ -1,3 +1,4 @@
+@component('mail::message')
 <p>Hallo %emai%,</p>
 
 <p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account %email% erhalten.</p>
@@ -11,9 +12,9 @@
 <br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
-<br><br>
+@endcomponent
 
-
+@component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
 <p>Lichtstraße 43h</p>
 <p>50825 Köln, Deutschland</p>
@@ -38,3 +39,4 @@
     Siwecos bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting
     Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
     mittelständische Unternehmen beim Betrieb von Webseiten mit Content Management Systemen.</p>
+@endcomponent
