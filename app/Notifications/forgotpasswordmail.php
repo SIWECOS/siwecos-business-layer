@@ -48,7 +48,8 @@ class forgotpasswordmail extends Notification
             'reseturl' => config('app.password_reset_uri') . $this->token,
             'email' => $notifiable->email,
             'first_name' => $notifiable->first_name,
-            'last_name' => $notifiable->last_name
+            'last_name' => $notifiable->last_name,
+            'salutation_id' => $notifiable->salutation_id,
           ])
 	        ->subject('[SIWECOS]');
     }
