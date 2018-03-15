@@ -48,7 +48,8 @@ class activationmail extends Notification
             'activateurl' => route('activateurl', ['token' => $this->token]),
             'email' => $notifiable->email,
             'first_name' => $notifiable->first_name,
-            'last_name' => $notifiable->last_name
+            'last_name' => $notifiable->last_name,
+            'salutation_id' => $notifiable->salutation_id,
           ])
 	        ->subject('[SIWECOS]');
     }

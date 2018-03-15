@@ -1,5 +1,9 @@
 @component('mail::message')
-<p>Hallo {{ $first_name }} {{ $last_name }},</p>
+<p>Sehr @if ($salutation_id === 1)
+   geehrter Herr
+ @else
+   geehrte Frau
+ @endif {{ $first_name }} {{ $last_name }},</p>
 
 <p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
 
