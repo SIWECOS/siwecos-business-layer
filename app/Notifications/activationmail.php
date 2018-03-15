@@ -44,7 +44,12 @@ class activationmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-	        ->markdown('mail.registration', ['activateurl' => route('activateurl', ['token' => $this->token])])
+	        ->markdown('mail.registration', [
+            'activateurl' => route('activateurl', ['token' => $this->token]),
+            'email' => $notifiable->email,
+            'first_name' => $notifiable->first_name,
+            'last_name' => $notifiable->last_name
+          ])
 	        ->subject('[SIWECOS]');
     }
 
