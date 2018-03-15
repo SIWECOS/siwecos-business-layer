@@ -1,1 +1,1 @@
-Die Content-Security-Policy ist ein Sicherheitskonzept, das Content-Injection-Angriffe mildern soll.. Es stellt über eine Whitelist (Liste erlaubter Quellen) dar, von welchen [[Quellen]] Javascripte, Bilder, Schriftarten und andere Inhalte auf Ihrer Seite eingebunden werden dürfen.
+Die Content-Security-Policy ist ein Sicherheitskonzept, das Content-Injection-Angriffe mildern soll. Es stellt über eine Whitelist (Liste erlaubter Quellen) dar, von welchen [[Quellen]] Javascripte, Bilder, Schriftarten und andere Inhalte auf Ihrer Seite eingebunden werden dürfen.
