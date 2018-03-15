@@ -1,6 +1,12 @@
-<p>Auf SIWECOS.de wurde ein Reset Ihres Passworts angefordert. Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
-<p>Wenn Sie Ihr Passwort jedoch zurücksetzen wollen, klicken Sie auf den folgenden Link:</p>
+<p>Hallo %emai%,</p>
+
+<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account %email% erhalten.</p>
+
+<p>Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:</p>
 <p><a href="{{$reseturl}}">Passwort zurücksetzen</a></p>
+
+<p>Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
+
 <p>Bitte antworten Sie nicht an diese Adresse.</p>
 <br>
 <p>Mit freundlichen Grüßen,</p>

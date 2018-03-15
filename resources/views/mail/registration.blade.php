@@ -1,4 +1,4 @@
-<p>Hallo %emailadresse,</p>
+<p>Hallo %emai%,</p>
 
 <p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
 
