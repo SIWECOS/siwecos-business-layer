@@ -1,5 +1,5 @@
 @component('mail::message')
-<p>Hallo {{ $first_name }} {{ $last_name }},</p>
+<p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
 <p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.</p>
 
@@ -12,10 +12,9 @@ Passwort zurücksetzen
 <p>Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
 
 <p>Bitte antworten Sie nicht an diese Adresse.</p>
-<br>
+
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
-
 @component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
 <p>Lichtstraße 43h</p>
