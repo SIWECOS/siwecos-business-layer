@@ -16,6 +16,9 @@ Passwort zurücksetzen
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
 
+
+{{ $everything }}
+
 @component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
 <p>Lichtstraße 43h</p>
