@@ -4,7 +4,10 @@
 <p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account %email% erhalten.</p>
 
 <p>Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:</p>
-<p><a href="{{$reseturl}}">Passwort zurücksetzen</a></p>
+
+@component('mail::button', [ 'url' => $reseturl, 'color' => 'red' ])
+Passwort zurücksetzen
+@endcomponent
 
 <p>Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
 
@@ -12,7 +15,6 @@
 <br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
-@endcomponent
 
 @component('mail::footer')
 <p>eco - Verband der Internetwirtschaft e.V.</p>
@@ -39,4 +41,5 @@
     Siwecos bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting
     Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
     mittelständische Unternehmen beim Betrieb von Webseiten mit Content Management Systemen.</p>
+@endcomponent
 @endcomponent
