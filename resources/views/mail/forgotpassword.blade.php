@@ -8,11 +8,11 @@
 @component('mail::button', [ 'url' => $reseturl, 'color' => 'red' ])
 Passwort zurücksetzen
 @endcomponent
-
+<br>
 <p>Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
 
 <p>Bitte antworten Sie nicht an diese Adresse.</p>
-<br>
+
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
 
