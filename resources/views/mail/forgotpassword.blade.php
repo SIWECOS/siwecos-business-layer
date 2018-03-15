@@ -1,5 +1,5 @@
 @component('mail::message')
-<p>Hallo {{ $first_name }} {{ $last_name }},</p>
+<p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
 <p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.</p>
 
