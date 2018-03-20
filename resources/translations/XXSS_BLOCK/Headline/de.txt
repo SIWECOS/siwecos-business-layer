@@ -1,0 +1,1 @@
+Die `mode=block`-Direktive ist aktiviert.

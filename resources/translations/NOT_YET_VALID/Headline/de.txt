@@ -1,0 +1,1 @@
+Ihr Zertifikat wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.

@@ -1,1 +1,1 @@
-Das META Tag wurde richtig gesetzt.
+Die Header-Angabe ist via `<meta>`-Tag gesetzt und entspricht den Empfehlungen.

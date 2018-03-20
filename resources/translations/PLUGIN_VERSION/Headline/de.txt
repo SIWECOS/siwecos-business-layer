@@ -1,1 +1,1 @@
-Das verwendete CMS Plugin %plugin% mit der Version %plugin_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde detektiert. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.
+Das verwendete CMS-Plugin %plugin% mit der Version %plugin_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde detektiert. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.

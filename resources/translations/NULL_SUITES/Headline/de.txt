@@ -1,0 +1,1 @@
+Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass zugelassen wird das unverschlüsselt über einen geschützten Kanal gesprochen werden kann. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]]. 

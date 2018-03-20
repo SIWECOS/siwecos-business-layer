@@ -1,0 +1,1 @@
+Die öffentlichen Schlüssel sind für mehr als 15 Tage gepinnt.
