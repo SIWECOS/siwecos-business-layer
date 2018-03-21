@@ -170,7 +170,7 @@ class SiwecosScanController extends Controller {
 			$totalScore = 0;
 			$scanCount  = 0;
 			foreach ( $scanner['result'] as &$result ) {
-				if ( $scanner['scanner_type'] == 'hidden' || $scanner['scanner_type'] == 'bonus') {
+				if ( $scanner['scanner_type'] == 'hidden' || $scanner['scanner_type'] == 'bonus' ) {
 					continue;
 				}
 				$totalScore += $result['score'];
@@ -201,6 +201,9 @@ class SiwecosScanController extends Controller {
 		}
 
 		foreach ( $scanners as $value ) {
+			if ( $value['scanner_type'] == 'hidden' || $value['scanner_type'] == 'bonus' ) {
+				continue;
+			}
 			$dividend += ( $value['weight'] * $value['score'] );
 			$divisor  += $value['weight'];
 		}
