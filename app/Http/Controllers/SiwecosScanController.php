@@ -10,17 +10,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class SiwecosScanController extends Controller
-{
+class SiwecosScanController extends Controller {
 	/**
 	 * Weighting array for the individual scanners - lower value means lower impact to scoring
 	 */
 	const SCANNER_WEIGHTS = [
-		"HEADER" => 5,
-		"DOMXSS" => 5,
+		"HEADER"   => 5,
+		"DOMXSS"   => 5,
 		"INFOLEAK" => 5,
-		"INI_S" => 5,
-		"WS_TLS" => 5
+		"INI_S"    => 5,
+		"WS_TLS"   => 5
 	];
 
 	var $coreApi;
@@ -139,9 +138,9 @@ class SiwecosScanController extends Controller
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 			$item['result']       = collect( $item['result'] );
 			$item['result']->transform( function ( $item, $key ) {
-				$namePlaceholder = 'siwecos.' . $item['name'];
-				$item['link'] = __($namePlaceholder . '_LINK');
-				$item['description']  = $this->buildDescription( $namePlaceholder , $item['score'] );
+				$namePlaceholder      = 'siwecos.' . $item['name'];
+				$item['link']         = __( $namePlaceholder . '_LINK' );
+				$item['description']  = $this->buildDescription( $namePlaceholder, $item['score'] );
 				$item['report']       = $this->buildReport( $namePlaceholder, $item['score'] );
 				$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
 				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
@@ -153,6 +152,7 @@ class SiwecosScanController extends Controller
 					return $item;
 				} );
 				$item['name'] = __( 'siwecos.' . $item['name'] );
+
 				return $item;
 			} );
 
@@ -163,14 +163,16 @@ class SiwecosScanController extends Controller
 		return $resultCollection;
 	}
 
-	protected function calculateScorings(array $results) {
-		$hasCrit    = false;
+	protected function calculateScorings( array $results ) {
+		$hasCrit = false;
 
 		foreach ( $results['scanners'] as &$scanner ) {
 			$totalScore = 0;
 			$scanCount  = 0;
-
 			foreach ( $scanner['result'] as &$result ) {
+				if ( $scanner['scanner_type'] == 'hidden' ) {
+					continue;
+				}
 				$totalScore += $result['score'];
 				$scanCount  += 1;
 
@@ -179,22 +181,22 @@ class SiwecosScanController extends Controller
 				}
 			}
 
-			$scanner['score']   = $totalScore / $scanCount;
-			$scanner['weight']  = self::SCANNER_WEIGHTS[$scanner['scanner_type']];
+			$scanner['score']  = $totalScore / $scanCount;
+			$scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
 		}
 
-		$results['hasCrit'] = $hasCrit;
-		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'], $hasCrit);
+		$results['hasCrit']       = $hasCrit;
+		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'], $hasCrit );
 
 		return $results;
 	}
 
-	protected function weightedMedian(array $scanners, bool $hasCrit) {
+	protected function weightedMedian( array $scanners, bool $hasCrit ) {
 		$dividend = 0;
 		$divisor  = 0;
 		$maxScore = 100;
 
-		if ($hasCrit){
+		if ( $hasCrit ) {
 			$maxScore = 20;
 		}
 
@@ -204,7 +206,7 @@ class SiwecosScanController extends Controller
 		}
 
 		$average = $dividend / $divisor;
-		$average = $maxScore * ($average / 100);
+		$average = $maxScore * ( $average / 100 );
 
 		return $average;
 	}
