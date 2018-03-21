@@ -1,1 +1,1 @@
-Überprüfung der Reaktionszeit des Headers
+Überprüfung der Reaktionszeit des HTTP Headers
