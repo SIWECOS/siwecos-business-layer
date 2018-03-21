@@ -170,7 +170,7 @@ class SiwecosScanController extends Controller {
 			$totalScore = 0;
 			$scanCount  = 0;
 			foreach ( $scanner['result'] as &$result ) {
-				if ( $scanner['scanner_type'] == 'hidden' ) {
+				if ( $scanner['scanner_type'] == 'hidden' || $scanner['scanner_type'] == 'bonus') {
 					continue;
 				}
 				$totalScore += $result['score'];
