@@ -51,7 +51,7 @@ class forgotpasswordmail extends Notification
             'last_name' => $notifiable->last_name,
             'salutation_id' => $notifiable->salutation_id,
           ])
-	        ->subject('[SIWECOS]');
+	        ->subject('[SIWECOS] Passwort vergessen');
     }
 
     /**
