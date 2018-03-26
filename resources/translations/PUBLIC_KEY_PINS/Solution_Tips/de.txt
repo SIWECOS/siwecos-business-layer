@@ -5,4 +5,7 @@ pin-sha256="<HASH>"; pin-sha256="<HASH>"; max-age=2592000; includeSubDomains;
 
 <pre>Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]</pre>
 
-'''--snap'''  
+'''--snap'''
+
+Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den '''HTTP-Security-Header-Scanner''' Grün zu stimmen.
+([https://www.siwecos.de/wiki/Htaccess .htaccess-Beispiel])  

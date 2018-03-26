@@ -15,3 +15,6 @@ Darüber hinaus gibt es auch die Möglichkeit die '''richtige charset-Informatio
 
 '''In die .htaccess eintragen:'''
 <pre>AddType 'text/html; charset=UTF-8' html</pre>
+
+Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den '''HTTP-Security-Header-Scanner''' Grün zu stimmen.
+([https://www.siwecos.de/wiki/Htaccess .htaccess-Beispiel])

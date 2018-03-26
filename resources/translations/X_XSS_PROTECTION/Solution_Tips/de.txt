@@ -8,3 +8,6 @@
    '''Header set X-XSS-Protection „1; mode=block“'''
 </IfModule></pre>
 '''—snap'''
+
+Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den '''HTTP-Security-Header-Scanner''' Grün zu stimmen.
+([https://www.siwecos.de/wiki/Htaccess .htaccess-Beispiel])
