@@ -150,6 +150,10 @@ class SiwecosScanController extends Controller {
 					if ( array_key_exists( 'values', $item ) ) {
 						if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
 							foreach ( $item['values'] as $key => $value ) {
+								if (is_array($value)){
+									if (is_array($value[0])) $value = $value[0];
+									$value = implode(',', $value);
+								}
 								$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
 							}
 						} else if ( $item['values'] != null ) {
