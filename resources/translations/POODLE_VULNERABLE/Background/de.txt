@@ -1,0 +1,1 @@
+Poodle (Padding Oracle On Downgraded Legacy Encryption) ist eine schwerwiegende Sicherheitslücke in verschiedenen Internet-Protokollen, wodurch über verschlüsselte Verbindungen private Daten von Clients und Servern ausgelesen werden können.

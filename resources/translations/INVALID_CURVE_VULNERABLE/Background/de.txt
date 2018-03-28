@@ -1,0 +1,1 @@
+Für kryptografische Verschlüsselung müssen elliptische Kurven sehr sorgfältig ausgewählt werden, da aus den Kurvenpunkten unsere Schlüssel erstellen werden, was nicht so einfach ist. 

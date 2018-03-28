@@ -1,0 +1,1 @@
+Die sogenannte Bleichenbacher-Attacke (ROBOT) ist die Rückkehr einer 19 Jahre alten Sicherheitslücke, die es ermöglicht RSA-Entschlüsselungs- und Signaturoperationen mit dem privaten Schlüssel eines TLS-Servers auszuführen.
