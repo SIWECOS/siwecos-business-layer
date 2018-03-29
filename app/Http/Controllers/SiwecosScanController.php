@@ -146,8 +146,26 @@ class SiwecosScanController extends Controller {
 				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 				$item['testDetails']  = collect( $item['testDetails'] );
 				$item['testDetails']->transform( function ( $item, $key ) {
-					$item['name'] = __( 'siwecos.' . $item['placeholder'] );
-					unset( $item['placeholder'] );
+					$item['report'] = __( 'siwecos.' . $item['placeholder'] );
+					if ( array_key_exists( 'values', $item ) ) {
+						if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
+							foreach ( $item['values'] as $key => $value ) {
+								if (is_array($value)){
+									if (is_array($value[0])) $value = $value[0];
+									$value = implode(',', $value);
+								}
+								$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
+							}
+						} else if ( $item['values'] != null ) {
+							foreach ( $item['values'] as $value ) {
+								if ( is_array( $value ) ) {
+									$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
+								}
+
+							}
+						}
+						$item['name'] = $item['report'];
+					}
 
 					return $item;
 				} );
@@ -163,6 +181,14 @@ class SiwecosScanController extends Controller {
 		return $resultCollection;
 	}
 
+	function isAssoc( array $arr ) {
+		if ( array() === $arr ) {
+			return false;
+		}
+
+		return array_keys( $arr ) !== range( 0, count( $arr ) - 1 );
+	}
+
 	protected function calculateScorings( array $results ) {
 		$hasCrit = false;
 
@@ -170,7 +196,7 @@ class SiwecosScanController extends Controller {
 			$totalScore = 0;
 			$scanCount  = 0;
 			foreach ( $scanner['result'] as &$result ) {
-				if (array_key_exists('scoreType', $result) && ($result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus') ) {
+				if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
 					continue;
 				}
 				$totalScore += $result['score'];
