@@ -1,1 +1,1 @@
-Überprüfung auf die Padding-Oracle  Schwachstelle
+Überprüfung auf die Padding-Oracle Schwachstelle
