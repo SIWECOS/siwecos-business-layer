@@ -1,1 +1,1 @@
-Auf einer Phishingliste gefunden.
+Ihre Domain ‘%site%’ wurde in folgenden listen gefunden: %where%

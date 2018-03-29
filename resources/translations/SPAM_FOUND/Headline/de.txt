@@ -1,1 +1,1 @@
-Auf einer Spamliste gefunden.
+Ihre Domain ‘%site%’ wurde in folgenden listen gefunden: %where%
