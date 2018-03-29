@@ -1,1 +1,1 @@
-SWEET32-VULNERABLE
+Sweet32-Schwachstelle

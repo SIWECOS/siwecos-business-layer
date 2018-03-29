@@ -1,1 +1,1 @@
-INVALID_CURVE_EPHEMERAL_VULNERABLE
+Invalid-Curve-Ephemeral-Schwachstelle

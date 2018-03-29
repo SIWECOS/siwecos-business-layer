@@ -1,1 +1,1 @@
-CIPHERSUITE_EXPORT
+Geschwaechtes-Verschluesselungsprotokoll

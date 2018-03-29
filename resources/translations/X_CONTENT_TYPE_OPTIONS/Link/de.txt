@@ -1,1 +1,1 @@
-X-Content-Type-Options
+X-Content-Type-Options-Schwachstelle

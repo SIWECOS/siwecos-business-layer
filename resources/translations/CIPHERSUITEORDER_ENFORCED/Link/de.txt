@@ -1,1 +1,1 @@
-CIPHERSUITEORDER_ENFORCED
+Verschluesselungsmethode-Client

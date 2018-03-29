@@ -1,1 +1,1 @@
-CIPHERSUITE_RC4
+Unsichere-Verschluesselungsfunktion-RC4

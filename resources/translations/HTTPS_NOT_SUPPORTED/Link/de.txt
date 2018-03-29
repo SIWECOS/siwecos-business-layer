@@ -1,1 +1,1 @@
-HTTPS_NOT_SUPPORTED
+Keine-TLS-Unterstuetzung

@@ -1,1 +1,1 @@
-Content-Security-Policy
+Content-Security-Policy-Schwachstelle

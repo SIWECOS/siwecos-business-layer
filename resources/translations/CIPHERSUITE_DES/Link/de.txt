@@ -1,1 +1,1 @@
-CIPHERSUITE_DES
+Schwaches-DES-Verschluesselungsprotokoll

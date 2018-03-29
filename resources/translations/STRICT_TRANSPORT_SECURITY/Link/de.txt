@@ -1,1 +1,1 @@
-Strict-Transport-Security
+Keine-Verschluesselung-Gefunden

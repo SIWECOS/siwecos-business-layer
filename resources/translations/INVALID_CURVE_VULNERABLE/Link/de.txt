@@ -1,1 +1,1 @@
-INVALID_CURVE_VULNERABLE
+Invalid-Curve-Schwachstelle

@@ -1,1 +1,1 @@
-HEARTBLEED-VULNERABLE
+Heartbleed-Schwachstelle

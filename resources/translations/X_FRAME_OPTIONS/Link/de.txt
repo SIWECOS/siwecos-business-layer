@@ -1,1 +1,1 @@
-X-Frame-Options
+X-Frame-Options-Schwachstelle
