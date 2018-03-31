@@ -126,7 +126,7 @@ while( <*/*/*.txt> ) {
         # Is something defined to clean the text?
         my $clean= $CLEAN{$purpose};
         if( $clean ) {
-            $text= $clean->($text);
+            $text= $clean->($lang, $text);
         } else {
             # warn if not.
             $CLEAN{$purpose}= \&trim_escape;
@@ -216,9 +216,9 @@ foreach my $language (keys %$categories) {
 
 # trim leading and trealing whitespace
 sub trim {
-    local($_)= @_;
-    s/^\s+|\s+$//gs;
-    return $_;
+    my($lang, $text)= @_;
+    $text=~ s/^\s+|\s+$//gs;
+    return $text;
 }
 
 # trim + replace quotes and linefeeds
@@ -229,14 +229,14 @@ sub trim_escape {
     return $_;
 }
 
-# Replace all whitespace (after trimming) by underscores
+# Replace all whitespace (after trimming) with underscores
 sub no_whitespace {
     local($_)= trim(@_);
     s/\s+/_/gs;
     return $_;
 }
 
-# replace all linefeeds by underscores
+# replace all linefeeds with underscores
 sub no_linefeeds {
     local($_)= trim(@_);
     s/\n/_/gs;
@@ -245,28 +245,31 @@ sub no_linefeeds {
 
 # prepend the wiki url
 sub wiki_link {
+    my($lang)= @_;
     local($_)= no_linefeeds(@_);
-    return "$WIKI/$_";
+    return "$WIKI/$_/" . uc($lang);
 }
 
 # convert a bit of wiki text to html
 sub wiki_text {
+    my($lang)= @_;
     local($_)= trim(@_);
     s/$html_replace/$html_replace{$1}/ge;
     s#^(.*?)\n\n+#<p>$1</p>#gm;
     s#\n#<br/>#gs;
-    s/\[(.*?\]?)\]/make_wiki_link($1)/ge;
-    return trim_escape($_);
+    s/\[(.*?\]?)\]/make_wiki_link($lang, $1)/ge;
+    return trim_escape($lang, $_);
 }
 
 # Helper for wiki_text
 sub make_wiki_link {
-    local($_)= @_;
+    my($lang, $text)= @_;
+    local($_)= $text;
     # internal links start with [ and end with ]
     if( m/^\[(.*)\]$/ ) {
         my($link,$text)= split /[|]/, $1, 2;
         $text||= $link;
-        $link= wiki_link($link);
+        $link= wiki_link($lang, $link);
         return qq'<a href="$link" target="siwecos_wiki" class="wikI">$text</a>';
     }
     # external links must start with http…
