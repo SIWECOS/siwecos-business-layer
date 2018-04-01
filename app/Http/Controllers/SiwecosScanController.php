@@ -232,7 +232,7 @@ class SiwecosScanController extends Controller {
 			if ( $value['scanner_type'] == 'hidden' || $value['scanner_type'] == 'bonus' ) {
 				continue;
 			}
-            if (array_key_exists($value, 'weight')){
+            if (array_key_exists('weight', $value)){
                 $dividend += ( $value['weight'] * $value['score'] );
                 $divisor  += $value['weight'];
             }
