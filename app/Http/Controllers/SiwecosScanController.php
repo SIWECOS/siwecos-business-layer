@@ -195,21 +195,24 @@ class SiwecosScanController extends Controller {
 		foreach ( $results['scanners'] as &$scanner ) {
 			$totalScore = 0;
 			$scanCount  = 0;
-			foreach ( $scanner['result'] as &$result ) {
-				if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
-					continue;
-				}
-				$totalScore += $result['score'];
-				$scanCount  += 1;
+			if (array_key_exists('result', $scanner)){
+                foreach ( $scanner['result'] as &$result ) {
+                    if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
+                        continue;
+                    }
+                    $totalScore += $result['score'];
+                    $scanCount  += 1;
 
-				if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
-					$hasCrit = true;
-				}
-			}
-            if ($scanCount > 0){
-                $scanner['score']  = $totalScore / $scanCount;
-                $scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
+                    if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
+                        $hasCrit = true;
+                    }
+                }
+                if ($scanCount > 0){
+                    $scanner['score']  = $totalScore / $scanCount;
+                    $scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
+                }
             }
+
 
 		}
 
