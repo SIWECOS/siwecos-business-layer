@@ -195,7 +195,7 @@ class SiwecosScanController extends Controller {
 		foreach ( $results['scanners'] as &$scanner ) {
 			$totalScore = 0;
 			$scanCount  = 0;
-			if (array_key_exists('result', $scanner)){
+			if (array_key_exists('result', $scanner) && is_array($scanner['result']) && count($scanner) > 0){
                 foreach ( $scanner['result'] as &$result ) {
                     if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
                         continue;
