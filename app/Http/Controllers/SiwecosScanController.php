@@ -223,7 +223,7 @@ class SiwecosScanController extends Controller {
 		$dividend = 0;
 		$divisor  = 0;
 		$maxScore = 100;
-
+        $average = 0;
 		if ( $hasCrit ) {
 			$maxScore = 20;
 		}
@@ -232,12 +232,17 @@ class SiwecosScanController extends Controller {
 			if ( $value['scanner_type'] == 'hidden' || $value['scanner_type'] == 'bonus' ) {
 				continue;
 			}
-			$dividend += ( $value['weight'] * $value['score'] );
-			$divisor  += $value['weight'];
-		}
+            if (array_key_exists($value, 'weight')){
+                $dividend += ( $value['weight'] * $value['score'] );
+                $divisor  += $value['weight'];
+            }
 
-		$average = $dividend / $divisor;
-		$average = $maxScore * ( $average / 100 );
+		}
+        if ($divisor > 0){
+            $average = $dividend / $divisor;
+            $average = $maxScore * ( $average / 100 );
+        }
+
 
 		return $average;
 	}
