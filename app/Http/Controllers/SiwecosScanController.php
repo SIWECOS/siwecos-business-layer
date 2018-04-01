@@ -206,9 +206,11 @@ class SiwecosScanController extends Controller {
 					$hasCrit = true;
 				}
 			}
+            if ($scanCount > 0){
+                $scanner['score']  = $totalScore / $scanCount;
+                $scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
+            }
 
-			$scanner['score']  = $totalScore / $scanCount;
-			$scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
 		}
 
 		$results['hasCrit']       = $hasCrit;
