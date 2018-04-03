@@ -200,17 +200,12 @@ class SiwecosScanController extends Controller {
                     if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
                         continue;
                     }
-                    $totalScore += $result['score'];
-                    $scanCount  += 1;
-
                     if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
                         $hasCrit = true;
                     }
                 }
-                if ($scanCount > 0){
-                    $scanner['score']  = $totalScore / $scanCount;
-                    $scanner['weight'] = self::SCANNER_WEIGHTS[ $scanner['scanner_type'] ];
-                }
+
+                    $scanner['score']  = $scanner['total_score'];
             }
 
 
