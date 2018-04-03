@@ -1,1 +1,1 @@
-CMS-Plugins können nicht detektiert werden.
+CMS-Plugins können nicht erkannt werden.

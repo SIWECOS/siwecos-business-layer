@@ -1,1 +1,1 @@
-Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sources detektiert.
+Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sources erkannt.

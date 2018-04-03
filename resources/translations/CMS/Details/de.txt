@@ -1,1 +1,1 @@
-Das CMS %cms% mit der Version %version% wurde detektiert.
+Das CMS %cms% mit der Version %version% wurde erkannt.

@@ -1,1 +1,1 @@
-Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sinks detektiert.
+Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sinks erkannt.

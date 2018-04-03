@@ -1,1 +1,1 @@
-Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde detektiert. Für diese Version ist eine Schwachstelle bekannt.
+Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.

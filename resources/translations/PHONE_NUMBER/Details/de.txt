@@ -1,1 +1,1 @@
-Verwundbares Plugin %plugin% der Version %plugin_version% detektiert.
+Verwundbares Plugin %plugin% der Version %plugin_version% erkannt.
