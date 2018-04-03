@@ -1,1 +1,1 @@
-Der Server \“%HOST%\“ scheint überhaupt nicht zu antworten. Haben sie die Domain richtig eingegeben?
+Der Server “%HOST%“ scheint überhaupt nicht zu antworten. Haben sie die Domain richtig eingegeben?
