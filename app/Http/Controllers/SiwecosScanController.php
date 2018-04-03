@@ -158,7 +158,7 @@ class SiwecosScanController extends Controller {
 							}
 						} else if ( $item['values'] != null ) {
 							foreach ( $item['values'] as $value ) {
-								if ( is_array( $value ) ) {
+								if ( is_array( $value ) && array_key_exists('name', $value) ) {
 									$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
 								}
 

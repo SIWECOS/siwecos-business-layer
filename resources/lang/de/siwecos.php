@@ -304,6 +304,7 @@ return [
   //
   // CT_META_TAG_SET_CORRECT
   'CT_META_TAG_SET_CORRECT'            => 'Die Header-Angabe ist via `<meta>`-Tag gesetzt und entspricht den Empfehlungen.',
+	'META' => 'LOREM %META% IPSUM',
   //
   // PUBLIC_KEY_PINS
   'PUBLIC_KEY_PINS'            => 'Überprüfung des Public Key Pinning (HPKP)',
