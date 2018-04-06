@@ -1,1 +1,1 @@
-Email-Adresse gefunden: %email_address%.
+Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie diese Email-Adresse wirklich veröffentlichen?
