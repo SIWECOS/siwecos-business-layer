@@ -150,15 +150,17 @@ class SiwecosScanController extends Controller {
 					if ( array_key_exists( 'values', $item ) ) {
 						if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
 							foreach ( $item['values'] as $key => $value ) {
-								if (is_array($value)){
-									if (is_array($value[0])) $value = $value[0];
-									$value = implode(',', $value);
+								if ( is_array( $value ) ) {
+									if ( is_array( $value[0] ) ) {
+										$value = $value[0];
+									}
+									$value = implode( ',', $value );
 								}
 								$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
 							}
 						} else if ( $item['values'] != null ) {
 							foreach ( $item['values'] as $value ) {
-								if ( is_array( $value ) && array_key_exists('name', $value) ) {
+								if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
 									$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
 								}
 
@@ -195,24 +197,25 @@ class SiwecosScanController extends Controller {
 		foreach ( $results['scanners'] as &$scanner ) {
 			$totalScore = 0;
 			$scanCount  = 0;
-			if (array_key_exists('result', $scanner) && is_array($scanner['result']) && count($scanner) > 0){
-                foreach ( $scanner['result'] as &$result ) {
-                    if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
-                        continue;
-                    }
-                    if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
-                        $hasCrit = true;
-                    }
-                }
-
-                    $scanner['score']  = $scanner['total_score'];
-            }
+			if ( array_key_exists( 'result', $scanner ) && is_array( $scanner['result'] ) && count( $scanner ) > 0 ) {
+				foreach ( $scanner['result'] as &$result ) {
+					if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
+						continue;
+					}
+					if ( array_key_exists( 'scoreType', $result ) && $result['scoreType'] === 'critical' ) {
+						$hasCrit = true;
+					}
+				}
+				$totalScore += $scanner['total_score'];
+				$scanCount++;
+				$scanner['score'] = $scanner['total_score'];
+			}
 
 
 		}
 
 		$results['hasCrit']       = $hasCrit;
-		$results['weightedMedia'] = $this->weightedMedian( $results['scanners'], $hasCrit );
+		$results['weightedMedia'] = $totalScore / $scanCount;
 
 		return $results;
 	}
@@ -221,7 +224,7 @@ class SiwecosScanController extends Controller {
 		$dividend = 0;
 		$divisor  = 0;
 		$maxScore = 100;
-        $average = 0;
+		$average  = 0;
 		if ( $hasCrit ) {
 			$maxScore = 20;
 		}
@@ -230,16 +233,16 @@ class SiwecosScanController extends Controller {
 			if ( $value['scanner_type'] == 'hidden' || $value['scanner_type'] == 'bonus' ) {
 				continue;
 			}
-            if (array_key_exists('weight', $value)){
-                $dividend += ( $value['weight'] * $value['score'] );
-                $divisor  += $value['weight'];
-            }
+			if ( array_key_exists( 'weight', $value ) ) {
+				$dividend += ( $value['weight'] * $value['score'] );
+				$divisor  += $value['weight'];
+			}
 
 		}
-        if ($divisor > 0){
-            $average = $dividend / $divisor;
-            $average = $maxScore * ( $average / 100 );
-        }
+		if ( $divisor > 0 ) {
+			$average = $dividend / $divisor;
+			$average = $maxScore * ( $average / 100 );
+		}
 
 
 		return $average;
