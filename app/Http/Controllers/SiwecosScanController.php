@@ -192,11 +192,11 @@ class SiwecosScanController extends Controller {
 	}
 
 	protected function calculateScorings( array $results ) {
-		$hasCrit = false;
-
+		$hasCrit    = false;
+		$totalScore = 0;
+		$scanCount  = 0;
 		foreach ( $results['scanners'] as &$scanner ) {
-			$totalScore = 0;
-			$scanCount  = 0;
+
 			if ( array_key_exists( 'result', $scanner ) && is_array( $scanner['result'] ) && count( $scanner ) > 0 ) {
 				foreach ( $scanner['result'] as &$result ) {
 					if ( array_key_exists( 'scoreType', $result ) && ( $result['scoreType'] == 'hidden' || $result['scoreType'] == 'bonus' ) ) {
@@ -207,7 +207,7 @@ class SiwecosScanController extends Controller {
 					}
 				}
 				$totalScore += $scanner['total_score'];
-				$scanCount++;
+				$scanCount ++;
 				$scanner['score'] = $scanner['total_score'];
 			}
 
