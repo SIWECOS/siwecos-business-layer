@@ -1,1 +1,1 @@
-Aktivieren sie TLS.
+Aktivieren sie TLS (Transportschichtsicherheit) 

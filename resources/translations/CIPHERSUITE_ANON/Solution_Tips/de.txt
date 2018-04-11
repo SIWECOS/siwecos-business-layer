@@ -1,1 +1,1 @@
-Deaktivieren Sie die Unterstützung des Anonymen Schlüsselaustauschs in der  Verschlüsselungsmethodik.
+Deaktivieren Sie die Unterstützung des "Anonymen Schlüsselaustauschs" in der  Verschlüsselungsmethodik. In Konsequenz auf die bekannt gewordenen TLS Schwachstellen ist die wichtigste Regel, wann immer es geht, TLS 1.2 zu nutzen. SSL 3.0 sollte in Browser deaktiviert werden.

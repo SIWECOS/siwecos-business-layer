@@ -1,1 +1,1 @@
-Der Server scheint überhaupt nicht zu antworten. Haben sie die Domain richtig eingegeben?
+Der Server scheint nicht zu antworten. Haben sie die Domain richtig eingegeben?

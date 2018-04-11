@@ -1,1 +1,1 @@
-Deaktivieren Sie umgehend SSL3 auf ihrem Server!
+Deaktivieren Sie umgehend das veraltete Verschlüsselungsprotokoll SSL3 auf ihrem Server!
