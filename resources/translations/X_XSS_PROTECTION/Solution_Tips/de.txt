@@ -3,10 +3,9 @@
 '''Beispielcode einer .htaccess auf einem Apache Webserver.'''
 
 '''--snip'''<br><pre>
-<IfModule mod_headers.c>
    # Turn on XSS prevention tools, activated by default in IE and Chrome
    '''Header set X-XSS-Protection „1; mode=block“'''
-</IfModule></pre>
+</pre>
 '''—snap'''
 
 Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den '''HTTP-Security-Header-Scanner''' Grün zu stimmen.
