@@ -168,7 +168,7 @@ class SiwecosScanController extends Controller {
 		$data = [
 			'data'   => $this->translateResult( $rawCollection )['scanners'],
 			'domain' => $response['domain'],
-			'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y' )
+			'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%m:%S' )
 		];
 
 		return $data;
