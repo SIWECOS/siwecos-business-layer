@@ -198,6 +198,14 @@ class SiwecosScanController extends Controller {
 							$error['report'] = str_replace( '%' . $key . '%', $value, $error['report'] );
 						}
 					}
+					else if ( $errorRaw['values'] != null ) {
+								foreach ( $errorRaw['values'] as $value ) {
+									if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
+										$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
+									}
+
+								}
+							}
 					$error['name'] = $error['report'];
 				}
 //				dd($error);
