@@ -21,6 +21,7 @@
 
         .col-print-2 {
             width: 16%;
+
             float: left;
         }
 
@@ -86,7 +87,7 @@
 
         <div class="row">
             <div class="col-print-2">
-                <h3>{{$result['score']}} %</h3>
+                <h3>{{$result['score']}}%</h3>
             </div>
             <div class="col-print-10">
                 <h3>{{$result['scanner_type']}}</h3>
@@ -98,10 +99,10 @@
                         <div class="row">
                             <div class="col-print-10">
                                 {{$detail['name']}}
-                                {!! $detail['report'] !!}
+                                <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
                             </div>
-                            <div class="col-print-2">
-                                {{$detail['score']}} %
+                            <div class="col-print-2" style="text-align: right;">
+                                {{$detail['score']}}%
                             </div>
                         </div>
                     </li>
