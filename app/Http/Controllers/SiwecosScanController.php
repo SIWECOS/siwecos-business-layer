@@ -249,7 +249,7 @@ class SiwecosScanController extends Controller {
 			return $item;
 		} );
 		$resultCollection->put( 'scanners', $scannerCollection );
-		dd($resultCollection);
+//		dd($resultCollection);
 		return $resultCollection;
 	}
 
