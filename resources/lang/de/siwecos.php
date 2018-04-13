@@ -543,7 +543,7 @@ return [
   'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen Hash-Algorithmus&#160;%HASH%. Das Zertifikat kann so sehr einfach gefälscht werden. Ein Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen Hash-Algorithmus jedoch nicht.\n",
   //
   // HTTPS_RESPONSE
-  'HTTPS_RESPONSE'            => "Der Server “%HOST%“ scheint überhaupt nicht zu antworten. Haben sie die Domain richtig eingegeben?\n",
+  'HTTPS_RESPONSE'            => "Der Server “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a href=\"/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
   //
   // HTTPS_SUPPORTED
   'HTTPS_SUPPORTED'            => "Der Server “%HOST%“ scheint kein TLS zu unterstützen. Dies bedeutet das sie keinerlei Verschlüsselung einsetzen um ihre Daten von ihnen und die ihrer Kunden zu schützen.\n",
