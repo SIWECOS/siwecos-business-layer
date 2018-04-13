@@ -155,7 +155,6 @@ class SiwecosScanController extends Controller {
 	 */
 	public function generateReport( int $id ) {
 		$data = $this->generateReportData( $id );
-
 		return View( 'pdf.report', $data );
 	}
 
