@@ -15,3 +15,6 @@ Route::get('/', function () {
 	Log::info("Startup Papertrail");
     return view('welcome');
 });
+
+Route::get('/report/{id}', 'SiwecosScanController@generateReport');
+Route::get('/pdf/{id}', 'SiwecosScanController@generatePdf');

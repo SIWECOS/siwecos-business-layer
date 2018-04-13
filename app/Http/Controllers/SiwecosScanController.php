@@ -7,8 +7,10 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use PDF;
 
 class SiwecosScanController extends Controller {
 	/**
@@ -131,7 +133,49 @@ class SiwecosScanController extends Controller {
 
 	}
 
-	protected function translateResult( Collection $resultCollection, string $language ) {
+	/**
+	 * @param int $id
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function generatePdf( int $id ) {
+		$data = $this->generateReportData( $id );
+
+
+		$pdf = PDF::loadView( 'pdf.report', $data );
+
+		return $pdf->stream( 'report.pdf' );
+
+	}
+
+	/**
+	 * @param int $id
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function generateReport( int $id ) {
+		$data = $this->generateReportData( $id );
+
+		return View( 'pdf.report', $data );
+	}
+
+	private function generateReportData( int $id ) {
+		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		$rawCollection = collect( $response );
+		App::setLocale( 'de' );
+		Carbon::setLocale('de');
+		setlocale( LC_TIME, 'German' );
+		$data = [
+			'data'   => $this->translateResult( $rawCollection )['scanners'],
+			'domain' => $response['domain'],
+			'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y' )
+		];
+
+		return $data;
+	}
+
+	protected function translateResult( Collection $resultCollection, string $language = 'de' ) {
 		$this->currentDomain = $resultCollection['domain'];
 		$scannerCollection   = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
@@ -206,14 +250,14 @@ class SiwecosScanController extends Controller {
 						$hasCrit = true;
 					}
 				}
-				$totalScore += $scanner['total_score'];
-				$scanCount += 1;
+				$totalScore       += $scanner['total_score'];
+				$scanCount        += 1;
 				$scanner['score'] = $scanner['total_score'];
 			}
 
 
 		}
-		Log::info('Calculation: ' . $totalScore . '/' . $scanCount);
+		Log::info( 'Calculation: ' . $totalScore . '/' . $scanCount );
 		$results['hasCrit']       = $hasCrit;
 		$results['weightedMedia'] = $totalScore / $scanCount;
 
