@@ -98,7 +98,7 @@
                     <li>
                         <div class="row">
                             <div class="col-print-10">
-                                {{$detail['name']}}
+                                {!! $detail['name']  !!}
                                 @if (!$result['has_error'])
                                     <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
                                 @endif
