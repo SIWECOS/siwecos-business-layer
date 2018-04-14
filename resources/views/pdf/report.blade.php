@@ -99,7 +99,9 @@
                         <div class="row">
                             <div class="col-print-10">
                                 {{$detail['name']}}
-                                <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
+                                @if (!$result['has_error'])
+                                    <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
+                                @endif
                             </div>
                             <div class="col-print-2" style="text-align: right;">
                                 {{$detail['score']}}%
