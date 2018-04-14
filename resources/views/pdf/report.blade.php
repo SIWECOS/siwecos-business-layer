@@ -80,6 +80,11 @@
 <body>
 <div class="container">
     <div class="row">
+        <div class="col-print-3">
+            <img src="{{URL::asset('img/siwecos-logo.png')}}" class="img-responsive" />
+        </div>
+    </div>
+    <div class="row">
         <h1>Report für {{$domain}}</h1>
         <p>{{$date}}</p>
     </div>
