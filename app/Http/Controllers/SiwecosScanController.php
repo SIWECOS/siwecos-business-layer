@@ -103,6 +103,7 @@ class SiwecosScanController extends Controller {
 
 
 			$rawCollection = collect( $response );
+
 //			dd("LOREM");
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );
 		}
@@ -183,9 +184,10 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 //			dd($item['scanner_type']);
 			if ( $item['has_error'] ) {
-				$errorRaw        = $item['complete_request']['errorMessage'];
-				$error           = array();
-				$error['report'] = __( 'siwecos.' . $errorRaw['placeholder'] );
+				$errorRaw           = $item['complete_request']['errorMessage'];
+				$error              = array();
+				$error['report']    = __( 'siwecos.' . $errorRaw['placeholder'] );
+				$error['has_error'] = true;
 				if ( array_key_exists( 'values', $errorRaw ) ) {
 					if ( $errorRaw['values'] != null && self::isAssoc( $errorRaw['values'] ) ) {
 						foreach ( $errorRaw['values'] as $key => $value ) {
@@ -197,19 +199,19 @@ class SiwecosScanController extends Controller {
 							}
 							$error['report'] = str_replace( '%' . $key . '%', $value, $error['report'] );
 						}
-					}
-					else if ( $errorRaw['values'] != null ) {
-								foreach ( $errorRaw['values'] as $value ) {
-									if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
-										$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
-									}
-
-								}
+					} else if ( $errorRaw['values'] != null ) {
+						foreach ( $errorRaw['values'] as $value ) {
+							if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
+								$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
 							}
+
+						}
+					}
 					$error['name'] = $error['report'];
 				}
 //				dd($error);
-				$item['result'] = collect(array($error));
+				$item['result'] = collect( array( $error ) );
+
 				return $item;
 			} else {
 				$item['result'] = collect( $item['result'] );
@@ -257,6 +259,7 @@ class SiwecosScanController extends Controller {
 			return $item;
 		} );
 		$resultCollection->put( 'scanners', $scannerCollection );
+
 //		dd($resultCollection);
 		return $resultCollection;
 	}
