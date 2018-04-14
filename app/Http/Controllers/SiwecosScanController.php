@@ -188,6 +188,7 @@ class SiwecosScanController extends Controller {
 				$error              = array();
 				$error['report']    = __( 'siwecos.' . $errorRaw['placeholder'] );
 				$error['has_error'] = true;
+				$error['score']     = 0;
 				if ( array_key_exists( 'values', $errorRaw ) ) {
 					if ( $errorRaw['values'] != null && self::isAssoc( $errorRaw['values'] ) ) {
 						foreach ( $errorRaw['values'] as $key => $value ) {
