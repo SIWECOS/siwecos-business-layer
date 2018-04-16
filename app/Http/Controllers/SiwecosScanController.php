@@ -297,7 +297,7 @@ class SiwecosScanController extends Controller {
 		}
 		Log::info( 'Calculation: ' . $totalScore . '/' . $scanCount );
 		$results['hasCrit']       = $hasCrit;
-		$results['weightedMedia'] = $totalScore / $scanCount;
+		$results['weightedMedia'] = floor($totalScore / $scanCount);
 
 		return $results;
 	}
