@@ -1,1 +1,0 @@
-Ihre Domain ‘%site%’ wurde in folgenden Phising-Listen gefunden: %where%

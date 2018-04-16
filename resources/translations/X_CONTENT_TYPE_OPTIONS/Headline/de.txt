@@ -1,1 +1,0 @@
-Überprüfung des X-Content-Type Headers

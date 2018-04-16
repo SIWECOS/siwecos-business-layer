@@ -1,1 +1,0 @@
-Überprüfung des HTTP Content-Types

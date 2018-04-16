@@ -1,1 +1,0 @@
-Cross-Site-Scripting Schutz nicht aktiviert oder unzureichend konfiguriert.

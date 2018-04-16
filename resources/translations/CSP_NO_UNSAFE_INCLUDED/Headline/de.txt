@@ -1,1 +1,0 @@
-Der Header ist korrekt gesetzt und enthält keine `unsafe-`-Direktiven.

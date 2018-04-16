@@ -1,1 +1,0 @@
-Die Content Type Angabe ist nicht korrekt konfiguriert. Angriffe auf Ihre Webseite sind wahrscheinlich möglich.

@@ -1,1 +1,0 @@
-Angreifer können bei fehlender Verschüsselung die Kommunikation zwischen Ihrer Webseite und dem [[Browser]] Ihres Kunden problemlos entschlüsseln. Damit lassen sich z.B. eingegebene Passwörter, Formular-Daten oder Kreditkarten-Informationen auslesen und für kriminelle Zwecke missbrauchen. Diese Methode wird als [[Man-in-the-middle|Man-in-the-Middle Attacke]] bezeichnet.

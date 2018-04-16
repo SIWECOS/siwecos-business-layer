@@ -1,1 +1,0 @@
-Heartbleed wird als die gravierendste Sicherheitslücke aller Zeiten beschrieben und besteht bereits seit 2011. Die Sicherheitslücke klafft in einer Software namens OpenSSL, welches die Komunikation von Daten über das Sicherheitsprotokoll SSL, durchs das Internet schützen soll. Der Quelltext in der Software OpenSSL wurde überprüft und die Sicherheitslücken geschlossen.

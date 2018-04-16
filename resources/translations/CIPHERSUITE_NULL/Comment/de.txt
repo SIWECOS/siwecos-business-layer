@@ -1,1 +1,0 @@
-Bei Auswirkung: Wenn NULL Ciphersuites verwendet, wird sogar gar nicht verschlüsselt. D.h. Man kann die Daten wortwörtlich direkt mitlesen.

@@ -1,2 +1,0 @@
-Veraltete RC4 Verschlüsselungsmethodik
-unterstützt

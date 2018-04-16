@@ -1,1 +1,0 @@
-Der Server scheint kein TLS (Transportschichtsicherheit) zu unterstützen. Dies bedeutet das sie keinerlei Verschlüsselung einsetzen um ihre Daten und die ihrer Kunden zu schützen. 

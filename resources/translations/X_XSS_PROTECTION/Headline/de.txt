@@ -1,1 +1,0 @@
-Überprüfung ob der Cross-Site Scripting Filter aktiviert und korrekt konfiguriert ist.

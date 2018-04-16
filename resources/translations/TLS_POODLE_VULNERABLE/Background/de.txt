@@ -1,3 +1,0 @@
-Bei der Verschlüsselung muss eigentlich nur die ohnehin veraltete Protokollversion SSLv3 abgeschaltet werden.
-
-Der POODLE-Angriff nutzt die in SSL / TLS integrierte Protokollversionsverhandlungsfunktion, um die Verwendung von SSLv 3.0 zu erzwingen und nutzt diese Sicherheitsanfälligkeit um ausgewählte Inhalte innerhalb der SSL-Sitzung zu entschlüsseln. Die Entschlüsselung erfolgt byteweise und erzeugt eine große Anzahl von Verbindungen zwischen dem Client und dem Server.

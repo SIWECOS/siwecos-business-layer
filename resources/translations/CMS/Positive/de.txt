@@ -1,1 +1,0 @@
-Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.

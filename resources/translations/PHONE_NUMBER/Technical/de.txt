@@ -1,1 +1,0 @@
-Verwundbares Plugin %plugin% der Version %plugin_version% in DOM-node %node% mit dem Inhalt %node_content% erkannt.

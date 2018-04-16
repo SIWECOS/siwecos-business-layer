@@ -1,1 +1,0 @@
-Unsicheren JavaScript-Code verwendet (Sinks)

@@ -1,7 +1,0 @@
-Eine Zeitüberschreitung bedeutet, dass der Scan ihrer Domain länger dauerte als ein Scan üblicherweise dauert.
-
-Ursachen hierfür können unter anderem sein:
-
-Ihr Server ist momentan nicht erreichbar oder überlastet
-
-Unser Scanner Server ist momentan überlastet

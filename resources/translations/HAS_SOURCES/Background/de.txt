@@ -1,1 +1,0 @@
-Durch das Laden von Dateien und Codes aus unsicheren bzw. externen Quelle entsteht für Ihre Webseite eine potentielle Sicherheitslücke. Ein Angreifer, der die externe Quelle kontrolliert, könnte einen Schadcode hochladen, der dann auf Ihrer Seite ausgeführt werden kann.

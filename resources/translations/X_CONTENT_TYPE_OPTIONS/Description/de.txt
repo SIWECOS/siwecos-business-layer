@@ -1,1 +1,0 @@
-Die X-Content-Type-Options Einstellungen im Header verhindern, dass der [[Browser]] Dateien als etwas anderes interpretiert, als vom Inhaltstyp im [[HTTP|HTTP-Header]] deklariert wurde. Die Headereinstellungen sind hier nicht gesetzt.
