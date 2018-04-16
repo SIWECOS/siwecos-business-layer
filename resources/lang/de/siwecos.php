@@ -14,11 +14,6 @@ return [
 	*/
 
   //
-  // Category: * NO CATEGORY *
-  //
-  // PHISING_FOUND
-  'PHISING_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Phising-Listen gefunden:&#160;%where%\n",
-  //
   // Category: Angriffe
   //
   // BLEICHENBACHER_VULNERABLE
