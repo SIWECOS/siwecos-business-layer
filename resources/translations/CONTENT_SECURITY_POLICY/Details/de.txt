@@ -1,1 +1,0 @@
-Die Content Security Policy ist nicht sicher konfiguriert. Ihre Webanwendung lädt eventuell Inhalte aus unsicheren Quellen nach.

@@ -1,1 +1,0 @@
-TLS 1.3 wird von keinem Internetbrowser in der Standartkonfiguration unterstützt, weswegen sie keine Kunden gewinnen/verlieren falls sie diese Version nicht unterstützen.

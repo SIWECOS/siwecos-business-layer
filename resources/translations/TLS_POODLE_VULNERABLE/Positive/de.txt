@@ -1,1 +1,0 @@
-Nicht verwundbar durch TLS-Poodle

@@ -1,1 +1,0 @@
-Das verwendete CMS %cms% der Version %version% wurde erkannt.

@@ -1,1 +1,0 @@
-Je nach verwendeten Browser wird eine Warnung angezeigt. In der Regel Browser neuer als 2016. Wenn eine schwache Verschlüsselung (Hash-Algorithmus) verwendet wird ist ein Zertifikat fälschbar!

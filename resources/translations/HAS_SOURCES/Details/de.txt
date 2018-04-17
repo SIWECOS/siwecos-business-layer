@@ -1,1 +1,0 @@
-Die Webanwendung ist eventuell anfällig für sog. DOMXSS-Angriffe.

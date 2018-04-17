@@ -1,1 +1,0 @@
-Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass eine unsichere Verschlüsselungsmethode ([[Cipher Suite]]) ohne Rechtekontrolle bei der Verbindung erfolgt. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]].

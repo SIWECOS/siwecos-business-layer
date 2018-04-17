@@ -1,1 +1,0 @@
-Verwundbare JavaScript-Bibliothek %js_lib_name% der Version %js_lib_version% erkannt.

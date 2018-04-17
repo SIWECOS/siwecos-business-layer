@@ -1,1 +1,0 @@
-Die Header-Angabe ist via `<meta>`-Tag gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen.

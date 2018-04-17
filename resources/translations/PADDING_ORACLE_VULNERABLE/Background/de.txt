@@ -1,1 +1,0 @@
-Ein Padding-Orakel-Angriff ist in der Kryptographie ein Angriff, der eine verschlüsselte Nachricht entschlüsselt. Dabei wird der Klartext entsprechend mit Code aufgefüllt, um mit dem zugrundeliegenden kryptographischen Grundelement kompatibel zu sein, damit dem Absender geantwortet werden kann. 

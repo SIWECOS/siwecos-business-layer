@@ -1,1 +1,0 @@
-[[Transport Layer Security|TLS-Verschlüsselung]] gilt heute als Standard. Sie sollten deshalb auf den Einsatz von [[SSL|SSL2]] verzichten. Weitere Informationen finden Sie hier: [https://www.siwecos.de/wiki/SSL SSL]

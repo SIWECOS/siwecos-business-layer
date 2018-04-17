@@ -1,1 +1,0 @@
-Ihre Webseite ist nicht ausreichend gegen Clickjacking-Angriffe geschützt.

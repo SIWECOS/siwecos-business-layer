@@ -1,1 +1,0 @@
-Um dieses Problem zu lösen sollten sie ein neues Zertifikat mit einer sicheren Hash-Funktion (starke Verschlüsselung) installieren. Wie Sie ein sicheres Zertifikat bekommen, lesen Sie hier: [[Zertifikate#Wie_wird_ein_SSL-Zertifikat_installiert.3F|Zertifikat installieren]].

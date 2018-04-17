@@ -1,1 +1,0 @@
-Ihre Webseite ist wahrscheinlich nicht ausreichend gegen XSS-Angriffe geschützt.

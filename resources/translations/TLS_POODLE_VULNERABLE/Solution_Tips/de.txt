@@ -1,1 +1,0 @@
-Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren Server ein. In der Apache-Konfiguration etwa kann man etwa die Zeile "SSLProtocol All -SSLv2 -SSLv3 " angeben.
