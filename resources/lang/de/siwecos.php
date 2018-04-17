@@ -187,7 +187,7 @@ return [
   'CSP_UNSAFE_INCLUDED'            => "Der Header ist unsicher gesetzt, da er `unsafe-inline`- oder `unsafe-eval`-Direktiven enthält.\n",
   //
   // CT_CORRECT
-  'CT_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  'CT_CORRECT'            => "Der Header \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
   //
   // CT_HEADER_WITHOUT_CHARSET
   'CT_HEADER_WITHOUT_CHARSET'            => "Der Header ist ohne Zeichensatzangabe gesetzt und dadurch nicht sicher.\n",
@@ -238,10 +238,10 @@ return [
   'SOURCES_FOUND'            => "Es wurden „Sources“ gefunden.\n",
   //
   // XCTO_CORRECT
-  'XCTO_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  'XCTO_CORRECT'            => "Der Header \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
   //
   // XCTO_NOT_CORRECT
-  'XCTO_NOT_CORRECT'            => "Der Header ist nicht korrekt gesetzt.\n",
+  'XCTO_NOT_CORRECT'            => "Der Header \"%HEADER%\" ist nicht korrekt gesetzt.\n",
   //
   // XFO_CORRECT
   'XFO_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
