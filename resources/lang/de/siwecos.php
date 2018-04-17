@@ -198,8 +198,8 @@ return [
   // CT_META_TAG_SET
   'CT_META_TAG_SET'            => "Die Header-Angabe ist gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen. Gefunden wurde \"%META%\".\n",
   //
-  // CT_META_TAG_SET_CORRECT
-  'CT_META_TAG_SET_CORRECT'            => "Die Header-Angabe \"%META%\" entspricht den Empfehlungen.\n",
+  // CT_META_TAG_SET_CORRECTRAW
+  'CT_META_TAG_SET_CORRECTRAW'            => "Die Header-Angabe \"%META%\" entspricht den Empfehlungen.\n",
   //
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
