@@ -238,10 +238,10 @@ return [
   'SOURCES_FOUND'            => "Es wurden „Sources“ gefunden.\n",
   //
   // XCTO_CORRECT
-  'XCTO_CORRECT'            => "Der Header \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  'XCTO_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
   //
   // XCTO_NOT_CORRECT
-  'XCTO_NOT_CORRECT'            => "Der Header \"%HEADER%\" ist nicht korrekt gesetzt.\n",
+  'XCTO_NOT_CORRECT'            => "Der Header ist nicht korrekt gesetzt.\n",
   //
   // XFO_CORRECT
   'XFO_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
