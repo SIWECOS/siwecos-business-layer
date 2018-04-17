@@ -196,10 +196,10 @@ return [
   'CT_HEADER_WITH_CHARSET'            => "Der Header ist korrekt gesetzt und beinhaltet eine Zeichensatz-Angabe.\n",
   //
   // CT_META_TAG_SET
-  'CT_META_TAG_SET'            => "Die Header-Angabe ist via `&lt;meta&gt;`-Tag gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen.\n",
+  'CT_META_TAG_SET'            => "Die Header-Angabe ist gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen. Gefunden wurde \"%META%\".\n",
   //
   // CT_META_TAG_SET_CORRECT
-  'CT_META_TAG_SET_CORRECT'            => "Die Header-Angabe ist via `&lt;meta&gt;`-Tag gesetzt und entspricht den Empfehlungen.\n",
+  'CT_META_TAG_SET_CORRECT'            => "Die Header-Angabe \"%META%\" entspricht den Empfehlungen.\n",
   //
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
