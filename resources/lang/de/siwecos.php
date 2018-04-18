@@ -124,6 +124,9 @@ return [
   // NO_HTTP_RESPONSE
   'NO_HTTP_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
   //
+  // NO_RESPONSE
+  'NO_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
+  //
   // NO_SOURCE_CODE
   'NO_SOURCE_CODE'            => "Keine Quelle gefunden.\n",
   //
