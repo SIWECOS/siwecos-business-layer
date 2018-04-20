@@ -77,7 +77,7 @@ return [
   'SWEET32_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch SWEET32\n",
   'SWEET32_VULNERABLE_ERROR'      => "Verwundbar durch SWEET32\n",
   'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer erlaubt teile der Kommunikation zu entschlüsseln falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
-  'SWEET32_VULNERABLE_TIPS'       => "<p>Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.\n</p>",
+  'SWEET32_VULNERABLE_TIPS'       => "<p>Wo es möglich ist, sollte man am besten ganz auf Triple-DES und Blowfish verzichten. Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.\n</p>",
   'SWEET32_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Sweet32-Schwachstelle/DE",
   //
   // TLS_POODLE_VULNERABLE
@@ -91,7 +91,7 @@ return [
   // Category: Fehler
   //
   // SCANNER_TIMEOUT
-  'SCANNER_TIMEOUT'            => "Der Scanner \"%scanner%\" wurde nach&#160;%timeoutvalue% Sekunden beendet, weil er kein Ergebnis geliefert hat.\n",
+  'SCANNER_TIMEOUT'            => "Der Scanner \"%scanner%\" wurde nach %timeoutvalue% Sekunden beendet, weil er kein Ergebnis geliefert hat.\n",
   //
   // TIMEOUT
   'TIMEOUT'            => "Zeitüberschreitung\n",
@@ -123,6 +123,9 @@ return [
   //
   // NO_HTTP_RESPONSE
   'NO_HTTP_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
+  //
+  // NO_RESPONSE
+  'NO_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
   //
   // NO_SOURCE_CODE
   'NO_SOURCE_CODE'            => "Keine Quelle gefunden.\n",
@@ -187,7 +190,7 @@ return [
   'CSP_UNSAFE_INCLUDED'            => "Der Header ist unsicher gesetzt, da er `unsafe-inline`- oder `unsafe-eval`-Direktiven enthält.\n",
   //
   // CT_CORRECT
-  'CT_CORRECT'            => "Der Header ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  'CT_CORRECT'            => "Der Header \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
   //
   // CT_HEADER_WITHOUT_CHARSET
   'CT_HEADER_WITHOUT_CHARSET'            => "Der Header ist ohne Zeichensatzangabe gesetzt und dadurch nicht sicher.\n",
@@ -196,10 +199,10 @@ return [
   'CT_HEADER_WITH_CHARSET'            => "Der Header ist korrekt gesetzt und beinhaltet eine Zeichensatz-Angabe.\n",
   //
   // CT_META_TAG_SET
-  'CT_META_TAG_SET'            => "Die Header-Angabe ist via `&lt;meta&gt;`-Tag gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen.\n",
+  'CT_META_TAG_SET'            => "Die Header-Angabe ist gesetzt, enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen. Gefunden wurde \"%META%\".\n",
   //
   // CT_META_TAG_SET_CORRECT
-  'CT_META_TAG_SET_CORRECT'            => "Die Header-Angabe ist via `&lt;meta&gt;`-Tag gesetzt und entspricht den Empfehlungen.\n",
+  'CT_META_TAG_SET_CORRECT'            => "Die Header-Angabe \"%META%\" entspricht den Empfehlungen.\n",
   //
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
@@ -316,48 +319,48 @@ return [
   // Category: INI_S
   //
   // MALWARE_FOUND
-  'MALWARE_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Malware-Listen gefunden:&#160;%where%\n",
+  'MALWARE_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Malware-Listen gefunden: %where%\n",
   //
   // PHISHING_FOUND
-  'PHISHING_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Phising-Listen gefunden:&#160;%where%\n",
+  'PHISHING_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Phising-Listen gefunden: %where%\n",
   //
   // SPAM_FOUND
-  'SPAM_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Spam-Listen gefunden:&#160;%where%\n",
+  'SPAM_FOUND'            => "Ihre Domain ‘%site%’ wurde in folgenden Spam-Listen gefunden: %where%\n",
   //
   // Category: Infoleak
   //
   // CMS_ONLY
-  'CMS_ONLY'            => "Das verwendete CMS&#160;%cms% wurde erkannt.\n",
+  'CMS_ONLY'            => "Das verwendete CMS %cms% wurde erkannt.\n",
   //
   // CMS_VERSION
-  'CMS_VERSION'            => "Das verwendete CMS&#160;%cms% und dessen Version&#160;%version% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'CMS_VERSION'            => "Das verwendete CMS %cms% und dessen Version %version% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
   //
   // CMS_VERSION_VULN
-  'CMS_VERSION_VULN'            => "Das verwendete CMS&#160;%cms% der Version&#160;%version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'CMS_VERSION_VULN'            => "Das verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // EMAIL_FOUND
-  'EMAIL_FOUND'            => "Die Email-Adresse&#160;%email_adress% wurde gefunden. Wollen Sie diese Email-Adresse wirklich veröffentlichen? Ein Angreifer kann dies für bspw. Phising-Angriffe nutzen.\n",
+  'EMAIL_FOUND'            => "Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie diese Email-Adresse wirklich veröffentlichen? Ein Angreifer kann dies für bspw. Phising-Angriffe nutzen.\n",
   //
   // JS_LIB_ONLY
-  'JS_LIB_ONLY'            => "Die verwendete JavaScript-Bibliothek&#160;%js_lib_name% in DOM-Node&#160;%node% mit dem Inhalt&#160;%node_content% wurde erkannt.\n",
+  'JS_LIB_ONLY'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
   //
   // JS_LIB_VERSION
-  'JS_LIB_VERSION'            => "Die verwendete JavaScript-Bibliothek&#160;%js_lib_name% mit der Version&#160;%js_lib_version% in DOM-Node&#160;%node% mit dem Inhalt&#160;%node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'JS_LIB_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
   //
   // JS_LIB_VULN_VERSION
-  'JS_LIB_VULN_VERSION'            => "Die verwendete JavaScript-Bibliothek&#160;%js_lib_name% mit der Version&#160;%js_lib_version% in DOM-Node&#160;%node% mit dem Inhalt&#160;%node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'JS_LIB_VULN_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // NUMBER_FOUND
-  'NUMBER_FOUND'            => "Die Telefonnummer&#160;%number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Phishing-Angriffe nutzen.\n",
+  'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Phishing-Angriffe nutzen.\n",
   //
   // PLUGIN_ONLY
-  'PLUGIN_ONLY'            => "Das verwendete CMS-Plugin&#160;%plugin% in DOM-Node&#160;%node% mit dem Inhalt&#160;%node_content% wurde erkannt.\n",
+  'PLUGIN_ONLY'            => "Das verwendete CMS-Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
   //
   // PLUGIN_VERSION
-  'PLUGIN_VERSION'            => "Das verwendete CMS-Plugin&#160;%plugin% mit der Version&#160;%plugin_version% in DOM-Node&#160;%node% mit dem Inhalt&#160;%node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'PLUGIN_VERSION'            => "Das verwendete CMS-Plugin %plugin% mit der Version %plugin_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
   //
   // PLUGIN_VERSION_VULN
-  'PLUGIN_VERSION_VULN'            => "Das verwendete CMS-Plugin&#160;%plugin% der Version&#160;%plugin_version% in DOM-node&#160;%node% mit dem Inhalt&#160;%node_content% erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'PLUGIN_VERSION_VULN'            => "Das verwendete CMS-Plugin %plugin% der Version %plugin_version% in DOM-node %node% mit dem Inhalt %node_content% erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // Category: Information-Leakage-Scanner
   //
@@ -365,8 +368,8 @@ return [
   'CMS'            => "Überprüfung auf Erkennbarkeit des verwendeten CMS.\n",
   'CMS_SUCCESS'    => "Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.\n",
   'CMS_ERROR'      => "Content Management System (CMS) erkennbar\n",
-  'CMS_ERROR_DESC' => "<p>Das verwendete [[[Content-Management-Systeme Content Management System]] kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
-  'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar.\n</p>",
+  'CMS_ERROR_DESC' => "<p>Das verwendete [[Content-Management-System-Gefunden/DE|Content Management System] kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
+  'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar, evtl. ist z.B. das WordPress Plugin \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP</a>\" interessant für Sie.\n</p><p><b>Weiteres Beispiel für WordPress:</b>\nDamit Angreifer oder Hacker z.B. nicht direkt die WordPress-Version auslesen können, kann man folgende Codezeile in der Datei <b>functions.php</b> ganz am Ende einfügen:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
   'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Gefunden/DE",
   //
   // CMS_PLUGINS
@@ -390,7 +393,7 @@ return [
   'JS_LIB_SUCCESS'    => "Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich nicht durch bekannte Schwachstellen angreifbar.\n",
   'JS_LIB_ERROR'      => "Unsichere JavaScript-Bibliothek gefunden.\n",
   'JS_LIB_ERROR_DESC' => "<p>Es wurde eine von Ihnen verwendete JavaScript-Bibliothek gefunden. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für Ihre Website zu suchen.\n</p>",
-  'JS_LIB_TIPS'       => "<p>Updaten Sie Ihre verwendeten Javascript Bibliotheken.\n</p>",
+  'JS_LIB_TIPS'       => "<p>Updaten Sie Ihre verwendeten Javascript Bibliotheken bzw. Framework.\n</p>",
   'JS_LIB_LINK'       => "https://siwecos.de/wiki/Javascript-Schwachstelle/DE",
   //
   // PHONE_NUMBER
@@ -529,13 +532,13 @@ return [
   'DES_SUITES'            => "Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES  (Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-middle Attacken.\n",
   //
   // EXPIRED
-  'EXPIRED'            => "Ihr Zertifikat ist am&#160;%DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  'EXPIRED'            => "Ihr Zertifikat ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
   //
   // EXPORT_SUITES
   'EXPORT_SUITES'            => "Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass sich vorsätzlich geschwächte kryptographische Funktionen (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>) nutzen lassen. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
   // HASH_ALGO
-  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen Hash-Algorithmus&#160;%HASH%. Das Zertifikat kann so sehr einfach gefälscht werden. Ein Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen Hash-Algorithmus jedoch nicht.\n",
+  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen Hash-Algorithmus %HASH%. Das Zertifikat kann so sehr einfach gefälscht werden. Ein Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen Hash-Algorithmus jedoch nicht.\n",
   //
   // HTTPS_RESPONSE
   'HTTPS_RESPONSE'            => "Der Server “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
@@ -544,7 +547,7 @@ return [
   'HTTPS_SUPPORTED'            => "Der Server “%HOST%“ scheint kein TLS zu unterstützen. Dies bedeutet das sie keinerlei Verschlüsselung einsetzen um ihre Daten von ihnen und die ihrer Kunden zu schützen.\n",
   //
   // NOT_YET_VALID
-  'NOT_YET_VALID'            => "Ihr Zertifikat wird erst am&#160;%DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  'NOT_YET_VALID'            => "Ihr Zertifikat wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
   //
   // NULL_SUITES
   'NULL_SUITES'            => "Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass zugelassen wird das unverschlüsselt über einen geschützten Kanal gesprochen werden kann. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
