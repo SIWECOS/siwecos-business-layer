@@ -186,7 +186,7 @@ class SiwecosScanController extends Controller {
 			if ( $item['has_error'] ) {
 				$errorRaw           = $item['complete_request']['errorMessage'];
 				$error              = array();
-				$error['report']    = __( 'siwecos.' . $errorRaw['placeholder'] );
+				$error['report']    = html_entity_decode(__( 'siwecos.' . $errorRaw['placeholder'] ));
 				$error['has_error'] = true;
 				$error['score']     = 0;
 				if ( array_key_exists( 'values', $errorRaw ) ) {
@@ -225,7 +225,8 @@ class SiwecosScanController extends Controller {
 					$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
 					$item['testDetails']  = collect( $item['testDetails'] );
 					$item['testDetails']->transform( function ( $item, $key ) {
-						$item['report'] = __( 'siwecos.' . $item['placeholder'] );
+						if (array_key_exists('placeholder', $item)){
+							$item['report'] = __( 'siwecos.' . $item['placeholder'] );
 						if ( array_key_exists( 'values', $item ) ) {
 							if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
 								foreach ( $item['values'] as $key => $value ) {
@@ -247,6 +248,8 @@ class SiwecosScanController extends Controller {
 							}
 							$item['name'] = $item['report'];
 						}
+						}
+
 
 						return $item;
 					} );
