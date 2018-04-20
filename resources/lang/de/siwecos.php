@@ -76,8 +76,8 @@ return [
   'SWEET32_VULNERABLE'            => "Überprüfung auf SWEET32 Schwachstelle\n",
   'SWEET32_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch SWEET32\n",
   'SWEET32_VULNERABLE_ERROR'      => "Verwundbar durch SWEET32\n",
-  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer erlaubt teile der Kommunikation zu entschlüsseln falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
-  'SWEET32_VULNERABLE_TIPS'       => "<p>Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.\n</p>",
+  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer erlaubt Teile der Kommunikation zu entschlüsseln falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
+  'SWEET32_VULNERABLE_TIPS'       => "<p>Wo es möglich ist, sollte man am besten ganz auf Triple-DES und Blowfish verzichten. Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.\n</p>",
   'SWEET32_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Sweet32-Schwachstelle/DE",
   //
   // TLS_POODLE_VULNERABLE
@@ -123,6 +123,9 @@ return [
   //
   // NO_HTTP_RESPONSE
   'NO_HTTP_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
+  //
+  // NO_RESPONSE
+  'NO_RESPONSE'            => "Die angegebene URL lieferte keine Antwort.\n",
   //
   // NO_SOURCE_CODE
   'NO_SOURCE_CODE'            => "Keine Quelle gefunden.\n",
@@ -348,7 +351,7 @@ return [
   'JS_LIB_VULN_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // NUMBER_FOUND
-  'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Phishing-Angriffe nutzen.\n",
+  'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Social Engineering (zwischenmenschliche Beeinflussungen) Angriffe einsetzen .\n",
   //
   // PLUGIN_ONLY
   'PLUGIN_ONLY'            => "Das verwendete CMS-Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
@@ -365,8 +368,8 @@ return [
   'CMS'            => "Überprüfung auf Erkennbarkeit des verwendeten CMS.\n",
   'CMS_SUCCESS'    => "Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.\n",
   'CMS_ERROR'      => "Content Management System (CMS) erkennbar\n",
-  'CMS_ERROR_DESC' => "<p>Das verwendete [[[Content-Management-Systeme Content Management System]] kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
-  'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar.\n</p>",
+  'CMS_ERROR_DESC' => "<p>Das verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-System-Gefunden/DE\" title=\"Content-Management-System-Gefunden/DE\">Content Management System</a> kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
+  'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar, evtl. ist z.B. das WordPress Plugin \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP</a>\" interessant für Sie.\n</p><p><b>Weiteres Beispiel für WordPress:</b>\nDamit Angreifer oder Hacker z.B. nicht direkt die WordPress-Version auslesen können, kann man folgende Codezeile in der Datei <b>functions.php</b> ganz am Ende einfügen:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
   'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Gefunden/DE",
   //
   // CMS_PLUGINS
@@ -390,7 +393,7 @@ return [
   'JS_LIB_SUCCESS'    => "Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich nicht durch bekannte Schwachstellen angreifbar.\n",
   'JS_LIB_ERROR'      => "Unsichere JavaScript-Bibliothek gefunden.\n",
   'JS_LIB_ERROR_DESC' => "<p>Es wurde eine von Ihnen verwendete JavaScript-Bibliothek gefunden. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für Ihre Website zu suchen.\n</p>",
-  'JS_LIB_TIPS'       => "<p>Updaten Sie Ihre verwendeten Javascript Bibliotheken.\n</p>",
+  'JS_LIB_TIPS'       => "<p>Updaten Sie Ihre verwendeten Javascript Bibliotheken bzw. Framework.\n</p>",
   'JS_LIB_LINK'       => "https://siwecos.de/wiki/Javascript-Schwachstelle/DE",
   //
   // PHONE_NUMBER
