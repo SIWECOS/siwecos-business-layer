@@ -136,7 +136,9 @@ class SiwecosUserController extends Controller {
 	}
 
 	protected static function createPassword( string $password ) {
+		$wp_hasher = new WpPasswordAuthentication( 8, true );
 
+		return $wp_hasher->HashPassword( trim( $password ) );
 	}
 
 	protected static function validatePassword( string $password, string $hash ) {
@@ -150,6 +152,7 @@ class SiwecosUserController extends Controller {
 		}
 		$wp_hasher = new WpPasswordAuthentication( 8, true );
 		$check     = $wp_hasher->CheckPassword( $password, $hash );
+
 		return $check;
 	}
 
