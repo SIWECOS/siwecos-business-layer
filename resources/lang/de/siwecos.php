@@ -351,7 +351,7 @@ return [
   'JS_LIB_VULN_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // NUMBER_FOUND
-  'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Phishing-Angriffe nutzen.\n",
+  'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Social Engineering (zwischenmenschliche Beeinflussungen) Angriffe einsetzen .\n",
   //
   // PLUGIN_ONLY
   'PLUGIN_ONLY'            => "Das verwendete CMS-Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
@@ -368,7 +368,7 @@ return [
   'CMS'            => "Überprüfung auf Erkennbarkeit des verwendeten CMS.\n",
   'CMS_SUCCESS'    => "Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.\n",
   'CMS_ERROR'      => "Content Management System (CMS) erkennbar\n",
-  'CMS_ERROR_DESC' => "<p>Das verwendete [[Content-Management-System-Gefunden/DE|Content Management System] kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
+  'CMS_ERROR_DESC' => "<p>Das verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-System-Gefunden/DE\" title=\"Content-Management-System-Gefunden/DE\">Content Management System</a> kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
   'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar, evtl. ist z.B. das WordPress Plugin \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP</a>\" interessant für Sie.\n</p><p><b>Weiteres Beispiel für WordPress:</b>\nDamit Angreifer oder Hacker z.B. nicht direkt die WordPress-Version auslesen können, kann man folgende Codezeile in der Datei <b>functions.php</b> ganz am Ende einfügen:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
   'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Gefunden/DE",
   //
