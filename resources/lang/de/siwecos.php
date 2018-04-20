@@ -76,7 +76,7 @@ return [
   'SWEET32_VULNERABLE'            => "Überprüfung auf SWEET32 Schwachstelle\n",
   'SWEET32_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch SWEET32\n",
   'SWEET32_VULNERABLE_ERROR'      => "Verwundbar durch SWEET32\n",
-  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer erlaubt teile der Kommunikation zu entschlüsseln falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
+  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch SWEET32, welcher es einem Angreifer erlaubt Teile der Kommunikation zu entschlüsseln falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
   'SWEET32_VULNERABLE_TIPS'       => "<p>Wo es möglich ist, sollte man am besten ganz auf Triple-DES und Blowfish verzichten. Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.\n</p>",
   'SWEET32_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Sweet32-Schwachstelle/DE",
   //
