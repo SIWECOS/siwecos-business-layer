@@ -1401,7 +1401,7 @@ msgstr ""
 # Placeholder: CMS
 # Purpose: Negative
 msgctxt "CMS_ERROR"
-msgid "Content Management System (CMS) erkennbar"
+msgid "Das von Ihnen verwendete Content Management System (CMS) ist erkennbar"
 msgstr ""
 
 
@@ -1467,7 +1467,10 @@ msgstr ""
 # Placeholder: CMS
 # Purpose: Details
 msgctxt "CMS_Details"
-msgid "Das CMS %cms% mit der Version %version% wurde detektiert."
+msgid ""
+"Die verwendete CMS %cms% und dessen Version %version% wurde "
+"detektiert. Die Angabe einer Version vereinfacht einem Angreifer "
+"das Vorbereiten eines Angriffs."
 msgstr ""
 
 
@@ -1475,7 +1478,10 @@ msgstr ""
 # Placeholder: CMS
 # Purpose: Technical
 msgctxt "CMS_Technical"
-msgid "Das verwendete CMS %cms% der Version %version% wurde detektiert."
+msgid ""
+"Die verwendete CMS %cms% und dessen Version %version% wurde "
+"detektiert. Die Angabe einer Version vereinfacht einem Angreifer "
+"das Vorbereiten eines Angriffs."
 msgstr ""
 
 
@@ -1483,7 +1489,7 @@ msgstr ""
 # Placeholder: CMS_PLUGINS
 # Purpose: Headline
 msgctxt "CMS_PLUGINS"
-msgid "Überprüfung auf unsichere CMS-Plugins"
+msgid "Überprüfung auf CMS-Plugins"
 msgstr ""
 
 
@@ -1499,7 +1505,7 @@ msgstr ""
 # Placeholder: CMS_PLUGINS
 # Purpose: Positive
 msgctxt "CMS_PLUGINS_SUCCESS"
-msgid "CMS-Plugins können nicht detektiert werden."
+msgid "Es konnten keine CMS-Plugins detektiert werden."
 msgstr ""
 
 
@@ -1507,7 +1513,7 @@ msgstr ""
 # Placeholder: CMS_PLUGINS
 # Purpose: Negative
 msgctxt "CMS_PLUGINS_ERROR"
-msgid "CMS Plugin detektiert"
+msgid "Ein verwendetes CMS Plugin wurde detektiert."
 msgstr ""
 
 
@@ -1516,9 +1522,9 @@ msgstr ""
 # Purpose: Description
 msgctxt "CMS_PLUGINS_ERROR_DESC"
 msgid ""
-"Es wurde in ihrem CMS-System installierte Plugins entdeckt. Ein Angreifer "
+"Es wurde ein in ihrem CMS-System installiertes Plugin entdeckt. Ein Angreifer "
 "könnte diese Information nutzen um gezielt nach Schwachstellen für ihre "
-"Webseite zu nutzen."
+"Webseite zu suchen."
 msgstr ""
 
 
@@ -1576,7 +1582,8 @@ msgstr ""
 # Purpose: Details
 msgctxt "CMS_PLUGINS_Details"
 msgid ""
-"Verwundbares Plugin %plugin% der Version %plugin_version% detektiert."
+"Das verwendete CMS Plugin %plugin% der Version %plugin_version% wurde detektiert."
+"Für diese Version ist eine Schwachstelle bekannt."
 msgstr ""
 
 
@@ -1585,8 +1592,8 @@ msgstr ""
 # Purpose: Technical
 msgctxt "CMS_PLUGINS_Technical"
 msgid ""
-"Verwundbares Plugin %plugin% der Version %plugin_version% in DOM-node "
-"%node% mit dem Inhalt %node_content% detektiert."
+"Ein verwundbares Plugin %plugin% der Version %plugin_version% im DOM-Node "
+"%node% mit dem Inhalt %node_content% wurde detektiert."
 msgstr ""
 
 
@@ -1971,7 +1978,7 @@ msgstr ""
 # Placeholder: EMAIL_ADDRESS
 # Purpose: Positive
 msgctxt "EMAIL_ADDRESS_SUCCESS"
-msgid "Keine Email-Adressen gefunden."
+msgid "Es konnte keine Email-Adresse gefunden werden."
 msgstr ""
 
 
@@ -1979,7 +1986,7 @@ msgstr ""
 # Placeholder: EMAIL_ADDRESS
 # Purpose: Negative
 msgctxt "EMAIL_ADDRESS_ERROR"
-msgid "Auslesbare Email-Adresse"
+msgid "Es können Email-Adressen auf Ihrer Webseite gefunden werden."
 msgstr ""
 
 
@@ -2064,7 +2071,9 @@ msgstr ""
 # Placeholder: EMAIL_ADDRESS
 # Purpose: Details
 msgctxt "EMAIL_ADDRESS_Details"
-msgid "Email-Adresse gefunden: %email_address%."
+msgid ""
+"Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie diese "
+"Email-Adresse wirklich veröffentlichen?"
 msgstr ""
 
 
@@ -2072,7 +2081,9 @@ msgstr ""
 # Placeholder: EMAIL_ADDRESS
 # Purpose: Technical
 msgctxt "EMAIL_ADDRESS_Technical"
-msgid "Email-Adresse: %email_address%."
+msgid ""
+"Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie "
+"diese Email-Adresse wirklich veröffentlichen?"
 msgstr ""
 
 
@@ -2686,7 +2697,7 @@ msgstr ""
 # Placeholder: JS_LIB
 # Purpose: Headline
 msgctxt "JS_LIB"
-msgid "Überprüfung auf unsichere JavaScript-Bibliotheken"
+msgid "Überprüfung von JavaScript-Bibliotheken"
 msgstr ""
 
 
@@ -2703,7 +2714,7 @@ msgstr ""
 # Purpose: Positive
 msgctxt "JS_LIB_SUCCESS"
 msgid ""
-"Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich "
+"Die JavaScript-Bibliotheken sind nach dem aktuellen Stand "
 "nicht durch bekannte Schwachstellen angreifbar."
 msgstr ""
 
@@ -2712,7 +2723,7 @@ msgstr ""
 # Placeholder: JS_LIB
 # Purpose: Negative
 msgctxt "JS_LIB_ERROR"
-msgid "Unsichere JavaScript-Bibliothek gefunden."
+msgid "Es wurde eine JavaScript-Bibliothek gefunden."
 msgstr ""
 
 
@@ -2776,8 +2787,9 @@ msgstr ""
 # Purpose: Details
 msgctxt "JS_LIB_Details"
 msgid ""
-"Verwundbare JavaScript-Bibliothek %js_lib_name% der Version "
-"%js_lib_version% detektiert."
+"Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version "
+"%js_lib_version% wurde detektiert. Die Angabe einer Version vereinfacht
+"einem Angreifer das Vorbereiten eines Angriffs."
 msgstr ""
 
 
@@ -2786,9 +2798,10 @@ msgstr ""
 # Purpose: Technical
 msgctxt "JS_LIB_Technical"
 msgid ""
-"Verwundbare JavaScript-Bibliothek %js_lib_name% der Version "
-"%js_lib_version% in DOM-node %node% mit dem Inhalt %node_content% "
-"detektiert."
+"Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version "
+"%js_lib_version% im DOM-Node %node% mit dem Inhalt %node_content% "
+"wurde detektiert. Die Angabe einer Version vereinfacht einem Angreifer "
+das Vorbereiten eines Angriffs."
 msgstr ""
 
 
@@ -3152,7 +3165,7 @@ msgstr ""
 # Placeholder: PHONE_NUMBER
 # Purpose: Positive
 msgctxt "PHONE_NUMBER_SUCCESS"
-msgid "Telefonnummern wurden nicht gefunden."
+msgid "Es konnte keine Telefonnummer gefunden werden."
 msgstr ""
 
 
@@ -3228,7 +3241,8 @@ msgstr ""
 # Purpose: Details
 msgctxt "PHONE_NUMBER_Details"
 msgid ""
-"Verwundbares Plugin %plugin% der Version %plugin_version% detektiert."
+"Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer
+"wirklich veröffentlichen?"
 msgstr ""
 
 
@@ -3237,8 +3251,8 @@ msgstr ""
 # Purpose: Technical
 msgctxt "PHONE_NUMBER_Technical"
 msgid ""
-"Verwundbares Plugin %plugin% der Version %plugin_version% in DOM-node "
-"%node% mit dem Inhalt %node_content% detektiert."
+"Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer
+"wirklich veröffentlichen?"
 msgstr ""
 
 
