@@ -309,7 +309,7 @@ return [
   'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE",
   //
   // X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => "	HTTP-Header X-Frame Optionen nicht gesetzt / <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a> Schutz\n",
+  'X_FRAME_OPTIONS'            => "	HTTP-Header X-Frame Optionen nicht gesetzt\n",
   'X_FRAME_OPTIONS_SUCCESS'    => "Der Header ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite gegen Clickjacking-Angriffe.\n",
   'X_FRAME_OPTIONS_ERROR'      => "HTTP-Header X-Frame Optionen nicht gesetzt.\n",
   'X_FRAME_OPTIONS_ERROR_DESC' => "<p>X-Frame-Options hilft dabei Angriffe über Framing-Mechanismen zu unterbinden. Dies gewährleistet bspw., dass <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a>-Angriffe größtenteils gemildert werden können. Darüber hinaus werden Downgrading-Angriffe wie etwa im Internet Explorer minimiert.\n</p>",
@@ -317,7 +317,7 @@ return [
   'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Schwachstelle/DE",
   //
   // X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => "Überprüfung ob der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting</a> Filter aktiviert und korrekt konfiguriert ist.\n",
+  'X_XSS_PROTECTION'            => "Überprüfung ob der Cross-Site Scripting Filter aktiviert und korrekt konfiguriert ist.\n",
   'X_XSS_PROTECTION_SUCCESS'    => "Der Cross-Site-Scripting (XSS) -Schutz des Webbrowsers ist auf Ihrer Seite aktiviert.\n",
   'X_XSS_PROTECTION_ERROR'      => "Cross-Site-Scripting Schutz nicht aktiviert oder unzureichend konfiguriert.\n",
   'X_XSS_PROTECTION_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection definiert wie in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> eingebaute XSS-Filter konfiguriert werden. Eine Default-Installation kann eine unzureichende Konfiguration offenbaren.\n</p>",
@@ -566,7 +566,7 @@ return [
   // Category: XSS-Scanner
   //
   // HAS_SINKS
-  'HAS_SINKS'            => "Überprüfung des <a href=\"/wiki/index.php?title=Javascript&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Javascript (Seite nicht vorhanden)\">JavaScript-Codes</a> nach DOMXSS-Sinks\n",
+  'HAS_SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
   'HAS_SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sinks erkannt.\n",
   'HAS_SINKS_ERROR'      => "Unsicheren JavaScript-Code verwendet (Sinks)\n",
   'HAS_SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
@@ -574,7 +574,7 @@ return [
   'HAS_SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE",
   //
   // HAS_SOURCES
-  'HAS_SOURCES'            => "Überprüfung des <a href=\"/wiki/index.php?title=Javascript&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Javascript (Seite nicht vorhanden)\">JavaScript-Codes</a> nach DOMXSS-Sources\n",
+  'HAS_SOURCES'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sources\n",
   'HAS_SOURCES_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für DOMXSS-Sources erkannt.\n",
   'HAS_SOURCES_ERROR'      => "Unsicheren JavaScript-Code verwendet (Sources)\n",
   'HAS_SOURCES_ERROR_DESC' => "<p>Bei der Überprüfung wurde mindestens eine Schwachstelle auf der Webseite gefunden, die von einer externen, möglicherweise nicht vertrauenswürdigen Quelle gesteuert werden könnte.\n</p>",
