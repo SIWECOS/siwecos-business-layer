@@ -192,7 +192,7 @@ return [
   'CSP_LEGACY_HEADER_SET'            => "Der veraltete Header `X-Content-Security-Policy` ist gesetzt. Der neue standardisierte Header ist `Content-Security-Policy`.\n",
   //
   // CSP_NO_UNSAFE_INCLUDED
-  'CSP_NO_UNSAFE_INCLUDED'            => "Der Header ist korrekt gesetzt und enthält keine `unsafe-`-Direktiven.\n",
+  'CSP_NO_UNSAFE_INCLUDED'            => "Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Security-Policy-Schwachstelle/DE\" title=\"Content-Security-Policy-Schwachstelle/DE\"> CSP</a> enthält keine unsafe- Direktiven, ist möglicherweise jedoch nicht sicher eingestellt.\n",
   //
   // CSP_UNSAFE_INCLUDED
   'CSP_UNSAFE_INCLUDED'            => "Der Header ist unsicher gesetzt, da er `unsafe-inline`- oder `unsafe-eval`-Direktiven enthält.\n",
@@ -595,7 +595,7 @@ return [
   'CERTIFICATE_NOT_SENT_BY_SERVER'            => "Überprüfung der Zertifikatsübermittlung\n",
   'CERTIFICATE_NOT_SENT_BY_SERVER_SUCCESS'    => "Server sendet ein Zertifikat\n",
   'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR'      => "Server sendet kein Zertifikat\n",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> hat kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> gesendet. Dies ist ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte seine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Konfiguration</a> überprüfen und ggfs. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/CIPHERSUITE_ANON\" title=\"CIPHERSUITE ANON\">anonyme Ciphersuites</a> ausschalten.\n</p>",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> hat kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> gesendet. Dies ist ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte seine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Konfiguration</a> überprüfen und ggfs. <a href=\"/wiki/index.php?title=CIPHERSUITE_ANON&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"CIPHERSUITE ANON (Seite nicht vorhanden)\">anonyme Ciphersuites</a> ausschalten.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_TIPS'       => "<p>Aktualisieren Sie dringend die von Ihnen eingesetzte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a>. Moderne Software erlaubt diese Art der Konfiguration nicht mehr.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_LINK'       => "https://siwecos.de/wiki/Zertifikat-Nicht-Gesendet/DE",
   //
