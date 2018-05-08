@@ -338,22 +338,22 @@ return [
   // Category: Infoleak
   //
   // CMS_ONLY
-  'CMS_ONLY'            => "Das verwendete CMS %cms% wurde erkannt.\n",
+  'CMS_ONLY'            => "Das von Ihnen verwendete Content Management System (%cms%) ist erkennbar.\n",
   //
   // CMS_VERSION
-  'CMS_VERSION'            => "Das verwendete CMS %cms% und dessen Version %version% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'CMS_VERSION'            => "Die verwendete CMS %cms% und dessen Version %version% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // CMS_VERSION_VULN
-  'CMS_VERSION_VULN'            => "Das verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'CMS_VERSION_VULN'            => "Die verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // EMAIL_FOUND
   'EMAIL_FOUND'            => "Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie diese Email-Adresse wirklich veröffentlichen? Ein Angreifer kann dies für bspw. Phising-Angriffe nutzen.\n",
   //
   // JS_LIB_ONLY
-  'JS_LIB_ONLY'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
+  'JS_LIB_ONLY'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // JS_LIB_VERSION
-  'JS_LIB_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'JS_LIB_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // JS_LIB_VULN_VERSION
   'JS_LIB_VULN_VERSION'            => "Die verwendete JavaScript-Bibliothek %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
@@ -362,18 +362,18 @@ return [
   'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für Social Engineering (zwischenmenschliche Beeinflussungen) Angriffe einsetzen .\n",
   //
   // PLUGIN_ONLY
-  'PLUGIN_ONLY'            => "Das verwendete CMS-Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.\n",
+  'PLUGIN_ONLY'            => "Das verwendete CMS Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // PLUGIN_VERSION
-  'PLUGIN_VERSION'            => "Das verwendete CMS-Plugin %plugin% mit der Version %plugin_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs.\n",
+  'PLUGIN_VERSION'            => "Das verwendete CMS Plugin %plugin% mit der Version %plugin_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // PLUGIN_VERSION_VULN
-  'PLUGIN_VERSION_VULN'            => "Das verwendete CMS-Plugin %plugin% der Version %plugin_version% in DOM-node %node% mit dem Inhalt %node_content% erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'PLUGIN_VERSION_VULN'            => "Das verwendete CMS Plugin %plugin% der Version %plugin_version% in DOM-node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // Category: Information-Leakage-Scanner
   //
   // CMS
-  'CMS'            => "Überprüfung auf Erkennbarkeit des verwendeten CMS.\n",
+  'CMS'            => "Überprüfung der CMS Version.\n",
   'CMS_SUCCESS'    => "Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.\n",
   'CMS_ERROR'      => "Content Management System (CMS) erkennbar\n",
   'CMS_ERROR_DESC' => "<p>Das verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-System-Gefunden/DE\" title=\"Content-Management-System-Gefunden/DE\">Content Management System</a> kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
@@ -381,7 +381,7 @@ return [
   'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Gefunden/DE",
   //
   // CMS_PLUGINS
-  'CMS_PLUGINS'            => "Überprüfung auf unsichere CMS-Plugins\n",
+  'CMS_PLUGINS'            => "Überprüfung auf CMS-Plugins\n",
   'CMS_PLUGINS_SUCCESS'    => "CMS-Plugins können nicht erkannt werden.\n",
   'CMS_PLUGINS_ERROR'      => "CMS Plugin erkannt\n",
   'CMS_PLUGINS_ERROR_DESC' => "<p>Es wurde ein von ihrem CMS-System genutztes Plugin entdeckt. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für ihre Website zu suchen.\n</p>",
@@ -397,7 +397,7 @@ return [
   'EMAIL_ADDRESS_LINK'       => "https://siwecos.de/wiki/Email-Adresse-Gefunden/DE",
   //
   // JS_LIB
-  'JS_LIB'            => "Überprüfung auf unsichere JavaScript-Bibliotheken\n",
+  'JS_LIB'            => "Überprüfung auf JavaScript-Bibliotheken\n",
   'JS_LIB_SUCCESS'    => "Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich nicht durch bekannte Schwachstellen angreifbar.\n",
   'JS_LIB_ERROR'      => "Unsichere JavaScript-Bibliothek gefunden.\n",
   'JS_LIB_ERROR_DESC' => "<p>Es wurde eine von Ihnen verwendete JavaScript-Bibliothek gefunden. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für Ihre Website zu suchen.\n</p>",
