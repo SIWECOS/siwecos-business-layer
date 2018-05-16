@@ -61,7 +61,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR'      => "Verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.heise.de/security/artikel/Poodle-So-funktioniert-der-Angriff-auf-die-Verschluesselung-2425250.html\">Padding-Oracle Angriff</a>, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
-  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen sie umgehend ein Update für ihre [Transport Layer Security|TLS Implementierung] auf ihren Server ein.\n</p>",
+  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen sie umgehend ein Update für ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS Implementierung</a> auf ihren Server ein.\n</p>",
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
   //
   // POODLE_VULNERABLE
