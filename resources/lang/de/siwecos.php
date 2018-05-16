@@ -14,14 +14,6 @@ return [
 	*/
 
   //
-  // Category: * NO CATEGORY *
-  //
-  // COULDNT_CONNECT
-  'COULDNT_CONNECT'            => "%domain% antwortet nicht.\n",
-  //
-  // COULDNT_RESOLVE_HOST
-  'COULDNT_RESOLVE_HOST'            => "%domain% ist unbekannt.\n",
-  //
   // Category: Angriffe
   //
   // BLEICHENBACHER_VULNERABLE
@@ -69,7 +61,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR'      => "Verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.heise.de/security/artikel/Poodle-So-funktioniert-der-Angriff-auf-die-Verschluesselung-2425250.html\">Padding-Oracle Angriff</a>, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
-  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen sie umgehend ein Update für ihre [Transport Layer Security|TLS Implementierung]] auf ihren Server ein.\n</p>",
+  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen sie umgehend ein Update für ihre [Transport Layer Security|TLS Implementierung] auf ihren Server ein.\n</p>",
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
   //
   // POODLE_VULNERABLE
@@ -107,6 +99,12 @@ return [
   'TIMEOUT_ERROR_DESC' => "<p>Eine Zeitüberschreitung bedeutet, dass der Scan ihrer Domain länger dauerte als ein Scan üblicherweise dauert.\n</p><p>Ursachen hierfür können unter anderem sein:\n</p><p>Ihr Server ist momentan nicht erreichbar oder überlastet\n</p><p>Unser Scanner Server ist momentan überlastet\n</p>",
   //
   // Category: Fehlermeldung
+  //
+  // COULDNT_CONNECT
+  'COULDNT_CONNECT'            => "%domain% antwortet nicht.\n",
+  //
+  // COULDNT_RESOLVE_HOST
+  'COULDNT_RESOLVE_HOST'            => "%domain% ist unbekannt.\n",
   //
   // DONT_LEAK_USER_CREDS
   'DONT_LEAK_USER_CREDS'            => "Sie sollten ihre Zugangsdaten (Name und Passwort) nicht übermitteln.\n",
