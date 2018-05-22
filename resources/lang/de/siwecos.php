@@ -17,7 +17,7 @@ return [
   // Category: Angriffe
   //
   // BLEICHENBACHER_VULNERABLE
-  'BLEICHENBACHER_VULNERABLE'            => "Überprüfung auf <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/RSA-Kryptosystem#Chosen-Ciphertext-Angriff\">Bleichenbacher</a> Schwachstelle\n",
+  'BLEICHENBACHER_VULNERABLE'            => "Überprüfung auf <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/RSA-Kryptosystem#Chosen-Ciphertext-Angriff\">Bleichenbacher</a> Schwachstelle. <span class=\"promarker\"></span>\n",
   'BLEICHENBACHER_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Bleichenbacher (ROBOT)\n",
   'BLEICHENBACHER_VULNERABLE_ERROR'      => "Verwundbar durch Bleichenbacher (ROBOT)\n",
   'BLEICHENBACHER_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen Bleichenbacher Angriff(ROBOT). Hierbei kann die Kommunikation entschlüsselt und bei der Übertragung die Nutzereingaben wie Passwörter im Klartext gelesen werden.\n</p>",
@@ -33,7 +33,7 @@ return [
   'CRIME_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Crime-Schwachstelle/DE",
   //
   // HEARTBLEED_VULNERABLE
-  'HEARTBLEED_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/Heartbleed\">Heartbleed</a> Schwachstelle.\n",
+  'HEARTBLEED_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/Heartbleed\">Heartbleed</a> Schwachstelle. <span class=\"promarker\"></span>\n",
   'HEARTBLEED_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Heartbleed\n",
   'HEARTBLEED_VULNERABLE_ERROR'      => "Verwundbar durch Heartbleed\n",
   'HEARTBLEED_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch Heartbleed. Dadurch kann ein Angreifer sensible Daten aus dem Arbeitsspeicher des Servers auslesen, wie z.B. geheime Schlüssel und Kundendaten.\n</p>",
@@ -41,7 +41,7 @@ return [
   'HEARTBLEED_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE",
   //
   // INVALID_CURVE_EPHEMERAL_VULNERABLE
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE'            => "Überprüfung auf die Ephemeral Invalid Curve Schwachstelle.\n",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE'            => "Überprüfung auf die Ephemeral Invalid Curve Schwachstelle. <span class=\"promarker\"></span>\n",
   'INVALID_CURVE_EPHEMERAL_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Ephemeral Invalid Curve Angriffe\n",
   'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR'      => "Verwundbar durch Ephemeral Invalid Curve Angriffe\n",
   'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.golem.de/news/verschluesselung-punkte-auf-der-falschen-elliptischen-kurve-1511-117643.html\">Ephemeral Invalid Curve Angriff</a>. Dadurch kann ein Angreifer die Verbindungen angreifen.\n</p>",
@@ -49,7 +49,7 @@ return [
   'INVALID_CURVE_EPHEMERAL_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE",
   //
   // INVALID_CURVE_VULNERABLE
-  'INVALID_CURVE_VULNERABLE'            => "Überprüfung auf die Invalid Curve Schwachstelle\n",
+  'INVALID_CURVE_VULNERABLE'            => "Überprüfung auf die Invalid Curve Schwachstelle. <span class=\"promarker\"></span>\n",
   'INVALID_CURVE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Invalid Curve Angriffe\n",
   'INVALID_CURVE_VULNERABLE_ERROR'      => "Verwundbar durch Invalid Curve Angriffe\n",
   'INVALID_CURVE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.golem.de/news/verschluesselung-punkte-auf-der-falschen-elliptischen-kurve-1511-117643.html\">Invalid Curve Angriff</a>. Dadurch kann ein Angreifer den geheimen Schlüssel ihres Zertifikats stehlen.\n</p>",
@@ -57,7 +57,7 @@ return [
   'INVALID_CURVE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE",
   //
   // PADDING_ORACLE_VULNERABLE
-  'PADDING_ORACLE_VULNERABLE'            => "Überprüfung auf die Padding-Oracle Schwachstelle\n",
+  'PADDING_ORACLE_VULNERABLE'            => "Überprüfung auf die Padding-Oracle Schwachstelle. <span class=\"promarker\"></span>\n",
   'PADDING_ORACLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR'      => "Verwundbar durch Padding Oracle Angriffe\n",
   'PADDING_ORACLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.heise.de/security/artikel/Poodle-So-funktioniert-der-Angriff-auf-die-Verschluesselung-2425250.html\">Padding-Oracle Angriff</a>, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
@@ -65,7 +65,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
   //
   // POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle <b>(pro)</b>\n",
+  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle <span class=\"promarker\"></span>\n",
   'POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR'      => "Verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen Poodle Angriff, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
