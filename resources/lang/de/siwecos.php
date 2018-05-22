@@ -65,7 +65,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
   //
   // POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle\n",
+  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle <b>(pro)</b>\n",
   'POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR'      => "Verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen Poodle Angriff, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
