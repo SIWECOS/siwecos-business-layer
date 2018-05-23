@@ -493,7 +493,7 @@ return [
   'CIPHERSUITE_ANON'            => "Überprüfung auf anonyme Verschlüsselungsmethodik.\n",
   'CIPHERSUITE_ANON_SUCCESS'    => "Kein Anonymer Schlüsselaustausch unterstützt\n",
   'CIPHERSUITE_ANON_ERROR'      => "Anonymer Schlüsselaustausch unterstützt\n",
-  'CIPHERSUITE_ANON_ERROR_DESC' => "<p>Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass eine unsichere Verschlüsselungsmethode (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suite</a>) ohne Rechtekontrolle bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n</p>",
+  'CIPHERSUITE_ANON_ERROR_DESC' => "<p>Ihr Webserver/ Ihre Webseite ist so konfiguriert, dass eine unsichere Verschlüsselungsmethode (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://siwecos.de/wiki/Cipher_Suite\">Ciphersuites</a>) ohne Rechtekontrolle bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n</p>",
   'CIPHERSUITE_ANON_TIPS'       => "<p>Deaktivieren Sie die Unterstützung des \"Anonymen Schlüsselaustauschs\" in der  Verschlüsselungsmethodik. In Konsequenz auf die bekannt gewordenen TLS Schwachstellen ist die wichtigste Regel, wann immer es geht, TLS 1.2 zu nutzen. SSL 3.0 sollte in Browser deaktiviert werden.\n</p>",
   'CIPHERSUITE_ANON_LINK'       => "https://siwecos.de/wiki/Schluesselaustauschverfahren/DE",
   //
