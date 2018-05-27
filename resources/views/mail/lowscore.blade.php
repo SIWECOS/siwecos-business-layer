@@ -1,4 +1,5 @@
 @component('mail::message')
+    <p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
     <p>Mit freundlichen Grüßen,</p>
     <p>Ihr SIWECOS Team</p>
