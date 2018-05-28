@@ -64,6 +64,17 @@ class SiwecosScanController extends Controller {
 		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return float
+	 */
+	public function GetTotalScore(int $id): float {
+		$response = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		return $response['weightedMedia'];
+	}
+
 	public function CreateNewFreeScan( Request $request ) {
 		$url = $request->json( 'domain' );
 	}
@@ -138,15 +149,16 @@ class SiwecosScanController extends Controller {
 	/**
 	 * @param int $id
 	 *
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @return mixed
 	 */
 	public function generatePdf( int $id ) {
 		$data = $this->generateReportData( $id );
 
 
+		/** @var Pdf $pdf */
 		$pdf = PDF::loadView( 'pdf.report', $data );
 
-		return $pdf->stream( 'report.pdf' );
+		return $pdf->output();
 
 	}
 
