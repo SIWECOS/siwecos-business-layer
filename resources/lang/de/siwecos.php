@@ -65,7 +65,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
   //
   // POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle <span class=\"promarker\"></span>\n",
+  'POODLE_VULNERABLE'            => "Überprüfung auf die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> Schwachstelle\n",
   'POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR'      => "Verwundbar durch Poodle\n",
   'POODLE_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch einen Poodle Angriff, welcher es einem Angreifer erlaubt die Kommunikation zu entschlüsseln.\n</p>",
@@ -372,7 +372,7 @@ return [
   //
   // CMS
   'CMS'            => "Überprüfung der CMS Version.\n",
-  'CMS_SUCCESS'    => "Falls Sie ein CMS verwenden, kann dieses nicht automatisiert erkannt werden.\n",
+  'CMS_SUCCESS'    => "Es können keine Aussagen über die Version Ihrer verwendeten CMS gemacht werden. Entsprechend kann nicht ermittelt werden, ob Sie eine verwundbare Version benutzen.\n",
   'CMS_ERROR'      => "Content Management System (CMS) erkennbar\n",
   'CMS_ERROR_DESC' => "<p>Das verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-System-Gefunden/DE\" title=\"Content-Management-System-Gefunden/DE\">Content Management System</a> kann identifiziert werden. Diese Information könnte von einem Angreifer genutzt werden, um gezielt nach Schwachstellen für dieses spezielle CMS zu suchen.\n</p>",
   'CMS_TIPS'       => "<p>Halten Sie installierte Webserver und das Content Management System immer auf dem aktuellsten Stand. Manche CMS-Systeme erlauben es Versionsinformationen zu verstecken. Nutzen sie dieses Feature falls verfügbar, evtl. ist z.B. das WordPress Plugin \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP</a>\" interessant für Sie.\n</p><p><b>Weiteres Beispiel für WordPress:</b>\nDamit Angreifer oder Hacker z.B. nicht direkt die WordPress-Version auslesen können, kann man folgende Codezeile in der Datei <b>functions.php</b> ganz am Ende einfügen:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
@@ -380,7 +380,7 @@ return [
   //
   // CMS_PLUGINS
   'CMS_PLUGINS'            => "Überprüfung auf CMS-Plugins\n",
-  'CMS_PLUGINS_SUCCESS'    => "CMS-Plugins können nicht erkannt werden.\n",
+  'CMS_PLUGINS_SUCCESS'    => "Es konnten keine CMS-Plugins erkannt werden. Angriffe mithilfe von Schwachstellen die in Plugins existieren sind somit unwahrscheinlicher.\n",
   'CMS_PLUGINS_ERROR'      => "CMS Plugin erkannt\n",
   'CMS_PLUGINS_ERROR_DESC' => "<p>Es wurde ein von ihrem CMS-System genutztes Plugin entdeckt. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für ihre Website zu suchen.\n</p>",
   'CMS_PLUGINS_TIPS'       => "<p>Plugins sollten auf jene beschränkt werden, die tatsächlich benötigt werden. Damit kann die Angriffsfläche erheblich reduzieren werden. Zudem sollten installierte Plugins immer auf dem aktuellsten Stand gehalten werden.\n</p>",
@@ -388,7 +388,7 @@ return [
   //
   // EMAIL_ADDRESS
   'EMAIL_ADDRESS'            => "Überprüfung auf vorhandene Email-Adressen\n",
-  'EMAIL_ADDRESS_SUCCESS'    => "Keine Email-Adressen gefunden.\n",
+  'EMAIL_ADDRESS_SUCCESS'    => "Es konnten keine Email-Adressen gefunden werden. Spam und Phishing Angriffe auf Ihre Email-Adressen sind somit weniger wahrscheinlich.\n",
   'EMAIL_ADDRESS_ERROR'      => "Auslesbare Email-Adresse\n",
   'EMAIL_ADDRESS_ERROR_DESC' => "<p>Ihre Webseite enthält mindestens eine maschinell auslesbare Email-Adresse. Dieses ermöglicht es Dritten, die hinterlegten Email-Adressen automatisiert durch WebCrawler (auch Spider, Searchbot oder Robot) zu sammeln und in einer internen Datenbank mit anderen Informationen zu Ihrer Webseite zusammenzufügen.\n</p>",
   'EMAIL_ADDRESS_TIPS'       => "<p>Hinterlegen Sie Ihre Kontaktadressen, bspw. im Impressum wie folgt: mail at siwecos.de / mail @ siwecos.de oder hinterlegen Sie die Information in einer Grafik-Datei.\n</p>",
@@ -396,7 +396,7 @@ return [
   //
   // JS_LIB
   'JS_LIB'            => "Überprüfung auf JavaScript-Bibliotheken\n",
-  'JS_LIB_SUCCESS'    => "Die JavaScript-Bibliotheken sind nach dem aktuellen Stand voraussichtlich nicht durch bekannte Schwachstellen angreifbar.\n",
+  'JS_LIB_SUCCESS'    => "Die JavaScript-Bibliotheken sind nach dem aktuellen Stand nicht durch bekannte Schwachstellen angreifbar.\n",
   'JS_LIB_ERROR'      => "Unsichere JavaScript-Bibliothek gefunden.\n",
   'JS_LIB_ERROR_DESC' => "<p>Es wurde eine von Ihnen verwendete JavaScript-Bibliothek gefunden. Ein Angreifer könnte diese Information nutzen, um gezielt nach Schwachstellen für Ihre Website zu suchen.\n</p>",
   'JS_LIB_TIPS'       => "<p>Updaten Sie Ihre verwendeten Javascript Bibliotheken bzw. Framework.\n</p>",
