@@ -20,7 +20,7 @@ class NotificationController extends Controller
 		$numericScore = $this->scanController->GetTotalScore($scanId);
 		\Log::info('SCORETEST: ' . $numericScore);
 		$devUser = User::whereEmail('mwege@byte5.de')->first();
-		$siwecosUser = User::whereEmail('stephan.hradek@eco.de');
+		$siwecosUser = User::whereEmail('botfrei@eco.de')->first();
 		if ($numericScore <= 50){
 			\Log::info('SEND MAIL TO ' . $devUser->email);
 			\Log::info('SEND MAIL TO ' . $siwecosUser->email);
