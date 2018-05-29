@@ -1,1 +1,0 @@
-Der Server hat kein Zertifikat gesendet. Dies ist ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte seine TLS-Konfiguration überprüfen und ggf. anonyme Ciphersuites ausschalten.

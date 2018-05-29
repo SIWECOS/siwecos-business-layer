@@ -1,1 +1,0 @@
-Nicht verwundbar durch Padding Oracle Angriffe

@@ -1,1 +1,0 @@
-Das Zertifikat zu deaktivieren ist nicht so ein guter Tipp. Ein Kunde sollte sein altes Zertifikat  einsetzen oder ein direkt gültiges Zertifikat verwenden. Wir sollte nicht empfehlen nicht zu verschlüsseln, sonst sind Kundendaten in direkter Gefahr.

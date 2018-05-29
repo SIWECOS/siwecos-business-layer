@@ -2,32 +2,34 @@
 
 namespace App\Notifications;
 
+use App\Http\Controllers\SiwecosScanController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class activationmail extends Notification
+class lowscore extends Notification
 {
     use Queueable;
 
-    var $token;
+    public $pdfAttachement;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct(string $token)
+	/**
+	 * Create a new notification instance.
+	 *
+	 * @param int $scanId
+	 */
+    public function __construct(int $scanId)
     {
         //
-        $this->token = $token;
+	    $scanController = new SiwecosScanController();
+	    $this->pdfAttachement = $scanController->generatePdf($scanId);
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,26 +40,26 @@ class activationmail extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-	        ->markdown('mail.registration', [
-            'activateurl' => route('activateurl', ['token' => $this->token]),
-            'email' => $notifiable->email,
-            'first_name' => $notifiable->first_name,
-            'last_name' => $notifiable->last_name,
-            'salutation_id' => $notifiable->salutation_id,
-          ])
-	        ->subject('[SIWECOS] Willkommen');
+	        ->markdown('mail.lowscore', [
+		        'email' => $notifiable->email,
+		        'first_name' => $notifiable->first_name,
+		        'last_name' => $notifiable->last_name,
+		        'salutation_id' => $notifiable->salutation_id,
+	        ])
+	        ->attachData($this->pdfAttachement, 'scanreport.pdf')
+	        ->subject('[SIWECOS] SCORE unter 50%');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

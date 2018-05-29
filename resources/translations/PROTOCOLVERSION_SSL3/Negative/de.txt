@@ -1,1 +1,0 @@
-Veraltete Protokollversion SSL3 unterstützt

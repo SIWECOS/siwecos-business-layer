@@ -1,17 +1,10 @@
 @component('mail::message')
 <p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
-<p>Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.</p>
+<p>Mit dieser Mail informieren wir Sie über das aktuelle Scan Ergebnis für Ihre Webseite.</p>
 
-<p>Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:</p>
+<p>Eine detaillierte Aufstellung der einzelnen Tests und den ausführlichen Sicherheitsbericht für Ihre Webseite finden Sie in der beigefügten PDF Datei.</p>
 
-@component('mail::button', [ 'url' => $reseturl, 'color' => 'red' ])
-Passwort zurücksetzen
-@endcomponent
-
-<p>Wenn Sie dies nicht selbst angestoßen haben, sind keine weiteren Maßnahmen nötig.</p>
-
-<p>Bitte antworten Sie nicht an diese Adresse.</p>
 
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>

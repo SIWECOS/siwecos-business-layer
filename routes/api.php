@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,21 +14,22 @@ use Illuminate\Http\Request;
 Route::prefix( 'v1' )->group( function () {
 	Route::Post( '/users/login', 'SiwecosUserController@loginUser' );
 	Route::Get( '/users/activate/{token}', 'SiwecosUserController@activateUserUrl' )->name( 'activateurl' );
-	Route::post( '/users/activate/resend', 'SiwecosUserController@resendActivationMail');
+	Route::post( '/users/activate/resend', 'SiwecosUserController@resendActivationMail' );
 	Route::Post( '/users/createCaptcha', 'SiwecosUserController@createCaptcha' );
-    Route::Post( '/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail' );
-    Route::Post( '/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest' );
+	Route::Post( '/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail' );
+	Route::Post( '/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest' );
 
-	Route::Get( '/freescan/{id}', 'SiwecosScanController@BrodcastScanResult');
-	Route::Get( '/freescan/result/{id}', 'SiwecosScanController@GetScanResultById');
-	Route::Get( '/domainscan', 'SiwecosScanController@GetSimpleOutput');
+	Route::Get( '/freescan/{id}', 'SiwecosScanController@BrodcastScanResult' );
+	Route::Get( '/freescan/result/{id}', 'SiwecosScanController@GetScanResultById' );
+	Route::Get( '/domainscan', 'SiwecosScanController@GetSimpleOutput' );
 
+	Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');
 	Route::middleware( [ 'mastertoken' ] )->group( function () {
 		Route::Post( '/users/create', 'SiwecosUserController@create' );
 		Route::Post( '/users/getToken', 'SiwecosUserController@getTokenByEmail' );
 		Route::Post( '/users/activateUser', 'SiwecosUserController@activateUser' );
 		Route::Post( '/users/updateTokenCredits', 'SiwecosUserController@updateCredits' )->middleware( 'usertoken' );
-		Route::post('/users/freeScan', 'SiwecosScanController@CreateNewFreeScan');
+		Route::post( '/users/freeScan', 'SiwecosScanController@CreateNewFreeScan' );
 	} );
 	Route::middleware( [ 'usertoken' ] )->group( function () {
 		Route::Post( '/users/getUserData', 'SiwecosUserController@getUserInfoByToken' );

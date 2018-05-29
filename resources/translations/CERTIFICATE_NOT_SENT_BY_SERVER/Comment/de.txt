@@ -1,1 +1,0 @@
-Ich denke nicht das wir noch Server scannen die diese Fehlkonfiguration haben. Der Test wird nur der Vollständigkeit halber durchgeführt.

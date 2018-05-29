@@ -1,1 +1,0 @@
-Gewöhnlich bestimmt Ihr Server die Verschlüsselungsmethodik des Clients, nicht anders herum. Ähnlich wie in der realen Welt haben Sie auf Ihrem Server Hausrecht - Sie bestimmen die Regeln, der Gast muss sich dran halten.

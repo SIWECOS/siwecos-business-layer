@@ -1,1 +1,0 @@
-Das verwendete CMS-Plugin %plugin% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt.

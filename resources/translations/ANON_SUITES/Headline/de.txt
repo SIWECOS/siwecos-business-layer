@@ -1,1 +1,0 @@
-Ihr Webserver/Ihre Webseite ist so konfiguriert, dass eine anonyme Verschlüsselungsmethodik ([[Cipher Suite]]) ohne Authentikation bei der Verbindung erfolgt. Dies ermöglicht [[Man-in-the-middle|Man-in-the-Middle Attacken]].

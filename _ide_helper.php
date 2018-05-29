@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.36 on 2018-03-07 13:52:15.
+ * Generated for Laravel 5.5.40 on 2018-04-24 10:37:39.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -12425,6 +12425,52 @@ namespace Arcanedev\NoCaptcha\Facades {
  
 }
 
+namespace niklasravnsborg\LaravelPdf\Facades { 
+
+    class Pdf {
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $html
+         * @return \niklasravnsborg\LaravelPdf\Pdf 
+         * @static 
+         */ 
+        public static function loadHTML($html, $config = array())
+        {
+            return \niklasravnsborg\LaravelPdf\PdfWrapper::loadHTML($html, $config);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return \niklasravnsborg\LaravelPdf\Pdf 
+         * @static 
+         */ 
+        public static function loadFile($file, $config = array())
+        {
+            return \niklasravnsborg\LaravelPdf\PdfWrapper::loadFile($file, $config);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \niklasravnsborg\LaravelPdf\Pdf 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array(), $config = array())
+        {
+            return \niklasravnsborg\LaravelPdf\PdfWrapper::loadView($view, $data, $mergeData, $config);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -14565,6 +14611,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Captcha extends \Arcanedev\NoCaptcha\Facades\NoCaptcha {}
+
+    class PDF extends \niklasravnsborg\LaravelPdf\Facades\Pdf {}
  
 }
 

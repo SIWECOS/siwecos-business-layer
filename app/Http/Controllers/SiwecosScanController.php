@@ -7,8 +7,10 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use PDF;
 
 class SiwecosScanController extends Controller {
 	/**
@@ -53,12 +55,24 @@ class SiwecosScanController extends Controller {
 
 	public function GetScanResultById( int $id ) {
 		//Validation if free scan
-		$response      = $this->coreApi->GetResultById( $id );
+		$response = $this->coreApi->GetResultById( $id );
+//		dd( $response );
 		$response      = $this->calculateScorings( $response );
 		$rawCollection = collect( $response );
 		App::setLocale( 'de' );
 
 		return response()->json( $this->translateResult( $rawCollection, 'de' ) );
+	}
+
+	/**
+	 * @param int $id
+	 *
+	 * @return float
+	 */
+	public function GetTotalScore(int $id): float {
+		$response = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		return $response['weightedMedia'];
 	}
 
 	public function CreateNewFreeScan( Request $request ) {
@@ -101,6 +115,7 @@ class SiwecosScanController extends Controller {
 
 			$rawCollection = collect( $response );
 
+//			dd("LOREM");
 			return response()->json( $this->translateResult( $rawCollection, $lang ) );
 		}
 
@@ -131,55 +146,137 @@ class SiwecosScanController extends Controller {
 
 	}
 
-	protected function translateResult( Collection $resultCollection, string $language ) {
+	/**
+	 * @param int $id
+	 *
+	 * @return mixed
+	 */
+	public function generatePdf( int $id ) {
+		$data = $this->generateReportData( $id );
+
+
+		/** @var Pdf $pdf */
+		$pdf = PDF::loadView( 'pdf.report', $data );
+
+		return $pdf->output();
+
+	}
+
+	/**
+	 * @param int $id
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function generateReport( int $id ) {
+		$data = $this->generateReportData( $id );
+
+		return View( 'pdf.report', $data );
+	}
+
+	private function generateReportData( int $id ) {
+		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		$rawCollection = collect( $response );
+		App::setLocale( 'de' );
+		Carbon::setLocale( 'de' );
+		setlocale( LC_TIME, 'German' );
+		$data = [
+			'data'   => $this->translateResult( $rawCollection )['scanners'],
+			'domain' => $response['domain'],
+			'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%M:%S' )
+		];
+
+		return $data;
+	}
+
+	protected function translateResult( Collection $resultCollection, string $language = 'de' ) {
 		$this->currentDomain = $resultCollection['domain'];
 		$scannerCollection   = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
-			$item['result']       = collect( $item['result'] );
-			$item['result']->transform( function ( $item, $key ) {
-				$namePlaceholder      = 'siwecos.' . $item['name'];
-				$item['link']         = __( $namePlaceholder . '_LINK' );
-				$item['description']  = $this->buildDescription( $namePlaceholder, $item['score'] );
-				$item['report']       = $this->buildReport( $namePlaceholder, $item['score'] );
-				$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
-				$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
-				$item['testDetails']  = collect( $item['testDetails'] );
-				$item['testDetails']->transform( function ( $item, $key ) {
-					$item['report'] = __( 'siwecos.' . $item['placeholder'] );
-					if ( array_key_exists( 'values', $item ) ) {
-						if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
-							foreach ( $item['values'] as $key => $value ) {
-								if ( is_array( $value ) ) {
-									if ( is_array( $value[0] ) ) {
-										$value = $value[0];
-									}
-									$value = implode( ',', $value );
+//			dd($item['scanner_type']);
+			if ( $item['has_error'] ) {
+				$errorRaw           = $item['complete_request']['errorMessage'];
+				$error              = array();
+				$error['report']    = html_entity_decode(__( 'siwecos.' . $errorRaw['placeholder'] ));
+				$error['has_error'] = true;
+				$error['score']     = 0;
+				if ( array_key_exists( 'values', $errorRaw ) ) {
+					if ( $errorRaw['values'] != null && self::isAssoc( $errorRaw['values'] ) ) {
+						foreach ( $errorRaw['values'] as $key => $value ) {
+							if ( is_array( $value ) ) {
+								if ( is_array( $value[0] ) ) {
+									$value = $value[0];
 								}
-								$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
+								$value = implode( ',', $value );
 							}
-						} else if ( $item['values'] != null ) {
-							foreach ( $item['values'] as $value ) {
-								if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
-									$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
-								}
-
-							}
+							$error['report'] = str_replace( '%' . $key . '%', $value, $error['report'] );
 						}
-						$item['name'] = $item['report'];
+					} else if ( $errorRaw['values'] != null ) {
+						foreach ( $errorRaw['values'] as $value ) {
+							if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
+								$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
+							}
+
+						}
 					}
+					$error['name'] = $error['report'];
+				}
+//				dd($error);
+				$item['result'] = collect( array( $error ) );
+
+				return $item;
+			} else {
+				$item['result'] = collect( $item['result'] );
+				$item['result']->transform( function ( $item, $key ) {
+					$namePlaceholder      = 'siwecos.' . $item['name'];
+					$item['link']         = __( $namePlaceholder . '_LINK' );
+					$item['description']  = $this->buildDescription( $namePlaceholder, $item['score'] );
+					$item['report']       = $this->buildReport( $namePlaceholder, $item['score'] );
+					$item['scoreTypeRaw'] = array_has( $item, 'scoreType' ) ? $item['scoreType'] : '';
+					$item['scoreType']    = array_has( $item, 'scoreType' ) ? __( 'siwecos.SCORE_' . $item['scoreType'] ) : '';
+					$item['testDetails']  = collect( $item['testDetails'] );
+					$item['testDetails']->transform( function ( $item, $key ) {
+						if (array_key_exists('placeholder', $item)){
+							$item['report'] = __( 'siwecos.' . $item['placeholder'] );
+						if ( array_key_exists( 'values', $item ) ) {
+							if ( $item['values'] != null && self::isAssoc( $item['values'] ) ) {
+								foreach ( $item['values'] as $key => $value ) {
+									if ( is_array( $value ) ) {
+										if ( is_array( $value[0] ) ) {
+											$value = $value[0];
+										}
+										$value = implode( ',', $value );
+									}
+									$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
+								}
+							} else if ( $item['values'] != null ) {
+								foreach ( $item['values'] as $value ) {
+									if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
+										$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
+									}
+
+								}
+							}
+							$item['name'] = $item['report'];
+						}
+						}
+
+
+						return $item;
+					} );
+					$item['name'] = __( 'siwecos.' . $item['name'] );
 
 					return $item;
 				} );
-				$item['name'] = __( 'siwecos.' . $item['name'] );
+			}
 
-				return $item;
-			} );
 
 			return $item;
 		} );
 		$resultCollection->put( 'scanners', $scannerCollection );
 
+//		dd($resultCollection);
 		return $resultCollection;
 	}
 
@@ -206,16 +303,16 @@ class SiwecosScanController extends Controller {
 						$hasCrit = true;
 					}
 				}
-				$totalScore += $scanner['total_score'];
-				$scanCount += 1;
+				$totalScore       += $scanner['total_score'];
+				$scanCount        += 1;
 				$scanner['score'] = $scanner['total_score'];
 			}
 
 
 		}
-		Log::info('Calculation: ' . $totalScore . '/' . $scanCount);
+		Log::info( 'Calculation: ' . $totalScore . '/' . $scanCount );
 		$results['hasCrit']       = $hasCrit;
-		$results['weightedMedia'] = $totalScore / $scanCount;
+		$results['weightedMedia'] = floor($totalScore / $scanCount);
 
 		return $results;
 	}

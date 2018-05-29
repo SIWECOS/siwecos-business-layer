@@ -1,1 +1,0 @@
-Deaktivieren Sie umgehend SSL3 auf ihrem Server!

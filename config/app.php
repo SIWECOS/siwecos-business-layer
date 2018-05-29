@@ -232,6 +232,6 @@ return [
 
     ],
 
-    'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://staging2.siwecos.de/willkommen-bei-siwecos/'),
-    'password_reset_uri' => env('PASSWORDRESETURI', 'https://staging2.siwecos.de/app/#processreset/')
+    'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://siwecos.de/willkommen-bei-siwecos/'),
+    'password_reset_uri' => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/')
 ];

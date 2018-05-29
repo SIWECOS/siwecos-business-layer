@@ -1,1 +1,0 @@
-Public-Key-Pins sind deaktiviert. Es ist ratsam, diese nicht oder nur nach Absprache mit einem Experten zu aktivieren.

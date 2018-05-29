@@ -1,1 +1,0 @@
-Spielen sie umgehend ein Update für ihre TLS Implementierung auf ihren Server ein.

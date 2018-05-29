@@ -1,1 +1,0 @@
-Es ist möglich die Version des CMS-System von außen auszulesen. Wenn das CMS-System nicht auf dem aktuellsten Software-Stand ist, haben Kriminelle die Möglichkeit diverse Sicherheitslücken zu nutzen, um das System zu kompromittieren und Schadcode zu hinterlegen.

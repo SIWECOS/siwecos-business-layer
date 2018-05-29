@@ -1,1 +1,0 @@
-Der Server hat kein [[Zertifikate|Zertifikat]] gesendet. Dies ist ungewöhnlich und sollte eigentlich nicht vorkommen. Der Server sollte seine [[Transport_Layer_Security|TLS-Konfiguration]] überprüfen und ggfs. [[CIPHERSUITE_ANON|anonyme Ciphersuites]] ausschalten.

@@ -1,1 +1,0 @@
-Ihr Server-Zertifikat nutzt den schwachen Hash-Algorithmus %HASH%. Das Zertifikat kann so sehr einfach gefälscht werden. Ein Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen Hash-Algorithmus jedoch nicht.

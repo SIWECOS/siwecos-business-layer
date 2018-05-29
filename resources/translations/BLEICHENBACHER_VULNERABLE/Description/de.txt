@@ -1,1 +1,0 @@
-Der Server ist verwundbar durch einen Bleichenbacher Angriff(ROBOT). Hierbei kann die Kommunikation entschlüsselt und bei der Übertragung die Nutzereingaben wie Passwörter im Klartext gelesen werden.

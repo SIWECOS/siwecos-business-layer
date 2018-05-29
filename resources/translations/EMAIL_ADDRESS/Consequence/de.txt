@@ -1,1 +1,0 @@
-Auch Kriminelle nutzen solche Crawler und sammeln z.B. auslesbare E-Mail-Adressen. Dies könnte vermehrt zu unerwünschtem [[Spam]] oder sogar zu einer gezielten [[Phishing|Phishing-Attacke]] führen.

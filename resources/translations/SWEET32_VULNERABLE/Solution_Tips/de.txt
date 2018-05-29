@@ -1,1 +1,0 @@
-Deaktivieren Sie [https://www.itwissen.info/Blockchiffre-block-cipher.html Blockchiffren] mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie SSLv2 und SSLv3 deaktiviert sind.
