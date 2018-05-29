@@ -1,6 +1,11 @@
 @component('mail::message')
 <p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
+<p>Mit dieser Mail informieren wir Sie über das aktuelle Scan Ergebnis für Ihre Webseite.</p>
+
+<p>Eine detaillierte Aufstellung der einzelnen Tests und den ausführlichen Sicherheitsbericht für Ihre Webseite finden Sie in der beigefügten PDF Datei.</p>
+
+
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
 @component('mail::footer')
