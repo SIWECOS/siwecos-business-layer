@@ -13,6 +13,7 @@ class lowscore extends Notification
     use Queueable;
 
     public $pdfAttachement;
+    public $domain;
 
 	/**
 	 * Create a new notification instance.
@@ -24,6 +25,7 @@ class lowscore extends Notification
         //
 	    $scanController = new SiwecosScanController();
 	    $this->pdfAttachement = $scanController->generatePdf($scanId);
+	    $this->domain = $scanController->getDomainName($scanId);
     }
 
     /**
@@ -53,7 +55,7 @@ class lowscore extends Notification
 		        'salutation_id' => $notifiable->salutation_id,
 	        ])
 	        ->attachData($this->pdfAttachement, 'scanreport.pdf')
-	        ->subject('[SIWECOS] SCORE unter 50%');
+	        ->subject('[SIWECOS] SCORE unter 50% für ' . $this->domain);
     }
 
     /**

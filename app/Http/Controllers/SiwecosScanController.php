@@ -75,11 +75,6 @@ class SiwecosScanController extends Controller {
 		return $response['weightedMedia'];
 	}
 
-	public function CreateNewFreeScan( Request $request ) {
-		$url = $request->json( 'domain' );
-	}
-
-
 	public function GetScanResultRaw( Request $request ) {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();
@@ -171,6 +166,12 @@ class SiwecosScanController extends Controller {
 		$data = $this->generateReportData( $id );
 
 		return View( 'pdf.report', $data );
+	}
+
+	public function getDomainName(int $id){
+		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		return $response['domain'];
 	}
 
 	private function generateReportData( int $id ) {
