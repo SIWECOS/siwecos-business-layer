@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Http\Controllers\SiwecosScanController;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -47,6 +48,7 @@ class lowscore extends Notification
      */
     public function toMail($notifiable)
     {
+    	$domainArray = parse_url($this->domain);
         return (new MailMessage)
 	        ->markdown('mail.lowscore', [
 		        'email' => $notifiable->email,
@@ -54,7 +56,7 @@ class lowscore extends Notification
 		        'last_name' => $notifiable->last_name,
 		        'salutation_id' => $notifiable->salutation_id,
 	        ])
-	        ->attachData($this->pdfAttachement, 'scanreport.pdf')
+	        ->attachData($this->pdfAttachement, 'SCAN ' . $domainArray['scheme'] . ' ' . $domainArray['host'] . ' ' . Carbon::now()->format('Y-m-d') . '.pdf')
 	        ->subject('[SIWECOS] SCORE unter 50% für ' . $this->domain);
     }
 
