@@ -57,7 +57,7 @@ class lowscore extends Notification
 		        'salutation_id' => $notifiable->salutation_id,
 	        ])
 	        ->attachData($this->pdfAttachement, 'SCAN ' . $domainArray['scheme'] . ' ' . $domainArray['host'] . ' ' . Carbon::now()->format('Y-m-d') . '.pdf')
-	        ->subject('[SIWECOS] SCORE unter 50% für ' . $this->domain);
+	        ->subject('[SIWECOS] ' . $this->domain . ' Sicherheitsreport');
     }
 
     /**
