@@ -1,16 +1,11 @@
 @component('mail::message')
 <p>Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},</p>
 
-<p>vielen Dank für Ihre Anmeldung bei Siwecos</p>
+<p>Mit dieser Mail informieren wir Sie über das aktuelle Scan Ergebnis für Ihre Webseite.</p>
 
-<p>Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link</p>
+<p>Eine detaillierte Aufstellung der einzelnen Tests und den ausführlichen Sicherheitsbericht für Ihre Webseite finden Sie in der beigefügten PDF Datei.</p>
 
-@component('mail::button', [ 'url' => $activateurl, 'color' => 'red' ])
-Aktivierung
-@endcomponent
 
-<p>Bitte antworten Sie nicht an diese Adresse.</p>
-<br>
 <p>Mit freundlichen Grüßen,</p>
 <p>Ihr SIWECOS Team</p>
 @component('mail::footer')
@@ -34,5 +29,5 @@ Aktivierung
 Das Projekt wird gefördert durch das Bundesministerium für Wirtschaft und Energie (BMWI) und hat zum Ziel die Webseitensicherheit für kleine und mittelständische Unternehmen langfristig zu erhöhen.<br>
 Siwecos bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
 mittelständische Unternehmen beim Betrieb von Webseiten mit Content Management Systemen.</p>
-  @endcomponent
-  @endcomponent
+@endcomponent
+@endcomponent
