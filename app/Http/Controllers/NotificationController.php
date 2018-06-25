@@ -19,14 +19,15 @@ class NotificationController extends Controller
 		\Log::info('START E_MAIL REPORT: ' . $scanId);
 		$numericScore = $this->scanController->GetTotalScore($scanId);
 		\Log::info('SCORETEST: ' . $numericScore);
-		$devUser = User::whereEmail('mwege@byte5.de')->first();
-		$siwecosUser = User::whereEmail('botfrei@eco.de')->first();
-		if ($numericScore <= 50){
-			\Log::info('SEND MAIL TO ' . $devUser->email);
-			\Log::info('SEND MAIL TO ' . $siwecosUser->email);
-			// INFORM USER AND SEND REPORT AS ATTACHEMENT
-			$devUser->notify(new lowscore($scanId));
-			$siwecosUser->notify(new lowscore($scanId));
+		$minimumscore= env('NOTIFICATION_LOW_SCORE', 50);
+		if ($numericScore < $minimumscore){
+			$recipients= env('NOTIFICATION_LOW_SCORE_RECIPIENTS', '');
+			foreach (preg_split("/[\s,]+/", $recipients) as $recipient) {
+				$siwecosUser = User::whereEmail($recipient)->first();
+				\Log::info('SEND MAIL TO ' . $siwecosUser->email);
+				// INFORM USER AND SEND REPORT AS ATTACHEMENT
+				$siwecosUser->notify(new lowscore($scanId));
+			}
 		}
 	}
 }

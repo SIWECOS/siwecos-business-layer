@@ -283,7 +283,8 @@ class SiwecosUserController extends Controller {
 			return response( 'Send', 200 );
 		}
 
-		return response( "User not Found", 404 );
+		return response( "Send", 200 );
+		// return response( "User not Found", 404 );
 	}
 
 	public function processForgotPasswordRequest( ProcessForgotPasswordRequest $request ) {

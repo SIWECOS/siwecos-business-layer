@@ -75,11 +75,6 @@ class SiwecosScanController extends Controller {
 		return $response['weightedMedia'];
 	}
 
-	public function CreateNewFreeScan( Request $request ) {
-		$url = $request->json( 'domain' );
-	}
-
-
 	public function GetScanResultRaw( Request $request ) {
 		$userToken = $request->header( 'userToken' );
 		$tokenUser = User::where( 'token', $userToken )->first();
@@ -173,6 +168,12 @@ class SiwecosScanController extends Controller {
 		return View( 'pdf.report', $data );
 	}
 
+	public function getDomainName(int $id){
+		$response      = $this->coreApi->GetResultById( $id );
+		$response      = $this->calculateScorings( $response );
+		return $response['domain'];
+	}
+
 	private function generateReportData( int $id ) {
 		$response      = $this->coreApi->GetResultById( $id );
 		$response      = $this->calculateScorings( $response );
@@ -248,12 +249,12 @@ class SiwecosScanController extends Controller {
 										}
 										$value = implode( ',', $value );
 									}
-									$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
+									$item['report'] = str_replace( '%' . $key . '%', htmlspecialchars($value), $item['report'] );
 								}
 							} else if ( $item['values'] != null ) {
 								foreach ( $item['values'] as $value ) {
 									if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
-										$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
+										$item['report'] = str_replace( '%' . $value['name'] . '%', htmlspecialchars($value['value']), $item['report'] );
 									}
 
 								}
