@@ -249,12 +249,12 @@ class SiwecosScanController extends Controller {
 										}
 										$value = implode( ',', $value );
 									}
-									$item['report'] = str_replace( '%' . $key . '%', $value, $item['report'] );
+									$item['report'] = str_replace( '%' . $key . '%', htmlspecialchars($value), $item['report'] );
 								}
 							} else if ( $item['values'] != null ) {
 								foreach ( $item['values'] as $value ) {
 									if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
-										$item['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $item['report'] );
+										$item['report'] = str_replace( '%' . $value['name'] . '%', htmlspecialchars($value['value']), $item['report'] );
 									}
 
 								}
