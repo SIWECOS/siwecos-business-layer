@@ -482,7 +482,7 @@ return [
   // Category: Verschlüsselungsmethode
   //
   // CIPHERSUITEORDER_ENFORCED
-  'CIPHERSUITEORDER_ENFORCED'            => "Überprüfung der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Client-Verschl%C3%BCsselungsmethodik/DE\" title=\"Client-Verschlüsselungsmethodik/DE\">Client-Verschlüsselungsmethodik</a>\n",
+  'CIPHERSUITEORDER_ENFORCED'            => "Überprüfung der Client-Verschlüsselungsmethodik\n",
   'CIPHERSUITEORDER_ENFORCED_SUCCESS'    => "Verantwortungsvolle Auswahl der Verschlüsselungsmethoden\n",
   'CIPHERSUITEORDER_ENFORCED_ERROR'      => "Verantwortungslose Auswahl der Verschlüsselungsmethoden\n",
   'CIPHERSUITEORDER_ENFORCED_ERROR_DESC' => "<p>Ihr Webserver / Ihre Webseite ist so konfiguriert, dass die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> des Webseiten-Besuchers bevorzugt wird, statt die Ihres Webservers. Server sollten die Auswahl der Verschlüsselungsmethoden nicht ihren Kunden überlassen, sondern aktiv starke Verbindungen auswählen.\n</p>",
@@ -498,7 +498,7 @@ return [
   'CIPHERSUITE_ANON_LINK'       => "https://siwecos.de/wiki/Schluesselaustauschverfahren/DE",
   //
   // CIPHERSUITE_DES
-  'CIPHERSUITE_DES'            => "Überprüfung auf DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DES_Verschl%C3%BCsselungsmethodik/DE\" title=\"DES Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a>\n",
+  'CIPHERSUITE_DES'            => "Überprüfung auf DES Verschlüsselungsmethodik\n",
   'CIPHERSUITE_DES_SUCCESS'    => "Keine veraltete DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> unterstützt\n",
   'CIPHERSUITE_DES_ERROR'      => "Veraltete DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> unterstützt\n",
   'CIPHERSUITE_DES_ERROR_DESC' => "<p>Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-middle Attacken.\n</p>",
@@ -564,7 +564,7 @@ return [
   // Category: XSS-Scanner
   //
   // HAS_SINKS
-  'HAS_SINKS'            => "Überprüfung des JavaScript-Codes nach <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS</a>\n",
+  'HAS_SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
   'HAS_SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
   'HAS_SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sinks\" title=\"Sinks\">Sinks</a>\n",
   'HAS_SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
