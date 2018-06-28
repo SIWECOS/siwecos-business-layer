@@ -501,7 +501,7 @@ return [
   'CIPHERSUITE_DES'            => "Überprüfung auf DES Verschlüsselungsmethodik\n",
   'CIPHERSUITE_DES_SUCCESS'    => "Keine veraltete DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> unterstützt\n",
   'CIPHERSUITE_DES_ERROR'      => "Veraltete DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> unterstützt\n",
-  'CIPHERSUITE_DES_ERROR_DESC' => "<p>Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-middle Attacken.\n</p>",
+  'CIPHERSUITE_DES_ERROR_DESC' => "<p>Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Ciphersuites</a>) unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle</a> Attacken.\n</p>",
   'CIPHERSUITE_DES_TIPS'       => "<p>Deaktivieren Sie die Unterstützung der DES <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> in Ihrer Webserver-Software.\n</p>",
   'CIPHERSUITE_DES_LINK'       => "https://siwecos.de/wiki/Schwaches-DES-Verschluesselungsprotokoll/DE",
   //
@@ -535,7 +535,7 @@ return [
   'ANON_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass eine anonyme <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> ohne Authentikation bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
   // DES_SUITES
-  'DES_SUITES'            => "Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES  (Ciphersuites) unterstützt. Dies ermöglicht Man-in-the-middle Attacken.\n",
+  'DES_SUITES'            => "Ihr Webserver / Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES  (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Ciphersuites)</a> unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
   // EXPIRED
   'EXPIRED'            => "Ihr Zertifikat ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
