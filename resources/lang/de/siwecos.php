@@ -339,10 +339,10 @@ return [
   'CMS_ONLY'            => "Das von Ihnen verwendete Content Management System (%cms%) ist erkennbar.\n",
   //
   // CMS_VERSION
-  'CMS_VERSION'            => "Die verwendete CMS %cms% und dessen Version %version% wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
+  'CMS_VERSION'            => "Die verwendete <b>CMS %cms% und dessen Version %version%</b> wurde erkannt. Die Angabe einer Version vereinfacht einem Angreifer das Vorbereiten eines Angriffs. Dies stellt jedoch nicht direkt eine Schwachstelle dar und bedarf einer genaueren Prüfung.\n",
   //
   // CMS_VERSION_VULN
-  'CMS_VERSION_VULN'            => "Die verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  'CMS_VERSION_VULN'            => "Die verwendete CMS <b> %cms% der Version %version% </b>wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
   // EMAIL_FOUND
   'EMAIL_FOUND'            => "Die Email-Adresse %email_adress% wurde gefunden. Wollen Sie diese Email-Adresse wirklich veröffentlichen? Ein Angreifer kann dies für bspw. Phising-Angriffe nutzen.\n",
