@@ -238,6 +238,11 @@ return [
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
+  // Category: Errormessage
+  //
+  // GENERAL_ERROR
+  'GENERAL_ERROR'            => "%ERRORTEXT%\n",
+  //
   // Category: General
   //
   // HTTPS_NOT_SUPPORTED

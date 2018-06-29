@@ -109,6 +109,9 @@ return [
   // DONT_LEAK_USER_CREDS
   'DONT_LEAK_USER_CREDS'            => "Sie sollten ihre Zugangsdaten (Name und Passwort) nicht übermitteln.\n",
   //
+  // GENERAL_ERROR
+  'GENERAL_ERROR'            => "%ERRORTEXT%\n",
+  //
   // HEADER_NOT_SET
   'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
   //
