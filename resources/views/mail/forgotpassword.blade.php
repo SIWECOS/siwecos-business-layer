@@ -1,6 +1,6 @@
 @component('mail::layout')
 @slot('header')
-@component('mail::header', ['url' => config('main_url') ])
+@component('mail::header', ['url' => config('app.main_url') ])
 SIWECOS
 @endcomponent
 @endslot
