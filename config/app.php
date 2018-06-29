@@ -233,5 +233,6 @@ return [
     ],
 
     'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://siwecos.de/willkommen-bei-siwecos/'),
-    'password_reset_uri' => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/')
+    'password_reset_uri' => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/'),
+    'main_url' => env('MAINURL', 'https://siwecos.de/')
 ];
