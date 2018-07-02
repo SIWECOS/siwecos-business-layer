@@ -15,7 +15,7 @@
 
     <style>
         .fullscore {
-          font-size: 98px;
+          font-size: 300%;
           float: right;
           text-align: right;
         }
