@@ -112,6 +112,9 @@ return [
   // GENERAL_ERROR
   'GENERAL_ERROR'            => "%ERRORTEXT%\n",
   //
+  // HEADER_ENCODING_ERROR
+  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER%</b> enthält nicht-verarbeitbare Zeichen.\n",
+  //
   // HEADER_NOT_SET
   'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
   //
