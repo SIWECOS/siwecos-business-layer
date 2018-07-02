@@ -238,6 +238,14 @@ return [
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
+  // Category: Errormessage
+  //
+  // GENERAL_ERROR
+  'GENERAL_ERROR'            => "%ERRORTEXT%\n",
+  //
+  // HEADER_ENCODING_ERROR
+  'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER%</b> contains characters which cannot be processed.\n",
+  //
   // Category: General
   //
   // HTTPS_NOT_SUPPORTED
