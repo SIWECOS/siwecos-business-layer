@@ -83,6 +83,9 @@
         <div class="col-print-3">
             <img src="{{URL::asset('img/siwecos-logo.png')}}" class="img-responsive" />
         </div>
+        <div class="col-print-2" style="text-align: right;">
+            {{$detail['weightedMedia']}}%
+        </div>
     </div>
     <div class="row">
         <h1>Report für {{$domain}}</h1>
