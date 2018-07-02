@@ -84,7 +84,7 @@
             <img src="{{URL::asset('img/siwecos-logo.png')}}" class="img-responsive" />
         </div>
         <div class="col-print-2" style="text-align: right;">
-            {{$detail['weightedMedia']}}%
+            {{$weightedMedia}}%
         </div>
     </div>
     <div class="row">
