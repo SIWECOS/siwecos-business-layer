@@ -390,7 +390,7 @@ return [
   'EMAIL_ADDRESS'            => "Überprüfung auf vorhandene Email-Adressen\n",
   'EMAIL_ADDRESS_SUCCESS'    => "Es konnten keine Email-Adressen gefunden werden. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Spam\" title=\"Spam\">Spam</a> und <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing</a> Angriffe auf Ihre Email-Adressen sind somit weniger wahrscheinlich.\n",
   'EMAIL_ADDRESS_ERROR'      => "Auslesbare Email-Adresse\n",
-  'EMAIL_ADDRESS_ERROR_DESC' => "<p>Ihre Webseite enthält mindestens eine maschinell auslesbare Email-Adresse. Dieses ermöglicht es Dritten, die hinterlegten Email-Adressen automatisiert durch WebCrawler (auch Spider, Searchbot oder Robot) zu sammeln und in einer internen Datenbank mit anderen Informationen zu Ihrer Webseite zusammenzufügen.\n</p>",
+  'EMAIL_ADDRESS_ERROR_DESC' => "<p>Ihre Webseite enthält mindestens eine maschinell auslesbare Email-Adresse. Dieses ermöglicht es Dritten, die hinterlegten Email-Adressen automatisiert durch WebCrawler ([[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crawler\" title=\"Crawler\">auch Spider, Searchbot oder Robot</a>) zu sammeln und in einer internen Datenbank mit anderen Informationen zu Ihrer Webseite zusammenzufügen.\n</p>",
   'EMAIL_ADDRESS_TIPS'       => "<p>Hinterlegen Sie Ihre Kontaktadressen, bspw. im Impressum wie folgt: mail at siwecos.de / mail @ siwecos.de oder hinterlegen Sie die Information in einer Grafik-Datei.\n</p>",
   'EMAIL_ADDRESS_LINK'       => "https://siwecos.de/wiki/Email-Adresse-Gefunden/DE",
   //
