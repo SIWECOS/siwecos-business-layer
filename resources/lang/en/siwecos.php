@@ -86,7 +86,7 @@ return [
   'TLS_POODLE_VULNERABLE_ERROR'      => "Vulnerable to TLS-POODLE\n",
   'TLS_POODLE_VULNERABLE_ERROR_DESC' => "<p>The <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> is vulnerable to a variant of the POODLE attack on <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a>, which allows an attacker to decrypt the communication.\n</p>",
   'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Update the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> on your server immediately. In the Apache configuration, you can specify the line \"SSLProtocol All -SSLv2 -SSLv3 \".\n</p>",
-  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Vulnerability/EN",
+  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Tls-Poodle-Vulnerability/EN",
   //
   // Category: Certificates
   //
