@@ -113,7 +113,7 @@ return [
   'GENERAL_ERROR'            => "%ERRORTEXT%\n",
   //
   // HEADER_ENCODING_ERROR
-  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER%</b> enthält nicht-verarbeitbare Zeichen.\n",
+  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER%</b> enthält <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Ersetzungszeichen/DE\" title=\"Ersetzungszeichen/DE\">nicht-verarbeitbare</a> Zeichen.\n",
   //
   // HEADER_NOT_SET
   'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
@@ -241,13 +241,13 @@ return [
   'INCLUDE_SUBDOMAINS'            => "`includeSubDomains` ist gesetzt.\n",
   //
   // NO_SINKS_FOUND
-  'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sinks\" title=\"Sinks\">Sinks</a>“ gefunden.\n",
+  'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
   //
   // NO_SOURCES_FOUND
   'NO_SOURCES_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources</a>“ gefunden.\n",
   //
   // SINKS_FOUND
-  'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sinks\" title=\"Sinks\">Sinks</a>“ gefunden.\n",
+  'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
   //
   // SOURCES_FOUND
   'SOURCES_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources</a>“ gefunden.\n",
@@ -292,7 +292,7 @@ return [
   'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP)\n",
   'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> ist aktiviert\n",
   'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden.\n",
-  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des Zertifikats das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von Key-Pinning wird für die von der Webseiten definierte Zeit lediglich das gespeicherte Zertifikat akzeptiert.\n</p>",
+  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des Zertifikats das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning</a> wird für die von der Webseiten definierte Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> akzeptiert.\n</p>",
   'PUBLIC_KEY_PINS_TIPS'       => "<p>pin-sha256=\"&lt;HASH&gt;\"; pin-sha256=\"&lt;HASH&gt;\"; max-age=2592000; includeSubDomains;\n<b>HPKP aktivieren</b> - Dieses Feature kann einfach aktiviert werden indem ein Public-Key-Pins HTTP-Header beim Aufruf der Seite über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> zurückgegeben wird. (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://developer.mozilla.org/de/docs/Web/Security/Public_Key_Pinning\">Weitere Infos</a>).\n</p><p><b>--snip</b>\n</p>\n<pre>Public-Key-Pins: pin-sha256=\"base64==\"; max-age=expireTime [; includeSubdomains][; report-uri=\"reportURI\"]</pre>\n<p><b>--snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den <b>HTTP-Security-Header-Scanner</b> Grün zu stimmen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE",
   //
@@ -300,7 +300,7 @@ return [
   'STRICT_TRANSPORT_SECURITY'            => "Überprüfung des HSTS Schutzes\n",
   'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Ihre Webseite ist ausschließlich über das sichere <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS-Protokoll</a> erreichbar. Kommunikation zwischen Ihrer Webseite und den Besuchern kann nicht abgehört und manipuliert werden.\n",
   'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS Schutz Fehler\n",
-  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p>Strict-Transport-Security (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/HTTP_Strict_Transport_Security\">HSTS</a>) stellt sicher, dass die Webseite für eine bestimmte Zeit lediglich über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> gesicherte Verbindung aufgerufen werden kann. Der Webseitenbetreiber kann diesbezüglich u.a. definieren, wie lange das Zeitinterval ist und ob diese Regelung auch für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Subdomains</a> gelten soll.\n</p>",
+  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p>Strict-Transport-Security (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Strict_Transport_Security\" title=\"HTTP Strict Transport Security\">HSTS</a>) stellt sicher, dass die Webseite für eine bestimmte Zeit lediglich über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> gesicherte Verbindung aufgerufen werden kann. Der Webseitenbetreiber kann diesbezüglich u.a. definieren, wie lange das Zeitinterval ist und ob diese Regelung auch für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Subdomains</a> gelten soll.\n</p>",
   'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) ist ein einfach zu integrierender Web-Security-Policy-Mechanismus.\n</p>\n<b>--snip</b><pre>\n# HTTP Strict Transport Security (HSTS) aktivieren\n# Pflichtangabe: „max-age“\n# Optional: „includeSubDomains“</pre>\n<pre>  <b>Header set Strict-Transport-Security „max-age=31556926, includeSubDomains“</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess -Datei aussehen kann, um den <b>HTTP-Security-Header-Scanner</b> Grün zu stimmen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/Keine-Verschluesselung-Gefunden/DE",
   //
@@ -572,7 +572,7 @@ return [
   // HAS_SINKS
   'HAS_SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
   'HAS_SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
-  'HAS_SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sinks\" title=\"Sinks\">Sinks</a>\n",
+  'HAS_SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>\n",
   'HAS_SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
   'HAS_SINKS_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen/DE\" title=\"Schwachstellen/DE\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
   'HAS_SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE",
