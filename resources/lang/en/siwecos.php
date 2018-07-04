@@ -70,7 +70,7 @@ return [
   'POODLE_VULNERABLE_ERROR'      => "Vulnerable to POODLE\n",
   'POODLE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to a POODLE attack, which allows an attacker to decrypt the communication.\n</p>",
   'POODLE_VULNERABLE_TIPS'       => "<p>Deactivate the outdated encryption protocol <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> on your server immediately!\n</p>",
-  'POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Vulnerability/EN",
+  'POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/POODLE-Vulnerability/EN",
   //
   // SWEET32_VULNERABLE
   'SWEET32_VULNERABLE'            => "Check for the Sweet32 vulnerability\n",
