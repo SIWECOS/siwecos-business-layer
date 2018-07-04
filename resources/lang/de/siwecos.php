@@ -220,10 +220,10 @@ return [
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
   //
   // HPKP_LESS_15
-  'HPKP_LESS_15'            => "Die öffentlichen Schlüssel sind für weniger als 15 Tage gepinnt.\n",
+  'HPKP_LESS_15'            => "Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselung\" title=\"Verschlüsselung\">öffentlichen Schlüssel</a> sind für weniger als 15 Tage <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">gepinnt</a>.\n",
   //
   // HPKP_MORE_15
-  'HPKP_MORE_15'            => "Die öffentlichen Schlüssel sind für mehr als 15 Tage gepinnt.\n",
+  'HPKP_MORE_15'            => "Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselung\" title=\"Verschlüsselung\">Schlüssel</a> sind für mehr als 15 Tage <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">gepinnt</a>.\n",
   //
   // HPKP_REPORT_URI
   'HPKP_REPORT_URI'            => "Eine `report-uri` ist gesetzt.\n",
