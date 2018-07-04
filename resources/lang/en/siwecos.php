@@ -65,7 +65,7 @@ return [
   'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Padding-Oracle-Vulnerability/EN",
   //
   // POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => "Check for the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">Poodle</a> vulnerability\n",
+  'POODLE_VULNERABLE'            => "Check for the Poodle vulnerability\n",
   'POODLE_VULNERABLE_SUCCESS'    => "Not vulnerable to POODLE\n",
   'POODLE_VULNERABLE_ERROR'      => "Vulnerable to POODLE\n",
   'POODLE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to a POODLE attack, which allows an attacker to decrypt the communication.\n</p>",
