@@ -219,6 +219,32 @@ class SiwecosScanController extends Controller {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 //			dd($item['scanner_type']);
 			if ( $item['has_error'] ) {
+				$errorRaw           = $item['complete_request']['errorMessage'];
+				$error              = array();
+				$error['report']    = html_entity_decode(__( 'siwecos.' . $errorRaw['placeholder'] ));
+				$error['has_error'] = true;
+				$error['score']     = 0;
+				if ( array_key_exists( 'values', $errorRaw ) ) {
+					if ( $errorRaw['values'] != null && self::isAssoc( $errorRaw['values'] ) ) {
+						foreach ( $errorRaw['values'] as $key => $value ) {
+							if ( is_array( $value ) ) {
+								if ( is_array( $value[0] ) ) {
+									$value = $value[0];
+								}
+								$value = implode( ',', $value );
+							}
+							$error['report'] = str_replace( '%' . $key . '%', $value, $error['report'] );
+						}
+					} else if ( $errorRaw['values'] != null ) {
+						foreach ( $errorRaw['values'] as $value ) {
+							if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
+								$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
+							}
+
+						}
+					}
+					$error['name'] = $error['report'];
+				}
 //				dd($error);
 				$item['result'] = collect( array( $error ) );
 

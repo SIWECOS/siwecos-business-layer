@@ -79,7 +79,7 @@
           text-align: right;
         }
         div.fullscore div.percent{
-          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="300%">{{score}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$big_arc}} 1 {{$score_x}},{{$score_y}}" stroke="{{$score_col}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="300%">{{$score}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$big_arc}} 1 {{$score_x}},{{$score_y}}" stroke="{{$score_col}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
           width: 25mm;
           height: 25mm;
         }
@@ -142,4 +142,3 @@
     @endforeach
 </div>
 </body>
-
