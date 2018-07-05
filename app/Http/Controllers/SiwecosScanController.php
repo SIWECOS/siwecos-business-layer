@@ -191,11 +191,12 @@ class SiwecosScanController extends Controller
         App::setLocale('de');
         Carbon::setLocale('de');
         setlocale(LC_TIME, 'German');
-        $data = $this->gaugeData($response['weightedMedia']);
-        $data['data']   = $this->translateResult($rawCollection)['scanners'];
-        $data['domain'] = $response['domain'];
-        $data['date']   = Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S');
-
+				$data = [
+					'data'   => $this->translateResult( $rawCollection )['scanners'],
+					'domain' => $response['domain'],
+					'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%M:%S' ),
+					'gauge'  => $this->gaugeData($response['weightedMedia']),
+				];
         return $data;
     }
 
