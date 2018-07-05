@@ -14,11 +14,6 @@
     <![endif]-->
 
     <style>
-        .fullscore {
-          font-size: 300%;
-          float: right;
-          text-align: right;
-        }
         .col-print-1 {
             width: 8%;
             float: left;
@@ -79,17 +74,36 @@
             width: 100%;
             float: left;
         }
+        div.fullscore {
+          float: right;
+          text-align: right;
+        }
+        div.fullscore div.percent{
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="300%">{{score}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$big_arc}} 1 {{$score_x}},{{$score_y}}" stroke="{{$score_col}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
+          width: 25mm;
+          height: 25mm;
+        }
+        div.percent {
+          background-size: cover;
+          background-repeat:no-repeat;
+          width: 45px;
+          height: 45px;
+          display:table;
+        }
+        .siwecos-logo {
+          height: 25mm;
+        }
     </style>
 
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-print-3">
-            <img src="{{URL::asset('img/siwecos-logo.png')}}" class="img-responsive" />
+        <div class="col-print-10">
+            <img src="{{URL::asset('img/siwecos-logo-big.png')}}" class="siwecos-logo" />
         </div>
         <div class="col-print-2 fullscore">
-            {{$weightedmedia}}%
+          <div class="percent">&nbsp;</div>
         </div>
     </div>
     <div class="row">
@@ -128,3 +142,4 @@
     @endforeach
 </div>
 </body>
+

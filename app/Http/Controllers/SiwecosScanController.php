@@ -181,49 +181,44 @@ class SiwecosScanController extends Controller {
 		App::setLocale( 'de' );
 		Carbon::setLocale( 'de' );
 		setlocale( LC_TIME, 'German' );
-		$data = [
-			'weightedmedia'  => $response['weightedMedia'],
-			'data'   => $this->translateResult( $rawCollection )['scanners'],
-			'domain' => $response['domain'],
-			'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%M:%S' )
-		];
+		$data = $this->gaugeData($response['weightedMedia']);
+		$data['data']   = $this->translateResult( $rawCollection )['scanners'];
+		$data['domain'] = $response['domain'];
+		$data['date']   = Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%M:%S' );
 
 		return $data;
 	}
 
+	public function gaugeData($score) {
+		// Radius of gauge - Fixed! Scaling is done via CSS
+		$radius= 50;
+		// Start gauge at 180deg+45deg
+		$origin= pi()*0.25;
+		// Spread 100% over 270deg
+		$factor= pi()*1.5/100;
+		// Degrees for the percentage
+		$deg= $score * $factor;
+		// red part of color
+		$red= floor(min((100-$score)/25,1)*255);
+		// green part of color
+		$green= floor(min($score/75,1)*255);
+		return [
+			'score'     => $score,
+			'score_x'   => -cos($deg - $origin) * $radius,
+			'score_y'   => -sin($deg - $origin) * $radius,
+			'score_col' => sprintf("#%02x%02x%02x", $red, $green, 0 /*blue*/),
+			'big_arc'   => $deg > pi() ? 1 : 0
+		];
+	}
+
 	protected function translateResult( Collection $resultCollection, string $language = 'de' ) {
+		Log::info(var_export($resultCollection, true));
 		$this->currentDomain = $resultCollection['domain'];
 		$scannerCollection   = collect( $resultCollection['scanners'] );
 		$scannerCollection->transform( function ( $item, $key ) {
 			$item['scanner_type'] = __( 'siwecos.SCANNER_NAME_' . $item['scanner_type'] );
 //			dd($item['scanner_type']);
 			if ( $item['has_error'] ) {
-				$errorRaw           = $item['complete_request']['errorMessage'];
-				$error              = array();
-				$error['report']    = html_entity_decode(__( 'siwecos.' . $errorRaw['placeholder'] ));
-				$error['has_error'] = true;
-				$error['score']     = 0;
-				if ( array_key_exists( 'values', $errorRaw ) ) {
-					if ( $errorRaw['values'] != null && self::isAssoc( $errorRaw['values'] ) ) {
-						foreach ( $errorRaw['values'] as $key => $value ) {
-							if ( is_array( $value ) ) {
-								if ( is_array( $value[0] ) ) {
-									$value = $value[0];
-								}
-								$value = implode( ',', $value );
-							}
-							$error['report'] = str_replace( '%' . $key . '%', $value, $error['report'] );
-						}
-					} else if ( $errorRaw['values'] != null ) {
-						foreach ( $errorRaw['values'] as $value ) {
-							if ( is_array( $value ) && array_key_exists( 'name', $value ) ) {
-								$error['report'] = str_replace( '%' . $value['name'] . '%', $value['value'], $error['report'] );
-							}
-
-						}
-					}
-					$error['name'] = $error['report'];
-				}
 //				dd($error);
 				$item['result'] = collect( array( $error ) );
 
