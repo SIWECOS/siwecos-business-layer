@@ -103,6 +103,11 @@
     }
 
     @endforeach
+    div.row.list-item {
+      display: list-item;
+      list-style: disc outside;
+      margin-left: 2em;
+    }
   </style>
 
 </head>
@@ -122,7 +127,6 @@
       <p>{{$date}}</p>
     </div>
     @foreach ($data as $result)
-
     <div class="row">
       <div class="col-print-10">
         <h3>{{$result['scanner_type']}}</h3>
@@ -130,26 +134,24 @@
       <div class="col-print-2 score">
         <div class="percent {{$result['scanner_code']}}">&nbsp;</div>
       </div>
-
-      <ul>
-        @foreach ($result['result'] as $detail)
-        <li>
-          <div class="row">
-            <div class="col-print-10">
-              {!! $detail['name'] !!}
-              @if (!$result['has_error'])
-              <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
-              @endif
-            </div>
-            <div class="col-print-2" style="text-align: right;">
-              {{$detail['score']}}%
-            </div>
-          </div>
-        </li>
-        @endforeach
-      </ul>
     </div>
-
+    <ul>
+      @foreach ($result['result'] as $detail)
+      <li>
+        <div class="row">
+          <div class="col-print-10">
+            {!! $detail['name'] !!}
+            @if (!$result['has_error'])
+            <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
+            @endif
+          </div>
+          <div class="col-print-2" style="text-align: right;">
+            {{$detail['score']}}%
+          </div>
+        </div>
+      </li>
+      @endforeach
+    </ul>
     @endforeach
   </div>
 </body>
