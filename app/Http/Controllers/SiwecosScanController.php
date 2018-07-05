@@ -195,7 +195,7 @@ class SiwecosScanController extends Controller
 					'data'   => $this->translateResult( $rawCollection )['scanners'],
 					'domain' => $response['domain'],
 					'date'   => Carbon::parse( $response['scanFinished']['date'] )->formatLocalized( '%A %d %B %Y %H:%M:%S' ),
-					'gauge'  => $this->gaugeData($response['weightedMedia']),
+					'gauge'  => $response['gauge'],
 				];
         return $data;
     }
@@ -340,13 +340,15 @@ class SiwecosScanController extends Controller
                 }
                 $totalScore       += $scanner['total_score'];
                 $scanCount        += 1;
-                $scanner['score'] = $scanner['total_score'];
+								$scanner['score'] = $scanner['total_score'];
+								$scanner['gauge'] = $this->gaugeData($scanner['total_score']);
+								$scanner['scanner_code']= \preg_replace('/\s+/','_', $scanner['scanner_type']);
             }
         }
         Log::info('Calculation: ' . $totalScore . '/' . $scanCount);
         $results['hasCrit']       = $hasCrit;
         $results['weightedMedia'] = floor($totalScore / $scanCount);
-
+				$results['gauge']         = $this->gaugeData($results['weightedMedia']);
         return $results;
     }
 
