@@ -81,7 +81,7 @@
     }
 
     div.fullscore div.percent {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="300%">{{$gauge['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$gauge['big_arc']}} 1 {{$gauge['score_x']}},{{$gauge['score_y']}}" stroke="{{$gauge['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="250%">{{$gauge['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$gauge['big_arc']}} 1 {{$gauge['score_x']}},{{$gauge['score_y']}}" stroke="{{$gauge['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
       width: 25mm;
       height: 25mm;
     }
@@ -99,7 +99,7 @@
     }
 
     @foreach($data as $result) div.{{$result['scanner_code']}} {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="300%">{{$result['gauge']['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$result['gauge']['big_arc']}} 1 {{$result['gauge']['score_x']}},{{$result['gauge']['score_y']}}" stroke="{{$result['gauge']['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="250%">{{$result['gauge']['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$result['gauge']['big_arc']}} 1 {{$result['gauge']['score_x']}},{{$result['gauge']['score_y']}}" stroke="{{$result['gauge']['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
     }
 
     @endforeach
