@@ -225,7 +225,6 @@ class SiwecosScanController extends Controller
 
     protected function translateResult(Collection $resultCollection, string $language = 'de')
     {
-        Log::info(var_export($resultCollection, true));
         $this->currentDomain = $resultCollection['domain'];
         $scannerCollection   = collect($resultCollection['scanners']);
         $scannerCollection->transform(function ($item, $key) {
