@@ -218,7 +218,7 @@ class SiwecosScanController extends Controller
             'score'     => $score,
             'score_x'   => -cos($deg - $origin) * $radius,
             'score_y'   => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf("#%02x%02x%02x", $red, $green, 0 /*blue*/),
+						'score_col' => sprintf("%%23%02x%02x%02x", $red, $green, 0 /*blue*/),
             'big_arc'   => $deg > pi() ? 1 : 0
         ];
     }
