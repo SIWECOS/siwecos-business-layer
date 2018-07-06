@@ -17,6 +17,7 @@
         .fullscore {
           font-size: 300%;
           float: right;
+          text-align: right;
         }
         .col-print-1 {
             width: 8%;
@@ -87,7 +88,7 @@
         <div class="col-print-3">
             <img src="{{URL::asset('img/siwecos-logo.png')}}" class="img-responsive" />
         </div>
-        <div class="col-print-2 fullscore" style="text-align: right;">
+        <div class="col-print-2 fullscore">
             {{$weightedmedia}}%
         </div>
     </div>
