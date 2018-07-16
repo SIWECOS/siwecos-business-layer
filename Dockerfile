@@ -19,6 +19,7 @@ ENV    CORE_URL=siwecoscoreapi:8666
 ENV    CORE_MASTER_TOKEN=KFHN1NwMkiLtlZ9UXZZrbAoT
 ENV    NOCAPTCHA_SECRET=6LeBUUIUAAAAAIwhnHguJ6Ci4gxLhI1gp8b_j0io
 ENV    NOCAPTCHA_SITEKEY=6LeBUUIUAAAAACB6RUnQUD8SxbC_YoU5i8RMQBb2
+ENV    APP_ENV=prod
 #RUN php artisan migrate
 
 #RUN php artisan create:mastertoken
