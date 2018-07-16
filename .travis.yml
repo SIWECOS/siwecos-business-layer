@@ -29,5 +29,5 @@ jobs:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t siwecos-business-layer .
       - docker images
-      - docker tag siwecos-core-api "$DOCKER_REPO"/siwecos-business-layer
+      - docker tag siwecos-business-layer "$DOCKER_REPO"/siwecos-business-layer
       - docker push "$DOCKER_REPO"/siwecos-business-layer
