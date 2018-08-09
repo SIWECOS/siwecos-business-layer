@@ -214,7 +214,7 @@ return [
   'CT_META_TAG_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen. Gefunden wurde \"%META%\".\n",
   //
   // CT_META_TAG_SET_CORRECT
-  'CT_META_TAG_SET_CORRECT'            => "Die Angabe im  \"%META%\" im HTML-Header\n",
+  'CT_META_TAG_SET_CORRECT'            => "Die Angabe \"%META%\" im HTML-Header ist korrekt gesetzt.\n",
   //
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
