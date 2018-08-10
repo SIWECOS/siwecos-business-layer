@@ -113,7 +113,7 @@ return [
   'GENERAL_ERROR'            => "%ERRORTEXT%\n",
   //
   // HEADER_ENCODING_ERROR
-  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER%</b> enthält <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Ersetzungszeichen/DE\" title=\"Ersetzungszeichen/DE\">nicht-verarbeitbare</a> Zeichen.\n",
+  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER_NAME%</b> enthält <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Ersetzungszeichen/DE\" title=\"Ersetzungszeichen/DE\">nicht-verarbeitbare</a> Zeichen.\n",
   //
   // HEADER_NOT_SET
   'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
@@ -289,7 +289,7 @@ return [
   'CONTENT_TYPE_LINK'       => "https://siwecos.de/wiki/Content-Type-Nicht-Korrekt/DE",
   //
   // PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - Ist derzeit nicht aktiviert\n",
+  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - Ist aktuell deaktiviert.\n",
   'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> ist aktiviert (HPKP wird derzeit nicht überprüft)\n",
   'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden. (HPKP wird derzeit nicht überprüft)\n",
   'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des Zertifikats das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning</a> wird für die von der Webseiten definierte Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> akzeptiert.\n</p>",
@@ -321,7 +321,7 @@ return [
   'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Schwachstelle/DE",
   //
   // X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => "Überprüfung ob der Cross-Site Scripting Filter aktiviert und korrekt konfiguriert ist.\n",
+  'X_XSS_PROTECTION'            => "Überprüfung des X-XSS-Protection Headers aktiviert und korrekt konfiguriert.\n",
   'X_XSS_PROTECTION_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site-Scripting (XSS)</a> -Schutz des Webbrowsers ist auf Ihrer Seite aktiviert.\n",
   'X_XSS_PROTECTION_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site-Scripting</a> Schutz nicht aktiviert oder unzureichend konfiguriert.\n",
   'X_XSS_PROTECTION_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection definiert wie in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> eingebaute XSS-Filter konfiguriert werden. Eine Default-Installation kann eine unzureichende Konfiguration offenbaren.\n</p>",
