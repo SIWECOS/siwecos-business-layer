@@ -244,7 +244,7 @@ return [
   'GENERAL_ERROR'            => "%ERRORTEXT%\n",
   //
   // HEADER_ENCODING_ERROR
-  'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER%</b> contains characters which cannot be processed.\n",
+  'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER_NAME%</b> contains characters which cannot be processed.\n",
   //
   // Category: General
   //
@@ -381,7 +381,7 @@ return [
   'CONTENT_TYPE_LINK'       => "https://siwecos.de/wiki/Content-Type-Not-Correct/EN",
   //
   // PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => "Check of Public Key Pinning (HPKP)\n",
+  'PUBLIC_KEY_PINS'            => "Check of Public Key Pinning (HPKP) - currently disabled.\n",
   'PUBLIC_KEY_PINS_SUCCESS'    => "Public Key Pinning is active\n",
   'PUBLIC_KEY_PINS_ERROR'      => "Public Key Pinning is not available.\n",
   'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Powerful attackers, such as intelligence agencies, can create a signature with the help of a certification agency that is accepted by users. To prevent this, a website can be configured so that the certificate must be saved permanently (pinning) when it is called up for the first time. If key pinning is used, only the saved certificate will be accepted for the period of time specified by the website.\n</p>",
@@ -413,7 +413,7 @@ return [
   'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Vulnerability/EN",
   //
   // X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => "Check whether the cross-site scripting filter is active and configured correctly.\n",
+  'X_XSS_PROTECTION'            => "Check of the X-XSS-Protection header is activated and correctly configured.\n",
   'X_XSS_PROTECTION_SUCCESS'    => "Cross Site Scripting (XSS) protection of the web browser is active on your website.\n",
   'X_XSS_PROTECTION_ERROR'      => "Cross Site Scripting protection is not active or configured incorrectly.\n",
   'X_XSS_PROTECTION_ERROR_DESC' => "<p>The <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection defines how built-in XSS filters in the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> are configured. A default installation can indicate an incorrect configuration.\n</p>",
