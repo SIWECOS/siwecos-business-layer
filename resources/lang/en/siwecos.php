@@ -405,7 +405,7 @@ return [
   'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Vulnerability/EN",
   //
   // X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => "tHTTP header X-Frame-Options not set\n",
+  'X_FRAME_OPTIONS'            => "Checking the HTTP header X-frame options\n",
   'X_FRAME_OPTIONS_SUCCESS'    => "The header is set correctly and improves the protection of your website against clickjacking attacks.\n",
   'X_FRAME_OPTIONS_ERROR'      => "HTTP header X-Frame-Options not set.\n",
   'X_FRAME_OPTIONS_ERROR_DESC' => "<p>X-Frame-Options helps to prevent attacks carried out by rendering content within a frame. This largely mitigates the risk of <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a> attacks. Downgrading attacks, as known in the Internet Explorer, are also minimized.\n</p>",
