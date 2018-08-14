@@ -313,7 +313,7 @@ return [
   'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE",
   //
   // X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => "	HTTP-Header X-Frame Optionen nicht gesetzt\n",
+  'X_FRAME_OPTIONS'            => "Überprüfung der HTTP-Header X-Frame Optionen\n",
   'X_FRAME_OPTIONS_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite gegen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking-Attacken</a>.\n",
   'X_FRAME_OPTIONS_ERROR'      => "HTTP-Header X-Frame Optionen nicht gesetzt.\n",
   'X_FRAME_OPTIONS_ERROR_DESC' => "<p>X-Frame-Options hilft dabei Angriffe über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Framing-Mechanismen/DE\" title=\"Framing-Mechanismen/DE\">Framing-Mechanismen</a> zu unterbinden. Dies gewährleistet bspw., dass <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a>-Angriffe größtenteils gemildert werden können. Darüber hinaus werden <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Downgrading_Angriffe\" title=\"Downgrading Angriffe\">Downgrading-Angriffe</a> wie etwa im Internet Explorer minimiert.\n</p>",
