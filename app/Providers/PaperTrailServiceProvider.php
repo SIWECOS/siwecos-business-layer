@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Formatter\LineFormatter;
@@ -26,12 +27,19 @@ class PaperTrailServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $monolog = Log::getMonolog();
-        $syslogHandler = new SyslogUdpHandler(env('PAPERTRAIL_URL'), env('PAPERTRAIL_PORT'));
+        if (!(env('APP_ENV', '') === 'testing') && !(env('APP_ENV', '') === 'docker')) {
+            try {
+                $monolog = Log::getMonolog();
+                $syslogHandler = new SyslogUdpHandler(env('PAPERTRAIL_URL'), env('PAPERTRAIL_PORT'));
 
-        $formatter = new LineFormatter('%channel%.%level_name%: %message% %extra%');
-        $syslogHandler->setFormatter($formatter);
+                $formatter = new LineFormatter('%channel%.%level_name%: %message% %extra%');
+                $syslogHandler->setFormatter($formatter);
 
-        $monolog->pushHandler($syslogHandler);
+                $monolog->pushHandler($syslogHandler);
+            } catch (Exception $exception) {
+
+            }
+        }
+
     }
 }

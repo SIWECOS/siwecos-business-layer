@@ -1,10 +1,33 @@
 language: php
 
 php:
-  - 7.1
+  - "7.1"
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+
+dist: trusty
 
 before_script:
   - cp .env.travis .env
   - mysql -e 'create database homestead_test;'
   - composer self-update
   - composer install --no-interaction
+  - php artisan key:generate
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t siwecos-business-layer .
+      - docker images
+      - docker tag siwecos-business-layer "$DOCKER_REPO"/siwecos-business-layer
+      - docker push "$DOCKER_REPO"/siwecos-business-layer
