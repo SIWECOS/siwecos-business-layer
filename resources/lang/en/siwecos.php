@@ -534,6 +534,16 @@ return [
   'SPAM_TIPS'       => "<p><b><span style=\"color:#c31622\"> Take down the website!<span></b>\n</p><p>Take down your website to prevent users from accessing it, and to prevent Google from removing the website from its index, which would delete a positive ranking. You also avoid being blocked by your hosting provider.\n</p><p>To check if the website shows any of the typical spam characteristics, call up the website in the browser, then right-click to \"view page source\". In this view, you can use <b>Ctrl+f</b> (search) to check your source code for typical signs of online fraud through advertisements for medications or dubious credit offers.\n</p><p><b>Some terms to search for</b>:<br />\n- „payday“<br />\n- „Pharma“<br />\n- „Viagra“<br />\n- „Cialis“<br /><br />\n<b>- Find out how and when it was possible for third parties to access your domain. </b><br />\n</p><p>Check your logfiles for unauthorized access from unknown <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/IP-Adresse\" title=\"IP-Adresse\">Quell-IP-Adressen</a>. As a starting point for your investigation, the time stamp of the manipulated or uploaded file can give you a hint when the attack happened and by which gateway the attackers gained access.\n</p><p><b>- Change your login data!</b><br />\n<b>- Web frontend (hosting contract, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">Content-Management-System</a>)</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/FTP\" title=\"FTP\">FTP</a> or <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSH\" title=\"SSH\">SSH</a> access</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Datenbank\" title=\"Datenbank\">Datenbank</a> <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Starke_Passw%C3%B6rter\" title=\"Starke Passwörter\">Passwörter</a></b><br />\n</p><p>Restore a malware-free <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Daten_sichern\" title=\"Daten sichern\">Backup</a>!\nTo do this, delete all the files on your webspace. In this way, you will make sure that you do not overlook malicious files from the compromised system which were used as a backdoor by the attackers.\nBefore restoring from the backup, make sure that the intended backup is not yet infected by the malicious code that we detected, and if necessary, use an even older backup.\nIf the backup is malware-free, restore it and then install any updates for your system. Only after this is done, put the website back online.\n</p><p><b> - If you do not have a backup of your website, consider a completely new installation. Manual cleanups usually take up a lot of time and should only be carried out by qualified experts.</b><br />\n</p><p>Check your local computer for malicious software! The website <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> offers helpful information and software.\nWith the EU-Cleaner, you can remove various malicious programs from your computer. (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a>)</span>\n</span>\n</p>",
   'SPAM_LINK'       => "https://siwecos.de/wiki/Spam-Content/EN",
   //
+  // Category: NO_CONTENT
+  //
+  // NO_CONTENT
+  'NO_CONTENT'            => "The site was empty and there was nothing to scan for.\n",
+  //
+  // Category: NO_SCRIPT_TAGS
+  //
+  // NO_SCRIPT_TAGS
+  'NO_SCRIPT_TAGS'            => "The scanner found no script tags to rate.\n",
+  //
   // Category: Protocol Versions
   //
   // PROTOCOLVERSION_SSL2
@@ -611,20 +621,20 @@ return [
   //
   // Category: XSS scanner
   //
-  // HAS_SINKS
-  'HAS_SINKS'            => "Checking the JavaScript code for DOMXSS sinks\n",
-  'HAS_SINKS_SUCCESS'    => "No unsafe code components for DOMXSS sinks were recognized in an automatic check.\n",
-  'HAS_SINKS_ERROR'      => "Unsafe JavaScript code used (sinks)\n",
-  'HAS_SINKS_ERROR_DESC' => "<p>At least one code segment was found by scanning your website that may, under certain circumstances, indicate a DOM-based <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a>. This segment can be a security flaw on your website.\n</p>",
-  'HAS_SINKS_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
-  'HAS_SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS vulnerability/EN",
+  // SINKS
+  'SINKS'            => "Checking the JavaScript code for DOMXSS sinks\n",
+  'SINKS_SUCCESS'    => "No unsafe code components for DOMXSS sinks were recognized in an automatic check.\n",
+  'SINKS_ERROR'      => "Unsafe JavaScript code used (sinks)\n",
+  'SINKS_ERROR_DESC' => "<p>At least one code segment was found by scanning your website that may, under certain circumstances, indicate a DOM-based <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a>. This segment can be a security flaw on your website.\n</p>",
+  'SINKS_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
+  'SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS vulnerability/EN",
   //
-  // HAS_SOURCES
-  'HAS_SOURCES'            => "Check of JavaScript code for DOMXSS sources\n",
-  'HAS_SOURCES_SUCCESS'    => "No unsafe code components for DOMXSS sources were recognized in an automatic check.\n",
-  'HAS_SOURCES_ERROR'      => "Unsafe JavaScript code used (sources)\n",
-  'HAS_SOURCES_ERROR_DESC' => "<p>During the check, at least one vulnerability was found on the web page that could be controlled by an external, potentially untrustworthy source.\n</p>",
-  'HAS_SOURCES_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
-  'HAS_SOURCES_LINK'       => "https://siwecos.de/wiki/Malicious-Code-By-External-Sources/EN",
+  // SOURCES
+  'SOURCES'            => "Check of JavaScript code for DOMXSS sources\n",
+  'SOURCES_SUCCESS'    => "No unsafe code components for DOMXSS sources were recognized in an automatic check.\n",
+  'SOURCES_ERROR'      => "Unsafe JavaScript code used (sources)\n",
+  'SOURCES_ERROR_DESC' => "<p>During the check, at least one vulnerability was found on the web page that could be controlled by an external, potentially untrustworthy source.\n</p>",
+  'SOURCES_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
+  'SOURCES_LINK'       => "https://siwecos.de/wiki/Malicious-Code-By-External-Sources/EN",
 
 ];
