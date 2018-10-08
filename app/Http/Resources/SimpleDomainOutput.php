@@ -9,15 +9,16 @@ class SimpleDomainOutput extends Resource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         return [
-        	'domain' => $this['domain'],
-			'Score' => $this['weightedMedia'],
-	        'lastScan' => $this['scanFinished']
+            'domain'   => $this['domain'],
+            'Score'    => $this['weightedMedia'],
+            'lastScan' => $this['scanFinished'],
         ];
     }
 }

@@ -32,8 +32,8 @@ class CreateNewDomainRequest extends FormRequest
     {
         return [
             //
-            'domain' => 'url|required',
-            'danger_level' => 'integer|required|min:0|max:10'
+            'domain'       => 'url|required',
+            'danger_level' => 'integer|required|min:0|max:10',
         ];
     }
 }

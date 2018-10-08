@@ -8,111 +8,107 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Swagger\Annotations as SWG;
 
 /**
- * Class CreateUserRequest
- * @package App\Http\Requests
+ * Class CreateUserRequest.
+ *
  * @SWG\Definition(required={"salutation_id"}, type="object")
  */
 class CreateUserRequest extends FormRequest
 {
+    /**
+     * @var int
+     * @SWG\Property(format="integer")
+     */
+    public $salutation_id;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $email;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $first_name;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $last_name;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $address;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $plz;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $city;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $phone;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $org_name;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $org_address;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $org_plz;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $org_city;
+
+    /**
+     * @var string
+     * @SWG\Property(format="string")
+     */
+    public $org_industry;
 
     /**
      * @var int
      * @SWG\Property(format="integer")
      */
-    var $salutation_id;
+    public $org_size_id;
 
     /**
      * @var string
      * @SWG\Property(format="string")
      */
-    var $email;
+    public $org_phone;
 
     /**
      * @var string
      * @SWG\Property(format="string")
      */
-    var $first_name;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $last_name;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $address;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $plz;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $city;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $phone;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_name;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_address;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_plz;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_city;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_industry;
-
-    /**
-     * @var int
-     * @SWG\Property(format="integer")
-     */
-    var $org_size_id;
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $org_phone;
-
-
-    /**
-     * @var string
-     * @SWG\Property(format="string")
-     */
-    var $password;
-
-
+    public $password;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -138,11 +134,11 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'salutation_id' => 'required|integer|min:1|max:2',
-            'email' => 'email|required|unique:users',
-            'password' => 'required|min:8',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'org_size_id' => 'integer|min:1|max:7'
+            'email'         => 'email|required|unique:users',
+            'password'      => 'required|min:8',
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'org_size_id'   => 'integer|min:1|max:7',
         ];
     }
 }
