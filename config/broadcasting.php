@@ -31,17 +31,17 @@ return [
     'connections' => [
 
         'pusher' => [
-            'driver' => 'pusher',
-            'key' => 'c54d231cef99d770e1db', //env('PUSHER_APP_KEY'),
-            'secret' => '16f9143461d0cb508951', //env('PUSHER_APP_SECRET'),
-            'app_id' => '358515', //env('PUSHER_APP_ID'),
+            'driver'  => 'pusher',
+            'key'     => 'c54d231cef99d770e1db', //env('PUSHER_APP_KEY'),
+            'secret'  => '16f9143461d0cb508951', //env('PUSHER_APP_SECRET'),
+            'app_id'  => '358515', //env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => 'eu'
+                'cluster' => 'eu',
             ],
         ],
 
         'redis' => [
-            'driver' => 'redis',
+            'driver'     => 'redis',
             'connection' => 'default',
         ],
 
