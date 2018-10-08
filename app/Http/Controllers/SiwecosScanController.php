@@ -56,16 +56,16 @@ class SiwecosScanController extends Controller
         event(new App\Events\FreeScanReady($id));
     }
 
-    public function GetScanResultById(int $id)
+    public function GetScanResultById(int $id,  string $lang = 'de')
     {
         //Validation if free scan
-        $response = $this->coreApi->GetResultById($id);
-        //		dd( $response );
+        $response      = $this->coreApi->GetResultById($id);
         $response      = $this->calculateScorings($response);
         $rawCollection = collect($response);
-        App::setLocale('de');
 
-        return response()->json($this->translateResult($rawCollection, 'de'));
+        App::setLocale($lang);
+
+        return response()->json($this->translateResult($rawCollection, $lang));
     }
 
     /**
