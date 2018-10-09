@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAclLevelTable extends Migration
 {
@@ -15,7 +15,7 @@ class CreateAclLevelTable extends Migration
     {
         Schema::create('acl_level', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('value',191);
+            $table->string('value', 191);
             $table->timestamps();
         });
     }

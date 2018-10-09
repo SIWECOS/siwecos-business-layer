@@ -37,9 +37,7 @@ class PaperTrailServiceProvider extends ServiceProvider
 
                 $monolog->pushHandler($syslogHandler);
             } catch (Exception $exception) {
-
             }
         }
-
     }
 }

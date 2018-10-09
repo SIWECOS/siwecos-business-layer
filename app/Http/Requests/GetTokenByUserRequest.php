@@ -32,7 +32,7 @@ class GetTokenByUserRequest extends FormRequest
     {
         return [
             //
-            'email' => 'email|required'
+            'email' => 'email|required',
         ];
     }
 }
