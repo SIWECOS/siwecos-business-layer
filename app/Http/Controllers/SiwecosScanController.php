@@ -229,14 +229,13 @@ class SiwecosScanController extends Controller
         $scannerCollection   = collect($resultCollection['scanners']);
         $scannerCollection->transform(function ($item, $key) {
             $item['scanner_type'] = __('siwecos.SCANNER_NAME_' . $item['scanner_type']);
-            //			dd($item['scanner_type']);
             if ($item['has_error']) {
                 $errorRaw           = $item['complete_request']['errorMessage'];
                 $error              = array();
                 $error['report']    = html_entity_decode(__('siwecos.' . $errorRaw['placeholder']));
                 $error['has_error'] = true;
                 $error['score']     = 0;
-                if (array_key_exists('values', $errorRaw)) {
+                if (is_array($errorRaw) && array_key_exists('values', $errorRaw)) {
                     if ($errorRaw['values'] != null && self::isAssoc($errorRaw['values'])) {
                         foreach ($errorRaw['values'] as $key => $value) {
                             if (is_array($value)) {
@@ -256,7 +255,6 @@ class SiwecosScanController extends Controller
                     }
                     $error['name'] = $error['report'];
                 }
-                //				dd($error);
                 $item['result'] = collect(array( $error ));
 
                 return $item;
