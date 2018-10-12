@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class UpdateForeignKeys extends Migration
 {
@@ -25,11 +25,11 @@ class UpdateForeignKeys extends Migration
         }
         );
 
-        Schema::table('scan_results', function (Blueprint $table){
+        Schema::table('scan_results', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
-        Schema::table('users', function (Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->integer('org_size_id')->unsigned();
             $table->foreign('org_size_id')->references('id')->on('org_size');
         });
@@ -54,13 +54,12 @@ class UpdateForeignKeys extends Migration
         }
         );
 
-        Schema::table('scan_results', function (Blueprint $table){
+        Schema::table('scan_results', function (Blueprint $table) {
             $table->dropForeign('scan_results_user_id_foreign');
         });
 
-        Schema::table('users', function (Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_org_size_id_foreign');
         });
-
     }
 }

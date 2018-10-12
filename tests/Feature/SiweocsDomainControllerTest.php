@@ -3,26 +3,28 @@
  * Created by PhpStorm.
  * User: marcelwege
  * Date: 18.12.17
- * Time: 21:44
+ * Time: 21:44.
  */
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\SiwecosDomainController;
 use App\Token;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-CONST USER_API = '/api/v1/users/';
-CONST DOMAIN_API = '/api/v1/domains/';
-CONST TEST_DOMAIN = 'http://loremipsum.de';
+const USER_API = '/api/v1/users/';
+const DOMAIN_API = '/api/v1/domains/';
+const TEST_DOMAIN = 'http://loremipsum.de';
 
 class SiweocsDomainControllerTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
-    protected $mastertoken, $token, $domain, $testUserId;
+    protected $mastertoken;
+    protected $token;
+    protected $domain;
+    protected $testUserId;
 
     public function setUp()
     {
@@ -32,33 +34,35 @@ class SiweocsDomainControllerTest extends TestCase
         $this->mastertoken->save();
     }
 
-    public function testCreateUser(){
-        print_r('TOKEN: '.env('CORE_MASTER_TOKEN') .' / '.'URL: '.env('CORE_URL'));
-        $response = $this->json('POST', USER_API . 'create',
-            ['first_name' => 'Marcel',
-                'last_name' => 'Wege',
+    public function testCreateUser()
+    {
+        print_r('TOKEN: '.env('CORE_MASTER_TOKEN').' / '.'URL: '.env('CORE_URL'));
+        $response = $this->json('POST', USER_API.'create',
+            ['first_name'      => 'Marcel',
+                'last_name'    => 'Wege',
                 'salutation_id'=> 1,
-                'email'=> 'mwege@byte5.de',
-                'address' => 'Hanauer Landstraße 114',
-                'plz' => '60314',
-                'city' => 'Frankfurt',
-                'phone' => '+4915154727353',
-                'org_name' => 'byte5 digital media GmbH',
-                'org_address' => 'Hanauer Landstraße 114',
-                'org_plz' => '60314',
+                'email'        => 'mwege@byte5.de',
+                'address'      => 'Hanauer Landstraße 114',
+                'plz'          => '60314',
+                'city'         => 'Frankfurt',
+                'phone'        => '+4915154727353',
+                'org_name'     => 'byte5 digital media GmbH',
+                'org_address'  => 'Hanauer Landstraße 114',
+                'org_plz'      => '60314',
                 'org_industry' => 'IT',
-                'org_phone' => '+4915154727353',
-                'org_size_id' => '1',
-                'acl_id' => 1,
-                'org_city' => 'Frankfurt'], ['masterToken' => $this->mastertoken->token]);
+                'org_phone'    => '+4915154727353',
+                'org_size_id'  => '1',
+                'acl_id'       => 1,
+                'org_city'     => 'Frankfurt', ], ['masterToken' => $this->mastertoken->token]);
         $response->assertJsonStructure(['token', 'email']);
         $this->token = $response->json()['token'];
         $response->assertStatus(200);
     }
 
-    public function testCreateAndActivateUser(){
+    public function testCreateAndActivateUser()
+    {
         $this->testCreateUser();
-        $responseActivation = $this->json('POST', USER_API . 'activateUser',
+        $responseActivation = $this->json('POST', USER_API.'activateUser',
             [], ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $responseActivation->assertJson(['active'=>1]);
         $responseActivation->assertStatus(200);
@@ -67,72 +71,73 @@ class SiweocsDomainControllerTest extends TestCase
     public function testAddNewDomainAndDelete()
     {
         $this->testCreateAndActivateUser();
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         print_r($response->json());
         $response->assertJsonStructure(['domainToken', 'domainId']);
         $response->assertStatus(200);
 
-        $response = $this->json('POST', DOMAIN_API . 'deleteDomain', ['domain' => TEST_DOMAIN],
+        $response = $this->json('POST', DOMAIN_API.'deleteDomain', ['domain' => TEST_DOMAIN],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertStatus(200);
     }
 
-    public function testAddNewDomainWithoutToken(){
+    public function testAddNewDomainWithoutToken()
+    {
         $this->testCreateAndActivateUser();
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token]);
         $response->assertStatus(403);
     }
 
-    public function testAddNewDomainWithExistingEntity(){
+    public function testAddNewDomainWithExistingEntity()
+    {
         $this->testCreateAndActivateUser();
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertJsonStructure(['domainToken', 'domainId']);
         $response->assertStatus(200);
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertStatus(500);
 
-        $response = $this->json('POST', DOMAIN_API . 'deleteDomain', ['domain' => TEST_DOMAIN],
-            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
-        $response->assertStatus(200);
-
-    }
-
-    public function testVerifyDomain(){
-        $this->testCreateAndActivateUser();
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
-            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
-        $response->assertJsonStructure(['domainToken', 'domainId']);
-        $response->assertStatus(200);
-
-        $response = $this->json('POST',  DOMAIN_API . 'verifyDomain', ['domain' => TEST_DOMAIN],
-            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
-        $response->assertStatus(500);
-
-        $response = $this->json('POST', DOMAIN_API . 'deleteDomain', ['domain' => TEST_DOMAIN],
+        $response = $this->json('POST', DOMAIN_API.'deleteDomain', ['domain' => TEST_DOMAIN],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertStatus(200);
     }
 
-    public function testListDomain(){
+    public function testVerifyDomain()
+    {
         $this->testCreateAndActivateUser();
-        $response = $this->json('POST', DOMAIN_API . 'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertJsonStructure(['domainToken', 'domainId']);
         $response->assertStatus(200);
 
-        $response = $this->json('POST', DOMAIN_API . 'listDomains', [],
+        $response = $this->json('POST',  DOMAIN_API.'verifyDomain', ['domain' => TEST_DOMAIN],
+            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
+        $response->assertStatus(500);
+
+        $response = $this->json('POST', DOMAIN_API.'deleteDomain', ['domain' => TEST_DOMAIN],
+            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
+        $response->assertStatus(200);
+    }
+
+    public function testListDomain()
+    {
+        $this->testCreateAndActivateUser();
+        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
+            ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
+        $response->assertJsonStructure(['domainToken', 'domainId']);
+        $response->assertStatus(200);
+
+        $response = $this->json('POST', DOMAIN_API.'listDomains', [],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertJsonStructure(['domains']);
         $response->assertStatus(200);
 
-        $response = $this->json('POST', DOMAIN_API . 'deleteDomain', ['domain' => TEST_DOMAIN],
+        $response = $this->json('POST', DOMAIN_API.'deleteDomain', ['domain' => TEST_DOMAIN],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $this->token]);
         $response->assertStatus(200);
     }
-
-
 }
