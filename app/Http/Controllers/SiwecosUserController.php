@@ -22,283 +22,301 @@ use Illuminate\Http\Request;
 use Keygen\Keygen;
 use Swagger\Annotations as SWG;
 
-class SiwecosUserController extends Controller {
+class SiwecosUserController extends Controller
+{
+    public $coreApi;
 
-	var $coreApi;
+    public function __construct()
+    {
+        $this->coreApi = new CoreApiController();
+    }
 
-	public function __construct() {
-		$this->coreApi = new CoreApiController();
-	}
+    /**
+     * @param CreateUserRequest $request
+     *
+     * @return UserTokenResponse|mixed
+     * @SWG\Post(
+     *   path="/users/create",
+     *   summary="create user",
+     *   operationId="create",
+     *   tags={"users"},
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="CreateUserParameters",
+     *     in="body",
+     *     required=true,
+     *     @SWG\Schema(
+     *     ref="#/definitions/CreateUserRequest"
+     *     )
+     *   ),
+     *   @SWG\Response(
+     *     response=200,
+     *     description="Email and usertoken"
+     *   ),
+     *   @SWG\Response(
+     *     response=500,
+     *     description="Database or Core Api Error"
+     *   )
+     * )
+     */
+    public function create(CreateUserRequest $request)
+    {
+        $newUser = new User($request->toArray());
+        $password = $newUser->password;
+        $newUser->password = Hash::make($password);
+        $newUser->activation_key = Keygen::alphanum(96)->generate();
+        $response = $this->coreApi->CreateUserToken(50);
 
-	/**
-	 * @param CreateUserRequest $request
-	 *
-	 * @return UserTokenResponse|mixed
-	 * @SWG\Post(
-	 *   path="/users/create",
-	 *   summary="create user",
-	 *   operationId="create",
-	 *   tags={"users"},
-	 *   produces={"application/json"},
-	 *   @SWG\Parameter(
-	 *     name="CreateUserParameters",
-	 *     in="body",
-	 *     required=true,
-	 *     @SWG\Schema(
-	 *     ref="#/definitions/CreateUserRequest"
-	 *     )
-	 *   ),
-	 *   @SWG\Response(
-	 *     response=200,
-	 *     description="Email and usertoken"
-	 *   ),
-	 *   @SWG\Response(
-	 *     response=500,
-	 *     description="Database or Core Api Error"
-	 *   )
-	 * )
-	 *
-	 */
-	public function create( CreateUserRequest $request ) {
-		$newUser                 = new User( $request->toArray() );
-		$password                = $newUser->password;
-		$newUser->password       = Hash::make( $password );
-		$newUser->activation_key = Keygen::alphanum( 96 )->generate();
-		$response                = $this->coreApi->CreateUserToken( 50 );
+        if ($response instanceof RequestException) {
+            $responseText = json_decode($response->getResponse()->getBody());
 
-		if ( $response instanceof RequestException ) {
-			$responseText = json_decode( $response->getResponse()->getBody() );
-			throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
-		}
-		$newUser->token = $response['token'];
+            throw new HttpResponseException(response()->json($responseText, $response->getCode()));
+        }
+        $newUser->token = $response['token'];
 
+        try {
+            $newUser->save();
+            $newUser->notify(new activationmail($newUser->activation_key));
+        } catch (QueryException $queryException) {
+            return response('Database error'.$queryException->getMessage(), 500);
+        }
 
-		try {
-			$newUser->save();
-			$newUser->notify( new activationmail( $newUser->activation_key ) );
-		} catch ( QueryException $queryException ) {
-			return response( 'Database error' . $queryException->getMessage(), 500 );
-		}
+        $response = new UserTokenResponse($newUser);
 
-		$response = new UserTokenResponse( $newUser );
+        return response()->json($response);
+    }
 
-		return response()->json( $response );
-	}
+    public function resendActivationMail(GetTokenByUserRequest $request)
+    {
+        $tokenUser = User::where('email', $request->json('email'))->first();
+        if ($tokenUser instanceof User) {
+            if (!$tokenUser->active) {
+                $tokenUser->notify(new activationmail($tokenUser->activation_key));
 
-	public function resendActivationMail( GetTokenByUserRequest $request ) {
-		$tokenUser = User::where( 'email', $request->json( 'email' ) )->first();
-		if ( $tokenUser instanceof User ) {
-			if ( ! $tokenUser->active ) {
-				$tokenUser->notify( new activationmail( $tokenUser->activation_key ) );
+                return response('Mail sent', 200);
+            }
 
-				return response( 'Mail sent', 200 );
-			}
+            return response('User already activated', 400);
+        }
 
-			return response( 'User already activated', 400 );
-		}
+        return response('User not found', 400);
+    }
 
-		return response( 'User not found', 400 );
-	}
+    public function createCaptcha(CreateUserRequestCaptcha $request)
+    {
+        $newUser = new User($request->toArray());
+        $newUser->password = self::createPassword($request->input('password'));
+        $newUser->activation_key = Keygen::alphanum(96)->generate();
+        $response = $this->coreApi->CreateUserToken(50);
 
-	public function createCaptcha( CreateUserRequestCaptcha $request ) {
-		$newUser                 = new User( $request->toArray() );
-		$newUser->password       = self::createPassword( $request->input( 'password' ) );
-		$newUser->activation_key = Keygen::alphanum( 96 )->generate();
-		$response                = $this->coreApi->CreateUserToken( 50 );
+        if ($response instanceof RequestException) {
+            $responseText = json_decode($response->getResponse()->getBody());
 
-		if ( $response instanceof RequestException ) {
-			$responseText = json_decode( $response->getResponse()->getBody() );
-			throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
-		}
-		$newUser->token = $response['token'];
+            throw new HttpResponseException(response()->json($responseText, $response->getCode()));
+        }
+        $newUser->token = $response['token'];
 
+        try {
+            $newUser->save();
+            $newUser->notify(new activationmail($newUser->activation_key));
+        } catch (QueryException $queryException) {
+            return response('Database error'.$queryException->getMessage(), 500);
+        }
 
-		try {
-			$newUser->save();
-			$newUser->notify( new activationmail( $newUser->activation_key ) );
-		} catch ( QueryException $queryException ) {
-			return response( 'Database error' . $queryException->getMessage(), 500 );
-		}
+        $response = new UserTokenResponse($newUser);
 
-		$response = new UserTokenResponse( $newUser );
+        return response()->json($response);
+    }
 
-		return response()->json( $response );
-	}
+    public function loginUser(LoginUserRequest $request)
+    {
+        $loggedInUser = User::where(['email' => $request->json('email')])->first();
+        $password = $request->json('password');
+        if ($loggedInUser instanceof User && self::validatePassword($password, $loggedInUser->password)) {
+            return response()->json($loggedInUser);
+        }
 
-	public function loginUser( LoginUserRequest $request ) {
-		$loggedInUser = User::where( [ 'email' => $request->json( 'email' ) ] )->first();
-		$password     = $request->json( 'password' );
-		if ( $loggedInUser instanceof User && self::validatePassword( $password, $loggedInUser->password ) ) {
-			return response()->json( $loggedInUser );
-		}
+        return response('Wrong credentials', 403);
+    }
 
-		return response( "Wrong credentials", 403 );
-	}
+    protected static function createPassword(string $password)
+    {
+        $wp_hasher = new WpPasswordAuthentication(8, true);
 
-	protected static function createPassword( string $password ) {
-		$wp_hasher = new WpPasswordAuthentication( 8, true );
+        return $wp_hasher->HashPassword(trim($password));
+    }
 
-		return $wp_hasher->HashPassword( trim( $password ) );
-	}
+    protected static function validatePassword(string $password, string $hash)
+    {
+        if (strlen($hash) <= 32) {
+            $check = hash_equals($hash, md5($password));
+            if ($check) {
+                // Rehash using new hash.
+                wp_set_password($password, $user_id);
+                $hash = wp_hash_password($password);
+            }
+        }
+        $wp_hasher = new WpPasswordAuthentication(8, true);
+        $check = $wp_hasher->CheckPassword($password, $hash);
 
-	protected static function validatePassword( string $password, string $hash ) {
-		if ( strlen( $hash ) <= 32 ) {
-			$check = hash_equals( $hash, md5( $password ) );
-			if ( $check ) {
-				// Rehash using new hash.
-				wp_set_password( $password, $user_id );
-				$hash = wp_hash_password( $password );
-			}
-		}
-		$wp_hasher = new WpPasswordAuthentication( 8, true );
-		$check     = $wp_hasher->CheckPassword( $password, $hash );
+        return $check;
+    }
 
-		return $check;
-	}
+    public function activateUser(Request $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $tokenUser->active = 1;
+            $tokenUser->save();
 
-	public function activateUser( Request $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			$tokenUser->active = 1;
-			$tokenUser->save();
+            return response()->json($tokenUser);
+        }
 
-			return response()->json( $tokenUser );
-		}
+        return response('User not found', 404);
+    }
 
-		return response( "User not found", 404 );
-	}
+    public function activateUserUrl(string $activation_key)
+    {
+        if (!$activation_key) {
+            return response('Invalid activation key', 403);
+        }
 
-	public function activateUserUrl( string $activation_key ) {
-		if ( ! $activation_key ) {
-			return response( "Invalid activation key", 403 );
-		}
+        $tokenUser = User::where('activation_key', $activation_key)->first();
+        if ($tokenUser instanceof User) {
+            $tokenUser->active = 1;
+            $tokenUser->activation_key = '';
 
-		$tokenUser = User::where( 'activation_key', $activation_key )->first();
-		if ( $tokenUser instanceof User ) {
-			$tokenUser->active         = 1;
-			$tokenUser->activation_key = "";
+            $tokenUser->save();
 
-			$tokenUser->save();
+            return redirect(config('app.activation_redirect_uri'));
+        }
 
-			return redirect( config( 'app.activation_redirect_uri' ) );
-		}
+        return response('User not found', 404);
+    }
 
-		return response( "User not found", 404 );
-	}
+    public function getTokenByEmail(GetTokenByUserRequest $request)
+    {
+        $tokenUser = User::where('email', $request->json('email'))->first();
+        if ($tokenUser instanceof User) {
+            return response()->json(new UserTokenResponse($tokenUser));
+        }
 
-	public function getTokenByEmail( GetTokenByUserRequest $request ) {
-		$tokenUser = User::where( 'email', $request->json( 'email' ) )->first();
-		if ( $tokenUser instanceof User ) {
-			return response()->json( new UserTokenResponse( $tokenUser ) );
-		}
+        return response('User not found', 404);
+    }
 
-		return response( "User not found", 404 );
-	}
+    public function getUserInfoByToken(Request $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            return response()->json($tokenUser);
+        }
 
-	public function getUserInfoByToken( Request $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			return response()->json( $tokenUser );
-		}
+        return response('User not Found', 404);
+    }
 
-		return response( "User not Found", 404 );
-	}
+    public function deleteUserInformation(Request $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $response = $this->coreApi->RevokeToken($userToken);
+            if ($response instanceof RequestException) {
+                return response($response->getMessage(), 500);
+            }
+            $tokenUser->delete();
 
-	public function deleteUserInformation( Request $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			$response = $this->coreApi->RevokeToken( $userToken );
-			if ( $response instanceof RequestException ) {
-				return response( $response->getMessage(), 500 );
-			}
-			$tokenUser->delete();
+            return response('User deleted', 200);
+        }
 
-			return response( 'User deleted', 200 );
-		}
+        return response('User not Found', 404);
+    }
 
-		return response( "User not Found", 404 );
-	}
+    public function getUserCreditInfoByToken(Request $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $response = $this->coreApi->GetTokenCredits($userToken);
+            if ($response instanceof RequestException) {
+                $responseText = json_decode($response->getResponse()->getBody());
 
-	public function getUserCreditInfoByToken( Request $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			$response = $this->coreApi->GetTokenCredits( $userToken );
-			if ( $response instanceof RequestException ) {
-				$responseText = json_decode( $response->getResponse()->getBody() );
-				throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
-			}
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
+            }
 
-			return $response;
-		}
+            return $response;
+        }
 
-		return response( "User not Found", 404 );
-	}
+        return response('User not Found', 404);
+    }
 
-	public function updateUserInfo( UpdateUserRequest $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			$tokenUser->update( $request->toArray() );
+    public function updateUserInfo(UpdateUserRequest $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $tokenUser->update($request->toArray());
 
-			if ( $request->input( 'newpassword' ) ) {
-				$tokenUser->password = self::createPassword( $request->input( 'newpassword' ) );
-			}
+            if ($request->input('newpassword')) {
+                $tokenUser->password = self::createPassword($request->input('newpassword'));
+            }
 
-			$tokenUser->save();
+            $tokenUser->save();
 
-			return response()->json( $tokenUser );
-		}
+            return response()->json($tokenUser);
+        }
 
-		return response( "User not Found", 404 );
-	}
+        return response('User not Found', 404);
+    }
 
-	public function updateCredits( UpdateUserCreditsRequest $request ) {
-		$userToken = $request->header( 'userToken' );
-		$tokenUser = User::where( 'token', $userToken )->first();
-		if ( $tokenUser instanceof User ) {
-			$response = $this->coreApi->UpdateTokenCredits( $userToken, $request->credits );
-			if ( $response instanceof RequestException ) {
-				$responseText = json_decode( $response->getResponse()->getBody() );
-				throw new HttpResponseException( response()->json( $responseText, $response->getCode() ) );
-			}
+    public function updateCredits(UpdateUserCreditsRequest $request)
+    {
+        $userToken = $request->header('userToken');
+        $tokenUser = User::where('token', $userToken)->first();
+        if ($tokenUser instanceof User) {
+            $response = $this->coreApi->UpdateTokenCredits($userToken, $request->credits);
+            if ($response instanceof RequestException) {
+                $responseText = json_decode($response->getResponse()->getBody());
 
-			return $response;
-		}
+                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
+            }
 
-		return response( "User not Found", 404 );
-	}
+            return $response;
+        }
 
-	public function sendForgotPasswordMail( ForgotPasswordRequest $request ) {
-		$user = User::where( 'email', $request->input( 'email' ) )->first();
+        return response('User not Found', 404);
+    }
 
-		if ( $user instanceof User ) {
-			$user->passwordreset_token = Keygen::alphanum( 96 )->generate();
-			$user->save();
-			$user->notify( new forgotpasswordmail( $user->passwordreset_token ) );
+    public function sendForgotPasswordMail(ForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))->first();
 
-			return response( 'Send', 200 );
-		}
+        if ($user instanceof User) {
+            $user->passwordreset_token = Keygen::alphanum(96)->generate();
+            $user->save();
+            $user->notify(new forgotpasswordmail($user->passwordreset_token));
 
-		return response( "Send", 200 );
-		// return response( "User not Found", 404 );
-	}
+            return response('Send', 200);
+        }
 
-	public function processForgotPasswordRequest( ProcessForgotPasswordRequest $request ) {
-		$user = User::where( 'email', $request->input( 'email' ) )
-		            ->where( 'passwordreset_token', $request->input( 'token' ) )
-		            ->first();
+        return response('Send', 200);
+        // return response( "User not Found", 404 );
+    }
 
-		if ( $user instanceof User ) {
-			$user->password = self::createPassword( $request->input( 'newpassword' ) );
-			$user->save();
+    public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->input('email'))
+                    ->where('passwordreset_token', $request->input('token'))
+                    ->first();
 
-			return response( 'Reset completed', 200 );
-		}
+        if ($user instanceof User) {
+            $user->password = self::createPassword($request->input('newpassword'));
+            $user->save();
 
-		return response( "User not Found", 404 );
-	}
+            return response('Reset completed', 200);
+        }
+
+        return response('User not Found', 404);
+    }
 }

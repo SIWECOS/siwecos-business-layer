@@ -31,7 +31,7 @@ class DeleteDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'domain' => 'url|required'
+            'domain' => 'url|required',
         ];
     }
 }

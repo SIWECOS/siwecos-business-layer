@@ -32,20 +32,20 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'salutation_id' => 'integer',
-            'email' => 'email',
-            'first_name' => 'string',
-            'last_name' => 'string',
-            'address' => '',
-            'plz' => '',
-            'city' => '',
-            'phone' => '',
-            'org_name' => '',
-            'org_address' => '',
-            'org_plz' => '',
-            'org_city' => '',
-            'org_industry' => '',
-            'org_phone' => '',
-            'org_size_id' => 'integer'
+            'email'         => 'email',
+            'first_name'    => 'string',
+            'last_name'     => 'string',
+            'address'       => '',
+            'plz'           => '',
+            'city'          => '',
+            'phone'         => '',
+            'org_name'      => '',
+            'org_address'   => '',
+            'org_plz'       => '',
+            'org_city'      => '',
+            'org_industry'  => '',
+            'org_phone'     => '',
+            'org_size_id'   => 'integer',
         ];
     }
 }
