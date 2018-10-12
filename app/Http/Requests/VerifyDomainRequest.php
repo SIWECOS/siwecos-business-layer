@@ -32,7 +32,7 @@ class VerifyDomainRequest extends FormRequest
     {
         return [
             //
-            'domain' => 'url|required'
+            'domain' => 'url|required',
         ];
     }
 }
