@@ -31,9 +31,9 @@ class ProcessForgotPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email|required',
+            'email'       => 'email|required',
             'newpassword' => 'required|min:8',
-            'token' => 'required'
+            'token'       => 'required',
         ];
     }
 }

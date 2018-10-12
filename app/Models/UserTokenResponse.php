@@ -2,13 +2,12 @@
 
 namespace App\Siweocs\Models;
 
-
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 
-class UserTokenResponse{
-    var $token;
-    var $email;
+class UserTokenResponse
+{
+    public $token;
+    public $email;
 
     public function __construct(User $user)
     {

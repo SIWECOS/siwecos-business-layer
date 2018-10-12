@@ -32,7 +32,7 @@ class LoginUserRequest extends FormRequest
     {
         return [
             //
-            'email' => 'email|required',
+            'email'    => 'email|required',
             'password' => 'required',
         ];
     }
