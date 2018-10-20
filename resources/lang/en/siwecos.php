@@ -367,7 +367,7 @@ return [
   // CONTENT_SECURITY_POLICY
   'CONTENT_SECURITY_POLICY'            => "Check of the Content Security Policy (CSP)\n",
   'CONTENT_SECURITY_POLICY_SUCCESS'    => "A secure configuration of the Content Security Policy (CSP) was found.\n",
-  'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy inactive\n",
+  'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy insecure\n",
   'CONTENT_SECURITY_POLICY_ERROR_DESC' => "<p>The Content Security Policy is a security concept that is designed to reduce the risk of injection and execution of malicious commands in a web application (content injection attacks). By means of a whitelist (list of allowed sources), it determines from which <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Quellen\" title=\"Quellen\">Quellen</a> Javascript code, images, fonts, and other content may be integrated into your site.\n</p>",
   'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'CONTENT_SECURITY_POLICY_LINK'       => "https://siwecos.de/wiki/Content-Security-Policy-Vulnerability/EN",
@@ -620,6 +620,22 @@ return [
   'RC4_SUITES'            => "Your web server / your website is configured to support the outdated RC4 encryption method (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>), which is regarded as insecure. This makes you vulnerable to <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
   // Category: XSS scanner
+  //
+  // HAS_SINKS
+  'HAS_SINKS'            => "Checking the JavaScript code for DOMXSS sinks\n",
+  'HAS_SINKS_SUCCESS'    => "No unsafe code components for DOMXSS sinks were recognized in an automatic check.\n",
+  'HAS_SINKS_ERROR'      => "Unsafe JavaScript code used (sinks)\n",
+  'HAS_SINKS_ERROR_DESC' => "<p>At least one code segment was found by scanning your website that may, under certain circumstances, indicate a DOM-based <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a>. This segment can be a security flaw on your website.\n</p>",
+  'HAS_SINKS_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
+  'HAS_SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS vulnerability/EN",
+  //
+  // HAS_SOURCES
+  'HAS_SOURCES'            => "Check of JavaScript code for DOMXSS sources\n",
+  'HAS_SOURCES_SUCCESS'    => "No unsafe code components for DOMXSS sources were recognized in an automatic check.\n",
+  'HAS_SOURCES_ERROR'      => "Unsafe JavaScript code used (sources)\n",
+  'HAS_SOURCES_ERROR_DESC' => "<p>During the check, at least one vulnerability was found on the web page that could be controlled by an external, potentially untrustworthy source.\n</p>",
+  'HAS_SOURCES_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
+  'HAS_SOURCES_LINK'       => "https://siwecos.de/wiki/Malicious-Code-By-External-Sources/EN",
   //
   // SINKS
   'SINKS'            => "Checking the JavaScript code for DOMXSS sinks\n",

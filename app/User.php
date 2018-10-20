@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $email
@@ -25,6 +25,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAclId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAddress($value)
@@ -42,6 +43,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ *
  * @property string $org_name
  * @property string $org_industry
  * @property string $org_address
@@ -49,6 +51,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $org_city
  * @property string $org_phone
  * @property int $org_size_id
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgIndustry($value)
@@ -56,9 +59,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgPlz($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOrgSizeId($value)
+ *
  * @property string $password
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
+ *
  * @property string|null $activation_key
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereActivationKey($value)
  */
 class User extends Authenticatable
@@ -71,11 +78,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'salutation_id', 'first_name', 'last_name', 'address', 'plz', 'city', 'phone', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id', 'agb'
+        'name', 'email', 'salutation_id', 'first_name', 'last_name', 'address', 'plz', 'city', 'phone', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id', 'agb',
     ];
 
     protected $hidden = [
-        'password', 'passwordreset_token'
+        'password', 'passwordreset_token',
     ];
 
     public function __construct(array $attributes = [])
@@ -85,7 +92,8 @@ class User extends Authenticatable
 
     public static function getTokenByString($userToken)
     {
-        $tokenUser = User::where('token', $userToken)->first();
+        $tokenUser = self::where('token', $userToken)->first();
+
         return $tokenUser;
     }
 }

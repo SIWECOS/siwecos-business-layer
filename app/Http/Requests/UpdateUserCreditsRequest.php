@@ -32,7 +32,7 @@ class UpdateUserCreditsRequest extends FormRequest
     {
         return [
             //
-            'credits' => 'integer|required'
+            'credits' => 'integer|required',
         ];
     }
 }
