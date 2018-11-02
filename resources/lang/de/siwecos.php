@@ -2,16 +2,16 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | This is a generated file.
-    |
-    | Any manual change will be lost.
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Language Lines
+	|--------------------------------------------------------------------------
+	|
+	| This is a generated file.
+	|
+	| Any manual change will be lost.
+	|
+	*/
 
   //
   // Category: Angriffe
@@ -237,14 +237,34 @@ return [
   // HSTS_PRELOAD
   'HSTS_PRELOAD'            => "Die `preload`-Direktive ist gesetzt.\n",
   //
+  // HTTPONLY_FLAG_SET
+  'HTTPONLY_FLAG_SET'            => "Das HttpOnly Flag ist gesetzt.\n",
+  //
   // INCLUDE_SUBDOMAINS
   'INCLUDE_SUBDOMAINS'            => "`includeSubDomains` ist gesetzt.\n",
+  //
+  // NO_HTTPONLY_FLAG_SET
+  'NO_HTTPONLY_FLAG_SET'            => "Des HttpOnly Flag ist nicht gesetzt.\n",
+  //
+  // NO_SECURE_FLAG_SET
+  'NO_SECURE_FLAG_SET'            => "Des Secure Flag ist nicht gesetzt.\n",
   //
   // NO_SINKS_FOUND
   'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
   //
   // NO_SOURCES_FOUND
   'NO_SOURCES_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources</a>“ gefunden.\n",
+  //
+  // SECURE_FLAG_SET
+  'SECURE_FLAG_SET'            => "Das Secure Flag ist gesetzt.\n",
+  //
+  // SET_COOKIE
+  'SET_COOKIE'            => "Überprüfung von Set-Cookie.\n",
+  'SET_COOKIE_SUCCESS'    => "Cookies sind gesichert.\n",
+  'SET_COOKIE_ERROR'      => "Cookies sind nicht gesichert.\n",
+  'SET_COOKIE_ERROR_DESC' => "<p>Cookies sollten durchs Setzen des HttpOnly und Secure flags gesichert werden um zu verhindern, dass Dritte die Informationen abgreifen oder verändern können.\n</p>",
+  'SET_COOKIE_TIPS'       => "",
+  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/DE",
   //
   // SINKS_FOUND
   'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
