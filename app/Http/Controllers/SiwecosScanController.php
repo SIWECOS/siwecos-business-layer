@@ -155,10 +155,12 @@ class SiwecosScanController extends Controller
      *
      * @return mixed
      */
-    public function generatePdf(int $id)
+    public function generatePdf(int $id, string $token)
     {
-        $data = $this->generateReportData($id);
-
+        $data = $this->generateReportData($id, $token);
+        if ($data === null){
+            return abort('403');
+        }
         /** @var Pdf $pdf */
         $pdf = PDF::loadView('pdf.report', $data);
 
@@ -170,10 +172,12 @@ class SiwecosScanController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function generateReport(int $id)
+    public function generateReport(int $id, string $token)
     {
-        $data = $this->generateReportData($id);
-
+        $data = $this->generateReportData($id, $token);
+        if ($data === null){
+            return abort('403');
+        }
         return View('pdf.report', $data);
     }
 
@@ -185,22 +189,29 @@ class SiwecosScanController extends Controller
         return $response['domain'];
     }
 
-    private function generateReportData(int $id)
+    private function generateReportData(int $id, string $token)
     {
         $response = $this->coreApi->GetResultById($id);
-        $response = $this->calculateScorings($response);
-        $rawCollection = collect($response);
-        App::setLocale('de');
-        Carbon::setLocale('de');
-        setlocale(LC_TIME, 'German');
-        $data = [
-                    'data'   => $this->translateResult($rawCollection)['scanners'],
-                    'domain' => $response['domain'],
-                    'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
-                    'gauge'  => $response['gauge'],
-                ];
+        $tokenUser = User::where('token', $token)->first();
+        if ($tokenUser instanceof User){
+            if ($token !== $response['token']){
+                return null;
+            }
+            $response = $this->calculateScorings($response);
+            $rawCollection = collect($response);
+            App::setLocale('de');
+            Carbon::setLocale('de');
+            setlocale(LC_TIME, 'German');
+            $data = [
+                'data'   => $this->translateResult($rawCollection)['scanners'],
+                'domain' => $response['domain'],
+                'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
+                'gauge'  => $response['gauge'],
+            ];
 
-        return $data;
+            return $data;
+        }
+        return null;
     }
 
     public function gaugeData($score)

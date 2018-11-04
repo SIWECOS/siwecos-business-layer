@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/report/{id}', 'SiwecosScanController@generateReport');
-Route::get('/pdf/{id}', 'SiwecosScanController@generatePdf');
+Route::get('/report/{id}/{token}', 'SiwecosScanController@generateReport');
+Route::get('/pdf/{id}/{token}', 'SiwecosScanController@generatePdf');
