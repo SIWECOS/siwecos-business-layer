@@ -329,14 +329,34 @@ return [
   // HSTS_PRELOAD
   'HSTS_PRELOAD'            => "The 'preload' directive is set.\n",
   //
+  // HTTPONLY_FLAG_SET
+  'HTTPONLY_FLAG_SET'            => "The HttpOnly flag is set.\n",
+  //
   // INCLUDE_SUBDOMAINS
   'INCLUDE_SUBDOMAINS'            => "'includeSubDomains' is set.\n",
+  //
+  // NO_HTTPONLY_FLAG_SET
+  'NO_HTTPONLY_FLAG_SET'            => "The HttpOnly flag is not set.\n",
+  //
+  // NO_SECURE_FLAG_SET
+  'NO_SECURE_FLAG_SET'            => "The secure flag is not set.\n",
   //
   // NO_SINKS_FOUND
   'NO_SINKS_FOUND'            => "No \"sinks\" were found.\n",
   //
   // NO_SOURCES_FOUND
   'NO_SOURCES_FOUND'            => "No \"sources\" were found.\n",
+  //
+  // SECURE_FLAG_SET
+  'SECURE_FLAG_SET'            => "The secure flag is set.\n",
+  //
+  // SET_COOKIE
+  'SET_COOKIE'            => "Check of Set-Cookie\n",
+  'SET_COOKIE_SUCCESS'    => "Cookies are secured\n",
+  'SET_COOKIE_ERROR'      => "Cookies are not secured.\n",
+  'SET_COOKIE_ERROR_DESC' => "<p>Cookies should be secured by setting the HttpOnly and Secure flags to ensure they cannot be read or altered by others.\n</p>",
+  'SET_COOKIE_TIPS'       => "",
+  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/EN",
   //
   // SINKS_FOUND
   'SINKS_FOUND'            => "\"Sinks\" were found.\n",

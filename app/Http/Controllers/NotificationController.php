@@ -23,15 +23,12 @@ class NotificationController extends Controller
         $minimumscore = env('NOTIFICATION_LOW_SCORE', 50);
         if ($numericScore < $minimumscore) {
             $recipients = env('NOTIFICATION_LOW_SCORE_RECIPIENTS', '');
-            $count_recipients = 0;
             foreach (preg_split("/[\s,]+/", $recipients) as $recipient) {
                 $siwecosUser = User::whereEmail($recipient)->first();
                 \Log::info('SEND MAIL TO '.$siwecosUser->email);
                 // INFORM USER AND SEND REPORT AS ATTACHEMENT
                 $siwecosUser->notify(new lowscore($scanId));
-                $count_recipients++;
             }
-            \Log::info('Reports sent: '.$count_recipients);
         }
     }
 }
