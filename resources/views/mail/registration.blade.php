@@ -6,7 +6,7 @@ SIWECOS
 @endslot
 Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},
 
-vielen Dank für Ihre Anmeldung bei Siwecos.
+vielen Dank für Ihre Anmeldung bei SIWECOS.
 
 Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link
 
