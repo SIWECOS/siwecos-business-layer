@@ -158,7 +158,7 @@ class SiwecosScanController extends Controller
     public function generatePdf(int $id, string $token)
     {
         $data = $this->generateReportData($id, $token);
-        if ($data === null){
+        if ($data === null) {
             return abort('403');
         }
         /** @var Pdf $pdf */
@@ -175,9 +175,10 @@ class SiwecosScanController extends Controller
     public function generateReport(int $id, string $token)
     {
         $data = $this->generateReportData($id, $token);
-        if ($data === null){
+        if ($data === null) {
             return abort('403');
         }
+
         return View('pdf.report', $data);
     }
 
@@ -193,9 +194,9 @@ class SiwecosScanController extends Controller
     {
         $response = $this->coreApi->GetResultById($id);
         $tokenUser = User::where('token', $token)->first();
-        if ($tokenUser instanceof User){
-            if ($token !== $response['token']){
-                return null;
+        if ($tokenUser instanceof User) {
+            if ($token !== $response['token']) {
+                return;
             }
             $response = $this->calculateScorings($response);
             $rawCollection = collect($response);
@@ -211,7 +212,6 @@ class SiwecosScanController extends Controller
 
             return $data;
         }
-        return null;
     }
 
     public function gaugeData($score)
