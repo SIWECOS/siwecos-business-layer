@@ -20,7 +20,7 @@ Route::prefix('v1')->group(function () {
     Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
     Route::Get('/freescan/{id}', 'SiwecosScanController@BrodcastScanResult');
-    Route::Get('/freescan/result/{id}', 'SiwecosScanController@GetScanResultById');
+    Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
     Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');

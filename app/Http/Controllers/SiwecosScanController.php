@@ -57,16 +57,16 @@ class SiwecosScanController extends Controller
         event(new App\Events\FreeScanReady($id));
     }
 
-    public function GetScanResultById(int $id)
+    public function GetScanResultById(int $id, string $lang = 'de')
     {
         //Validation if free scan
         $response = $this->coreApi->GetResultById($id);
-        //		dd( $response );
         $response = $this->calculateScorings($response);
         $rawCollection = collect($response);
-        App::setLocale('de');
 
-        return response()->json($this->translateResult($rawCollection, 'de'));
+        App::setLocale($lang);
+
+        return response()->json($this->translateResult($rawCollection, $lang));
     }
 
     /**
@@ -155,10 +155,12 @@ class SiwecosScanController extends Controller
      *
      * @return mixed
      */
-    public function generatePdf(int $id)
+    public function generatePdf(int $id, string $token)
     {
-        $data = $this->generateReportData($id);
-
+        $data = $this->generateReportData($id, $token);
+        if ($data === null) {
+            return abort('403');
+        }
         /** @var Pdf $pdf */
         $pdf = PDF::loadView('pdf.report', $data);
 
@@ -170,9 +172,12 @@ class SiwecosScanController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function generateReport(int $id)
+    public function generateReport(int $id, string $token)
     {
-        $data = $this->generateReportData($id);
+        $data = $this->generateReportData($id, $token);
+        if ($data === null) {
+            return abort('403');
+        }
 
         return View('pdf.report', $data);
     }
@@ -185,22 +190,28 @@ class SiwecosScanController extends Controller
         return $response['domain'];
     }
 
-    private function generateReportData(int $id)
+    private function generateReportData(int $id, string $token)
     {
         $response = $this->coreApi->GetResultById($id);
-        $response = $this->calculateScorings($response);
-        $rawCollection = collect($response);
-        App::setLocale('de');
-        Carbon::setLocale('de');
-        setlocale(LC_TIME, 'German');
-        $data = [
-                    'data'   => $this->translateResult($rawCollection)['scanners'],
-                    'domain' => $response['domain'],
-                    'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
-                    'gauge'  => $response['gauge'],
-                ];
+        $tokenUser = User::where('token', $token)->first();
+        if ($tokenUser instanceof User) {
+            if ($token !== $response['token']) {
+                return;
+            }
+            $response = $this->calculateScorings($response);
+            $rawCollection = collect($response);
+            App::setLocale('de');
+            Carbon::setLocale('de');
+            setlocale(LC_TIME, 'German');
+            $data = [
+                'data'   => $this->translateResult($rawCollection)['scanners'],
+                'domain' => $response['domain'],
+                'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
+                'gauge'  => $response['gauge'],
+            ];
 
-        return $data;
+            return $data;
+        }
     }
 
     public function gaugeData($score)
@@ -233,14 +244,13 @@ class SiwecosScanController extends Controller
         $scannerCollection = collect($resultCollection['scanners']);
         $scannerCollection->transform(function ($item, $key) {
             $item['scanner_type'] = __('siwecos.SCANNER_NAME_'.$item['scanner_type']);
-            //			dd($item['scanner_type']);
             if ($item['has_error']) {
                 $errorRaw = $item['complete_request']['errorMessage'];
                 $error = [];
                 $error['report'] = html_entity_decode(__('siwecos.'.$errorRaw['placeholder']));
                 $error['has_error'] = true;
                 $error['score'] = 0;
-                if (array_key_exists('values', $errorRaw)) {
+                if (is_array($errorRaw) && array_key_exists('values', $errorRaw)) {
                     if ($errorRaw['values'] != null && self::isAssoc($errorRaw['values'])) {
                         foreach ($errorRaw['values'] as $key => $value) {
                             if (is_array($value)) {
@@ -260,7 +270,6 @@ class SiwecosScanController extends Controller
                     }
                     $error['name'] = $error['report'];
                 }
-                //				dd($error);
                 $item['result'] = collect([$error]);
 
                 return $item;
