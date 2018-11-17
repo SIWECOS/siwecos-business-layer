@@ -26,7 +26,7 @@ class CoreApiController extends Controller
                 'User-Agent' => config('app.userAgent'),
             ],
             'timeout' => 25,
-            'verify' => false,
+            'verify'  => false,
         ]);
     }
 
