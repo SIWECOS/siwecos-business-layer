@@ -6,7 +6,7 @@ SIWECOS
 @endslot
 Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},
 
-Wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.
+wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.
 
 Sie können Ihr Passwort über den untenstehenden Link zurücksetzen:
 
@@ -41,7 +41,7 @@ SIWECOS.de - Auf der sicheren Seite
 
 SIWECOS ist ein Gemeinschaftsprojekt vom eco – Verband der Internetwirtschaft e. V. und der Ruhr-Universität Bochum mit Unterstützung des CMS Garden e.V. und des Bochumer IT-Security Startups Hackmanit und steht für „Sichere Webseiten und Content Management Systeme“.<br/>
 Das Projekt wird gefördert durch das Bundesministerium für Wirtschaft und Energie (BMWI) und hat zum Ziel die Webseitensicherheit für kleine und mittelständische Unternehmen langfristig zu erhöhen.<br/>
-Siwecos bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
+SIWECOS bietet einen Webseitenscanner, der Sicherheitslücken zuverlässig aufdeckt, Filterregeln für Hosting Anbieter, das Webangriffe frühzeitig identifiziert, sowie Aufklärungs- und Hilfsangebote für kleine und
 mittelständische Unternehmen beim Betrieb von Webseiten mit Content Management Systemen.<br/>
 @endcomponent
 @endslot
