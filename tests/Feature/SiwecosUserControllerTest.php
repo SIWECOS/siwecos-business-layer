@@ -44,7 +44,7 @@ class SiwecosUserControllerTest extends TestCase
                 'acl_id'       => 1,
                 'active'       => 1,
                 'org_city'     => 'Frankfurt',
-                'password'     => 'notMissingAnymore']);
+                'password'     => 'notMissingAnymore', ]);
         $testUser->token = 'INITIAL TEST TOKEN';
         $testUser->save();
         $this->testUserId = $testUser->id;

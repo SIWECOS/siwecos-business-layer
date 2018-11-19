@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CoreAPI;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\CreateUserRequestCaptcha;
 use App\Http\Requests\ForgotPasswordRequest;
@@ -21,7 +22,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Keygen\Keygen;
 use Swagger\Annotations as SWG;
-use App\CoreAPI;
 
 class SiwecosUserController extends Controller
 {

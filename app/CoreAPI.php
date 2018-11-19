@@ -2,14 +2,14 @@
 
 namespace App;
 
-use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\CoreApiController;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
-
 
 class CoreAPI
 {
-    public static function generateUserToken(int $credits) {
+    public static function generateUserToken(int $credits)
+    {
         $coreAPI = new CoreApiController();
 
         $response = $coreAPI->CreateUserToken($credits);

@@ -3,12 +3,8 @@
 namespace Tests\Feature;
 
 use App\Token;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
-use App\User;
-use App\CoreAPI;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 const USER_API = '/api/v1/users/';
 const DOMAIN_API = '/api/v1/domains/';
@@ -29,10 +25,10 @@ class SiwecosDomainControllerTest extends TestCase
         parent::setUp();
 
         // Generate mastertoken
-            $this->mastertoken = new Token(['credits' => 9999]);
-            $this->mastertoken->setAclLevel(9999);
-            $this->mastertoken->save();
-      }
+        $this->mastertoken = new Token(['credits' => 9999]);
+        $this->mastertoken->setAclLevel(9999);
+        $this->mastertoken->save();
+    }
 
     public function testAddNewDomainAndDelete()
     {
@@ -68,7 +64,7 @@ class SiwecosDomainControllerTest extends TestCase
 
         // Verify TEST_DOMAIN
         // TODO: IMPLEMENT POSSIBILITY TO TEST THIS
-        $response = $this->json('POST', DOMAIN_API . 'verifyDomain', ['domain' => TEST_DOMAIN],
+        $response = $this->json('POST', DOMAIN_API.'verifyDomain', ['domain' => TEST_DOMAIN],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]
         );
         $response->assertStatus(200);
