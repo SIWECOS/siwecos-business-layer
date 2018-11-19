@@ -32,6 +32,11 @@ class SiwecosDomainController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
+
+            // Check if domain already exists
+            $userDomains = $this->coreApi->GetDomains($tokenUser->token);
+
+
             $response = $this->coreApi->CreateDomain($userToken, $request->domain, $request->danger_level);
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
@@ -55,10 +60,11 @@ class SiwecosDomainController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
-            $response = $this->coreApi->DeleteDomain($userToken, $request->domain);
+            $response = $this->coreApi->DeleteDomain($userToken, $request->get('domain'));
+
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
-
+                \Log::critical($response);
                 throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
 
