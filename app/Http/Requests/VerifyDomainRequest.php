@@ -31,7 +31,6 @@ class VerifyDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            //
             'domain' => 'url|required',
         ];
     }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marcelwege
- * Date: 18.12.17
- * Time: 14:44.
- */
 
 namespace Tests\Feature;
 
@@ -49,7 +43,8 @@ class SiwecosUserControllerTest extends TestCase
                 'org_size_id'  => '1',
                 'acl_id'       => 1,
                 'active'       => 1,
-                'org_city'     => 'Frankfurt', ]);
+                'org_city'     => 'Frankfurt',
+                'password'     => 'notMissingAnymore']);
         $testUser->token = 'INITIAL TEST TOKEN';
         $testUser->save();
         $this->testUserId = $testUser->id;
