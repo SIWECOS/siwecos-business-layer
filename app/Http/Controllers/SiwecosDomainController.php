@@ -32,7 +32,6 @@ class SiwecosDomainController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
-
             $response = $this->coreApi->CreateDomain($userToken, $request->domain, $request->danger_level);
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
