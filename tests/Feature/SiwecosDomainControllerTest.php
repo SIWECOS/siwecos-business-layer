@@ -62,7 +62,6 @@ class SiwecosDomainControllerTest extends TestCase
             ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]);
 
         $response->assertStatus(409);
-
     }
 
     /** @test */
