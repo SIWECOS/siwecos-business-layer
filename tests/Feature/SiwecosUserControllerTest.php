@@ -45,7 +45,7 @@ class SiwecosUserControllerTest extends TestCase
                 'active'       => 1,
                 'org_city'     => 'Frankfurt',
                 'password'     => 'notMissingAnymore', ]);
-        $testUser->token = 'INITIAL TEST TOKEN';
+        $testUser->token = 'TEST_CASE_DUMMY_TOKEN';
         $testUser->save();
         $this->testUserId = $testUser->id;
         $this->token = $testUser->token;

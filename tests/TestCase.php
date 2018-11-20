@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
-    public function getTestUser()
+    public function getTestUser(bool $useTestToken = false)
     {
         // Create activated user
         $user = new User([
@@ -47,7 +47,7 @@ abstract class TestCase extends BaseTestCase
         ]);
         $user->password = \Hash::make('secret');
         $user->active = 1;
-        $user->token = CoreAPI::generateUserToken(50);
+        $user->token = $useTestToken ? 'TEST_CASE_DUMMY_TOKEN' : CoreAPI::generateUserToken(50);
         $user->save();
 
         return $user;

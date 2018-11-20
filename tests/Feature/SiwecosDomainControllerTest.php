@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 const USER_API = '/api/v1/users/';
 const DOMAIN_API = '/api/v1/domains/';
-const TEST_DOMAIN = 'http://loremipsum.de';
+const TEST_DOMAIN = 'http://siwecos-test-domain';
 
 class SiwecosDomainControllerTest extends TestCase
 {
@@ -54,29 +54,15 @@ class SiwecosDomainControllerTest extends TestCase
 
     public function testAddNewDomainWithExistingEntity()
     {
-        $user = $this->getTestUser();
-
-        // Set the TEST_DOMAIN the first time
-        $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
-            ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]);
-        $response->assertJsonStructure(['domainToken', 'domainId']);
-        $response->assertStatus(200);
-
-        // Verify TEST_DOMAIN
-        // TODO: IMPLEMENT POSSIBILITY TO TEST THIS
-        $response = $this->json('POST', DOMAIN_API.'verifyDomain', ['domain' => TEST_DOMAIN],
-            ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]
-        );
-        $response->assertStatus(200);
+        // DOMAIN ALREADY VERIFIED
 
         // Try to set the domain again
+        $user = $this->getTestUser(true);
         $response = $this->json('POST', DOMAIN_API.'addNewDomain', ['domain' => TEST_DOMAIN, 'danger_level' => 0],
             ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]);
+
         $response->assertStatus(409);
 
-        // $response = $this->json('POST', DOMAIN_API.'deleteDomain', ['domain' => TEST_DOMAIN],
-        //     ['masterToken' => $this->mastertoken->token, 'userToken' => $user->token]);
-        // $response->assertStatus(200);
     }
 
     /** @test */
