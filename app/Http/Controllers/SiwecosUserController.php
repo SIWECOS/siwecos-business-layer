@@ -299,8 +299,7 @@ class SiwecosUserController extends Controller
 
     public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
     {
-        $user = User::where('email', $request->input('email'))
-                    ->where('passwordreset_token', $request->input('token'))
+        $user = User->where('passwordreset_token', $request->input('token'))
                     ->first();
 
         if ($user instanceof User) {
