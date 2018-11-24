@@ -169,6 +169,7 @@ class CoreApiController extends Controller
 
             return json_decode($response->getBody(), true);
         } catch (RequestException $requestEx) {
+            \Log::critical('GetResultById with id = ' . $id . ' failed.');
             return $requestEx;
         }
     }
