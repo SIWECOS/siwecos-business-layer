@@ -25,8 +25,8 @@ Route::prefix('v1')->group(function () {
 
     Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');
 
-    Route::get('/report/{id}/{token}', 'SiwecosScanController@generateReport');
-    Route::get('/pdf/{id}/{token}', 'SiwecosScanController@generatePdf');
+    Route::post('/report', 'SiwecosScanController@generateReport');
+    Route::post('/pdf', 'SiwecosScanController@generatePdf');
 
     Route::middleware(['mastertoken'])->group(function () {
         Route::Post('/users/create', 'SiwecosUserController@create');
