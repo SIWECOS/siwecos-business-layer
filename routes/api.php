@@ -24,6 +24,10 @@ Route::prefix('v1')->group(function () {
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
     Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');
+
+    Route::get('/report/{id}/{token}', 'SiwecosScanController@generateReport');
+    Route::get('/pdf/{id}/{token}', 'SiwecosScanController@generatePdf');
+
     Route::middleware(['mastertoken'])->group(function () {
         Route::Post('/users/create', 'SiwecosUserController@create');
         Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
