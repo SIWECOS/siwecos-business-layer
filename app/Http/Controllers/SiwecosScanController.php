@@ -165,7 +165,7 @@ class SiwecosScanController extends Controller
 
         $pdf = PDF::loadView('pdf.report', $data);
 
-        return $pdf->output();
+        return $pdf->download();
     }
 
     public function generateReport(GenerateReportRequest $request)
