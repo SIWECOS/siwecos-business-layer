@@ -12,10 +12,5 @@
 */
 
 Route::get('/', function () {
-    Log::info('Startup Papertrail');
-
-    return view('welcome');
+    return "API Only! Have a look at the <a href='https://github.com/SIWECOS/siwecos-business-layer#siwecos-business-layer'>README.md</a> for more information.";
 });
-
-Route::get('/report/{id}/{token}', 'SiwecosScanController@generateReport');
-Route::get('/pdf/{id}/{token}', 'SiwecosScanController@generatePdf');

@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use PDF;
+use App\Http\Requests\GenerateReportRequest;
 
 class SiwecosScanController extends Controller
 {
@@ -155,28 +156,25 @@ class SiwecosScanController extends Controller
      *
      * @return mixed
      */
-    public function generatePdf(int $id, string $token)
+    public function generatePdf(GenerateReportRequest $request)
     {
-        $data = $this->generateReportData($id, $token);
+        $data = $this->generateReportData($request->get('id'), $request->get('language'));
         if ($data === null) {
             return abort('403');
         }
-        /** @var Pdf $pdf */
+
         $pdf = PDF::loadView('pdf.report', $data);
 
-        return $pdf->output();
+        return $pdf->download();
     }
 
-    /**
-     * @param int $id
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function generateReport(int $id, string $token)
+    public function generateReport(GenerateReportRequest $request)
     {
-        $data = $this->generateReportData($id, $token);
+        $data = $this->generateReportData($request->get('id'), $request->get('language'));
+
         if ($data === null) {
-            return abort('403');
+            Log::critical('Could not generate report data for id: ' . $request->get('id'));
+            abort('403', 'Could not retrieve data.');
         }
 
         return View('pdf.report', $data);
@@ -190,28 +188,29 @@ class SiwecosScanController extends Controller
         return $response['domain'];
     }
 
-    private function generateReportData(int $id, string $token)
+    private function generateReportData(int $id, string $lang = 'de')
     {
         $response = $this->coreApi->GetResultById($id);
-        $tokenUser = User::where('token', $token)->first();
-        if ($tokenUser instanceof User) {
-            if ($token !== $response['token']) {
-                return;
-            }
-            $response = $this->calculateScorings($response);
-            $rawCollection = collect($response);
-            App::setLocale('de');
-            Carbon::setLocale('de');
-            setlocale(LC_TIME, 'German');
-            $data = [
-                'data'   => $this->translateResult($rawCollection)['scanners'],
-                'domain' => $response['domain'],
-                'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
-                'gauge'  => $response['gauge'],
-            ];
 
-            return $data;
-        }
+        $response = $this->calculateScorings($response);
+        $rawCollection = collect($response);
+
+        if ($lang === 'de')
+            setlocale(LC_TIME, 'de_DE.UTF-8');
+        if ($lang === 'en')
+            setlocale(LC_TIME, 'en_US.UTF-8');
+
+        App::setLocale($lang);
+        Carbon::setLocale($lang);
+
+        $data = [
+        'data'   => $this->translateResult($rawCollection, $lang)['scanners'],
+            'domain' => $response['domain'],
+            'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
+            'gauge'  => $response['gauge'],
+        ];
+
+        return $data;
     }
 
     public function gaugeData($score)

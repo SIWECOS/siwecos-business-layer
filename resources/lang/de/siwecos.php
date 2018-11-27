@@ -13,6 +13,7 @@ return [
   |
   */
 
+  'REPORT_FOR'  => "Report für :domain",
   //
   // Category: Angriffe
   //
