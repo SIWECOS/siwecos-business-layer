@@ -590,6 +590,11 @@ return [
   'PROTOCOLVERSION_TLS13_TIPS'       => "<p>There is no need for action.\n</p>",
   'PROTOCOLVERSION_TLS13_LINK'       => "https://siwecos.de/wiki/Protocol-Version-TLS13-Found/EN",
   //
+  // Category: Report Text
+  //
+  // REPORT_FOR
+  'REPORT_FOR'            => "Report for :domain\n",
+  //
   // Category: Scanner
   //
   // SCANNER_NAME_DOMXSS
@@ -647,7 +652,6 @@ return [
   'HAS_SINKS_ERROR'      => "Unsafe JavaScript code used (sinks)\n",
   'HAS_SINKS_ERROR_DESC' => "<p>At least one code segment was found by scanning your website that may, under certain circumstances, indicate a DOM-based <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting Anfälligkeit</a>. This segment can be a security flaw on your website.\n</p>",
   'HAS_SINKS_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
-  'HAS_SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS vulnerability/EN",
   //
   // HAS_SOURCES
   'HAS_SOURCES'            => "Check of JavaScript code for DOMXSS sources\n",
@@ -655,7 +659,6 @@ return [
   'HAS_SOURCES_ERROR'      => "Unsafe JavaScript code used (sources)\n",
   'HAS_SOURCES_ERROR_DESC' => "<p>During the check, at least one vulnerability was found on the web page that could be controlled by an external, potentially untrustworthy source.\n</p>",
   'HAS_SOURCES_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
-  'HAS_SOURCES_LINK'       => "https://siwecos.de/wiki/Malicious-Code-By-External-Sources/EN",
   //
   // SINKS
   'SINKS'            => "Checking the JavaScript code for DOMXSS sinks\n",
