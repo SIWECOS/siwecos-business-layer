@@ -1,3 +1,4 @@
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -123,7 +124,7 @@
       </div>
     </div>
     <div class="row">
-      <h1>Report für {{$domain}}</h1>
+      <h1>{{ __('siwecos.REPORT_FOR', ['domain' => $domain]) }}</h1>
       <p>{{$date}}</p>
     </div>
     @foreach ($data as $result)
@@ -155,3 +156,4 @@
     @endforeach
   </div>
 </body>
+</html>

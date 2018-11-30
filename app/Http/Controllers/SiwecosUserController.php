@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CoreAPI;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\CreateUserRequestCaptcha;
 use App\Http\Requests\ForgotPasswordRequest;
@@ -62,17 +63,9 @@ class SiwecosUserController extends Controller
     public function create(CreateUserRequest $request)
     {
         $newUser = new User($request->toArray());
-        $password = $newUser->password;
-        $newUser->password = Hash::make($password);
+        $newUser->password = Hash::make($request->get('password'));
         $newUser->activation_key = Keygen::alphanum(96)->generate();
-        $response = $this->coreApi->CreateUserToken(50);
-
-        if ($response instanceof RequestException) {
-            $responseText = json_decode($response->getResponse()->getBody());
-
-            throw new HttpResponseException(response()->json($responseText, $response->getCode()));
-        }
-        $newUser->token = $response['token'];
+        $newUser->token = CoreAPI::generateUserToken(50);
 
         try {
             $newUser->save();
@@ -306,8 +299,7 @@ class SiwecosUserController extends Controller
 
     public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
     {
-        $user = User::where('email', $request->input('email'))
-                    ->where('passwordreset_token', $request->input('token'))
+        $user = User::where('passwordreset_token', $request->input('token'))
                     ->first();
 
         if ($user instanceof User) {

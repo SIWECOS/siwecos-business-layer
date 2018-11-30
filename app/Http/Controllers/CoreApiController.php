@@ -21,7 +21,13 @@ class CoreApiController extends Controller
     {
         $this->coreApiUrl = env('CORE_URL', 'http://siwecos-core-api.dev/');
         $this->coreApiMasterToken = env('CORE_MASTER_TOKEN', 'RIdHtlCq9p1iQD2I3DLPwZV0');
-        $this->httpClient = new Client();
+        $this->httpClient = new Client([
+            'headers' => [
+                'User-Agent' => config('app.userAgent'),
+            ],
+            'timeout' => 25,
+            'verify'  => false,
+        ]);
     }
 
     public function CreateUserToken(int $credits)
@@ -163,6 +169,7 @@ class CoreApiController extends Controller
 
             return json_decode($response->getBody(), true);
         } catch (RequestException $requestEx) {
+            \Log::critical('GetResultById with id = ' . $id . ' failed.');
             return $requestEx;
         }
     }
