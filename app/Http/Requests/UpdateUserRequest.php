@@ -46,6 +46,7 @@ class UpdateUserRequest extends FormRequest
             'org_industry'  => '',
             'org_phone'     => '',
             'org_size_id'   => 'integer',
+            'preferred_language' => 'string|size:2',
         ];
     }
 }
