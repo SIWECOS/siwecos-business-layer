@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Rules\IsSupportedLanguage;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -46,7 +47,7 @@ class UpdateUserRequest extends FormRequest
             'org_industry'  => '',
             'org_phone'     => '',
             'org_size_id'   => 'integer',
-            'preferred_language' => 'string|size:2',
+            'preferred_language' => new IsSupportedLanguage(),
         ];
     }
 }
