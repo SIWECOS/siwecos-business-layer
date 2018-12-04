@@ -9,6 +9,7 @@ use App\User;
 
 class UserChangePreferredLanguageTest extends TestCase
 {
+    use RefreshDatabase;
 
     /** @test */
     public function the_users_preferredLanguage_can_be_changed()
