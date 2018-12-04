@@ -37,4 +37,18 @@ class UserChangePreferredLanguageTest extends TestCase
         $this->assertEquals(422, $response->getStatusCode());
         $this->assertEquals('de', User::first()->preferred_language);
     }
+
+    /** @test */
+    public function only_supported_languages_are_accepted()
+    {
+        $this->getTestUser(true);
+        $token = User::first()->token;
+
+        $response = $this->post('/api/v1/users/updateUserData', [
+            'preferred_language' => 'xx'
+        ], ['userToken' => $token]);
+
+        $this->assertEquals(422, $response->getStatusCode());
+        $this->assertEquals('de', User::first()->preferred_language);
+    }
 }
