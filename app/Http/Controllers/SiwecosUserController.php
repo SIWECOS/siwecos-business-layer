@@ -36,29 +36,6 @@ class SiwecosUserController extends Controller
      * @param CreateUserRequest $request
      *
      * @return UserTokenResponse|mixed
-     * @SWG\Post(
-     *   path="/users/create",
-     *   summary="create user",
-     *   operationId="create",
-     *   tags={"users"},
-     *   produces={"application/json"},
-     *   @SWG\Parameter(
-     *     name="CreateUserParameters",
-     *     in="body",
-     *     required=true,
-     *     @SWG\Schema(
-     *     ref="#/definitions/CreateUserRequest"
-     *     )
-     *   ),
-     *   @SWG\Response(
-     *     response=200,
-     *     description="Email and usertoken"
-     *   ),
-     *   @SWG\Response(
-     *     response=500,
-     *     description="Database or Core Api Error"
-     *   )
-     * )
      */
     public function create(CreateUserRequest $request)
     {
