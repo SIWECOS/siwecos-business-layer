@@ -44,9 +44,9 @@ class SiwecosScanController extends Controller
         return response('User not Found', 404);
     }
 
-    public function BrodcastScanResult(int $id)
+    protected function BrodcastScanResult(int $scanId)
     {
-        event(new App\Events\FreeScanReady($id));
+        event(new App\Events\FreeScanReady($scanId));
     }
 
     public function GetScanResultById(int $id, string $lang = 'de')
@@ -188,7 +188,12 @@ class SiwecosScanController extends Controller
      *
      */
     public function scanFinished(ScanFinishedCallbackRequest $request) {
-        // Generate Seal
+        // If freescan, send notification
+        if($request->json('freescan') === true) {
+            return $this->BrodcastScanResult($request->json('scanId'));
+        }
+
+        // Generate Seals
         $this->generateSiwecosSeals($request->json('scanUrl'));
 
         // Check for lowScore and send a notification

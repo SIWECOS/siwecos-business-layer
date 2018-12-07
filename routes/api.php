@@ -19,10 +19,8 @@ Route::prefix('v1')->group(function () {
     Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
     Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
-    Route::Get('/freescan/{id}', 'SiwecosScanController@BrodcastScanResult');
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
-
 
     Route::post('/report', 'SiwecosScanController@generateReport');
     Route::post('/pdf', 'SiwecosScanController@generatePdf');
