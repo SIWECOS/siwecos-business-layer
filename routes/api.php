@@ -23,7 +23,6 @@ Route::prefix('v1')->group(function () {
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
-    Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');
 
     Route::post('/report', 'SiwecosScanController@generateReport');
     Route::post('/pdf', 'SiwecosScanController@generatePdf');
@@ -33,6 +32,7 @@ Route::prefix('v1')->group(function () {
         Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
         Route::Post('/users/activateUser', 'SiwecosUserController@activateUser');
         Route::Post('/users/updateTokenCredits', 'SiwecosUserController@updateCredits')->middleware('usertoken');
+        Route::post('/generateLowScoreReport', 'NotificationController@NotifyUserIfScoreIsBelowMinimum');
     });
     Route::middleware(['usertoken'])->group(function () {
         Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');

@@ -19,7 +19,7 @@ class MasterTokenMiddleware
     {
         $token = $request->header('masterToken');
         if (isset($token)) {
-            $headerToken = Token::getTokenByString($request->header('masterToken'));
+            $headerToken = Token::getTokenByString($token);
             if ($headerToken instanceof Token && $headerToken->acl_level == 9999) {
                 return $next($request);
             }
