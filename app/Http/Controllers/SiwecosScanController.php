@@ -7,27 +7,16 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use PDF;
 use App\Http\Requests\GenerateReportRequest;
 use App\Http\Requests\ScanFinishedCallbackRequest;
 use App\Notifications\lowscore;
+use Carbon\Carbon;
 
 class SiwecosScanController extends Controller
 {
-    /**
-     * Weighting array for the individual scanners - lower value means lower impact to scoring.
-     */
-    const SCANNER_WEIGHTS = [
-        'HEADER'   => 5,
-        'DOMXSS'   => 5,
-        'INFOLEAK' => 5,
-        'INI_S'    => 5,
-        'WS_TLS'   => 5,
-    ];
-
     public $coreApi;
     public $currentDomain;
 
@@ -200,7 +189,7 @@ class SiwecosScanController extends Controller
      */
     public function scanFinished(ScanFinishedCallbackRequest $request) {
         // Generate Seal
-        $this->generateSiwecosDomainSeal($request->json('scanUrl'));
+        $this->generateSiwecosSeals($request->json('scanUrl'));
 
         // Check for lowScore and send a notification
         $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
@@ -456,7 +445,56 @@ class SiwecosScanController extends Controller
         }
     }
 
-    protected function generateSiwecosSeal(string $scanUrl) {
-        // TO BE IMPLEMENTED
+    /**
+     * Generates the seals for SIWECOS.
+     *
+     * @param string $scanUrl
+     * @return void
+     */
+    protected function generateSiwecosSeals(string $scanUrl) {
+
+        $hostname = parse_url($scanUrl, PHP_URL_HOST);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        \Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        \Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
+    }
+
+    /**
+     * Returns the date for the SIWECOS seal as SVG-Code for usage with siwecos-siegel.blade.php
+     *
+     * @param string $date
+     * @return string SVG-Code for the date
+     */
+    protected function getScanDateSVG(string $date)
+    {
+        $digitWidth = array(
+            "0" => 12.5,
+            "1" => 9.76562,
+            "2" => 11.44531,
+            "3" => 11.32812,
+            "4" => 12.10937,
+            "5" => 11.25,
+            "6" => 11.99218,
+            "7" => 10.58593,
+            "8" => 12.14843,
+            "9" => 11.99218,
+            "." => 5.07812,
+            "/" => 8.08593,
+            "-" => 9.45312,
+        );
+
+        $scandate = "";
+        $positionX = 0;
+        foreach (str_split($date) as $digit) {
+            $scandate .= '<use xlink:href="#L' . $digit . '" x="' . $positionX . '"/>';
+            $positionX += $digitWidth[$digit];
+        }
+
+        return $scandate;
     }
 }
