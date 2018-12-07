@@ -12,6 +12,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use PDF;
 use App\Http\Requests\GenerateReportRequest;
+use App\Http\Requests\ScanFinishedCallbackRequest;
+use App\Notifications\lowscore;
 
 class SiwecosScanController extends Controller
 {
@@ -39,8 +41,8 @@ class SiwecosScanController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
-            Log::info('User '.$tokenUser->email.' requested Scan Start');
             $response = $this->coreApi->CreateScan($userToken, $request->domain, $request->dangerLevel);
+
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
 
@@ -186,6 +188,22 @@ class SiwecosScanController extends Controller
         $response = $this->calculateScorings($response);
 
         return $response['domain'];
+    }
+
+    /**
+     * Handle a finished scan:
+     * - Create Seal
+     * - Handle LowScore Report
+     *
+     * @param ScanFinishedCallbackRequest $request
+     *
+     */
+    public function scanFinished(ScanFinishedCallbackRequest $request) {
+        // Generate Seal
+        $this->generateSiwecosDomainSeal($request->json('scanUrl'));
+
+        // Check for lowScore and send a notification
+        $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
     }
 
     private function generateReportData(int $id, string $lang = 'de')
@@ -413,5 +431,32 @@ class SiwecosScanController extends Controller
 
             return $testDesc;
         }
+    }
+
+    protected function notifyUserIfScoreIsBelowMinimum(int $scanId, int $totalScore)
+    {
+        $minimumscore = env('NOTIFICATION_LOW_SCORE', 50);
+        if ($totalScore < $minimumscore) {
+            /**
+             * TODO: Benachrichtungs-Logik ändern.
+             * - Diese Funktion ist zur Zeit nur für Testzwecke implementiert.
+             * - Es werden noch keine Mails an die Nutzer geschickt
+             * - Es wird ein Flag benötigt, der in staging etc. die Nachrichten nur an die in der
+             *   .env definierten Empfänger versendet
+             * - Andernfalls sollen die recipients => additionalRecipients sein und unabhängig
+             *   von einem Eintrag in der User-Tabelle verwendet werden können.
+             */
+            $recipients = env('NOTIFICATION_LOW_SCORE_RECIPIENTS', '');
+            foreach (preg_split("/[\s,]+/", $recipients) as $recipient) {
+                $siwecosUser = User::whereEmail($recipient)->first();
+
+                // INFORM USER AND SEND REPORT AS ATTACHEMENT
+                $siwecosUser->notify(new lowscore($scanId));
+            }
+        }
+    }
+
+    protected function generateSiwecosSeal(string $scanUrl) {
+        // TO BE IMPLEMENTED
     }
 }

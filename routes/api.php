@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
         Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
         Route::Post('/users/activateUser', 'SiwecosUserController@activateUser');
         Route::Post('/users/updateTokenCredits', 'SiwecosUserController@updateCredits')->middleware('usertoken');
-        Route::post('/generateLowScoreReport', 'NotificationController@NotifyUserIfScoreIsBelowMinimum');
+        Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
     });
     Route::middleware(['usertoken'])->group(function () {
         Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');

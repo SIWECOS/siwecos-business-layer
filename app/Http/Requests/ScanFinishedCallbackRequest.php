@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class NotifyUserAboutLowScoreRequest extends FormRequest
+class ScanFinishedCallbackRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +30,8 @@ class NotifyUserAboutLowScoreRequest extends FormRequest
     {
         return [
             'scanId' => 'required|integer',
-            'totalScore' => 'required|integer'
+            'scanUrl' => 'required|string',
+            'totalScore' => 'required|integer',
         ];
     }
 }
