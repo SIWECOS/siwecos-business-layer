@@ -34,6 +34,8 @@ class ScanFinishedCallbackRequest extends FormRequest
             'scanId' => 'required|integer',
             'scanUrl' => 'required|string',
             'totalScore' => 'required|integer',
+            'freescan' => 'required|boolean',
+            'recurrentscan' => 'required|boolean',
         ];
     }
 }

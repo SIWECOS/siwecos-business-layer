@@ -197,7 +197,9 @@ class SiwecosScanController extends Controller
         $this->generateSiwecosSeals($request->json('scanUrl'));
 
         // Check for lowScore and send a notification
-        $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
+        if($request->json('recurrentscan') === true) {
+            $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
+        }
     }
 
     private function generateReportData(int $id, string $lang = 'de')
