@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Rules\IsSupportedLanguage;
 
 class CreateUserRequest extends FormRequest
 {
@@ -37,6 +38,7 @@ class CreateUserRequest extends FormRequest
             'first_name'    => 'required',
             'last_name'     => 'required',
             'org_size_id'   => 'integer|min:1|max:7',
+            'preferred_language' => new IsSupportedLanguage(),
         ];
     }
 }

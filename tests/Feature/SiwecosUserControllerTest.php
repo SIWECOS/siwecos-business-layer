@@ -44,8 +44,9 @@ class SiwecosUserControllerTest extends TestCase
                 'acl_id'       => 1,
                 'active'       => 1,
                 'org_city'     => 'Frankfurt',
-                'password'     => 'notMissingAnymore', ]);
+            ]);
         $testUser->token = 'TEST_CASE_DUMMY_TOKEN';
+        $testUser->password = \Hash::make('securePassword');
         $testUser->save();
         $this->testUserId = $testUser->id;
         $this->token = $testUser->token;
