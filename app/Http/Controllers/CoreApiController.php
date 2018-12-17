@@ -145,7 +145,9 @@ class CoreApiController extends Controller
     {
         try {
             $response = $this->httpClient->POST($this->coreApiUrl.BASE_ROUTE.CORE_SCAN.'start', [
-                'json'    => ['domain' => $url, 'dangerLevel' => $danger_level, 'callbackurls' => []],
+                'json'    => ['domain' => $url, 'dangerLevel' => $danger_level, 'callbackurls' => [
+                    env('APP_CALLBACK_URL')
+                ]],
                 'headers' => ['masterToken' => $this->coreApiMasterToken, 'siwecosToken' => $userToken],
             ]);
 

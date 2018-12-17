@@ -7,25 +7,16 @@ use App\User;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use PDF;
 use App\Http\Requests\GenerateReportRequest;
+use App\Http\Requests\ScanFinishedCallbackRequest;
+use App\Notifications\lowscore;
+use Carbon\Carbon;
 
 class SiwecosScanController extends Controller
 {
-    /**
-     * Weighting array for the individual scanners - lower value means lower impact to scoring.
-     */
-    const SCANNER_WEIGHTS = [
-        'HEADER'   => 5,
-        'DOMXSS'   => 5,
-        'INFOLEAK' => 5,
-        'INI_S'    => 5,
-        'WS_TLS'   => 5,
-    ];
-
     public $coreApi;
     public $currentDomain;
 
@@ -39,8 +30,8 @@ class SiwecosScanController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
-            Log::info('User '.$tokenUser->email.' requested Scan Start');
             $response = $this->coreApi->CreateScan($userToken, $request->domain, $request->dangerLevel);
+
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
 
@@ -53,9 +44,9 @@ class SiwecosScanController extends Controller
         return response('User not Found', 404);
     }
 
-    public function BrodcastScanResult(int $id)
+    protected function BrodcastScanResult(int $scanId)
     {
-        event(new App\Events\FreeScanReady($id));
+        event(new App\Events\FreeScanReady($scanId));
     }
 
     public function GetScanResultById(int $id, string $lang = 'de')
@@ -186,6 +177,29 @@ class SiwecosScanController extends Controller
         $response = $this->calculateScorings($response);
 
         return $response['domain'];
+    }
+
+    /**
+     * Handle a finished scan:
+     * - Create Seal
+     * - Handle LowScore Report
+     *
+     * @param ScanFinishedCallbackRequest $request
+     *
+     */
+    public function scanFinished(ScanFinishedCallbackRequest $request) {
+        // If freescan, send notification
+        if($request->json('freescan') === true) {
+            return $this->BrodcastScanResult($request->json('scanId'));
+        }
+
+        // Generate Seals
+        $this->generateSiwecosSeals($request->json('scanUrl'));
+
+        // Check for lowScore and send a notification
+        if($request->json('recurrentscan') === true) {
+            $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
+        }
     }
 
     private function generateReportData(int $id, string $lang = 'de')
@@ -413,5 +427,81 @@ class SiwecosScanController extends Controller
 
             return $testDesc;
         }
+    }
+
+    protected function notifyUserIfScoreIsBelowMinimum(int $scanId, int $totalScore)
+    {
+        $minimumscore = env('NOTIFICATION_LOW_SCORE', 50);
+        if ($totalScore < $minimumscore) {
+            /**
+             * TODO: Benachrichtungs-Logik ändern.
+             * - Diese Funktion ist zur Zeit nur für Testzwecke implementiert.
+             * - Es werden noch keine Mails an die Nutzer geschickt
+             * - Es wird ein Flag benötigt, der in staging etc. die Nachrichten nur an die in der
+             *   .env definierten Empfänger versendet
+             * - Andernfalls sollen die recipients => additionalRecipients sein und unabhängig
+             *   von einem Eintrag in der User-Tabelle verwendet werden können.
+             */
+            $recipients = env('NOTIFICATION_LOW_SCORE_RECIPIENTS', '');
+            foreach (preg_split("/[\s,]+/", $recipients) as $recipient) {
+                $siwecosUser = User::whereEmail($recipient)->first();
+
+                // INFORM USER AND SEND REPORT AS ATTACHEMENT
+                $siwecosUser->notify(new lowscore($scanId));
+            }
+        }
+    }
+
+    /**
+     * Generates the seals for SIWECOS.
+     *
+     * @param string $scanUrl
+     * @return void
+     */
+    protected function generateSiwecosSeals(string $scanUrl) {
+
+        $hostname = parse_url($scanUrl, PHP_URL_HOST);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        \Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        \Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
+    }
+
+    /**
+     * Returns the date for the SIWECOS seal as SVG-Code for usage with siwecos-siegel.blade.php
+     *
+     * @param string $date
+     * @return string SVG-Code for the date
+     */
+    protected function getScanDateSVG(string $date)
+    {
+        $digitWidth = array(
+            "0" => 12.5,
+            "1" => 9.76562,
+            "2" => 11.44531,
+            "3" => 11.32812,
+            "4" => 12.10937,
+            "5" => 11.25,
+            "6" => 11.99218,
+            "7" => 10.58593,
+            "8" => 12.14843,
+            "9" => 11.99218,
+            "." => 5.07812,
+            "/" => 8.08593,
+            "-" => 9.45312,
+        );
+
+        $scandate = "";
+        $positionX = 0;
+        foreach (str_split($date) as $digit) {
+            $scandate .= '<use xlink:href="#L' . $digit . '" x="' . $positionX . '"/>';
+            $positionX += $digitWidth[$digit];
+        }
+
+        return $scandate;
     }
 }
