@@ -194,7 +194,9 @@ class SiwecosScanController extends Controller
         }
 
         // Generate Seals
-        $this->generateSiwecosSeals($request->json('scanUrl'));
+        if ($request->json('freescan') === false) {
+            $this->generateSiwecosSeals($request->json('scanUrl'));
+        }
 
         // Check for lowScore and send a notification
         if($request->json('recurrentscan') === true) {
