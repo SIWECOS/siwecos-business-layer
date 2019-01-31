@@ -13,8 +13,6 @@ return [
   |
   */
 
-  'REPORT_FOR' => "Report for :domain",
-
   //
   // Category: Attacks
   //
@@ -415,7 +413,7 @@ return [
   'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Your website can only be reached via the secure HTTPS protocol. Communication between your website and its visitors can not be intercepted or manipulated.\n",
   'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS protection error\n",
   'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p>Strict Transport Security ensures that the website can only be accessed via a secure <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> connection for a specified time period. The website operator can define the length of the time period, and whether this rule should also apply to subdomains.\n</p>",
-  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) is a web security policy mechanism that is easy to integrate.\n</p>\n<b>--snip</b><pre>\n# Activate HTTP Strict Transport Security (HSTS)\n# Required: „max-age“\n# Optional: „includeSubDomains“</pre>\n<pre>  <b>Header set Strict-Transport-Security „max-age=31556926, includeSubDomains“</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
+  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) is a web security policy mechanism that is easy to integrate.\n</p>\n<b>--snip</b><pre>\n# Activate HTTP Strict Transport Security (HSTS)\n# Required: \"max-age\"\n# Optional: \"includeSubDomains\"</pre>\n<pre>  <b>Header set Strict-Transport-Security \"max-age=31556926; includeSubDomains\"</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/No-Encryption-Found/EN",
   //
   // X_CONTENT_TYPE_OPTIONS
@@ -423,7 +421,7 @@ return [
   'X_CONTENT_TYPE_OPTIONS_SUCCESS'    => "The HTTP header is set correctly.\n",
   'X_CONTENT_TYPE_OPTIONS_ERROR'      => "X-Content-Type header is missing\n",
   'X_CONTENT_TYPE_OPTIONS_ERROR_DESC' => "<p>The X-Content-Type-Options settings in the header prevent that the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> interprets data as anything other than declared by the content type in the  <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP-Header</a>. The header settings are not set here.\n</p>",
-  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Code example of an .htaccess file on an Apache webserver.</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options „nosniff“'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
+  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Code example of an .htaccess file on an Apache webserver.</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options \"nosniff\"'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Vulnerability/EN",
   //
   // X_FRAME_OPTIONS
@@ -439,7 +437,7 @@ return [
   'X_XSS_PROTECTION_SUCCESS'    => "Cross Site Scripting (XSS) protection of the web browser is active on your website.\n",
   'X_XSS_PROTECTION_ERROR'      => "Cross Site Scripting protection is not active or configured incorrectly.\n",
   'X_XSS_PROTECTION_ERROR_DESC' => "<p>The <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection defines how built-in XSS filters in the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> are configured. A default installation can indicate an incorrect configuration.\n</p>",
-  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Code example of an .htaccess file on an Apache webserver.</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection „1; mode=block“'''\n</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
+  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Code example of an .htaccess file on an Apache webserver.</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess-Beispiel</a>)\n</p>",
   'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Vulnerability/EN",
   //
   // Category: INI_S
