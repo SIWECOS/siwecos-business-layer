@@ -14,6 +14,7 @@ use App\Http\Requests\GenerateReportRequest;
 use App\Http\Requests\ScanFinishedCallbackRequest;
 use App\Notifications\lowscore;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class SiwecosScanController extends Controller
 {
@@ -66,7 +67,7 @@ class SiwecosScanController extends Controller
      *
      * @return float
      */
-    public function GetTotalScore(int $id): float
+    public function GetTotalScore(int $id) : float
     {
         $response = $this->coreApi->GetResultById($id);
         $response = $this->calculateScorings($response);
@@ -101,7 +102,7 @@ class SiwecosScanController extends Controller
      */
     public function GetScanResult(Request $request, string $lang = 'de')
     {
-        Log::info('GET RESULTS FOR '.$request->get('domain').' LANG '.$lang);
+        Log::info('GET RESULTS FOR ' . $request->get('domain') . ' LANG ' . $lang);
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         App::setLocale($lang);
@@ -120,9 +121,9 @@ class SiwecosScanController extends Controller
 
     public function GetSimpleOutput(Request $request, string $lang = 'de')
     {
-        Log::info('GET RESULTS FOR '.$request->get('domain').' LANG '.$lang);
+        Log::info('GET RESULTS FOR ' . $request->get('domain') . ' LANG ' . $lang);
         App::setLocale($lang);
-        $domain = 'https://'.$request->get('domain');
+        $domain = 'https://' . $request->get('domain');
         $response = $this->coreApi->GetScanResultRawFree($domain);
         if (array_key_exists('scanStarted', $response)) {
             $response = $this->calculateScorings($response);
@@ -130,7 +131,7 @@ class SiwecosScanController extends Controller
 
             return response()->json(new App\Http\Resources\SimpleDomainOutput($this->translateResult($rawCollection, $lang)));
         }
-        $domain = 'http://'.$request->get('domain');
+        $domain = 'http://' . $request->get('domain');
         $response = $this->coreApi->GetScanResultRawFree($domain);
         if (array_key_exists('scanStarted', $response)) {
             $response = $this->calculateScorings($response);
@@ -187,9 +188,12 @@ class SiwecosScanController extends Controller
      * @param ScanFinishedCallbackRequest $request
      *
      */
-    public function scanFinished(ScanFinishedCallbackRequest $request) {
+    public function scanFinished(ScanFinishedCallbackRequest $request)
+    {
+        Log::debug('scanFinished triggered.');
+
         // If freescan, send notification
-        if($request->json('freescan') === true) {
+        if ($request->json('freescan') === true) {
             return $this->BrodcastScanResult($request->json('scanId'));
         }
 
@@ -197,7 +201,7 @@ class SiwecosScanController extends Controller
         $this->generateSiwecosSeals($request->json('scanUrl'));
 
         // Check for lowScore and send a notification
-        if($request->json('recurrentscan') === true) {
+        if ($request->json('recurrentscan') === true) {
             $this->notifyUserIfScoreIsBelowMinimum($request->json('scanId'), $request->json('totalScore'));
         }
     }
@@ -218,10 +222,10 @@ class SiwecosScanController extends Controller
         Carbon::setLocale($lang);
 
         $data = [
-        'data'   => $this->translateResult($rawCollection, $lang)['scanners'],
+            'data' => $this->translateResult($rawCollection, $lang)['scanners'],
             'domain' => $response['domain'],
-            'date'   => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
-            'gauge'  => $response['gauge'],
+            'date' => Carbon::parse($response['scanFinished']['date'])->formatLocalized('%A %d %B %Y %H:%M:%S'),
+            'gauge' => $response['gauge'],
         ];
 
         return $data;
@@ -243,11 +247,11 @@ class SiwecosScanController extends Controller
         $green = floor(min($score / 75, 1) * 255);
 
         return [
-            'score'                 => $score,
-            'score_x'               => -cos($deg - $origin) * $radius,
-            'score_y'               => -sin($deg - $origin) * $radius,
-                        'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/),
-            'big_arc'               => $deg > pi() ? 1 : 0,
+            'score' => $score,
+            'score_x' => -cos($deg - $origin) * $radius,
+            'score_y' => -sin($deg - $origin) * $radius,
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/ ),
+            'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
 
@@ -256,11 +260,11 @@ class SiwecosScanController extends Controller
         $this->currentDomain = $resultCollection['domain'];
         $scannerCollection = collect($resultCollection['scanners']);
         $scannerCollection->transform(function ($item, $key) {
-            $item['scanner_type'] = __('siwecos.SCANNER_NAME_'.$item['scanner_type']);
+            $item['scanner_type'] = __('siwecos.SCANNER_NAME_' . $item['scanner_type']);
             if ($item['has_error']) {
                 $errorRaw = $item['complete_request']['errorMessage'];
                 $error = [];
-                $error['report'] = html_entity_decode(__('siwecos.'.$errorRaw['placeholder']));
+                $error['report'] = html_entity_decode(__('siwecos.' . $errorRaw['placeholder']));
                 $error['has_error'] = true;
                 $error['score'] = 0;
                 if (is_array($errorRaw) && array_key_exists('values', $errorRaw)) {
@@ -272,12 +276,12 @@ class SiwecosScanController extends Controller
                                 }
                                 $value = implode(',', $value);
                             }
-                            $error['report'] = str_replace('%'.$key.'%', $value, $error['report']);
+                            $error['report'] = str_replace('%' . $key . '%', $value, $error['report']);
                         }
                     } elseif ($errorRaw['values'] != null) {
                         foreach ($errorRaw['values'] as $value) {
                             if (is_array($value) && array_key_exists('name', $value)) {
-                                $error['report'] = str_replace('%'.$value['name'].'%', $value['value'], $error['report']);
+                                $error['report'] = str_replace('%' . $value['name'] . '%', $value['value'], $error['report']);
                             }
                         }
                     }
@@ -289,16 +293,16 @@ class SiwecosScanController extends Controller
             } else {
                 $item['result'] = collect($item['result']);
                 $item['result']->transform(function ($item, $key) {
-                    $namePlaceholder = 'siwecos.'.$item['name'];
-                    $item['link'] = __($namePlaceholder.'_LINK');
+                    $namePlaceholder = 'siwecos.' . $item['name'];
+                    $item['link'] = __($namePlaceholder . '_LINK');
                     $item['description'] = $this->buildDescription($namePlaceholder, $item['score']);
                     $item['report'] = $this->buildReport($namePlaceholder, $item['score']);
                     $item['scoreTypeRaw'] = array_has($item, 'scoreType') ? $item['scoreType'] : '';
-                    $item['scoreType'] = array_has($item, 'scoreType') ? __('siwecos.SCORE_'.$item['scoreType']) : '';
+                    $item['scoreType'] = array_has($item, 'scoreType') ? __('siwecos.SCORE_' . $item['scoreType']) : '';
                     $item['testDetails'] = collect($item['testDetails']);
                     $item['testDetails']->transform(function ($item, $key) {
                         if (array_key_exists('placeholder', $item)) {
-                            $item['report'] = __('siwecos.'.$item['placeholder']);
+                            $item['report'] = __('siwecos.' . $item['placeholder']);
                             if (array_key_exists('values', $item)) {
                                 if ($item['values'] != null && self::isAssoc($item['values'])) {
                                     foreach ($item['values'] as $key => $value) {
@@ -308,12 +312,12 @@ class SiwecosScanController extends Controller
                                             }
                                             $value = implode(',', $value);
                                         }
-                                        $item['report'] = str_replace('%'.$key.'%', htmlspecialchars($value), $item['report']);
+                                        $item['report'] = str_replace('%' . $key . '%', htmlspecialchars($value), $item['report']);
                                     }
                                 } elseif ($item['values'] != null) {
                                     foreach ($item['values'] as $value) {
                                         if (is_array($value) && array_key_exists('name', $value)) {
-                                            $item['report'] = str_replace('%'.$value['name'].'%', htmlspecialchars($value['value']), $item['report']);
+                                            $item['report'] = str_replace('%' . $value['name'] . '%', htmlspecialchars($value['value']), $item['report']);
                                         }
                                     }
                                 }
@@ -323,7 +327,7 @@ class SiwecosScanController extends Controller
 
                         return $item;
                     });
-                    $item['name'] = __('siwecos.'.$item['name']);
+                    $item['name'] = __('siwecos.' . $item['name']);
 
                     return $item;
                 });
@@ -368,7 +372,7 @@ class SiwecosScanController extends Controller
                 $scanner['scanner_code'] = \preg_replace('/\s+/', '_', $scanner['scanner_type']);
             }
         }
-        Log::info('Calculation: '.$totalScore.'/'.$scanCount);
+        Log::info('Calculation: ' . $totalScore . '/' . $scanCount);
         $results['hasCrit'] = $hasCrit;
         $results['weightedMedia'] = floor($totalScore / $scanCount);
         $results['gauge'] = $this->gaugeData($results['weightedMedia']);
@@ -406,12 +410,12 @@ class SiwecosScanController extends Controller
     protected function buildDescription(string $testDesc, int $score)
     {
         if ($score == 100) {
-            $testDesc = __($testDesc.'_SUCCESS');
+            $testDesc = __($testDesc . '_SUCCESS');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 
             return $testDesc;
         } else {
-            $testDesc = __($testDesc.'_ERROR');
+            $testDesc = __($testDesc . '_ERROR');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 
             return $testDesc;
@@ -422,7 +426,7 @@ class SiwecosScanController extends Controller
     {
         if ($score == 100) {
         } else {
-            $testDesc = __($testDesc.'_ERROR_DESC');
+            $testDesc = __($testDesc . '_ERROR_DESC');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 
             return $testDesc;
@@ -458,17 +462,18 @@ class SiwecosScanController extends Controller
      * @param string $scanUrl
      * @return void
      */
-    protected function generateSiwecosSeals(string $scanUrl) {
+    protected function generateSiwecosSeals(string $scanUrl)
+    {
 
         $hostname = parse_url($scanUrl, PHP_URL_HOST);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        \Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
+        Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        \Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
+        Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
     }
 
     /**
