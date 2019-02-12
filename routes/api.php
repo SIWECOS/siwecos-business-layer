@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::prefix('v1')->group(function () {
     Route::Post('/users/login', 'SiwecosUserController@loginUser');
@@ -19,14 +19,13 @@ Route::prefix('v1')->group(function () {
     Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
     Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
-    Route::Get('/freescan/{id}', 'SiwecosScanController@BrodcastScanResult');
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
-    Route::Get('/generateLowScoreReport/{scanId}', 'NotificationController@NotifyUserIfScoreIsBelow');
-
     Route::post('/report', 'SiwecosScanController@generateReport');
     Route::post('/pdf', 'SiwecosScanController@generatePdf');
+
+    Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
     Route::middleware(['mastertoken'])->group(function () {
         Route::Post('/users/create', 'SiwecosUserController@create');

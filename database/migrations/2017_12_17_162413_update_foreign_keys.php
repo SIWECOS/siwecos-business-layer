@@ -30,7 +30,7 @@ class UpdateForeignKeys extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('org_size_id')->unsigned();
+            $table->integer('org_size_id')->unsigned()->nullable();
             $table->foreign('org_size_id')->references('id')->on('org_size');
         });
     }
