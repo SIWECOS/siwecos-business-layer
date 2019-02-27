@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Salutation;
 
 class SalutationsSeeder extends Seeder
 {
@@ -11,11 +12,7 @@ class SalutationsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('salutation')->insert(
-            [
-                ['value' => 'Mr.'],
-                ['value' => 'Mrs.'],
-            ]
-        );
+        Salutation::create(['value' => 'Mr.']);
+        Salutation::create(['value' => 'Mrs.']);
     }
 }

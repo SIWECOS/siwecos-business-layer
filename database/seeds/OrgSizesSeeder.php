@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\OrgSize;
 
 class OrgSizesSeeder extends Seeder
 {
@@ -11,13 +12,11 @@ class OrgSizesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('org_size')->insert(
-            [
-                ['value' => '1-10'],
-                ['value' => '11-50'],
-                ['value' => '51-100'],
-                ['value' => '100+'],
-            ]
+        OrgSize::create(
+            ['value' => '1-10'],
+            ['value' => '11-50'],
+            ['value' => '51-100'],
+            ['value' => '100+']
         );
     }
 }

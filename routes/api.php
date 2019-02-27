@@ -50,11 +50,11 @@ Route::prefix('v1')->group(function () {
         });
     });
 
-    Route::get('/getSalutation', function () {
+    Route::get('/salutations', function () {
         return \App\Salutation::all();
     });
 
-    Route::get('/getOrgSizes', function () {
+    Route::get('/orgsizes', function () {
         return \App\OrgSize::all();
     });
 });

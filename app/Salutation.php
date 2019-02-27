@@ -2,24 +2,11 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Salutation.
- *
- * @mixin \Eloquent
- *
- * @property int $id
- * @property string $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Salutation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Salutation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Salutation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Salutation whereValue($value)
- */
-class Salutation extends Authenticatable
+class Salutation extends Model
 {
     protected $table = 'salutation';
+
+    protected $guarded = [];
 }
