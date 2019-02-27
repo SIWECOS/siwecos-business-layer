@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -e
+
+docker tag "$DOCKER_IMAGE" "$DOCKER_REPO"/"$DOCKER_IMAGE":latest
 docker push "$DOCKER_REPO"/"$DOCKER_IMAGE":latest
 
 echo $GCLOUD_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
