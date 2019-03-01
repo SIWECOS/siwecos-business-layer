@@ -391,7 +391,7 @@ return [
   'CONTENT_SECURITY_POLICY_SUCCESS'    => "A secure configuration of the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> was found.\n",
   'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy insecure\n",
   'CONTENT_SECURITY_POLICY_ERROR_DESC' => "<p>The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> is a security concept that is designed to reduce the risk of injection and execution of malicious commands in a web application (content injection attacks). By means of a whitelist (list of allowed sources), it determines from which sources Javascript code, images, fonts, and other content may be integrated into your site.\n</p>",
-  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
+  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' or 'self' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
   'CONTENT_SECURITY_POLICY_LINK'       => "https://siwecos.de/wiki/Content-Security-Policy-Vulnerability/EN",
   //
   // CONTENT_TYPE
@@ -445,13 +445,13 @@ return [
   // Category: INI_S
   //
   // MALWARE_FOUND
-  'MALWARE_FOUND'            => "Your domain ‘%site%’ was found in the following malware lists: %where%\n",
+  'MALWARE_FOUND'            => "Your domain '%site%' was found in the following malware lists: %where%\n",
   //
   // PHISHING_FOUND
-  'PHISHING_FOUND'            => "Your domain ‘%site%’ was found in the following phishing lists: %where%\n",
+  'PHISHING_FOUND'            => "Your domain '%site%' was found in the following phishing lists: %where%\n",
   //
   // SPAM_FOUND
-  'SPAM_FOUND'            => "Your domain ‘%site%’ was found in the following spam lists: %where%\n",
+  'SPAM_FOUND'            => "Your domain '%site%' was found in the following spam lists: %where%\n",
   //
   // Category: Infoleak
   //
@@ -591,6 +591,16 @@ return [
   'PROTOCOLVERSION_TLS13_ERROR_DESC' => "<p>The server supports the latest <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS 1.3 protocol version</a>. This version is still going through the standardisation process. If you do not understand what this means, you can deactivate the version, because most browsers do not yet support this version, and TLS 1.3 is still in development.\n</p>",
   'PROTOCOLVERSION_TLS13_TIPS'       => "<p>There is no need for action.\n</p>",
   'PROTOCOLVERSION_TLS13_LINK'       => "https://siwecos.de/wiki/Protocol-Version-TLS13-Found/EN",
+  //
+  // Category: Referrer Policy Scanner
+  //
+  // REFERRER_POLICY
+  'REFERRER_POLICY'            => "Checking the Referrer Policy\n",
+  'REFERRER_POLICY_SUCCESS'    => "Referrer Policy is secure\n",
+  'REFERRER_POLICY_ERROR'      => "Referrer Policy is insecure\n",
+  'REFERRER_POLICY_ERROR_DESC' => "<p>A well-defined Referrer Policy <b>protects the privacy</b> of your website visitors, but has no <i>direct</i> influence on the security of your website.\n</p>",
+  'REFERRER_POLICY_TIPS'       => "<p>We recommend that the Referrer Policy Header be set to be as restrictive as possible, i.e. to be set to ”no-referrer,\" for example.\n</p>\n<h1><span class=\"mw-headline\" id=\".3D_Examples_.3D\">= Examples =</span></h1>\n<p><b>Referrer Policy Definition by Server Header:</b>\n</p>\n<pre> # Referrer Policy\nHeader set referrer-Policy \"no-referrer\" </pre>\n<p><b>Referrer Policy Definition by HTML code:</b>\n</p>\n<pre> &lt;meta name=\"referrer\" content=\"no-referrer\" \"/&gt; </pre>\n<p><b>Statement:</b> The value `<b>no-referrer</b>` instructs the browser to send <b>Never</b> <i>Referer Header</i>, which is provided by your site. This includes links to pages on your own website.\n</p><p><br />\n</p>\n<table class=\"wikitable\" style=\"margin:auto;”\">\n<tr>\n<td> style=\"border: 4px solid #C31622; color:#000000; background-color:#f6f6f6;\"\n</td>\n<td> Other useful instructions can be `<b>same-origin</b>`, `<b>strict-origin</b>` or `<b>origin-when-cross-origin`</b>.\n</td></tr></table>\n<p><br />\n</p>\n<pre>The value `<b>same origin</b>` instructs the browser to send only <i>Referer Header</i> provided by your website. If the target is another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">domain</a>, no referrer information will be sent.\n</pre>\n<p>The value `<b>strict-origin</b>` instructs the browser, to always indicate the origin domain as <i>Referer Header</i>.\n</p><p>The value <b>origin-when-cross-origin</b>` instructs the browser to send the full referrer URL only if you stay on the same <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>. Once the domain is left via <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> or another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>  is addressed, only the source domain is sent.\n</p><p>Detailed information and examples can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://scotthelme.co.uk/a-new-security-header-referrer-policy/Scott\">Helme</a>.\n</p>",
+  'REFERRER_POLICY_LINK'       => "https://siwecos.de/wiki/Referrer Policy/EN",
   //
   // Category: Report Text
   //
