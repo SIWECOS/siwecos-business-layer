@@ -59,41 +59,6 @@ class SiwecosUserController extends Controller
         return response()->json($response);
     }
 
-    public function loginUser(LoginUserRequest $request)
-    {
-        $loggedInUser = User::where(['email' => $request->json('email')])->first();
-        $password = $request->json('password');
-        if ($loggedInUser instanceof User && self::validatePassword($password, $loggedInUser->password)) {
-            return response()->json($loggedInUser);
-        }
-
-        return response('Wrong credentials', 403);
-    }
-
-    protected static function createPassword(string $password)
-    {
-        $wp_hasher = new WpPasswordAuthentication(8, true);
-
-        return $wp_hasher->HashPassword(trim($password));
-    }
-
-    protected static function validatePassword(string $password, string $hash)
-    {
-        if (strlen($hash) <= 32) {
-            $check = hash_equals($hash, md5($password));
-            if ($check) {
-                // Rehash using new hash.
-                wp_set_password($password, $user_id);
-                $hash = wp_hash_password($password);
-            }
-        }
-        $wp_hasher = new WpPasswordAuthentication(8, true);
-        $check = $wp_hasher->CheckPassword($password, $hash);
-
-        return $check;
-    }
-
-
     public function getTokenByEmail(GetTokenByUserRequest $request)
     {
         $tokenUser = User::where('email', $request->json('email'))->first();

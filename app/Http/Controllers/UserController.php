@@ -10,6 +10,9 @@ use Keygen\Keygen;
 use App\Token;
 use App\Siweocs\Models\UserTokenResponse;
 use App\Http\Requests\ResendActivationMailRequest;
+use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Notifications\forgotpasswordmail;
 
 class UserController extends Controller
 {
@@ -60,6 +63,12 @@ class UserController extends Controller
         return response('User not found.', 404);
     }
 
+    /**
+     * Resends the activation mail when requested.
+     *
+     * @param ResendActivationMailRequest $request
+     * @return \Response
+     */
     public function resendActivationMail(ResendActivationMailRequest $request)
     {
         $user = User::whereEmail($request->json('email'))->first();
@@ -74,5 +83,35 @@ class UserController extends Controller
         }
 
         return response('User already activated', 410);
+    }
+
+    /**
+     * User login with correct credentials.
+     *
+     * @param UserLoginRequest $request
+     * @return \Response
+     */
+    public function login(UserLoginRequest $request)
+    {
+        $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
+
+        if ($user && $user->verifyPassword($request->json('password'))) {
+            return response()->json($user);
+        }
+
+        return response('Wrong credentials', 403);
+    }
+
+    public function sendPasswordResetMail(ResetPasswordRequest $request)
+    {
+        $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
+
+        if ($user) {
+            $user->passwordreset_token = Keygen::alphanum(96)->generate();
+            $user->save();
+            $user->notify(new forgotpasswordmail($user->passwordreset_token));
+        }
+
+        return response('If the user exists in our records, the mail was sent.', 200);
     }
 }

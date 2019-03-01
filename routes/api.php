@@ -16,11 +16,12 @@ Route::prefix('v1')->group(function () {
     Route::post('/user/create', 'UserController@create');
     Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
     Route::post('/user/activate/resend', 'UserController@resendActivationMail');
+    Route::post('/user/login', 'UserController@login');
+    Route::post('/user/password/reset', 'UserController@sendPasswordResetMail');
 
-
-    Route::Post('/users/login', 'SiwecosUserController@loginUser');
-    Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
     Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
+
+    Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
     Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');

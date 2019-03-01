@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\WpPasswordAuthentication;
 
 class User extends Authenticatable
 {
@@ -22,11 +24,6 @@ class User extends Authenticatable
         'active' => 'boolean'
     ];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
     /**
      * Returns the Eloquent Relationship for App\Token
      *
@@ -35,5 +32,32 @@ class User extends Authenticatable
     public function token()
     {
         return $this->belongsTo(Token::class);
+    }
+
+    /**
+     * Verifies if a given $passwordCandidate will match the saved hashed password.
+     * Updates an old wordpress hash to the modern implementation shipped by laravel.
+     *
+     * @param string $passwordCandidate
+     * @return void
+     */
+    public function verifyPassword(string $passwordCandidate)
+    {
+        // New modern password
+        if (Hash::check($passwordCandidate, $this->password)) {
+            return true;
+        }
+
+        // Old wordprss based password
+        // Will be removed in a later version
+        // Update to modern password hash if password is correct
+        if ((new WpPasswordAuthentication(8, true))->CheckPassword($passwordCandidate, $this->password)) {
+            $this->password = Hash::make($passwordCandidate);
+            $this->save();
+
+            return true;
+        }
+
+        return false;
     }
 }

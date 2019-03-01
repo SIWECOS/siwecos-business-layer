@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Token;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'phone'        => $faker->phoneNumber,
 
         'active'       => false,
+        'token_id'     => function () {
+            return factory(Token::class)->create()->id;
+        },
 
         'org_name'     => $faker->company,
         'org_address'  => $faker->streetAddress,
