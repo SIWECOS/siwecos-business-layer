@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'salutation_id', 'first_name', 'last_name', 'address', 'plz', 'city', 'phone', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'acl_id', 'org_size_id', 'agb',
+        'name', 'email', 'salutation_id', 'first_name', 'last_name', 'address', 'plz', 'city', 'phone', 'org_name', 'org_industry', 'org_address', 'org_plz', 'org_city', 'org_phone', 'org_size_id', 'agb',
         'preferred_language',
     ];
 
@@ -18,15 +18,22 @@ class User extends Authenticatable
         'password', 'passwordreset_token',
     ];
 
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
     }
 
-    public static function getTokenByString($userToken)
+    /**
+     * Returns the Eloquent Relationship for App\Token
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function token()
     {
-        $tokenUser = self::where('token', $userToken)->first();
-
-        return $tokenUser;
+        return $this->belongsTo(Token::class);
     }
 }

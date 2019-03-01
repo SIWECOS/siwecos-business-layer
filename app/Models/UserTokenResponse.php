@@ -11,7 +11,7 @@ class UserTokenResponse
 
     public function __construct(User $user)
     {
-        $this->token = $user->token;
+        $this->token = $user->token->token;
         $this->email = $user->email;
     }
 }

@@ -12,9 +12,13 @@
  */
 
 Route::prefix('v1')->group(function () {
+
+    Route::post('/user/create', 'UserController@create');
+    Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
+    Route::post('/user/activate/resend', 'UserController@resendActivationMail');
+
+
     Route::Post('/users/login', 'SiwecosUserController@loginUser');
-    Route::Get('/users/activate/{token}', 'SiwecosUserController@activateUserUrl')->name('activateurl');
-    Route::post('/users/activate/resend', 'SiwecosUserController@resendActivationMail');
     Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
     Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
     Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');

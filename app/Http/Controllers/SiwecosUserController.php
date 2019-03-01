@@ -32,45 +32,6 @@ class SiwecosUserController extends Controller
         $this->coreApi = new CoreApiController();
     }
 
-    /**
-     * @param CreateUserRequest $request
-     *
-     * @return UserTokenResponse|mixed
-     */
-    public function create(CreateUserRequest $request)
-    {
-        $newUser = new User($request->toArray());
-        $newUser->password = Hash::make($request->get('password'));
-        $newUser->activation_key = Keygen::alphanum(96)->generate();
-        $newUser->token = CoreAPI::generateUserToken(50);
-
-        try {
-            $newUser->save();
-            $newUser->notify(new activationmail($newUser->activation_key));
-        } catch (QueryException $queryException) {
-            return response('Database error'.$queryException->getMessage(), 500);
-        }
-
-        $response = new UserTokenResponse($newUser);
-
-        return response()->json($response);
-    }
-
-    public function resendActivationMail(GetTokenByUserRequest $request)
-    {
-        $tokenUser = User::where('email', $request->json('email'))->first();
-        if ($tokenUser instanceof User) {
-            if (!$tokenUser->active) {
-                $tokenUser->notify(new activationmail($tokenUser->activation_key));
-
-                return response('Mail sent', 200);
-            }
-
-            return response('User already activated', 400);
-        }
-
-        return response('User not found', 400);
-    }
 
     public function createCaptcha(CreateUserRequestCaptcha $request)
     {
@@ -90,7 +51,7 @@ class SiwecosUserController extends Controller
             $newUser->save();
             $newUser->notify(new activationmail($newUser->activation_key));
         } catch (QueryException $queryException) {
-            return response('Database error'.$queryException->getMessage(), 500);
+            return response('Database error' . $queryException->getMessage(), 500);
         }
 
         $response = new UserTokenResponse($newUser);
@@ -132,38 +93,6 @@ class SiwecosUserController extends Controller
         return $check;
     }
 
-    public function activateUser(Request $request)
-    {
-        $userToken = $request->header('userToken');
-        $tokenUser = User::where('token', $userToken)->first();
-        if ($tokenUser instanceof User) {
-            $tokenUser->active = 1;
-            $tokenUser->save();
-
-            return response()->json($tokenUser);
-        }
-
-        return response('User not found', 404);
-    }
-
-    public function activateUserUrl(string $activation_key)
-    {
-        if (!$activation_key) {
-            return response('Invalid activation key', 403);
-        }
-
-        $tokenUser = User::where('activation_key', $activation_key)->first();
-        if ($tokenUser instanceof User) {
-            $tokenUser->active = 1;
-            $tokenUser->activation_key = '';
-
-            $tokenUser->save();
-
-            return redirect(config('app.activation_redirect_uri'));
-        }
-
-        return response('User not found', 404);
-    }
 
     public function getTokenByEmail(GetTokenByUserRequest $request)
     {
@@ -277,7 +206,7 @@ class SiwecosUserController extends Controller
     public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
     {
         $user = User::where('passwordreset_token', $request->input('token'))
-                    ->first();
+            ->first();
 
         if ($user instanceof User) {
             $user->password = self::createPassword($request->input('newpassword'));
