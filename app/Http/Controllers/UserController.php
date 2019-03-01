@@ -13,6 +13,7 @@ use App\Http\Requests\ResendActivationMailRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Notifications\forgotpasswordmail;
+use App\Http\Requests\SendPasswordResetMailRequest;
 
 class UserController extends Controller
 {
@@ -102,7 +103,14 @@ class UserController extends Controller
         return response('Wrong credentials', 403);
     }
 
-    public function sendPasswordResetMail(ResetPasswordRequest $request)
+    /**
+     * Sends the passwort reset mail when a valid user is in the records.
+     * Sends also status code 200 if no user was found to minimize information gathering attacks.
+     *
+     * @param SendPasswordResetMailRequest $request
+     * @return \Response
+     */
+    public function sendPasswordResetMail(SendPasswordResetMailRequest $request)
     {
         $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
 
@@ -113,5 +121,26 @@ class UserController extends Controller
         }
 
         return response('If the user exists in our records, the mail was sent.', 200);
+    }
+
+    /**
+     * Reset the password to a new one
+     *
+     * @param ResetPasswordRequest $request
+     * @return \Response
+     */
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $user = User::wherePasswordresetToken($request->json('reset_token'))->whereActive(true)->first();
+
+        if ($user) {
+            $user->password = \Hash::make($request->json('newpassword'));
+            $user->passwordreset_token = null;
+            $user->save();
+
+            return response('Reset completed', 200);
+        }
+
+        return response('User not Found', 404);
     }
 }

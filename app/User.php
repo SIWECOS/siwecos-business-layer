@@ -43,12 +43,12 @@ class User extends Authenticatable
      */
     public function verifyPassword(string $passwordCandidate)
     {
-        // New modern password
+        // New modern password hash
         if (Hash::check($passwordCandidate, $this->password)) {
             return true;
         }
 
-        // Old wordprss based password
+        // Old wordprss based password hash
         // Will be removed in a later version
         // Update to modern password hash if password is correct
         if ((new WpPasswordAuthentication(8, true))->CheckPassword($passwordCandidate, $this->password)) {

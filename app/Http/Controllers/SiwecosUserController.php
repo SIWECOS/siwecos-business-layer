@@ -151,35 +151,4 @@ class SiwecosUserController extends Controller
 
         return response('User not Found', 404);
     }
-
-    public function sendForgotPasswordMail(ForgotPasswordRequest $request)
-    {
-        $user = User::where('email', $request->input('email'))->first();
-
-        if ($user instanceof User) {
-            $user->passwordreset_token = Keygen::alphanum(96)->generate();
-            $user->save();
-            $user->notify(new forgotpasswordmail($user->passwordreset_token));
-
-            return response('Send', 200);
-        }
-
-        return response('Send', 200);
-        // return response( "User not Found", 404 );
-    }
-
-    public function processForgotPasswordRequest(ProcessForgotPasswordRequest $request)
-    {
-        $user = User::where('passwordreset_token', $request->input('token'))
-            ->first();
-
-        if ($user instanceof User) {
-            $user->password = self::createPassword($request->input('newpassword'));
-            $user->save();
-
-            return response('Reset completed', 200);
-        }
-
-        return response('User not Found', 404);
-    }
 }

@@ -17,12 +17,12 @@ Route::prefix('v1')->group(function () {
     Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
     Route::post('/user/activate/resend', 'UserController@resendActivationMail');
     Route::post('/user/login', 'UserController@login');
-    Route::post('/user/password/reset', 'UserController@sendPasswordResetMail');
+    Route::post('/user/password/sendResetMail', 'UserController@sendPasswordResetMail');
+    Route::post('/user/password/reset', 'UserController@resetPassword');
 
-    Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
+
 
     Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
-    Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
@@ -33,9 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
     Route::middleware(['mastertoken'])->group(function () {
-        Route::Post('/users/create', 'SiwecosUserController@create');
         Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
-        Route::Post('/users/activateUser', 'SiwecosUserController@activateUser');
         Route::Post('/users/updateTokenCredits', 'SiwecosUserController@updateCredits')->middleware('usertoken');
     });
     Route::middleware(['usertoken'])->group(function () {

@@ -64,7 +64,6 @@ class UserLoginTest extends TestCase
     {
         $password = "abcd1234";
         $oldPasswordHash = (new WpPasswordAuthentication(8, true))->HashPassword($password);
-        $newPasswordHash = \Hash::make($password);
 
         $user = $this->getActivatedUser(['password' => $oldPasswordHash]);
 
@@ -85,7 +84,7 @@ class UserLoginTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
             'email' => $user->email
         ]);
 
@@ -96,7 +95,7 @@ class UserLoginTest extends TestCase
     /** @test */
     public function if_the_user_does_not_exist_or_is_not_active_no_passwort_reset_mail_is_sent()
     {
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
             'email' => 'does@not.exist'
         ]);
 
@@ -105,15 +104,56 @@ class UserLoginTest extends TestCase
     }
 
     /** @test */
-    public function the_password_reset_request_validates_correctly()
+    public function the_password_senResetMailRequest_validates_correctly()
     {
-        $response = $this->json('POST', '/api/v1/user/password/reset');
+        $response = $this->json('POST', '/api/v1/user/password/sendResetMail');
         $response->assertStatus(422);
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
             'email' => 'invalidFormat'
         ]);
         $response->assertStatus(422);
+    }
+
+    /** @test */
+    public function the_password_can_be_reset_if_valid_data_is_sent()
+    {
+        $user = $this->getActivatedUser(['passwordreset_token' => 'ABCD']);
+
+        $response = $this->json('POST', '/api/v1/user/password/reset', [
+            'reset_token' => $user->passwordreset_token,
+            'newpassword' => 'WXYZ0987'
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertTrue(\Hash::check('WXYZ0987', User::first()->password));
+        $this->assertNull(User::first()->passwordreset_token);
+    }
+
+    /** @test */
+    public function the_password_can_not_be_reset_if_invalid_data_is_sent()
+    {
+        $user = $this->getActivatedUser(['passwordreset_token' => 'ABCD']);
+
+        $response = $this->json('POST', '/api/v1/user/password/reset', [
+            'reset_token' => $user->passwordreset_token,
+            // 'newpassword' => 'WXYZ0987'
+        ]);
+        $response->assertStatus(422);
+
+
+        $response = $this->json('POST', '/api/v1/user/password/reset', [
+            // 'reset_token' => $user->passwordreset_token,
+            'newpassword' => 'WXYZ0987'
+        ]);
+        $response->assertStatus(422);
+
+
+        $response = $this->json('POST', '/api/v1/user/password/reset', [
+            'reset_token' => 'WRONG_TOKEN',
+            'newpassword' => 'WXYZ0987'
+        ]);
+        $response->assertStatus(404);
     }
 
     /**
