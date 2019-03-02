@@ -12,15 +12,6 @@ class ScanFinishedTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        // Generate mastertoken
-        $this->mastertoken = new Token(['credits' => 9999]);
-        $this->mastertoken->setAclLevel(9999);
-        $this->mastertoken->save();
-    }
 
     /** @test */
     public function the_siwecos_seals_are_generated_when_a_scan_is_finished()
@@ -30,8 +21,10 @@ class ScanFinishedTest extends TestCase
         $response = $this->json('POST', '/api/v1/scan/finished', [
             'scanId' => 4,
             'scanUrl' => 'https://lednerb.eu',
-            'totalScore' => 100
-        ], ['masterToken' => $this->mastertoken->token]);
+            'totalScore' => 100,
+            'freescan' => false,
+            'recurrentscan' => false,
+        ]);
 
         $response->assertStatus(200);
         Storage::disk('gcs')->assertExists('lednerb.eu/d.m.y.svg');
