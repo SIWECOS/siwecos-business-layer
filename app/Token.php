@@ -21,6 +21,16 @@ class Token extends Model
     }
 
     /**
+     * Returns the Eloquent Relationship for App\User
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    /**
      * @param int $credits
      *
      * @return bool

@@ -35,7 +35,7 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function the_create_user_request_gets_validated_and_has_required_fields()
     {
-        $response = $this->json('POST', '/api/v1/user/create', ['password' => 'secret']);
+        $response = $this->json('POST', '/api/v1/user', ['password' => 'secret']);
 
         $response->assertStatus(422);
     }
@@ -174,7 +174,7 @@ class UserRegistrationTest extends TestCase
     {
         $user = factory(User::class)->make();
 
-        return $this->json('POST', '/api/v1/user/create', array_merge($user->toArray(), ['password' => 'secret1234']));
+        return $this->json('POST', '/api/v1/user', array_merge($user->toArray(), ['password' => 'secret1234']));
     }
 
     /**

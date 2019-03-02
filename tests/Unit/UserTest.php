@@ -14,9 +14,8 @@ class UserTest extends TestCase
     /** @test */
     public function a_user_has_a_preferredLanguage_field_with_default_de()
     {
-        $this->getTestUser(true);
-        $user = User::first();
+        $this->getActivatedUser();
 
-        $this->assertEquals('de', $user->preferred_language);
+        $this->assertEquals('de', User::first()->preferred_language);
     }
 }

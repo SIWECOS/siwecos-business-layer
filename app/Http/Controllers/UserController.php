@@ -14,6 +14,7 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Notifications\forgotpasswordmail;
 use App\Http\Requests\SendPasswordResetMailRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -142,5 +143,48 @@ class UserController extends Controller
         }
 
         return response('User not Found', 404);
+    }
+
+    /**
+     * Updates an user.
+     *
+     * @param UpdateUserRequest $request
+     * @return \Response
+     */
+    public function update(UpdateUserRequest $request)
+    {
+        $user = Token::whereToken($request->header('userToken'))->first()->user;
+        $oldEmail = $user->email;
+
+        // update password
+        if ($newpassword = $request->json('newpassword')) {
+            $user->password = \Hash::make($newpassword);
+        }
+
+        // update user
+        $user->update($request->all());
+
+        // email was updated
+        if ($request->json('email') && $oldEmail != $request->json('email')) {
+            $user->activation_key = Keygen::alphanum(96)->generate();
+            $user->active = false;
+            $user->save();
+            $user->notify(new activationmail());
+        }
+
+        return response()->json($user);
+    }
+
+    /**
+     * Deletes an user.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function delete(Request $request)
+    {
+        $token = Token::whereToken($request->header('userToken'))->first();
+        $token->user()->delete();
+        $token->delete();
     }
 }

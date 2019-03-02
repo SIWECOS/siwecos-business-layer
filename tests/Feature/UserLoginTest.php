@@ -155,15 +155,4 @@ class UserLoginTest extends TestCase
         ]);
         $response->assertStatus(404);
     }
-
-    /**
-     * Returns an activated User.
-     *
-     * @param array $attributes
-     * @return App\User
-     */
-    protected function getActivatedUser($attributes = [])
-    {
-        return factory(User::class)->create(array_merge($attributes, ['active' => true]));
-    }
 }

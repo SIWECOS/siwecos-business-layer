@@ -11,32 +11,14 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function getTestUser(bool $useTestToken = false)
+    /**
+     * Returns an activated User.
+     *
+     * @param array $attributes
+     * @return App\User
+     */
+    protected function getActivatedUser($attributes = [])
     {
-        // Create activated user
-        $user = new User([
-            'first_name'    => 'Marcel',
-            'last_name'     => 'Wege',
-            'salutation_id' => 1,
-            'email'         => 'mwege@byte5.de',
-            'address'       => 'Hanauer Landstraße 114',
-            'plz'           => '60314',
-            'city'          => 'Frankfurt',
-            'phone'         => '+4915154727353',
-            'org_name'      => 'byte5 digital media GmbH',
-            'org_address'   => 'Hanauer Landstraße 114',
-            'org_plz'       => '60314',
-            'org_industry'  => 'IT',
-            'org_phone'     => '+4915154727353',
-            'org_size_id'   => '1',
-            'acl_id'        => 1,
-            'org_city'      => 'Frankfurt',
-        ]);
-        $user->password = \Hash::make('secret');
-        $user->active = 1;
-        $user->token = $useTestToken ? 'TEST_CASE_DUMMY_TOKEN' : CoreAPI::generateUserToken(50);
-        $user->save();
-
-        return $user;
+        return factory(User::class)->create(array_merge($attributes, ['active' => true]));
     }
 }

@@ -13,7 +13,7 @@
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('/user/create', 'UserController@create');
+    Route::post('/user', 'UserController@create');
     Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
     Route::post('/user/activate/resend', 'UserController@resendActivationMail');
     Route::post('/user/login', 'UserController@login');
@@ -21,6 +21,10 @@ Route::prefix('v1')->group(function () {
     Route::post('/user/password/reset', 'UserController@resetPassword');
 
 
+    Route::middleware(['userIsActivatedAndLoggedIn'])->group(function () {
+        Route::patch('/user', 'UserController@update');
+        Route::delete('/user', 'UserController@delete');
+    });
 
     Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
 
@@ -38,8 +42,7 @@ Route::prefix('v1')->group(function () {
     });
     Route::middleware(['usertoken'])->group(function () {
         Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');
-        Route::Post('/users/updateUserData', 'SiwecosUserController@updateUserInfo');
-        Route::Post('/users/deleteUserData', 'SiwecosUserController@deleteUserInformation');
+
         Route::middleware(['activation'])->group(function () {
             Route::Post('/users/getTokenCredits', 'SiwecosUserController@getUserCreditInfoByToken');
             Route::Post('/domains/addNewDomain', 'SiwecosDomainController@createNewDomain');
