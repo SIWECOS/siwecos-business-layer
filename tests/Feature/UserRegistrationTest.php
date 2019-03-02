@@ -41,7 +41,7 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function a_new_user_automatically_gets_an_standard_token()
+    public function a_new_user_automatically_gets_a_standard_token()
     {
         $this->registerUserRequest();
 
