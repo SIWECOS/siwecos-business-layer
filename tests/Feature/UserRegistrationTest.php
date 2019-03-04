@@ -35,7 +35,7 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function the_create_user_request_gets_validated_and_has_required_fields()
     {
-        $response = $this->json('POST', '/api/v1/user', ['password' => 'secret']);
+        $response = $this->json('POST', '/api/v2/user', ['password' => 'secret']);
 
         $response->assertStatus(422);
     }
@@ -86,7 +86,7 @@ class UserRegistrationTest extends TestCase
 
         $this->assertFalse($user->active);
 
-        $response = $this->get('/api/v1/user/activate/' . $user->activation_key);
+        $response = $this->get('/api/v2/user/activate/' . $user->activation_key);
 
         $response->assertStatus(200);
         $this->assertTrue(User::first()->active);
@@ -104,7 +104,7 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function an_error_status_code_will_be_returned_when_the_activationKey_is_invalid()
     {
-        $response = $this->get('/api/v1/user/activate/INVALID_KEY');
+        $response = $this->get('/api/v2/user/activate/INVALID_KEY');
 
         $response->assertStatus(404);
     }
@@ -114,7 +114,7 @@ class UserRegistrationTest extends TestCase
     {
         $this->registerAndActivateUserRequest();
 
-        $response = $this->get('/api/v1/user/activate/' . User::first()->activation_key);
+        $response = $this->get('/api/v2/user/activate/' . User::first()->activation_key);
 
         $response->assertStatus(410);
     }
@@ -125,7 +125,7 @@ class UserRegistrationTest extends TestCase
         $this->registerUserRequest();
         $user = User::first();
 
-        $response = $this->json('POST', '/api/v1/user/activate/resend', [
+        $response = $this->json('POST', '/api/v2/user/activate/resend', [
             'email' => $user->email
         ]);
 
@@ -136,15 +136,15 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function the_activation_mail_can_only_be_resend_if_valid_data_is_provided()
     {
-        $response = $this->json('POST', '/api/v1/user/activate/resend');
+        $response = $this->json('POST', '/api/v2/user/activate/resend');
         $response->assertStatus(422);
 
-        $response = $this->json('POST', '/api/v1/user/activate/resend', [
+        $response = $this->json('POST', '/api/v2/user/activate/resend', [
             'email' => 'not@existing.com'
         ]);
         $response->assertStatus(422);
 
-        $response = $this->json('POST', '/api/v1/user/activate/resend', [
+        $response = $this->json('POST', '/api/v2/user/activate/resend', [
             'email' => 'invalidFormat'
         ]);
         $response->assertStatus(422);
@@ -156,7 +156,7 @@ class UserRegistrationTest extends TestCase
         $this->registerAndActivateUserRequest();
         $user = User::first();
 
-        $response = $this->json('POST', '/api/v1/user/activate/resend', [
+        $response = $this->json('POST', '/api/v2/user/activate/resend', [
             'email' => $user->email
         ]);
         $response->assertStatus(410);
@@ -174,7 +174,7 @@ class UserRegistrationTest extends TestCase
     {
         $user = factory(User::class)->make();
 
-        return $this->json('POST', '/api/v1/user', array_merge($user->toArray(), ['password' => 'secret1234']));
+        return $this->json('POST', '/api/v2/user', array_merge($user->toArray(), ['password' => 'secret1234']));
     }
 
     /**
@@ -186,6 +186,6 @@ class UserRegistrationTest extends TestCase
     {
         $this->registerUserRequest();
 
-        return $this->get('/api/v1/user/activate/' . User::first()->activation_key);
+        return $this->get('/api/v2/user/activate/' . User::first()->activation_key);
     }
 }

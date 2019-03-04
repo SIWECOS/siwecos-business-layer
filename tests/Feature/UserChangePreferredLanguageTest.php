@@ -16,7 +16,7 @@ class UserChangePreferredLanguageTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->patch('/api/v1/user', [
+        $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'en'
         ], ['userToken' => $user->token->token]);
 
@@ -29,7 +29,7 @@ class UserChangePreferredLanguageTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->patch('/api/v1/user', [
+        $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'english'
         ], ['userToken' => $user->token->token]);
 
@@ -42,7 +42,7 @@ class UserChangePreferredLanguageTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->patch('/api/v1/user', [
+        $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'xx'
         ], ['userToken' => $user->token->token]);
 

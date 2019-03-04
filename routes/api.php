@@ -11,7 +11,7 @@
 |
  */
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v2')->group(function () {
 
     Route::post('/user', 'UserController@create');
     Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
@@ -24,7 +24,21 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['userIsActivatedAndLoggedIn'])->group(function () {
         Route::patch('/user', 'UserController@update');
         Route::delete('/user', 'UserController@delete');
+
+        Route::post('/domain', 'DomainController@create');
     });
+
+
+    Route::get('/salutations', function () {
+        return \App\Salutation::all();
+    });
+
+    Route::get('/orgsizes', function () {
+        return \App\OrgSize::all();
+    });
+});
+
+Route::prefix('v1')->group(function () {
 
     Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
 
@@ -54,13 +68,5 @@ Route::prefix('v1')->group(function () {
             Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
             Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
         });
-    });
-
-    Route::get('/salutations', function () {
-        return \App\Salutation::all();
-    });
-
-    Route::get('/orgsizes', function () {
-        return \App\OrgSize::all();
     });
 });

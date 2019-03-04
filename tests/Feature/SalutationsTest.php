@@ -20,7 +20,7 @@ class SalutationsTest extends TestCase
     /** @test */
     public function there_is_an_endpoint_to_retrieve_all_salutations()
     {
-        $response = $this->json('GET', '/api/v1/salutations');
+        $response = $this->json('GET', '/api/v2/salutations');
 
         $response->assertStatus(200);
         $response->assertExactJson(Salutation::all()->toArray());

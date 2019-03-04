@@ -26,7 +26,7 @@ class UserLoginTest extends TestCase
     {
         $user = $this->getActivatedUser(['password' => \Hash::make('abcd1234')]);
 
-        $response = $this->json('POST', '/api/v1/user/login', [
+        $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
             'password' => 'abcd1234'
         ]);
@@ -38,21 +38,21 @@ class UserLoginTest extends TestCase
     /** @test */
     public function login_is_not_possible_if_the_credentials_are_not_correct()
     {
-        $response = $this->json('POST', '/api/v1/user/login', [
+        $response = $this->json('POST', '/api/v2/user/login', [
             'email' => 'not@existing.com',
             'password' => 'abcd1234'
         ]);
         $response->assertStatus(403);
 
 
-        $response = $this->json('POST', '/api/v1/user/login', [
+        $response = $this->json('POST', '/api/v2/user/login', [
             'password' => 'email field is missing'
         ]);
         $response->assertStatus(422);
 
 
         $user = $this->getActivatedUser(['password' => \Hash::make('abcd1234')]);
-        $response = $this->json('POST', '/api/v1/user/login', [
+        $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
             'password' => 'wrong_password'
         ]);
@@ -67,7 +67,7 @@ class UserLoginTest extends TestCase
 
         $user = $this->getActivatedUser(['password' => $oldPasswordHash]);
 
-        $response = $this->json('POST', '/api/v1/user/login', [
+        $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
             'password' => $password
         ]);
@@ -84,7 +84,7 @@ class UserLoginTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
+        $response = $this->json('POST', '/api/v2/user/password/sendResetMail', [
             'email' => $user->email
         ]);
 
@@ -95,7 +95,7 @@ class UserLoginTest extends TestCase
     /** @test */
     public function if_the_user_does_not_exist_or_is_not_active_no_passwort_reset_mail_is_sent()
     {
-        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
+        $response = $this->json('POST', '/api/v2/user/password/sendResetMail', [
             'email' => 'does@not.exist'
         ]);
 
@@ -106,10 +106,10 @@ class UserLoginTest extends TestCase
     /** @test */
     public function the_password_senResetMailRequest_validates_correctly()
     {
-        $response = $this->json('POST', '/api/v1/user/password/sendResetMail');
+        $response = $this->json('POST', '/api/v2/user/password/sendResetMail');
         $response->assertStatus(422);
 
-        $response = $this->json('POST', '/api/v1/user/password/sendResetMail', [
+        $response = $this->json('POST', '/api/v2/user/password/sendResetMail', [
             'email' => 'invalidFormat'
         ]);
         $response->assertStatus(422);
@@ -120,7 +120,7 @@ class UserLoginTest extends TestCase
     {
         $user = $this->getActivatedUser(['passwordreset_token' => 'ABCD']);
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v2/user/password/reset', [
             'reset_token' => $user->passwordreset_token,
             'newpassword' => 'WXYZ0987'
         ]);
@@ -135,21 +135,21 @@ class UserLoginTest extends TestCase
     {
         $user = $this->getActivatedUser(['passwordreset_token' => 'ABCD']);
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v2/user/password/reset', [
             'reset_token' => $user->passwordreset_token,
             // 'newpassword' => 'WXYZ0987'
         ]);
         $response->assertStatus(422);
 
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v2/user/password/reset', [
             // 'reset_token' => $user->passwordreset_token,
             'newpassword' => 'WXYZ0987'
         ]);
         $response->assertStatus(422);
 
 
-        $response = $this->json('POST', '/api/v1/user/password/reset', [
+        $response = $this->json('POST', '/api/v2/user/password/reset', [
             'reset_token' => 'WRONG_TOKEN',
             'newpassword' => 'WXYZ0987'
         ]);

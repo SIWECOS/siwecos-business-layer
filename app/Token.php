@@ -31,6 +31,16 @@ class Token extends Model
     }
 
     /**
+     * Returns the Eloquent Relationship for App\Domain
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
+
+    /**
      * @param int $credits
      *
      * @return bool

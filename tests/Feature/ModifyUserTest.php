@@ -18,7 +18,7 @@ class ModifyUserTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert',
             'last_name' => 'Einstein',
         ], ['userToken' => $user->token->token]);
@@ -33,7 +33,7 @@ class ModifyUserTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert'
         ]);
 
@@ -45,7 +45,7 @@ class ModifyUserTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert'
         ], ['userToken' => $user->token->token]);
 
@@ -58,7 +58,7 @@ class ModifyUserTest extends TestCase
         $user1 = $this->getActivatedUser();
         $user2 = $this->getActivatedUser();
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'email' => $user2->email
         ], ['userToken' => $user1->token->token]);
 
@@ -70,7 +70,7 @@ class ModifyUserTest extends TestCase
     {
         $user = $this->getActivatedUser(['password' => \Hash::make('superSecretPassword')]);
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'newpassword' => 'abcd1234'
         ], ['userToken' => $user->token->token]);
 
@@ -84,7 +84,7 @@ class ModifyUserTest extends TestCase
         Notification::fake();
         $user = $this->getActivatedUser();
 
-        $response = $this->json('PATCH', '/api/v1/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'email' => 'another@email.address'
         ], ['userToken' => $user->token->token]);
 
@@ -99,7 +99,7 @@ class ModifyUserTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->json('DELETE', '/api/v1/user', [], [
+        $response = $this->json('DELETE', '/api/v2/user', [], [
             'userToken' => $user->token->token
         ]);
 
@@ -110,7 +110,7 @@ class ModifyUserTest extends TestCase
     /** @test */
     public function a_non_existing_user_can_not_be_deleted()
     {
-        $response = $this->json('DELETE', '/api/v1/user', [], [
+        $response = $this->json('DELETE', '/api/v2/user', [], [
             'userToken' => 'XYZABC123'
         ]);
 
@@ -122,7 +122,7 @@ class ModifyUserTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->json('DELETE', '/api/v1/user', [], [
+        $response = $this->json('DELETE', '/api/v2/user', [], [
             'userToken' => $user->token->token
         ]);
 

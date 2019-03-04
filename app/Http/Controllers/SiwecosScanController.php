@@ -21,10 +21,6 @@ class SiwecosScanController extends Controller
     public $coreApi;
     public $currentDomain;
 
-    public function __construct()
-    {
-        $this->coreApi = new CoreApiController();
-    }
 
     public function CreateNewScan(Request $request)
     {
@@ -67,7 +63,7 @@ class SiwecosScanController extends Controller
      *
      * @return float
      */
-    public function GetTotalScore(int $id) : float
+    public function GetTotalScore(int $id): float
     {
         $response = $this->coreApi->GetResultById($id);
         $response = $this->calculateScorings($response);
@@ -252,7 +248,7 @@ class SiwecosScanController extends Controller
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
             'score_y' => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/ ),
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/),
             'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
@@ -426,8 +422,7 @@ class SiwecosScanController extends Controller
 
     protected function buildReport(string $testDesc, int $score)
     {
-        if ($score == 100) {
-        } else {
+        if ($score == 100) { } else {
             $testDesc = __($testDesc . '_ERROR_DESC');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 

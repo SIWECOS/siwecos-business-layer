@@ -20,7 +20,7 @@ class OrgSizesTest extends TestCase
     /** @test */
     public function there_is_an_endpoint_to_retrieve_all_orgSizes()
     {
-        $response = $this->json('GET', '/api/v1/orgsizes');
+        $response = $this->json('GET', '/api/v2/orgsizes');
 
         $response->assertStatus(200);
         $response->assertExactJson(OrgSize::all()->toArray());
