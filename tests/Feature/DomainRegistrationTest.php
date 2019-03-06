@@ -23,4 +23,17 @@ class DomainRegistrationTest extends TestCase
         $response->assertStatus(200);
         $this->assertCount(1, Domain::all());
     }
+
+    /** @test */
+    public function the_domain_is_saved_without_any_path_indications()
+    {
+        $user = $this->getActivatedUser();
+
+        $response = $this->json('POST', '/api/v2/domain', [
+            'url' => 'https://example.org/my/cool/path'
+        ], ['userToken' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertEquals('https://example.org', Domain::first()->url);
+    }
 }

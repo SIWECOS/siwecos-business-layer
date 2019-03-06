@@ -39,6 +39,11 @@ class Domain extends Model
         return parse_url($this->url, PHP_URL_SCHEME);
     }
 
+    /**
+     * Returns boolean if the URL is secure (HTTPS)
+     *
+     * @return boolean
+     */
     public function getIsSecureAttribute()
     {
         return ($this->scheme === 'https');

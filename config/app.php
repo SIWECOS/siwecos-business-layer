@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\DomainServiceProvider;
+
 return [
 
     'userAgent' => env('USER_AGENT', 'Mozilla/5.0 (X11; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0'),
@@ -169,6 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -179,7 +182,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
+        DomainServiceProvider::class,
+
     ],
 
     /*

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Domain;
+use Illuminate\Database\QueryException;
 
 class DomainTest extends TestCase
 {
@@ -53,5 +54,17 @@ class DomainTest extends TestCase
 
         $domain = factory(Domain::class)->make(['url' => 'http://example.org']);
         $this->assertFalse($domain->isSecure);
+    }
+
+    /** @test */
+    public function a_domain_has_a_unique_url()
+    {
+        $token1 = factory(Token::class)->create();
+        $token1->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
+        $this->assertCount(1, Domain::all());
+
+        $this->expectException(QueryException::class);
+        $token2 = factory(Token::class)->create();
+        $token2->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
     }
 }
