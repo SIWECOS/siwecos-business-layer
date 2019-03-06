@@ -40,6 +40,17 @@ Route::prefix('v2')->group(function () {
 
 Route::prefix('v1')->group(function () {
 
+    // legacy compatibility with plugins
+    Route::post('/users/login', 'UserController@login');
+
+    // Not implemented yet
+    // Route::Post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
+    // Route::Post('/domains/addNewDomain', 'SiwecosDomainController@createNewDomain');
+    // Route::Post('/domains/verifyDomain', 'SiwecosDomainController@verifyDomain');
+    // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
+    // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
+
+    // old - to be removed
     Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
 
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
