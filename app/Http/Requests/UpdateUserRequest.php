@@ -33,7 +33,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = Token::whereToken($this->header('userToken'))->first()->user;
+        $user = Token::whereToken($this->header('SIWECOS-Token'))->first()->user;
 
         return [
             'salutation_id' => 'integer',

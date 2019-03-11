@@ -153,7 +153,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
-        $user = Token::whereToken($request->header('userToken'))->first()->user;
+        $user = Token::whereToken($request->header('SIWECOS-Token'))->first()->user;
         $oldEmail = $user->email;
 
         // update password
@@ -183,7 +183,7 @@ class UserController extends Controller
      */
     public function delete(Request $request)
     {
-        $token = Token::whereToken($request->header('userToken'))->first();
+        $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
         $token->user()->delete();
         $token->delete();
     }

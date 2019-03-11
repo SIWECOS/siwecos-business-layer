@@ -19,7 +19,8 @@
         "laravel/tinker": "~1.0",
         "niklasravnsborg/laravel-pdf": "^2.0",
         "pusher/pusher-php-server": "~3.0",
-        "superbalist/laravel-google-cloud-storage": "^2.0"
+        "superbalist/laravel-google-cloud-storage": "^2.0",
+        "voku/simple_html_dom": "^4.3"
     },
     "require-dev": {
         "mathiasgrimm/laravel-dot-env-gen": "dev-master",

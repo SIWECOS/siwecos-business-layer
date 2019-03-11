@@ -2,11 +2,9 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\CheckActivationMiddleware;
-use App\Http\Middleware\MasterTokenMiddleware;
-use App\Http\Middleware\UserTokenMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\UserIsActivatedAndLoggedInMiddleware;
+use App\Http\Middleware\SIWECOSTokenMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -62,10 +60,8 @@ class Kernel extends HttpKernel
         'can'         => \Illuminate\Auth\Middleware\Authorize::class,
         'guest'       => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'    => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        // 'mastertoken' => MasterTokenMiddleware::class,
-        // 'usertoken'   => UserTokenMiddleware::class,
-        // 'activation'  => CheckActivationMiddleware::class,
 
         'userIsActivatedAndLoggedIn' => UserIsActivatedAndLoggedInMiddleware::class,
+        'siwecosToken' => SIWECOSTokenMiddleware::class,
     ];
 }

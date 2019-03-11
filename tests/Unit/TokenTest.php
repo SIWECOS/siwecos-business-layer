@@ -27,10 +27,10 @@ class TokenTest extends TestCase
     {
         $token = factory(Token::class)->create(['type' => 'external']);
 
-        $token->domains()->create(['url' => 'https://example.org']);
+        $token->domains()->create(factory(Domain::class)->make()->toArray());
         $this->assertEquals(Domain::first(), Token::first()->domains()->first());
 
-        $token->domains()->create(['url' => 'https://siwecos.de']);
+        $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
         $this->assertEquals(2, Token::first()->domains()->count());
     }
 }

@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domain extends Model
 {
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'verification_token'];
 
+    protected $casts = [
+        'is_verified' => 'boolean'
+    ];
 
     /**
      * Returns the Eloquent Relationship for App\Token

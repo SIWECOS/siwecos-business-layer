@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\activationmail;
 
-class ModifyUserTest extends TestCase
+class UserModificationTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,7 +21,7 @@ class ModifyUserTest extends TestCase
         $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert',
             'last_name' => 'Einstein',
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
         $this->assertEquals('Albert', User::first()->first_name);
@@ -47,7 +47,7 @@ class ModifyUserTest extends TestCase
 
         $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(403);
     }
@@ -60,7 +60,7 @@ class ModifyUserTest extends TestCase
 
         $response = $this->json('PATCH', '/api/v2/user', [
             'email' => $user2->email
-        ], ['userToken' => $user1->token->token]);
+        ], ['SIWECOS-Token' => $user1->token->token]);
 
         $response->assertStatus(422);
     }
@@ -68,11 +68,13 @@ class ModifyUserTest extends TestCase
     /** @test */
     public function a_user_can_change_his_password()
     {
+
+        $this->withoutExceptionHandling();
         $user = $this->getActivatedUser(['password' => \Hash::make('superSecretPassword')]);
 
         $response = $this->json('PATCH', '/api/v2/user', [
             'newpassword' => 'abcd1234'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
         $this->assertTrue(\Hash::check('abcd1234', User::first()->password));
@@ -86,7 +88,7 @@ class ModifyUserTest extends TestCase
 
         $response = $this->json('PATCH', '/api/v2/user', [
             'email' => 'another@email.address'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
         $this->assertEquals('another@email.address', User::first()->email);
@@ -100,7 +102,7 @@ class ModifyUserTest extends TestCase
         $user = $this->getActivatedUser();
 
         $response = $this->json('DELETE', '/api/v2/user', [], [
-            'userToken' => $user->token->token
+            'SIWECOS-Token' => $user->token->token
         ]);
 
         $response->assertStatus(200);
@@ -111,7 +113,7 @@ class ModifyUserTest extends TestCase
     public function a_non_existing_user_can_not_be_deleted()
     {
         $response = $this->json('DELETE', '/api/v2/user', [], [
-            'userToken' => 'XYZABC123'
+            'SIWECOS-Token' => 'XYZABC123'
         ]);
 
         $response->assertStatus(403);
@@ -123,7 +125,7 @@ class ModifyUserTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->json('DELETE', '/api/v2/user', [], [
-            'userToken' => $user->token->token
+            'SIWECOS-Token' => $user->token->token
         ]);
 
         $response->assertStatus(403);

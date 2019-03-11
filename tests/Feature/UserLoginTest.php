@@ -73,7 +73,7 @@ class UserLoginTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertJson($user->toArray());
+        $response->assertJson(User::first()->toArray());
 
         // Background information: Wordpress-Hash begins with $P$
         $this->assertEquals('$2y$10$', substr(User::first()->password, 0, 7));

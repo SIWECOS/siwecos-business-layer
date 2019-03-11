@@ -16,7 +16,7 @@ class UserIsActivatedAndLoggedInMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $token = Token::with('user')->whereToken($request->header('userToken'))->first();
+        $token = Token::with('user')->whereToken($request->header('SIWECOS-Token'))->first();
 
         if ($token) {
             if ($token->user && $token->user->active) {

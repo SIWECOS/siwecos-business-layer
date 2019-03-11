@@ -18,7 +18,7 @@ class UserChangePreferredLanguageTest extends TestCase
 
         $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'en'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('en', User::first()->preferred_language);
@@ -31,7 +31,7 @@ class UserChangePreferredLanguageTest extends TestCase
 
         $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'english'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(422, $response->getStatusCode());
         $this->assertEquals('de', User::first()->preferred_language);
@@ -44,7 +44,7 @@ class UserChangePreferredLanguageTest extends TestCase
 
         $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'xx'
-        ], ['userToken' => $user->token->token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(422, $response->getStatusCode());
         $this->assertEquals('de', User::first()->preferred_language);

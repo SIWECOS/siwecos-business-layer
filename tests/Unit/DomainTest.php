@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Domain;
 use Illuminate\Database\QueryException;
+use App\User;
 
 class DomainTest extends TestCase
 {

@@ -20,14 +20,16 @@ Route::prefix('v2')->group(function () {
     Route::post('/user/password/sendResetMail', 'UserController@sendPasswordResetMail');
     Route::post('/user/password/reset', 'UserController@resetPassword');
 
-
     Route::middleware(['userIsActivatedAndLoggedIn'])->group(function () {
         Route::patch('/user', 'UserController@update');
         Route::delete('/user', 'UserController@delete');
+    });
 
+    Route::middleware(['siwecosToken'])->group(function () {
         Route::post('/domain', 'DomainController@create');
     });
 
+    Route::post('/domain/verify', 'DomainController@verify');
 
     Route::get('/salutations', function () {
         return \App\Salutation::all();
