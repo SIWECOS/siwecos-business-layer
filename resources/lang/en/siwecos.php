@@ -201,11 +201,8 @@ return [
   // DONT_LEAK_USER_CREDS
   'DONT_LEAK_USER_CREDS'            => "You should not transfer your user credentials (name and password).\n",
   //
-  // HEADER_NOT_SET
-  'HEADER_NOT_SET'            => "The header is not set.\n",
-  //
-  // HEADER_SET_MULTIPLE_TIMES
-  'HEADER_SET_MULTIPLE_TIMES'            => "The header was set several times.\n",
+  // GENERAL_ERROR
+  'GENERAL_ERROR'            => "%ERRORTEXT%\n",
   //
   // JSON_DECODE_ERROR
   'JSON_DECODE_ERROR'            => "There is a Jason translation error.\n",
@@ -213,14 +210,8 @@ return [
   // LOCALHOST_SCAN_NOT_ALLOWED
   'LOCALHOST_SCAN_NOT_ALLOWED'            => "The local scan is not allowed\n",
   //
-  // MAX_AGE_ERROR
-  'MAX_AGE_ERROR'            => "There was an error while checking the 'max-age' directive.\n",
-  //
   // NOT_REACHABLE
   'NOT_REACHABLE'            => "Not reachable.\n",
-  //
-  // NO_HTTP_RESPONSE
-  'NO_HTTP_RESPONSE'            => "The specified URL did not respond.\n",
   //
   // NO_RESPONSE
   'NO_RESPONSE'            => "The specified URL did not respond.\n",
@@ -240,13 +231,24 @@ return [
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
-  // Category: Errormessage
-  //
-  // GENERAL_ERROR
-  'GENERAL_ERROR'            => "%ERRORTEXT%\n",
+  // Category: Error message
+HTTP-Security-Header-Scanner
+General
   //
   // HEADER_ENCODING_ERROR
   'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER_NAME%</b> contains characters which cannot be processed.\n",
+  //
+  // HEADER_NOT_SET
+  'HEADER_NOT_SET'            => "The header is not set.\n",
+  //
+  // HEADER_SET_MULTIPLE_TIMES
+  'HEADER_SET_MULTIPLE_TIMES'            => "The header was set several times.\n",
+  //
+  // MAX_AGE_ERROR
+  'MAX_AGE_ERROR'            => "There was an error while checking the 'max-age' directive.\n",
+  //
+  // NO_HTTP_RESPONSE
+  'NO_HTTP_RESPONSE'            => "The specified URL did not respond.\n",
   //
   // Category: General
   //
@@ -283,45 +285,6 @@ return [
   //
   // Category: HSHS_DOMXSS
   //
-  // CSP_CORRECT
-  'CSP_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
-  //
-  // CSP_LEGACY_HEADER_SET
-  'CSP_LEGACY_HEADER_SET'            => "The outdated header 'X-Content-Security-Policy' is used. The new standardized header is 'Content-Security-Policy'.\n",
-  //
-  // CSP_NO_UNSAFE_INCLUDED
-  'CSP_NO_UNSAFE_INCLUDED'            => "The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> does not contain any unsafe directives, but it may not be configured securely.\n",
-  //
-  // CSP_UNSAFE_INCLUDED
-  'CSP_UNSAFE_INCLUDED'            => "The header is set insecurely because it contains 'unsafe-inline' or 'unsafe-eval' directives.\n",
-  //
-  // CT_CORRECT
-  'CT_CORRECT'            => "The header \"%HEADER%\" is set correctly and corresponds to the recommendations.\n",
-  //
-  // CT_HEADER_WITHOUT_CHARSET
-  'CT_HEADER_WITHOUT_CHARSET'            => "The header is used without a character set and thus not safe.\n",
-  //
-  // CT_HEADER_WITH_CHARSET
-  'CT_HEADER_WITH_CHARSET'            => "The header is set correctly and contains a character set specification.\n",
-  //
-  // CT_META_TAG_SET
-  'CT_META_TAG_SET'            => "The header is set correctly, but it does not contain a character set specification or does not correspond to the recommendations. \"%META%\" was found.\n",
-  //
-  // CT_META_TAG_SET_CORRECT
-  'CT_META_TAG_SET_CORRECT'            => "The \"%META%\" specification in the HTML header is set correctly.\n",
-  //
-  // CT_WRONG_CHARSET
-  'CT_WRONG_CHARSET'            => "A false or invalid character set was used. The configuration is not safe.\n",
-  //
-  // HPKP_LESS_15
-  'HPKP_LESS_15'            => "The public keys are pinned for less than 15 days.\n",
-  //
-  // HPKP_MORE_15
-  'HPKP_MORE_15'            => "The public keys are pinned for more than 15 days.\n",
-  //
-  // HPKP_REPORT_URI
-  'HPKP_REPORT_URI'            => "A 'report-uri' is set.\n",
-  //
   // HSTS_LESS_6
   'HSTS_LESS_6'            => "The value of 'max-age' is less than 6 months.\n",
   //
@@ -333,9 +296,6 @@ return [
   //
   // HTTPONLY_FLAG_SET
   'HTTPONLY_FLAG_SET'            => "The HttpOnly flag is set.\n",
-  //
-  // INCLUDE_SUBDOMAINS
-  'INCLUDE_SUBDOMAINS'            => "'includeSubDomains' is set.\n",
   //
   // NO_HTTPONLY_FLAG_SET
   'NO_HTTPONLY_FLAG_SET'            => "The HttpOnly flag is not set.\n",
@@ -391,7 +351,7 @@ return [
   'CONTENT_SECURITY_POLICY_SUCCESS'    => "A secure configuration of the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> was found.\n",
   'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy insecure\n",
   'CONTENT_SECURITY_POLICY_ERROR_DESC' => "<p>The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> is a security concept that is designed to reduce the risk of injection and execution of malicious commands in a web application (content injection attacks). By means of a whitelist (list of allowed sources), it determines from which sources Javascript code, images, fonts, and other content may be integrated into your site.\n</p>",
-  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
+  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' or 'self' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
   'CONTENT_SECURITY_POLICY_LINK'       => "https://siwecos.de/wiki/Content-Security-Policy-Vulnerability/EN",
   //
   // CONTENT_TYPE
@@ -442,21 +402,89 @@ return [
   'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Code example of an .htaccess file on an Apache webserver.</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>\n</p>",
   'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Vulnerability/EN",
   //
-  // Category: INI_S
+  // Category: HTTP-Security-Header-Scanner
+Content-Security-Policy
   //
-  // MALWARE_FOUND
-  'MALWARE_FOUND'            => "Your domain ‘%site%’ was found in the following malware lists: %where%\n",
+  // CSP_CORRECT
+  'CSP_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
   //
-  // PHISHING_FOUND
-  'PHISHING_FOUND'            => "Your domain ‘%site%’ was found in the following phishing lists: %where%\n",
+  // CSP_DEFAULT_SRC_MISSING
+  'CSP_DEFAULT_SRC_MISSING'            => "The default-src directive is missing.\n",
   //
-  // SPAM_FOUND
-  'SPAM_FOUND'            => "Your domain ‘%site%’ was found in the following spam lists: %where%\n",
+  // CSP_LEGACY_HEADER_SET
+  'CSP_LEGACY_HEADER_SET'            => "The outdated header 'X-Content-Security-Policy' is used. The new standardized header is 'Content-Security-Policy'.\n",
   //
-  // Category: Infoleak
+  // CSP_NO_UNSAFE_INCLUDED
+  'CSP_NO_UNSAFE_INCLUDED'            => "The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> does not contain any unsafe directives, but it may not be configured securely.\n",
+  //
+  // CSP_UNSAFE_INCLUDED
+  'CSP_UNSAFE_INCLUDED'            => "The header is set insecurely because it contains 'unsafe-inline' or 'unsafe-eval' directives.\n",
+  //
+  // Category: HTTP-Security-Header-Scanner
+Content-Type
+  //
+  // CT_CORRECT
+  'CT_CORRECT'            => "The header \"%HEADER%\" is set correctly and corresponds to the recommendations.\n",
+  //
+  // CT_HEADER_WITHOUT_CHARSET
+  'CT_HEADER_WITHOUT_CHARSET'            => "The header is used without a character set and thus not safe.\n",
+  //
+  // CT_HEADER_WITH_CHARSET
+  'CT_HEADER_WITH_CHARSET'            => "The header is set correctly and contains a character set specification.\n",
+  //
+  // CT_META_TAG_SET
+  'CT_META_TAG_SET'            => "The header is set correctly, but it does not contain a character set specification or does not correspond to the recommendations. \"%META%\" was found.\n",
+  //
+  // CT_META_TAG_SET_CORRECT
+  'CT_META_TAG_SET_CORRECT'            => "The \"%META%\" specification in the HTML header is set correctly.\n",
+  //
+  // CT_WRONG_CHARSET
+  'CT_WRONG_CHARSET'            => "A false or invalid character set was used. The configuration is not safe.\n",
+  //
+  // Category: HTTP-Security-Header-Scanner
+General
+  //
+  // INCLUDE_SUBDOMAINS
+  'INCLUDE_SUBDOMAINS'            => "'includeSubDomains' is set.\n",
+  //
+  // Category: HTTP-Security-Header-Scanner
+Public-Key-Pins
+  //
+  // HPKP_LESS_15
+  'HPKP_LESS_15'            => "The public keys are pinned for less than 15 days.\n",
+  //
+  // HPKP_MORE_15
+  'HPKP_MORE_15'            => "The public keys are pinned for more than 15 days.\n",
+  //
+  // HPKP_REPORT_URI
+  'HPKP_REPORT_URI'            => "A 'report-uri' is set.\n",
+  //
+  // Category: HTTP-Security-Header-Scanner
+Referrer-Policy
+  //
+  // NO_REFERRER
+  'NO_REFERRER'            => "<pre>	The directive no-referrer is set.\n</pre>",
+  //
+  // Category: Information-Leakage-Scanner
+  //
+  // CMS
+  'CMS'            => "Check of the CMS version\n",
+  'CMS_SUCCESS'    => "Your current CMS version cannot be identified. Thus it cannot be determined whether you are using a vulnerable version.\n",
+  'CMS_ERROR'      => "﻿Content Management System (CMS) identifiable\n",
+  'CMS_ERROR_DESC' => "<p>The current <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> can be identified. This information could be used by an attacker to search specifically for security flaws for this particular CMS.\n</p>",
+  'CMS_TIPS'       => "<p>Always make sure that installed web servers and the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> are up to date. Some CMS allow you to hide the version information. Use this feature if it is available. The WordPress Plug-in \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP (German only)</a>\" may be interesting for you.\n</p><p><b>Further example for WordPress:</b>\nIn order to prevent attackers or hackers from reading the WordPress version directly, you can add the following line of code at the very end of the file <b>functions.php</b>:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
+  'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Found/EN",
   //
   // CMS_ONLY
   'CMS_ONLY'            => "The content management system (%cms%) you are using can be identified.\n",
+  //
+  // CMS_PLUGINS
+  'CMS_PLUGINS'            => "Check for CMS plug-ins\n",
+  'CMS_PLUGINS_SUCCESS'    => "No <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-ins</a> could be detected. Attacks using security flaws in plug-ins are thus less likely.\n",
+  'CMS_PLUGINS_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-in</a> detected\n",
+  'CMS_PLUGINS_ERROR_DESC' => "<p>A plug-in that is used by your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> was detected. An attacker could use this information to search for specific security flaws for your website.\n</p>",
+  'CMS_PLUGINS_TIPS'       => "<p>The use of plug-ins should be limited to those plug-ins that are absolutely necessary. This can reduce the attack surface significantly. In addition, installed plugins should always be kept up to date.\n</p>",
+  'CMS_PLUGINS_LINK'       => "https://siwecos.de/wiki/Plugin-Found/EN",
   //
   // CMS_VERSION
   'CMS_VERSION'            => "The used CMS %cms% in version %version% was detected. Revealing the version information makes it easier for an attacker to prepare an attack. However, this is not a vulnerability in itself and requires further inspection.\n",
@@ -464,8 +492,24 @@ return [
   // CMS_VERSION_VULN
   'CMS_VERSION_VULN'            => "The used CMS %cms% in version %version% was detected. There is a known security flaw for this version.\n",
   //
+  // EMAIL_ADDRESS
+  'EMAIL_ADDRESS'            => "Check for existing email addresses\n",
+  'EMAIL_ADDRESS_SUCCESS'    => "No email addresses could be found. Spam and phishing attacks on your email addresses are therefore less likely.\n",
+  'EMAIL_ADDRESS_ERROR'      => "Readable email address\n",
+  'EMAIL_ADDRESS_ERROR_DESC' => "<p>Your website contains at least one machine-readable email address. This allows third parties to collect the stored email addresses automatically by the use of web crawlers (also called spiders, searchbots or robots). The collected email addresses can then be stored in an internal database together with other information about your website.\n</p>",
+  'EMAIL_ADDRESS_TIPS'       => "<p>Enter your contact addresses, for example in the imprint, as follows: mail at siwecos.de / mail @ siwecos.de, or display the information in a graphic file.\n</p>",
+  'EMAIL_ADDRESS_LINK'       => "https://siwecos.de/wiki/Email-Address-Found/EN",
+  //
   // EMAIL_FOUND
   'EMAIL_FOUND'            => "The email address %email_adress% was found. Do you really want to publish this email address? An attacker could use it, for example for phishing attacks.\n",
+  //
+  // JS_LIB
+  'JS_LIB'            => "Check for JavaScript libraries\n",
+  'JS_LIB_SUCCESS'    => "By the current state of knowledge, the JavaScript libraries are not vulnerable to known security flaws.\n",
+  'JS_LIB_ERROR'      => "Unsafe JavaScript library found.\n",
+  'JS_LIB_ERROR_DESC' => "<p>A JavaScript library you are using was detected. An attacker could use this information to search for vulnerabilites on your website.\n</p>",
+  'JS_LIB_TIPS'       => "<p>Update your JavaScript libraries or framework.\n</p>",
+  'JS_LIB_LINK'       => "https://siwecos.de/wiki/JavaScript-Vulnerability/EN",
   //
   // JS_LIB_ONLY
   'JS_LIB_ONLY'            => "The JavaScript library %js_lib_name% in DOM node %node% with content %node_content% was detected. However, this is not a vulnerability in itself and requires further inspection.\n",
@@ -479,6 +523,14 @@ return [
   // NUMBER_FOUND
   'NUMBER_FOUND'            => "The phone number %number% was found. Do you really want to publish this phone number? An attacker could use it, for example for social engineering attacks (interpersonal manipulation).\n",
   //
+  // PHONE_NUMBER
+  'PHONE_NUMBER'            => "Check for readable phone numbers\n",
+  'PHONE_NUMBER_SUCCESS'    => "No phone numbers were found.\n",
+  'PHONE_NUMBER_ERROR'      => "Phone number found.\n",
+  'PHONE_NUMBER_ERROR_DESC' => "<p>A phone number was found. An attacker could use this information to manipulate employees and to gain information that should remain secret.\n</p>",
+  'PHONE_NUMBER_TIPS'       => "<p>The published phone numbers should be limited to those which are actually intended for communication with customers. Also, an employee who uses the phone should be aware of the dangers of social engineering attacks and should know the methods of social engineers.\n</p>",
+  'PHONE_NUMBER_LINK'       => "https://siwecos.de/wiki/Phone-Number-Found/EN",
+  //
   // PLUGIN_ONLY
   'PLUGIN_ONLY'            => "The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-in</a> %plugin% in DOM node %node% with content %node_content% was detected. However, this is not a vulnerability in itself and requires further inspection.\n",
   //
@@ -487,48 +539,6 @@ return [
   //
   // PLUGIN_VERSION_VULN
   'PLUGIN_VERSION_VULN'            => "The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-in</a> %plugin% in version %plugin_version% in DOM node %node% with content %node_content% was detected. There is a known security flaw for this version.\n",
-  //
-  // Category: Information-Leakage-Scanner
-  //
-  // CMS
-  'CMS'            => "Check of the CMS version\n",
-  'CMS_SUCCESS'    => "Your current CMS version cannot be identified. Thus it cannot be determined whether you are using a vulnerable version.\n",
-  'CMS_ERROR'      => "﻿Content Management System (CMS) identifiable\n",
-  'CMS_ERROR_DESC' => "<p>The current <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> can be identified. This information could be used by an attacker to search specifically for security flaws for this particular CMS.\n</p>",
-  'CMS_TIPS'       => "<p>Always make sure that installed web servers and the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> are up to date. Some CMS allow you to hide the version information. Use this feature if it is available. The WordPress Plug-in \"<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://wp-premiumthemes.de/hide-my-wp-tutorial-deutsch/\">Hide My WP (German only)</a>\" may be interesting for you.\n</p><p><b>Further example for WordPress:</b>\nIn order to prevent attackers or hackers from reading the WordPress version directly, you can add the following line of code at the very end of the file <b>functions.php</b>:\n</p><p><b>--snip</b>\n</p><p>remove_action('wp_head','wp_generator');\n</p><p><b>--snap</b>\n</p>",
-  'CMS_LINK'       => "https://siwecos.de/wiki/Content-Management-System-Found/EN",
-  //
-  // CMS_PLUGINS
-  'CMS_PLUGINS'            => "Check for CMS plug-ins\n",
-  'CMS_PLUGINS_SUCCESS'    => "No <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-ins</a> could be detected. Attacks using security flaws in plug-ins are thus less likely.\n",
-  'CMS_PLUGINS_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">CMS plug-in</a> detected\n",
-  'CMS_PLUGINS_ERROR_DESC' => "<p>A plug-in that is used by your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a> was detected. An attacker could use this information to search for specific security flaws for your website.\n</p>",
-  'CMS_PLUGINS_TIPS'       => "<p>The use of plug-ins should be limited to those plug-ins that are absolutely necessary. This can reduce the attack surface significantly. In addition, installed plugins should always be kept up to date.\n</p>",
-  'CMS_PLUGINS_LINK'       => "https://siwecos.de/wiki/Plugin-Found/EN",
-  //
-  // EMAIL_ADDRESS
-  'EMAIL_ADDRESS'            => "Check for existing email addresses\n",
-  'EMAIL_ADDRESS_SUCCESS'    => "No email addresses could be found. Spam and phishing attacks on your email addresses are therefore less likely.\n",
-  'EMAIL_ADDRESS_ERROR'      => "Readable email address\n",
-  'EMAIL_ADDRESS_ERROR_DESC' => "<p>Your website contains at least one machine-readable email address. This allows third parties to collect the stored email addresses automatically by the use of web crawlers (also called spiders, searchbots or robots). The collected email addresses can then be stored in an internal database together with other information about your website.\n</p>",
-  'EMAIL_ADDRESS_TIPS'       => "<p>Enter your contact addresses, for example in the imprint, as follows: mail at siwecos.de / mail @ siwecos.de, or display the information in a graphic file.\n</p>",
-  'EMAIL_ADDRESS_LINK'       => "https://siwecos.de/wiki/Email-Address-Found/EN",
-  //
-  // JS_LIB
-  'JS_LIB'            => "Check for JavaScript libraries\n",
-  'JS_LIB_SUCCESS'    => "By the current state of knowledge, the JavaScript libraries are not vulnerable to known security flaws.\n",
-  'JS_LIB_ERROR'      => "Unsafe JavaScript library found.\n",
-  'JS_LIB_ERROR_DESC' => "<p>A JavaScript library you are using was detected. An attacker could use this information to search for vulnerabilites on your website.\n</p>",
-  'JS_LIB_TIPS'       => "<p>Update your JavaScript libraries or framework.\n</p>",
-  'JS_LIB_LINK'       => "https://siwecos.de/wiki/JavaScript-Vulnerability/EN",
-  //
-  // PHONE_NUMBER
-  'PHONE_NUMBER'            => "Check for readable phone numbers\n",
-  'PHONE_NUMBER_SUCCESS'    => "No phone numbers were found.\n",
-  'PHONE_NUMBER_ERROR'      => "Phone number found.\n",
-  'PHONE_NUMBER_ERROR_DESC' => "<p>A phone number was found. An attacker could use this information to manipulate employees and to gain information that should remain secret.\n</p>",
-  'PHONE_NUMBER_TIPS'       => "<p>The published phone numbers should be limited to those which are actually intended for communication with customers. Also, an employee who uses the phone should be aware of the dangers of social engineering attacks and should know the methods of social engineers.\n</p>",
-  'PHONE_NUMBER_LINK'       => "https://siwecos.de/wiki/Phone-Number-Found/EN",
   //
   // Category: Initiative-S Scanner
   //
@@ -540,6 +550,9 @@ return [
   'MALWARE_TIPS'       => "<p><b><span style=\"color:#c31622\"> Take down the website!<span></b>\n</p><p>If your website is accessed by a user, there is a risk that the user's computer will be infected with malicious software. Taking down the website will also prevent Google from removing your website from its index, which would delete a positive ranking. You also avoid being blocked by your hosting provider.\n</p><p><b>- Find out how and when it was possible for third parties to access your domain. </b><br />\n</p><p>Check your logfiles for unauthorized access from unknown <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/IP-Adresse\" title=\"IP-Adresse\">Quell-IP-Adressen</a>. As a starting point for your investigation, the time stamp of the manipulated or uploaded file can give you a hint when the attack happened and by which gateway the attackers gained access.\n</p><p><b>- Change your login data!</b><br />\n<b>- Web frontend (hosting contract, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">Content-Management-System</a>)</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/FTP\" title=\"FTP\">FTP</a> or <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSH\" title=\"SSH\">SSH</a> access</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Datenbank\" title=\"Datenbank\">Datenbank</a> <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Starke_Passw%C3%B6rter\" title=\"Starke Passwörter\">Passwörter</a></b><br />\n</p><p>Restore a malware-free backup!\nTo do this, delete all the files on your webspace. In this way, you will make sure that you do not overlook malicious files from the compromised system which were used as a backdoor by the attackers.\nBefore restoring from the backup, make sure that the intended backup is not yet infected by the malicious code that we detected, and if necessary, use an even older backup.\nIf the backup is malware-free, restore it and then install any updates for your system. Only after this is done, put the website back online.\n</p><p><b> - If you do not have a backup of your website, consider a completely new installation. Manual cleanups usually take up a lot of time and should only be carried out by qualified experts.</b><br />\n</p><p>Check your local computer for malicious software! The website <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> offers helpful information and software.\nWith the EU-Cleaner, you can remove various malicious programs from your computer. (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a>)</span>\n</span>\n</p>",
   'MALWARE_LINK'       => "https://siwecos.de/wiki/Malware-Content/EN",
   //
+  // MALWARE_FOUND
+  'MALWARE_FOUND'            => "Your domain '%site%' was found in the following malware lists: %where%\n",
+  //
   // PHISHING
   'PHISHING'            => "Check for potential phishing content\n",
   'PHISHING_SUCCESS'    => "Your domain was not found in any of the known phishing lists.\n",
@@ -548,6 +561,9 @@ return [
   'PHISHING_TIPS'       => "<p><b><span style=\"color:#c31622\"> Take down the website!<span></b>\n</p><p>There is a risk that your website contains phishing content and that criminals are using it to collect personal data. Taking down the website will also prevent Google from removing your website from its index, which would delete a positive ranking. You also avoid being blocked by your hosting provider.\n</p><p><b>- Find out how and when it was possible for third parties to access your domain. </b><br />\n</p><p>Check your logfiles for unauthorized access from unknown IP addresses. As a starting point for your investigation, the time stamp of the manipulated or uploaded file can give you a hint when the attack happened and by which gateway the attackers gained access.\n</p><p><b>- Change your login data!</b><br />\n<b>- Web frontend (hosting contract, <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a>)</b><br />\n<b>- FTP or SSH access</b><br />\n<b>- Database - use strong passwords</b><br />\n</p><p>Restore a malware-free backup!\nTo do this, delete all the files on your webspace. In this way, you will make sure that you do not overlook malicious files from the compromised system which were used as a backdoor by the attackers.\nBefore restoring from the backup, make sure that the intended backup is not yet infected by the malicious code that we detected, and if necessary, use an even older backup.\nIf the backup is malware-free, restore it and then install any updates for your system. Only after this is done, put the website back online.\n</p><p><b> - If you do not have a backup of your website, consider a completely new installation. Manual cleanups usually take up a lot of time and should only be carried out by qualified experts.</b><br />\n</p><p>Check your local computer for malicious software! The website <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> offers helpful information and software.\nWith the EU-Cleaner, you can remove various malicious programs from your computer. (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a>)</span>\n</span>\n</p>",
   'PHISHING_LINK'       => "https://siwecos.de/wiki/Phishing-Content/EN",
   //
+  // PHISHING_FOUND
+  'PHISHING_FOUND'            => "Your domain '%site%' was found in the following phishing lists: %where%\n",
+  //
   // SPAM
   'SPAM'            => "Check for potential spam content\n",
   'SPAM_SUCCESS'    => "Your domain was not found in any of the known spam lists.\n",
@@ -555,6 +571,9 @@ return [
   'SPAM_ERROR_DESC' => "<p>Spam is unwanted email advertising in your inbox with sometimes dubious content (for example advertisements for viagra, medications, insurance, or credit offers). These advertisements are sent in large quantities, but they can also be targeted specifically. Attackers usually conceal their true identity and try to trick you.\n</p>",
   'SPAM_TIPS'       => "<p><b><span style=\"color:#c31622\"> Take down the website!<span></b>\n</p><p>Take down your website to prevent users from accessing it, and to prevent Google from removing the website from its index, which would delete a positive ranking. You also avoid being blocked by your hosting provider.\n</p><p>To check if the website shows any of the typical spam characteristics, call up the website in the browser, then right-click to \"view page source\". In this view, you can use <b>Ctrl+f</b> (search) to check your source code for typical signs of online fraud through advertisements for medications or dubious credit offers.\n</p><p><b>Some terms to search for</b>:<br />\n- „payday“<br />\n- „Pharma“<br />\n- „Viagra“<br />\n- „Cialis“<br /><br />\n<b>- Find out how and when it was possible for third parties to access your domain. </b><br />\n</p><p>Check your logfiles for unauthorized access from unknown IP addresses. As a starting point for your investigation, the time stamp of the manipulated or uploaded file can give you a hint when the attack happened and by which gateway the attackers gained access.\n</p><p><b>- Change your login data!</b><br />\n<b>- Web frontend (hosting contract, <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_management_system\">content management system (CMS)</a>)</b><br />\n<b>- FTP or SSH access</b><br />\n<b>- Database - use strong passwords</b><br />\n</p><p>Restore a malware-free backup!\nTo do this, delete all the files on your webspace. In this way, you will make sure that you do not overlook malicious files from the compromised system which were used as a backdoor by the attackers.\nBefore restoring from the backup, make sure that the intended backup is not yet infected by the malicious code that we detected, and if necessary, use an even older backup.\nIf the backup is malware-free, restore it and then install any updates for your system. Only after this is done, put the website back online.\n</p><p><b> - If you do not have a backup of your website, consider a completely new installation. Manual cleanups usually take up a lot of time and should only be carried out by qualified experts.</b><br />\n</p><p>Check your local computer for malicious software! The website <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> offers helpful information and software.\nWith the EU-Cleaner, you can remove various malicious programs from your computer. (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a>)</span>\n</span>\n</p>",
   'SPAM_LINK'       => "https://siwecos.de/wiki/Spam-Content/EN",
+  //
+  // SPAM_FOUND
+  'SPAM_FOUND'            => "Your domain '%site%' was found in the following spam lists: %where%\n",
   //
   // Category: NO_CONTENT
   //
@@ -591,6 +610,16 @@ return [
   'PROTOCOLVERSION_TLS13_ERROR_DESC' => "<p>The server supports the latest <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS 1.3 protocol version</a>. This version is still going through the standardisation process. If you do not understand what this means, you can deactivate the version, because most browsers do not yet support this version, and TLS 1.3 is still in development.\n</p>",
   'PROTOCOLVERSION_TLS13_TIPS'       => "<p>There is no need for action.\n</p>",
   'PROTOCOLVERSION_TLS13_LINK'       => "https://siwecos.de/wiki/Protocol-Version-TLS13-Found/EN",
+  //
+  // Category: Referrer-Policy
+  //
+  // REFERRER_POLICY
+  'REFERRER_POLICY'            => "Checking the Referrer Policy\n",
+  'REFERRER_POLICY_SUCCESS'    => "Referrer Policy is secure\n",
+  'REFERRER_POLICY_ERROR'      => "Referrer Policy is insecure\n",
+  'REFERRER_POLICY_ERROR_DESC' => "<p>A well-defined Referrer Policy <b>protects the privacy</b> of your website visitors, but has no <i>direct</i> influence on the security of your website.\n</p>",
+  'REFERRER_POLICY_TIPS'       => "<p>We recommend that the Referrer Policy Header be set to be as restrictive as possible, i.e. to be set to ”no-referrer,\" for example.\n</p>\n<h1><span class=\"mw-headline\" id=\".3D_Examples_.3D\">= Examples =</span></h1>\n<p><b>Referrer Policy Definition by Server Header:</b>\n</p>\n<pre> # Referrer Policy\nHeader set referrer-Policy \"no-referrer\" </pre>\n<p><b>Referrer Policy Definition by HTML code:</b>\n</p>\n<pre> &lt;meta name=\"referrer\" content=\"no-referrer\" \"/&gt; </pre>\n<p><b>Statement:</b> The value `<b>no-referrer</b>` instructs the browser to send <b>Never</b> <i>Referer Header</i>, which is provided by your site. This includes links to pages on your own website.\n</p><p><br />\n</p>\n<table class=\"wikitable\" style=\"margin:auto;”\">\n<tr>\n<td> style=\"border: 4px solid #C31622; color:#000000; background-color:#f6f6f6;\"\n</td>\n<td> Other useful instructions can be `<b>same-origin</b>`, `<b>strict-origin</b>` or `<b>origin-when-cross-origin`</b>.\n</td></tr></table>\n<p><br />\n</p>\n<pre>The value `<b>same origin</b>` instructs the browser to send only <i>Referer Header</i> provided by your website. If the target is another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">domain</a>, no referrer information will be sent.\n</pre>\n<p>The value `<b>strict-origin</b>` instructs the browser, to always indicate the origin domain as <i>Referer Header</i>.\n</p><p>The value <b>origin-when-cross-origin</b>` instructs the browser to send the full referrer URL only if you stay on the same <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>. Once the domain is left via <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> or another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>  is addressed, only the source domain is sent.\n</p><p>Detailed information and examples can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://scotthelme.co.uk/a-new-security-header-referrer-policy/Scott\">Helme</a>.\n</p>",
+  'REFERRER_POLICY_LINK'       => "https://siwecos.de/wiki/Referrer-Policy/EN",
   //
   // Category: Report Text
   //
