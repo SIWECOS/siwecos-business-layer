@@ -11,7 +11,7 @@ class DomainVerifier
     protected $client = null;
 
 
-    public function __construct(Domain $domain, Client $client = null)
+    public function __construct(Domain $domain, HTTPClient $client = null)
     {
         $this->domain = $domain;
         $this->client = $client ?: new HTTPClient();

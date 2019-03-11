@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domain extends Model
 {
-    protected $fillable = ['url', 'verification_token'];
+    protected $fillable = ['url', 'verification_token', 'is_verified'];
 
     protected $casts = [
         'is_verified' => 'boolean'

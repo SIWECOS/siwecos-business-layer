@@ -9,9 +9,15 @@ use App\Token;
 use App\Http\Requests\VerifyDomainRequest;
 use App\DomainVerifier;
 use Keygen\Keygen;
+use App\HTTPClient;
 
 class DomainController extends Controller
 {
+    public function __construct(HTTPClient $client)
+    {
+        $this->client = $client;
+    }
+
     public function create(CreateDomainRequest $request)
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
@@ -26,12 +32,15 @@ class DomainController extends Controller
 
     public function verify(VerifyDomainRequest $request)
     {
-        $verifier = new DomainVerifier(Domain::whereUrl($request->json('url'))->first());
+        $domain = Domain::whereUrl($request->json('url'))->first();
+        $verifier = new DomainVerifier($domain, $this->client);
 
         if ($verifier->verify()) {
-            return response('Domain verified.', 200);
+            if ($domain->update(['is_verified' => true])) {
+                return response('Domain verified.', 200);
+            }
         }
 
-        return response('Domain could not be verified.', 404);
+        return response('Domain could not be verified.', 410);
     }
 }

@@ -6,14 +6,14 @@ use GuzzleHttp\Client;
 
 class HTTPClient extends Client
 {
-    public function __construct()
+    public function __construct(array $config = [])
     {
-        parent::__construct([
+        parent::__construct(array_merge([
             'http_errors' => false,
             'timeout' => 30,
             'headers' => [
                 'User-Agent' => config('app.userAgent'),
             ],
-        ]);
+        ], $config));
     }
 }

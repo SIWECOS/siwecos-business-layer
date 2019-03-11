@@ -6,11 +6,11 @@ use App\CoreAPI;
 use App\User;
 use Artisan;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
 use App\Token;
 use App\Domain;
+use App\HTTPClient;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -49,6 +49,6 @@ abstract class TestCase extends BaseTestCase
     {
         $mock = new MockHandler($mockedResponses);
         $handler = HandlerStack::create($mock);
-        return new Client(['handler' => $handler, 'http_errors' => false]);
+        return new HTTPClient(['handler' => $handler, 'http_errors' => false]);
     }
 }

@@ -6,7 +6,11 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain;
+use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Client;
 
 class DomainRegistrationTest extends TestCase
 {
@@ -49,23 +53,23 @@ class DomainRegistrationTest extends TestCase
     /** @test */
     public function a_domain_can_be_verified()
     {
+        // Step 1: Register a new Domain
         $this->a_user_can_register_a_new_domain_to_his_token();
 
-        $mock = $this->getMockBuilder(\App\DomainVerifier::class)
-            ->setConstructorArgs([Domain::first(), $this->getMockedHttpClient([
-                new Response(200, [], Domain::first()->verification_token)
-            ])])
-            ->getMock();
+        // Step 2: Mock the HTTPClient
+        $client = $this->getMockedHttpClient([
+            new Response(200, [], Domain::first()->verification_token),
+        ]);
+        $this->app->bind(DomainController::class, function ($app) use ($client) {
+            return new DomainController($client);
+        });
 
-        $mock->expects($this->once())
-            ->method('verify')
-            ->will($this->returnValue(true));
-
-
+        // Step 3: Send the verification request
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'url' => Domain::first()->url
         ]);
 
+        // Step 4: Get the Domain successfully verified
         $response->assertStatus(200);
         $this->assertTrue(Domain::first()->is_verified);
     }
