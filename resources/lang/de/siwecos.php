@@ -14,11 +14,6 @@ return [
   */
 
   //
-  // Category: %domain% ist unbekannt.
-  //
-  // COULDNT_RESOLVE_HOST
-  'COULDNT_RESOLVE_HOST'            => "%domain% ist unbekannt.\n",
-  //
   // Category: Angriffe
   //
   // BLEICHENBACHER_VULNERABLE
@@ -93,6 +88,31 @@ return [
   'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein. In der Apache-Konfiguration kann man etwa die Zeile \"SSLProtocol All -SSLv2 -SSLv3\" angeben.\n</p>",
   'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Tls-Poodle-Schwachstelle/DE",
   //
+  // Category: DOMXSS Scanner
+  //
+  // NO_SINKS_FOUND
+  'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
+  //
+  // NO_SOURCES_FOUND
+  'NO_SOURCES_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a>“ gefunden.\n",
+  //
+  // SECURE_FLAG_SET
+  'SECURE_FLAG_SET'            => "Das Secure Flag ist gesetzt.\n",
+  //
+  // SET_COOKIE
+  'SET_COOKIE'            => "Überprüfung von Set-Cookie\n",
+  'SET_COOKIE_SUCCESS'    => "Cookies sind gesichert.\n",
+  'SET_COOKIE_ERROR'      => "Cookies sind nicht gesichert.\n",
+  'SET_COOKIE_ERROR_DESC' => "<p>Cookies sollten durch das Setzen des HttpOnly und Secure flags gesichert werden um zu verhindern, dass Dritte die Informationen abgreifen oder verändern können.\n</p>",
+  'SET_COOKIE_TIPS'       => "",
+  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/DE",
+  //
+  // SINKS_FOUND
+  'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
+  //
+  // SOURCES_FOUND
+  'SOURCES_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a>“ gefunden.\n",
+  //
   // Category: Fehler
   //
   // SCANNER_TIMEOUT
@@ -141,25 +161,6 @@ return [
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
-  // Category: Fehlermeldung
-HTTP-Security-Header-Scanner
-Generell
-  //
-  // HEADER_ENCODING_ERROR
-  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER_NAME%</b> enthält <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Ersetzungszeichen/DE\" title=\"Ersetzungszeichen/DE\">nicht-verarbeitbare</a> Zeichen.\n",
-  //
-  // HEADER_NOT_SET
-  'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
-  //
-  // HEADER_SET_MULTIPLE_TIMES
-  'HEADER_SET_MULTIPLE_TIMES'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> wurde mehrmals gesetzt.\n",
-  //
-  // MAX_AGE_ERROR
-  'MAX_AGE_ERROR'            => "Es trat ein Fehler beim Überprüfen der `max-age`-Angabe auf.\n",
-  //
-  // NO_HTTP_RESPONSE
-  'NO_HTTP_RESPONSE'            => "Die angegebene <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/URL\" title=\"URL\">URL</a> lieferte keine Antwort.\n",
-  //
   // Category: Generell
   //
   // HTTPS_NOT_SUPPORTED
@@ -193,75 +194,14 @@ Generell
   // SCORE_warning
   'SCORE_warning'            => "Warnung\n",
   //
-  // Category: HSHS_DOMXSS
-  //
-  // HSTS_LESS_6
-  'HSTS_LESS_6'            => "Der Wert von `max-age` ist kleiner als 6 Monate.\n",
-  //
-  // HSTS_MORE_6
-  'HSTS_MORE_6'            => "Der Wert von `max-age` ist größer als 6 Monate.\n",
-  //
-  // HSTS_PRELOAD
-  'HSTS_PRELOAD'            => "Die `preload`-Direktive ist gesetzt.\n",
-  //
-  // HTTPONLY_FLAG_SET
-  'HTTPONLY_FLAG_SET'            => "Das HttpOnly Flag ist gesetzt.\n",
-  //
-  // NO_HTTPONLY_FLAG_SET
-  'NO_HTTPONLY_FLAG_SET'            => "Das HttpOnly Flag ist nicht gesetzt.\n",
-  //
-  // NO_SECURE_FLAG_SET
-  'NO_SECURE_FLAG_SET'            => "Das Secure Flag ist nicht gesetzt.\n",
-  //
-  // NO_SINKS_FOUND
-  'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
-  //
-  // NO_SOURCES_FOUND
-  'NO_SOURCES_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources</a>“ gefunden.\n",
-  //
-  // SECURE_FLAG_SET
-  'SECURE_FLAG_SET'            => "Das Secure Flag ist gesetzt.\n",
-  //
-  // SET_COOKIE
-  'SET_COOKIE'            => "Überprüfung von Set-Cookie\n",
-  'SET_COOKIE_SUCCESS'    => "Cookies sind gesichert.\n",
-  'SET_COOKIE_ERROR'      => "Cookies sind nicht gesichert.\n",
-  'SET_COOKIE_ERROR_DESC' => "<p>Cookies sollten durch das Setzen des HttpOnly und Secure flags gesichert werden um zu verhindern, dass Dritte die Informationen abgreifen oder verändern können.\n</p>",
-  'SET_COOKIE_TIPS'       => "",
-  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/DE",
-  //
-  // SINKS_FOUND
-  'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>“ gefunden.\n",
-  //
-  // SOURCES_FOUND
-  'SOURCES_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources</a>“ gefunden.\n",
-  //
-  // XCTO_CORRECT
-  'XCTO_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
-  //
-  // XCTO_NOT_CORRECT
-  'XCTO_NOT_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht korrekt gesetzt.\n",
-  //
-  // XFO_CORRECT
-  'XFO_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
-  //
-  // XFO_WILDCARDS
-  'XFO_WILDCARDS'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> enthält Wildcard-Angaben (*) und ist daher nicht sicher konfiguriert.\n",
-  //
-  // XXSS_BLOCK
-  'XXSS_BLOCK'            => "Die `mode=block`-Direktive ist aktiviert.\n",
-  //
-  // XXSS_CORRECT
-  'XXSS_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
-  //
-  // Category: HTTP-Security-Header-Scanner
+  // Category: Header Scanner
   //
   // CONTENT_SECURITY_POLICY
   'CONTENT_SECURITY_POLICY'            => "Überprüfung der Content Security Policy (CSP)\n",
   'CONTENT_SECURITY_POLICY_SUCCESS'    => "Eine sichere Konfiguration der Content Security Policy (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Security-Policy-Schwachstelle/DE/Background\" title=\"Content-Security-Policy-Schwachstelle/DE/Background\">CSP</a>) wurde gefunden.\n",
   'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy unsicher\n",
   'CONTENT_SECURITY_POLICY_ERROR_DESC' => "<p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Security-Policy/DE\" title=\"Content-Security-Policy/DE\">Content-Security-Policy</a> ist eine strukturierte Vorgehensweise, welche das Injizieren und Ausführen von evtl. bösartigen Befehlen in einer <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Webanwendung\" title=\"Webanwendung\">Webanwendung</a> (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Injection\" title=\"Injection\">Injection-Angriffe</a>) mildern soll. Es stellt über eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Whitelist/DE\" title=\"Whitelist/DE\">Whitelist</a> dar, von welchen Quellen z. B. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Javascript\" title=\"Javascript\">Javascript</a>, Bilder, Schriftarten und andere Inhalte auf Ihrer Seite eingebunden werden dürfen.\n</p>",
-  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Verwenden Sie den CSP mit default-src 'none' oder 'self' und ohne 'unsafe-eval' oder 'unsafe-inline' Richtlinien. Mehr zu <b>Content Security Policy</b> (zu deutsch etwa \"Richtlinie für die Sicherheit der Inhalte\") finden Sie bei <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML &gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Beispiele für den Header der Startseite:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Konfiguration des Webservers</b>\n</p><p>Wenn man seinen eigenen Webserver konfigurieren kann, was bei günstigen Hostingangeboten in aller Regel nicht der Fall ist, dann gibt es diese Einstellungsmöglichkeit über die <b>Bearbeitung der .htaccess</b>:\n</p>\n<pre># Download: Lade Inhalte nur von Seiten, die explizit erlaubt sind\n# Beispiel: Alles von der eigenen Domain erlauben, keine Externas:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Verwenden Sie den CSP mit default-src 'none' oder 'self' und ohne 'unsafe-eval' oder 'unsafe-inline' Richtlinien. Mehr zu <b>Content Security Policy</b> (zu deutsch etwa \"Richtlinie für die Sicherheit der Inhalte\") finden Sie bei <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML &gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Beispiele für den Header der Startseite:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Konfiguration des Webservers</b>\n</p><p>Wenn man seinen eigenen Webserver konfigurieren kann, was bei günstigen Hostingangeboten in aller Regel nicht der Fall ist, dann gibt es diese Einstellungsmöglichkeit über die <b>Bearbeitung der .htaccess</b>:\n</p>\n<pre># Download: Lade Inhalte nur von Seiten, die explizit erlaubt sind\n# Beispiel: Alles von der eigenen Domain erlauben, keine Externas:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\nHeader Scanner\nHier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
   'CONTENT_SECURITY_POLICY_LINK'       => "https://siwecos.de/wiki/Content-Security-Policy-Schwachstelle/DE",
   //
   // CONTENT_TYPE
@@ -269,51 +209,8 @@ Generell
   'CONTENT_TYPE_SUCCESS'    => "Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Type-Nicht-Korrekt/DE/Background\" title=\"Content-Type-Nicht-Korrekt/DE/Background\">Content Type Angabe</a> ist korrekt konfiguriert.\n",
   'CONTENT_TYPE_ERROR'      => "Inkorrekte HTTP Content-Type Konfiguration\n",
   'CONTENT_TYPE_ERROR_DESC' => "<p>Der Content-Type ist eine Angabe, die für gewöhnlich im Kopfbereich der Webseite, dem sogenannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a>, untergebracht wird. Durch diese Angaben wird der Zeichensatz und der Typ des Inhalts der Seite definiert. Sollte eine Definition fehlen, wird der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> versuchen, den Content-Type zu erraten; dies kann zu <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen/DE\" title=\"Schwachstellen/DE\">Sicherheitslücken</a> wie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sniffer\" title=\"Sniffer\">Code-Page-Sniffing</a> führen. Diese Angaben sind zudem wichtig, damit die Webseite in jedem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> und auf jedem Computer einwandfrei dargestellt wird. Wenn ein Server ein Dokument an einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/User_Agent\">User-Agent</a> sendet (zum Beispiel zum <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a>) ist es nützlich, im Content-Type-Feld des HTTP-Headers die Art des Dateiformates zu hinterlegen. Diese Informationen deklarieren den <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/Internet_Media_Type\">MIME-Typ</a> und senden entsprechend die Zeichenkodierung des Dokuments wie text/html, text/plain, etc. an den Browser.\n</p>",
-  'CONTENT_TYPE_TIPS'       => "<p>Fügen Sie den entsprechenden HTTP-Header oder alternativ ein &lt;meta&gt; Tag hinzu. Bitte beachten Sie, dass &lt;meta&gt; im Gegensatz zu einem HTTP-Header leichter umgangen werden kann.\n</p><p><b>text/html; charset=utf-8</b>;\n</p><p><b>--snip</b>\n</p>\n<pre>&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"&gt;</pre>\n<p><b>—snap</b>\n</p><p><br />\nWeiterhin muss der Server selber konfiguriert werden, damit die <b>richtige charset-Information</b> gesendet wird. Dazu werden entsprechende Berechtigungen benötigt, um die Änderungen am Server durchführen zu können. Weitere Informationen zu den verschiedenen Serverkonfigurationen finden Sie auf den Seiten von <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/articles/http-charset/index.de\">W3.org</a>.\n</p><p>Darüber hinaus gibt es auch die Möglichkeit die <b>richtige charset-Information</b> der <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://httpd.apache.org/docs/2.0/howto/htaccess.html\"><b>.htaccess</b></a> zu übergeben, welche die Angaben im HTTP-Header überschreiben. <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/questions/qa-htaccess-charset\">charset in .htaccess</a>\n</p><p><b>In die .htaccess eintragen:</b>\n</p>\n<pre>AddType 'text/html; charset=UTF-8' html</pre>\n<p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'CONTENT_TYPE_TIPS'       => "<p>Fügen Sie den entsprechenden HTTP-Header oder alternativ ein &lt;meta&gt; Tag hinzu. Bitte beachten Sie, dass &lt;meta&gt; im Gegensatz zu einem HTTP-Header leichter umgangen werden kann.\n</p><p><b>text/html; charset=utf-8</b>;\n</p><p><b>--snip</b>\n</p>\n<pre>&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"&gt;</pre>\n<p><b>—snap</b>\n</p><p><br />\nWeiterhin muss der Server selber konfiguriert werden, damit die <b>richtige charset-Information</b> gesendet wird. Dazu werden entsprechende Berechtigungen benötigt, um die Änderungen am Server durchführen zu können. Weitere Informationen zu den verschiedenen Serverkonfigurationen finden Sie auf den Seiten von <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/articles/http-charset/index.de\">W3.org</a>.\n</p><p>Darüber hinaus gibt es auch die Möglichkeit die <b>richtige charset-Information</b> der <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://httpd.apache.org/docs/2.0/howto/htaccess.html\"><b>.htaccess</b></a> zu übergeben, welche die Angaben im HTTP-Header überschreiben. <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/questions/qa-htaccess-charset\">charset in .htaccess</a>\n</p><p><b>In die .htaccess eintragen:</b>\n</p>\n<pre>AddType 'text/html; charset=UTF-8' html</pre>\n<p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
   'CONTENT_TYPE_LINK'       => "https://siwecos.de/wiki/Content-Type-Nicht-Korrekt/DE",
-  //
-  // PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - Ist aktuell deaktiviert\n",
-  'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> ist aktiviert (HPKP wird derzeit nicht überprüft).\n",
-  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden (HPKP wird derzeit nicht überprüft).\n",
-  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikats</a> das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning</a> wird für die von der Webseite definierten Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> akzeptiert.\n</p>",
-  'PUBLIC_KEY_PINS_TIPS'       => "<p>Das Setzen des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public Key Pinning</a> (HPKP) ist kein absolutes Muss und wird aktuell im Siwecos-Scanner nicht berücksichtigt.\n</p><p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> Mozilla, Firefox und Google Chrome richten sich nach dem <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">RFC-7469-Standard</a> und ignorieren daher HPKP-Header. Wenn nur ein einziger Pin gesetzt ist, wird eine Fehlermeldung angezeigt. Damit die Pin-Validierung funktioniert, ist es also immer notwendig mindestens zwei gültige Public Keys bzw. einen Backup-Pin anzugeben. Interessierte sollten sich dazu an einen IT-Sicherheitsexperten oder Webentwickler wenden.\n</p><p>Weiterführende Informationen finden Sie im <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Artikel von ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
-  'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE",
-  //
-  // STRICT_TRANSPORT_SECURITY
-  'STRICT_TRANSPORT_SECURITY'            => "Überprüfung des HSTS Schutzes\n",
-  'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Ihre Webseite ist ausschließlich über das sichere <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS-Protokoll</a> erreichbar. Kommunikation zwischen Ihrer Webseite und den Besuchern kann nicht abgehört und manipuliert werden.\n",
-  'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS Schutz Fehler\n",
-  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p>Strict-Transport-Security (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Strict_Transport_Security\" title=\"HTTP Strict Transport Security\">HSTS</a>) stellt sicher, dass die Webseite für eine bestimmte Zeit lediglich über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> gesicherte Verbindung aufgerufen werden kann. Der Webseitenbetreiber kann diesbezüglich u. a. definieren, wie lange der Zeitinterval ist und ob diese Regelung auch für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Subdomains</a> gelten soll.\n</p>",
-  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) ist ein einfach zu integrierender Web-Security-Policy-Mechanismus.\n</p>\n<b>--snip</b><pre>\n# HTTP Strict Transport Security (HSTS) aktivieren\n# Pflichtangabe: \"max-age\"\n# Optional: \"includeSubDomains\"</pre>\n<pre>  <b>Header set Strict-Transport-Security \"max-age=31556926; includeSubDomains\"</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
-  'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/Keine-Verschluesselung-Gefunden/DE",
-  //
-  // X_CONTENT_TYPE_OPTIONS
-  'X_CONTENT_TYPE_OPTIONS'            => "Überprüfung des X-Content-Type Headers\n",
-  'X_CONTENT_TYPE_OPTIONS_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> ist korrekt gesetzt.\n",
-  'X_CONTENT_TYPE_OPTIONS_ERROR'      => "X-Content-Type Header fehlt.\n",
-  'X_CONTENT_TYPE_OPTIONS_ERROR_DESC' => "<p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE/Background\" title=\"X-Content-Type-Options-Schwachstelle/DE/Background\">X-Content-Type-Options</a> Einstellungen im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> verhindern, dass der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> Dateien als etwas anderes interpretiert, als vom Inhaltstyp im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP-Header</a> deklariert wurde. Die Headereinstellungen sind hier nicht gesetzt.\n</p>",
-  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Beispielcode einer .htaccess auf einem Apache Webserver</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options \"nosniff\"'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
-  'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE",
-  //
-  // X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => "Überprüfung der HTTP-Header X-Frame Optionen\n",
-  'X_FRAME_OPTIONS_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite gegen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking-Attacken</a>.\n",
-  'X_FRAME_OPTIONS_ERROR'      => "HTTP-Header X-Frame Optionen nicht gesetzt.\n",
-  'X_FRAME_OPTIONS_ERROR_DESC' => "<p>Das Setzen von <b>X-Frame-Options</b> hilft dabei, Angriffe über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Framing-Mechanismen/DE\" title=\"Framing-Mechanismen/DE\">Framing-Mechanismen</a> zu unterbinden. Dies gewährleistet bspw., dass <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a>-Angriffe größtenteils gemildert werden können. Darüber hinaus werden <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Downgrading_Angriffe\" title=\"Downgrading Angriffe\">Downgrading-Angriffe</a> wie etwa im Internet Explorer minimiert.\n</p>",
-  'X_FRAME_OPTIONS_TIPS'       => "<p>Im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> entsprechend den Bedürfnissen setzen. Die <b>X-Frame-Options</b> im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP</a> Header kann verwendet werden, um zu bestimmen, ob ein aufrufender <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> die Zielseite in einem &lt;frame&gt;, &lt;iframe&gt; oder bspw. &lt;object&gt; rendern bzw. einbetten darf. Webseiten können diesen Header verwenden, um u. a. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking-Angriffe</a> abzuwehren, indem sie unterbinden, dass ihr Content in fremden Seiten eingebettet wird.\n</p><p>Mit dem HTTP-Header Befehl <b>X-Frame-Options</b> können moderne Webbrowser angewiesen werden, eine Seite nicht in einem Frame auf einer andere Website zu laden. Dafür muss der folgende Befehl in der htaccess-Datei gesetzt werden:\n</p><p>Header always append X-Frame-Options DENY\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options DENY\n</pre>\n<p><b>—snap</b>\n</p><p>Alternativ kann erlaubt werden, dass die Seite nur auf anderen Seiten der gleichen Domain eingebunden werden dürfen:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options SAMEORIGIN\n</pre>\n<p><b>—snap</b>\n</p><p>Falls eine Website doch extern eingebunden werden muss, kann eine Domain angegeben werden:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options ALLOW-FROM botfrei.de\n</pre>\n<p><b>—snap</b>\n</p><p><br />\nHier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
-  'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Schwachstelle/DE",
-  //
-  // X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => "Überprüfung des X-XSS-Protection Headers\n",
-  'X_XSS_PROTECTION_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Schutz</a> (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/XSS-Schwachstelle/DE\" title=\"XSS-Schwachstelle/DE\">XSS</a>) des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Webbrowsers</a> ist auf Ihrer Seite aktiviert.\n",
-  'X_XSS_PROTECTION_ERROR'      => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Schutz</a> (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/XSS-Schwachstelle/DE\" title=\"XSS-Schwachstelle/DE\">XSS</a>) ist nicht aktiviert oder unzureichend konfiguriert.\n",
-  'X_XSS_PROTECTION_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection definiert wie in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browsern</a> eingebaute XSS-Filter konfiguriert werden. Eine Default-Installation kann eine unzureichende Konfiguration offenbaren.\n</p>",
-  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Beispielcode einer .htaccess auf einem Apache Webserver</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>HTTP-Security-Header-Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
-  'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Schwachstelle/DE",
-  //
-  // Category: HTTP-Security-Header-Scanner
-Content-Security-Policy
   //
   // CSP_CORRECT
   'CSP_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
@@ -329,9 +226,6 @@ Content-Security-Policy
   //
   // CSP_UNSAFE_INCLUDED
   'CSP_UNSAFE_INCLUDED'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist unsicher gesetzt, da er `unsafe-inline`- oder `unsafe-eval`-Direktiven enthält.\n",
-  //
-  // Category: HTTP-Security-Header-Scanner
-Content-Type
   //
   // CT_CORRECT
   'CT_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
@@ -351,14 +245,14 @@ Content-Type
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "Ein falscher oder ungültiger Zeichensatz wurde eingetragen. Die Konfiguration ist nicht sicher.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-Generell
+  // HEADER_ENCODING_ERROR
+  'HEADER_ENCODING_ERROR'            => "Der Header <b>%HEADER_NAME%</b> enthält <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Ersetzungszeichen/DE\" title=\"Ersetzungszeichen/DE\">nicht-verarbeitbare</a> Zeichen.\n",
   //
-  // INCLUDE_SUBDOMAINS
-  'INCLUDE_SUBDOMAINS'            => "`includeSubDomains` ist gesetzt.\n",
+  // HEADER_NOT_SET
+  'HEADER_NOT_SET'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht gesetzt.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-Public-Key-Pins
+  // HEADER_SET_MULTIPLE_TIMES
+  'HEADER_SET_MULTIPLE_TIMES'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> wurde mehrmals gesetzt.\n",
   //
   // HPKP_LESS_15
   'HPKP_LESS_15'            => "Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselung\" title=\"Verschlüsselung\">öffentlichen Schlüssel</a> sind für weniger als 15 Tage <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">gepinnt</a>.\n",
@@ -369,13 +263,95 @@ Public-Key-Pins
   // HPKP_REPORT_URI
   'HPKP_REPORT_URI'            => "Eine `report-uri` ist gesetzt.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-Referrer-Policy
+  // HSTS_LESS_6
+  'HSTS_LESS_6'            => "Der Wert von `max-age` ist kleiner als 6 Monate.\n",
+  //
+  // HSTS_MORE_6
+  'HSTS_MORE_6'            => "Der Wert von `max-age` ist größer als 6 Monate.\n",
+  //
+  // HSTS_PRELOAD
+  'HSTS_PRELOAD'            => "Die `preload`-Direktive ist gesetzt.\n",
+  //
+  // HTTPONLY_FLAG_SET
+  'HTTPONLY_FLAG_SET'            => "Das HttpOnly Flag ist gesetzt.\n",
+  //
+  // INCLUDE_SUBDOMAINS
+  'INCLUDE_SUBDOMAINS'            => "`includeSubDomains` ist gesetzt.\n",
+  //
+  // MAX_AGE_ERROR
+  'MAX_AGE_ERROR'            => "Es trat ein Fehler beim Überprüfen der `max-age`-Angabe auf.\n",
+  //
+  // NO_HTTPONLY_FLAG_SET
+  'NO_HTTPONLY_FLAG_SET'            => "Das HttpOnly Flag ist nicht gesetzt.\n",
+  //
+  // NO_HTTP_RESPONSE
+  'NO_HTTP_RESPONSE'            => "Die angegebene <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/URL\" title=\"URL\">URL</a> lieferte keine Antwort.\n",
   //
   // NO_REFERRER
   'NO_REFERRER'            => "Die Anweisung no-referrer ist gesetzt.\n",
   //
-  // Category: Information-Leakage-Scanner
+  // NO_SECURE_FLAG_SET
+  'NO_SECURE_FLAG_SET'            => "Das Secure Flag ist nicht gesetzt.\n",
+  //
+  // PUBLIC_KEY_PINS
+  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - Ist aktuell deaktiviert\n",
+  'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> ist aktiviert (HPKP wird derzeit nicht überprüft).\n",
+  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden (HPKP wird derzeit nicht überprüft).\n",
+  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikats</a> das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning</a> wird für die von der Webseite definierten Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> akzeptiert.\n</p>",
+  'PUBLIC_KEY_PINS_TIPS'       => "<p>Das Setzen des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public Key Pinning</a> (HPKP) ist kein absolutes Muss und wird aktuell im Siwecos-Scanner nicht berücksichtigt.\n</p><p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> Mozilla, Firefox und Google Chrome richten sich nach dem <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">RFC-7469-Standard</a> und ignorieren daher HPKP-Header. Wenn nur ein einziger Pin gesetzt ist, wird eine Fehlermeldung angezeigt. Damit die Pin-Validierung funktioniert, ist es also immer notwendig mindestens zwei gültige Public Keys bzw. einen Backup-Pin anzugeben. Interessierte sollten sich dazu an einen IT-Sicherheitsexperten oder Webentwickler wenden.\n</p><p>Weiterführende Informationen finden Sie im <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Artikel von ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
+  'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE",
+  //
+  // STRICT_TRANSPORT_SECURITY
+  'STRICT_TRANSPORT_SECURITY'            => "Überprüfung des HSTS Schutzes\n",
+  'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Ihre Webseite ist ausschließlich über das sichere <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS-Protokoll</a> erreichbar. Kommunikation zwischen Ihrer Webseite und den Besuchern kann nicht abgehört und manipuliert werden.\n",
+  'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS Schutz Fehler\n",
+  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p>Strict-Transport-Security (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Strict_Transport_Security\" title=\"HTTP Strict Transport Security\">HSTS</a>) stellt sicher, dass die Webseite für eine bestimmte Zeit lediglich über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> gesicherte Verbindung aufgerufen werden kann. Der Webseitenbetreiber kann diesbezüglich u. a. definieren, wie lange der Zeitinterval ist und ob diese Regelung auch für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Subdomains</a> gelten soll.\n</p>",
+  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) ist ein einfach zu integrierender Web-Security-Policy-Mechanismus.\n</p>\n<b>--snip</b><pre>\n# HTTP Strict Transport Security (HSTS) aktivieren\n# Pflichtangabe: \"max-age\"\n# Optional: \"includeSubDomains\"</pre>\n<pre>  <b>Header set Strict-Transport-Security \"max-age=31556926; includeSubDomains\"</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/Keine-Verschluesselung-Gefunden/DE",
+  //
+  // XCTO_CORRECT
+  'XCTO_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  //
+  // XCTO_NOT_CORRECT
+  'XCTO_NOT_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist nicht korrekt gesetzt.\n",
+  //
+  // XFO_CORRECT
+  'XFO_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  //
+  // XFO_WILDCARDS
+  'XFO_WILDCARDS'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> enthält Wildcard-Angaben (*) und ist daher nicht sicher konfiguriert.\n",
+  //
+  // XXSS_BLOCK
+  'XXSS_BLOCK'            => "Die `mode=block`-Direktive ist aktiviert.\n",
+  //
+  // XXSS_CORRECT
+  'XXSS_CORRECT'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+  //
+  // X_CONTENT_TYPE_OPTIONS
+  'X_CONTENT_TYPE_OPTIONS'            => "Überprüfung des X-Content-Type Headers\n",
+  'X_CONTENT_TYPE_OPTIONS_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> ist korrekt gesetzt.\n",
+  'X_CONTENT_TYPE_OPTIONS_ERROR'      => "X-Content-Type Header fehlt.\n",
+  'X_CONTENT_TYPE_OPTIONS_ERROR_DESC' => "<p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE/Background\" title=\"X-Content-Type-Options-Schwachstelle/DE/Background\">X-Content-Type-Options</a> Einstellungen im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> verhindern, dass der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> Dateien als etwas anderes interpretiert, als vom Inhaltstyp im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP-Header</a> deklariert wurde. Die Headereinstellungen sind hier nicht gesetzt.\n</p>",
+  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Beispielcode einer .htaccess auf einem Apache Webserver</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options \"nosniff\"'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Schwachstelle/DE",
+  //
+  // X_FRAME_OPTIONS
+  'X_FRAME_OPTIONS'            => "Überprüfung der HTTP-Header X-Frame Optionen\n",
+  'X_FRAME_OPTIONS_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite gegen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking-Attacken</a>.\n",
+  'X_FRAME_OPTIONS_ERROR'      => "HTTP-Header X-Frame Optionen nicht gesetzt.\n",
+  'X_FRAME_OPTIONS_ERROR_DESC' => "<p>Das Setzen von <b>X-Frame-Options</b> hilft dabei, Angriffe über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Framing-Mechanismen/DE\" title=\"Framing-Mechanismen/DE\">Framing-Mechanismen</a> zu unterbinden. Dies gewährleistet bspw., dass <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking</a>-Angriffe größtenteils gemildert werden können. Darüber hinaus werden <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Downgrading_Angriffe\" title=\"Downgrading Angriffe\">Downgrading-Angriffe</a> wie etwa im Internet Explorer minimiert.\n</p>",
+  'X_FRAME_OPTIONS_TIPS'       => "<p>Im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> entsprechend den Bedürfnissen setzen. Die <b>X-Frame-Options</b> im <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP</a> Header kann verwendet werden, um zu bestimmen, ob ein aufrufender <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> die Zielseite in einem &lt;frame&gt;, &lt;iframe&gt; oder bspw. &lt;object&gt; rendern bzw. einbetten darf. Webseiten können diesen Header verwenden, um u. a. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Clickjacking\" title=\"Clickjacking\">Clickjacking-Angriffe</a> abzuwehren, indem sie unterbinden, dass ihr Content in fremden Seiten eingebettet wird.\n</p><p>Mit dem HTTP-Header Befehl <b>X-Frame-Options</b> können moderne Webbrowser angewiesen werden, eine Seite nicht in einem Frame auf einer andere Website zu laden. Dafür muss der folgende Befehl in der htaccess-Datei gesetzt werden:\n</p><p>Header always append X-Frame-Options DENY\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options DENY\n</pre>\n<p><b>—snap</b>\n</p><p>Alternativ kann erlaubt werden, dass die Seite nur auf anderen Seiten der gleichen Domain eingebunden werden dürfen:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options SAMEORIGIN\n</pre>\n<p><b>—snap</b>\n</p><p>Falls eine Website doch extern eingebunden werden muss, kann eine Domain angegeben werden:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options ALLOW-FROM botfrei.de\n</pre>\n<p><b>—snap</b>\n</p><p><br />\nHier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Schwachstelle/DE",
+  //
+  // X_XSS_PROTECTION
+  'X_XSS_PROTECTION'            => "Überprüfung des X-XSS-Protection Headers\n",
+  'X_XSS_PROTECTION_SUCCESS'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Schutz</a> (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/XSS-Schwachstelle/DE\" title=\"XSS-Schwachstelle/DE\">XSS</a>) des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Webbrowsers</a> ist auf Ihrer Seite aktiviert.\n",
+  'X_XSS_PROTECTION_ERROR'      => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Schutz</a> (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/XSS-Schwachstelle/DE\" title=\"XSS-Schwachstelle/DE\">XSS</a>) ist nicht aktiviert oder unzureichend konfiguriert.\n",
+  'X_XSS_PROTECTION_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">HTTP-Header</a> X-XSS-Protection definiert wie in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browsern</a> eingebaute XSS-Filter konfiguriert werden. Eine Default-Installation kann eine unzureichende Konfiguration offenbaren.\n</p>",
+  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Beispielcode einer .htaccess auf einem Apache Webserver</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Hier finden Sie ein Beispiel, wie eine .htaccess-Datei aussehen kann, um einen höheren Wert beim <b>Header Scanner</b> zu erzielen.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess/DE\" title=\"Htaccess/DE\">.htaccess-Beispiel</a>)\n</p>",
+  'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Schwachstelle/DE",
+  //
+  // Category: Info Leak Scanner
   //
   // CMS
   'CMS'            => "Überprüfung der CMS Version\n",
@@ -401,6 +377,9 @@ Referrer-Policy
   //
   // CMS_VERSION_VULN
   'CMS_VERSION_VULN'            => "Das verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  //
+  // COULDNT_RESOLVE_HOST
+  'COULDNT_RESOLVE_HOST'            => "%domain% ist unbekannt.\n",
   //
   // EMAIL_ADDRESS
   'EMAIL_ADDRESS'            => "Überprüfung auf vorhandene E-Mail-Adressen\n",
@@ -553,6 +532,38 @@ Referrer-Policy
   // SCANNER_NAME_WS_TLS
   'SCANNER_NAME_WS_TLS'            => "TLS Scanner\n",
   //
+  // Category: TLS Scanner
+  //
+  // ANON_SUITES
+  'ANON_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass eine anonyme <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> ohne <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Authentifizierung\" title=\"Authentifizierung\">Authentifizierung</a> bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
+  // DES_SUITES
+  'DES_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Cipher Suites)</a> unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
+  // EXPIRED
+  'EXPIRED'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  //
+  // EXPORT_SUITES
+  'EXPORT_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass sich vorsätzlich geschwächte kryptographische Funktionen (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>) nutzen lassen. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle-Attacken</a>.\n",
+  //
+  // HASH_ALGO
+  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> %HASH%. Das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> kann so sehr einfach gefälscht werden. Eine Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> jedoch nicht.\n",
+  //
+  // HTTPS_RESPONSE
+  'HTTPS_RESPONSE'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
+  //
+  // HTTPS_SUPPORTED
+  'HTTPS_SUPPORTED'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n",
+  //
+  // NOT_YET_VALID
+  'NOT_YET_VALID'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  //
+  // NULL_SUITES
+  'NULL_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass zugelassen wird, dass unverschlüsselt über einen eigentlich geschützten Kanal Daten übertragen werden können. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
+  // RC4_SUITES
+  'RC4_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass die mittlerweile als unsicher geltende Verschlüsselungsfunktion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Rc4_Verschl%C3%BCsselungsmethodik\" title=\"Rc4 Verschlüsselungsmethodik\">RC4</a> weiterhin unterstützt wird. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
   // Category: Verschlüsselungsmethode
   //
   // CIPHERSUITEORDER_ENFORCED
@@ -603,38 +614,6 @@ Referrer-Policy
   'CIPHERSUITE_RC4_TIPS'       => "<p>Deaktivieren Sie die Unterstützung der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Rc4_Verschl%C3%BCsselungsmethodik\" title=\"Rc4 Verschlüsselungsmethodik\">RC4 Verschlüsselungsmethodik</a>.\n</p>",
   'CIPHERSUITE_RC4_LINK'       => "https://siwecos.de/wiki/Unsicher Rc4 Verschlüsselungsmethodik/DE",
   //
-  // Category: WS_TLS
-  //
-  // ANON_SUITES
-  'ANON_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass eine anonyme <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Verschlüsselungsmethodik</a> ohne <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Authentifizierung\" title=\"Authentifizierung\">Authentifizierung</a> bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
-  // DES_SUITES
-  'DES_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik/DE\" title=\"Verschlüsselungsmethodik/DE\">Cipher Suites)</a> unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
-  // EXPIRED
-  'EXPIRED'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
-  //
-  // EXPORT_SUITES
-  'EXPORT_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass sich vorsätzlich geschwächte kryptographische Funktionen (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>) nutzen lassen. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle-Attacken</a>.\n",
-  //
-  // HASH_ALGO
-  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> %HASH%. Das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> kann so sehr einfach gefälscht werden. Eine Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> jedoch nicht.\n",
-  //
-  // HTTPS_RESPONSE
-  'HTTPS_RESPONSE'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
-  //
-  // HTTPS_SUPPORTED
-  'HTTPS_SUPPORTED'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n",
-  //
-  // NOT_YET_VALID
-  'NOT_YET_VALID'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE\" title=\"Zertifikate/DE\">Zertifikat</a> wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
-  //
-  // NULL_SUITES
-  'NULL_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass zugelassen wird, dass unverschlüsselt über einen eigentlich geschützten Kanal Daten übertragen werden können. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
-  // RC4_SUITES
-  'RC4_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass die mittlerweile als unsicher geltende Verschlüsselungsfunktion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Rc4_Verschl%C3%BCsselungsmethodik\" title=\"Rc4 Verschlüsselungsmethodik\">RC4</a> weiterhin unterstützt wird. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
   // Category: XSS-Scanner
   //
   // HAS_SINKS
@@ -654,7 +633,7 @@ Referrer-Policy
   // SINKS
   'SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
   'SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
-  'SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>.\n",
+  'SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>.\n",
   'SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
   'SINKS_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen/DE\" title=\"Schwachstellen/DE\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
   'SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE",

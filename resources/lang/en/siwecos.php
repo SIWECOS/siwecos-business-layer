@@ -14,11 +14,6 @@ return [
   */
 
   //
-  // Category: %Domain% unknown.
-  //
-  // COULDNT_RESOLVE_HOST
-  'COULDNT_RESOLVE_HOST'            => "%domain% is unknown.\n",
-  //
   // Category: Attacks
   //
   // BLEICHENBACHER_VULNERABLE
@@ -99,7 +94,7 @@ return [
   'CERTIFICATE_EXPIRED'            => "Check of certificate validity period\n",
   'CERTIFICATE_EXPIRED_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> not expired\n",
   'CERTIFICATE_EXPIRED_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> expired\n",
-  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">|Server certificate</a> has expired. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message, for example \"Your certificate expired on (date)\". The website will appear insecure or not trustworthy to visitors.\n</p>",
+  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Server certificate</a> has expired. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message, for example \"Your certificate expired on (date)\". The website will appear insecure or not trustworthy to visitors.\n</p>",
   'CERTIFICATE_EXPIRED_TIPS'       => "<p>This problem can be solved by renewing the [Certificate/EN|certificate]]. For information on how to renew a certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F\" title=\"Zertifikate/DE\">certificate expired (German only)</a>.\n</p>",
   'CERTIFICATE_EXPIRED_LINK'       => "https://siwecos.de/wiki/Certificate-Expired/EN",
   //
@@ -132,6 +127,31 @@ return [
   //
   // CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
   'CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS'            => "Check of certificate encryption\n",
+  //
+  // Category: DOMXSS Scanner
+  //
+  // NO_SINKS_FOUND
+  'NO_SINKS_FOUND'            => "No \"sinks\" were found.\n",
+  //
+  // NO_SOURCES_FOUND
+  'NO_SOURCES_FOUND'            => "No \"sources\" were found.\n",
+  //
+  // SECURE_FLAG_SET
+  'SECURE_FLAG_SET'            => "The secure flag is set.\n",
+  //
+  // SET_COOKIE
+  'SET_COOKIE'            => "Check of Set-Cookie\n",
+  'SET_COOKIE_SUCCESS'    => "Cookies are secured.\n",
+  'SET_COOKIE_ERROR'      => "Cookies are not secured.\n",
+  'SET_COOKIE_ERROR_DESC' => "<p>Cookies should be secured by setting the HttpOnly and Secure flags to ensure they cannot be read or altered by others.\n</p>",
+  'SET_COOKIE_TIPS'       => "",
+  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/EN",
+  //
+  // SINKS_FOUND
+  'SINKS_FOUND'            => "\"Sinks\" were found.\n",
+  //
+  // SOURCES_FOUND
+  'SOURCES_FOUND'            => "\"Sources\" were found.\n",
   //
   // Category: Encryption method
   //
@@ -231,25 +251,6 @@ return [
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
-  // Category: Error message
-HTTP-Security-Header-Scanner
-General
-  //
-  // HEADER_ENCODING_ERROR
-  'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER_NAME%</b> contains characters which cannot be processed.\n",
-  //
-  // HEADER_NOT_SET
-  'HEADER_NOT_SET'            => "The header is not set.\n",
-  //
-  // HEADER_SET_MULTIPLE_TIMES
-  'HEADER_SET_MULTIPLE_TIMES'            => "The header was set several times.\n",
-  //
-  // MAX_AGE_ERROR
-  'MAX_AGE_ERROR'            => "There was an error while checking the 'max-age' directive.\n",
-  //
-  // NO_HTTP_RESPONSE
-  'NO_HTTP_RESPONSE'            => "The specified URL did not respond.\n",
-  //
   // Category: General
   //
   // HTTPS_NOT_SUPPORTED
@@ -283,75 +284,14 @@ General
   // SCORE_warning
   'SCORE_warning'            => "Warning\n",
   //
-  // Category: HSHS_DOMXSS
-  //
-  // HSTS_LESS_6
-  'HSTS_LESS_6'            => "The value of 'max-age' is less than 6 months.\n",
-  //
-  // HSTS_MORE_6
-  'HSTS_MORE_6'            => "The value of 'max-age' is greater than 6 months.\n",
-  //
-  // HSTS_PRELOAD
-  'HSTS_PRELOAD'            => "The 'preload' directive is set.\n",
-  //
-  // HTTPONLY_FLAG_SET
-  'HTTPONLY_FLAG_SET'            => "The HttpOnly flag is set.\n",
-  //
-  // NO_HTTPONLY_FLAG_SET
-  'NO_HTTPONLY_FLAG_SET'            => "The HttpOnly flag is not set.\n",
-  //
-  // NO_SECURE_FLAG_SET
-  'NO_SECURE_FLAG_SET'            => "The secure flag is not set.\n",
-  //
-  // NO_SINKS_FOUND
-  'NO_SINKS_FOUND'            => "No \"sinks\" were found.\n",
-  //
-  // NO_SOURCES_FOUND
-  'NO_SOURCES_FOUND'            => "No \"sources\" were found.\n",
-  //
-  // SECURE_FLAG_SET
-  'SECURE_FLAG_SET'            => "The secure flag is set.\n",
-  //
-  // SET_COOKIE
-  'SET_COOKIE'            => "Check of Set-Cookie\n",
-  'SET_COOKIE_SUCCESS'    => "Cookies are secured.\n",
-  'SET_COOKIE_ERROR'      => "Cookies are not secured.\n",
-  'SET_COOKIE_ERROR_DESC' => "<p>Cookies should be secured by setting the HttpOnly and Secure flags to ensure they cannot be read or altered by others.\n</p>",
-  'SET_COOKIE_TIPS'       => "",
-  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/EN",
-  //
-  // SINKS_FOUND
-  'SINKS_FOUND'            => "\"Sinks\" were found.\n",
-  //
-  // SOURCES_FOUND
-  'SOURCES_FOUND'            => "\"Sources\" were found.\n",
-  //
-  // XCTO_CORRECT
-  'XCTO_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
-  //
-  // XCTO_NOT_CORRECT
-  'XCTO_NOT_CORRECT'            => "The header is not set correctly.\n",
-  //
-  // XFO_CORRECT
-  'XFO_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
-  //
-  // XFO_WILDCARDS
-  'XFO_WILDCARDS'            => "The header contains wildcard information (*) and is therefore not configured securely.\n",
-  //
-  // XXSS_BLOCK
-  'XXSS_BLOCK'            => "The 'mode=block' directive is active.\n",
-  //
-  // XXSS_CORRECT
-  'XXSS_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
-  //
-  // Category: HTTP-Security-Header-Scanner
+  // Category: Header Scanner
   //
   // CONTENT_SECURITY_POLICY
   'CONTENT_SECURITY_POLICY'            => "Check of the Content Security Policy (CSP)\n",
   'CONTENT_SECURITY_POLICY_SUCCESS'    => "A secure configuration of the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> was found.\n",
   'CONTENT_SECURITY_POLICY_ERROR'      => "Content Security Policy insecure\n",
   'CONTENT_SECURITY_POLICY_ERROR_DESC' => "<p>The <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Content_Security_Policy\">Content Security Policy (CSP)</a> is a security concept that is designed to reduce the risk of injection and execution of malicious commands in a web application (content injection attacks). By means of a whitelist (list of allowed sources), it determines from which sources Javascript code, images, fonts, and other content may be integrated into your site.\n</p>",
-  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' or 'self' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
+  'CONTENT_SECURITY_POLICY_TIPS'       => "<p>Use the CSP with default-src 'none' or 'self' and without unsafe-eval or unsafe-inline directives. For more information about <b>Content Security Policy</b>, please refer to <b><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://wiki.selfhtml.org/wiki/Sicherheit/Content_Security_Policy\">SELFHTML&gt;&gt;</a></b>\n</p><p><br />\n--snip<br />\n</p><p><b>Example for the header on the start page:</b>\n</p>\n<pre>\n&lt;meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\"&gt;\n&lt;meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\"&gt;</pre>\n<p><b>Configuration of the web server</b>\n</p><p>If you can configure your own web server, which is usually not possible in low-budget hosting packages, there is this option via <b>changes to .htaccess</b>:\n</p>\n<pre># Download / Load content only from explicitly allowed sites\n# Example: Allow everything from own domain, nothing from external sources:\n\nHeader set Content-Security-Policy \"default-src 'none'; frame-src 'self'; font-src 'self';img-src 'self' siwecos.de; object-src 'self'; script-src 'self'; style-src 'self';\"\n\n</pre>\n<p>--snap\n</p><p>Here is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
   'CONTENT_SECURITY_POLICY_LINK'       => "https://siwecos.de/wiki/Content-Security-Policy-Vulnerability/EN",
   //
   // CONTENT_TYPE
@@ -359,51 +299,8 @@ General
   'CONTENT_TYPE_SUCCESS'    => "The content type is configured correctly.\n",
   'CONTENT_TYPE_ERROR'      => "The HTTP content type is configured incorrectly\n",
   'CONTENT_TYPE_ERROR_DESC' => "<p>The content type is a declaration that is usually placed in the header of a web page, the so-called HTTP header. This declaration defines the character set and the type of data that the page contains. If the definition is missing, the web browser will try to guess the content type; this can lead to security flaws such as Code-Page-Sniffing. This information is also important for rendering the web page correctly in every browser and on every computer. If a server sends a document to a <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/User_agent\">User Agent</a> (for example to the browser), it is helpful to supply some information about the file format in the content type field of the HTTP header. This information declares the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Media_type\">MIME type</a> and sends the character encoding of the document, such as text/html, text/plain, etc. to the browser.\n</p>",
-  'CONTENT_TYPE_TIPS'       => "<p>Add the appropriate HTTP header or, alternatively, add a &lt;meta&gt; tag. Please note that, unlike a HTTP header, the &lt;meta&gt; tag can be attacked more easily.\n</p><p><b>text/html; charset=utf-8</b>;\n</p><p><b>--snip</b>\n</p>\n<pre>&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"&gt;</pre>\n<p><b>—snap</b>\n</p><p><br />\nFurthermore, the server must be configured to send the correct charset information. In order to make these changes on the server, particular access rights are required. For further information about the different server configuration options, please refer to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/articles/http-charset/index.de\">W3.org</a>.\n</p><p>Moreover, it is also possible to pass the correct charset information to the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://httpd.apache.org/docs/2.0/howto/htaccess.html\"><b>.htaccess</b></a> file, which will overwrite the declaration in the HTTP header. <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/questions/qa-htaccess-charset\">charset in .htaccess</a>\n</p><p><b>Enter in the .htaccess file:</b>\n</p>\n<pre>AddType 'text/html; charset=UTF-8' html</pre>\n<p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
+  'CONTENT_TYPE_TIPS'       => "<p>Add the appropriate HTTP header or, alternatively, add a &lt;meta&gt; tag. Please note that, unlike a HTTP header, the &lt;meta&gt; tag can be attacked more easily.\n</p><p><b>text/html; charset=utf-8</b>;\n</p><p><b>--snip</b>\n</p>\n<pre>&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"&gt;</pre>\n<p><b>—snap</b>\n</p><p><br />\nFurthermore, the server must be configured to send the correct charset information. In order to make these changes on the server, particular access rights are required. For further information about the different server configuration options, please refer to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/articles/http-charset/index.de\">W3.org</a>.\n</p><p>Moreover, it is also possible to pass the correct charset information to the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"http://httpd.apache.org/docs/2.0/howto/htaccess.html\"><b>.htaccess</b></a> file, which will overwrite the declaration in the HTTP header. <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.w3.org/International/questions/qa-htaccess-charset\">charset in .htaccess</a>\n</p><p><b>Enter in the .htaccess file:</b>\n</p>\n<pre>AddType 'text/html; charset=UTF-8' html</pre>\n<p>Here is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>)\n</p>",
   'CONTENT_TYPE_LINK'       => "https://siwecos.de/wiki/Content-Type-Not-Correct/EN",
-  //
-  // PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => "Check of Public Key Pinning (HPKP) - currently disabled\n",
-  'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is active (HPKP is currently not under review).\n",
-  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is not available (HPKP is currently not under review).\n",
-  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Powerful attackers, such as intelligence agencies, can create a signature with the help of a certification agency that is accepted by users. To prevent this, a website can be configured so that the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> must be saved permanently (pinning) when it is called up for the first time. If <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Key Pinning</a> is used, only the saved certificate will be accepted for the period of time specified by the website.\n</p>",
-  'PUBLIC_KEY_PINS_TIPS'       => "<p>The setting of <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> (HPKP) is not an absolute must, and is currently not taken into account by the SIWECOS Scanner.\n</p><p>The browsers Mozilla Firefox and Google Chrome comply with <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> and therefore ignore HPKP-headers. If only a single pin is set, an error message will appear. In order for pin validation to be successful, it is therefore always necessary to provide at least two public keys or a back-up pin. Interested parties should get in touch with an IT security expert or web developer.\n</p><p>Further information can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Article from ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
-  'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Disabled/EN",
-  //
-  // STRICT_TRANSPORT_SECURITY
-  'STRICT_TRANSPORT_SECURITY'            => "Check of HSTS protection\n",
-  'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Your website can only be reached via the secure HTTPS protocol. Communication between your website and its visitors can not be intercepted or manipulated.\n",
-  'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS protection error\n",
-  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security\">HTTP Strict Transport Security (HSTS)</a> ensures that the website can only be accessed via a secure HTTPS connection for a specified time period. The website operator can define the length of the time period, and whether this rule should also apply to subdomains.\n</p>",
-  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) is a web security policy mechanism that is easy to integrate.\n</p>\n<b>--snip</b><pre>\n# Activate HTTP Strict Transport Security (HSTS)\n# Required: \"max-age\"\n# Optional: \"includeSubDomains\"</pre>\n<pre>  <b>Header set Strict-Transport-Security \"max-age=31556926; includeSubDomains\"</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
-  'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/No-Encryption-Found/EN",
-  //
-  // X_CONTENT_TYPE_OPTIONS
-  'X_CONTENT_TYPE_OPTIONS'            => "Check of the X-Content-Type header\n",
-  'X_CONTENT_TYPE_OPTIONS_SUCCESS'    => "The HTTP header is set correctly.\n",
-  'X_CONTENT_TYPE_OPTIONS_ERROR'      => "X-Content-Type header is missing.\n",
-  'X_CONTENT_TYPE_OPTIONS_ERROR_DESC' => "<p>The X-Content-Type-Options settings in the header prevent that the browser interprets data as anything other than declared by the content type in the HTTP header. The header settings are not set here.\n</p>",
-  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Code example of an .htaccess file on an Apache webserver.</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options \"nosniff\"'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
-  'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Vulnerability/EN",
-  //
-  // X_FRAME_OPTIONS
-  'X_FRAME_OPTIONS'            => "Checking the HTTP header X-frame options\n",
-  'X_FRAME_OPTIONS_SUCCESS'    => "The header is set correctly and improves the protection of your website against clickjacking attacks.\n",
-  'X_FRAME_OPTIONS_ERROR'      => "HTTP header X-Frame-Options not set.\n",
-  'X_FRAME_OPTIONS_ERROR_DESC' => "<p>X-Frame-Options helps to prevent attacks carried out by rendering content within a frame. This largely mitigates the risk of <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Clickjacking\">clickjacking attacks</a>. Downgrading attacks, as known in the Internet Explorer, are also minimized.\n</p>",
-  'X_FRAME_OPTIONS_TIPS'       => "<p>Set in the HTTP header according to your requirements. The <b>X-Frame-Options</b> field in the HTTP header can be used to determine whether a browser is allowed to render or embed the target page in a &lt;frame&gt;, &lt;iframe&gt; or &lt;object&gt;. Websites can use this header to deflect clickjacking attacks by preventing their content from being embedded in third party pages.\n</p><p>With the HTTP-Header command X-Frame-Options, modern web browsers can be instructed to prevent loading a page in a frame on another website. To do this, the following setting must be entered in the .htaccess file:\n</p><p>Header always append X-Frame-Options DENY\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options DENY\n</pre>\n<p><b>—snap</b>\n</p><p>Alternatively, you can permit the page to be embedded only in other pages within the same domain:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options SAMEORIGIN\n</pre>\n<p><b>—snap</b>\n</p><p>If a website must be embedded in an external page, a domain can be specified:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options ALLOW-FROM botfrei.de\n</pre>\n<p><b>—snap</b>\n</p><p><br />\nHere is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
-  'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Vulnerability/EN",
-  //
-  // X_XSS_PROTECTION
-  'X_XSS_PROTECTION'            => "Check of the X-Content-Type header\n",
-  'X_XSS_PROTECTION_SUCCESS'    => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">Cross-site scripting</a> (XSS) protection of the web browser is active on your website.\n",
-  'X_XSS_PROTECTION_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">Cross-site scripting</a> protection is not active or configured incorrectly.\n",
-  'X_XSS_PROTECTION_ERROR_DESC' => "<p>The HTTP header X-XSS-Protection defines how built-in XSS filters in the browser are configured. A default installation can indicate an incorrect configuration.\n</p>",
-  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Code example of an .htaccess file on an Apache webserver.</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>HTTP-Security-Header-Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>\n</p>",
-  'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Vulnerability/EN",
-  //
-  // Category: HTTP-Security-Header-Scanner
-Content-Security-Policy
   //
   // CSP_CORRECT
   'CSP_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
@@ -419,9 +316,6 @@ Content-Security-Policy
   //
   // CSP_UNSAFE_INCLUDED
   'CSP_UNSAFE_INCLUDED'            => "The header is set insecurely because it contains 'unsafe-inline' or 'unsafe-eval' directives.\n",
-  //
-  // Category: HTTP-Security-Header-Scanner
-Content-Type
   //
   // CT_CORRECT
   'CT_CORRECT'            => "The header \"%HEADER%\" is set correctly and corresponds to the recommendations.\n",
@@ -441,14 +335,14 @@ Content-Type
   // CT_WRONG_CHARSET
   'CT_WRONG_CHARSET'            => "A false or invalid character set was used. The configuration is not safe.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-General
+  // HEADER_ENCODING_ERROR
+  'HEADER_ENCODING_ERROR'            => "The header <b>%HEADER_NAME%</b> contains characters which cannot be processed.\n",
   //
-  // INCLUDE_SUBDOMAINS
-  'INCLUDE_SUBDOMAINS'            => "'includeSubDomains' is set.\n",
+  // HEADER_NOT_SET
+  'HEADER_NOT_SET'            => "The header is not set.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-Public-Key-Pins
+  // HEADER_SET_MULTIPLE_TIMES
+  'HEADER_SET_MULTIPLE_TIMES'            => "The header was set several times.\n",
   //
   // HPKP_LESS_15
   'HPKP_LESS_15'            => "The public keys are pinned for less than 15 days.\n",
@@ -459,13 +353,95 @@ Public-Key-Pins
   // HPKP_REPORT_URI
   'HPKP_REPORT_URI'            => "A 'report-uri' is set.\n",
   //
-  // Category: HTTP-Security-Header-Scanner
-Referrer-Policy
+  // HSTS_LESS_6
+  'HSTS_LESS_6'            => "The value of 'max-age' is less than 6 months.\n",
+  //
+  // HSTS_MORE_6
+  'HSTS_MORE_6'            => "The value of 'max-age' is greater than 6 months.\n",
+  //
+  // HSTS_PRELOAD
+  'HSTS_PRELOAD'            => "The 'preload' directive is set.\n",
+  //
+  // HTTPONLY_FLAG_SET
+  'HTTPONLY_FLAG_SET'            => "The HttpOnly flag is set.\n",
+  //
+  // INCLUDE_SUBDOMAINS
+  'INCLUDE_SUBDOMAINS'            => "'includeSubDomains' is set.\n",
+  //
+  // MAX_AGE_ERROR
+  'MAX_AGE_ERROR'            => "There was an error while checking the 'max-age' directive.\n",
+  //
+  // NO_HTTPONLY_FLAG_SET
+  'NO_HTTPONLY_FLAG_SET'            => "The HttpOnly flag is not set.\n",
+  //
+  // NO_HTTP_RESPONSE
+  'NO_HTTP_RESPONSE'            => "The specified URL did not respond.\n",
   //
   // NO_REFERRER
   'NO_REFERRER'            => "<pre>	The directive no-referrer is set.\n</pre>",
   //
-  // Category: Information-Leakage-Scanner
+  // NO_SECURE_FLAG_SET
+  'NO_SECURE_FLAG_SET'            => "The secure flag is not set.\n",
+  //
+  // PUBLIC_KEY_PINS
+  'PUBLIC_KEY_PINS'            => "Check of Public Key Pinning (HPKP) - currently disabled\n",
+  'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is active (HPKP is currently not under review).\n",
+  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is not available (HPKP is currently not under review).\n",
+  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Powerful attackers, such as intelligence agencies, can create a signature with the help of a certification agency that is accepted by users. To prevent this, a website can be configured so that the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> must be saved permanently (pinning) when it is called up for the first time. If <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Key Pinning</a> is used, only the saved certificate will be accepted for the period of time specified by the website.\n</p>",
+  'PUBLIC_KEY_PINS_TIPS'       => "<p>The setting of <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> (HPKP) is not an absolute must, and is currently not taken into account by the SIWECOS Scanner.\n</p><p>The browsers Mozilla Firefox and Google Chrome comply with <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> and therefore ignore HPKP-headers. If only a single pin is set, an error message will appear. In order for pin validation to be successful, it is therefore always necessary to provide at least two public keys or a back-up pin. Interested parties should get in touch with an IT security expert or web developer.\n</p><p>Further information can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Article from ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
+  'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Disabled/EN",
+  //
+  // STRICT_TRANSPORT_SECURITY
+  'STRICT_TRANSPORT_SECURITY'            => "Check of HSTS protection\n",
+  'STRICT_TRANSPORT_SECURITY_SUCCESS'    => "Your website can only be reached via the secure HTTPS protocol. Communication between your website and its visitors can not be intercepted or manipulated.\n",
+  'STRICT_TRANSPORT_SECURITY_ERROR'      => "HSTS protection error\n",
+  'STRICT_TRANSPORT_SECURITY_ERROR_DESC' => "<p><a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security\">HTTP Strict Transport Security (HSTS)</a> ensures that the website can only be accessed via a secure HTTPS connection for a specified time period. The website operator can define the length of the time period, and whether this rule should also apply to subdomains.\n</p>",
+  'STRICT_TRANSPORT_SECURITY_TIPS'       => "<p>max-age=63072000; includeSubdomains;\nHTTP Strict Transport Security (HSTS) is a web security policy mechanism that is easy to integrate.\n</p>\n<b>--snip</b><pre>\n# Activate HTTP Strict Transport Security (HSTS)\n# Required: \"max-age\"\n# Optional: \"includeSubDomains\"</pre>\n<pre>  <b>Header set Strict-Transport-Security \"max-age=31556926; includeSubDomains\"</b>\n</pre>\n<p><b>--snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
+  'STRICT_TRANSPORT_SECURITY_LINK'       => "https://siwecos.de/wiki/No-Encryption-Found/EN",
+  //
+  // XCTO_CORRECT
+  'XCTO_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
+  //
+  // XCTO_NOT_CORRECT
+  'XCTO_NOT_CORRECT'            => "The header is not set correctly.\n",
+  //
+  // XFO_CORRECT
+  'XFO_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
+  //
+  // XFO_WILDCARDS
+  'XFO_WILDCARDS'            => "The header contains wildcard information (*) and is therefore not configured securely.\n",
+  //
+  // XXSS_BLOCK
+  'XXSS_BLOCK'            => "The 'mode=block' directive is active.\n",
+  //
+  // XXSS_CORRECT
+  'XXSS_CORRECT'            => "The header is set correctly and corresponds to the recommendations.\n",
+  //
+  // X_CONTENT_TYPE_OPTIONS
+  'X_CONTENT_TYPE_OPTIONS'            => "Check of the X-Content-Type header\n",
+  'X_CONTENT_TYPE_OPTIONS_SUCCESS'    => "The HTTP header is set correctly.\n",
+  'X_CONTENT_TYPE_OPTIONS_ERROR'      => "X-Content-Type header is missing.\n",
+  'X_CONTENT_TYPE_OPTIONS_ERROR_DESC' => "<p>The X-Content-Type-Options settings in the header prevent that the browser interprets data as anything other than declared by the content type in the HTTP header. The header settings are not set here.\n</p>",
+  'X_CONTENT_TYPE_OPTIONS_TIPS'       => "<p>nosniff; <br /><br />\n<b>Code example of an .htaccess file on an Apache webserver.</b><br />\n</p>\n<b>--snip</b><pre>\n&lt;IfModule mod_headers.c&gt;\n   # prevent mime based attacks like drive-by download attacks, IE and Chrome\n   '''Header set X-Content-Type-Options \"nosniff\"'''\n&lt;pre&gt;&lt;/IfModule&gt;</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
+  'X_CONTENT_TYPE_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Content-Type-Options-Vulnerability/EN",
+  //
+  // X_FRAME_OPTIONS
+  'X_FRAME_OPTIONS'            => "Checking the HTTP header X-frame options\n",
+  'X_FRAME_OPTIONS_SUCCESS'    => "The header is set correctly and improves the protection of your website against clickjacking attacks.\n",
+  'X_FRAME_OPTIONS_ERROR'      => "HTTP header X-Frame-Options not set.\n",
+  'X_FRAME_OPTIONS_ERROR_DESC' => "<p>X-Frame-Options helps to prevent attacks carried out by rendering content within a frame. This largely mitigates the risk of <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Clickjacking\">clickjacking attacks</a>. Downgrading attacks, as known in the Internet Explorer, are also minimized.\n</p>",
+  'X_FRAME_OPTIONS_TIPS'       => "<p>Set in the HTTP header according to your requirements. The <b>X-Frame-Options</b> field in the HTTP header can be used to determine whether a browser is allowed to render or embed the target page in a &lt;frame&gt;, &lt;iframe&gt; or &lt;object&gt;. Websites can use this header to deflect clickjacking attacks by preventing their content from being embedded in third party pages.\n</p><p>With the HTTP-Header command X-Frame-Options, modern web browsers can be instructed to prevent loading a page in a frame on another website. To do this, the following setting must be entered in the .htaccess file:\n</p><p>Header always append X-Frame-Options DENY\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options DENY\n</pre>\n<p><b>—snap</b>\n</p><p>Alternatively, you can permit the page to be embedded only in other pages within the same domain:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options SAMEORIGIN\n</pre>\n<p><b>—snap</b>\n</p><p>If a website must be embedded in an external page, a domain can be specified:\n</p><p><b>--snip</b>\n</p>\n<pre>\nHeader always append X-Frame-Options ALLOW-FROM botfrei.de\n</pre>\n<p><b>—snap</b>\n</p><p><br />\nHere is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only</a>)\n</p>",
+  'X_FRAME_OPTIONS_LINK'       => "https://siwecos.de/wiki/X-Frame-Options-Vulnerability/EN",
+  //
+  // X_XSS_PROTECTION
+  'X_XSS_PROTECTION'            => "Check of the X-Content-Type header\n",
+  'X_XSS_PROTECTION_SUCCESS'    => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">Cross-site scripting</a> (XSS) protection of the web browser is active on your website.\n",
+  'X_XSS_PROTECTION_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">Cross-site scripting</a> protection is not active or configured incorrectly.\n",
+  'X_XSS_PROTECTION_ERROR_DESC' => "<p>The HTTP header X-XSS-Protection defines how built-in XSS filters in the browser are configured. A default installation can indicate an incorrect configuration.\n</p>",
+  'X_XSS_PROTECTION_TIPS'       => "<p>1; mode=block\n</p><p><b>Code example of an .htaccess file on an Apache webserver.</b>\n</p>\n<b>--snip</b><br /><pre>\n   # Turn on XSS prevention tools, activated by default in IE and Chrome\n   '''Header set X-XSS-Protection \"1; mode=block\"'''\n</pre>\n<p><b>—snap</b>\n</p><p>Here is an example of an .htaccess file which will set the <b>Header Scanner</b> to green.\n(<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Htaccess\" title=\"Htaccess\">.htaccess example (German only)</a>\n</p>",
+  'X_XSS_PROTECTION_LINK'       => "https://siwecos.de/wiki/XSS-Vulnerability/EN",
+  //
+  // Category: Info Leak Scanner
   //
   // CMS
   'CMS'            => "Check of the CMS version\n",
@@ -491,6 +467,9 @@ Referrer-Policy
   //
   // CMS_VERSION_VULN
   'CMS_VERSION_VULN'            => "The used CMS %cms% in version %version% was detected. There is a known security flaw for this version.\n",
+  //
+  // COULDNT_RESOLVE_HOST
+  'COULDNT_RESOLVE_HOST'            => "%domain% is unknown.\n",
   //
   // EMAIL_ADDRESS
   'EMAIL_ADDRESS'            => "Check for existing email addresses\n",
@@ -643,7 +622,7 @@ Referrer-Policy
   // SCANNER_NAME_WS_TLS
   'SCANNER_NAME_WS_TLS'            => "TLS Scanner\n",
   //
-  // Category: WS_TLS
+  // Category: TLS Scanner
   //
   // ANON_SUITES
   'ANON_SUITES'            => "Your web server/website is configured to make connections using an anonymous encryption method (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suite</a>) without authentication. This makes you vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Man-in-the-middle_attack\">man-in-the-middle-attacks</a>.\n",
