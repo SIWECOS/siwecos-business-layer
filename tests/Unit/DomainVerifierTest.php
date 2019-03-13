@@ -7,8 +7,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\DomainVerifier;
 use GuzzleHttp\Psr7\Response;
-use App\Domain;
-use App\Token;
 
 class DomainVerifierTest extends TestCase
 {
@@ -108,7 +106,7 @@ class DomainVerifierTest extends TestCase
         return '
         <!DOCTYPE html>
         <html lang="en">
-        <head>
+        <        $user = $this->getActivatedUser();head>
             <meta charset="UTF-8">
             <meta name="siwecostoken" value="' . $token . '"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">

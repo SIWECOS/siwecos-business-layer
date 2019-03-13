@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrgSizeTable extends Migration
+class CreateTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateOrgSizeTable extends Migration
      */
     public function up()
     {
-        Schema::create('org_size', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('value', 191);
+            $table->string('token', 191);
+            $table->integer('credits');
+            $table->string('type', 191)->default('regular');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateOrgSizeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('org_size');
+        Schema::drop('tokens');
     }
 }

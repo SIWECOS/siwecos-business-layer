@@ -14,25 +14,8 @@ class UserModificationTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_user_can_change_his_details()
-    {
-        $user = $this->getActivatedUser();
-
-        $response = $this->json('PATCH', '/api/v2/user', [
-            'first_name' => 'Albert',
-            'last_name' => 'Einstein',
-        ], ['SIWECOS-Token' => $user->token->token]);
-
-        $response->assertStatus(200);
-        $this->assertEquals('Albert', User::first()->first_name);
-        $this->assertEquals('Einstein', User::first()->last_name);
-    }
-
-    /** @test */
     public function without_the_correct_userToken_header_no_changes_are_possible()
     {
-        $user = $this->getActivatedUser();
-
         $response = $this->json('PATCH', '/api/v2/user', [
             'first_name' => 'Albert'
         ]);
@@ -46,7 +29,7 @@ class UserModificationTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->json('PATCH', '/api/v2/user', [
-            'first_name' => 'Albert'
+            'newpassword' => 'Albert'
         ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(403);

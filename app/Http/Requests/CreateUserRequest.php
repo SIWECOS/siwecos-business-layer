@@ -34,12 +34,8 @@ class CreateUserRequest extends FormRequest
         return [
             'email'         => 'email|required|unique:users',
             'password'      => 'required|min:8',
-            'first_name'    => 'required',
-            'last_name'     => 'required',
+            'org_size'      => 'integer|min:0',
             'preferred_language' => new IsSupportedLanguage(),
-
-            'org_size_id'   => 'integer|min:1|max:7',
-            'salutation_id' => 'required|integer|min:1|max:2',
         ];
     }
 }

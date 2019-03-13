@@ -30,14 +30,6 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::post('/domain/verify', 'DomainController@verify');
-
-    Route::get('/salutations', function () {
-        return \App\Salutation::all();
-    });
-
-    Route::get('/orgsizes', function () {
-        return \App\OrgSize::all();
-    });
 });
 
 Route::prefix('v1')->group(function () {
@@ -53,7 +45,7 @@ Route::prefix('v1')->group(function () {
     // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
 
     // old - to be removed
-    Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
+
 
     Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
@@ -63,10 +55,6 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
-    Route::middleware(['mastertoken'])->group(function () {
-        Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
-        Route::Post('/users/updateTokenCredits', 'SiwecosUserController@updateCredits')->middleware('usertoken');
-    });
     Route::middleware(['usertoken'])->group(function () {
         Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');
 
