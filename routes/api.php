@@ -27,6 +27,7 @@ Route::prefix('v2')->group(function () {
 
     Route::middleware(['siwecosToken'])->group(function () {
         Route::post('/domain', 'DomainController@create');
+        Route::delete('/domain', 'DomainController@delete');
     });
 
     Route::post('/domain/verify', 'DomainController@verify');

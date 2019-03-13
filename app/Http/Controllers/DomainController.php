@@ -10,6 +10,7 @@ use App\Http\Requests\VerifyDomainRequest;
 use App\DomainVerifier;
 use Keygen\Keygen;
 use App\HTTPClient;
+use App\Http\Requests\DeleteDomainRequest;
 
 class DomainController extends Controller
 {
@@ -50,5 +51,17 @@ class DomainController extends Controller
         }
 
         return response('Domain could not be verified.', 410);
+    }
+
+    public function delete(DeleteDomainRequest $request)
+    {
+        $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
+        $domain = $token->domains()->whereUrl($request->json('url'))->first();
+
+        if ($domain && $domain->delete()) {
+            return response('Domain deleted.', 200);
+        }
+
+        return response('Forbidden', 403);
     }
 }
