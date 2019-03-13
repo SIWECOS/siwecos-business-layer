@@ -5,6 +5,8 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\UserIsActivatedAndLoggedInMiddleware;
 use App\Http\Middleware\SIWECOSTokenMiddleware;
+use App\Http\Middleware\MapUserTokenToSiwecosTokenMiddleware;
+use App\Http\Middleware\MapDomainParameterToUrlMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -63,5 +65,10 @@ class Kernel extends HttpKernel
 
         'userIsActivatedAndLoggedIn' => UserIsActivatedAndLoggedInMiddleware::class,
         'siwecosToken' => SIWECOSTokenMiddleware::class,
+
+
+        // LegacyApiV1Mappings
+        'mapUserTokenToSiwecosToken' => MapUserTokenToSiwecosTokenMiddleware::class,
+        'mapDomainParameterToUrl' => MapDomainParameterToUrlMiddleware::class,
     ];
 }
