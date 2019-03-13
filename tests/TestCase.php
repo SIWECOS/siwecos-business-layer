@@ -43,7 +43,7 @@ abstract class TestCase extends BaseTestCase
      * Returns a mocked HTTP-Client for testing purposes.
      *
      * @param array $mockedResponses
-     * @return Client HTTP Client
+     * @return HTTPClient HTTP Client
      */
     protected function getMockedHttpClient(array $mockedResponses)
     {
