@@ -21,13 +21,21 @@ class DomainController extends Controller
     public function create(CreateDomainRequest $request)
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
-        $domain = $token->domains()->make($request->validated());
-        $domain->verification_token = Keygen::alphanum(64)->generate();
-        if ($domain->save()) {
-            return response('Domain created', 200);
+
+        $domain = Domain::whereUrl($request->json('url'))->firstOrNew(['url' => $request->json('url')]);
+
+        if (!$domain->is_verified) {
+            $domain->verification_token = Keygen::alphanum(64)->generate();
+            $domain->token()->associate($token);
+
+            if ($domain->save()) {
+                return response('Domain created', 200);
+            }
+
+            return response('Domain was not created.', 410);
         }
 
-        return response('Domain was not created.', 410);
+        return response('Domain is already verified.', 403);
     }
 
     public function verify(VerifyDomainRequest $request)

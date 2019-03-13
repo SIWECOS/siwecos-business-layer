@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client;
+use App\Token;
 
 class DomainRegistrationTest extends TestCase
 {
@@ -91,5 +92,45 @@ class DomainRegistrationTest extends TestCase
             'url' => 'https://is-not-registered.de'
         ]);
         $response->assertStatus(422);
+    }
+
+    /** @test */
+    public function a_not_verified_domain_can_be_registered_by_another_token()
+    {
+        $tokenA = factory(Token::class)->create();
+        $tokenB = factory(Token::class)->create();
+
+        // TokenA registers Domain https://example.org but does not verify
+        $response = $this->json('POST', '/api/v2/domain', [
+            'url' => 'https://example.org'
+        ], ['SIWECOS-Token' => $tokenA->token]);
+        $response->assertStatus(200);
+        $this->assertCount(1, Token::whereToken($tokenA->token)->first()->domains);
+        $this->assertCount(0, Token::whereToken($tokenB->token)->first()->domains);
+
+        // TokenB wants to register the same domain
+        $response = $this->json('POST', '/api/v2/domain', [
+            'url' => 'https://example.org'
+        ], ['SIWECOS-Token' => $tokenB->token]);
+        $response->assertStatus(200);
+        $this->assertCount(0, Token::whereToken($tokenA->token)->first()->domains);
+        $this->assertCount(1, Token::whereToken($tokenB->token)->first()->domains);
+    }
+
+    /** @test */
+    public function an_already_verified_domain_can_not_be_registered_to_another_token()
+    {
+        $tokenA = factory(Token::class)->create();
+        $tokenB = factory(Token::class)->create();
+
+        $tokenA->domains()->create(factory(Domain::class)->make([
+            'url' => 'https://example.org',
+            'is_verified' => true
+        ])->toArray());
+
+        $response = $this->json('POST', '/api/v2/domain', [
+            'url' => 'https://example.org'
+        ], ['SIWECOS-Token' => $tokenB->token]);
+        $response->assertStatus(403);
     }
 }
