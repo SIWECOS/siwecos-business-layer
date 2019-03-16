@@ -14,6 +14,21 @@ class LegacyApiV1CompatibilityTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function a_new_domain_can_be_registered()
+    {
+        $this->withoutExceptionHandling();
+        $user = $this->getActivatedUser();
+
+        $response = $this->json('POST', '/api/v1/domains/addNewDomain', [
+            'domain' => 'https://example.org'
+        ], ['userToken' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::all());
+    }
+
+
+    /** @test */
     public function a_domain_can_be_verified()
     {
         $this->withoutExceptionHandling();
