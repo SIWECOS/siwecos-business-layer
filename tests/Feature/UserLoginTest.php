@@ -10,6 +10,7 @@ use App\Token;
 use App\Http\Controllers\WpPasswordAuthentication;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\forgotpasswordmail;
+use App\Http\Responses\UserTokenResponse;
 
 class UserLoginTest extends TestCase
 {
@@ -32,7 +33,8 @@ class UserLoginTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertJson($user->toArray());
+
+        $response->assertExactJson((array)(new UserTokenResponse(User::first())));
     }
 
     /** @test */
@@ -73,7 +75,7 @@ class UserLoginTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertJson(User::first()->toArray());
+        $response->assertExactJson((array)(new UserTokenResponse(User::first())));
 
         // Background information: Wordpress-Hash begins with $P$
         $this->assertEquals('$2y$10$', substr(User::first()->password, 0, 7));

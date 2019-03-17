@@ -32,11 +32,11 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_has_the_calculated_parameter_hostname()
+    public function a_domain_has_the_calculated_parameter_domain()
     {
         $domain = factory(Domain::class)->make(['url' => 'https://example.org']);
 
-        $this->assertEquals('example.org', $domain->hostname);
+        $this->assertEquals('example.org', $domain->domain);
     }
 
     /** @test */

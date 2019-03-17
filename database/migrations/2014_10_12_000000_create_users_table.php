@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password', 191);
             $table->integer('org_size')->nullable();
 
-            $table->boolean('agb')->default(false);
             $table->boolean('active')->default(false);
             $table->string('preferred_language', 191)->default('de');
 
@@ -29,8 +28,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('token_id');
 
             $table->timestamps();
-
-            $table->foreign('token_id')->references('id')->on('tokens');
         });
     }
 

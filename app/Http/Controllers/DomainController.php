@@ -11,6 +11,7 @@ use App\DomainVerifier;
 use Keygen\Keygen;
 use App\HTTPClient;
 use App\Http\Requests\DeleteDomainRequest;
+use App\Http\Responses\DomainListResponse;
 
 class DomainController extends Controller
 {
@@ -51,6 +52,13 @@ class DomainController extends Controller
         }
 
         return response('Domain could not be verified.', 410);
+    }
+
+    public function list(Request $request)
+    {
+        $domains = Token::whereToken($request->header('SIWECOS-Token'))->first()->domains;
+
+        return response()->json(new DomainListResponse($domains));
     }
 
     public function delete(DeleteDomainRequest $request)

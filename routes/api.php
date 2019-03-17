@@ -26,6 +26,7 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::middleware(['siwecosToken'])->group(function () {
+        Route::get('/domain', 'DomainController@list');
         Route::post('/domain', 'DomainController@create');
         Route::delete('/domain', 'DomainController@delete');
     });
@@ -42,9 +43,10 @@ Route::prefix('v1')->group(function () {
         Route::post('/domains/verifyDomain', 'DomainController@verify');
         Route::post('/domains/addNewDomain', 'DomainController@create');
         Route::post('/domains/deleteDomain', 'DomainController@delete');
+        Route::post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
     });
     // Not implemented yet
-    // Route::Post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
+
     // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
     // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
 
@@ -64,7 +66,6 @@ Route::prefix('v1')->group(function () {
 
         Route::middleware(['activation'])->group(function () {
             Route::Post('/users/getTokenCredits', 'SiwecosUserController@getUserCreditInfoByToken');
-            Route::Post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
 
             Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
             Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');

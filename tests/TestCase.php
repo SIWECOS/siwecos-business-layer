@@ -20,7 +20,7 @@ abstract class TestCase extends BaseTestCase
      * Returns an activated User.
      *
      * @param array $attributes
-     * @return App\User
+     * @return \App\User
      */
     protected function getActivatedUser($attributes = [])
     {

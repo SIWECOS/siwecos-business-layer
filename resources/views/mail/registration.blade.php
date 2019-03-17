@@ -4,11 +4,11 @@
 SIWECOS
 @endcomponent
 @endslot
-Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},
+Guten Tag,
 
 vielen Dank für Ihre Anmeldung bei SIWECOS.
 
-Um Ihren Benutzernamen zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link
+Um Ihr Konto zu aktivieren, klicken Sie bitte auf untenstehenden Link
 
 @component('mail::button', [ 'url' => $activateurl, 'color' => 'red' ])
 Aktivierung

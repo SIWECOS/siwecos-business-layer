@@ -56,7 +56,7 @@ class UserRegistrationTest extends TestCase
         $response = $this->registerUserRequest();
 
         $response->assertStatus(200);
-        $response->assertExactJson([
+        $response->assertJson([
             'email' => User::first()->email,
             'token' => User::first()->token->token
         ]);

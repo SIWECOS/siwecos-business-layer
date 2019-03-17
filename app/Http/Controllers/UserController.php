@@ -8,13 +8,15 @@ use App\Http\Requests\CreateUserRequest;
 use App\Notifications\activationmail;
 use Keygen\Keygen;
 use App\Token;
-use App\Siweocs\Models\UserTokenResponse;
+
 use App\Http\Requests\ResendActivationMailRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Notifications\forgotpasswordmail;
 use App\Http\Requests\SendPasswordResetMailRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Responses\UserTokenResponse;
+use App\Http\Responses\StatusResponse;
 
 class UserController extends Controller
 {
@@ -56,13 +58,13 @@ class UserController extends Controller
                 $user->active = true;
                 $user->save();
 
-                return response()->json($user);
+                return $user;
             }
 
-            return response('User already activated', 410);
+            return response()->json(new StatusResponse('User already activated'), 410);
         }
 
-        return response('User not found.', 404);
+        return response()->json(new StatusResponse('User not found.'), 404);
     }
 
     /**
@@ -81,10 +83,10 @@ class UserController extends Controller
 
             $user->notify(new activationmail());
 
-            return response('Mail sent', 200);
+            return response()->json(new StatusResponse('Mail sent.'));
         }
 
-        return response('User already activated', 410);
+        return  response()->json(new StatusResponse('User already activated'), 410);
     }
 
     /**
@@ -98,10 +100,10 @@ class UserController extends Controller
         $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
 
         if ($user && $user->verifyPassword($request->json('password'))) {
-            return response()->json($user);
+            return response()->json(new UserTokenResponse($user));
         }
 
-        return response('Wrong credentials', 403);
+        return response()->json(new StatusResponse('Wrong credentials'), 403);
     }
 
     /**
@@ -121,7 +123,7 @@ class UserController extends Controller
             $user->notify(new forgotpasswordmail($user->passwordreset_token));
         }
 
-        return response('If the user exists in our records, the mail was sent.', 200);
+        return response()->json(new StatusResponse('If the user exists in our records, the mail was sent.'), 200);
     }
 
     /**
@@ -139,10 +141,10 @@ class UserController extends Controller
             $user->passwordreset_token = null;
             $user->save();
 
-            return response('Reset completed', 200);
+            return response()->json(new StatusResponse('Reset completed'), 200);
         }
 
-        return response('User not Found', 404);
+        return response()->json(new StatusResponse('User not Found'), 404);
     }
 
     /**
@@ -172,7 +174,7 @@ class UserController extends Controller
             $user->notify(new activationmail());
         }
 
-        return response()->json($user);
+        return response()->json(new StatusResponse('User updated'));
     }
 
     /**
@@ -186,5 +188,7 @@ class UserController extends Controller
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
         $token->user()->delete();
         $token->delete();
+
+        return response()->json(new StatusResponse('User deleted'), 200);
     }
 }

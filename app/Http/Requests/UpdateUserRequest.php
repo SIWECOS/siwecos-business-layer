@@ -36,25 +36,10 @@ class UpdateUserRequest extends FormRequest
         $user = Token::whereToken($this->header('SIWECOS-Token'))->first()->user;
 
         return [
-            'salutation_id' => 'integer',
-            'email'         => [
-                'email',
-                Rule::unique('users')->ignore($user->id)
-            ],
-            'first_name'    => 'string',
-            'last_name'     => 'string',
-            'address'       => '',
-            'plz'           => '',
-            'city'          => '',
-            'phone'         => '',
-            'org_name'      => '',
-            'org_address'   => '',
-            'org_plz'       => '',
-            'org_city'      => '',
-            'org_industry'  => '',
-            'org_phone'     => '',
-            'org_size_id'   => 'integer',
+            'email' => ['email', Rule::unique('users')->ignore($user->id)],
+            'org_size'   => 'integer|min:0',
             'preferred_language' => new IsSupportedLanguage(),
+            'newpassword' => 'string|min:8',
         ];
     }
 }

@@ -12,6 +12,12 @@ class Domain extends Model
         'is_verified' => 'boolean'
     ];
 
+    protected $hidden = [
+        'id', 'token_id'
+    ];
+
+    protected $appends = ['domain'];
+
     /**
      * Returns the Eloquent Relationship for App\Token
      *
@@ -27,9 +33,9 @@ class Domain extends Model
      *
      * @return string
      */
-    public function getHostnameAttribute()
+    public function getDomainAttribute()
     {
-        return parse_url($this->url, PHP_URL_HOST);
+        return $this->attributes['domain'] = parse_url($this->url, PHP_URL_HOST);
     }
 
     /**
