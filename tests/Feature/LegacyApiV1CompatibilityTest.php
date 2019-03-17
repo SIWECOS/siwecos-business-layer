@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
 use App\Domain;
+use App\User;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
@@ -51,5 +52,21 @@ class LegacyApiV1CompatibilityTest extends TestCase
         // Get the Domain successfully verified
         $response->assertStatus(200);
         $this->assertTrue(Domain::first()->is_verified);
+    }
+
+    /** @test */
+    public function a_domain_can_be_deleted()
+    {
+        $user = factory(User::class)->create();
+        $user->token->domains()->create(factory(Domain::class)->make()->toArray());
+
+        $this->assertCount(1, Domain::all());
+
+        $response = $this->json('POST', '/api/v1/domains/deleteDomain', [
+            'domain' => Domain::first()->url
+        ], ['userToken' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertCount(0, Domain::all());
     }
 }
