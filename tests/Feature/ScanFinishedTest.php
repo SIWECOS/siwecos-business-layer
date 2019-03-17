@@ -30,7 +30,9 @@ class ScanFinishedTest extends TestCase
         $response = $this->json('POST', '/api/v1/scan/finished', [
             'scanId' => 4,
             'scanUrl' => 'https://lednerb.eu',
-            'totalScore' => 100
+            'totalScore' => 100,
+            'freescan' => false,
+            'recurrentscan' => true,
         ], ['masterToken' => $this->mastertoken->token]);
 
         $response->assertStatus(200);
