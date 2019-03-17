@@ -31,13 +31,17 @@ class SiwecosScanController extends Controller
         $userToken = $request->header('userToken');
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
-            $response = $this->coreApi->CreateScan($userToken, $request->domain, $request->dangerLevel);
+            $url = parse_url($request->domain, PHP_URL_SCHEME) . "://" . parse_url($request->domain, PHP_URL_HOST);
+
+            $response = $this->coreApi->CreateScan($userToken, $url, $request->dangerLevel);
 
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
 
                 throw new HttpResponseException(response()->json($responseText, $response->getCode()));
             }
+
+            self::generateSiwecosSeals($url);
 
             return $response;
         }
@@ -67,7 +71,7 @@ class SiwecosScanController extends Controller
      *
      * @return float
      */
-    public function GetTotalScore(int $id) : float
+    public function GetTotalScore(int $id): float
     {
         $response = $this->coreApi->GetResultById($id);
         $response = $this->calculateScorings($response);
@@ -199,7 +203,7 @@ class SiwecosScanController extends Controller
 
         // Generate Seals
         if ($request->json('freescan') === false) {
-            $this->generateSiwecosSeals($request->json('scanUrl'));
+            self::generateSiwecosSeals($request->json('scanUrl'));
         }
 
         // Check for lowScore and send a notification
@@ -252,7 +256,7 @@ class SiwecosScanController extends Controller
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
             'score_y' => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/ ),
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0),
             'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
@@ -426,8 +430,7 @@ class SiwecosScanController extends Controller
 
     protected function buildReport(string $testDesc, int $score)
     {
-        if ($score == 100) {
-        } else {
+        if ($score == 100) { } else {
             $testDesc = __($testDesc . '_ERROR_DESC');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 
@@ -455,16 +458,16 @@ class SiwecosScanController extends Controller
      * @param string $scanUrl
      * @return void
      */
-    protected function generateSiwecosSeals(string $scanUrl)
+    public static function generateSiwecosSeals(string $scanUrl)
     {
 
         $hostname = parse_url($scanUrl, PHP_URL_HOST);
 
-        $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
+        $date = self::getScanDateSVG(Carbon::now()->format('d.m.Y'));
         $view = view('siwecos-siegel')->withDate($date)->render();
         Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
 
-        $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
+        $date = self::getScanDateSVG(Carbon::now()->format('Y-m-d'));
         $view = view('siwecos-siegel')->withDate($date)->render();
         Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
     }
@@ -475,7 +478,7 @@ class SiwecosScanController extends Controller
      * @param string $date
      * @return string SVG-Code for the date
      */
-    protected function getScanDateSVG(string $date)
+    protected static function getScanDateSVG(string $date)
     {
         $digitWidth = array(
             "0" => 12.5,
