@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class VerifyDomainRequest extends FormRequest
+class CreateDomainRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,11 +16,6 @@ class VerifyDomainRequest extends FormRequest
         return true;
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -31,7 +24,7 @@ class VerifyDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url|exists:domains,url',
+            'url' => 'required|url'
         ];
     }
 }

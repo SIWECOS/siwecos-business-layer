@@ -17,34 +17,6 @@ class SiwecosDomainController extends Controller
 {
     public $coreApi;
 
-    public function __construct()
-    {
-        $this->coreApi = new CoreApiController();
-    }
-
-    /**
-     * @param CreateNewDomainRequest $request
-     *
-     * @return \Exception|RequestException|\Illuminate\Contracts\Routing\ResponseFactory|mixed|\Symfony\Component\HttpFoundation\Response
-     */
-    public function createNewDomain(CreateNewDomainRequest $request)
-    {
-        $userToken = $request->header('userToken');
-        $tokenUser = User::where('token', $userToken)->first();
-        if ($tokenUser instanceof User) {
-            $response = $this->coreApi->CreateDomain($userToken, $request->domain, $request->danger_level);
-            if ($response instanceof RequestException) {
-                $responseText = json_decode($response->getResponse()->getBody());
-
-                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
-            }
-
-            return $response;
-        }
-
-        return response('User not Found', 404);
-    }
-
     /**
      * @param DeleteDomainRequest $request
      *
@@ -81,29 +53,6 @@ class SiwecosDomainController extends Controller
         $tokenUser = User::where('token', $userToken)->first();
         if ($tokenUser instanceof User) {
             $response = $this->coreApi->GetDomains($userToken);
-            if ($response instanceof RequestException) {
-                $responseText = json_decode($response->getResponse()->getBody());
-
-                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
-            }
-
-            return $response;
-        }
-
-        return response('User not Found', 404);
-    }
-
-    /**
-     * @param VerifyDomainRequest $request
-     *
-     * @return \Exception|RequestException|\Illuminate\Contracts\Routing\ResponseFactory|mixed|\Symfony\Component\HttpFoundation\Response
-     */
-    public function verifyDomain(VerifyDomainRequest $request)
-    {
-        $userToken = $request->header('userToken');
-        $tokenUser = User::where('token', $userToken)->first();
-        if ($tokenUser instanceof User) {
-            $response = $this->coreApi->VerifyDomain($userToken, $request->domain);
             if ($response instanceof RequestException) {
                 $responseText = json_decode($response->getResponse()->getBody());
 

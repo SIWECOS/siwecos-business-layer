@@ -1,26 +1,27 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "arcanedev/no-captcha": "^5.0",
         "barryvdh/laravel-cors": "^0.11.0",
-        "darkaonline/l5-swagger": "5.5.*",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~3.3",
         "gladcodes/keygen": "^1.1",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "mathiasgrimm/laravel-dot-env-gen": "dev-master",
         "niklasravnsborg/laravel-pdf": "^2.0",
-        "pusher/pusher-php-server": "~3.0",
-        "superbalist/laravel-google-cloud-storage": "^2.0"
+        "superbalist/laravel-google-cloud-storage": "^2.0",
+        "voku/simple_html_dom": "^4.3"
     },
     "require-dev": {
+        "mathiasgrimm/laravel-dot-env-gen": "dev-master",
         "barryvdh/laravel-ide-helper": "*",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",

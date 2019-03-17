@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Rules\IsSupportedLanguage;
 
-class CreateUserRequest extends FormRequest
+class ResendActivationMailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,10 +31,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'         => 'email|required|unique:users',
-            'password'      => 'required|min:8',
-            'org_size'      => 'integer|min:0',
-            'preferred_language' => new IsSupportedLanguage(),
+            'email' => 'email|required|exists:users',
         ];
     }
 }
