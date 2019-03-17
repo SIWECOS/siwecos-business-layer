@@ -21,7 +21,7 @@ return [
   'BLEICHENBACHER_VULNERABLE_SUCCESS'    => "Not vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Adaptive_chosen_ciphertext_attacks\">Bleichenbacher</a> (ROBOT).\n",
   'BLEICHENBACHER_VULNERABLE_ERROR'      => "Vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Adaptive_chosen_ciphertext_attacks\">Bleichenbacher</a> (ROBOT).\n",
   'BLEICHENBACHER_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to a <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Adaptive_chosen_ciphertext_attacks\">Bleichenbacher</a> attack (ROBOT). Through such an attack, the communication can be decoded and user input, such as passwords, can be read as clear text during transfer.\n</p>",
-  'BLEICHENBACHER_VULNERABLE_TIPS'       => "<p>Check your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> or update your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS implementation</a> on your server immediately.\n</p>",
+  'BLEICHENBACHER_VULNERABLE_TIPS'       => "<p>Check your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> or update your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS implementation</a> on your server immediately.\n</p>",
   'BLEICHENBACHER_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Bleichenbacher-Vulnerability/EN",
   //
   // CRIME_VULNERABLE
@@ -52,7 +52,7 @@ return [
   'INVALID_CURVE_VULNERABLE'            => "Check for the Invalid Curve vulnerability. <span class=\"promarker\"></span>\n",
   'INVALID_CURVE_VULNERABLE_SUCCESS'    => "Not vulnerable to Invalid Curve attacks.\n",
   'INVALID_CURVE_VULNERABLE_ERROR'      => "Vulnerable to Invalid Curve attacks.\n",
-  'INVALID_CURVE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to an Invalid Curve attack. This allows an attacker to steal the private key of your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a>.\n</p>",
+  'INVALID_CURVE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to an Invalid Curve attack. This allows an attacker to steal the private key of your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a>.\n</p>",
   'INVALID_CURVE_VULNERABLE_TIPS'       => "<p>Update your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a> implementation on your server immediately.\n</p>",
   'INVALID_CURVE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Vulnerability/EN",
   //
@@ -86,40 +86,40 @@ return [
   'TLS_POODLE_VULNERABLE_ERROR'      => "Vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/POODLE\">TLS POODLE</a>.\n",
   'TLS_POODLE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to a variant of the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/POODLE\">POODLE attack</a> on <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a>, which allows an attacker to decrypt the communication.\n</p>",
   'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Update the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a> implementation on your server immediately. In the Apache configuration, you can specify the line \"SSLProtocol All -SSLv2 -SSLv3 \".\n</p>",
-  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Tls-Poodle-Vulnerability/EN",
+  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Vulnerability/EN",
   //
   // Category: Certificates
   //
   // CERTIFICATE_EXPIRED
   'CERTIFICATE_EXPIRED'            => "Check of certificate validity period\n",
-  'CERTIFICATE_EXPIRED_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> not expired\n",
-  'CERTIFICATE_EXPIRED_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> expired\n",
-  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Server certificate</a> has expired. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message, for example \"Your certificate expired on (date)\". The website will appear insecure or not trustworthy to visitors.\n</p>",
-  'CERTIFICATE_EXPIRED_TIPS'       => "<p>This problem can be solved by renewing the [Certificate/EN|certificate]]. For information on how to renew a certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F\" title=\"Zertifikate/DE\">certificate expired (German only)</a>.\n</p>",
+  'CERTIFICATE_EXPIRED_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> not expired\n",
+  'CERTIFICATE_EXPIRED_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> expired\n",
+  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Server certificate</a> has expired. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message, for example \"Your certificate expired on (date)\". The website will appear insecure or not trustworthy to visitors.\n</p>",
+  'CERTIFICATE_EXPIRED_TIPS'       => "<p>This problem can be solved by renewing the [Certificate/EN|certificate]]. For information on how to renew a certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F\" title=\"Zertifikate\">certificate expired (German only)</a>.\n</p>",
   'CERTIFICATE_EXPIRED_LINK'       => "https://siwecos.de/wiki/Certificate-Expired/EN",
   //
   // CERTIFICATE_NOT_SENT_BY_SERVER
   'CERTIFICATE_NOT_SENT_BY_SERVER'            => "Verification of certificate transmission\n",
   'CERTIFICATE_NOT_SENT_BY_SERVER_SUCCESS'    => "Server sends a certificate\n",
   'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR'      => "Server does not send a certificate\n",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>The server has not sent a <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a>. This is unusual and should not occur. The server should check its <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS configuration</a> and, if necessary, disable anonymous <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suites</a>.\n</p>",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>The server has not sent a <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a>. This is unusual and should not occur. The server should check its <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS configuration</a> and, if necessary, disable anonymous <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suites</a>.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_TIPS'       => "<p>Urgently update your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS implementation</a>. Current software no longer allows this type of configuration.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_LINK'       => "https://siwecos.de/wiki/Certificate-Not-Sent/EN",
   //
   // CERTIFICATE_NOT_VALID_YET
   'CERTIFICATE_NOT_VALID_YET'            => "Check of certificate validity\n",
-  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> is already valid\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">Certificate</a> is not yet valid\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">server certificate</a> is not yet valid. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message.\n</p>",
-  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deactivate the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> while it is not yet valid. Your website will then not be certified, but at least visitors will not receive a warning message when they open your website. Alternatively, it is possible to use your old certificate while it is still valid. For information on how to renew certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen (German only)</a>.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is already valid\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is not yet valid\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">server certificate</a> is not yet valid. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deactivate the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> while it is not yet valid. Your website will then not be certified, but at least visitors will not receive a warning message when they open your website. Alternatively, it is possible to use your old certificate while it is still valid. For information on how to renew certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen (German only)</a>.\n</p>",
   'CERTIFICATE_NOT_VALID_YET_LINK'       => "https://siwecos.de/wiki/Certificate-Not-Valid/EN",
   //
   // CERTIFICATE_WEAK_HASH_FUNCTION
   'CERTIFICATE_WEAK_HASH_FUNCTION'            => "Check of the certificate's encryption strength\n",
   'CERTIFICATE_WEAK_HASH_FUNCTION_SUCCESS'    => "Strong hash algorithm\n",
   'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR'      => "Weak hash algorithm\n",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">server certificate</a> has a weak hash algorithm (encryption). It may be an easy target for hacker attacks.\n</p>",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_TIPS'       => "<p>To solve this problem, you should install a new <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> with a secure hash function (strong encryption). For information on how to obtain a secure certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate/DE#Wie_wird_ein_SSL-Zertifikat_installiert.3F\" title=\"Zertifikate/DE\">install certificates (German only)</a>.\n</p>",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">server certificate</a> has a weak hash algorithm (encryption). It may be an easy target for hacker attacks.\n</p>",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_TIPS'       => "<p>To solve this problem, you should install a new <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> with a secure hash function (strong encryption). For information on how to obtain a secure certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Wie_wird_ein_SSL-Zertifikat_installiert.3F\" title=\"Zertifikate\">install certificates (German only)</a>.\n</p>",
   'CERTIFICATE_WEAK_HASH_FUNCTION_LINK'       => "https://siwecos.de/wiki/Weak-Encryption/EN",
   //
   // CERTIFICATE_WEAK_SIGN_ALGO
@@ -387,9 +387,17 @@ return [
   'PUBLIC_KEY_PINS'            => "Check of Public Key Pinning (HPKP) - currently disabled\n",
   'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is active (HPKP is currently not under review).\n",
   'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> is not available (HPKP is currently not under review).\n",
-  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Powerful attackers, such as intelligence agencies, can create a signature with the help of a certification agency that is accepted by users. To prevent this, a website can be configured so that the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> must be saved permanently (pinning) when it is called up for the first time. If <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Key Pinning</a> is used, only the saved certificate will be accepted for the period of time specified by the website.\n</p>",
+  'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Powerful attackers, such as intelligence agencies, can create a signature with the help of a certification agency that is accepted by users. To prevent this, a website can be configured so that the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> must be saved permanently (pinning) when it is called up for the first time. If <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Key Pinning</a> is used, only the saved certificate will be accepted for the period of time specified by the website.\n</p>",
   'PUBLIC_KEY_PINS_TIPS'       => "<p>The setting of <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> (HPKP) is not an absolute must, and is currently not taken into account by the SIWECOS Scanner.\n</p><p>The browsers Mozilla Firefox and Google Chrome comply with <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">Public Key Pinning</a> and therefore ignore HPKP-headers. If only a single pin is set, an error message will appear. In order for pin validation to be successful, it is therefore always necessary to provide at least two public keys or a back-up pin. Interested parties should get in touch with an IT security expert or web developer.\n</p><p>Further information can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Article from ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
   'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Disabled/EN",
+  //
+  // REFERRER_POLICY
+  'REFERRER_POLICY'            => "Checking the Referrer Policy\n",
+  'REFERRER_POLICY_SUCCESS'    => "Referrer Policy is secure\n",
+  'REFERRER_POLICY_ERROR'      => "Referrer Policy is insecure\n",
+  'REFERRER_POLICY_ERROR_DESC' => "<p>A well-defined Referrer Policy <b>protects the privacy</b> of your website visitors, but has no <i>direct</i> influence on the security of your website.\n</p>",
+  'REFERRER_POLICY_TIPS'       => "<p>We recommend that the Referrer Policy Header be set to be as restrictive as possible, i.e. to be set to ”no-referrer,\" for example.\n</p>\n<h1><span class=\"mw-headline\" id=\".3D_Examples_.3D\">= Examples =</span></h1>\n<p><b>Referrer Policy Definition by Server Header:</b>\n</p>\n<pre> # Referrer Policy\nHeader set referrer-Policy \"no-referrer\" </pre>\n<p><b>Referrer Policy Definition by HTML code:</b>\n</p>\n<pre> &lt;meta name=\"referrer\" content=\"no-referrer\" \"/&gt; </pre>\n<p><b>Statement:</b> The value `<b>no-referrer</b>` instructs the browser to send <b>Never</b> <i>Referer Header</i>, which is provided by your site. This includes links to pages on your own website.\n</p><p><br />\n</p>\n<table class=\"wikitable\" style=\"margin:auto;”\">\n<tr>\n<td> style=\"border: 4px solid #C31622; color:#000000; background-color:#f6f6f6;\"\n</td>\n<td> Other useful instructions can be `<b>same-origin</b>`, `<b>strict-origin</b>` or `<b>origin-when-cross-origin`</b>.\n</td></tr></table>\n<p><br />\n</p>\n<pre>The value `<b>same origin</b>` instructs the browser to send only <i>Referer Header</i> provided by your website. If the target is another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">domain</a>, no referrer information will be sent.\n</pre>\n<p>The value `<b>strict-origin</b>` instructs the browser, to always indicate the origin domain as <i>Referer Header</i>.\n</p><p>The value <b>origin-when-cross-origin</b>` instructs the browser to send the full referrer URL only if you stay on the same <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>. Once the domain is left via <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> or another <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a>  is addressed, only the source domain is sent.\n</p><p>Detailed information and examples can be found at <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://scotthelme.co.uk/a-new-security-header-referrer-policy/Scott\">Helme</a>.\n</p>",
+  'REFERRER_POLICY_LINK'       => "https://siwecos.de/wiki/Referrer-Policy/EN",
   //
   // STRICT_TRANSPORT_SECURITY
   'STRICT_TRANSPORT_SECURITY'            => "Check of HSTS protection\n",
@@ -631,13 +639,13 @@ return [
   'DES_SUITES'            => "Your web server/website is configured to support the outdated DES encryption method (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suite</a>), which is regarded as insecure. This makes you vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Man-in-the-middle_attack\">man-in-the-middle-attacks</a>.\n",
   //
   // EXPIRED
-  'EXPIRED'            => "Your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> expired on %DATE%. Visitors will be warned that your website may be insecure or not trustworthy.\n",
+  'EXPIRED'            => "Your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> expired on %DATE%. Visitors will be warned that your website may be insecure or not trustworthy.\n",
   //
   // EXPORT_SUITES
   'EXPORT_SUITES'            => "Your web server/website is configured to support intentionally insecure encryption methods (<a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suite</a>). This makes you vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Man-in-the-middle_attack\">man-in-the-middle-attacks</a>.\n",
   //
   // HASH_ALGO
-  'HASH_ALGO'            => "Your server certificate uses the weak hash algorithm %HASH%. This allows the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> to be forged very easily. However, a weak hash algorithm will not cause a warning message to be displayed when your website is accessed.\n",
+  'HASH_ALGO'            => "Your server certificate uses the weak hash algorithm %HASH%. This allows the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> to be forged very easily. However, a weak hash algorithm will not cause a warning message to be displayed when your website is accessed.\n",
   //
   // HTTPS_RESPONSE
   'HTTPS_RESPONSE'            => "The server “%HOST%“ does not respond to encrypted HTTP (HTTPS) requests.\n",
@@ -646,7 +654,7 @@ return [
   'HTTPS_SUPPORTED'            => "The server “%HOST%“ does not seem to support <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a> (Transport Layer Security). This means that you are not using encryption to protect your own and your customers' data.\n",
   //
   // NOT_YET_VALID
-  'NOT_YET_VALID'            => "Your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate/EN\" title=\"Certificate/EN\">certificate</a> is not valid before %DATE%. Until then, visitors to your website will be warned that your website may be insecure or not trustworthy.\n",
+  'NOT_YET_VALID'            => "Your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> is not valid before %DATE%. Until then, visitors to your website will be warned that your website may be insecure or not trustworthy.\n",
   //
   // NULL_SUITES
   'NULL_SUITES'            => "Your web server/website is configured to allow unencrypted voice transmission via a secure channel. This makes you vulnerable to <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Man-in-the-middle_attack\">man-in-the-middle-attacks</a>.\n",
@@ -685,5 +693,47 @@ return [
   'SOURCES_ERROR_DESC' => "<p>During the check, at least one vulnerability was found on the web page that could be controlled by an external, potentially untrustworthy source.\n</p>",
   'SOURCES_TIPS'       => "<p>The check result can only be taken as an indication of security flaws. Further tests are necessary to confirm that there are vulnerabilities on the website.\n</p>",
   'SOURCES_LINK'       => "https://siwecos.de/wiki/Malicious-Code-By-External-Sources/EN",
+  //
+  // Category: text will follow
+  //
+  // IRC
+  'IRC'            => "text will follow\n",
+  'IRC_SUCCESS'    => "text will follow\n",
+  'IRC_ERROR'      => "text will follow\n",
+  'IRC_ERROR_DESC' => "<p>text will follow\n</p>",
+  'IRC_TIPS'       => "<p>text will follow\n</p>",
+  'IRC_LINK'       => "https://siwecos.de/wiki/IRC-Port/EN",
+  //
+  // MSSQL
+  'MSSQL'            => "text will follow\n",
+  'MSSQL_SUCCESS'    => "text will follow\n",
+  'MSSQL_ERROR'      => "text will follow\n",
+  'MSSQL_ERROR_DESC' => "<p>text will follow\n</p>",
+  'MSSQL_TIPS'       => "<p>text will follow\n</p>",
+  'MSSQL_LINK'       => "https://siwecos.de/wiki/MSSQL-Port/EN",
+  //
+  // MYSQL
+  'MYSQL'            => "text will follow\n",
+  'MYSQL_SUCCESS'    => "text will follow\n",
+  'MYSQL_ERROR'      => "text will follow\n",
+  'MYSQL_ERROR_DESC' => "<p>text will follow\n</p>",
+  'MYSQL_TIPS'       => "<p>text will follow\n</p>",
+  'MYSQL_LINK'       => "https://siwecos.de/wiki/MYSQL-Port/EN",
+  //
+  // RDP
+  'RDP'            => "text will follow\n",
+  'RDP_SUCCESS'    => "text will follow\n",
+  'RDP_ERROR'      => "text will follow\n",
+  'RDP_ERROR_DESC' => "<p>text will follow\n</p>",
+  'RDP_TIPS'       => "<p>text will follow\n</p>",
+  'RDP_LINK'       => "https://siwecos.de/wiki/RDP-Port/EN",
+  //
+  // TELNET
+  'TELNET'            => "text will follow\n",
+  'TELNET_SUCCESS'    => "text will follow\n",
+  'TELNET_ERROR'      => "text will follow\n",
+  'TELNET_ERROR_DESC' => "<p>text will follow\n</p>",
+  'TELNET_TIPS'       => "<p>text will follow\n</p>",
+  'TELNET_LINK'       => "https://siwecos.de/wiki/TELNET-Port/EN",
 
 ];
