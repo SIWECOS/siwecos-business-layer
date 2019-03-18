@@ -69,4 +69,38 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $response->assertStatus(200);
         $this->assertCount(0, Domain::all());
     }
+
+    /** @test */
+    public function a_domain_list_can_be_retrieved()
+    {
+        $user = factory(User::class)->create();
+        $user->token->domains()->create(factory(Domain::class)->make()->toArray());
+        $user->token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+
+        $response = $this->json('POST', '/api/v1/domains/listDomains', [], ['userToken' => $user->token->token]);
+
+        $response->assertStatus(200);
+
+        $domain1 = Domain::whereUrl('https://example.org')->first();
+        $domain2 = Domain::whereUrl('https://siwecos.de')->first();
+
+        $response->assertExactJson([
+            'message' => 'List of all domains',
+            'hasFailed' => false,
+            'domains' => [
+                [
+                    'id' => $domain1->id,
+                    'domain' => $domain1->url,
+                    'verificationStatus' => $domain1->is_verified,
+                    'domainToken' => $domain1->verification_token
+                ],
+                [
+                    'id' => $domain2->id,
+                    'domain' => $domain2->url,
+                    'verificationStatus' => $domain2->is_verified,
+                    'domainToken' => $domain2->verification_token
+                ]
+            ]
+        ]);
+    }
 }

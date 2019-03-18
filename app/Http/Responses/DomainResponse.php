@@ -7,8 +7,6 @@ use App\Domain;
 
 class DomainResponse
 {
-    public $domain;
-
     public function __construct(Domain $domain)
     {
         $this->domain = $domain->domain;

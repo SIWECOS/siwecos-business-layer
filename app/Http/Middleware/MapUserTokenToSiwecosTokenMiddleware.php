@@ -17,11 +17,13 @@ class MapUserTokenToSiwecosTokenMiddleware
     public function handle($request, Closure $next)
     {
         if ($request->header('userToken', false)) {
-            // Need to add HTTP_ in order to make this work
+            // Need to add HTTP_ in order to access the $request->header('SIWECOS-Token') in Controllers
             // See: https://www.reddit.com/r/laravel/comments/292ymn/apicentric_laravel_how_to_add_headers_to_internal/ciiq5vn/
             $request->server->set('HTTP_SIWECOS-Token', $request->header('userToken'));
 
-            // $request->headers->set('SIWECOS-Token', $request->header('userToken')); // does not work!
+            // Needed for correct handling in other Middleware
+            // Without HTTP_ !
+            $request->headers->set('SIWECOS-Token', $request->header('userToken'));
         }
 
         return $next($request);
