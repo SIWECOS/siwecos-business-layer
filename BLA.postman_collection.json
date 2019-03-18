@@ -805,6 +805,266 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "TokenRequests",
+			"item": []
+		},
+		{
+			"name": "DomainRequests",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"value": "46rzR6TLJxtt7OrwLST+aTrc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/domain",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "46rzR6TLJxtt7OrwLST+aTrc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/domain",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"domain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Mar 2019 06:11:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"domain\": \"siwecos.de\",\n    \"url\": \"https://siwecos.de\",\n    \"verification_token\": \"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8\",\n    \"is_verified\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"type": "text",
+								"value": "46rzR6TLJxtt7OrwLST+aTrc"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/domain/verify",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domain",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Domains",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "List Domains",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "SIWECOS-Token",
+										"value": "46rzR6TLJxtt7OrwLST+aTrc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/domain",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"domain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Mar 2019 06:51:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"domains\": [\n        {\n            \"domain\": \"siwecos.de\",\n            \"url\": \"https://siwecos.de\",\n            \"verification_token\": \"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8\",\n            \"is_verified\": false\n        },\n        {\n            \"domain\": \"lednerb.eu\",\n            \"url\": \"https://lednerb.eu\",\n            \"verification_token\": \"9r0Ei2ZG14PGXoN6T32BHid0GWCKiPP0R3LDZo7U8oE2z5JaBL80k5n1284Pql7I\",\n            \"is_verified\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Domain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
