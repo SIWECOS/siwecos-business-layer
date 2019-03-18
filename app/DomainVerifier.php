@@ -30,7 +30,7 @@ class DomainVerifier
         $response = $this->client->get($this->domain->url . "/" . $this->domain->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
-            if (str_is($this->domain->verification_token, $response->getBody()->getContents())) {
+            if (str_is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
                 return true;
             }
         }
