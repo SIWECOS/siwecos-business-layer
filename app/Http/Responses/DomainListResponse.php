@@ -14,7 +14,10 @@ class DomainListResponse
 
     public function __construct(Collection $domains)
     {
-        $this->domains = $domains;
+        $this->domains = collect();
+
+        foreach ($domains as $domain) {
+            $this->domains->push(new DomainResponse($domain));
+        }
     }
 }
-

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Token;
+use App\Http\Responses\StatusResponse;
 
 class SIWECOSTokenMiddleware
 {
@@ -21,6 +22,6 @@ class SIWECOSTokenMiddleware
         if ($token)
             return $next($request);
 
-        return response('Token not allowed or missing.', 403);
+        return response()->json(new StatusResponse('Token not allowed or missing.'), 403);
     }
 }

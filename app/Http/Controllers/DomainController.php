@@ -12,6 +12,8 @@ use Keygen\Keygen;
 use App\HTTPClient;
 use App\Http\Requests\DeleteDomainRequest;
 use App\Http\Responses\DomainListResponse;
+use App\Http\Responses\StatusResponse;
+use App\Http\Responses\DomainResponse;
 
 class DomainController extends Controller
 {
@@ -31,27 +33,31 @@ class DomainController extends Controller
             $domain->token()->associate($token);
 
             if ($domain->save()) {
-                return response('Domain created', 200);
+                return response()->json(new DomainResponse($domain), 200);
             }
 
-            return response('Domain was not created.', 410);
+            return response()->json(new StatusResponse('Domain was not created.'), 410);
         }
 
-        return response('Domain is already verified.', 403);
+        return response()->json(new StatusResponse('Domain is already verified.'), 403);
     }
 
     public function verify(VerifyDomainRequest $request)
     {
         $domain = Domain::whereUrl($request->json('url'))->first();
-        $verifier = new DomainVerifier($domain, $this->client);
 
-        if ($verifier->verify()) {
-            if ($domain->update(['is_verified' => true])) {
-                return response('Domain verified.', 200);
+        if (!$domain->is_verified) {
+            $verifier = new DomainVerifier($domain, $this->client);
+
+            if ($verifier->verify()) {
+                if ($domain->update(['is_verified' => true])) {
+                    return response()->json(new DomainResponse($domain), 200);
+                }
             }
+            return response()->json(new StatusResponse('Domain could not be verified'), 410);
         }
 
-        return response('Domain could not be verified.', 410);
+        return response()->json(new StatusResponse('Domain is already verified'), 403);
     }
 
     public function list(Request $request)
@@ -67,9 +73,9 @@ class DomainController extends Controller
         $domain = $token->domains()->whereUrl($request->json('url'))->first();
 
         if ($domain && $domain->delete()) {
-            return response('Domain deleted.', 200);
+            return response()->json(new StatusResponse('Domain deleted.'), 200);
         }
 
-        return response('Forbidden', 403);
+        return response()->json(new StatusResponse('Forbidden'), 403);
     }
 }

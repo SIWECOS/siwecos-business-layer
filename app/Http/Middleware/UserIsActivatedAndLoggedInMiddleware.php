@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Token;
+use App\Http\Responses\StatusResponse;
 
 class UserIsActivatedAndLoggedInMiddleware
 {
@@ -24,6 +25,6 @@ class UserIsActivatedAndLoggedInMiddleware
             }
         }
 
-        return response('Token not allowed', 403);
+        return response()->json(new StatusResponse('Token not allowed'), 403);
     }
 }

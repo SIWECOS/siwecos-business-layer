@@ -85,6 +85,18 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
+    public function a_domain_can_not_be_verified_twice()
+    {
+        $domain = factory(Token::class)->create()->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
+
+        $response = $this->json('POST', '/api/v2/domain/verify', [
+            'url' => $domain->url
+        ]);
+
+        $response->assertStatus(403);
+    }
+
+    /** @test */
     public function a_registered_url_is_required_for_verification()
     {
         $response = $this->json('POST', '/api/v2/domain/verify', [
