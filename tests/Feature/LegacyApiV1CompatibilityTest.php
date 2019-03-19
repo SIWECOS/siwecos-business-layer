@@ -60,6 +60,11 @@ class LegacyApiV1CompatibilityTest extends TestCase
         // Get the Domain successfully verified
         $response->assertStatus(200);
         $this->assertTrue(Domain::first()->is_verified);
+
+        $response->assertExactJson([
+            'message' => 'Page successful validated',
+            'hasFailed' => false
+        ]);
     }
 
     /** @test */

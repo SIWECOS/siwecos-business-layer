@@ -3,6 +3,7 @@
 use App\Http\Middleware\MapDomainCreatedResponseForLegacyApi;
 use App\Http\Middleware\MapDomainDeletedResponseForLegacyApi;
 use App\Http\Middleware\MapDomainListResponseForLegacyApi;
+use App\Http\Middleware\MapDomainVerifiedResponseForLegacyApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/users/login', 'UserController@login');
 
     Route::middleware(['mapUserTokenToSiwecosToken', 'mapDomainParameterToUrl', 'siwecosToken'])->group(function () {
-        Route::post('/domains/verifyDomain', 'DomainController@verify');
+        Route::post('/domains/verifyDomain', 'DomainController@verify')->middleware(MapDomainVerifiedResponseForLegacyApi::class);
         Route::post('/domains/addNewDomain', 'DomainController@create')->middleware(MapDomainCreatedResponseForLegacyApi::class);
         Route::post('/domains/deleteDomain', 'DomainController@delete')->middleware(MapDomainDeletedResponseForLegacyApi::class);
         Route::post('/domains/listDomains', 'DomainController@list')->middleware(MapDomainListResponseForLegacyApi::class);
