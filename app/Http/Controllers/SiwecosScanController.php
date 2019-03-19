@@ -41,10 +41,6 @@ class SiwecosScanController extends Controller
         return response('User not Found', 404);
     }
 
-    protected function BrodcastScanResult(int $scanId)
-    {
-        event(new App\Events\FreeScanReady($scanId));
-    }
 
     public function GetScanResultById(int $id, string $lang = 'de')
     {
@@ -248,7 +244,7 @@ class SiwecosScanController extends Controller
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
             'score_y' => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/),
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 ),
             'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
@@ -335,7 +331,6 @@ class SiwecosScanController extends Controller
         });
         $resultCollection->put('scanners', $scannerCollection);
 
-        //		dd($resultCollection);
         return $resultCollection;
     }
 
@@ -452,7 +447,6 @@ class SiwecosScanController extends Controller
      */
     protected function generateSiwecosSeals(string $scanUrl)
     {
-
         $hostname = parse_url($scanUrl, PHP_URL_HOST);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
