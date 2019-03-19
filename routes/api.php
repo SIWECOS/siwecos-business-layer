@@ -67,7 +67,6 @@ Route::prefix('v1')->group(function () {
     Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
     Route::middleware(['usertoken'])->group(function () {
-        Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');
 
         Route::middleware(['activation'])->group(function () {
             Route::Post('/users/getTokenCredits', 'SiwecosUserController@getUserCreditInfoByToken');
