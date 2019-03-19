@@ -16,26 +16,32 @@ class MapDomainListResponseForLegacyApi
      */
     public function handle($request, Closure $next)
     {
+        /**
+         * @var \Illuminate\Http\JsonResponse $response
+         */
         $response = $next($request);
-        $json = json_decode($response->content());
 
-        $newContent = collect();
+        if ($response->getStatusCode() === 200) {
+            $json = json_decode($response->content());
 
-        foreach ($json->domains as $domain) {
-            $domain = Domain::whereUrl($domain->url)->first();
-            $newContent->push([
-                "id" => $domain->id,
-                "domain" => $domain->url,
-                "verificationStatus" => $domain->is_verified,
-                "domainToken" => $domain->verification_token
-            ]);
+            $newContent = collect();
+
+            foreach ($json->domains as $domain) {
+                $domain = Domain::whereUrl($domain->url)->first();
+                $newContent->push([
+                    "id" => $domain->id,
+                    "domain" => $domain->url,
+                    "verificationStatus" => $domain->is_verified,
+                    "domainToken" => $domain->verification_token
+                ]);
+            }
+
+            $response->setContent(json_encode([
+                'message' => 'List of all domains',
+                'hasFailed' => false,
+                'domains' => $newContent
+            ]));
         }
-
-        $response->setContent(json_encode([
-            'message' => 'List of all domains',
-            'hasFailed' => false,
-            'domains' => $newContent
-        ]));
 
         return $response;
     }

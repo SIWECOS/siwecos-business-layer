@@ -26,6 +26,14 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(1, Domain::all());
+
+        $response->assertExactJson([
+            'message' => 'Domain was created',
+            'hasFailed' => false,
+            'domainId' => 1,
+            'verificationStatus' => false,
+            'domainToken' => Domain::first()->verification_token
+        ]);
     }
 
 

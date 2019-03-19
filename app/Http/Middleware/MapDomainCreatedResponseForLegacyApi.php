@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Domain;
 
-class MapDomainDeletedResponseForLegacyApi
+class MapDomainCreatedResponseForLegacyApi
 {
     /**
      * Handle an outgoing response.
@@ -21,9 +22,16 @@ class MapDomainDeletedResponseForLegacyApi
         $response = $next($request);
 
         if ($response->getStatusCode() === 200) {
+
+            $json = json_decode($response->content());
+            $domain = Domain::whereUrl($json->url)->first();
+
             $response->setContent(json_encode([
-                'message' => 'Domain removed',
+                'message' => 'Domain was created',
                 'hasFailed' => false,
+                'domainId' => $domain->id,
+                'verificationStatus' => $domain->is_verified,
+                'domainToken' => $domain->verification_token
             ]));
         }
 
