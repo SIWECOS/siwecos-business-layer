@@ -213,7 +213,7 @@ A Domain can be deleted.
 
 ```json
 {
-    "message": "Domain deleted."
+    "message": "Domain deleted"
 }
 ```
 

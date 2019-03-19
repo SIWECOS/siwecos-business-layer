@@ -36,10 +36,10 @@ class DomainController extends Controller
                 return response()->json(new DomainResponse($domain), 200);
             }
 
-            return response()->json(new StatusResponse('Domain was not created.'), 410);
+            return response()->json(new StatusResponse('Domain was not created'), 410);
         }
 
-        return response()->json(new StatusResponse('Domain is already verified.'), 403);
+        return response()->json(new StatusResponse('Domain is already verified'), 403);
     }
 
     public function verify(VerifyDomainRequest $request)
@@ -73,7 +73,7 @@ class DomainController extends Controller
         $domain = $token->domains()->whereUrl($request->json('url'))->first();
 
         if ($domain && $domain->delete()) {
-            return response()->json(new StatusResponse('Domain deleted.'), 200);
+            return response()->json(new StatusResponse('Domain deleted'), 200);
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
