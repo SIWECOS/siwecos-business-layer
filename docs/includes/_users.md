@@ -86,7 +86,7 @@ A user has to be activated via verification of his email address to use the serv
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "active": false
+  "active": true
 }
 ```
 
