@@ -42,7 +42,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['mapUserTokenToSiwecosToken', 'mapDomainParameterToUrl', 'siwecosToken'])->group(function () {
         Route::post('/domains/verifyDomain', 'DomainController@verify');
         Route::post('/domains/addNewDomain', 'DomainController@create');
-        Route::post('/domains/deleteDomain', 'DomainController@delete');
+        Route::post('/domains/deleteDomain', 'DomainController@delete')->middleware('mapDomainDeletedResponseForLegacyApi');
         Route::post('/domains/listDomains', 'DomainController@list')->middleware('mapDomainListResponseForLegacyApi');
     });
     // Not implemented yet

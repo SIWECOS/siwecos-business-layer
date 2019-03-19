@@ -68,6 +68,11 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(0, Domain::all());
+
+        $response->assertExactJson([
+            'message' => 'Domain removed',
+            'hasFailed' => false
+        ]);
     }
 
     /** @test */

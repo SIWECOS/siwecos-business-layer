@@ -8,6 +8,7 @@ use App\Http\Middleware\SIWECOSTokenMiddleware;
 use App\Http\Middleware\MapUserTokenToSiwecosTokenMiddleware;
 use App\Http\Middleware\MapDomainParameterToUrlMiddleware;
 use App\Http\Middleware\MapDomainListResponseForLegacyApi;
+use App\Http\Middleware\MapDomainDeletedResponseForLegacyApi;
 
 class Kernel extends HttpKernel
 {
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'mapUserTokenToSiwecosToken' => MapUserTokenToSiwecosTokenMiddleware::class,
         'mapDomainParameterToUrl' => MapDomainParameterToUrlMiddleware::class,
         'mapDomainListResponseForLegacyApi' => MapDomainListResponseForLegacyApi::class,
+        'mapDomainDeletedResponseForLegacyApi' => MapDomainDeletedResponseForLegacyApi::class,
     ];
 }
