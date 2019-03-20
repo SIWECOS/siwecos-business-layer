@@ -34,6 +34,8 @@ Route::prefix('v2')->group(function () {
         Route::get('/domain', 'DomainController@list');
         Route::post('/domain', 'DomainController@create');
         Route::delete('/domain', 'DomainController@delete');
+
+        Route::post('/scan', 'ScanController@start');
     });
 
     Route::post('/domain/verify', 'DomainController@verify');

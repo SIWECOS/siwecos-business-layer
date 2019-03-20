@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\User;
 use App\Domain;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TokenTest extends TestCase
 {
@@ -32,5 +33,12 @@ class TokenTest extends TestCase
 
         $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
         $this->assertEquals(2, Token::first()->domains()->count());
+    }
+
+    /** @test */
+    public function a_token_has_many_scans_through_domains()
+    {
+        $token = factory(Token::class)->create(['type' => 'external']);
+        $this->assertCount(0, $token->scans);
     }
 }

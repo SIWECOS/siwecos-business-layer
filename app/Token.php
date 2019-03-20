@@ -41,15 +41,13 @@ class Token extends Model
     }
 
     /**
-     * @param int $credits
+     * Returns the Eloquent Relationship for App\Scan
      *
-     * @return bool
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function setTokenCredits(int $credits)
+    public function scans()
     {
-        $this->credits = $credits;
-
-        return $this->save();
+        return $this->hasManyThrough(Scan::class, Domain::class);
     }
 
 
@@ -58,27 +56,5 @@ class Token extends Model
         $this->credits -= $amount;
 
         return $this->save();
-    }
-
-    public static function reduceToken(string $token, $amount = 1)
-    {
-        $token = self::getTokenByString($token);
-        if ($token instanceof self) {
-            $token->credits -= $amount;
-
-            try {
-                $token->save();
-
-                return true;
-            } catch (\Illuminate\Database\QueryException $queryException) {
-                //TODO Log error to Papertrail with Token
-                return false;
-            }
-        }
-    }
-
-    public static function getTokenByString(string $token)
-    {
-        return self::whereToken($token)->first();
     }
 }

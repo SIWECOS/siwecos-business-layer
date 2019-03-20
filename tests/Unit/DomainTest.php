@@ -68,4 +68,11 @@ class DomainTest extends TestCase
         $token2 = factory(Token::class)->create();
         $token2->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
     }
+
+    /** @test */
+    public function a_domain_can_have_many_scans()
+    {
+        $domain = $this->getRegisteredDomain();
+        $this->assertCount(0, $domain->scans);
+    }
 }

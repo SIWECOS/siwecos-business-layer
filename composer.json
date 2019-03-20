@@ -17,6 +17,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "niklasravnsborg/laravel-pdf": "^2.0",
+        "staudenmeir/belongs-to-through": "^2.4",
         "superbalist/laravel-google-cloud-storage": "^2.0",
         "voku/simple_html_dom": "^4.3"
     },

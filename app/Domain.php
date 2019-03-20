@@ -29,6 +29,16 @@ class Domain extends Model
     }
 
     /**
+     * Returns the Eloquent Relationship for App\Scan
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function scans()
+    {
+        return $this->hasMany(Scan::class);
+    }
+
+    /**
      * Returns the hostname for this domain's url
      *
      * @return string
