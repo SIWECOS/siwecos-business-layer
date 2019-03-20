@@ -16,7 +16,7 @@ class ScanController extends Controller
         $domain = $token->domains()->whereUrl($request->json('url'))->whereIsVerified(true)->first();
 
         if ($domain) {
-            $this->dispatch(new StartScanJob());
+            $this->dispatch(new StartScanJob($domain->url, false, false));
 
             return response()->json(new StatusResponse('Job dispatched'));
         }
