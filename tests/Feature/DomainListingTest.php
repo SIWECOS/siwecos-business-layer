@@ -16,11 +16,9 @@ class DomainListingTest extends TestCase
     public function there_is_an_endpoint_to_retrieve_all_domains_that_are_associated_with_a_specific_token()
     {
         $token = factory(Token::class)->create();
-        $token->domains()->create(factory(Domain::class)->make()->toArray());
-        $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+        $domain1 = $token->domains()->create(factory(Domain::class)->make()->toArray());
+        $domain2 = $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
 
-        $domain1 = Domain::whereUrl('https://example.org')->first();
-        $domain2 = Domain::whereUrl('https://siwecos.de')->first();
         $response = $this->json('GET', '/api/v2/domain', [], ['SIWECOS-Token' => $token->token]);
 
         $response->assertStatus(200);
@@ -28,14 +26,14 @@ class DomainListingTest extends TestCase
         $response->assertJson([
             'domains' => [
                 [
-                    'domain' => $domain1->domain,
-                    'url' => $domain1->url,
+                    'domain' => 'example.org',
+                    'url' => 'https://example.org',
                     'is_verified' => false,
                     'verification_token' => $domain1->verification_token
                 ],
                 [
-                    'domain' => $domain2->domain,
-                    'url' => $domain2->url,
+                    'domain' => 'siwecos.de',
+                    'url' => 'https://siwecos.de',
                     'is_verified' => false,
                     'verification_token' => $domain2->verification_token
                 ]

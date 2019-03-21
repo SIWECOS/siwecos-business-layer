@@ -40,16 +40,14 @@ class DomainRegistrationTest extends TestCase
         ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
-        $this->assertEquals('https://example.org', Domain::first()->url);
-
-        Domain::first()->delete();
+        $this->assertEquals('https://example.org', Domain::find(1)->url);
 
         $response = $this->json('POST', '/api/v2/domain', [
             'url' => 'http://example.org/'
         ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
-        $this->assertEquals('http://example.org', Domain::first()->url);
+        $this->assertEquals('http://example.org', Domain::find(2)->url);
     }
 
     /** @test */

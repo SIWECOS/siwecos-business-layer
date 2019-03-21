@@ -17,7 +17,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function a_new_domain_can_be_registered()
     {
-        $this->withoutExceptionHandling();
         $user = $this->getActivatedUser();
 
         $response = $this->json('POST', '/api/v1/domains/addNewDomain', [
@@ -40,7 +39,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function a_domain_can_be_verified()
     {
-        $this->withoutExceptionHandling();
         $user = $this->getActivatedUser();
         $user->token->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
 
