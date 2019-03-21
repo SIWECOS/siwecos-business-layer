@@ -8,6 +8,42 @@ class Scan extends Model
 {
     use \Znck\Eloquent\Traits\BelongsToThrough;
 
+    protected $casts = [
+        'is_finished' => 'boolean',
+        'has_error' => 'boolean',
+        'score' => 'integer',
+    ];
+
+    protected $guarded = ['score'];
+
+    /**
+     * Returns the status if the scan is finished.
+     *
+     * @return bool
+     */
+    public function getIsFinishedAttribute()
+    {
+        return $this->results ? true : false;
+    }
+
+    public function setResultsAttribute($results)
+    {
+        $this->attributes['results'] = $results;
+        $this->attributes['score'] = $this->calculateScore();
+    }
+
+    public function calculateScore()
+    {
+        $score = 0;
+        $amountResults = 0;
+
+        foreach (json_decode($this->results) as $scannerResult) {
+            $score += $scannerResult->score;
+            $amountResults++;
+        }
+
+        return $amountResults ? ceil($score / $amountResults) : 0;
+    }
 
     /**
      * Returns the Eloquent Relationship for App\Domain
