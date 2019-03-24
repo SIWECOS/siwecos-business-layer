@@ -14,7 +14,7 @@ return [
   */
 
   //
-  // Category: CMS Version Scanner
+  // Category: CMS Versions Scanner
   //
   // CMSVERSION
   'CMSVERSION'            => "Check of the CMS Version\n",
@@ -22,9 +22,7 @@ return [
   'CMSVERSION_ERROR'      => "Outdated CMS version\n",
   'CMSVERSION_ERROR_DESC' => "<p>Regular updates, applied in a timely manner, are one of the most effective ways to protect a website. Critical security issues in CMS are often used for automated attacks in just a couple of hours after an update has been released, so staying up-to-date is extremly important.\n</p>",
   'CMSVERSION_TIPS'       => "<p>Update your CMS-Installation. Normally, smaller updates within the same version branch (i.e. from 1.5 to 1.6) can be applied with just a mouseclick directly from the CMS administration interface. Bigger update leaps (i.e. from 1.5 to 2.0) often require adjustments to the actual site's code and therefore have to be applied by the initial website developer. Please create a backup before each update.\n</p><p>Check your CMS at least once a day for available updates. If you aren't able to do so, making a maintenance-contract with a service provider is highly recommended!\n</p>",
-  'CMSVERSION_LINK'       => "https://siwecos.de/wiki//EN",
-  //
-  // Category: CMS Versions Scanner
+  'CMSVERSION_LINK'       => "https://siwecos.de/wiki/CMS Versions Scanner/EN",
   //
   // CMS_CANT_DETECT_CMS
   'CMS_CANT_DETECT_CMS'            => "The installed content management system (%cms%) couldn't be detected.\n",
@@ -481,7 +479,7 @@ return [
   // Category: Scanner
   //
   // SCANNER_NAME_CMSVERSION
-  'SCANNER_NAME_CMSVERSION'            => "CMS Version Scanner\n",
+  'SCANNER_NAME_CMSVERSION'            => "CMS Versions Scanner\n",
   //
   // SCANNER_NAME_DOMXSS
   'SCANNER_NAME_DOMXSS'            => "DOMXSS Scanner\n",
@@ -526,6 +524,14 @@ return [
   'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>The server has not sent a <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a>. This is unusual and should not occur. The server should check its <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS configuration</a> and, if necessary, disable anonymous <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Cipher_suite\">cipher suites</a>.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_TIPS'       => "<p>Urgently update your <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS implementation</a>. Current software no longer allows this type of configuration.\n</p>",
   'CERTIFICATE_NOT_SENT_BY_SERVER_LINK'       => "https://siwecos.de/wiki/Certificate-Not-Sent/EN",
+  //
+  // CERTIFICATE_NOT_VALID_YET
+  'CERTIFICATE_NOT_VALID_YET'            => "Check of certificate validity\n",
+  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is already valid\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is not yet valid\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">server certificate</a> is not yet valid. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deactivate the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> while it is not yet valid. Your website will then not be certified, but at least visitors will not receive a warning message when they open your website. Alternatively, it is possible to use your old certificate while it is still valid. For information on how to renew certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen (German only)</a>.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_LINK'       => "https://siwecos.de/wiki/Certificate-Not-Valid/EN",
   //
   // CERTIFICATE_WEAK_HASH_FUNCTION
   'CERTIFICATE_WEAK_HASH_FUNCTION'            => "Check of the certificate's encryption strength\n",
@@ -719,15 +725,5 @@ return [
   'TLS_POODLE_VULNERABLE_ERROR_DESC' => "<p>The server is vulnerable to a variant of the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/POODLE\">POODLE attack</a> on <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a>, which allows an attacker to decrypt the communication.\n</p>",
   'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Update the <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Transport_Layer_Security\">TLS</a> implementation on your server immediately. In the Apache configuration, you can specify the line \"SSLProtocol All -SSLv2 -SSLv3 \".\n</p>",
   'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Vulnerability/EN",
-  //
-  // Category: TLS-Scanner
-  //
-  // CERTIFICATE_NOT_VALID_YET
-  'CERTIFICATE_NOT_VALID_YET'            => "Check of certificate validity\n",
-  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is already valid\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">Certificate</a> is not yet valid\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>This message means that your <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">server certificate</a> is not yet valid. Visitors will be warned that your website may be insecure or not trustworthy. If a visitor uses HTTPS to open your website, he or she may receive an error message.\n</p>",
-  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deactivate the <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Certificate\" title=\"Certificate\">certificate</a> while it is not yet valid. Your website will then not be certified, but at least visitors will not receive a warning message when they open your website. Alternatively, it is possible to use your old certificate while it is still valid. For information on how to renew certificate, please refer to: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen (German only)</a>.\n</p>",
-  'CERTIFICATE_NOT_VALID_YET_LINK'       => "https://siwecos.de/wiki/Certificate-Not-Valid/EN",
 
 ];
