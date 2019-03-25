@@ -19,3 +19,4 @@ _ide_helper*
 deployment*.yaml
 secret*.yaml
 docs/build
+.phpunit.result.cache

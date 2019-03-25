@@ -4,6 +4,7 @@ namespace App;
 
 use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
+use Illuminate\Support\Str;
 
 class DomainVerifier
 {
@@ -30,7 +31,7 @@ class DomainVerifier
         $response = $this->client->get($this->domain->url . "/" . $this->domain->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
-            if (str_is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
+            if (Str::is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
                 return true;
             }
         }
@@ -46,7 +47,7 @@ class DomainVerifier
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
             $tag = $dom->findOne('meta[name="siwecostoken"]');
 
-            if (str_is($this->domain->verification_token, $tag->value)) {
+            if (Str::is($this->domain->verification_token, $tag->value)) {
                 return true;
             }
         }
