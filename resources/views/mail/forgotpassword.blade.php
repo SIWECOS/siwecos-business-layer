@@ -4,7 +4,7 @@
 SIWECOS
 @endcomponent
 @endslot
-Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},
+Guten Tag,
 
 wir haben eine Anfrage zum Zurücksetzen Ihres Passwortes für Ihren Account {{ $email }} erhalten.
 

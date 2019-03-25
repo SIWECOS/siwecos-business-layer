@@ -6,37 +6,62 @@ use App\CoreAPI;
 use App\User;
 use Artisan;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
+use App\Token;
+use App\Domain;
+use App\HTTPClient;
+use App\Scan;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function getTestUser(bool $useTestToken = false)
+    /**
+     * Returns an activated User.
+     *
+     * @param array $attributes
+     * @return \App\User
+     */
+    protected function getActivatedUser($attributes = [])
     {
-        // Create activated user
-        $user = new User([
-            'first_name'    => 'Marcel',
-            'last_name'     => 'Wege',
-            'salutation_id' => 1,
-            'email'         => 'mwege@byte5.de',
-            'address'       => 'Hanauer Landstraße 114',
-            'plz'           => '60314',
-            'city'          => 'Frankfurt',
-            'phone'         => '+4915154727353',
-            'org_name'      => 'byte5 digital media GmbH',
-            'org_address'   => 'Hanauer Landstraße 114',
-            'org_plz'       => '60314',
-            'org_industry'  => 'IT',
-            'org_phone'     => '+4915154727353',
-            'org_size_id'   => '1',
-            'acl_id'        => 1,
-            'org_city'      => 'Frankfurt',
-        ]);
-        $user->password = \Hash::make('secret');
-        $user->active = 1;
-        $user->token = $useTestToken ? 'TEST_CASE_DUMMY_TOKEN' : CoreAPI::generateUserToken(50);
-        $user->save();
+        return factory(User::class)->create(array_merge($attributes, ['active' => true]));
+    }
 
-        return $user;
+    /**
+     * Returns a registered Domain.
+     *
+     * @param array $attributes
+     * @return Domain
+     */
+    protected function getRegisteredDomain($attributes = [])
+    {
+        $token = factory(Token::class)->create(['type' => 'external']);
+        return $token->domains()->create(factory(Domain::class)->make($attributes)->toArray());
+    }
+
+    /**
+     * Returns a generated Scan.
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getGeneratedScan($attributes = [])
+    {
+        $domain = $this->getRegisteredDomain();
+        return $domain->scans()->create(factory(Scan::class)->make($attributes)->toArray());
+    }
+
+    /**
+     * Returns a mocked HTTP-Client for testing purposes.
+     *
+     * @param array $mockedResponses
+     * @return HTTPClient HTTP Client
+     */
+    protected function getMockedHttpClient(array $mockedResponses)
+    {
+        $mock = new MockHandler($mockedResponses);
+        $handler = HandlerStack::create($mock);
+        return new HTTPClient(['handler' => $handler, 'http_errors' => false]);
     }
 }

@@ -21,10 +21,6 @@ class SiwecosScanController extends Controller
     public $coreApi;
     public $currentDomain;
 
-    public function __construct()
-    {
-        $this->coreApi = new CoreApiController();
-    }
 
     public function CreateNewScan(Request $request)
     {
@@ -45,10 +41,6 @@ class SiwecosScanController extends Controller
         return response('User not Found', 404);
     }
 
-    protected function BrodcastScanResult(int $scanId)
-    {
-        event(new App\Events\FreeScanReady($scanId));
-    }
 
     public function GetScanResultById(int $id, string $lang = 'de')
     {
@@ -67,7 +59,7 @@ class SiwecosScanController extends Controller
      *
      * @return float
      */
-    public function GetTotalScore(int $id) : float
+    public function GetTotalScore(int $id): float
     {
         $response = $this->coreApi->GetResultById($id);
         $response = $this->calculateScorings($response);
@@ -252,7 +244,7 @@ class SiwecosScanController extends Controller
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
             'score_y' => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 /*blue*/ ),
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 ),
             'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
@@ -339,7 +331,6 @@ class SiwecosScanController extends Controller
         });
         $resultCollection->put('scanners', $scannerCollection);
 
-        //		dd($resultCollection);
         return $resultCollection;
     }
 
@@ -426,8 +417,7 @@ class SiwecosScanController extends Controller
 
     protected function buildReport(string $testDesc, int $score)
     {
-        if ($score == 100) {
-        } else {
+        if ($score == 100) { } else {
             $testDesc = __($testDesc . '_ERROR_DESC');
             $testDesc = str_replace('%HOST%', $this->currentDomain, $testDesc);
 
@@ -457,7 +447,6 @@ class SiwecosScanController extends Controller
      */
     protected function generateSiwecosSeals(string $scanUrl)
     {
-
         $hostname = parse_url($scanUrl, PHP_URL_HOST);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));

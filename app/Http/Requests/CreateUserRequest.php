@@ -32,12 +32,9 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'salutation_id' => 'required|integer|min:1|max:2',
             'email'         => 'email|required|unique:users',
             'password'      => 'required|min:8',
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            'org_size_id'   => 'integer|min:1|max:7',
+            'org_size'      => 'integer|min:0',
             'preferred_language' => new IsSupportedLanguage(),
         ];
     }
