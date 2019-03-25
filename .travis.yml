@@ -24,14 +24,14 @@ jobs:
   include:
     - stage: "Translation Updates"
       name: "Updating language files"
-      - script:
+      script:
         - echo "To be implemented"
     - stage: "Testing"
       name: "PHPUnit Test"
       script: vendor/bin/phpunit
     - stage: "Building"
       name: "Docker Image"
-      - script:
+      script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t "$DOCKER_IMAGE" .
         - docker images
@@ -39,12 +39,12 @@ jobs:
         - docker push "$DOCKER_REPO"/"$DOCKER_IMAGE":"$TRAVIS_BRANCH"
       if: branch = master
       name: "Tag Docker Image as `latest`"
-      - script:
+      script:
         - docker tag "$DOCKER_IMAGE" "$DOCKER_REPO"/"$DOCKER_IMAGE":latest
         - docker push "$DOCKER_REPO"/"$DOCKER_IMAGE":latest
     - stage: "Deploying"
       name: "Preperations"
-      - script:
+      script:
         - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
         - source /home/travis/google-cloud-sdk/path.bash.inc
         - gcloud --quiet version
@@ -52,7 +52,7 @@ jobs:
         - gcloud --quiet components update kubectl
       if: branch = develop
       name: "Deploy staging"
-      - script:
+      script:
         - echo $GCLOUD_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
         - gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
         - gcloud --quiet config set project $PROJECT_NAME_PRD
@@ -62,7 +62,7 @@ jobs:
         - kubectl patch deployment siwecos-business-layer --namespace staging -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\", \"commit\":\"$TRAVIS_COMMIT\"}}}}}"
       if: branch = master
       name: "Deploy production"
-      - script:
+      script:
         - echo $GCLOUD_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
         - gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
         - gcloud --quiet config set project $PROJECT_NAME_PRD
