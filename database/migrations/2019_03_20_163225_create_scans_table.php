@@ -19,9 +19,13 @@ class CreateScansTable extends Migration
 
             $table->boolean('has_error')->default(false);
             $table->integer('score')->default(0);
+            $table->boolean('is_recurrent')->default(false);
+            $table->boolean('is_freescan')->default(false);
 
             $table->json('results')->nullable();
 
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('finished_at')->nullable();
             $table->timestamps();
 
             $table->foreign('domain_id')->references('id')->on('domains');

@@ -27,7 +27,7 @@
         "fzaninotto/faker": "~1.4",
         "mathiasgrimm/laravel-dot-env-gen": "dev-master",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0",
+        "phpunit/phpunit": "~7.0",
         "stechstudio/laravel-php-cs-fixer": "^1.1"
     },
     "autoload": {

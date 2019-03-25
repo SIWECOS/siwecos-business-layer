@@ -79,15 +79,27 @@ class ScanTest extends TestCase
         $this->assertEquals(87, Scan::first()->score);
     }
 
-    /**
-     * Returns a generated Scan.
-     *
-     * @param array $attributes
-     * @return Scan
-     */
-    protected function getGeneratedScan($attributes = [])
+    /** @test */
+    public function the_scan_knows_which_domain_was_scanned()
     {
-        $domain = $this->getRegisteredDomain();
-        return $domain->scans()->create(factory(Scan::class)->make($attributes)->toArray());
+        $scan = $this->getGeneratedScan();
+
+        $this->assertEquals(Domain::first(), $scan->domain);
+    }
+
+    /** @test */
+    public function the_scan_knows_which_url_was_scanned()
+    {
+        $scan = $this->getGeneratedScan();
+
+        $this->assertEquals('https://example.org', $scan->domain->url);
+    }
+
+    /** @test */
+    public function a_scan_has_a_statedAt_value_with_default_null()
+    {
+        $scan = $this->getGeneratedScan();
+
+        $this->assertNull($scan->started_at);
     }
 }

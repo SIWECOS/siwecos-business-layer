@@ -11,6 +11,7 @@ use GuzzleHttp\Handler\MockHandler;
 use App\Token;
 use App\Domain;
 use App\HTTPClient;
+use App\Scan;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -37,6 +38,18 @@ abstract class TestCase extends BaseTestCase
     {
         $token = factory(Token::class)->create(['type' => 'external']);
         return $token->domains()->create(factory(Domain::class)->make($attributes)->toArray());
+    }
+
+    /**
+     * Returns a generated Scan.
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getGeneratedScan($attributes = [])
+    {
+        $domain = $this->getRegisteredDomain();
+        return $domain->scans()->create(factory(Scan::class)->make($attributes)->toArray());
     }
 
     /**

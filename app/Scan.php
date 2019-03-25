@@ -14,6 +14,10 @@ class Scan extends Model
         'score' => 'integer',
     ];
 
+    protected $dates = [
+        'started_at', 'finished_at'
+    ];
+
     protected $guarded = ['score'];
 
     /**

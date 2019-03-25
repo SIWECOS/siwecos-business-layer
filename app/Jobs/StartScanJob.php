@@ -8,15 +8,16 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\HTTPClient;
+use App\Scan;
+use Carbon\Carbon;
 
 class StartScanJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $url;
-    public $is_freescan;
-    public $is_recurrent;
+    public $scan;
     public $client;
+    public $danger_level;
 
     /**
       * Create a new job instance.
@@ -28,14 +29,12 @@ class StartScanJob implements ShouldQueue
       *
       * @return void
       */
-    public function __construct(string $url, bool $is_freescan, bool $is_recurrent, HTTPClient $client = null)
+    public function __construct(Scan $scan, HTTPClient $client = null)
     {
-        $this->url = $url;
-        $this->is_freescan = $is_freescan;
-        $this->is_recurrent = $is_recurrent;
+        $this->scan = $scan;
         $this->client = $client ?: new HTTPClient();
 
-        $this->dangerLevel = $is_freescan ? 0 : 10;
+        $this->danger_level = $scan->is_freescan ? 0 : 10;
     }
 
     /**
@@ -45,6 +44,22 @@ class StartScanJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $response = $this->client->json('POST', config('app.coreApiUrl'), [
+            'url' => $this->scan->domain->url,
+            'dangerLevel' => $this->danger_level,
+            'callbackurls' => [
+                config('app.url') . '/api/v2/scan/finished'
+            ]
+        ]);
+
+        if ($response->getStatusCode() === 200) {
+            $this->scan->update(['started_at' => Carbon::now()]);
+        } else {
+            // Log critical
+            $this->scan->update([
+                'has_error' => true,
+                'finished_at' => Carbon::now()
+            ]);
+        }
     }
 }
