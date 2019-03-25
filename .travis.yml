@@ -9,10 +9,6 @@ cache:
 
 dist: trusty
 
-before_script:
-  - composer self-update
-  - composer install --no-interaction
-
 env:
   global:
     - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
@@ -28,7 +24,10 @@ jobs:
         - echo "To be implemented"
     - stage: "Testing"
       name: "PHPUnit Test"
-      script: vendor/bin/phpunit
+      script:
+        - composer self-update
+        - composer install --no-interaction
+        - vendor/bin/phpunit
     - stage: "Building"
       name: "Docker Image"
       script:
