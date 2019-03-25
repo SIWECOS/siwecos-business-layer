@@ -22,6 +22,10 @@ env:
 
 jobs:
   include:
+    - stage: "Translation Updates"
+      name: "Updating language files"
+      - script:
+        - echo "To be implemented"
     - stage: "Testing"
       name: "PHPUnit Test"
       script: vendor/bin/phpunit
