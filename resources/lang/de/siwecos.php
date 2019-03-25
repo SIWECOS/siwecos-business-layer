@@ -14,81 +14,38 @@ return [
   */
 
   //
-  // Category: Angriffe
+  // Category: CMS Versions Scanner
   //
-  // BLEICHENBACHER_VULNERABLE
-  'BLEICHENBACHER_VULNERABLE'            => "Überprüfung auf Bleichenbacher Schwachstelle <span class=\"promarker\"></span>\n",
-  'BLEICHENBACHER_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a>.\n",
-  'BLEICHENBACHER_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a>.\n",
-  'BLEICHENBACHER_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a> Angriff. Hierbei kann die Kommunikation entschlüsselt und bei der Übertragung können Nutzereingaben wie Passwörter im Klartext gelesen werden.\n</p>",
-  'BLEICHENBACHER_VULNERABLE_TIPS'       => "<p>Überprüfen Sie Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> bzw. spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
-  'BLEICHENBACHER_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE",
+  // CMSVERSION
+  'CMSVERSION'            => "Überprüfung der CMS Version\n",
+  'CMSVERSION_SUCCESS'    => "Das verwendete CMS ist aktuell.\n",
+  'CMSVERSION_ERROR'      => "CMS Version veraltet\n",
+  'CMSVERSION_ERROR_DESC' => "<p>Regelmäßige und zeitnahe CMS-Updates sind eine der effektivsten Möglichkeiten, die eigene Website abzusichern. Kritische Lücken in den Systemen werden oft schon wenige Stunden nach dem Update massenhaft für Angriffe ausgenutzt, umso wichtiger ist hier die kontinuerliche Pflege des Systems.\n</p>",
+  'CMSVERSION_TIPS'       => "<p>Aktualisieren Sie Ihre CMS-Installation. In der Regel sind kleinere Updates innerhalb des selben Versionzweigs (z. B. von 1.5 auf 1.6) per Mausklick aus der Administration des CMS heraus möglich. Größere Versionssprünge (z. B. von 1.5 auf 2.0) erfordern oftmals Anpassungen an der Seite und müssen vom Website-Entwickler durchgeführt werden. Vor jedem Update ist ein Backup der Seite zu erstellen.\n</p><p>Prüfen Sie Ihr CMS im Optimalfall mindestens 1 mal pro Tag auf etwaige Updates. Alternativ empfiehlt sich die Beauftragung eines Dienstleisters im Rahmen einer Wartungsvereinbarung.\n</p>",
+  'CMSVERSION_LINK'       => "https://siwecos.de/wiki/CMS Versions Scanner/DE",
   //
-  // CRIME_VULNERABLE
-  'CRIME_VULNERABLE'            => "Überprüfung auf die CRIME Schwachstelle\n",
-  'CRIME_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>\n",
-  'CRIME_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>\n",
-  'CRIME_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>. Eine Schwachstelle, welche es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
-  'CRIME_VULNERABLE_TIPS'       => "<p>CRIME kann besiegt werden, indem die Verwendung von Komprimierung verhindert wird. Entweder auf der Client-Seite, indem der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> die Komprimierung von SPDY-Anfragen deaktiviert, oder indem die Webseite die Verwendung von Datenkompression bei solchen Transaktionen unter Verwendung der Protokollaushandlungsmerkmale des TLS-Protokolls verhindert. Deaktivieren sie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Compression</a> auf Ihrem Server.\n</p>",
-  'CRIME_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Crime-Schwachstelle/DE",
+  // CMS_CANT_DETECT_CMS
+  'CMS_CANT_DETECT_CMS'            => "Das von Ihnen verwendete Content Management System (%cms%) konnte nicht erkannt werden.\n",
   //
-  // HEARTBLEED_VULNERABLE
-  'HEARTBLEED_VULNERABLE'            => "Überprüfung auf die Heartbleed Schwachstelle <span class=\"promarker\"></span>\n",
-  'HEARTBLEED_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>\n",
-  'HEARTBLEED_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>\n",
-  'HEARTBLEED_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>. Dadurch kann ein Angreifer sensible Daten aus dem Arbeitsspeicher des Servers auslesen, wie z. B. geheime Schlüssel und Kundendaten.\n</p>",
-  'HEARTBLEED_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
-  'HEARTBLEED_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE",
+  // CMS_CANT_DETECT_VERSION
+  'CMS_CANT_DETECT_VERSION'            => "Die exakte Version des von Ihnen verwendete Content Management System (%cms%) konnte nicht erkannt werden. Bitte beachten Sie dass dies nicht bedeutet, dass eine aktuelle Version installiert sein muss. Bitte prüfen Sie die Version manuell.\n",
   //
-  // INVALID_CURVE_EPHEMERAL_VULNERABLE
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE'            => "Überprüfung auf die Ephemeral Invalid Curve Schwachstelle <span class=\"promarker\"></span>\n",
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a> Angriffe.\n",
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a> Angriffe.\n",
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a>. Dadurch kann ein Angreifer die Verbindungen angreifen.\n</p>",
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
-  'INVALID_CURVE_EPHEMERAL_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE",
+  // CMS_OUTDATED
+  'CMS_OUTDATED'            => "Das von Ihnen verwendete Content Management System (%cms%) ist veraltet! Installiert ist (%version%), bitte aktualisieren Sie auf die aktuelle Vesion (%latest%).\n",
   //
-  // INVALID_CURVE_VULNERABLE
-  'INVALID_CURVE_VULNERABLE'            => "Überprüfung auf die Invalid Curve Schwachstelle <span class=\"promarker\"></span>\n",
-  'INVALID_CURVE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Schwachstelle/DE/Background\">Invalid Curve Angriffe</a>.\n",
-  'INVALID_CURVE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Schwachstelle/DE/Background\">Invalid Curve Angriffe</a>.\n",
-  'INVALID_CURVE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.golem.de/news/verschluesselung-punkte-auf-der-falschen-elliptischen-kurve-1511-117643.html\">Invalid Curve Angriff</a>. Dadurch kann ein Angreifer den geheimen Schlüssel Ihres <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikats</a> stehlen.\n</p>",
-  'INVALID_CURVE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
-  'INVALID_CURVE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE",
+  // CMS_OUT_OF_SUPPORT
+  'CMS_OUT_OF_SUPPORT'            => "Das von Ihnen verwendete Content Management System (%cms%) ist massiv veraltet und erhält keine weiteren Updates vom Herstellter. Bitte wechseln Sie auf einen neueren Versionszweig!\n",
   //
-  // PADDING_ORACLE_VULNERABLE
-  'PADDING_ORACLE_VULNERABLE'            => "Überprüfung auf die Padding-Oracle Schwachstelle <span class=\"promarker\"></span>\n",
-  'PADDING_ORACLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE/Background\" title=\"PADDING-ORACLE-Schwachstelle/DE/Background\">Padding</a> Oracle Angriffe.\n",
-  'PADDING_ORACLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE/Background\" title=\"PADDING-ORACLE-Schwachstelle/DE/Background\">Padding Oracle Angriffe</a>.\n",
-  'PADDING_ORACLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.heise.de/security/artikel/Poodle-So-funktioniert-der-Angriff-auf-die-Verschluesselung-2425250.html\">Padding-Oracle Angriff</a>, welcher es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
-  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
-  'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
-  //
-  // POODLE_VULNERABLE
-  'POODLE_VULNERABLE'            => "Überprüfung auf die Poodle Schwachstelle\n",
-  'POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE</a>\n",
-  'POODLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE</a>\n",
-  'POODLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE-Angriff</a>, welcher es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
-  'POODLE_VULNERABLE_TIPS'       => "<p>Deaktivieren Sie umgehend das veraltete Verschlüsselungsprotokoll <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> auf Ihrem Server!\n</p>",
-  'POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/POODLE-Schwachstelle/DE",
-  //
-  // SWEET32_VULNERABLE
-  'SWEET32_VULNERABLE'            => "Überprüfung auf Sweet32 Schwachstelle\n",
-  'SWEET32_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>.\n",
-  'SWEET32_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>.\n",
-  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>, welche es einem Angreifer erlaubt, Teile der Kommunikation zu entschlüsseln, falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
-  'SWEET32_VULNERABLE_TIPS'       => "<p>Wo es möglich ist, sollte man am besten ganz auf Triple-DES und Blowfish verzichten. Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSLv2</a> und <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSLv3</a> deaktiviert sind.\n</p>",
-  'SWEET32_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Sweet32-Schwachstelle/DE",
-  //
-  // TLS_POODLE_VULNERABLE
-  'TLS_POODLE_VULNERABLE'            => "Überprüfung auf die TLS-POODLE Schwachstelle\n",
-  'TLS_POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE\" title=\"TLS-POODLE-Schwachstelle/DE\">TLS-POODLE</a>.\n",
-  'TLS_POODLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE\" title=\"TLS-POODLE-Schwachstelle/DE\">TLS-POODLE</a>.\n",
-  'TLS_POODLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch eine Variante des Poodle-Angriffs auf <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a>, was es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
-  'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein. In der Apache-Konfiguration kann man etwa die Zeile \"SSLProtocol All -SSLv2 -SSLv3\" angeben.\n</p>",
-  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE",
+  // CMS_UPTODATE
+  'CMS_UPTODATE'            => "Das von Ihnen verwendete Content Management System (%cms%) ist in der aktuellen Version (%version%) installiert.\n",
   //
   // Category: DOMXSS Scanner
+  //
+  // NO_CONTENT
+  'NO_CONTENT'            => "Auf der Seite wurde kein Inhalt gefunden.\n",
+  //
+  // NO_SCRIPT_TAGS
+  'NO_SCRIPT_TAGS'            => "Der Scanner hat keine Skript-Inhalte zum Bewerten gefunden.\n",
   //
   // NO_SINKS_FOUND
   'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
@@ -104,36 +61,27 @@ return [
   'SET_COOKIE_SUCCESS'    => "Cookies sind gesichert.\n",
   'SET_COOKIE_ERROR'      => "Cookies sind nicht gesichert.\n",
   'SET_COOKIE_ERROR_DESC' => "<p>Cookies sollten durch das Setzen des HttpOnly und Secure flags gesichert werden um zu verhindern, dass Dritte die Informationen abgreifen oder verändern können.\n</p>",
-  'SET_COOKIE_TIPS'       => "",
+  'SET_COOKIE_TIPS'       => "<p>`httpOnly`-Flag setzen, damit das Cookie nicht über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Javascript\" title=\"Javascript\">JavaScript</a> ausgelesen werden kann. Damit schützen Sie die Session-Informationen vor Auslesen und Diebstahl, denn wer das Cookie hat gilt als <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Authentifizierung\" title=\"Authentifizierung\">authentifiziert</a>.\n`secure`-Flag setzen, damit das Cookie nicht über unverschlüsselte Verbindungen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP\" title=\"HTTP\">HTTP</a> gesendet wird, sondern ausschließlich über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>.\n</p>",
   'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/DE",
+  //
+  // SINKS
+  'SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
+  'SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
+  'SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>.\n",
+  'SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
+  'SINKS_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
+  'SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE",
   //
   // SINKS_FOUND
   'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
   //
-  // SOURCES_FOUND
-  'SOURCES_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a>“ gefunden.\n",
-  //
-  // Category: DOMXSS Scanner
-  //
-  // NO_SINKS_FOUND
-  'NO_SINKS_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
-  //
-  // NO_SOURCES_FOUND
-  'NO_SOURCES_FOUND'            => "Es wurden keine „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a>“ gefunden.\n",
-  //
-  // SECURE_FLAG_SET
-  'SECURE_FLAG_SET'            => "Das Secure Flag ist gesetzt.\n",
-  //
-  // SET_COOKIE
-  'SET_COOKIE'            => "Überprüfung von Set-Cookie\n",
-  'SET_COOKIE_SUCCESS'    => "Cookies sind gesichert.\n",
-  'SET_COOKIE_ERROR'      => "Cookies sind nicht gesichert.\n",
-  'SET_COOKIE_ERROR_DESC' => "<p>Cookies sollten durch das Setzen des HttpOnly und Secure flags gesichert werden um zu verhindern, dass Dritte die Informationen abgreifen oder verändern können.\n</p>",
-  'SET_COOKIE_TIPS'       => "",
-  'SET_COOKIE_LINK'       => "https://siwecos.de/wiki/Set-Cookie/DE",
-  //
-  // SINKS_FOUND
-  'SINKS_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>“ gefunden.\n",
+  // SOURCES
+  'SOURCES'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sources\n",
+  'SOURCES_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a> erkannt.\n",
+  'SOURCES_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet (Sources).\n",
+  'SOURCES_ERROR_DESC' => "<p>Bei der Überprüfung wurde mindestens eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstelle</a> auf der Webseite gefunden, die von einer externen, möglicherweise nicht vertrauenswürdigen Quelle gesteuert werden könnte.\n</p>",
+  'SOURCES_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
+  'SOURCES_LINK'       => "https://siwecos.de/wiki/Schadcode-Ueber-Fremde-Quellen/DE",
   //
   // SOURCES_FOUND
   'SOURCES_FOUND'            => "Es wurden „<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a>“ gefunden.\n",
@@ -150,59 +98,19 @@ return [
   //
   // Category: Fehlermeldung
   //
-  // COULDNT_CONNECT
-  'COULDNT_CONNECT'            => "%domain% antwortet nicht.\n",
-  //
-  // DONT_LEAK_USER_CREDS
-  'DONT_LEAK_USER_CREDS'            => "Sie sollten Ihre Zugangsdaten (Name und Passwort) nicht übermitteln.\n",
-  //
   // GENERAL_ERROR
   'GENERAL_ERROR'            => "%ERRORTEXT%\n",
-  //
-  // JSON_DECODE_ERROR
-  'JSON_DECODE_ERROR'            => "Es gibt hier einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/Json\">JSON</a> Übersetzungsfehler.\n",
-  //
-  // LOCALHOST_SCAN_NOT_ALLOWED
-  'LOCALHOST_SCAN_NOT_ALLOWED'            => "Die lokale Überprüfung ist nicht erlaubt\n",
   //
   // NOT_REACHABLE
   'NOT_REACHABLE'            => "Nicht erreichbar.\n",
   //
-  // NO_RESPONSE
-  'NO_RESPONSE'            => "Die angegebene <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/URL\" title=\"URL\">URL</a> lieferte keine Antwort.\n",
-  //
-  // NO_SOURCE_CODE
-  'NO_SOURCE_CODE'            => "Keine Quelle gefunden.\n",
-  //
   // NO_VALID_URL
   'NO_VALID_URL'            => "Die Internetadresse (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/URL\" title=\"URL\">URL</a>) ist nicht gültig.\n",
-  //
-  // PORT_DISALLOWED
-  'PORT_DISALLOWED'            => "Dieser Port ist nicht erlaubt.\n",
-  //
-  // REDIRECT_ERROR
-  'REDIRECT_ERROR'            => "Es gibt einen Umleitungsfehler.\n",
   //
   // SCORE_info
   'SCORE_info'            => "Info\n",
   //
   // Category: Generell
-  //
-  // HTTPS_NOT_SUPPORTED
-  'HTTPS_NOT_SUPPORTED'            => "Überprüfung der Reaktionszeit des HTTPS-Headers\n",
-  'HTTPS_NOT_SUPPORTED_SUCCESS'    => "Server unterstützt <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a>.\n",
-  'HTTPS_NOT_SUPPORTED_ERROR'      => "Server scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen.\n",
-  'HTTPS_NOT_SUPPORTED_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> scheint kein TLS (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">Transportschichtsicherheit</a>) zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n</p>",
-  'HTTPS_NOT_SUPPORTED_TIPS'       => "<p>Aktivieren Sie TLS (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">Transportschichtsicherheit</a>)\n</p>",
-  'HTTPS_NOT_SUPPORTED_LINK'       => "https://siwecos.de/wiki/Keine-TLS-Unterstuetzung/DE",
-  //
-  // HTTPS_NO_RESPONSE
-  'HTTPS_NO_RESPONSE'            => "Überprüfung der Reaktionszeit des Headers\n",
-  'HTTPS_NO_RESPONSE_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> antwortet.\n",
-  'HTTPS_NO_RESPONSE_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> antwortet nicht.\n",
-  'HTTPS_NO_RESPONSE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> scheint überhaupt nicht zu antworten. Haben sie die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> richtig eingegeben?\n</p>",
-  'HTTPS_NO_RESPONSE_TIPS'       => "<p>Bitte überprüfen Sie Ihre Eingabe auf Eingabefehler.\n</p>",
-  'HTTPS_NO_RESPONSE_LINK'       => "https://siwecos.de/wiki/Reaktionszeit-Ueberschritten/DE",
   //
   // SCORE_bonus
   'SCORE_bonus'            => "Bonus\n",
@@ -319,9 +227,9 @@ return [
   'NO_SECURE_FLAG_SET'            => "Das Secure Flag ist nicht gesetzt.\n",
   //
   // PUBLIC_KEY_PINS
-  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - Ist aktuell deaktiviert\n",
+  'PUBLIC_KEY_PINS'            => "Überprüfung des Public Key Pinning (HPKP) - hat keinen Einfluß auf die Bewertung\n",
   'PUBLIC_KEY_PINS_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> ist aktiviert (HPKP wird derzeit nicht überprüft).\n",
-  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden (HPKP wird derzeit nicht überprüft).\n",
+  'PUBLIC_KEY_PINS_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public-Key-Pinning</a> nicht vorhanden (Das Ergebnis fließt nicht in die Bewertung ein).\n",
   'PUBLIC_KEY_PINS_ERROR_DESC' => "<p>Mächtige Angreifer wie bspw. Geheimdienste können ggf. eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur</a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle</a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikats</a> das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning</a> wird für die von der Webseite definierten Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> akzeptiert.\n</p>",
   'PUBLIC_KEY_PINS_TIPS'       => "<p>Das Setzen des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE/Background\" title=\"Public-Key-Pins-Deaktiviert/DE/Background\">Public Key Pinning</a> (HPKP) ist kein absolutes Muss und wird aktuell im Siwecos-Scanner nicht berücksichtigt.\n</p><p>Die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> Mozilla, Firefox und Google Chrome richten sich nach dem <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/HTTP_Public_Key_Pinning\">RFC-7469-Standard</a> und ignorieren daher HPKP-Header. Wenn nur ein einziger Pin gesetzt ist, wird eine Fehlermeldung angezeigt. Damit die Pin-Validierung funktioniert, ist es also immer notwendig mindestens zwei gültige Public Keys bzw. einen Backup-Pin anzugeben. Interessierte sollten sich dazu an einen IT-Sicherheitsexperten oder Webentwickler wenden.\n</p><p>Weiterführende Informationen finden Sie im <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.zdnet.com/article/google-chrome-is-backing-away-from-public-key-pinning-and-heres-why/\">Artikel von ZDNET</a>\n</p><p><br />\n</p><p><br />\n</p>",
   'PUBLIC_KEY_PINS_LINK'       => "https://siwecos.de/wiki/Public-Key-Pins-Deaktiviert/DE",
@@ -411,8 +319,14 @@ return [
   // CMS_VERSION_VULN
   'CMS_VERSION_VULN'            => "Das verwendete CMS %cms% der Version %version% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
+  // COULDNT_CONNECT
+  'COULDNT_CONNECT'            => "%domain% antwortet nicht.\n",
+  //
   // COULDNT_RESOLVE_HOST
   'COULDNT_RESOLVE_HOST'            => "%domain% ist unbekannt.\n",
+  //
+  // DONT_LEAK_USER_CREDS
+  'DONT_LEAK_USER_CREDS'            => "Sie sollten Ihre Zugangsdaten (Name und Passwort) nicht übermitteln.\n",
   //
   // EMAIL_ADDRESS
   'EMAIL_ADDRESS'            => "Überprüfung auf vorhandene E-Mail-Adressen\n",
@@ -424,6 +338,9 @@ return [
   //
   // EMAIL_FOUND
   'EMAIL_FOUND'            => "Die E-Mail-Adresse %email_adress% wurde gefunden. Wollen Sie diese E-Mail-Adresse wirklich veröffentlichen? Ein Angreifer kann diese bspw. für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing</a>-Angriffe nutzen.\n",
+  //
+  // JSON_DECODE_ERROR
+  'JSON_DECODE_ERROR'            => "Es gibt hier einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://de.wikipedia.org/wiki/Json\">JSON</a> Übersetzungsfehler.\n",
   //
   // JS_LIB
   'JS_LIB'            => "Überprüfung auf JavaScript-Bibliothek\n",
@@ -441,6 +358,15 @@ return [
   //
   // JS_LIB_VULN_VERSION
   'JS_LIB_VULN_VERSION'            => "Die verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript-Bibliothek</a> %js_lib_name% mit der Version %js_lib_version% in DOM-Node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
+  //
+  // LOCALHOST_SCAN_NOT_ALLOWED
+  'LOCALHOST_SCAN_NOT_ALLOWED'            => "Die lokale Überprüfung ist nicht erlaubt\n",
+  //
+  // NO_RESPONSE
+  'NO_RESPONSE'            => "Die angegebene <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/URL\" title=\"URL\">URL</a> lieferte keine Antwort.\n",
+  //
+  // NO_SOURCE_CODE
+  'NO_SOURCE_CODE'            => "Keine Quelle gefunden.\n",
   //
   // NUMBER_FOUND
   'NUMBER_FOUND'            => "Die Telefonnummer %number% wurde gefunden. Wollen Sie diese Telefonnummer wirklich veröffentlichen? Ein Angreifer kann diese bspw. für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Social_engineering\" title=\"Social engineering\">Social Engineering</a> (zwischenmenschliche Beeinflussungen) Angriffe einsetzen.\n",
@@ -462,12 +388,18 @@ return [
   // PLUGIN_VERSION_VULN
   'PLUGIN_VERSION_VULN'            => "Das verwendete <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">CMS</a>-<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Plugin\" title=\"Plugin\">Plugin</a> %plugin% der Version %plugin_version% in DOM-node %node% mit dem Inhalt %node_content% wurde erkannt. Für diese Version ist eine Schwachstelle bekannt.\n",
   //
+  // PORT_DISALLOWED
+  'PORT_DISALLOWED'            => "Dieser Port ist nicht erlaubt.\n",
+  //
+  // REDIRECT_ERROR
+  'REDIRECT_ERROR'            => "Es gibt einen Umleitungsfehler.\n",
+  //
   // Category: Initiative-S Scanner
   //
   // MALWARE
   'MALWARE'            => "Überprüfung auf mögliche <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Malware-Inhalte/DE\" title=\"Malware-Inhalte/DE\">MALWARE-Inhalte</a>\n",
-  'MALWARE_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Malware-Liste</a> gefunden.\n",
-  'MALWARE_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Malware-Listen</a> gefunden.\n",
+  'MALWARE_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Malware-Liste</a> gefunden.\n",
+  'MALWARE_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Malware-Listen</a> gefunden.\n",
   'MALWARE_ERROR_DESC' => "<p><a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Malware\" title=\"Malware\">Malware</a> bezeichnet Software, die dem Benutzer und natürlich in erster Linie dem Computer Schaden zufügen kann. Malware bezeichnet dabei alle Arten von schädlichen Programmen wie etwa <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Virus\" title=\"Virus\">Viren</a>, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Trojaner\" title=\"Trojaner\">Trojaner</a>, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Spyware\" title=\"Spyware\">Spyware</a>, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Dialer\" title=\"Dialer\">Dialer</a>, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Rootkit\" title=\"Rootkit\">Dropper</a>, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Rootkit\" title=\"Rootkit\">Rootkits</a> und <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Keylogger\" title=\"Keylogger\">Keylogger</a>.\n</p>",
   'MALWARE_TIPS'       => "<p><b><span style=\"color:#c31622\">Nehmen Sie die Webseite offline!<span></b>\n</p><p>Bei einem Aufruf der Seite besteht die <b>Gefahr, dass Sie den aufrufenden PC mit Schadsoftware infizieren</b>. Auch vermeiden Sie damit, dass Google Ihre Webseite aus dem Index nimmt, was ein eventuelles positives Ranking annullieren würde und Sie kommen damit einer eventuellen Sperrung Ihrer Webseite seitens Ihres Providers/Hosters zuvor.\n</p><p><b>- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre Domain zuzugreifen. </b><br />\n</p><p>Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/IP-Adresse\" title=\"IP-Adresse\">Quell-IP-Adressen</a>. Als Ausgangspunkt Ihrer Recherche könnte Ihnen der Zeitstempel der manipulierten bzw. hochgeladenen Datei dienen und einen Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor geben.\n</p><p><b>- Ändern Sie Ihre Zugangsdaten!</b><br />\n<b>- Webfrontend (Hosting-Vertrag, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">Content-Management-System</a>)</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/FTP\" title=\"FTP\">FTP</a>-, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSH\" title=\"SSH\">SSH</a>-Zugänge</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Datenbank\" title=\"Datenbank\">Datenbank</a>-<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Starke_Passw%C3%B6rter\" title=\"Starke Passwörter\">Passwörter</a></b><br />\n</p><p>Spielen Sie ein schadcodefreies Backup wieder ein!\nLöschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie sicher, dass Sie keine Fremddateien, die den Angreifern als \"Hintertüren\" dienen aus der vormals kompromittierten Umgebung übernehmen.\nÜberprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine noch ältere Sicherung zurück.\nSollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her und führen danach die Updates im System durch. Erst dann stellen Sie die Webseite wieder online.\n</p><p><b> - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle Bereinigungen nehmen in der Regel sehr viel mehr Zeit in Anspruch und sollten nur von Fachpersonal durchgeführt werden.</b><br />\n</p><p>Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> finden Sie dazu Hilfestellungen und Programme.\nMit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen Schadprogrammen säubern. ( <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a> )</span>\n</span>\n</p>",
   'MALWARE_LINK'       => "https://siwecos.de/wiki/Malware-Inhalte/DE",
@@ -477,35 +409,25 @@ return [
   //
   // PHISHING
   'PHISHING'            => "Überprüfung auf mögliche <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing-Inhalte</a>\n",
-  'PHISHING_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Liste</a> gefunden.\n",
-  'PHISHING_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in einer [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Liste</a> gefunden.\n",
+  'PHISHING_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Liste</a> gefunden.\n",
+  'PHISHING_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in einer <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Liste</a> gefunden.\n",
   'PHISHING_ERROR_DESC' => "<p>Beim <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing</a> wird in der Regel trickreich versucht, sensible persönliche Daten wie Passwörter, Kreditkartennummern und persönliche Daten des Besuchers der Seite zu entwenden. Dabei versenden Kriminelle üblicherweise <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Spam\" title=\"Spam\">Spam-E-Mails</a>. Diese E-Mails enthalten u. a. Links zu einer <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing</a>-Seite, die sich als legitime Webseite ausgibt.\n</p>",
   'PHISHING_TIPS'       => "<p><b><span style=\"color:#c31622\"> Nehmen Sie die Webseite offline!<span></b>\n</p><p>Es ist weiterhin möglich, dass Sie mit der Webseite <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Phishing\" title=\"Phishing\">Phishing-Inhalte</a> zu Verfügung stellen und Kriminelle persönliche Daten darüber sammeln. Auch vermeiden Sie damit, dass Google Ihre Webseite aus dem Index nimmt, was ein eventuelles positives Ranking annullieren würde. So kommen Sie auch einer eventuellen Sperre Ihrer Webseite seitens Ihres Providers/Hosters zuvor.\n</p><p><b>- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre Domain zuzugreifen. </b><br />\n</p><p>Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/IP-Adresse\" title=\"IP-Adresse\">Quell-IP-Adressen</a>. Als Ausgangspunkt Ihrer Recherche könnte Ihnen der Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor geben.\n</p><p><b>- Ändern Sie Ihre Zugangsdaten!</b><br />\n<b>- Webfrontend (Hosting-Vertrag, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">Content-Management-System</a> )</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/FTP\" title=\"FTP\">FTP</a>-, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSH\" title=\"SSH\">SSH</a>-Zugänge</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Datenbank\" title=\"Datenbank\">Datenbank</a> - <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Starke_Passw%C3%B6rter\" title=\"Starke Passwörter\">starke Passwörter nutzen</a></b><br />\n</p><p>Spielen Sie ein schadcodefreies Backup wieder ein!\nLöschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie sicher, dass Sie keine Fremddateien, die den Angreifern als \"Hintertüren\" dienen aus der vormals kompromittierten Umgebung übernehmen.\nÜberprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine noch ältere Sicherung zurück.\nSollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her und führen danach die Updates im System durch. Erst dann stellen Sie die Webseite wieder online.\n</p><p><b> - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle Bereinigungen nehmen in der Regel sehr viel mehr Zeit in Anspruch und sollten nur von Fachpersonal durchgeführt werden.</b><br />\n</p><p>Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> finden Sie dazu Hilfestellungen und Programme.\nMit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen Schadprogrammen säubern. ( <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a> )</span>\n</span>\n</p>",
   'PHISHING_LINK'       => "https://siwecos.de/wiki/Phishing-Inhalte/DE",
   //
   // PHISHING_FOUND
-  'PHISHING_FOUND'            => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> ‘%site%’ wurde in folgenden [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Listen</a> gefunden: %where%\n",
+  'PHISHING_FOUND'            => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> ‘%site%’ wurde in folgenden <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Phishing-Listen</a> gefunden: %where%\n",
   //
   // SPAM
   'SPAM'            => "Überprüfung auf mögliche <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Spam\" title=\"Spam\">Spam-Inhalte</a>\n",
-  'SPAM_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Liste</a> gefunden.\n",
-  'SPAM_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Listen</a> gefunden.\n",
+  'SPAM_SUCCESS'    => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Liste</a> gefunden.\n",
+  'SPAM_ERROR'      => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> wurde in <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Listen</a> gefunden.\n",
   'SPAM_ERROR_DESC' => "<p>Als <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Spam\" title=\"Spam\">Spam</a> bezeichnet man ungewollte und zum Teil unseriöse Werbung im E-Mail-Postfach (z. B. Viagra-Werbung, Medikamente, Versicherung und Kreditvergleiche). Diese Werbungen werden massenhaft verschickt bzw. können auch zielgerichtet verschickt werden. In der Regel verschleiern die Absender ihre wahre Identität in der E-Mail und versuchen Sie zu täuschen.\n</p>",
   'SPAM_TIPS'       => "<p><b><span style=\"color:#c31622\">Nehmen Sie die Webseite offline!<span></b>\n</p><p>Um Besucher vor Ihrer infizierten Webseite zu schützen und damit Google Ihre Webseite nicht aus dem Index nimmt, was ein eventuelles positives Ranking annullieren würde, <b>schalten Sie die Webseite offline</b>. So kommen Sie auch einer eventuellen Sperre Ihrer Webseite seitens Ihres Providers/Hosters zuvor.\n</p><p>Um zu prüfen, ob die Seite über diverse Spam-Merkmale verfügt, rufen Sie die Seite im Browser auf, klicken über die rechte Maustaste den \"Quelltext anzeigen\". In diesem Fenster können Sie Ihren Quellcode mit Drücken der Tasten <b>Strg+f</b> (suchen) auf gängige Online-Betrügereien durch Werbung für Medikamente oder dubiose Kreditgeschäft überprüfen.\n</p><p><b>Einige Suchvorschläge</b>:<br />\n- „payday“<br />\n- „Pharma“<br />\n- „Viagra“<br />\n- „Cialis“<br /><br />\n<b>- Stellen Sie fest, wie und wann es Fremden möglich war, auf Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> zuzugreifen. </b><br />\n</p><p>Überprüfen Sie Ihre Logdateien auf unberechtigte Zugriffe von unbekannten <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/IP-Adresse\" title=\"IP-Adresse\">Quell-IP-Adressen</a>. Als Ausgangspunkt Ihrer Recherche könnte Ihnen der Zeitstempel der manipulierten, bzw. hochgeladenen Datei dienen und einen Hinweis auf den Zeitpunkt der Attacke und das sogenannte Einfallstor geben.\n</p><p><b>- Ändern Sie Ihre Zugangsdaten!</b><br />\n<b>- Webfrontend (Hosting-Vertrag, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Content-Management-Systeme\" title=\"Content-Management-Systeme\">Content-Management-System</a>)</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/FTP\" title=\"FTP\">FTP</a>-, <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSH\" title=\"SSH\">SSH</a>-Zugänge</b><br />\n<b>- <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Datenbank\" title=\"Datenbank\">Datenbank</a>-<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Starke_Passw%C3%B6rter\" title=\"Starke Passwörter\">Passwörter</a></b><br />\n</p><p>Spielen Sie ein schadcodefreies <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Daten_sichern\" title=\"Daten sichern\">Backup</a> wieder ein!\nLöschen Sie hierzu sämtliche Dateien auf Ihrem Webspace. Damit stellen Sie sicher, dass Sie keine Fremddateien, die den Angreifern als \"Hintertüren\" dienen aus der vormals kompromittierten Umgebung übernehmen.\nÜberprüfen Sie vor der Wiederherstellung, ob Ihr Backup bereits den von uns gefundenen Schadcode beinhaltet und greifen Sie bei Bedarf auf eine noch ältere Sicherung zurück.\nSollte das Backup \"schadcodefrei\" sein, stellen Sie dieses wieder her und führen danach die Updates im System durch. Erst dann stellen Sie die Webseite wieder online.\n</p><p><b> - Sollten Sie keine Sicherung Ihres Internetauftrittes besitzen, ziehen Sie eine komplette Neuinstallation in Betracht. Manuelle Bereinigungen nehmen in der Regel sehr viel mehr Zeit in Anspruch und sollten nur von Fachpersonal durchgeführt werden.</b><br />\n</p><p>Überprüfen Sie Ihre lokalen Rechner auf Schadsoftware! Unter der Webseite <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.botfrei.de\">botfrei.de</a> finden Sie dazu Hilfestellungen und Programme.\nMit Hilfe des DE-Cleaners können Sie Ihren PC von verschiedenen Schadprogrammen säubern. ( <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external free\" href=\"https://www.botfrei.de/de/eucleaner/index.html\">https://www.botfrei.de/de/eucleaner/index.html</a> )</span>\n</span>\n</p>",
   'SPAM_LINK'       => "https://siwecos.de/wiki/Spam-Inhalte/DE",
   //
   // SPAM_FOUND
-  'SPAM_FOUND'            => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> ‘%site%’ wurde in folgenden [[<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Listen</a> gefunden: %where%\n",
-  //
-  // Category: NO_CONTENT
-  //
-  // NO_CONTENT
-  'NO_CONTENT'            => "Auf der Seite wurde kein Inhalt gefunden.\n",
-  //
-  // Category: NO_SCRIPT_TAGS
-  //
-  // NO_SCRIPT_TAGS
-  'NO_SCRIPT_TAGS'            => "Der Scanner hat keine Skript-Inhalte zum Bewerten gefunden.\n",
+  'SPAM_FOUND'            => "Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> ‘%site%’ wurde in folgenden <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Listen\" title=\"Listen\">Spam-Listen</a> gefunden: %where%\n",
   //
   // Category: Port-Scanner
   //
@@ -549,38 +471,15 @@ return [
   'TELNET_TIPS'       => "<p>Wenn Sie diesen Dienst nicht benötigen, sollten Sie ihn einfach abschalten, da er ein Sicherheitsrisiko darstellt. Falls doch, sollten Sie zu dem sicheren Dienst SSH wechseln, mit welchem Daten verschlüsselt übermittelt werden.\n</p>",
   'TELNET_LINK'       => "https://siwecos.de/wiki/TELNET-Port/DE",
   //
-  // Category: Protokollversionen
-  //
-  // PROTOCOLVERSION_SSL2
-  'PROTOCOLVERSION_SSL2'            => "Überprüfung auf veraltetes SSL2 Protokoll\n",
-  'PROTOCOLVERSION_SSL2_SUCCESS'    => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> wird nicht unterstützt.\n",
-  'PROTOCOLVERSION_SSL2_ERROR'      => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> wird unterstützt.\n",
-  'PROTOCOLVERSION_SSL2_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a>, welche als höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die Sicherheit des ganzen Servers und möglicherweise Ihres gesamten Unternehmensnetzwerks.\n</p>",
-  'PROTOCOLVERSION_SSL2_TIPS'       => "<p><a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Verschlüsselung</a> gilt heute als Standard. Sie sollten deshalb auf den Einsatz von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> verzichten. Weitere Informationen finden Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL</a>.\n</p>",
-  'PROTOCOLVERSION_SSL2_LINK'       => "https://siwecos.de/wiki/Veraltete-Protokollversion-SSL2/DE",
-  //
-  // PROTOCOLVERSION_SSL3
-  'PROTOCOLVERSION_SSL3'            => "Überprüfung auf veraltetes SSL3 Protokoll\n",
-  'PROTOCOLVERSION_SSL3_SUCCESS'    => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> wird nicht unterstützt.\n",
-  'PROTOCOLVERSION_SSL3_ERROR'      => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> wird unterstützt.\n",
-  'PROTOCOLVERSION_SSL3_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a>, welche als höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die Sicherheit des ganzen Servers und möglicherweise Ihres gesamten Unternehmensnetzwerks.\n</p>",
-  'PROTOCOLVERSION_SSL3_TIPS'       => "<p><a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Verschlüsselung</a> gilt heute als Standard. Sie sollten deshalb auf den Einsatz von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> verzichten. Weitere Informationen finden Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL</a>.\n</p>",
-  'PROTOCOLVERSION_SSL3_LINK'       => "https://siwecos.de/wiki/Veraltete-Protokollversion-SSL3/DE",
-  //
-  // PROTOCOLVERSION_TLS13
-  'PROTOCOLVERSION_TLS13'            => "Überprüfung auf Einsatz des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokolls</a>\n",
-  'PROTOCOLVERSION_TLS13_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokoll</a> wird nicht unterstützt.\n",
-  'PROTOCOLVERSION_TLS13_ERROR'      => "Modernes <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokoll</a> wird unterstützt.\n",
-  'PROTOCOLVERSION_TLS13_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die neueste <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Protokollversion 1.3</a>. Diese befindet sich noch im Standardisierungsprozess. Sollten Sie nicht wissen, was dies bedeutet, können Sie die Version ausschalten, da die meisten Browser diese Version noch nicht unterstützen und TLS 1.3 sich noch in der Entwicklung befindet.\n</p>",
-  'PROTOCOLVERSION_TLS13_TIPS'       => "<p>Es besteht kein Handlungsbedarf.\n</p>",
-  'PROTOCOLVERSION_TLS13_LINK'       => "https://siwecos.de/wiki/Protokollversion-TLS13-Gefunden/DE",
-  //
   // Category: Report Text
   //
   // REPORT_FOR
   'REPORT_FOR'            => "Report für :domain\n",
   //
   // Category: Scanner
+  //
+  // SCANNER_NAME_CMSVERSION
+  'SCANNER_NAME_CMSVERSION'            => "CMS Versions Scanner\n",
   //
   // SCANNER_NAME_DOMXSS
   'SCANNER_NAME_DOMXSS'            => "DOMXSS Scanner\n",
@@ -602,34 +501,51 @@ return [
   // ANON_SUITES
   'ANON_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass eine anonyme <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik\" title=\"Verschlüsselungsmethodik\">Verschlüsselungsmethodik</a> ohne <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Authentifizierung\" title=\"Authentifizierung\">Authentifizierung</a> bei der Verbindung erfolgt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
-  // DES_SUITES
-  'DES_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik\" title=\"Verschlüsselungsmethodik\">Cipher Suites)</a> unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  // BLEICHENBACHER_VULNERABLE
+  'BLEICHENBACHER_VULNERABLE'            => "Überprüfung auf Bleichenbacher Schwachstelle <span class=\"promarker\"></span>\n",
+  'BLEICHENBACHER_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a>.\n",
+  'BLEICHENBACHER_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a>.\n",
+  'BLEICHENBACHER_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE\" title=\"Bleichenbacher-Schwachstelle/DE\">Bleichenbacher</a> Angriff. Hierbei kann die Kommunikation entschlüsselt und bei der Übertragung können Nutzereingaben wie Passwörter im Klartext gelesen werden.\n</p>",
+  'BLEICHENBACHER_VULNERABLE_TIPS'       => "<p>Überprüfen Sie Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> bzw. spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
+  'BLEICHENBACHER_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Bleichenbacher-Schwachstelle/DE",
   //
-  // EXPIRED
-  'EXPIRED'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  // CERTIFICATE_EXPIRED
+  'CERTIFICATE_EXPIRED'            => "Überprüfung der Zertifikat Laufzeit\n",
+  'CERTIFICATE_EXPIRED_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> nicht abgelaufen\n",
+  'CERTIFICATE_EXPIRED_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> abgelaufen\n",
+  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> abgelaufen ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt. Sollte ein Nutzer Ihre Webseite über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt, z. B. \"Ihr Zertifikat ist am (Datum) abgelaufen\".\n</p>",
+  'CERTIFICATE_EXPIRED_TIPS'       => "<p>Dieses Problem lässt sich lösen, indem Sie das eingesetzte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> erneuern. Wie Sie Zertifikate verlängern können, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F\" title=\"Zertifikate\">Zertifikat abgelaufen</a>.\n</p>",
+  'CERTIFICATE_EXPIRED_LINK'       => "https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE",
   //
-  // EXPORT_SUITES
-  'EXPORT_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass sich vorsätzlich geschwächte kryptographische Funktionen (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>) nutzen lassen. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle-Attacken</a>.\n",
+  // CERTIFICATE_NOT_SENT_BY_SERVER
+  'CERTIFICATE_NOT_SENT_BY_SERVER'            => "Überprüfung der Zertifikatsübermittlung\n",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_SUCCESS'    => "Server sendet ein Zertifikat\n",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR'      => "Server sendet kein Zertifikat\n",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> hat kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> gesendet. Dies ist ungewöhnlich und sollte nicht vorkommen. Der Server sollte seine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Konfiguration</a> überprüfen und ggfs. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schluesselaustauschverfahren/DE\" title=\"Schluesselaustauschverfahren/DE\">anonyme Cipher Suites</a> ausschalten.\n</p>",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_TIPS'       => "<p>Aktualisieren Sie dringend die von Ihnen eingesetzte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a>. Moderne Software erlaubt diese Art der Konfiguration nicht mehr.\n</p>",
+  'CERTIFICATE_NOT_SENT_BY_SERVER_LINK'       => "https://siwecos.de/wiki/Zertifikat-Nicht-Gesendet/DE",
   //
-  // HASH_ALGO
-  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> %HASH%. Das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> kann so sehr einfach gefälscht werden. Eine Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> jedoch nicht.\n",
+  // CERTIFICATE_NOT_VALID_YET
+  'CERTIFICATE_NOT_VALID_YET'            => "Überprüfung der Zertifikat Gültigkeit\n",
+  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> ist schon gültig\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> noch nicht gültig\n",
+  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> noch nicht gültig ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt. Sollte ein Nutzer Ihre Webseite über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deaktivieren Sie das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> solange es <b>noch nicht</b> gültig ist. Ihre Webseite ist dann zwar nicht zertifiziert, jedoch erhalten Besucher zumindest keine Warnmeldung beim Aufruf Ihrer Webseite. Alternativ bietet sich die Möglichkeit an, Ihr altes <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> einzusetzen, so lange dies noch gültig ist. Wie Sie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikate</a> verlängern können, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen</a>.\n</p>",
+  'CERTIFICATE_NOT_VALID_YET_LINK'       => "https://siwecos.de/wiki/Zertifikat-Nicht-Gueltig/DE",
   //
-  // HTTPS_RESPONSE
-  'HTTPS_RESPONSE'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
+  // CERTIFICATE_WEAK_HASH_FUNCTION
+  'CERTIFICATE_WEAK_HASH_FUNCTION'            => "Überprüfung der Verschlüsselungsstärke des Zertifikats\n",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_SUCCESS'    => "Starker <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a>\n",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR'      => "Schwacher <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a>\n",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> einen schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> (Verschlüsselung) besitzt. Es stellt möglicherweise ein leichtes Ziel für Hacker-Angriffe dar.\n</p>",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_TIPS'       => "<p>Um dieses Problem zu lösen, sollten Sie ein neues <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> mit einer sicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Funktion</a>, also einer starken Verschlüsselung installieren. Wie Sie ein sicheres <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> bekommen, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Wie_wird_ein_SSL-Zertifikat_installiert.3F\" title=\"Zertifikate\">Zertifikat installieren</a>.\n</p>",
+  'CERTIFICATE_WEAK_HASH_FUNCTION_LINK'       => "https://siwecos.de/wiki/Schwache-Verschluesselung/DE",
   //
-  // HTTPS_SUPPORTED
-  'HTTPS_SUPPORTED'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n",
+  // CERTIFICATE_WEAK_SIGN_ALGO
+  'CERTIFICATE_WEAK_SIGN_ALGO'            => "Überprüfung der Zertifikat Verschlüsselung\n",
   //
-  // NOT_YET_VALID
-  'NOT_YET_VALID'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
-  //
-  // NULL_SUITES
-  'NULL_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass zugelassen wird, dass unverschlüsselt über einen eigentlich geschützten Kanal Daten übertragen werden können. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
-  // RC4_SUITES
-  'RC4_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass die mittlerweile als unsicher geltende Verschlüsselungsfunktion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/RC4_Verschl%C3%BCsselungsmethodik\" title=\"RC4 Verschlüsselungsmethodik\">RC4</a> weiterhin unterstützt wird. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
-  //
-  // Category: Verschlüsselungsmethode
+  // CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
+  'CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS'            => "Überprüfung der Zertifikat Verschlüsselung\n",
   //
   // CIPHERSUITEORDER_ENFORCED
   'CIPHERSUITEORDER_ENFORCED'            => "Überprüfung der Client-Verschlüsselungsmethodik\n",
@@ -679,76 +595,135 @@ return [
   'CIPHERSUITE_RC4_TIPS'       => "<p>Deaktivieren Sie die Unterstützung der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/RC4_Verschl%C3%BCsselungsmethodik\" title=\"RC4 Verschlüsselungsmethodik\">RC4 Verschlüsselungsmethodik</a>.\n</p>",
   'CIPHERSUITE_RC4_LINK'       => "https://siwecos.de/wiki/Unsichere-RC4-Verschluesselungsmethodik/DE",
   //
-  // Category: XSS-Scanner
+  // CRIME_VULNERABLE
+  'CRIME_VULNERABLE'            => "Überprüfung auf die CRIME Schwachstelle\n",
+  'CRIME_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>\n",
+  'CRIME_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>\n",
+  'CRIME_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Crime-Schwachstelle/DE/Background\" title=\"Crime-Schwachstelle/DE/Background\">CRIME</a>. Eine Schwachstelle, welche es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
+  'CRIME_VULNERABLE_TIPS'       => "<p>CRIME kann besiegt werden, indem die Verwendung von Komprimierung verhindert wird. Entweder auf der Client-Seite, indem der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Browser\" title=\"Browser\">Browser</a> die Komprimierung von SPDY-Anfragen deaktiviert, oder indem die Webseite die Verwendung von Datenkompression bei solchen Transaktionen unter Verwendung der Protokollaushandlungsmerkmale des TLS-Protokolls verhindert. Deaktivieren sie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Compression</a> auf Ihrem Server.\n</p>",
+  'CRIME_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Crime-Schwachstelle/DE",
   //
-  // HAS_SINKS
-  'HAS_SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
-  'HAS_SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
-  'HAS_SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks</a>\n",
-  'HAS_SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
-  'HAS_SINKS_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
+  // DES_SUITES
+  'DES_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass Sie die mittlerweile als unsicher geltende Verschlüsselungsfunktion DES (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Verschl%C3%BCsselungsmethodik\" title=\"Verschlüsselungsmethodik\">Cipher Suites)</a> unterstützt. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
   //
-  // HAS_SOURCES
-  'HAS_SOURCES'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sources\n",
-  'HAS_SOURCES_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a> erkannt.\n",
-  'HAS_SOURCES_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet (Sources)\n",
-  'HAS_SOURCES_ERROR_DESC' => "<p>Bei der Überprüfung wurde mindestens eine Schwachstelle auf der Webseite gefunden, die von einer externen, möglicherweise nicht vertrauenswürdigen Quelle gesteuert werden könnte.\n</p>",
-  'HAS_SOURCES_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
+  // EXPIRED
+  'EXPIRED'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> ist am %DATE% abgelaufen. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
   //
-  // SINKS
-  'SINKS'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sinks\n",
-  'SINKS_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a> erkannt.\n",
-  'SINKS_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">DOMXSS-Sinks</a>.\n",
-  'SINKS_ERROR_DESC' => "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n</p>",
-  'SINKS_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
-  'SINKS_LINK'       => "https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE",
+  // EXPORT_SUITES
+  'EXPORT_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass sich vorsätzlich geschwächte kryptographische Funktionen (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Cipher_Suite\" title=\"Cipher Suite\">Cipher Suites</a>) nutzen lassen. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle-Attacken</a>.\n",
   //
-  // SOURCES
-  'SOURCES'            => "Überprüfung des JavaScript-Codes nach DOMXSS-Sources\n",
-  'SOURCES_SUCCESS'    => "Automatisiert wurden keine unsicheren Codebestandteile für <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources</a> erkannt.\n",
-  'SOURCES_ERROR'      => "Unsicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/JavaScript\" title=\"JavaScript\">JavaScript</a>-Code verwendet (Sources).\n",
-  'SOURCES_ERROR_DESC' => "<p>Bei der Überprüfung wurde mindestens eine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstelle</a> auf der Webseite gefunden, die von einer externen, möglicherweise nicht vertrauenswürdigen Quelle gesteuert werden könnte.\n</p>",
-  'SOURCES_TIPS'       => "<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schwachstellen\" title=\"Schwachstellen\">Schwachstellen</a> auf der Webseite zu bestätigen.\n</p>",
-  'SOURCES_LINK'       => "https://siwecos.de/wiki/Schadcode-Ueber-Fremde-Quellen/DE",
+  // HASH_ALGO
+  'HASH_ALGO'            => "Ihr Server-Zertifikat nutzt den schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> %HASH%. Das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> kann so sehr einfach gefälscht werden. Eine Warnung beim Aufruf Ihrer Webseite erfolgt infolge eines schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> jedoch nicht.\n",
   //
-  // Category: Zertifikate
+  // HEARTBLEED_VULNERABLE
+  'HEARTBLEED_VULNERABLE'            => "Überprüfung auf die Heartbleed Schwachstelle <span class=\"promarker\"></span>\n",
+  'HEARTBLEED_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>\n",
+  'HEARTBLEED_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>\n",
+  'HEARTBLEED_VULNERABLE_ERROR_DESC' => "<p>Der Server ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE/Background\" title=\"Heartbleed-Schwachstelle/DE/Background\">Heartbleed</a>. Dadurch kann ein Angreifer sensible Daten aus dem Arbeitsspeicher des Servers auslesen, wie z. B. geheime Schlüssel und Kundendaten.\n</p>",
+  'HEARTBLEED_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
+  'HEARTBLEED_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Heartbleed-Schwachstelle/DE",
   //
-  // CERTIFICATE_EXPIRED
-  'CERTIFICATE_EXPIRED'            => "Überprüfung der Zertifikat Laufzeit\n",
-  'CERTIFICATE_EXPIRED_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> nicht abgelaufen\n",
-  'CERTIFICATE_EXPIRED_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> abgelaufen\n",
-  'CERTIFICATE_EXPIRED_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> abgelaufen ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt. Sollte ein Nutzer Ihre Webseite über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt, z. B. \"Ihr Zertifikat ist am (Datum) abgelaufen\".\n</p>",
-  'CERTIFICATE_EXPIRED_TIPS'       => "<p>Dieses Problem lässt sich lösen, indem Sie das eingesetzte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> erneuern. Wie Sie Zertifikate verlängern können, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Was_tun.2C_wenn_ein_SSL-Zertifikat_abgelaufen_ist.3F\" title=\"Zertifikate\">Zertifikat abgelaufen</a>.\n</p>",
-  'CERTIFICATE_EXPIRED_LINK'       => "https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE",
+  // HTTPS_NOT_SUPPORTED
+  'HTTPS_NOT_SUPPORTED'            => "Überprüfung der Reaktionszeit des HTTPS-Headers\n",
+  'HTTPS_NOT_SUPPORTED_SUCCESS'    => "Server unterstützt <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a>.\n",
+  'HTTPS_NOT_SUPPORTED_ERROR'      => "Server scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen.\n",
+  'HTTPS_NOT_SUPPORTED_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> scheint kein TLS (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">Transportschichtsicherheit</a>) zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n</p>",
+  'HTTPS_NOT_SUPPORTED_TIPS'       => "<p>Aktivieren Sie TLS (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">Transportschichtsicherheit</a>)\n</p>",
+  'HTTPS_NOT_SUPPORTED_LINK'       => "https://siwecos.de/wiki/Keine-TLS-Unterstuetzung/DE",
   //
-  // CERTIFICATE_NOT_SENT_BY_SERVER
-  'CERTIFICATE_NOT_SENT_BY_SERVER'            => "Überprüfung der Zertifikatsübermittlung\n",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_SUCCESS'    => "Server sendet ein Zertifikat\n",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR'      => "Server sendet kein Zertifikat\n",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> hat kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> gesendet. Dies ist ungewöhnlich und sollte nicht vorkommen. Der Server sollte seine <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Konfiguration</a> überprüfen und ggfs. <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Schluesselaustauschverfahren/DE\" title=\"Schluesselaustauschverfahren/DE\">anonyme Cipher Suites</a> ausschalten.\n</p>",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_TIPS'       => "<p>Aktualisieren Sie dringend die von Ihnen eingesetzte <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a>. Moderne Software erlaubt diese Art der Konfiguration nicht mehr.\n</p>",
-  'CERTIFICATE_NOT_SENT_BY_SERVER_LINK'       => "https://siwecos.de/wiki/Zertifikat-Nicht-Gesendet/DE",
+  // HTTPS_NO_RESPONSE
+  'HTTPS_NO_RESPONSE'            => "Überprüfung der Reaktionszeit des Headers\n",
+  'HTTPS_NO_RESPONSE_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> antwortet.\n",
+  'HTTPS_NO_RESPONSE_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> antwortet nicht.\n",
+  'HTTPS_NO_RESPONSE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> scheint überhaupt nicht zu antworten. Haben sie die <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Domain\" title=\"Domain\">Domain</a> richtig eingegeben?\n</p>",
+  'HTTPS_NO_RESPONSE_TIPS'       => "<p>Bitte überprüfen Sie Ihre Eingabe auf Eingabefehler.\n</p>",
+  'HTTPS_NO_RESPONSE_LINK'       => "https://siwecos.de/wiki/Reaktionszeit-Ueberschritten/DE",
   //
-  // CERTIFICATE_NOT_VALID_YET
-  'CERTIFICATE_NOT_VALID_YET'            => "Überprüfung der Zertifikat Gültigkeit\n",
-  'CERTIFICATE_NOT_VALID_YET_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> ist schon gültig\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR'      => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> noch nicht gültig\n",
-  'CERTIFICATE_NOT_VALID_YET_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> noch nicht gültig ist. Ihre Webseite wird Besuchern als unsicher bzw. nicht vertrauenswürdig angezeigt. Sollte ein Nutzer Ihre Webseite über <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a> aufrufen, wird ihm möglicherweise eine Fehlermeldung angezeigt.\n</p>",
-  'CERTIFICATE_NOT_VALID_YET_TIPS'       => "<p>Deaktivieren Sie das <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> solange es <b>noch nicht</b> gültig ist. Ihre Webseite ist dann zwar nicht zertifiziert, jedoch erhalten Besucher zumindest keine Warnmeldung beim Aufruf Ihrer Webseite. Alternativ bietet sich die Möglichkeit an, Ihr altes <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> einzusetzen, so lange dies noch gültig ist. Wie Sie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikate</a> verlängern können, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikat-Abgelaufen/DE\" title=\"Zertifikat-Abgelaufen/DE\">Zertifikat abgelaufen</a>.\n</p>",
-  'CERTIFICATE_NOT_VALID_YET_LINK'       => "https://siwecos.de/wiki/Zertifikat-Nicht-Gueltig/DE",
+  // HTTPS_RESPONSE
+  'HTTPS_RESPONSE'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ antwortet nicht auf verschlüsselte HTTP (<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/HTTPS\" title=\"HTTPS\">HTTPS</a>) Anfragen.\n",
   //
-  // CERTIFICATE_WEAK_HASH_FUNCTION
-  'CERTIFICATE_WEAK_HASH_FUNCTION'            => "Überprüfung der Verschlüsselungsstärke des Zertifikats\n",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_SUCCESS'    => "Starker <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a>\n",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR'      => "Schwacher <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a>\n",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_ERROR_DESC' => "<p>Die Meldung bedeutet, dass Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Server-Zertifikat</a> einen schwachen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Algorithmus</a> (Verschlüsselung) besitzt. Es stellt möglicherweise ein leichtes Ziel für Hacker-Angriffe dar.\n</p>",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_TIPS'       => "<p>Um dieses Problem zu lösen, sollten Sie ein neues <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> mit einer sicheren <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Hashing\" title=\"Hashing\">Hash-Funktion</a>, also einer starken Verschlüsselung installieren. Wie Sie ein sicheres <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> bekommen, lesen Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate#Wie_wird_ein_SSL-Zertifikat_installiert.3F\" title=\"Zertifikate\">Zertifikat installieren</a>.\n</p>",
-  'CERTIFICATE_WEAK_HASH_FUNCTION_LINK'       => "https://siwecos.de/wiki/Schwache-Verschluesselung/DE",
+  // HTTPS_SUPPORTED
+  'HTTPS_SUPPORTED'            => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> “%HOST%“ scheint kein <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a> zu unterstützen. Dies bedeutet, dass Sie keinerlei Verschlüsselung einsetzen, um Ihre Daten und die Ihrer Kunden zu schützen.\n",
   //
-  // CERTIFICATE_WEAK_SIGN_ALGO
-  'CERTIFICATE_WEAK_SIGN_ALGO'            => "Überprüfung der Zertifikat Verschlüsselung\n",
+  // INVALID_CURVE_EPHEMERAL_VULNERABLE
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE'            => "Überprüfung auf die Ephemeral Invalid Curve Schwachstelle <span class=\"promarker\"></span>\n",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a> Angriffe.\n",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a> Angriffe.\n",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Ephemeral-Schwachstelle/DE/Background\">Ephemeral Invalid Curve Angriff</a>. Dadurch kann ein Angreifer die Verbindungen angreifen.\n</p>",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
+  'INVALID_CURVE_EPHEMERAL_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Ephemeral-Schwachstelle/DE",
   //
-  // CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS
-  'CERTIFICATE_WEAK_SIGN_ALGO_SUCCESS'            => "Überprüfung der Zertifikat Verschlüsselung\n",
+  // INVALID_CURVE_VULNERABLE
+  'INVALID_CURVE_VULNERABLE'            => "Überprüfung auf die Invalid Curve Schwachstelle <span class=\"promarker\"></span>\n",
+  'INVALID_CURVE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Schwachstelle/DE/Background\">Invalid Curve Angriffe</a>.\n",
+  'INVALID_CURVE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE/Background\" title=\"Invalid-Curve-Schwachstelle/DE/Background\">Invalid Curve Angriffe</a>.\n",
+  'INVALID_CURVE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.golem.de/news/verschluesselung-punkte-auf-der-falschen-elliptischen-kurve-1511-117643.html\">Invalid Curve Angriff</a>. Dadurch kann ein Angreifer den geheimen Schlüssel Ihres <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikats</a> stehlen.\n</p>",
+  'INVALID_CURVE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
+  'INVALID_CURVE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Invalid-Curve-Schwachstelle/DE",
+  //
+  // NOT_YET_VALID
+  'NOT_YET_VALID'            => "Ihr <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Zertifikate\" title=\"Zertifikate\">Zertifikat</a> wird erst am %DATE% gültig. Ihre Webseite wird Besuchern bis dahin als unsicher bzw. nicht vertrauenswürdig angezeigt.\n",
+  //
+  // NULL_SUITES
+  'NULL_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass zugelassen wird, dass unverschlüsselt über einen eigentlich geschützten Kanal Daten übertragen werden können. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
+  // PADDING_ORACLE_VULNERABLE
+  'PADDING_ORACLE_VULNERABLE'            => "Überprüfung auf die Padding-Oracle Schwachstelle <span class=\"promarker\"></span>\n",
+  'PADDING_ORACLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE/Background\" title=\"PADDING-ORACLE-Schwachstelle/DE/Background\">Padding</a> Oracle Angriffe.\n",
+  'PADDING_ORACLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE/Background\" title=\"PADDING-ORACLE-Schwachstelle/DE/Background\">Padding Oracle Angriffe</a>.\n",
+  'PADDING_ORACLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.heise.de/security/artikel/Poodle-So-funktioniert-der-Angriff-auf-die-Verschluesselung-2425250.html\">Padding-Oracle Angriff</a>, welcher es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
+  'PADDING_ORACLE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein.\n</p>",
+  'PADDING_ORACLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/PADDING-ORACLE-Schwachstelle/DE",
+  //
+  // POODLE_VULNERABLE
+  'POODLE_VULNERABLE'            => "Überprüfung auf die Poodle Schwachstelle\n",
+  'POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE</a>\n",
+  'POODLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE</a>\n",
+  'POODLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch einen <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Poodle\" title=\"Poodle\">POODLE-Angriff</a>, welcher es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
+  'POODLE_VULNERABLE_TIPS'       => "<p>Deaktivieren Sie umgehend das veraltete Verschlüsselungsprotokoll <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> auf Ihrem Server!\n</p>",
+  'POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/POODLE-Schwachstelle/DE",
+  //
+  // PROTOCOLVERSION_SSL2
+  'PROTOCOLVERSION_SSL2'            => "Überprüfung auf veraltetes SSL2 Protokoll\n",
+  'PROTOCOLVERSION_SSL2_SUCCESS'    => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> wird nicht unterstützt.\n",
+  'PROTOCOLVERSION_SSL2_ERROR'      => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> wird unterstützt.\n",
+  'PROTOCOLVERSION_SSL2_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a>, welche als höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die Sicherheit des ganzen Servers und möglicherweise Ihres gesamten Unternehmensnetzwerks.\n</p>",
+  'PROTOCOLVERSION_SSL2_TIPS'       => "<p><a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Verschlüsselung</a> gilt heute als Standard. Sie sollten deshalb auf den Einsatz von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL2</a> verzichten. Weitere Informationen finden Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL</a>.\n</p>",
+  'PROTOCOLVERSION_SSL2_LINK'       => "https://siwecos.de/wiki/Veraltete-Protokollversion-SSL2/DE",
+  //
+  // PROTOCOLVERSION_SSL3
+  'PROTOCOLVERSION_SSL3'            => "Überprüfung auf veraltetes SSL3 Protokoll\n",
+  'PROTOCOLVERSION_SSL3_SUCCESS'    => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> wird nicht unterstützt.\n",
+  'PROTOCOLVERSION_SSL3_ERROR'      => "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> wird unterstützt.\n",
+  'PROTOCOLVERSION_SSL3_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a>, welche als höchst unsicher gilt. Sie gefährden mit dem Einsatz der Version massiv die Sicherheit des ganzen Servers und möglicherweise Ihres gesamten Unternehmensnetzwerks.\n</p>",
+  'PROTOCOLVERSION_SSL3_TIPS'       => "<p><a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Verschlüsselung</a> gilt heute als Standard. Sie sollten deshalb auf den Einsatz von <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL3</a> verzichten. Weitere Informationen finden Sie hier: <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSL</a>.\n</p>",
+  'PROTOCOLVERSION_SSL3_LINK'       => "https://siwecos.de/wiki/Veraltete-Protokollversion-SSL3/DE",
+  //
+  // PROTOCOLVERSION_TLS13
+  'PROTOCOLVERSION_TLS13'            => "Überprüfung auf Einsatz des <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokolls</a>\n",
+  'PROTOCOLVERSION_TLS13_SUCCESS'    => "<a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokoll</a> wird nicht unterstützt.\n",
+  'PROTOCOLVERSION_TLS13_ERROR'      => "Modernes <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokoll</a> wird unterstützt.\n",
+  'PROTOCOLVERSION_TLS13_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> unterstützt die neueste <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Protokollversion 1.3</a>. Diese befindet sich noch im Standardisierungsprozess. Sollten Sie nicht wissen, was dies bedeutet, können Sie die Version ausschalten, da die meisten Browser diese Version noch nicht unterstützen und TLS 1.3 sich noch in der Entwicklung befindet.\n</p>",
+  'PROTOCOLVERSION_TLS13_TIPS'       => "<p>Es besteht kein Handlungsbedarf.\n</p>",
+  'PROTOCOLVERSION_TLS13_LINK'       => "https://siwecos.de/wiki/Protokollversion-TLS13-Gefunden/DE",
+  //
+  // RC4_SUITES
+  'RC4_SUITES'            => "Ihr Webserver/Ihre Webseite ist so konfiguriert, dass die mittlerweile als unsicher geltende Verschlüsselungsfunktion <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/RC4_Verschl%C3%BCsselungsmethodik\" title=\"RC4 Verschlüsselungsmethodik\">RC4</a> weiterhin unterstützt wird. Dies ermöglicht <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Man-in-the-middle\" title=\"Man-in-the-middle\">Man-in-the-middle Attacken</a>.\n",
+  //
+  // SWEET32_VULNERABLE
+  'SWEET32_VULNERABLE'            => "Überprüfung auf Sweet32 Schwachstelle\n",
+  'SWEET32_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>.\n",
+  'SWEET32_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>.\n",
+  'SWEET32_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Sweet32-Schwachstelle/DE/Background\" title=\"Sweet32-Schwachstelle/DE/Background\">Sweet32</a>, welche es einem Angreifer erlaubt, Teile der Kommunikation zu entschlüsseln, falls über eine Verbindung große Mengen Daten transferiert werden.\n</p>",
+  'SWEET32_VULNERABLE_TIPS'       => "<p>Wo es möglich ist, sollte man am besten ganz auf Triple-DES und Blowfish verzichten. Deaktivieren Sie <a target=\"siwecos_extern\" rel=\"nofollow\" class=\"external text\" href=\"https://www.itwissen.info/Blockchiffre-block-cipher.html\">Blockchiffren</a> mit einer Länge von 64 Bit. Vergewissern Sie sich, das Protokolle wie <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSLv2</a> und <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/SSL\" title=\"SSL\">SSLv3</a> deaktiviert sind.\n</p>",
+  'SWEET32_VULNERABLE_LINK'       => "https://siwecos.de/wiki/Sweet32-Schwachstelle/DE",
+  //
+  // TLS_POODLE_VULNERABLE
+  'TLS_POODLE_VULNERABLE'            => "Überprüfung auf die TLS-POODLE Schwachstelle\n",
+  'TLS_POODLE_VULNERABLE_SUCCESS'    => "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE\" title=\"TLS-POODLE-Schwachstelle/DE\">TLS-POODLE</a>.\n",
+  'TLS_POODLE_VULNERABLE_ERROR'      => "Verwundbar durch <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE\" title=\"TLS-POODLE-Schwachstelle/DE\">TLS-POODLE</a>.\n",
+  'TLS_POODLE_VULNERABLE_ERROR_DESC' => "<p>Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ist verwundbar durch eine Variante des Poodle-Angriffs auf <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS</a>, was es einem Angreifer erlaubt, die Kommunikation zu entschlüsseln.\n</p>",
+  'TLS_POODLE_VULNERABLE_TIPS'       => "<p>Spielen Sie umgehend ein Update für Ihre <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Implementierung</a> auf Ihrem <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Server\" title=\"Server\">Server</a> ein. In der Apache-Konfiguration kann man etwa die Zeile \"SSLProtocol All -SSLv2 -SSLv3\" angeben.\n</p>",
+  'TLS_POODLE_VULNERABLE_LINK'       => "https://siwecos.de/wiki/TLS-POODLE-Schwachstelle/DE",
 
 ];
