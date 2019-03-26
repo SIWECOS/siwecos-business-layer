@@ -7,6 +7,9 @@ use App\Token;
 use App\Http\Responses\StatusResponse;
 use App\Http\Requests\ScanStartRequest;
 use App\Jobs\StartScanJob;
+use App\Domain;
+use App\Http\Responses\ScanStartedResponse;
+use App\Scan;
 
 class ScanController extends Controller
 {
@@ -20,11 +23,33 @@ class ScanController extends Controller
                 'is_freescan' => false,
                 'is_recurrent' => false
             ]);
-            $this->dispatch(new StartScanJob($scan));
 
-            return response()->json(new StatusResponse('Job dispatched'));
+            StartScanJob::dispatch($scan);
+
+            return response()->json(new ScanStartedResponse($scan));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function startFreescan(ScanStartRequest $request)
+    {
+        $domain = Domain::whereUrl($request->json('url'))->first();
+
+        // Domain existiert nicht
+        if (!$domain) {
+            $domain = Token::create([
+                'type' => 'freescan',
+                'credits' => 5
+            ])->domains()->create(['url' => $request->json('url')]);
+        }
+
+        $scan = $domain->scans()->create([
+            'is_freescan' => true
+        ]);
+
+        StartScanJob::dispatch(Scan::latest()->first());
+
+        return response()->json(new ScanStartedResponse($scan));
     }
 }

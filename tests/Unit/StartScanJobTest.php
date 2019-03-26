@@ -12,6 +12,7 @@ use App\Scan;
 use TiMacDonald\Log\LogFake;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use App\Token;
 
 class StartScanJobTest extends TestCase
 {
@@ -52,11 +53,12 @@ class StartScanJobTest extends TestCase
     public function when_the_scanJob_was_sent_to_the_coreApi_the_scan_gets_the_startetAt_value()
     {
         $scan = $this->getGeneratedScan(['is_freescan' => false]);
-        $job = new StartScanJob($scan, $this->getMockedHttpClient([
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
             new Response(200)
         ]));
 
-        $job->handle();
         $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->started_at);
     }
 
@@ -66,16 +68,62 @@ class StartScanJobTest extends TestCase
         Log::swap(new LogFake);
 
         $scan = $this->getGeneratedScan(['is_freescan' => false]);
-        $job = new StartScanJob($scan, $this->getMockedHttpClient([
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
             new Response(500)
         ]));
-
-        $job->handle();
 
         $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at);
         $this->assertTrue(Scan::first()->has_error);
         Log::assertLogged('critical', function ($message, $context) {
             return Str::contains($message, "Failed to start scan for scan id:");
         });
+    }
+
+    /** @test */
+    public function when_a_scan_was_started_the_token_credits_get_reduced_by_1()
+    {
+        $scan = $this->getGeneratedScan();
+        $job = new StartScanJob($scan);
+
+        $tokensBeforeScan = Token::first()->credits;
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(200)
+        ]));
+
+        $this->assertEquals($tokensBeforeScan - 1, Scan::first()->token->credits);
+    }
+
+    /** @test */
+    public function in_case_of_failure_the_token_credits_get_not_reduced()
+    {
+        $scan = $this->getGeneratedScan();
+        $job = new StartScanJob($scan);
+
+        $tokensBeforeScan = Token::first()->credits;
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(404)
+        ]));
+
+        $this->assertEquals($tokensBeforeScan, Scan::first()->token->credits);
+    }
+
+    /** @test */
+    public function when_a_freescan_was_started_for_an_already_registered_domain_the_credits_of_the_domain_owners_token_will_not_be_reduced()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $scan = $domain->scans()->create(['is_freescan' => true]);
+        $job = new StartScanJob($scan);
+
+        $tokensBeforeScan = Token::first()->credits;
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(200)
+        ]));
+
+        $this->assertEquals($tokensBeforeScan, Scan::first()->token->credits);
     }
 }

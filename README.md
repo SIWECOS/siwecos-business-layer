@@ -16,3 +16,12 @@ Make sure you first bild the image and than run the `docker run` command in the 
 ### Testing via Postman
 
 The `BLA.postman_collection.json` file can be loaded via [Postman](https://www.getpostman.com/) to test the API manually and see the examples.
+
+
+### Error logs
+
+The app generates the following logs in case of errors or failures.
+
+| Type       | Message                                  | Source         |
+| ---------- | ---------------------------------------- | -------------- |
+| `critical` | Failed to start scan for scan id: `{ID}` | `ScanStartJob` |

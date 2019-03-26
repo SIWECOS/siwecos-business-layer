@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Keygen\Keygen;
 
 class Domain extends Model
 {
@@ -17,6 +18,13 @@ class Domain extends Model
     ];
 
     protected $appends = ['domain'];
+
+    public function __construct(array $attributes = [])
+    {
+        $this->verification_token = Keygen::alphanum(64)->generate();
+
+        parent::__construct($attributes);
+    }
 
     /**
      * Returns the Eloquent Relationship for App\Token

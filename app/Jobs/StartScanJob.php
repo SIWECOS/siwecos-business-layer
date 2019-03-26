@@ -17,7 +17,6 @@ class StartScanJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $scan;
-    public $client;
     public $danger_level;
 
     /**
@@ -30,11 +29,9 @@ class StartScanJob implements ShouldQueue
       *
       * @return void
       */
-    public function __construct(Scan $scan, HTTPClient $client = null)
+    public function __construct(Scan $scan)
     {
         $this->scan = $scan;
-        $this->client = $client ?: new HTTPClient();
-
         $this->danger_level = $scan->is_freescan ? 0 : 10;
     }
 
@@ -43,9 +40,9 @@ class StartScanJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(HTTPClient $client)
     {
-        $response = $this->client->json('POST', config('app.coreApiUrl'), [
+        $response = $client->post(config('app.coreApiUrl'), [
             'url' => $this->scan->domain->url,
             'dangerLevel' => $this->danger_level,
             'callbackurls' => [
@@ -55,6 +52,10 @@ class StartScanJob implements ShouldQueue
 
         if ($response->getStatusCode() === 200) {
             $this->scan->update(['started_at' => Carbon::now()]);
+
+            if (!$this->scan->domain->is_verified) {
+                $this->scan->token->reduceCredits();
+            }
         } else {
             Log::critical('Failed to start scan for scan id: ' . $this->scan->id);
             $this->scan->update([

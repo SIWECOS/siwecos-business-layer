@@ -39,6 +39,8 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::post('/domain/verify', 'DomainController@verify');
+
+    Route::post('/freescan', 'ScanController@startFreescan');
 });
 
 Route::prefix('v1')->group(function () {

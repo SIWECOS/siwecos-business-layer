@@ -21,27 +21,6 @@ class SiwecosScanController extends Controller
     public $coreApi;
     public $currentDomain;
 
-
-    public function CreateNewScan(Request $request)
-    {
-        $userToken = $request->header('userToken');
-        $tokenUser = User::where('token', $userToken)->first();
-        if ($tokenUser instanceof User) {
-            $response = $this->coreApi->CreateScan($userToken, $request->domain, $request->dangerLevel);
-
-            if ($response instanceof RequestException) {
-                $responseText = json_decode($response->getResponse()->getBody());
-
-                throw new HttpResponseException(response()->json($responseText, $response->getCode()));
-            }
-
-            return $response;
-        }
-
-        return response('User not Found', 404);
-    }
-
-
     public function GetScanResultById(int $id, string $lang = 'de')
     {
         //Validation if free scan
@@ -244,7 +223,7 @@ class SiwecosScanController extends Controller
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
             'score_y' => -sin($deg - $origin) * $radius,
-            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0 ),
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0),
             'big_arc' => $deg > pi() ? 1 : 0,
         ];
     }
