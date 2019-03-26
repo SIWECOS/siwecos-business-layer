@@ -9,6 +9,8 @@ use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
 use App\Domain;
 use App\User;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\StartScanJob;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
@@ -34,7 +36,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'domainToken' => Domain::first()->verification_token
         ]);
     }
-
 
     /** @test */
     public function a_domain_can_be_verified()
@@ -117,6 +118,29 @@ class LegacyApiV1CompatibilityTest extends TestCase
                     'domainToken' => $domain2->verification_token
                 ]
             ]
+        ]);
+    }
+
+    /** @test */
+    public function a_scan_can_be_started()
+    {
+        Queue::fake();
+
+        $user = factory(User::class)->create();
+        $domain = $user->token->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
+
+        $response = $this->json('POST', '/api/v1/scan/start', [
+            'domain' => $domain->url
+        ], ['userToken' => $user->token->token]);
+
+        $response->assertStatus(200);
+        Queue::assertPushed(StartScanJob::class);
+        $response->assertExactJson([
+            'message' => '',
+            'hasFailed' => false,
+            'id' => 1,
+            'status' => 2,
+            'progress' => 0
         ]);
     }
 }

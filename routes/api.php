@@ -4,6 +4,7 @@ use App\Http\Middleware\MapDomainCreatedResponseForLegacyApi;
 use App\Http\Middleware\MapDomainDeletedResponseForLegacyApi;
 use App\Http\Middleware\MapDomainListResponseForLegacyApi;
 use App\Http\Middleware\MapDomainVerifiedResponseForLegacyApi;
+use App\Http\Middleware\MapScanStartedResponseForLegacyApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +54,11 @@ Route::prefix('v1')->group(function () {
         Route::post('/domains/addNewDomain', 'DomainController@create')->middleware(MapDomainCreatedResponseForLegacyApi::class);
         Route::post('/domains/deleteDomain', 'DomainController@delete')->middleware(MapDomainDeletedResponseForLegacyApi::class);
         Route::post('/domains/listDomains', 'DomainController@list')->middleware(MapDomainListResponseForLegacyApi::class);
-    });
-    // Not implemented yet
 
-    // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
+        Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
+    });
+
+
     // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
 
     // old - to be removed
@@ -70,12 +72,12 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
-    Route::middleware(['usertoken'])->group(function () {
+    // Route::middleware(['usertoken'])->group(function () {
 
-        Route::middleware(['activation'])->group(function () {
-            Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
-            Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
-            Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
-        });
-    });
+    // Route::middleware(['activation'])->group(function () {
+    // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
+    Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
+    Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
+    // });
+    // });
 });
