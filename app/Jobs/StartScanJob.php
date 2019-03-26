@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\HTTPClient;
 use App\Scan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class StartScanJob implements ShouldQueue
 {
@@ -55,7 +56,7 @@ class StartScanJob implements ShouldQueue
         if ($response->getStatusCode() === 200) {
             $this->scan->update(['started_at' => Carbon::now()]);
         } else {
-            // Log critical
+            Log::critical('Failed to start scan for scan id: ' . $this->scan->id);
             $this->scan->update([
                 'has_error' => true,
                 'finished_at' => Carbon::now()

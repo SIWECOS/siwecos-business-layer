@@ -9,6 +9,9 @@ use App\Jobs\StartScanJob;
 use GuzzleHttp\Psr7\Response;
 use Carbon\Carbon;
 use App\Scan;
+use TiMacDonald\Log\LogFake;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class StartScanJobTest extends TestCase
 {
@@ -60,6 +63,8 @@ class StartScanJobTest extends TestCase
     /** @test */
     public function when_the_scanJob_could_not_be_received_by_coreApi_the_scan_saves_the_error_and_is_marked_as_finished()
     {
+        Log::swap(new LogFake);
+
         $scan = $this->getGeneratedScan(['is_freescan' => false]);
         $job = new StartScanJob($scan, $this->getMockedHttpClient([
             new Response(500)
@@ -69,6 +74,8 @@ class StartScanJobTest extends TestCase
 
         $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at);
         $this->assertTrue(Scan::first()->has_error);
-        // assert Critical logged
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Failed to start scan for scan id:");
+        });
     }
 }
