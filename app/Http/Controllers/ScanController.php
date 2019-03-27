@@ -54,7 +54,7 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function status(Request $request, Scan $scan)
+    public function status(Scan $scan)
     {
         return response()->json(new ScanStatusResponse($scan));
     }
