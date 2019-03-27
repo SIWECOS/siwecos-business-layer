@@ -10,7 +10,7 @@ use App\Jobs\StartScanJob;
 use App\Domain;
 use App\Http\Responses\ScanStartedResponse;
 use App\Scan;
-use App\Http\Responses\ScanNotFinishedResponse;
+use App\Http\Responses\ScanStatusResponse;
 
 class ScanController extends Controller
 {
@@ -54,8 +54,8 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function result(Request $request, Scan $scan)
+    public function status(Request $request, Scan $scan)
     {
-        return $scan;
+        return response()->json(new ScanStatusResponse($scan));
     }
 }

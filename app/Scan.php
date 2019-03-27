@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Scan extends Model
 {
@@ -51,6 +52,7 @@ class Scan extends Model
     public function setResultsAttribute($results)
     {
         $this->attributes['results'] = $results;
+        $this->attributes['finished_at'] = Carbon::now();
         $this->attributes['score'] = $this->calculateScore();
     }
 
