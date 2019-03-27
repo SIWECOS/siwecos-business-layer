@@ -10,6 +10,7 @@ use App\Jobs\StartScanJob;
 use App\Domain;
 use App\Http\Responses\ScanStartedResponse;
 use App\Scan;
+use App\Http\Responses\ScanNotFinishedResponse;
 
 class ScanController extends Controller
 {
@@ -51,5 +52,10 @@ class ScanController extends Controller
         StartScanJob::dispatch(Scan::latest()->first());
 
         return response()->json(new ScanStartedResponse($scan));
+    }
+
+    public function result(Request $request, Scan $scan)
+    {
+        return $scan;
     }
 }

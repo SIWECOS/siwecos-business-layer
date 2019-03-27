@@ -11,6 +11,8 @@ class Scan extends Model
     protected $casts = [
         'is_finished' => 'boolean',
         'has_error' => 'boolean',
+        'is_freescan' => 'boolean',
+        'is_recurrent' => 'boolean',
         'score' => 'integer',
     ];
 
@@ -18,7 +20,11 @@ class Scan extends Model
         'started_at', 'finished_at'
     ];
 
-    protected $guarded = ['score'];
+    protected $guarded = ['score', 'is_finished', 'status'];
+
+    protected $hidden = ['id', 'domain_id'];
+
+    protected $appends = ['is_finished', 'status'];
 
     /**
      * Returns the status if the scan is finished.
@@ -27,7 +33,19 @@ class Scan extends Model
      */
     public function getIsFinishedAttribute()
     {
-        return $this->results ? true : false;
+        return $this->finished_at !== null;
+    }
+
+    public function getStatusAttribute()
+    {
+        if ($this->has_error)
+            return 'failed';
+        if ($this->is_finished)
+            return 'finished';
+        if ($this->started_at)
+            return 'running';
+
+        return 'created';
     }
 
     public function setResultsAttribute($results)

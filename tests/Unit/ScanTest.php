@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Scan;
 use App\Domain;
+use function GuzzleHttp\json_encode;
 
 class ScanTest extends TestCase
 {
@@ -101,5 +102,21 @@ class ScanTest extends TestCase
         $scan = $this->getGeneratedScan();
 
         $this->assertNull($scan->started_at);
+    }
+
+    /** @test */
+    public function a_scan_knows_his_status()
+    {
+        $scan = $this->getGeneratedScan(['has_error' => true]);
+        $this->assertEquals('failed', $scan->status);
+
+        $scan = $this->getGeneratedScan();
+        $this->assertEquals('created', $scan->status);
+
+        $scan = $this->getStartedScan();
+        $this->assertEquals('running', $scan->status);
+
+        $scan = $this->getStartedScan(['results' => file_get_contents(base_path('tests/sampleScanResults.json'))]);
+        $this->assertEquals('finished', $scan->status);
     }
 }

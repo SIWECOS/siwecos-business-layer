@@ -19,6 +19,7 @@ use App\Http\Middleware\MapScanStartedResponseForLegacyApi;
 
 Route::prefix('v2')->group(function () {
 
+    // User
     Route::post('/user', 'UserController@create');
     Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
     Route::post('/user/activate/resend', 'UserController@resendActivationMail');
@@ -31,16 +32,19 @@ Route::prefix('v2')->group(function () {
         Route::delete('/user', 'UserController@delete');
     });
 
+    // Domain
     Route::middleware(['siwecosToken'])->group(function () {
         Route::get('/domain', 'DomainController@list');
         Route::post('/domain', 'DomainController@create');
         Route::delete('/domain', 'DomainController@delete');
-
-        Route::post('/scan', 'ScanController@start');
     });
-
     Route::post('/domain/verify', 'DomainController@verify');
 
+    // Scan
+    Route::middleware(['siwecosToken'])->group(function () {
+        Route::post('/scan', 'ScanController@start');
+    });
+    Route::get('/scan/{scan}', 'ScanController@result');
     Route::post('/freescan', 'ScanController@startFreescan');
 });
 
@@ -64,20 +68,20 @@ Route::prefix('v1')->group(function () {
     // old - to be removed
 
 
-    Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
-    Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
+    // Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
+    // Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
-    Route::post('/report', 'SiwecosScanController@generateReport');
-    Route::post('/pdf', 'SiwecosScanController@generatePdf');
+    // Route::post('/report', 'SiwecosScanController@generateReport');
+    // Route::post('/pdf', 'SiwecosScanController@generatePdf');
 
     Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
 
-    // Route::middleware(['usertoken'])->group(function () {
+    // // Route::middleware(['usertoken'])->group(function () {
 
-    // Route::middleware(['activation'])->group(function () {
-    // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
-    Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
-    Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
+    // // Route::middleware(['activation'])->group(function () {
+    // // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
+    // Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
+    // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
     // });
     // });
 });

@@ -2,9 +2,7 @@
 
 namespace Tests;
 
-use App\CoreAPI;
 use App\User;
-use Artisan;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
@@ -12,6 +10,8 @@ use App\Token;
 use App\Domain;
 use App\HTTPClient;
 use App\Scan;
+use App\Jobs\StartScanJob;
+use GuzzleHttp\Psr7\Response;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -46,10 +46,46 @@ abstract class TestCase extends BaseTestCase
      * @param array $attributes
      * @return Scan
      */
-    protected function getGeneratedScan($attributes = [])
+    protected function getGeneratedScan($scanAttributes = [], $domainAttributes = [])
     {
-        $domain = $this->getRegisteredDomain();
-        return $domain->scans()->create(factory(Scan::class)->make($attributes)->toArray());
+        $domain = Domain::first() ?: $this->getRegisteredDomain($domainAttributes);
+        return $domain->scans()->create(factory(Scan::class)->make($scanAttributes)->toArray());
+    }
+
+    /**
+     * Returns a generated and started scan
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getStartedScan($attributes = [])
+    {
+        $scan = $this->getGeneratedScan($attributes);
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(200)
+        ]));
+
+        return $scan;
+    }
+
+    /**
+     * Returns a generated and scan that could not be started
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getFailedScan($attributes = [])
+    {
+        $scan = $this->getGeneratedScan($attributes);
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(500)
+        ]));
+
+        return $scan;
     }
 
     /**
