@@ -88,6 +88,15 @@ abstract class TestCase extends BaseTestCase
         return $scan;
     }
 
+    protected function getFinishedScan($attributes = [])
+    {
+        $scan = $this->getStartedScan();
+        $scan->results = file_get_contents(base_path('tests/sampleFreeScanResults.json'));
+        $scan->save();
+
+        return $scan;
+    }
+
     /**
      * Returns a mocked HTTP-Client for testing purposes.
      *

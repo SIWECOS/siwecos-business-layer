@@ -40,7 +40,7 @@ class ScanTest extends TestCase
         $this->assertFalse(Scan::find(1)->is_finished);
 
         $domain->scans()->create(factory(Scan::class)->make([
-            'results' =>  file_get_contents(base_path('tests/sampleScanResults.json'))
+            'results' =>  file_get_contents(base_path('tests/sampleFreeScanResults.json'))
         ])->toArray());
 
         $this->assertTrue(Scan::find(2)->is_finished);
@@ -64,7 +64,7 @@ class ScanTest extends TestCase
     /** @test */
     public function the_results_field_is_saved_as_json()
     {
-        $this->getGeneratedScan(['results' =>  file_get_contents(base_path('tests/sampleScanResults.json'))]);
+        $this->getGeneratedScan(['results' =>  file_get_contents(base_path('tests/sampleFreeScanResults.json'))]);
 
         $this->assertJson(Scan::first()->results);
         $this->assertNotNull(Scan::first()->results);
@@ -74,7 +74,7 @@ class ScanTest extends TestCase
     public function the_score_gets_set_when_the_result_is_received_to_the_model()
     {
         $scan = $this->getGeneratedScan([
-            'results' => file_get_contents(base_path('tests/sampleScanResults.json'))
+            'results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))
         ]);
 
         $this->assertEquals(87, Scan::first()->score);
@@ -116,7 +116,7 @@ class ScanTest extends TestCase
         $scan = $this->getStartedScan();
         $this->assertEquals('running', $scan->status);
 
-        $scan = $this->getStartedScan(['results' => file_get_contents(base_path('tests/sampleScanResults.json'))]);
+        $scan = $this->getStartedScan(['results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))]);
         $this->assertEquals('finished', $scan->status);
     }
 }

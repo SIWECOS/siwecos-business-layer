@@ -1,0 +1,1088 @@
+{
+    "scanStarted": {
+        "date": "2019-03-27 16:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "scanFinished": {
+        "date": "2019-03-27 16:18:41.000000",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "scanners": [
+        {
+            "id": 3550985,
+            "scan_id": 710304,
+            "scanner_type": "Initiative-S Scanner\n",
+            "result": [
+                {
+                    "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Phishing\" title=\"Phishing\">Phishing-Inhalte<\/a>\n",
+                    "hasError": false,
+                    "dangerlevel": 0,
+                    "errorMessage": {
+                        "placeholder": "NO_ERRORS",
+                        "values": []
+                    },
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Phishing-Inhalte\/DE",
+                    "description": "Ihre <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Domain\" title=\"Domain\">Domain<\/a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Listen\/DE\" title=\"Listen\/DE\">Phishing-Liste<\/a> gefunden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Spam\" title=\"Spam\">Spam-Inhalte<\/a>\n",
+                    "hasError": false,
+                    "dangerlevel": 0,
+                    "errorMessage": {
+                        "placeholder": "NO_ERRORS",
+                        "values": []
+                    },
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Spam-Inhalte\/DE",
+                    "description": "Ihre <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Domain\" title=\"Domain\">Domain<\/a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Listen\/DE\" title=\"Listen\/DE\">Spam-Liste<\/a> gefunden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Malware-Inhalte\/DE\" title=\"Malware-Inhalte\/DE\">MALWARE-Inhalte<\/a>\n",
+                    "hasError": false,
+                    "dangerlevel": 0,
+                    "errorMessage": {
+                        "placeholder": "NO_ERRORS",
+                        "values": []
+                    },
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Malware-Inhalte\/DE",
+                    "description": "Ihre <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Domain\" title=\"Domain\">Domain<\/a> wurde in keiner uns bekannten <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Listen\/DE\" title=\"Listen\/DE\">Malware-Liste<\/a> gefunden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                }
+            ],
+            "created_at": "2019-03-27 16:18:13",
+            "updated_at": "2019-03-27 16:18:13",
+            "total_score": 100,
+            "complete_request": {
+                "name": "INI_S",
+                "hasError": false,
+                "score": 100,
+                "errorMessage": {
+                    "placeholder": "NO_ERRORS",
+                    "values": []
+                },
+                "tests": [
+                    {
+                        "name": "PHISHING",
+                        "hasError": false,
+                        "dangerlevel": 0,
+                        "errorMessage": {
+                            "placeholder": "NO_ERRORS",
+                            "values": []
+                        },
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": []
+                    },
+                    {
+                        "name": "SPAM",
+                        "hasError": false,
+                        "dangerlevel": 0,
+                        "errorMessage": {
+                            "placeholder": "NO_ERRORS",
+                            "values": []
+                        },
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": []
+                    },
+                    {
+                        "name": "MALWARE",
+                        "hasError": false,
+                        "dangerlevel": 0,
+                        "errorMessage": {
+                            "placeholder": "NO_ERRORS",
+                            "values": []
+                        },
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": []
+                    }
+                ]
+            },
+            "has_error": false,
+            "score": 100,
+            "gauge": {
+                "score": 100,
+                "score_x": 35.355339059327385,
+                "score_y": 35.35533905932737,
+                "score_col": "%2300ff00",
+                "big_arc": 1
+            },
+            "scanner_code": "INI_S"
+        },
+        {
+            "id": 3550986,
+            "scan_id": 710304,
+            "scanner_type": "DOMXSS Scanner\n",
+            "result": [
+                {
+                    "name": "\u00dcberpr\u00fcfung des JavaScript-Codes nach DOMXSS-Sources\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Info\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "NO_SOURCES_FOUND",
+                            "values": null,
+                            "report": "Es wurden keine \u201e<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources<\/a>\u201c gefunden.\n",
+                            "name": "Es wurden keine \u201e<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/DOMXSS-Sources\" title=\"DOMXSS-Sources\">Sources<\/a>\u201c gefunden.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Schadcode-Ueber-Fremde-Quellen\/DE",
+                    "description": "Automatisiert wurden keine unsicheren Codebestandteile f\u00fcr <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/DOMXSS-Sources\" title=\"DOMXSS-Sources\">DOMXSS-Sources<\/a> erkannt.\n",
+                    "report": null,
+                    "scoreTypeRaw": "info"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des JavaScript-Codes nach DOMXSS-Sinks\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 0,
+                    "scoreType": "Info\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "SINKSS_FOUND",
+                            "values": {
+                                "AMOUNT": 1
+                            },
+                            "report": "siwecos.SINKSS_FOUND",
+                            "name": "siwecos.SINKSS_FOUND"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/DOMXSS-Schwachstelle\/DE",
+                    "description": "Unsicheren <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/JavaScript\" title=\"JavaScript\">JavaScript<\/a>-Code verwendet <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/DOMXSS-Sinks\" title=\"DOMXSS-Sinks\">Sinks<\/a>.\n",
+                    "report": "<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Anf\u00e4lligkeit<\/a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen.\n<\/p>",
+                    "scoreTypeRaw": "info"
+                }
+            ],
+            "created_at": "2019-03-27 16:18:13",
+            "updated_at": "2019-03-27 16:18:14",
+            "total_score": 50,
+            "complete_request": {
+                "name": "DOMXSS",
+                "version": "1.5.0",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 50,
+                "tests": [
+                    {
+                        "name": "SOURCES",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "info",
+                        "testDetails": [
+                            {
+                                "placeholder": "NO_SOURCES_FOUND",
+                                "values": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "SINKS",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 0,
+                        "scoreType": "info",
+                        "testDetails": [
+                            {
+                                "placeholder": "SINKSS_FOUND",
+                                "values": {
+                                    "AMOUNT": 1
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "has_error": false,
+            "score": 50,
+            "gauge": {
+                "score": 50,
+                "score_x": -3.061616997868383e-15,
+                "score_y": -50,
+                "score_col": "%23ffaa00",
+                "big_arc": 0
+            },
+            "scanner_code": "DOMXSS"
+        },
+        {
+            "id": 3550987,
+            "scan_id": 710304,
+            "scanner_type": "TLS Scanner\n",
+            "result": [
+                {
+                    "name": "\u00dcberpr\u00fcfung der Zertifikat Laufzeit\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Zertifikat-Abgelaufen\/DE",
+                    "description": "<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Zertifikate\/DE\" title=\"Zertifikate\/DE\">Zertifikat<\/a> nicht abgelaufen\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der Zertifikat G\u00fcltigkeit\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Zertifikat-Nicht-Gueltig\/DE",
+                    "description": "<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Zertifikate\/DE\" title=\"Zertifikate\/DE\">Zertifikat<\/a> ist schon g\u00fcltig\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der Zertifikats\u00fcbermittlung\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Versteckt\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Zertifikat-Nicht-Gesendet\/DE",
+                    "description": "Server sendet ein Zertifikat\n",
+                    "report": null,
+                    "scoreTypeRaw": "hidden"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der Verschl\u00fcsselungsst\u00e4rke des Zertifikats\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Schwache-Verschluesselung\/DE",
+                    "description": "Starker <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Hashing\" title=\"Hashing\">Hash-Algorithmus<\/a>\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf anonyme Verschl\u00fcsselungsmethodik\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Schluesselaustauschverfahren\/DE",
+                    "description": "Anonymer <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Schl%C3%BCsselaustauschverfahren\" title=\"Schl\u00fcsselaustauschverfahren\">Schl\u00fcsselaustausch<\/a> wird nicht unterst\u00fctzt\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf schwache Verschl\u00fcsselungs-Funktionen\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Geschwaechtes-Verschluesselungsprotokoll\/DE",
+                    "description": "Keine schwache <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/EXPORT-Verschl%C3%BCsselung\/DE\" title=\"EXPORT-Verschl\u00fcsselung\/DE\">EXPORT Verschl\u00fcsselung<\/a> unterst\u00fctzt\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf NULL-Chiffren\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Unverschluesselte-Kommunikation\/DE",
+                    "description": "Keine unsicheren <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/NULL-Algorithmus\/DE\" title=\"NULL-Algorithmus\/DE\">Null Chiffren<\/a> unterst\u00fctzt\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf RC4 Verschl\u00fcsselungsmethodik\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Unsicher Rc4 Verschl\u00fcsselungsmethodik\/DE",
+                    "description": "Keine veraltete <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Rc4_Verschl%C3%BCsselungsmethodik\" title=\"Rc4 Verschl\u00fcsselungsmethodik\">RC4 Verschl\u00fcsselungsmethodik<\/a> unterst\u00fctzt\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf DES Verschl\u00fcsselungsmethodik\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Schwaches-DES-Verschluesselungsprotokoll\/DE",
+                    "description": "Keine veraltete DES <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Verschl%C3%BCsselungsmethodik\/DE\" title=\"Verschl\u00fcsselungsmethodik\/DE\">Verschl\u00fcsselungsmethodik<\/a> unterst\u00fctzt\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf Sweet32 Schwachstelle\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Sweet32-Schwachstelle\/DE",
+                    "description": "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Sweet32-Schwachstelle\/DE\/Background\" title=\"Sweet32-Schwachstelle\/DE\/Background\">Sweet32<\/a>.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der Client-Verschl\u00fcsselungsmethodik\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Verschluesselungsmethode-Client\/DE",
+                    "description": "Verantwortungsvolle Auswahl der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Client-Verschl%C3%BCsselungsmethodik\/DE\" title=\"Client-Verschl\u00fcsselungsmethodik\/DE\">Client-Verschl\u00fcsselungsmethoden<\/a>\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf veraltetes SSL2 Protokoll\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Veraltete-Protokollversion-SSL2\/DE",
+                    "description": "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/SSL\" title=\"SSL\">SSL2<\/a> wird nicht unterst\u00fctzt.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf veraltetes SSL3 Protokoll\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Veraltete-Protokollversion-SSL3\/DE",
+                    "description": "Veraltete Protokollversion <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/SSL\" title=\"SSL\">SSL3<\/a> wird nicht unterst\u00fctzt.\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf Einsatz des <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokolls<\/a>\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 0,
+                    "scoreType": "Versteckt\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Protokollversion-TLS13-Gefunden\/DE",
+                    "description": "Modernes <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS 1.3 Protokoll<\/a> wird unterst\u00fctzt.\n",
+                    "report": "<p>Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Server\" title=\"Server\">Server<\/a> unterst\u00fctzt die neueste <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Transport_Layer_Security\" title=\"Transport Layer Security\">TLS-Protokollversion 1.3<\/a>. Diese befindet sich noch im Standardisierungsprozess. Sollten Sie nicht wissen, was dies bedeutet, k\u00f6nnen Sie die Version ausschalten, da die meisten Browser diese Version noch nicht unterst\u00fctzen und TLS 1.3 sich noch in der Entwicklung befindet.\n<\/p>",
+                    "scoreTypeRaw": "hidden"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf die CRIME Schwachstelle\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Crime-Schwachstelle\/DE",
+                    "description": "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Crime-Schwachstelle\/DE\/Background\" title=\"Crime-Schwachstelle\/DE\/Background\">CRIME<\/a>\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf die Poodle Schwachstelle\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Erfolgreich\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/POODLE-Schwachstelle\/DE",
+                    "description": "Nicht verwundbar durch <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Poodle\" title=\"Poodle\">POODLE<\/a>\n",
+                    "report": null,
+                    "scoreTypeRaw": "success"
+                }
+            ],
+            "created_at": "2019-03-27 16:18:13",
+            "updated_at": "2019-03-27 16:18:41",
+            "total_score": 100,
+            "complete_request": {
+                "name": "TLS",
+                "version": "2.4",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "tests": [
+                    {
+                        "name": "CERTIFICATE_EXPIRED",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CERTIFICATE_NOT_VALID_YET",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CERTIFICATE_NOT_SENT_BY_SERVER",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "hidden",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CERTIFICATE_WEAK_HASH_FUNCTION",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITE_ANON",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITE_EXPORT",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITE_NULL",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITE_RC4",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITE_DES",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "SWEET32_VULNERABLE",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CIPHERSUITEORDER_ENFORCED",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "PROTOCOLVERSION_SSL2",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "PROTOCOLVERSION_SSL3",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "PROTOCOLVERSION_TLS13",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 0,
+                        "scoreType": "hidden",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CRIME_VULNERABLE",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "POODLE_VULNERABLE",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "success",
+                        "testDetails": null
+                    }
+                ]
+            },
+            "has_error": false,
+            "score": 100,
+            "gauge": {
+                "score": 100,
+                "score_x": 35.355339059327385,
+                "score_y": 35.35533905932737,
+                "score_col": "%2300ff00",
+                "big_arc": 1
+            },
+            "scanner_code": "WS_TLS"
+        },
+        {
+            "id": 3550988,
+            "scan_id": 710304,
+            "scanner_type": "Header Scanner\n",
+            "result": [
+                {
+                    "name": "\u00dcberpr\u00fcfung der Content Security Policy (CSP)\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "CSP_CORRECT",
+                            "values": {
+                                "HEADER": "default-src 'self'; script-src 'self' https:\/\/www.google.com\/ https:\/\/www.gstatic.com https:\/\/webstats.eco.de 'sha256-H1Gdq95Qc4rkKQfUp4aatRKaZReh+HTnpBo04R1QIfA='; connect-src 'self' https:\/\/ca.siwecos.de https:\/\/bla.siwecos.de https:\/\/bla.staging.siwecos.de https:\/\/ca.staging.siwecos.de https:\/\/webstats.eco.de; style-src 'self' 'sha256-8KHa5UHf6xGniW8muA6IQ9ykGQo2UTlCkXSUPMNXoPs='; frame-src 'self' https:\/\/www.youtube.com\/ https:\/\/www.youtube-nocookie.com\/ https:\/\/www.google.com\/; img-src 'self' data: https:\/\/img.youtube.com https:\/\/i1.ytimg.com https:\/\/i.ytimg.com https:\/\/i9.ytimg.com https:\/\/s.ytimg.com http:\/\/siegel.siwecos.de;"
+                            },
+                            "report": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+                            "name": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Content-Security-Policy-Schwachstelle\/DE",
+                    "description": "Eine sichere Konfiguration der Content Security Policy (<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Content-Security-Policy-Schwachstelle\/DE\/Background\" title=\"Content-Security-Policy-Schwachstelle\/DE\/Background\">CSP<\/a>) wurde gefunden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des HTTP Content-Types\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "CT_CORRECT",
+                            "values": {
+                                "HEADER": "text\/html; charset=utf-8"
+                            },
+                            "report": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> \"text\/html; charset=utf-8\" ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+                            "name": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> \"text\/html; charset=utf-8\" ist korrekt gesetzt und entspricht den Empfehlungen.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Content-Type-Nicht-Korrekt\/DE",
+                    "description": "Die <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Content-Type-Nicht-Korrekt\/DE\/Background\" title=\"Content-Type-Nicht-Korrekt\/DE\/Background\">Content Type Angabe<\/a> ist korrekt konfiguriert.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des Public Key Pinning (HPKP) - Ist aktuell deaktiviert\n",
+                    "hasError": true,
+                    "errorMessage": {
+                        "placeholder": "HEADER_NOT_SET",
+                        "values": null
+                    },
+                    "score": 0,
+                    "scoreType": "Bonus\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Public-Key-Pins-Deaktiviert\/DE",
+                    "description": "<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Public-Key-Pins-Deaktiviert\/DE\/Background\" title=\"Public-Key-Pins-Deaktiviert\/DE\/Background\">Public-Key-Pinning<\/a> nicht vorhanden (HPKP wird derzeit nicht \u00fcberpr\u00fcft).\n",
+                    "report": "<p>M\u00e4chtige Angreifer wie bspw. Geheimdienste k\u00f6nnen ggf. eine <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Digitale_Signatur\" title=\"Digitale Signatur\">Signatur<\/a> mit der Hilfe einer von den Benutzern akzeptierten <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Zertifizierungsstelle\" title=\"Zertifizierungsstelle\">Zertifizierungsstelle<\/a> erstellen lassen. Um dies zu verhindern, kann eine Webseite definieren, dass beim ersten Aufruf des <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Zertifikate\/DE\" title=\"Zertifikate\/DE\">Zertifikats<\/a> das Zertifikat dauerhaft gespeichert wird (pinning). Mit der Hilfe von <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/HTTP_Public_Key_Pinning\" title=\"HTTP Public Key Pinning\">Key-Pinning<\/a> wird f\u00fcr die von der Webseite definierten Zeit lediglich das gespeicherte <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Zertifikate\/DE\" title=\"Zertifikate\/DE\">Zertifikat<\/a> akzeptiert.\n<\/p>",
+                    "scoreTypeRaw": "bonus"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der Referrer Policy\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 0,
+                    "scoreType": "Bonus\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "NO_REFERRER_WHEN_DOWNGRADE",
+                            "values": {
+                                "HEADER": "no-referrer-when-downgrade"
+                            },
+                            "report": "siwecos.NO_REFERRER_WHEN_DOWNGRADE",
+                            "name": "siwecos.NO_REFERRER_WHEN_DOWNGRADE"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Referrer-Policy\/DE",
+                    "description": "Referrer Policy unsicher\n",
+                    "report": "<p>Eine gut gesetzte Referrer Policy <b>sch\u00fctzt die Privatsph\u00e4re<\/b> Ihrer Webseiten-Besucher, hat aber keinen <i>direkten<\/i> Einfluss auf die Sicherheit Ihrer Webseite.\n<\/p>",
+                    "scoreTypeRaw": "bonus"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung von Set-Cookie\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "SECURE_FLAG_SET",
+                            "values": {
+                                "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=7f4ec0e3488790c510fcb69eaeb0f4bd; path=\/; secure; HttpOnly"
+                            },
+                            "report": "Das Secure Flag ist gesetzt.\n",
+                            "name": "Das Secure Flag ist gesetzt.\n"
+                        },
+                        {
+                            "placeholder": "HTTPONLY_FLAG_SET",
+                            "values": {
+                                "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=7f4ec0e3488790c510fcb69eaeb0f4bd; path=\/; secure; HttpOnly"
+                            },
+                            "report": "Das HttpOnly Flag ist gesetzt.\n",
+                            "name": "Das HttpOnly Flag ist gesetzt.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Set-Cookie\/DE",
+                    "description": "Cookies sind gesichert.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des HSTS Schutzes\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "HSTS_MORE_6",
+                            "values": {
+                                "HEADER": "max-age=17280000"
+                            },
+                            "report": "Der Wert von `max-age` ist gr\u00f6\u00dfer als 6 Monate.\n",
+                            "name": "Der Wert von `max-age` ist gr\u00f6\u00dfer als 6 Monate.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/Keine-Verschluesselung-Gefunden\/DE",
+                    "description": "Ihre Webseite ist ausschlie\u00dflich \u00fcber das sichere <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/HTTPS\" title=\"HTTPS\">HTTPS-Protokoll<\/a> erreichbar. Kommunikation zwischen Ihrer Webseite und den Besuchern kann nicht abgeh\u00f6rt und manipuliert werden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des X-Content-Type Headers\n",
+                    "hasError": true,
+                    "errorMessage": {
+                        "placeholder": "HEADER_SET_MULTIPLE_TIMES",
+                        "values": {
+                            "HEADER": [
+                                "nosniff",
+                                "nosniff"
+                            ]
+                        }
+                    },
+                    "score": 0,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/X-Content-Type-Options-Schwachstelle\/DE",
+                    "description": "X-Content-Type Header fehlt.\n",
+                    "report": "<p>Die <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/X-Content-Type-Options-Schwachstelle\/DE\/Background\" title=\"X-Content-Type-Options-Schwachstelle\/DE\/Background\">X-Content-Type-Options<\/a> Einstellungen im <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> verhindern, dass der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Browser\" title=\"Browser\">Browser<\/a> Dateien als etwas anderes interpretiert, als vom Inhaltstyp im <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/HTTP\" title=\"HTTP\">HTTP-Header<\/a> deklariert wurde. Die Headereinstellungen sind hier nicht gesetzt.\n<\/p>",
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung der HTTP-Header X-Frame Optionen\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "XFO_CORRECT",
+                            "values": {
+                                "HEADER": "SAMEORIGIN"
+                            },
+                            "report": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+                            "name": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/X-Frame-Options-Schwachstelle\/DE",
+                    "description": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und verbessert den Schutz Ihrer Webseite gegen <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Clickjacking\" title=\"Clickjacking\">Clickjacking-Attacken<\/a>.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung des X-XSS-Protection Headers\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [
+                        {
+                            "placeholder": "XXSS_CORRECT",
+                            "values": {
+                                "HEADER": "1; mode=block"
+                            },
+                            "report": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n",
+                            "name": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Header\" title=\"Header\">Header<\/a> ist korrekt gesetzt und entspricht den Empfehlungen.\n"
+                        },
+                        {
+                            "placeholder": "XXSS_BLOCK",
+                            "values": {
+                                "HEADER": "1; mode=block"
+                            },
+                            "report": "Die `mode=block`-Direktive ist aktiviert.\n",
+                            "name": "Die `mode=block`-Direktive ist aktiviert.\n"
+                        }
+                    ],
+                    "link": "https:\/\/siwecos.de\/wiki\/XSS-Schwachstelle\/DE",
+                    "description": "Der <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Cross-Site_Scripting\" title=\"Cross-Site Scripting\">Cross-Site Scripting-Schutz<\/a> (<a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/XSS-Schwachstelle\/DE\" title=\"XSS-Schwachstelle\/DE\">XSS<\/a>) des <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Browser\" title=\"Browser\">Webbrowsers<\/a> ist auf Ihrer Seite aktiviert.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                }
+            ],
+            "created_at": "2019-03-27 16:18:14",
+            "updated_at": "2019-03-27 16:18:15",
+            "total_score": 85,
+            "complete_request": {
+                "name": "HEADER",
+                "version": "1.5.0",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 85,
+                "tests": [
+                    {
+                        "name": "CONTENT_SECURITY_POLICY",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "CSP_CORRECT",
+                                "values": {
+                                    "HEADER": "default-src 'self'; script-src 'self' https:\/\/www.google.com\/ https:\/\/www.gstatic.com https:\/\/webstats.eco.de 'sha256-H1Gdq95Qc4rkKQfUp4aatRKaZReh+HTnpBo04R1QIfA='; connect-src 'self' https:\/\/ca.siwecos.de https:\/\/bla.siwecos.de https:\/\/bla.staging.siwecos.de https:\/\/ca.staging.siwecos.de https:\/\/webstats.eco.de; style-src 'self' 'sha256-8KHa5UHf6xGniW8muA6IQ9ykGQo2UTlCkXSUPMNXoPs='; frame-src 'self' https:\/\/www.youtube.com\/ https:\/\/www.youtube-nocookie.com\/ https:\/\/www.google.com\/; img-src 'self' data: https:\/\/img.youtube.com https:\/\/i1.ytimg.com https:\/\/i.ytimg.com https:\/\/i9.ytimg.com https:\/\/s.ytimg.com http:\/\/siegel.siwecos.de;"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "CONTENT_TYPE",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "CT_CORRECT",
+                                "values": {
+                                    "HEADER": "text\/html; charset=utf-8"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "PUBLIC_KEY_PINS",
+                        "hasError": true,
+                        "errorMessage": {
+                            "placeholder": "HEADER_NOT_SET",
+                            "values": null
+                        },
+                        "score": 0,
+                        "scoreType": "bonus",
+                        "testDetails": []
+                    },
+                    {
+                        "name": "REFERRER_POLICY",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 0,
+                        "scoreType": "bonus",
+                        "testDetails": [
+                            {
+                                "placeholder": "NO_REFERRER_WHEN_DOWNGRADE",
+                                "values": {
+                                    "HEADER": "no-referrer-when-downgrade"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "SET_COOKIE",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "SECURE_FLAG_SET",
+                                "values": {
+                                    "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=7f4ec0e3488790c510fcb69eaeb0f4bd; path=\/; secure; HttpOnly"
+                                }
+                            },
+                            {
+                                "placeholder": "HTTPONLY_FLAG_SET",
+                                "values": {
+                                    "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=7f4ec0e3488790c510fcb69eaeb0f4bd; path=\/; secure; HttpOnly"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "STRICT_TRANSPORT_SECURITY",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "HSTS_MORE_6",
+                                "values": {
+                                    "HEADER": "max-age=17280000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "X_CONTENT_TYPE_OPTIONS",
+                        "hasError": true,
+                        "errorMessage": {
+                            "placeholder": "HEADER_SET_MULTIPLE_TIMES",
+                            "values": {
+                                "HEADER": [
+                                    "nosniff",
+                                    "nosniff"
+                                ]
+                            }
+                        },
+                        "score": 0,
+                        "scoreType": "warning",
+                        "testDetails": []
+                    },
+                    {
+                        "name": "X_FRAME_OPTIONS",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "XFO_CORRECT",
+                                "values": {
+                                    "HEADER": "SAMEORIGIN"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "X_XSS_PROTECTION",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": [
+                            {
+                                "placeholder": "XXSS_CORRECT",
+                                "values": {
+                                    "HEADER": "1; mode=block"
+                                }
+                            },
+                            {
+                                "placeholder": "XXSS_BLOCK",
+                                "values": {
+                                    "HEADER": "1; mode=block"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "has_error": false,
+            "score": 85,
+            "gauge": {
+                "score": 85,
+                "score_x": 49.84586668665641,
+                "score_y": 3.9229547863922187,
+                "score_col": "%2399ff00",
+                "big_arc": 1
+            },
+            "scanner_code": "HEADER"
+        },
+        {
+            "id": 3550989,
+            "scan_id": 710304,
+            "scanner_type": "Info Leak Scanner\n",
+            "result": [
+                {
+                    "name": "\u00dcberpr\u00fcfung der CMS Version\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Info\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Content-Management-System-Gefunden\/DE",
+                    "description": "Es k\u00f6nnen keine Aussagen \u00fcber die Version des verwendeten <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Content-Management-Systeme\" title=\"Content-Management-Systeme\">CMS<\/a> gemacht werden. Entsprechend kann nicht ermittelt werden, ob Sie eine verwundbare Version benutzen.\n",
+                    "report": null,
+                    "scoreTypeRaw": "info"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf CMS-Plugins\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Plugin-Gefunden\/DE",
+                    "description": "Es konnten keine <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Plugin\" title=\"Plugin\">CMS-Plugins<\/a> erkannt werden. Angriffe mithilfe von <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Schwachstellen\/DE\" title=\"Schwachstellen\/DE\">Schwachstellen<\/a>, die in <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Plugin-Gefunden\/DE\/Background\" title=\"Plugin-Gefunden\/DE\/Background\">Plugins<\/a> existieren, sind somit unwahrscheinlicher.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf JavaScript-Bibliothek\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Warnung\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Javascript-Schwachstelle\/DE",
+                    "description": "Die <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/JavaScript\" title=\"JavaScript\">JavaScript-Bibliotheken<\/a> sind nach dem aktuellen Stand nicht durch bekannte <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Schwachstellen\/DE\" title=\"Schwachstellen\/DE\">Schwachstellen<\/a> angreifbar.\n",
+                    "report": null,
+                    "scoreTypeRaw": "warning"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf vorhandene E-Mail-Adressen\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Info\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Email-Adresse-Gefunden\/DE",
+                    "description": "Es konnten keine E-Mail-Adressen gefunden werden. <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Spam\" title=\"Spam\">Spam<\/a>- und <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Phishing\" title=\"Phishing\">Phishing<\/a>-Angriffe auf Ihre E-Mail-Adressen sind somit weniger wahrscheinlich.\n",
+                    "report": null,
+                    "scoreTypeRaw": "info"
+                },
+                {
+                    "name": "\u00dcberpr\u00fcfung auf auslesbare Telefonnummern\n",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "Info\n",
+                    "testDetails": [],
+                    "link": "https:\/\/siwecos.de\/wiki\/Telefonnummer-Gefunden\/DE",
+                    "description": "Telefonnummern wurden nicht gefunden.\n",
+                    "report": null,
+                    "scoreTypeRaw": "info"
+                }
+            ],
+            "created_at": "2019-03-27 16:18:14",
+            "updated_at": "2019-03-27 16:18:15",
+            "total_score": 100,
+            "complete_request": {
+                "name": "InfoLeak-Scanner",
+                "version": "1.0.2",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "tests": [
+                    {
+                        "name": "CMS",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "info",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "CMS_PLUGINS",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "JS_LIB",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "warning",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "EMAIL_ADDRESS",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "info",
+                        "testDetails": null
+                    },
+                    {
+                        "name": "PHONE_NUMBER",
+                        "hasError": false,
+                        "errorMessage": null,
+                        "score": 100,
+                        "scoreType": "info",
+                        "testDetails": null
+                    }
+                ]
+            },
+            "has_error": false,
+            "score": 100,
+            "gauge": {
+                "score": 100,
+                "score_x": 35.355339059327385,
+                "score_y": 35.35533905932737,
+                "score_col": "%2300ff00",
+                "big_arc": 1
+            },
+            "scanner_code": "INFOLEAK"
+        }
+    ],
+    "domain": "https:\/\/siwecos.de",
+    "token": "NOTAVAILABLE",
+    "hasFailed": false,
+    "message": "current state of requested token",
+    "hasCrit": false,
+    "weightedMedia": 87,
+    "gauge": {
+        "score": 87,
+        "score_x": 49.2554663077387,
+        "score_y": 8.596455013970466,
+        "score_col": "%2384ff00",
+        "big_arc": 1
+    }
+}

@@ -11,6 +11,7 @@ use App\Domain;
 use App\Http\Responses\ScanStartedResponse;
 use App\Scan;
 use App\Http\Responses\ScanStatusResponse;
+use App\Http\Responses\ScanReportResponse;
 
 class ScanController extends Controller
 {
@@ -54,8 +55,8 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function status(Scan $scan)
+    public function report(Scan $scan)
     {
-        return response()->json(new ScanStatusResponse($scan));
+        return response()->json(new ScanReportResponse($scan));
     }
 }

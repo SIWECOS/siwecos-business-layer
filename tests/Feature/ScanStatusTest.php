@@ -55,4 +55,19 @@ class ScanStatusTest extends TestCase
             'finished_at' => Carbon::now()->toDateTimeString()
         ]);
     }
+
+    /** @test */
+    public function when_a_scan_is_finished_the_success_message_is_returned()
+    {
+        $scan = $this->getFinishedScan();
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'status' => 'finished',
+            'has_error' => false,
+            'started_at' => Carbon::now()->toDateTimeString(),
+            'finished_at' => Carbon::now()->toDateTimeString(),
+        ]);
+    }
 }

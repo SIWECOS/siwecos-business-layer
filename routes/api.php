@@ -44,7 +44,8 @@ Route::prefix('v2')->group(function () {
     Route::middleware(['siwecosToken'])->group(function () {
         Route::post('/scan', 'ScanController@start');
     });
-    Route::get('/scan/{scan}', 'ScanController@status');
+    Route::get('/scan/{scan}', 'ScanController@report');
+
     Route::post('/freescan', 'ScanController@startFreescan');
 });
 
