@@ -3,19 +3,13 @@
         "name": "INI_S",
         "hasError": false,
         "score": 100,
-        "errorMessage": {
-            "placeholder": "NO_ERRORS",
-            "values": []
-        },
+        "errorMessage": null,
         "tests": [
             {
                 "name": "PHISHING",
                 "hasError": false,
                 "dangerlevel": 0,
-                "errorMessage": {
-                    "placeholder": "NO_ERRORS",
-                    "values": []
-                },
+                "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
                 "testDetails": []
@@ -24,10 +18,7 @@
                 "name": "SPAM",
                 "hasError": false,
                 "dangerlevel": 0,
-                "errorMessage": {
-                    "placeholder": "NO_ERRORS",
-                    "values": []
-                },
+                "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
                 "testDetails": []
@@ -36,10 +27,7 @@
                 "name": "MALWARE",
                 "hasError": false,
                 "dangerlevel": 0,
-                "errorMessage": {
-                    "placeholder": "NO_ERRORS",
-                    "values": []
-                },
+                "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
                 "testDetails": []
