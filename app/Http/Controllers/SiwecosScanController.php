@@ -267,7 +267,7 @@ class SiwecosScanController extends Controller
                 $item['result'] = collect($item['result']);
                 $item['result']->transform(function ($item, $key) {
                     $namePlaceholder = 'siwecos.' . $item['name'];
-                    $item['link'] = __($namePlaceholder . '_LINK');
+                    // $item['link'] = __($namePlaceholder . '_LINK');
                     $item['description'] = $this->buildDescription($namePlaceholder, $item['score']);
                     $item['report'] = $this->buildReport($namePlaceholder, $item['score']);
                     $item['scoreTypeRaw'] = array_has($item, 'scoreType') ? $item['scoreType'] : '';

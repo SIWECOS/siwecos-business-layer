@@ -15,7 +15,7 @@ class ScanReportResponse
         $this->finished_at = $scan->finished_at ? $scan->finished_at->toDateTimeString() : null;
 
         if ($scan->is_finished && !$scan->has_error) {
-            $this->report = new ScanReport($scan);
+            $this->report = (new ScanReport($scan))->report;
         }
     }
 }

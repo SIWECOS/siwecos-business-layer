@@ -362,7 +362,7 @@
         ]
     },
     {
-        "name": "InfoLeak-Scanner",
+        "name": "INFOLEAK",
         "version": "1.0.2",
         "hasError": false,
         "errorMessage": null,

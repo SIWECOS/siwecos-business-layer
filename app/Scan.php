@@ -15,6 +15,7 @@ class Scan extends Model
         'is_freescan' => 'boolean',
         'is_recurrent' => 'boolean',
         'score' => 'integer',
+        'results' => 'json'
     ];
 
     protected $dates = [
@@ -61,10 +62,10 @@ class Scan extends Model
         $score = 0;
         $amountResults = 0;
 
-        foreach (json_decode($this->results) as $scannerResult) {
-            $score += $scannerResult->score;
-            $amountResults++;
-        }
+        // foreach ($this->results as $scannerResult) {
+        //     $score += $scannerResult->score;
+        //     $amountResults++;
+        // }
 
         return $amountResults ? ceil($score / $amountResults) : 0;
     }

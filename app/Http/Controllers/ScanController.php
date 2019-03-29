@@ -55,8 +55,9 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function report(Scan $scan)
+    public function report(Scan $scan, $locale = 'de')
     {
+        \App::setLocale($locale);
         return response()->json(new ScanReportResponse($scan));
     }
 }

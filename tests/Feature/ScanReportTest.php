@@ -14,17 +14,88 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_translated_and_reasonable_json_scan_report_can_be_retrieved_for_finished_scans()
     {
+        $this->withoutExceptionHandling();
+
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
-        $response->assertExactJson([
+        // dd(json_decode($response->content())->report);
+        $response->assertJson([
             'started_at' => $scan->started_at->toDateTimeString(),
             'finished_at' => $scan->finished_at->toDateTimeString(),
             'has_error' => false,
             'status' => 'finished',
-            'report' => []
+            'report' => [
+                [
+                    'scanner_name' => 'Initiative-S Scanner',
+                    'scanner_code' => 'INI_S',
+                    'has_error' => false,
+                    'error_message' => null,
+                    'score' => 100,
+                    // 'started_at' => '2019-03-27 16:18:13',
+                    // 'finished_at' => '2019-03-27 16:18:13',
+                    'tests' => [
+                        [
+                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing" title="Phishing">Phishing-Inhalte</a>',
+                            'has_error' => false,
+                            'score' => 100,
+                            'information_link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
+                            'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Phishing-Liste</a> gefunden.',
+                            'description' => null,
+                            'details' => null,
+                        ],
+                        [
+                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam" title="Spam">Spam-Inhalte</a>',
+                            'has_error' => false,
+                            'score' => 100,
+                            'information_link' => 'https://siwecos.de/wiki/Spam-Inhalte/DE',
+                            'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Spam-Liste</a> gefunden.',
+                            'description' => null,
+                            'details' => null,
+                        ],
+                        [
+                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Malware-Inhalte/DE" title="Malware-Inhalte/DE">MALWARE-Inhalte</a>',
+                            'has_error' => false,
+                            'score' => 100,
+                            'information_link' => 'https://siwecos.de/wiki/Malware-Inhalte/DE',
+                            'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Malware-Liste</a> gefunden.',
+                            'description' => null,
+                            'details' => null,
+                        ]
+                    ]
+                ],
+                [
+                    'scanner_name' => 'DOMXSS Scanner',
+                    'scanner_code' => 'DOMXSS',
+                    'has_error' => false,
+                    'error_message' => null,
+                    'score' => 50,
+                    // 'started_at' => '2019-03-27 16:18:13',
+                    // 'finished_at' => '2019-03-27 16:18:13',
+                    'tests' => [
+                        [
+                            'headline' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sources',
+                            'has_error' => false,
+                            'score' => 100,
+                            'information_link' => 'https://siwecos.de/wiki/Schadcode-Ueber-Fremde-Quellen/DE',
+                            'result' => 'Automatisiert wurden keine unsicheren Codebestandteile für <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a> erkannt.',
+                            'description' => null,
+                            'details' => null,
+                        ],
+                        [
+                            'headline' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sinks',
+                            'has_error' => false,
+                            'score' => 0,
+                            'information_link' => 'https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE',
+                            'result' => 'Unsicheren <a target="siwecos_wiki" href="https://siwecos.de/wiki/JavaScript" title="JavaScript">JavaScript</a>-Code verwendet <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>.',
+                            'description' => null,
+                            'details' => null,
+                        ]
+                    ]
+                ],
+            ]
         ]);
     }
 
