@@ -19,10 +19,7 @@
                     "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Phishing\" title=\"Phishing\">Phishing-Inhalte<\/a>\n",
                     "hasError": false,
                     "dangerlevel": 0,
-                    "errorMessage": {
-                        "placeholder": "NO_ERRORS",
-                        "values": []
-                    },
+                    "errorMessage": null,
                     "score": 100,
                     "scoreType": "Erfolgreich\n",
                     "testDetails": [],
@@ -35,10 +32,7 @@
                     "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Spam\" title=\"Spam\">Spam-Inhalte<\/a>\n",
                     "hasError": false,
                     "dangerlevel": 0,
-                    "errorMessage": {
-                        "placeholder": "NO_ERRORS",
-                        "values": []
-                    },
+                    "errorMessage": null,
                     "score": 100,
                     "scoreType": "Erfolgreich\n",
                     "testDetails": [],
@@ -51,10 +45,7 @@
                     "name": "\u00dcberpr\u00fcfung auf m\u00f6gliche <a target=\"siwecos_wiki\" href=\"https:\/\/siwecos.de\/wiki\/Malware-Inhalte\/DE\" title=\"Malware-Inhalte\/DE\">MALWARE-Inhalte<\/a>\n",
                     "hasError": false,
                     "dangerlevel": 0,
-                    "errorMessage": {
-                        "placeholder": "NO_ERRORS",
-                        "values": []
-                    },
+                    "errorMessage": null,
                     "score": 100,
                     "scoreType": "Erfolgreich\n",
                     "testDetails": [],
@@ -71,19 +62,13 @@
                 "name": "INI_S",
                 "hasError": false,
                 "score": 100,
-                "errorMessage": {
-                    "placeholder": "NO_ERRORS",
-                    "values": []
-                },
+                "errorMessage": null,
                 "tests": [
                     {
                         "name": "PHISHING",
                         "hasError": false,
                         "dangerlevel": 0,
-                        "errorMessage": {
-                            "placeholder": "NO_ERRORS",
-                            "values": []
-                        },
+                        "errorMessage": null,
                         "score": 100,
                         "scoreType": "success",
                         "testDetails": []
@@ -92,10 +77,7 @@
                         "name": "SPAM",
                         "hasError": false,
                         "dangerlevel": 0,
-                        "errorMessage": {
-                            "placeholder": "NO_ERRORS",
-                            "values": []
-                        },
+                        "errorMessage": null,
                         "score": 100,
                         "scoreType": "success",
                         "testDetails": []
@@ -104,10 +86,7 @@
                         "name": "MALWARE",
                         "hasError": false,
                         "dangerlevel": 0,
-                        "errorMessage": {
-                            "placeholder": "NO_ERRORS",
-                            "values": []
-                        },
+                        "errorMessage": null,
                         "score": 100,
                         "scoreType": "success",
                         "testDetails": []
