@@ -43,8 +43,8 @@ class ScanReportTest extends TestCase
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
                             'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Phishing-Liste</a> gefunden.',
-                            'description' => null,
-                            'details' => null,
+                            'result_description' => null,
+                            'result_details' => null,
                         ],
                         [
                             'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam" title="Spam">Spam-Inhalte</a>',
@@ -52,8 +52,8 @@ class ScanReportTest extends TestCase
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Spam-Inhalte/DE',
                             'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Spam-Liste</a> gefunden.',
-                            'description' => null,
-                            'details' => null,
+                            'result_description' => null,
+                            'result_details' => null,
                         ],
                         [
                             'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Malware-Inhalte/DE" title="Malware-Inhalte/DE">MALWARE-Inhalte</a>',
@@ -61,8 +61,8 @@ class ScanReportTest extends TestCase
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Malware-Inhalte/DE',
                             'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Malware-Liste</a> gefunden.',
-                            'description' => null,
-                            'details' => null,
+                            'result_description' => null,
+                            'result_details' => null,
                         ]
                     ]
                 ],
@@ -81,8 +81,11 @@ class ScanReportTest extends TestCase
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Schadcode-Ueber-Fremde-Quellen/DE',
                             'result' => 'Automatisiert wurden keine unsicheren Codebestandteile für <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a> erkannt.',
-                            'description' => null,
-                            'details' => null,
+                            'result_description' => null,
+                            'result_details' => [
+                                // NO_SOURCES_FOUND
+                                'Es wurden keine „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a>“ gefunden.'
+                            ],
                         ],
                         [
                             'headline' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sinks',
@@ -90,8 +93,11 @@ class ScanReportTest extends TestCase
                             'score' => 0,
                             'information_link' => 'https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE',
                             'result' => 'Unsicheren <a target="siwecos_wiki" href="https://siwecos.de/wiki/JavaScript" title="JavaScript">JavaScript</a>-Code verwendet <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>.',
-                            'description' => null,
-                            'details' => null,
+                            'result_description' => '<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target="siwecos_wiki" href="https://siwecos.de/wiki/Cross-Site_Scripting" title="Cross-Site Scripting">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen. </p>',
+                            'result_details' => [
+                                // SINKS_FOUND
+                                'Es wurden „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>“ gefunden.'
+                            ],
                         ]
                     ]
                 ],

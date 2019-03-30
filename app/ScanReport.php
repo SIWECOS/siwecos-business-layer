@@ -61,10 +61,10 @@ class ScanReport
                 'headline' => __($scannerCode . "." . $test->get('name') . "_HEADLINE"),
                 'score' => $test->get('score'),
                 'has_error' => $test->get('hasError'),
-                // 'description' => null,
                 'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
                 'result' => $this->getTranslatedResult($test, $scannerCode),
-                'details' => $this->getTranslatedTestDetails($test, $scannerCode),
+                'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
+                'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),
             ]);
         }
 
@@ -88,6 +88,22 @@ class ScanReport
     }
 
     /**
+     * Returns additional result description when the score of 100 is not reached
+     *
+     * @param Collection $test
+     * @param string $scannerCode
+     * @return string|null
+     */
+    public function getAdditionalResultDescriptionWhenScore100IsNotReached(Collection $test, string $scannerCode)
+    {
+        if ($test['score'] == 100) {
+            return null;
+        }
+
+        return __($scannerCode . "." . $test['name'] . "_DESCRIPTION");
+    }
+
+    /**
      * Returns the translated details for further information in the Report.
      *
      * @param Collection $test
@@ -100,7 +116,7 @@ class ScanReport
 
         if ($test->get('testDetails')) {
             foreach ($test->get('testDetails') as $translateableMessage) {
-                $details->push([$this->getResolvedTranslateableMessage($translateableMessage, $scannerCode)]);
+                $details->push($this->getResolvedTranslateableMessage($translateableMessage, $scannerCode));
             }
         }
 
