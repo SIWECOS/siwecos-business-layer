@@ -21,7 +21,7 @@ class ScanReportTest extends TestCase
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
-        // dd(json_decode($response->content())->report);
+
         $response->assertJson([
             'started_at' => $scan->started_at->toDateTimeString(),
             'finished_at' => $scan->finished_at->toDateTimeString(),
@@ -128,6 +128,34 @@ class ScanReportTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonMissing([
             'report'
+        ]);
+    }
+
+    /** @test */
+    public function when_a_test_has_an_error_message_the_report_should_be_null_and_the_errorMessage_should_be_translated()
+    {
+        $scan = $this->getStartedScan();
+        $scan->results = file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json'));
+        $scan->save();
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            [
+                'headline' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sinks',
+                'score' => 0,
+                'has_error' => true,
+                'result' => 'Der Test lieferte einen Fehler.',
+                'result_details' => [
+                    // NO_CONTENT
+                    'Auf der Seite wurde kein Inhalt gefunden.'
+                ],
+                'result_description' => null,
+                'solution_tips' => '<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target="siwecos_wiki" href="https://siwecos.de/wiki/Schwachstellen" title="Schwachstellen">Schwachstellen</a> auf der Webseite zu bestätigen. </p>',
+                'information_link' => 'https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE',
+            ]
         ]);
     }
 }

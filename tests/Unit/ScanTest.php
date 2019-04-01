@@ -9,6 +9,7 @@ use App\Token;
 use App\Scan;
 use App\Domain;
 use function GuzzleHttp\json_encode;
+use Carbon\Carbon;
 
 class ScanTest extends TestCase
 {
@@ -99,6 +100,17 @@ class ScanTest extends TestCase
         $scan = $this->getGeneratedScan();
 
         $this->assertNull($scan->started_at);
+    }
+
+    /** @test */
+    public function a_scan_has_a_finishedAt_value()
+    {
+        $scan = $this->getGeneratedScan();
+        $this->assertNull($scan->finished_at);
+
+        $scan = $this->getFinishedScan();
+        $this->assertNotNull($scan->finished_at);
+        $this->assertEquals(Carbon::now()->toDateTimeString(), $scan->finished_at->toDateTimeString());
     }
 
     /** @test */

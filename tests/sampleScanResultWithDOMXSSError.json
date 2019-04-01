@@ -39,41 +39,35 @@
         "version": "1.5.0",
         "hasError": false,
         "errorMessage": null,
-        "score": 50,
+        "score": 0,
         "tests": [
             {
                 "name": "SOURCES",
-                "hasError": false,
-                "errorMessage": null,
-                "score": 100,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "NO_CONTENT",
+                    "values": null
+                },
+                "score": 0,
                 "scoreType": "info",
-                "testDetails": [
-                    {
-                        "placeholder": "NO_SOURCES_FOUND",
-                        "values": null
-                    }
-                ]
+                "testDetails": []
             },
             {
                 "name": "SINKS",
-                "hasError": false,
-                "errorMessage": null,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "NO_CONTENT",
+                    "values": null
+                },
                 "score": 0,
                 "scoreType": "info",
-                "testDetails": [
-                    {
-                        "placeholder": "SINKS_FOUND",
-                        "values": {
-                            "AMOUNT": 1
-                        }
-                    }
-                ]
+                "testDetails": []
             }
         ]
     },
     {
         "name": "TLS",
-        "version": "2.5",
+        "version": "2.4",
         "hasError": false,
         "errorMessage": null,
         "score": 100,
@@ -186,8 +180,8 @@
                 "name": "PROTOCOLVERSION_TLS13",
                 "hasError": false,
                 "errorMessage": null,
-                "score": 0,
-                "scoreType": "hidden",
+                "score": 100,
+                "scoreType": "bonus",
                 "testDetails": null
             },
             {
@@ -213,20 +207,18 @@
         "version": "1.5.0",
         "hasError": false,
         "errorMessage": null,
-        "score": 85,
+        "score": 33,
         "tests": [
             {
                 "name": "CONTENT_SECURITY_POLICY",
-                "hasError": false,
-                "errorMessage": null,
-                "score": 100,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "HEADER_NOT_SET",
+                    "values": null
+                },
+                "score": 0,
                 "scoreType": "warning",
-                "testDetails": [
-                    {
-                        "placeholder": "CSP_CORRECT",
-                        "values": null
-                    }
-                ]
+                "testDetails": []
             },
             {
                 "name": "CONTENT_TYPE",
@@ -237,7 +229,9 @@
                 "testDetails": [
                     {
                         "placeholder": "CT_CORRECT",
-                        "values": null
+                        "values": {
+                            "HEADER": "text\/html; charset=UTF-8"
+                        }
                     }
                 ]
             },
@@ -254,37 +248,22 @@
             },
             {
                 "name": "REFERRER_POLICY",
-                "hasError": false,
-                "errorMessage": null,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "HEADER_NOT_SET",
+                    "values": null
+                },
                 "score": 0,
                 "scoreType": "bonus",
-                "testDetails": [
-                    {
-                        "placeholder": "NO_REFERRER_WHEN_DOWNGRADE",
-                        "values": null
-                    }
-                ]
+                "testDetails": []
             },
             {
                 "name": "SET_COOKIE",
                 "hasError": false,
                 "errorMessage": null,
-                "score": 100,
-                "scoreType": "warning",
-                "testDetails": [
-                    {
-                        "placeholder": "SECURE_FLAG_SET",
-                        "values": {
-                            "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=fc09548b4cb497e759ec038ef04e3c24; path=\/; secure; HttpOnly"
-                        }
-                    },
-                    {
-                        "placeholder": "HTTPONLY_FLAG_SET",
-                        "values": {
-                            "COOKIE": "9cde1c2f2cb19fd85d4580121dfbe4b4=fc09548b4cb497e759ec038ef04e3c24; path=\/; secure; HttpOnly"
-                        }
-                    }
-                ]
+                "score": 0,
+                "scoreType": "hidden",
+                "testDetails": []
             },
             {
                 "name": "STRICT_TRANSPORT_SECURITY",
@@ -295,7 +274,9 @@
                 "testDetails": [
                     {
                         "placeholder": "HSTS_MORE_6",
-                        "values": null
+                        "values": {
+                            "HEADER": "max-age=31536000"
+                        }
                     }
                 ]
             },
@@ -303,7 +284,7 @@
                 "name": "X_CONTENT_TYPE_OPTIONS",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_SET_MULTIPLE_TIMES",
+                    "placeholder": "HEADER_NOT_SET",
                     "values": null
                 },
                 "score": 0,
@@ -312,42 +293,34 @@
             },
             {
                 "name": "X_FRAME_OPTIONS",
-                "hasError": false,
-                "errorMessage": null,
-                "score": 100,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "HEADER_NOT_SET",
+                    "values": null
+                },
+                "score": 0,
                 "scoreType": "warning",
-                "testDetails": [
-                    {
-                        "placeholder": "XFO_CORRECT",
-                        "values": null
-                    }
-                ]
+                "testDetails": []
             },
             {
                 "name": "X_XSS_PROTECTION",
-                "hasError": false,
-                "errorMessage": null,
-                "score": 100,
+                "hasError": true,
+                "errorMessage": {
+                    "placeholder": "HEADER_NOT_SET",
+                    "values": null
+                },
+                "score": 0,
                 "scoreType": "warning",
-                "testDetails": [
-                    {
-                        "placeholder": "XXSS_CORRECT",
-                        "values": null
-                    },
-                    {
-                        "placeholder": "XXSS_BLOCK",
-                        "values": null
-                    }
-                ]
+                "testDetails": []
             }
         ]
     },
     {
         "name": "INFOLEAK",
-        "version": "1.0.2",
+        "version": "1.0.4",
         "hasError": false,
         "errorMessage": null,
-        "score": 100,
+        "score": 99,
         "tests": [
             {
                 "name": "CMS",
@@ -377,9 +350,16 @@
                 "name": "EMAIL_ADDRESS",
                 "hasError": false,
                 "errorMessage": null,
-                "score": 100,
+                "score": 96,
                 "scoreType": "info",
-                "testDetails": null
+                "testDetails": [
+                    {
+                        "placeholder": "EMAIL_FOUND",
+                        "values": {
+                            "email_adress": "email@address.de"
+                        }
+                    }
+                ]
             },
             {
                 "name": "PHONE_NUMBER",

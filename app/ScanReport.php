@@ -61,11 +61,11 @@ class ScanReport
                 'headline' => __($scannerCode . "." . $test->get('name') . "_HEADLINE"),
                 'score' => $test->get('score'),
                 'has_error' => $test->get('hasError'),
-                'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
                 'result' => $this->getTranslatedResult($test, $scannerCode),
                 'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),
                 'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
                 'solution_tips' => __($scannerCode . "." . $test->get('name') . "_SOLUTION_TIPS"),
+                'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
             ]);
         }
 
@@ -85,6 +85,10 @@ class ScanReport
             return __($scannerCode . "." . $test->get('name') . "_POSITIVE");
         }
 
+        if ($test->get('hasError') == true) {
+            return __('SIWECOS.TEST_ERROR_MESSAGE');
+        }
+
         return __($scannerCode . "." . $test->get('name') . "_NEGATIVE");
     }
 
@@ -97,7 +101,7 @@ class ScanReport
      */
     public function getAdditionalResultDescriptionWhenScore100IsNotReached(Collection $test, string $scannerCode)
     {
-        if ($test->get('score') == 100) {
+        if ($test->get('score') == 100 || $test->get('hasError') == true) {
             return null;
         }
 
@@ -121,6 +125,10 @@ class ScanReport
             }
         }
 
+        if ($test->get('hasError')) {
+            $details->push($this->getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
+        }
+
         return $details->count() ? $details : null;
     }
 
@@ -133,9 +141,9 @@ class ScanReport
      */
     public function getResolvedTranslateableMessage(Collection $message, string $scannerCode)
     {
-        if ($message->get('values'))
+        if ($message->get('values')) {
             return __($scannerCode . "." . $message->get('placeholder'), $message->get('values')->toArray());
-
+        }
         return __($scannerCode . "." . $message->get('placeholder'));
     }
 }

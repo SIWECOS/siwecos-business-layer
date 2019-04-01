@@ -94,7 +94,7 @@ return [
   'CSP_LEGACY_HEADER_SET'     => "Der veraltete Header `X-Content-Security-Policy` ist gesetzt. Der neue standardisierte Header ist `Content-Security-Policy`.",
   'CSP_NO_UNSAFE_INCLUDED'    => "Die Content-Security-Policy-Schwachstelle (CSP) enthält keine unsicheren (unsafe) Direktiven, ist möglicherweise jedoch nicht sicher eingestellt.",
   'CSP_UNSAFE_INCLUDED'       => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist unsicher gesetzt, da er `unsafe-inline`- oder `unsafe-eval`-Direktiven enthält.",
-  'CT_CORRECT'                => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> \"%HEADER%\" ist korrekt gesetzt und entspricht den Empfehlungen.",
+  'CT_CORRECT'                => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und entspricht den Empfehlungen.",
   'CT_HEADER_WITHOUT_CHARSET' => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist ohne Zeichensatzangabe gesetzt und dadurch nicht sicher.",
   'CT_HEADER_WITH_CHARSET'    => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und beinhaltet eine Zeichensatz-Angabe.",
   'CT_META_TAG_SET'           => "Der <a target=\"siwecos_wiki\" href=\"https://siwecos.de/wiki/Header\" title=\"Header\">Header</a> ist korrekt gesetzt und enthält jedoch keine Zeichensatz-Angabe oder folgt nicht den Empfehlungen. Gefunden wurde \"%META%\".",
