@@ -57,15 +57,19 @@ class Scan extends Model
         $this->attributes['score'] = $this->calculateScore();
     }
 
+
     public function calculateScore()
     {
         $score = 0;
         $amountResults = 0;
 
-        // foreach ($this->results as $scannerResult) {
-        //     $score += $scannerResult->score;
-        //     $amountResults++;
-        // }
+
+        foreach ($this->results as $scannerResult) {
+            if ($scannerResult['score'] !== null) {
+                $score += $scannerResult['score'];
+                $amountResults++;
+            }
+        }
 
         return $amountResults ? ceil($score / $amountResults) : 0;
     }

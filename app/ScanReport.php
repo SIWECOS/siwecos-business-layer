@@ -63,8 +63,9 @@ class ScanReport
                 'has_error' => $test->get('hasError'),
                 'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
                 'result' => $this->getTranslatedResult($test, $scannerCode),
-                'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
                 'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),
+                'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
+                'solution_tips' => __($scannerCode . "." . $test->get('name') . "_SOLUTION_TIPS"),
             ]);
         }
 
@@ -76,15 +77,15 @@ class ScanReport
      *
      * @param Collection $test
      * @param string $scannerCode
-     * @return string Translation $test['name']_SUCCESS or $test['name']_ERROR message
+     * @return string
      */
     public function getTranslatedResult(Collection $test, string $scannerCode)
     {
-        if ($test['score'] == 100) {
-            return __($scannerCode . "." . $test['name'] . "_POSITIVE");
+        if ($test->get('score') == 100) {
+            return __($scannerCode . "." . $test->get('name') . "_POSITIVE");
         }
 
-        return __($scannerCode . "." . $test['name'] . "_NEGATIVE");
+        return __($scannerCode . "." . $test->get('name') . "_NEGATIVE");
     }
 
     /**
@@ -96,11 +97,11 @@ class ScanReport
      */
     public function getAdditionalResultDescriptionWhenScore100IsNotReached(Collection $test, string $scannerCode)
     {
-        if ($test['score'] == 100) {
+        if ($test->get('score') == 100) {
             return null;
         }
 
-        return __($scannerCode . "." . $test['name'] . "_DESCRIPTION");
+        return __($scannerCode . "." . $test->get('name') . "_DESCRIPTION");
     }
 
     /**

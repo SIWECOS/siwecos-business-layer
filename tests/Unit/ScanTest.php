@@ -34,16 +34,11 @@ class ScanTest extends TestCase
     /** @test */
     public function a_scan_has_an_isFinished_status()
     {
-        $domain = $this->getRegisteredDomain();
+        $scan = $this->getStartedScan();
+        $this->assertFalse($scan->is_finished);
 
-        $domain->scans()->create(factory(Scan::class)->make()->toArray());
-        $this->assertFalse(Scan::find(1)->is_finished);
-
-        $domain->scans()->create(factory(Scan::class)->make([
-            'results' =>  file_get_contents(base_path('tests/sampleFreeScanResults.json'))
-        ])->toArray());
-
-        $this->assertTrue(Scan::find(2)->is_finished);
+        $scan = $this->getFinishedScan();
+        $this->assertTrue($scan->is_finished);
     }
 
     /** @test */
@@ -62,20 +57,22 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function the_results_field_is_saved_as_json()
+    public function the_results_field_is_saved_as_json_and_automatically_converted_to_an_array()
     {
-        $this->getGeneratedScan(['results' =>  file_get_contents(base_path('tests/sampleFreeScanResults.json'))]);
+        $scan = $this->getGeneratedScan();
+        // JSON String
+        $scan->results = file_get_contents(base_path('tests/sampleFreeScanResults.json'));
+        $scan->save();
 
-        $this->assertJson(Scan::first()->results);
+        // Array
+        $this->assertIsArray(Scan::first()->results);
         $this->assertNotNull(Scan::first()->results);
     }
 
     /** @test */
     public function the_score_gets_set_when_the_result_is_received_to_the_model()
     {
-        $scan = $this->getGeneratedScan([
-            'results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))
-        ]);
+        $this->getFinishedScan();
 
         $this->assertEquals(87, Scan::first()->score);
     }
@@ -116,7 +113,7 @@ class ScanTest extends TestCase
         $scan = $this->getStartedScan();
         $this->assertEquals('running', $scan->status);
 
-        $scan = $this->getStartedScan(['results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))]);
+        $scan = $this->getFinishedScan();
         $this->assertEquals('finished', $scan->status);
     }
 }

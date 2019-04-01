@@ -90,7 +90,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getFinishedScan($attributes = [])
     {
-        $scan = $this->getStartedScan();
+        $scan = $this->getStartedScan($attributes);
         $scan->results = file_get_contents(base_path('tests/sampleFreeScanResults.json'));
         $scan->save();
 
