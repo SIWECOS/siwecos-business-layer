@@ -14,7 +14,7 @@ class ScanStatusTest extends TestCase
     /** @test */
     public function when_a_scan_was_not_started_yet_the_status_will_be_created()
     {
-        $scan = $this->getGeneratedScan();
+        $scan = $this->getGeneratedScan(['is_freescan' => true]);
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
@@ -29,7 +29,7 @@ class ScanStatusTest extends TestCase
     /** @test */
     public function when_a_scan_is_not_finished_yet_the_result_will_be_a_waiting_status()
     {
-        $scan = $this->getStartedScan();
+        $scan = $this->getStartedScan(['is_freescan' => true]);
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
@@ -44,7 +44,7 @@ class ScanStatusTest extends TestCase
     /** @test */
     public function when_a_scan_could_not_be_started_a_failed_message_is_returned()
     {
-        $scan = $this->getFailedScan();
+        $scan = $this->getFailedScan(['is_freescan' => true]);
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
@@ -59,7 +59,7 @@ class ScanStatusTest extends TestCase
     /** @test */
     public function when_a_scan_is_finished_the_success_message_is_returned()
     {
-        $scan = $this->getFinishedScan();
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);

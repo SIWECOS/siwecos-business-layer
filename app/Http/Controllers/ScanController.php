@@ -57,7 +57,11 @@ class ScanController extends Controller
 
     public function report(Scan $scan, $language = 'de')
     {
-        \App::setLocale($language);
-        return response()->json(new ScanReportResponse($scan));
+        if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+            \App::setLocale($language);
+            return response()->json(new ScanReportResponse($scan));
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
     }
 }

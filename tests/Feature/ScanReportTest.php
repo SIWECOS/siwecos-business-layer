@@ -134,7 +134,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function when_a_test_has_an_error_message_the_report_should_be_null_and_the_errorMessage_should_be_translated()
     {
-        $scan = $this->getStartedScan();
+        $scan = $this->getStartedScan(['is_freescan' => true]);
         $scan->results = file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json'));
         $scan->save();
 
@@ -189,5 +189,29 @@ class ScanReportTest extends TestCase
             'information_link' => 'https://siwecos.de/wiki/Phishing-Content/EN',
             'result' => 'Your domain was not found in any of the known phishing lists.',
         ]);
+    }
+
+    /** @test */
+    public function a_freescan_report_can_be_requested_by_everyone_without_authentication()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function a_non_freescan_report_can_only_be_requested_by_the_associated_token()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => false]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response->assertStatus(403);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+        $response->assertStatus(200);
     }
 }
