@@ -12,6 +12,7 @@ includes:
   - users
   - tokens
   - domains
+  - scans
 
 search: true
 ---
