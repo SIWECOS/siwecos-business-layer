@@ -158,4 +158,36 @@ class ScanReportTest extends TestCase
             ]
         ]);
     }
+
+    /** @test */
+    public function the_default_language_is_german()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing" title="Phishing">Phishing-Inhalte</a>',
+            'information_link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
+            'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Phishing-Liste</a> gefunden.',
+        ]);
+    }
+
+    /** @test */
+    public function the_language_can_be_changed_to_english_via_request_parameter()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id . '/en');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'headline' => 'Check for potential phishing content',
+            'information_link' => 'https://siwecos.de/wiki/Phishing-Content/EN',
+            'result' => 'Your domain was not found in any of the known phishing lists.',
+        ]);
+    }
 }
