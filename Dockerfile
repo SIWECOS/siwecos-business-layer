@@ -19,7 +19,10 @@ RUN apt-get update -y \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && docker-php-ext-install mysqli pdo_mysql pdo mbstring gd zip \
     && pip install supervisor==$SUPERVISOR_VERSION \
+    && pecl install -o -f redis \
+    && docker-php-ext-enable redis \
     && apt-get clean \
+    && rm -rf /tmp/pear \
     && rm -r /var/lib/apt/lists/*
 
 # Copy configuration files
