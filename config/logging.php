@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'syslog'),
+    'default' => env('LOG_CHANNEL', 'single'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,8 +47,9 @@ return [
         ],
 
         'lost-in-translation' => [
-            'driver' => env('LOG_CHANNEL', 'syslog'),
-            'level' => 'debug',
+            'driver' => 'stack',
+            'channels' => ['syslog', 'single'],
+            'ignore_exceptions' => false,
         ],
 
         'daily' => [
