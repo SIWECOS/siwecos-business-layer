@@ -46,6 +46,12 @@ return [
             'level' => 'debug',
         ],
 
+        'lost-in-translation' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/lost-in-translation.log'),
+            'level' => 'debug',
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
