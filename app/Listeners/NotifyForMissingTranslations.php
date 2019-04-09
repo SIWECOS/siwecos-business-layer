@@ -27,7 +27,7 @@ class NotifyForMissingTranslations
      */
     public function handle(MissingTranslationFound $event)
     {
-        \Notification::route('mail', 'technik@siwecos.de')
+        \Notification::route('mail', config('app.technicalSupportMail'))
             ->notify(new MissingTranslationFoundNotification($event));
     }
 }

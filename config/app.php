@@ -5,6 +5,10 @@ use App\Providers\DomainServiceProvider;
 return [
 
     'coreApiUrl' => env('CORE_API_URL'),
+    'technicalSupportMail' => env('TECHNICAL_SUPPORT_MAIL'),
+    'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://siwecos.de/willkommen-bei-siwecos/'),
+    'password_reset_uri'      => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/'),
+    'main_url'                => env('MAINURL', 'https://siwecos.de/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -17,7 +21,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'SIWECOS Business Layer Application'),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +73,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Berlin',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +86,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
@@ -218,7 +222,4 @@ return [
 
     ],
 
-    'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://siwecos.de/willkommen-bei-siwecos/'),
-    'password_reset_uri'      => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/'),
-    'main_url'                => env('MAINURL', 'https://siwecos.de/'),
 ];
