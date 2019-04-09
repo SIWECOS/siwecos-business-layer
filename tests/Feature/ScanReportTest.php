@@ -3,15 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Carbon\Carbon;
-use TiMacDonald\Log\LogFake;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\MissingTranslationFoundNotification;
-use Illuminate\Notifications\AnonymousNotifiable;
 
 class ScanReportTest extends TestCase
 {
@@ -219,24 +211,5 @@ class ScanReportTest extends TestCase
             'SIWECOS-Token' => $scan->token->token
         ]);
         $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function when_a_translation_key_is_missing_a_mail_will_be_sent()
-    {
-        Log::swap(new LogFake);
-
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
-
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en');
-        $response->assertStatus(200);
-
-        $response->assertSee('HEADER.SECURE_FLAG_SET');
-
-        Log::channel('lost-in-translation')->assertLogged('warning', function ($message, $context) {
-            return Str::contains($message, "Missing translation: HEADER.SECURE_FLAG_SET");
-        });
-
-        Notification::assertSentTo(new AnonymousNotifiable, MissingTranslationFoundNotification::class);
     }
 }
