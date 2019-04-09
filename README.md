@@ -24,4 +24,4 @@ The app generates the following logs in case of errors or failures.
 
 | Type       | Message                                  | Source         |
 | ---------- | ---------------------------------------- | -------------- |
-| `critical` | Failed to start scan for scan id: `{ID}` | `ScanStartJob` |
+| `critical` | Failed to start scan for scan id: `{ID}` | `StartScanJob` |
