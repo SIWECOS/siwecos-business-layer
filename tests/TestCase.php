@@ -12,10 +12,17 @@ use App\HTTPClient;
 use App\Scan;
 use App\Jobs\StartScanJob;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Notification;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        Notification::fake();
+    }
 
     /**
      * Returns an activated User.

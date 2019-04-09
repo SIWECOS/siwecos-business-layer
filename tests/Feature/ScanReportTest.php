@@ -9,9 +9,6 @@ use Carbon\Carbon;
 use TiMacDonald\Log\LogFake;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Event;
-use LostInTranslation\Events\MissingTranslationFound;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\MissingTranslationFoundNotification;
 use Illuminate\Notifications\AnonymousNotifiable;
@@ -227,9 +224,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function when_a_translation_key_is_missing_a_mail_will_be_sent()
     {
-        $this->withoutExceptionHandling();
         Log::swap(new LogFake);
-        Notification::fake();
 
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
