@@ -70,4 +70,27 @@ class ScanStatusTest extends TestCase
             'finished_at' => Carbon::now()->toDateTimeString(),
         ]);
     }
+
+    /** @test */
+    public function the_status_of_a_freescan_can_be_retrieved_by_everyone()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function the_status_of_a_non_freescan_can_only_be_retrieved_by_the_associated_token()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => false]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response->assertStatus(403);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+        $response->assertStatus(200);
+    }
 }
