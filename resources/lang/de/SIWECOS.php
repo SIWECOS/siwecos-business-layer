@@ -13,8 +13,8 @@ return [
   |
   */
 
-  'REPORT_FOR'         => "Report für :domain",
-  'SCANNER_TIMEOUT'    => "Der Scanner \"%scanner%\" wurde nach %timeoutvalue% Sekunden beendet, weil er kein Ergebnis geliefert hat.",
-  'TEST_ERROR_MESSAGE' => "Der Test lieferte einen Fehler.",
+  'REPORT_FOR'         => 'Report für :domain',
+  'SCANNER_TIMEOUT'    => 'Der Scanner ":scanner" wurde nach :timeoutvalue Sekunden beendet, weil er kein Ergebnis geliefert hat.',
+  'TEST_ERROR_MESSAGE' => 'Der Test lieferte einen Fehler.',
 
 ];

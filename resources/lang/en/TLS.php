@@ -129,7 +129,7 @@ return [
   'HTTPS_NOT_SUPPORTED_LINK'          => 'https://siwecos.de/wiki/No-TLS-Support/EN',
 
   // Test: HTTPS_NO_RESPONSE
-  'HTTPS_NO_RESPONSE_HEADLINE'      => 'Check response time of the <a target="siwecos_wiki" href="https://siwecos.de/wiki/Header" title="Header">Headers</a>',
+  'HTTPS_NO_RESPONSE_HEADLINE'      => 'Check response time of the Headers',
   'HTTPS_NO_RESPONSE_POSITIVE'      => 'Server responds.',
   'HTTPS_NO_RESPONSE_NEGATIVE'      => 'Server does not respond.',
   'HTTPS_NO_RESPONSE_DESCRIPTION'   => '<p>The server does not seem to respond. Have you entered the <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> correctly? </p>',
