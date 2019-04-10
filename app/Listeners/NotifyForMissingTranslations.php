@@ -27,7 +27,9 @@ class NotifyForMissingTranslations
      */
     public function handle(MissingTranslationFound $event)
     {
-        \Notification::route('mail', config('app.technicalSupportMail'))
-            ->notify(new MissingTranslationFoundNotification($event));
+        if (\Cache::add($event->key, 'notification_sent', 3600)) {
+            \Notification::route('mail', config('app.technicalSupportMail'))
+                ->notify(new MissingTranslationFoundNotification($event));
+        }
     }
 }
