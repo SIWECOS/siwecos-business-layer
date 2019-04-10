@@ -36,7 +36,7 @@ class ScanReportTest extends TestCase
                     // 'finished_at' => '2019-03-27 16:18:13',
                     'tests' => [
                         [
-                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing" title="Phishing">Phishing-Inhalte</a>',
+                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing-Inhalte/DE" title="Phishing-Inhalte/DE">Phishing-Inhalte</a>',
                             'has_error' => false,
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
@@ -45,7 +45,7 @@ class ScanReportTest extends TestCase
                             'result_details' => null,
                         ],
                         [
-                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam" title="Spam">Spam-Inhalte</a>',
+                            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam-Inhalte/DE" title="Spam-Inhalte/DE">Spam-Inhalte</a>',
                             'has_error' => false,
                             'score' => 100,
                             'information_link' => 'https://siwecos.de/wiki/Spam-Inhalte/DE',
@@ -151,7 +151,7 @@ class ScanReportTest extends TestCase
                     'Auf der Seite wurde kein Inhalt gefunden.'
                 ],
                 'result_description' => null,
-                'solution_tips' => '<p>Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target="siwecos_wiki" href="https://siwecos.de/wiki/Schwachstellen" title="Schwachstellen">Schwachstellen</a> auf der Webseite zu bestätigen. </p>',
+                'solution_tips' => '<p>Wenn unsicherer JavaScript-Code gemeldet wird, ist die <a target="siwecos_wiki" href="https://siwecos.de/wiki/Webanwendung" title="Webanwendung">Webanwendung</a> eventuell anfällig für sog. <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS</a>-Angriffe. Das Ergebnis der Untersuchung kann nur als Hinweis auf Sicherheitslücken verwendet werden. Weitere Tests sind erforderlich, um die <a target="siwecos_wiki" href="https://siwecos.de/wiki/Schwachstellen" title="Schwachstellen">Schwachstellen</a> auf der Webseite zu bestätigen. </p>',
                 'information_link' => 'https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE',
             ]
         ]);
@@ -167,7 +167,7 @@ class ScanReportTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJsonFragment([
-            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing" title="Phishing">Phishing-Inhalte</a>',
+            'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing-Inhalte/DE" title="Phishing-Inhalte/DE">Phishing-Inhalte</a>',
             'information_link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
             'result' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Phishing-Liste</a> gefunden.',
         ]);
