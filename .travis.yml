@@ -16,19 +16,12 @@ env:
     - CLUSTER_NAME_PRD=siwecoscluster
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
 
-jobs:
-  include:
-    - stage: unit tests
-      script:
-        - composer selfupdate
-        - composer install
-        - ./vendor/bin/phpunit
-    - stage: build docker image
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t siwecos-business-layer .
-        - docker tag siwecos-business-layer siwecos/siwecos-business-layer:"$TRAVIS_BRANCH"
-        - docker push siwecos/siwecos-business-layer:"$TRAVIS_BRANCH"
+script:
+  - composer selfupdate
+  - composer install
+  - ./vendor/bin/phpunit
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t siwecos-business-layer .
 
 before_deploy:
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
@@ -49,6 +42,8 @@ deploy:
     on:
       branch: develop
     script:
+      - docker tag siwecos-business-layer siwecos/siwecos-business-layer:develop
+      - docker push siwecos/siwecos-business-layer:develop
       - kubectl patch deployment siwecos-business-layer --namespace staging -p '{"spec":{"template":{"metadata":{"labels":{"date":"`date +'%s'`", "commit":"$TRAVIS_COMMIT"}}}}}'
   - provider: script
     skip_cleanup: true
