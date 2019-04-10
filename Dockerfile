@@ -43,7 +43,7 @@ COPY . $APP_HOME
 COPY .env.example .env
 
 # Install all PHP dependencies and change ownership of our applications
-RUN composer install --no-interaction \
+RUN composer install --no-dev --no-interaction \
     && chown -R www-data:www-data $APP_HOME
 
 CMD supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
