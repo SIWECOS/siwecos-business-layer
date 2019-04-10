@@ -10,13 +10,6 @@ cache:
 
 dist: trusty
 
-env:
-  global:
-    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
-    - PROJECT_NAME_PRD=glowing-thunder-215513
-    - CLUSTER_NAME_PRD=siwecoscluster
-    - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
-
 script:
   - composer selfupdate
   - composer install
@@ -32,10 +25,10 @@ before_deploy:
   - gcloud --quiet components update kubectl
   - echo $GCLOUD_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
   - gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-  - gcloud --quiet config set project $PROJECT_NAME_PRD
-  - gcloud --quiet config set container/cluster $CLUSTER_NAME_PRD
-  - gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
-  - gcloud --quiet container clusters get-credentials $CLUSTER_NAME_PRD
+  - gcloud --quiet config set project $GOOGLE_PROJECT_NAME
+  - gcloud --quiet config set container/cluster $GOOGLE_CLUSTER_NAME
+  - gcloud --quiet config set compute/zone $GOOGLE_COMPUTE_ZONE
+  - gcloud --quiet container clusters get-credentials $GOOGLE_CLUSTER_NAME
 
 deploy:
   - provider: script
