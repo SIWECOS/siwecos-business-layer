@@ -143,4 +143,139 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'progress' => 0
         ]);
     }
+
+    /** @test */
+    public function the_scan_report_can_be_retrieved()
+    {
+        $this->withoutExceptionHandling();
+
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
+
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'scanStarted' => [
+                // 'date' => '2019-03-27 16:15:13.000000',
+                'date' => now()->toDateTimeString() . '.000000',
+                'timezone_type' => 3,
+                'timezone' => 'UTC'
+            ],
+            'scanFinished' => [
+                // 'date' => '2019-03-27 16:18:13.000000',
+                'date' => now()->toDateTimeString() . '.000000',
+                'timezone_type' => 3,
+                'timezone' => 'UTC'
+            ],
+            'hasFailed' => false,
+            'hasCrit' => false,
+            'message' => 'current state of requested token',
+            'token' => 'NOTAVAILABLE',
+            'weightedMedia' => 87,
+            'scanners' => [
+                [
+                    'scan_id' => 1,
+                    'scanner_type' => 'Initiative-S Scanner',
+                    'result' => [
+                        [
+                            'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing-Inhalte/DE" title="Phishing-Inhalte/DE">Phishing-Inhalte</a>',
+                            'hasError' => false,
+                            'dangerLevel' => 0,
+                            'errorMessage' => null,
+                            'score' => 100,
+                            'testDetails' => [],
+                            'link' => 'https://siwecos.de/wiki/Phishing-Inhalte/DE',
+                            'description' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Phishing-Liste</a> gefunden.',
+                            'report' => null,
+                            'scoreTypeRaw' => 'success',
+                        ],
+                        [
+                            'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam-Inhalte/DE" title="Spam-Inhalte/DE">Spam-Inhalte</a>',
+                            'hasError' => false,
+                            'dangerLevel' => 0,
+                            'errorMessage' => null,
+                            'score' => 100,
+                            'testDetails' => [],
+                            'link' => 'https://siwecos.de/wiki/Spam-Inhalte/DE',
+                            'description' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Spam-Liste</a> gefunden.',
+                            'report' => null,
+                            'scoreTypeRaw' => 'success',
+                        ],
+                        [
+                            'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Malware-Inhalte/DE" title="Malware-Inhalte/DE">MALWARE-Inhalte</a>',
+                            'hasError' => false,
+                            'dangerLevel' => 0,
+                            'errorMessage' => null,
+                            'score' => 100,
+                            'testDetails' => [],
+                            'link' => 'https://siwecos.de/wiki/Malware-Inhalte/DE',
+                            'description' => 'Ihre <a target="siwecos_wiki" href="https://siwecos.de/wiki/Domain" title="Domain">Domain</a> wurde in keiner uns bekannten <a target="siwecos_wiki" href="https://siwecos.de/wiki/Listen" title="Listen">Malware-Liste</a> gefunden.',
+                            'report' => null,
+                            'scoreTypeRaw' => 'success',
+                        ]
+                    ],
+                    'created_at' => '2019-03-27 16:18:13',
+                    'updated_at' => '2019-03-27 16:18:13',
+                    'total_score' => 100,
+                    'has_error' => false,
+                    'score' => 100,
+                    'scanner_code' => 'INI_S'
+                ],
+                [
+                    'scan_id' => 1,
+                    'scanner_type' => 'DOMXSS Scanner',
+                    'result' => [
+                        [
+                            'name' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sources',
+                            'hasError' => false,
+                            'errorMessage' => null,
+                            'score' => 100,
+                            'testDetails' => [
+                                [
+                                    'report' => 'Es wurden keine „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a>“ gefunden.',
+                                    'name' => 'Es wurden keine „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a>“ gefunden.'
+                                ]
+                            ],
+                            'link' => 'https://siwecos.de/wiki/Schadcode-Ueber-Fremde-Quellen/DE',
+                            'description' => 'Automatisiert wurden keine unsicheren Codebestandteile für <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sources" title="DOMXSS-Sources">DOMXSS-Sources</a> erkannt.',
+                            'report' => null,
+                            'scoreTypeRaw' => 'info'
+                        ],
+                        [
+                            'name' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sinks',
+                            'hasError' => false,
+                            'errorMessage' => null,
+                            'score' => 0,
+                            'testDetails' => [
+                                [
+                                    'report' => 'Es wurden „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>“ gefunden.',
+                                    'name' => 'Es wurden „<a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>“ gefunden.'
+                                ]
+                            ],
+                            'link' => 'https://siwecos.de/wiki/DOMXSS-Schwachstelle/DE',
+                            'description' => 'Unsicheren <a target="siwecos_wiki" href="https://siwecos.de/wiki/JavaScript" title="JavaScript">JavaScript</a>-Code verwendet <a target="siwecos_wiki" href="https://siwecos.de/wiki/DOMXSS-Sinks" title="DOMXSS-Sinks">DOMXSS-Sinks</a>.',
+                            'report' => '<p>Es wurde mindestens eine Codestelle beim Scan Ihrer Webseite gefunden, der unter bestimmten Voraussetzungen auf eine DOM-basierende <a target="siwecos_wiki" href="https://siwecos.de/wiki/Cross-Site_Scripting" title="Cross-Site Scripting">Cross-Site Scripting-Anfälligkeit</a> hindeutet. Diese Stelle kann eine Schwachstelle auf Ihrer Webseite darstellen. </p>',
+                            'scoreTypeRaw' => 'info'
+                        ]
+                    ],
+                    'created_at' => '2019-03-27 16:18:13',
+                    'updated_at' => '2019-03-27 16:18:14',
+                    'total_score' => 50,
+                    'has_error' => false,
+                    'score' => 50,
+                    'scanner_code' => 'DOMXSS'
+                ]
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function only_for_existing_scans_a_report_can_be_requested()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
+
+        $response->assertStatus(404);
+    }
 }

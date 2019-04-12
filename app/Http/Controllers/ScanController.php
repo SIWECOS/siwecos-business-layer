@@ -57,6 +57,17 @@ class ScanController extends Controller
 
     public function report(Scan $scan, $language = 'de')
     {
+        /**
+         * Additional statement for the API v1 compatibility;
+         * If the v1 route is used, no $scan gets injected by route model binding
+         * Therefore the MapScanReportResponseForLegacyApi Middleware transforms the `domain` parameter and delivers the $scan
+         *
+         * Note: An injected $scan does not have a domain
+         */
+        if (!$scan->domain) {
+            $scan = request()->get('scan');
+        }
+
         if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
             return response()->json(new ScanReportResponse($scan));

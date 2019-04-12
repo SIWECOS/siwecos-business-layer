@@ -5,6 +5,7 @@ use App\Http\Middleware\MapDomainDeletedResponseForLegacyApi;
 use App\Http\Middleware\MapDomainListResponseForLegacyApi;
 use App\Http\Middleware\MapDomainVerifiedResponseForLegacyApi;
 use App\Http\Middleware\MapScanStartedResponseForLegacyApi;
+use App\Http\Middleware\MapScanReportResponseForLegacyApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +63,9 @@ Route::prefix('v1')->group(function () {
 
         Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
     });
+    Route::get('/scan/result/{lang?}', 'ScanController@report')->middleware(['mapUserTokenToSiwecosToken', MapScanReportResponseForLegacyApi::class]);
 
 
-    // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
 
     // old - to be removed
 
