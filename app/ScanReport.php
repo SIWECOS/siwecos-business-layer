@@ -60,6 +60,7 @@ class ScanReport
             $output->push([
                 'headline' => __($scannerCode . "." . $test->get('name') . "_HEADLINE"),
                 'score' => $test->get('score'),
+                'score_type' => $test->get('scoreType'),
                 'has_error' => $test->get('hasError'),
                 'result' => $this->getTranslatedResult($test, $scannerCode),
                 'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),

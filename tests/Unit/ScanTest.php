@@ -128,4 +128,14 @@ class ScanTest extends TestCase
         $scan = $this->getFinishedScan();
         $this->assertEquals('finished', $scan->status);
     }
+
+    /** @test */
+    public function a_scan_knows_its_dangerLevel()
+    {
+        $scan = $this->getGeneratedScan(['is_freescan' => true]);
+        $this->assertEquals(0, $scan->danger_level);
+
+        $scan = $this->getGeneratedScan(['is_freescan' => false]);
+        $this->assertEquals(10, $scan->danger_level);
+    }
 }

@@ -50,6 +50,11 @@ class Scan extends Model
         return 'created';
     }
 
+    public function getDangerLevelAttribute()
+    {
+        return $this->is_freescan ? 0 : 10;
+    }
+
     public function setResultsAttribute($results)
     {
         $this->attributes['results'] = $results;

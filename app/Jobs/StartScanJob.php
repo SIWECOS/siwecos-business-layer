@@ -17,22 +17,20 @@ class StartScanJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $scan;
-    public $danger_level;
 
     /**
-      * Create a new job instance.
-      *
-      * @param string $url
-      * @param boolean $is_freescan
-      * @param boolean $is_recurrent
-      * @param HTTPClient $client
-      *
-      * @return void
-      */
+     * Create a new job instance.
+     *
+     * @param string $url
+     * @param boolean $is_freescan
+     * @param boolean $is_recurrent
+     * @param HTTPClient $client
+     *
+     * @return void
+     */
     public function __construct(Scan $scan)
     {
         $this->scan = $scan;
-        $this->danger_level = $scan->is_freescan ? 0 : 10;
     }
 
     /**
@@ -44,7 +42,7 @@ class StartScanJob implements ShouldQueue
     {
         $response = $client->post(config('app.coreApiUrl'), [
             'url' => $this->scan->domain->url,
-            'dangerLevel' => $this->danger_level,
+            'dangerLevel' => $this->scan->danger_level,
             'callbackurls' => [
                 config('app.url') . '/api/v2/scan/finished'
             ]

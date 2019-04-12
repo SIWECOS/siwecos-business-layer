@@ -31,23 +31,6 @@ class StartScanJobTest extends TestCase
         $this->assertEquals(false, $job->scan->is_recurrent);
     }
 
-    /** @test */
-    public function by_default_the_dangerLevel_is_0_on_freescans()
-    {
-        $scan = $this->getGeneratedScan(['is_freescan' => true]);
-        $job = new StartScanJob($scan);
-
-        $this->assertEquals(0, $job->danger_level);
-    }
-
-    /** @test */
-    public function by_default_the_dangerLevel_is_10_on_nonFreescans()
-    {
-        $scan = $this->getGeneratedScan(['is_freescan' => false]);
-        $job = new StartScanJob($scan);
-
-        $this->assertEquals(10, $job->danger_level);
-    }
 
     /** @test */
     public function when_the_scanJob_was_sent_to_the_coreApi_the_scan_gets_the_startetAt_value()
