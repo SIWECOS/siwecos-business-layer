@@ -40,7 +40,7 @@ class StartScanJob implements ShouldQueue
      */
     public function handle(HTTPClient $client)
     {
-        $response = $client->post(config('app.coreApiUrl'), [
+        $response = $client->post(config('siwecos.coreApiUrl'), [
             'url' => $this->scan->domain->url,
             'dangerLevel' => $this->scan->danger_level,
             'callbackurls' => [
