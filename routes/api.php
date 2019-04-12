@@ -48,6 +48,9 @@ Route::prefix('v2')->group(function () {
     Route::get('/scan/{scan}/{language?}', 'ScanController@report');
 
     Route::post('/freescan', 'ScanController@startFreescan');
+
+    // Callback URL for the SIWECOS/siwecos-core-api
+    Route::post('/scan/{scan}', 'ScanController@finished');
 });
 
 Route::prefix('v1')->group(function () {
@@ -69,21 +72,10 @@ Route::prefix('v1')->group(function () {
 
     // old - to be removed
 
-
     // Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     // Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
     // Route::post('/report', 'SiwecosScanController@generateReport');
     // Route::post('/pdf', 'SiwecosScanController@generatePdf');
 
-    Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
-
-    // // Route::middleware(['usertoken'])->group(function () {
-
-    // // Route::middleware(['activation'])->group(function () {
-    // // Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
-    // Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
-    // Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
-    // });
-    // });
 });

@@ -12,6 +12,9 @@ use App\Http\Responses\ScanStartedResponse;
 use App\Scan;
 use App\Http\Responses\ScanStatusResponse;
 use App\Http\Responses\ScanReportResponse;
+use App\Http\Requests\ScanFinishedRequest;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class ScanController extends Controller
 {
@@ -74,5 +77,74 @@ class ScanController extends Controller
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function finished(ScanFinishedRequest $request, Scan $scan)
+    {
+        if (!$scan->is_finished) {
+            $scan->results = $request->json('results');
+
+            if ($scan->save()) {
+                $this->generateSiwecosSeals($scan->domain);
+                return response()->json(new StatusResponse('OK'));
+            }
+
+            return response()->json(new StatusResponse('Could not save results!', 410));
+        }
+
+        return response()->json(new StatusResponse('Scan results already retrieved!'), 403);
+    }
+
+    /**
+     * Generates the seals for SIWECOS.
+     *
+     * @param string $scanUrl
+     * @return void
+     */
+    protected function generateSiwecosSeals(Domain $domain)
+    {
+        $hostname = parse_url($domain->url, PHP_URL_HOST);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
+
+        $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
+        $view = view('siwecos-siegel')->withDate($date)->render();
+        Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
+    }
+
+    /**
+     * Returns the date for the SIWECOS seal as SVG-Code for usage with siwecos-siegel.blade.php
+     *
+     * @param string $date
+     * @return string SVG-Code for the date
+     */
+    protected function getScanDateSVG(string $date)
+    {
+        $digitWidth = array(
+            "0" => 12.5,
+            "1" => 9.76562,
+            "2" => 11.44531,
+            "3" => 11.32812,
+            "4" => 12.10937,
+            "5" => 11.25,
+            "6" => 11.99218,
+            "7" => 10.58593,
+            "8" => 12.14843,
+            "9" => 11.99218,
+            "." => 5.07812,
+            "/" => 8.08593,
+            "-" => 9.45312,
+        );
+
+        $scandate = "";
+        $positionX = 0;
+        foreach (str_split($date) as $digit) {
+            $scandate .= '<use xlink:href="#L' . $digit . '" x="' . $positionX . '"/>';
+            $positionX += $digitWidth[$digit];
+        }
+
+        return $scandate;
     }
 }
