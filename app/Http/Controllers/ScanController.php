@@ -100,7 +100,7 @@ class ScanController extends Controller
     /**
      * Generates the seals for SIWECOS.
      *
-     * @param string $scanUrl
+     * @param Domain $domain
      * @return void
      */
     protected function generateSiwecosSeals(Domain $domain)
