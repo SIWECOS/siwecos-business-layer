@@ -85,7 +85,9 @@ class ScanController extends Controller
             $scan->results = $request->json('results');
 
             if ($scan->save()) {
-                $this->generateSiwecosSeals($scan->domain);
+                if (!$scan->is_freescan) {
+                    $this->generateSiwecosSeals($scan->domain);
+                }
                 return response()->json(new StatusResponse('OK'));
             }
 

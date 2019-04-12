@@ -66,7 +66,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function the_siwecos_seals_are_generated_when_a_scan_is_finished()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan(['is_freescan' => false]);
         $response = $this->json('POST', '/api/v2/scan/' . $scan->id, [
             'results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))
         ]);
@@ -74,5 +74,18 @@ class ScanFinishedTest extends TestCase
         $response->assertStatus(200);
         Storage::disk('gcs')->assertExists('example.org/d.m.y.svg');
         Storage::disk('gcs')->assertExists('example.org/y-m-d.svg');
+    }
+
+    /** @test */
+    public function the_siwecos_seals_are_not_generated_when_a_scan_is_a_freescan()
+    {
+        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, [
+            'results' => file_get_contents(base_path('tests/sampleFreeScanResults.json'))
+        ]);
+
+        $response->assertStatus(200);
+        Storage::disk('gcs')->assertMissing('example.org/d.m.y.svg');
+        Storage::disk('gcs')->assertMissing('example.org/y-m-d.svg');
     }
 }
