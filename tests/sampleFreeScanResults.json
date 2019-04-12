@@ -1,6 +1,8 @@
 [
     {
         "name": "INI_S",
+        "started_at": "2019-03-27 16:18:13",
+        "finished_at": "2019-03-27 16:18:13",
         "hasError": false,
         "score": 100,
         "errorMessage": null,
@@ -37,6 +39,8 @@
     {
         "name": "DOMXSS",
         "version": "1.5.0",
+        "started_at": "2019-03-27 16:18:13",
+        "finished_at": "2019-03-27 16:18:14",
         "hasError": false,
         "errorMessage": null,
         "score": 50,
@@ -74,6 +78,8 @@
     {
         "name": "TLS",
         "version": "2.5",
+        "started_at": "2019-03-27 16:18:13",
+        "finished_at": "2019-03-27 16:18:41",
         "hasError": false,
         "errorMessage": null,
         "score": 100,
@@ -211,6 +217,8 @@
     {
         "name": "HEADER",
         "version": "1.5.0",
+        "started_at": "2019-03-27 16:18:14",
+        "finished_at": "2019-03-27 16:18:15",
         "hasError": false,
         "errorMessage": null,
         "score": 85,
@@ -345,6 +353,8 @@
     {
         "name": "INFOLEAK",
         "version": "1.0.2",
+        "started_at": "2019-03-27 16:18:14",
+        "finished_at": "2019-03-27 16:18:15",
         "hasError": false,
         "errorMessage": null,
         "score": 100,
