@@ -4,7 +4,7 @@
 SIWECOS
 @endcomponent
 @endslot
-Sehr {{{ $salutation_id === 1 ? "geehrter Herr" : "geehrte Frau" }}} {{ $last_name }},
+Guten Tag,
 
 Mit dieser Mail informieren wir Sie über das aktuelle Scan Ergebnis für Ihre Webseite.
 

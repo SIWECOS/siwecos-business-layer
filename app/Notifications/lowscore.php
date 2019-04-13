@@ -53,13 +53,10 @@ class lowscore extends Notification
 
         return (new MailMessage())
             ->markdown('mail.lowscore', [
-                'email'         => $notifiable->email,
-                'first_name'    => $notifiable->first_name,
-                'last_name'     => $notifiable->last_name,
-                'salutation_id' => $notifiable->salutation_id,
+                'email'         => $notifiable->email
             ])
-            ->attachData($this->pdfAttachement, 'SCAN '.$domainArray['scheme'].' '.$domainArray['host'].' '.Carbon::now()->format('Y-m-d').'.pdf')
-            ->subject('[SIWECOS] '.$this->domain.' Sicherheitsreport');
+            ->attachData($this->pdfAttachement, 'SCAN ' . $domainArray['scheme'] . ' ' . $domainArray['host'] . ' ' . Carbon::now()->format('Y-m-d') . '.pdf')
+            ->subject('[SIWECOS] Sicherheitsreport für ' . $domainArray['host']);
     }
 
     /**

@@ -34,10 +34,7 @@ class activationmail extends Notification
         return (new MailMessage())
             ->markdown('mail.registration', [
                 'activateurl'   => route('activateurl', ['token' => $notifiable->activation_key]),
-                'email'         => $notifiable->email,
-                'first_name'    => $notifiable->first_name,
-                'last_name'     => $notifiable->last_name,
-                'salutation_id' => $notifiable->salutation_id,
+                'email'         => $notifiable->email
             ])
             ->subject('[SIWECOS] Willkommen');
     }
