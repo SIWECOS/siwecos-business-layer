@@ -18,87 +18,90 @@ class MapScanReportResponseForLegacyApi
      */
     public function handle($request, Closure $next)
     {
-        $url = urldecode(substr($request->getQueryString(), 7));
-        $domain = Domain::whereUrl($url)->first();
+        /**
+         * @var \Illuminate\Http\JsonResponse $response
+         */
+        $response = $next($request);
 
-        if ($domain && $scan = $domain->scans()->latest()->first()) {
-            $request->merge(['scan' => $scan]);
+        // $scan parameter was sent by freescan route (/api/v1/freescan/result/{scan}/{language?})
+        $scan = $request->route()->parameter('scan');
 
-            /**
-             * @var \Illuminate\Http\JsonResponse $response
-             */
-            $response = $next($request);
+        // $scan parameter was not sent
+        // get parameter via $domain was used by scan route (/api/v1/scan/result/{language?}?domain=http://example.com)
+        if (!($scan instanceof Scan)) {
+            $url = urldecode(substr($request->getQueryString(), 7));
+            $domain = Domain::whereUrl($url)->first();
 
-            if ($response->getStatusCode() === 200) {
-                $json = json_decode($response->content());
+            $scan = $domain->scans()->latest()->first();
+        }
 
-                $scanners = collect();
+        if ($response->getStatusCode() === 200) {
+            $json = json_decode($response->content());
 
-                foreach ($json->report as $scanner) {
+            $scanners = collect();
 
-                    $tests = collect();
-                    foreach ($scanner->tests as $test) {
-                        $testDetails = collect();
+            foreach ($json->report as $scanner) {
 
-                        if ($test->result_details) {
-                            foreach ($test->result_details as $details) {
-                                $testDetails->push([
-                                    'report' => $details,
-                                    'name' => $details
-                                ]);
-                            }
+                $tests = collect();
+                foreach ($scanner->tests as $test) {
+                    $testDetails = collect();
+
+                    if ($test->result_details) {
+                        foreach ($test->result_details as $details) {
+                            $testDetails->push([
+                                'report' => $details,
+                                'name' => $details
+                            ]);
                         }
-
-                        $tests->push([
-                            'name' => $test->headline,
-                            'hasError' => $test->has_error,
-                            'dangerLevel' => $scan->danger_level,
-                            'errorMessage' => $test->has_error ? $test->result : null,
-                            'score' => $test->score,
-                            'testDetails' => $testDetails,
-                            'link' => $test->information_link,
-                            'description' => $test->result,
-                            'report' => $test->result_description,
-                            'scoreTypeRaw' => $test->score_type
-                        ]);
                     }
 
-                    $scanners->push([
-                        'scan_id' => $scan->id,
-                        'scanner_type' => $scanner->scanner_name,
-                        'result' => $tests,
-                        'created_at' => $scanner->started_at,
-                        'updated_at' => $scanner->finished_at,
-                        'total_score' => $scanner->score,
-                        'has_error' => $scanner->has_error,
-                        'score' => $scanner->score,
-                        'scanner_code' => $scanner->scanner_code
+                    $tests->push([
+                        'name' => $test->headline,
+                        'hasError' => $test->has_error,
+                        'errorMessage' => $test->has_error ? $test->result : null,
+                        'score' => $test->score,
+                        'testDetails' => $testDetails,
+                        'link' => $test->information_link,
+                        'description' => $test->result,
+                        'report' => $test->result_description,
+                        'scoreTypeRaw' => $test->score_type
                     ]);
                 }
 
-                $response->setContent(json_encode([
-                    'scanStarted' => [
-                        // 'date' => $scan->started_at->toDateTimeString() . '.000000',
-                        'date' => $json->started_at . '.000000',
-                        'timezone_type' => 3,
-                        'timezone' => 'UTC'
-                    ],
-                    'scanFinished' => [
-                        'date' => $scan->finished_at->toDateTimeString() . '.000000',
-                        'timezone_type' => 3,
-                        'timezone' => 'UTC'
-                    ],
-                    'scanners' => $scanners,
-                    'hasFailed' => $scan->has_error,
-                    'hasCrit' => $scan->has_error,
-                    'message' => 'current state of requested token',
-                    'token' => $scan->is_freescan ? 'NOTAVAILABLE' : $scan->token->tolen,
-                    'weightedMedia' => $scan->score,
-                ]));
+                $scanners->push([
+                    'scan_id' => $scan->id,
+                    'scanner_type' => $scanner->scanner_name,
+                    'result' => $tests,
+                    'created_at' => $scanner->started_at,
+                    'updated_at' => $scanner->finished_at,
+                    'total_score' => $scanner->score,
+                    'has_error' => $scanner->has_error,
+                    'score' => $scanner->score,
+                    'scanner_code' => $scanner->scanner_code
+                ]);
             }
-            return $response;
+
+            $response->setContent(json_encode([
+                'scanStarted' => [
+                    // 'date' => $scan->started_at->toDateTimeString() . '.000000',
+                    'date' => $json->started_at . '.000000',
+                    'timezone_type' => 3,
+                    'timezone' => 'UTC'
+                ],
+                'scanFinished' => [
+                    'date' => $scan->finished_at->toDateTimeString() . '.000000',
+                    'timezone_type' => 3,
+                    'timezone' => 'UTC'
+                ],
+                'scanners' => $scanners,
+                'hasFailed' => $scan->has_error,
+                'hasCrit' => $scan->has_error,
+                'message' => 'current state of requested token',
+                'token' => $scan->is_freescan ? 'NOTAVAILABLE' : $scan->token->token,
+                'weightedMedia' => $scan->score,
+            ]));
         }
 
-        return response()->json(new StatusResponse('Not found'), 404);
+        return $response;
     }
 }

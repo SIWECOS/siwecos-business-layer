@@ -145,17 +145,58 @@ class LegacyApiV1CompatibilityTest extends TestCase
     }
 
     /** @test */
-    public function the_scan_report_can_be_retrieved()
+    public function the_scan_report_can_be_retrieved_for_freescans()
     {
         $this->withoutExceptionHandling();
-
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
 
         $response->assertStatus(200);
 
-        $response->assertJson([
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray());
+    }
+
+    /** @test */
+    public function the_legacy_freescan_results_api_route_also_delivers_the_scan_report_for_freescans()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v1/freescan/result/' . $scan->id . '/de');
+
+        $response->assertStatus(200);
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray());
+    }
+
+    /** @test */
+    public function the_scan_report_can_be_retrieved_for_non_freescans_if_user_is_authenticated()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => false]);
+
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
+        $response->assertStatus(403);
+
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
+            'userToken' => $scan->token->token
+        ]);
+        $response->assertStatus(200);
+
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->token->token));
+    }
+
+    /** @test */
+    public function only_for_existing_scans_a_report_can_be_requested()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
+
+        $response->assertStatus(404);
+    }
+
+
+    protected function getExampleLegacyScanReportJsonArray(string $token = 'NOTAVAILABLE')
+    {
+        return [
             'scanStarted' => [
                 // 'date' => '2019-03-27 16:15:13.000000',
                 'date' => now()->toDateTimeString() . '.000000',
@@ -171,7 +212,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'hasFailed' => false,
             'hasCrit' => false,
             'message' => 'current state of requested token',
-            'token' => 'NOTAVAILABLE',
+            'token' => $token,
             'weightedMedia' => 87,
             'scanners' => [
                 [
@@ -181,7 +222,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
                         [
                             'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing-Inhalte/DE" title="Phishing-Inhalte/DE">Phishing-Inhalte</a>',
                             'hasError' => false,
-                            'dangerLevel' => 0,
                             'errorMessage' => null,
                             'score' => 100,
                             'testDetails' => [],
@@ -193,7 +233,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
                         [
                             'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Spam-Inhalte/DE" title="Spam-Inhalte/DE">Spam-Inhalte</a>',
                             'hasError' => false,
-                            'dangerLevel' => 0,
                             'errorMessage' => null,
                             'score' => 100,
                             'testDetails' => [],
@@ -205,7 +244,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
                         [
                             'name' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Malware-Inhalte/DE" title="Malware-Inhalte/DE">MALWARE-Inhalte</a>',
                             'hasError' => false,
-                            'dangerLevel' => 0,
                             'errorMessage' => null,
                             'score' => 100,
                             'testDetails' => [],
@@ -267,15 +305,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
                     'scanner_code' => 'DOMXSS'
                 ]
             ]
-        ]);
-    }
-
-    /** @test */
-    public function only_for_existing_scans_a_report_can_be_requested()
-    {
-        $this->withoutExceptionHandling();
-        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
-
-        $response->assertStatus(404);
+        ];
     }
 }

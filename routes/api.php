@@ -6,6 +6,7 @@ use App\Http\Middleware\MapDomainListResponseForLegacyApi;
 use App\Http\Middleware\MapDomainVerifiedResponseForLegacyApi;
 use App\Http\Middleware\MapScanStartedResponseForLegacyApi;
 use App\Http\Middleware\MapScanReportResponseForLegacyApi;
+use App\Http\Middleware\MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,13 +67,13 @@ Route::prefix('v1')->group(function () {
 
         Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
     });
-    Route::get('/scan/result/{lang?}', 'ScanController@report')->middleware(['mapUserTokenToSiwecosToken', MapScanReportResponseForLegacyApi::class]);
+    Route::get('/scan/result/{language?}', 'ScanController@report')->middleware(['mapUserTokenToSiwecosToken', MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi::class, MapScanReportResponseForLegacyApi::class]);
+    Route::get('/freescan/result/{scan}/{language?}', 'ScanController@report')->middleware([MapScanReportResponseForLegacyApi::class]);
 
 
 
     // old - to be removed
 
-    // Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
     // Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
 
     // Route::post('/report', 'SiwecosScanController@generateReport');
