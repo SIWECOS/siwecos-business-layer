@@ -79,7 +79,9 @@ class Domain extends Model
 
     public function delete()
     {
-        $this->scans()->delete();
+        $this->scans->each(function ($scan) {
+            $scan->delete();
+        });
 
         return parent::delete();
     }

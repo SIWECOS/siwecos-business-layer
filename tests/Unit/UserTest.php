@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Token;
+use App\Domain;
+use App\Scan;
 
 class UserTest extends TestCase
 {
@@ -27,5 +29,23 @@ class UserTest extends TestCase
 
         $this->assertNotNull($user->token);
         $this->assertEquals(Token::first(), $user->token);
+    }
+
+    /** @test */
+    public function if_a_user_deletes_his_account_all_associated_models_will_be_deleted_too()
+    {
+        $scan = $this->getFinishedScan();
+        $user = $this->getActivatedUser();
+        $scan->domain->token()->associate($user->token)->save();
+        Token::find(1)->delete(); // delete original $scan->token
+
+        $this->assertCount(1, $user->refresh()->token->domains);
+        $this->assertCount(1, $user->token->domains()->first()->scans);
+
+        $user->delete();
+        $this->assertCount(0, User::all());
+        $this->assertCount(0, Token::all());
+        $this->assertCount(0, Domain::all());
+        $this->assertCount(0, Scan::all());
     }
 }

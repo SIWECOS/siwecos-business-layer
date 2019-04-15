@@ -59,4 +59,11 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function delete()
+    {
+        $this->token->delete();
+
+        parent::delete();
+    }
 }

@@ -41,4 +41,19 @@ class TokenTest extends TestCase
         $token = factory(Token::class)->create(['type' => 'external']);
         $this->assertCount(0, $token->scans);
     }
+
+    /** @test */
+    public function if_a_token_gets_deleted_all_associated_domains_will_be_deleted_too()
+    {
+        $domain = $this->getRegisteredDomain();
+        $token = $domain->token;
+        $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+
+        $this->assertCount(2, Domain::all());
+
+        $token->delete();
+
+        $this->assertCount(0, Token::all());
+        $this->assertCount(0, Domain::all());
+    }
 }

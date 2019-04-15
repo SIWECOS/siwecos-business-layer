@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Keygen\Keygen;
+use App\Events\TokenDeleted;
 
 class Token extends Model
 {
@@ -56,5 +57,14 @@ class Token extends Model
         $this->credits -= $amount;
 
         return $this->save();
+    }
+
+    public function delete()
+    {
+        $this->domains->each(function ($domain) {
+            $domain->delete();
+        });
+
+        parent::delete();
     }
 }

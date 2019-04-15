@@ -86,7 +86,8 @@ class DomainTest extends TestCase
         $domain = Domain::first();
 
         $this->assertCount(4, $domain->scans);
-        $this->assertTrue($domain->delete());
+
+        $domain->delete();
         $this->assertCount(0, Domain::all());
         $this->assertCount(0, Scan::all());
     }
