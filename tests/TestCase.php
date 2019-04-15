@@ -32,7 +32,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getActivatedUser($attributes = [])
     {
-        return factory(User::class)->create(array_merge($attributes, ['active' => true]));
+        return factory(User::class)->create(array_merge($attributes, ['is_active' => true]));
     }
 
     /**

@@ -20,7 +20,7 @@ class UserIsActivatedAndLoggedInMiddleware
         $token = Token::with('user')->whereToken($request->header('SIWECOS-Token'))->first();
 
         if ($token) {
-            if ($token->user && $token->user->active) {
+            if ($token->user && $token->user->is_active) {
                 return $next($request);
             }
         }

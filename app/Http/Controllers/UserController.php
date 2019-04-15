@@ -54,8 +54,8 @@ class UserController extends Controller
         $user = User::whereActivationKey($key)->first();
 
         if ($user) {
-            if (!$user->active) {
-                $user->active = true;
+            if (!$user->is_active) {
+                $user->is_active = true;
                 $user->save();
 
                 return $user;
@@ -77,8 +77,8 @@ class UserController extends Controller
     {
         $user = User::whereEmail($request->json('email'))->first();
 
-        if (!$user->active) {
-            $user->active = true;
+        if (!$user->is_active) {
+            $user->is_active = true;
             $user->save();
 
             $user->notify(new activationmail());
@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function login(UserLoginRequest $request)
     {
-        $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
+        $user = User::whereEmail($request->json('email'))->whereIsActive(true)->first();
 
         if ($user && $user->verifyPassword($request->json('password'))) {
             return response()->json(new UserTokenResponse($user));
@@ -115,7 +115,7 @@ class UserController extends Controller
      */
     public function sendPasswordResetMail(SendPasswordResetMailRequest $request)
     {
-        $user = User::whereEmail($request->json('email'))->whereActive(true)->first();
+        $user = User::whereEmail($request->json('email'))->whereIsActive(true)->first();
 
         if ($user) {
             $user->passwordreset_token = Keygen::alphanum(96)->generate();
@@ -134,7 +134,7 @@ class UserController extends Controller
      */
     public function resetPassword(ResetPasswordRequest $request)
     {
-        $user = User::wherePasswordresetToken($request->json('reset_token'))->whereActive(true)->first();
+        $user = User::wherePasswordresetToken($request->json('reset_token'))->whereIsActive(true)->first();
 
         if ($user) {
             $user->password = \Hash::make($request->json('newpassword'));
@@ -169,7 +169,7 @@ class UserController extends Controller
         // email was updated
         if ($request->json('email') && $oldEmail != $request->json('email')) {
             $user->activation_key = Keygen::alphanum(96)->generate();
-            $user->active = false;
+            $user->is_active = false;
             $user->save();
             $user->notify(new activationmail());
         }

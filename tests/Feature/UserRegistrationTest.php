@@ -67,7 +67,7 @@ class UserRegistrationTest extends TestCase
     {
         $this->registerUserRequest();
 
-        $this->assertFalse(User::first()->active);
+        $this->assertFalse(User::first()->is_active);
     }
 
     /** @test */
@@ -84,12 +84,12 @@ class UserRegistrationTest extends TestCase
         $this->registerUserRequest();
         $user = User::first();
 
-        $this->assertFalse($user->active);
+        $this->assertFalse($user->is_active);
 
         $response = $this->get('/api/v2/user/activate/' . $user->activation_key);
 
         $response->assertStatus(200);
-        $this->assertTrue(User::first()->active);
+        $this->assertTrue(User::first()->is_active);
     }
 
     /** @test */

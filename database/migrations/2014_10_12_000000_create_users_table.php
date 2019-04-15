@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 191);
             $table->integer('org_size')->nullable();
 
-            $table->boolean('active')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->string('preferred_language', 191)->default('de');
 
             $table->string('activation_key', 191)->nullable();

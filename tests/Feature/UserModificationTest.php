@@ -76,7 +76,7 @@ class UserModificationTest extends TestCase
         $response->assertStatus(200);
         $this->assertEquals('another@email.address', User::first()->email);
         Notification::assertSentTo($user, activationmail::class);
-        $this->assertFalse(User::first()->active);
+        $this->assertFalse(User::first()->is_active);
     }
 
     /** @test */

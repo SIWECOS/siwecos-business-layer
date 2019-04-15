@@ -34,7 +34,7 @@ A user can be registered in the database.
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "active": false
+  "is_active": false
 }
 ```
 
@@ -86,7 +86,7 @@ A user has to be activated via verification of his email address to use the serv
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "active": true
+  "is_active": true
 }
 ```
 
@@ -194,7 +194,7 @@ The user can be logged in to SIWECOS.
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "active": false
+  "is_active": false
 }
 ```
 
