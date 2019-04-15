@@ -10,7 +10,3 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return "API Only! Have a look at the <a href='https://github.com/SIWECOS/siwecos-business-layer#siwecos-business-layer'>README.md</a> for more information.";
-});
