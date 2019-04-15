@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Keygen\Keygen;
+use Illuminate\Support\Facades\Log;
 
 class Domain extends Model
 {
@@ -74,5 +75,12 @@ class Domain extends Model
     public function getIsSecureAttribute()
     {
         return ($this->scheme === 'https');
+    }
+
+    public function delete()
+    {
+        $this->scans()->delete();
+
+        return parent::delete();
     }
 }

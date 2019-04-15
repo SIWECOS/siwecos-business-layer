@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Domain;
 use Illuminate\Database\QueryException;
-use App\User;
+use App\Scan;
 
 class DomainTest extends TestCase
 {
@@ -74,5 +74,29 @@ class DomainTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $this->assertCount(0, $domain->scans);
+    }
+
+    /** @test */
+    public function if_a_domain_gets_deleted_all_associated_scans_will_be_deleted_too()
+    {
+        $scan1 = $this->getGeneratedScan();
+        $scan2 = $this->getStartedScan();
+        $scan3 = $this->getFinishedScan();
+        $scan4 = $this->getFailedScan();
+        $domain = Domain::first();
+
+        $this->assertCount(4, $domain->scans);
+        $this->assertTrue($domain->delete());
+        $this->assertCount(0, Domain::all());
+        $this->assertCount(0, Scan::all());
+    }
+
+    /** @test */
+    public function if_the_domain_has_no_associated_scans_the_deletion_works_too()
+    {
+        $domain = $this->getRegisteredDomain();
+
+        $this->assertTrue($domain->delete());
+        $this->assertCount(0, Domain::all());
     }
 }
