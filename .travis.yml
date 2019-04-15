@@ -56,10 +56,3 @@ deploy:
     script: >-
       docker tag siwecos-business-layer siwecos/siwecos-business-layer:$TRAVIS_TAG &&
       docker push siwecos/siwecos-business-layer:$TRAVIS_TAG
-  - provider: script
-    skip_cleanup: true
-    on:
-      tags: true
-    script: >-
-      docker tag siwecos-business-layer siwecos/siwecos-business-layer:$TRAVIS_TAG &&
-      docker push siwecos/siwecos-business-layer:$TRAVIS_TAG
