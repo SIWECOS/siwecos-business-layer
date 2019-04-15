@@ -11,10 +11,19 @@ use App\Domain;
 use App\User;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
+use Carbon\Carbon;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15);
+        Carbon::setTestNow($knownDate);
+    }
 
     /** @test */
     public function a_new_domain_can_be_registered()
@@ -198,14 +207,13 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         return [
             'scanStarted' => [
-                // 'date' => '2019-03-27 16:15:13.000000',
-                'date' => now()->toDateTimeString() . '.000000',
+                'date' => Carbon::now()->toDateTimeString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
             'scanFinished' => [
                 // 'date' => '2019-03-27 16:18:13.000000',
-                'date' => now()->toDateTimeString() . '.000000',
+                'date' => Carbon::now()->toDateTimeString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
