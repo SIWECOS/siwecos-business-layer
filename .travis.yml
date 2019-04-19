@@ -16,6 +16,8 @@ before_script:
 
 script:
   - ./vendor/bin/phpunit
+  - curl -L -o /tmp/translation-files.zip https://gitreleases.dev/gh/SIWECOS/translations/latest/translation-files.zip
+  - unzip -o -d resources/lang /tmp/translation-files.zip
   - docker build -t siwecos-business-layer .
 
 before_deploy:
