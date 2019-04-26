@@ -1,16 +1,16 @@
 [
     {
         "name": "INI_S",
+        "version": "1.0.0",
+        "hasError": false,
+        "errorMessage": null,
         "started_at": "2019-03-27 16:18:13",
         "finished_at": "2019-03-27 16:18:13",
-        "hasError": false,
         "score": 100,
-        "errorMessage": null,
         "tests": [
             {
                 "name": "PHISHING",
                 "hasError": false,
-                "dangerlevel": 0,
                 "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
@@ -19,7 +19,6 @@
             {
                 "name": "SPAM",
                 "hasError": false,
-                "dangerlevel": 0,
                 "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
@@ -28,7 +27,6 @@
             {
                 "name": "MALWARE",
                 "hasError": false,
-                "dangerlevel": 0,
                 "errorMessage": null,
                 "score": 100,
                 "scoreType": "success",
