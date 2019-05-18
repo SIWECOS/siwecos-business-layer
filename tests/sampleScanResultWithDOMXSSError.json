@@ -45,8 +45,8 @@
                 "name": "SOURCES",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "NO_CONTENT",
-                    "values": null
+                    "translationStringId": "NO_CONTENT",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "info",
@@ -56,8 +56,8 @@
                 "name": "SINKS",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "NO_CONTENT",
-                    "values": null
+                    "translationStringId": "NO_CONTENT",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "info",
@@ -213,8 +213,8 @@
                 "name": "CONTENT_SECURITY_POLICY",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "warning",
@@ -228,8 +228,8 @@
                 "scoreType": "warning",
                 "testDetails": [
                     {
-                        "placeholder": "CT_CORRECT",
-                        "values": {
+                        "translationStringId": "CT_CORRECT",
+                        "placeholders": {
                             "HEADER": "text\/html; charset=UTF-8"
                         }
                     }
@@ -239,8 +239,8 @@
                 "name": "PUBLIC_KEY_PINS",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "bonus",
@@ -250,8 +250,8 @@
                 "name": "REFERRER_POLICY",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "bonus",
@@ -273,8 +273,8 @@
                 "scoreType": "warning",
                 "testDetails": [
                     {
-                        "placeholder": "HSTS_MORE_6",
-                        "values": {
+                        "translationStringId": "HSTS_MORE_6",
+                        "placeholders": {
                             "HEADER": "max-age=31536000"
                         }
                     }
@@ -284,8 +284,8 @@
                 "name": "X_CONTENT_TYPE_OPTIONS",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "warning",
@@ -295,8 +295,8 @@
                 "name": "X_FRAME_OPTIONS",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "warning",
@@ -306,8 +306,8 @@
                 "name": "X_XSS_PROTECTION",
                 "hasError": true,
                 "errorMessage": {
-                    "placeholder": "HEADER_NOT_SET",
-                    "values": null
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
                 },
                 "score": 0,
                 "scoreType": "warning",
@@ -354,8 +354,8 @@
                 "scoreType": "info",
                 "testDetails": [
                     {
-                        "placeholder": "EMAIL_FOUND",
-                        "values": {
+                        "translationStringId": "EMAIL_FOUND",
+                        "placeholders": {
                             "email_adress": "email@address.de"
                         }
                     }

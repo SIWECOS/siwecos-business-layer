@@ -138,7 +138,7 @@ class ScanReportTest extends TestCase
     public function when_a_test_has_an_error_message_the_report_should_be_null_and_the_errorMessage_should_be_translated()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
-        $scan->results = file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json'));
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json')), true);
         $scan->save();
 
         $response = $this->get('/api/v2/scan/' . $scan->id);

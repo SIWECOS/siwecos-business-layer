@@ -57,7 +57,7 @@ class StartScanJobTest extends TestCase
             new Response(500)
         ]));
 
-        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at);
+        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at->toDateTimeString());
         $this->assertTrue(Scan::first()->has_error);
         Log::assertLogged('critical', function ($message, $context) {
             return Str::contains($message, "Failed to start scan for scan id:");

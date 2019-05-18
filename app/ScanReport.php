@@ -142,9 +142,9 @@ class ScanReport
      */
     public function getResolvedTranslateableMessage(Collection $message, string $scannerCode)
     {
-        if ($message->get('values')) {
-            return __($scannerCode . "." . $message->get('placeholder'), $message->get('values')->toArray());
+        if ($message->get('placeholders')) {
+            return __($scannerCode . "." . $message->get('translationStringId'), $message->get('placeholders')->toArray());
         }
-        return __($scannerCode . "." . $message->get('placeholder'));
+        return __($scannerCode . "." . $message->get('translationStringId'));
     }
 }

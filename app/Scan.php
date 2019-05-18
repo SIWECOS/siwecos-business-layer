@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Events\ScanUpdating;
 
 class Scan extends Model
 {
@@ -15,7 +16,7 @@ class Scan extends Model
         'is_freescan' => 'boolean',
         'is_recurrent' => 'boolean',
         'score' => 'integer',
-        'results' => 'json'
+        'results' => 'array',
     ];
 
     protected $dates = [
@@ -27,6 +28,19 @@ class Scan extends Model
     protected $hidden = ['id', 'domain_id'];
 
     protected $appends = ['is_finished', 'status'];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($scan) {
+            if ($scan->results !== null && $scan->finished_at === null) {
+                $scan->score = $scan->calculateScore();
+                $scan->finished_at = now();
+            }
+        });
+    }
 
     /**
      * Returns the status if the scan is finished.
@@ -55,19 +69,10 @@ class Scan extends Model
         return $this->is_freescan ? 0 : 10;
     }
 
-    public function setResultsAttribute($results)
-    {
-        $this->attributes['results'] = $results;
-        $this->attributes['finished_at'] = Carbon::now();
-        $this->attributes['score'] = $this->calculateScore();
-    }
-
-
     public function calculateScore()
     {
         $score = 0;
         $amountResults = 0;
-
 
         foreach ($this->results as $scannerResult) {
             if ($scannerResult['score'] !== null) {

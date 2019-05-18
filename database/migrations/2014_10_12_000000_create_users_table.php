@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
 
             $table->string('email', 191)->unique();
             $table->string('password', 191);
-            $table->integer('org_size')->nullable();
 
             $table->boolean('is_active')->default(false);
             $table->string('preferred_language', 191)->default('de');

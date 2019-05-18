@@ -58,11 +58,11 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function the_results_field_is_saved_as_json_and_automatically_converted_to_an_array()
+    public function the_results_field_is_retrieved_saved_as_an_array()
     {
         $scan = $this->getGeneratedScan();
         // JSON String
-        $scan->results = file_get_contents(base_path('tests/sampleFreeScanResults.json'));
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)['results'];
         $scan->save();
 
         // Array

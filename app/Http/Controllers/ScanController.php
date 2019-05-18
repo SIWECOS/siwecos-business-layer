@@ -82,7 +82,7 @@ class ScanController extends Controller
     public function finished(ScanFinishedRequest $request, Scan $scan)
     {
         if (!$scan->is_finished) {
-            $scan->results = $request->json('results');
+            $scan->results = $request->get('results');
 
             if ($scan->save()) {
                 if (!$scan->is_freescan) {

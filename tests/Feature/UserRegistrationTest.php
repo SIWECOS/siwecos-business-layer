@@ -53,6 +53,7 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function when_a_new_user_was_successfully_registered_the_defined_response_will_be_retrieved()
     {
+        $this->withoutExceptionHandling();
         $response = $this->registerUserRequest();
 
         $response->assertStatus(200);

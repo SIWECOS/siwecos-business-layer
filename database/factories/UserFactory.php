@@ -25,7 +25,5 @@ $factory->define(App\User::class, function (Faker $faker) {
         'token_id'     => function () {
             return factory(Token::class)->create()->id;
         },
-
-        'org_size'     => $faker->randomNumber(2),
     ];
 });
