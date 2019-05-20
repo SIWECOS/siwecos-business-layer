@@ -76,21 +76,36 @@ class DomainVerifierTest extends TestCase
     public function the_domainVerifier_provides_a_simple_verify_method()
     {
         $domain = $this->getRegisteredDomain();
+
+        // verify preferred way with external HTML page
         $client = $this->getMockedHttpClient([
-            // verify preferred way with external HTML page
-            new Response(200, [], $domain->verification_token),
-            // verify meta Tag, needs 2 requests for testing
+            new Response(200, [], $domain->verification_token)
+        ]);
+        $verifier = new DomainVerifier($domain, $client);
+        $this->assertTrue($verifier->verify());
+
+        // verify meta Tag, needs 2 requests for testing
+        $client = $this->getMockedHttpClient([
             new Response(200),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token)),
-            // do not verify a 301 response, needs also 2 requests testing
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token))
+        ]);
+        $verifier = new DomainVerifier($domain, $client);
+        $this->assertTrue($verifier->verify());
+
+        // do not verify a 301 response, needs also 2 requests testing
+        $client = $this->getMockedHttpClient([
             new Response(301),
             new Response(301)
         ]);
-
         $verifier = new DomainVerifier($domain, $client);
+        $this->assertFalse($verifier->verify());
 
-        $this->assertTrue($verifier->verify());
-        $this->assertTrue($verifier->verify());
+        // do not verify 2 empty success responses
+        $client = $this->getMockedHttpClient([
+            new Response(200),
+            new Response(200)
+        ]);
+        $verifier = new DomainVerifier($domain, $client);
         $this->assertFalse($verifier->verify());
     }
 

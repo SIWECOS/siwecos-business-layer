@@ -61,37 +61,53 @@ class DomainRegistrationTest extends TestCase
     /** @test */
     public function a_domain_can_be_verified()
     {
-        // Step 1: Register a new Domain
-        $this->a_user_can_register_a_new_domain_to_his_token();
+        $domain = $this->getRegisteredDomain();
 
         // Step 2: Mock the HTTPClient
-        $client = $this->getMockedHttpClient([
-            new Response(200, [], Domain::first()->verification_token),
+        $this->mockHttpClientAndDomainController([
+            new Response(200, [], $domain->verification_token),
         ]);
-        $this->app->bind(DomainController::class, function ($app) use ($client) {
-            return new DomainController($client);
-        });
 
         // Step 3: Send the verification request
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => Domain::first()->url
+            'url' => $domain->url
         ]);
 
         // Step 4: Get the Domain successfully verified
         $response->assertStatus(200);
-        $this->assertTrue(Domain::first()->is_verified);
+        $this->assertTrue($domain->refresh()->is_verified);
     }
 
     /** @test */
     public function a_domain_can_not_be_verified_twice()
     {
-        $domain = factory(Token::class)->create()->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'url' => $domain->url
         ]);
 
         $response->assertStatus(403);
+    }
+
+    /** @test */
+    public function if_the_verification_token_is_not_correct_submitted_a_proper_notification_is_returned()
+    {
+        $domain = $this->getRegisteredDomain();
+
+        $this->mockHttpClientAndDomainController([
+            // File-Check
+            new Response(200, [], $domain->verification_token . "XYZ"),
+            // Meta-Check
+            new Response(200, [], ""),
+        ]);
+
+        $response = $this->json('POST', '/api/v2/domain/verify', [
+            'url' => $domain->url
+        ]);
+
+        $response->assertStatus(410);
+        $this->assertFalse(Domain::first()->is_verified);
     }
 
     /** @test */
@@ -151,5 +167,13 @@ class DomainRegistrationTest extends TestCase
             'url' => 'https://example.org'
         ], ['SIWECOS-Token' => $tokenB->token]);
         $response->assertStatus(403);
+    }
+
+    public function mockHttpClientAndDomainController(array $mockedResponses)
+    {
+        $client = $this->getMockedHttpClient($mockedResponses);
+        $this->app->bind(DomainController::class, function ($app) use ($client) {
+            return new DomainController($client);
+        });
     }
 }
