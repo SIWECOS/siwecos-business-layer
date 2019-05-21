@@ -1,4 +1,4 @@
-FROM siwecos/php-apache:7.2
+FROM siwecos/dockered-laravel:7.2
 
 LABEL maintainer="Sascha Brendel <mail@lednerb.eu>"
 
