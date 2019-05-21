@@ -40,7 +40,7 @@ class StartScanJob implements ShouldQueue
      */
     public function handle(HTTPClient $client)
     {
-        $response = $client->post(config('siwecos.coreApiUrl'), [
+        $response = $client->post(config('siwecos.coreApiScanStartUrl'), [
             'url' => $this->scan->domain->url,
             'dangerLevel' => $this->scan->danger_level,
             'callbackurls' => [
@@ -55,7 +55,11 @@ class StartScanJob implements ShouldQueue
                 $this->scan->token->reduceCredits();
             }
         } else {
-            Log::critical('Failed to start scan for scan id: ' . $this->scan->id);
+            Log::critical(
+                'Failed to start scan for scan id: ' . $this->scan->id . PHP_EOL
+                    . 'HTTP-Status: ' . $response->getStatusCode() . PHP_EOL
+                    . 'Message: ' . $response->getBody()->getContents()
+            );
             $this->scan->update([
                 'has_error' => true,
                 'finished_at' => Carbon::now()

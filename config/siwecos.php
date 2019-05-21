@@ -12,7 +12,7 @@ return [
     | scans.
     |
     */
-    'coreApiUrl'              => env('CORE_API_URL'),
+    'coreApiScanStartUrl'              => env('CORE_API_SCAN_START_URL'),
 
     /*
     |--------------------------------------------------------------------------
