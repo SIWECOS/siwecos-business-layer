@@ -11,6 +11,14 @@ class ScanStatusTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $knownDate = Carbon::create(2019, 5, 7, 11, 55, 15);
+        Carbon::setTestNow($knownDate);
+    }
+
     /** @test */
     public function when_a_scan_was_not_started_yet_the_status_will_be_created()
     {
