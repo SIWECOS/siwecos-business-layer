@@ -2,6 +2,8 @@ FROM siwecos/php-apache:7.2
 
 LABEL maintainer="Sascha Brendel <mail@lednerb.eu>"
 
+ENV ARTISAN_MIGRATE true
+
 # Copy application
 COPY . .
 COPY .env.example .env
