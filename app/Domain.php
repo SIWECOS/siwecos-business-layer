@@ -54,7 +54,7 @@ class Domain extends Model
      */
     public function getDomainAttribute()
     {
-        return $this->attributes['domain'] = parse_url($this->url, PHP_URL_HOST);
+        return parse_url($this->url, PHP_URL_HOST);
     }
 
     /**

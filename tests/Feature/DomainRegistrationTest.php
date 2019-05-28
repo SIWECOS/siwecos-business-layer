@@ -51,6 +51,18 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
+    public function a_domain_can_not_be_registered_twice()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('POST', '/api/v2/domain', [
+            'url' => $domain->url
+        ], ['SIWECOS-Token' => $domain->token->token]);
+
+        $response->assertStatus(403);
+    }
+
+    /** @test */
     public function a_registered_domain_is_not_verified_by_default()
     {
         $this->a_user_can_register_a_new_domain_to_his_token();

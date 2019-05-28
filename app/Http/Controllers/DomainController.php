@@ -26,7 +26,9 @@ class DomainController extends Controller
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
 
-        $domain = Domain::whereUrl($request->json('url'))->firstOrNew($request->validated());
+        $url = $request->json('url');
+        $url = parse_url($url)['scheme'] . '://' . parse_url($url)['host'];
+        $domain = Domain::whereUrl($url)->firstOrNew(['url' => $url]);
 
         if (!$domain->is_verified) {
             $domain->verification_token = Keygen::alphanum(64)->generate();

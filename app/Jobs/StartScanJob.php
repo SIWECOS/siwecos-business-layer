@@ -40,13 +40,14 @@ class StartScanJob implements ShouldQueue
      */
     public function handle(HTTPClient $client)
     {
-        $response = $client->post(config('siwecos.coreApiScanStartUrl'), [
+
+        $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
             'url' => $this->scan->domain->url,
             'dangerLevel' => $this->scan->danger_level,
             'callbackurls' => [
-                config('app.url') . '/api/v2/scan/finished'
+                config('app.url') . '/api/v2/scan/' . $this->scan->id
             ]
-        ]);
+        ]]);
 
         if ($response->getStatusCode() === 200) {
             $this->scan->update(['started_at' => Carbon::now()]);

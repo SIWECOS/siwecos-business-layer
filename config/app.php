@@ -1,7 +1,5 @@
 <?php
 
-use App\Providers\DomainServiceProvider;
-
 return [
 
     /*
@@ -163,7 +161,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        DomainServiceProvider::class,
 
     ],
 
