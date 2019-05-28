@@ -97,10 +97,17 @@ class UserController extends Controller
      */
     public function login(UserLoginRequest $request)
     {
-        $user = User::whereEmail($request->json('email'))->whereIsActive(true)->first();
+        $user = User::whereEmail($request->json('email'))->first();
 
-        if ($user && $user->verifyPassword($request->json('password'))) {
-            return response()->json(new UserTokenResponse($user));
+        if ($user instanceof User) {
+
+            if ($user->is_active === false) {
+                return response()->json(new StatusResponse('User not activated'), 406);
+            }
+
+            if ($user->verifyPassword($request->json('password'))) {
+                return response()->json(new UserTokenResponse($user));
+            }
         }
 
         return response()->json(new StatusResponse('Wrong credentials'), 403);

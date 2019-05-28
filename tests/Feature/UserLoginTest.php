@@ -38,6 +38,19 @@ class UserLoginTest extends TestCase
     }
 
     /** @test */
+    public function login_is_not_possible_if_the_user_is_not_activated()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->json('POST', '/api/v2/user/login', [
+            'email' => $user->email,
+            'password' => 'secret'
+        ]);
+
+        $response->assertStatus(406);
+    }
+
+    /** @test */
     public function login_is_not_possible_if_the_credentials_are_not_correct()
     {
         $response = $this->json('POST', '/api/v2/user/login', [

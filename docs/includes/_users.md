@@ -211,11 +211,12 @@ The user can be logged in to SIWECOS.
 
 ### Response Status Codes
 
-| Code | Meaning           |
-| ---- | ----------------- |
-| 200  | User logged in    |
-| 403  | Wrong credentials |
-| 422  | Validation failed |
+| Code | Meaning            |
+| ---- | ------------------ |
+| 200  | User logged in     |
+| 403  | Wrong credentials  |
+| 406  | User not activated |
+| 422  | Validation failed  |
 
 
 ## Send Password Reset Mail
