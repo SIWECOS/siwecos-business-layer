@@ -1,0 +1,1551 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SIWECOS BUSINESS LAYER API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;http&quot;,&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#user-registration" class="toc-h2 toc-link" data-title="Users">User Registration</a>
+                  </li>
+                  <li>
+                    <a href="#user-activation" class="toc-h2 toc-link" data-title="Users">User Activation</a>
+                  </li>
+                  <li>
+                    <a href="#resend-activation-mail" class="toc-h2 toc-link" data-title="Users">Resend Activation Mail</a>
+                  </li>
+                  <li>
+                    <a href="#user-login" class="toc-h2 toc-link" data-title="Users">User Login</a>
+                  </li>
+                  <li>
+                    <a href="#send-password-reset-mail" class="toc-h2 toc-link" data-title="Users">Send Password Reset Mail</a>
+                  </li>
+                  <li>
+                    <a href="#reset-password" class="toc-h2 toc-link" data-title="Users">Reset Password</a>
+                  </li>
+                  <li>
+                    <a href="#update-user-data" class="toc-h2 toc-link" data-title="Users">Update User Data</a>
+                  </li>
+                  <li>
+                    <a href="#user-deletion" class="toc-h2 toc-link" data-title="Users">User Deletion</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#tokens" class="toc-h1 toc-link" data-title="Tokens">Tokens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#register-token" class="toc-h2 toc-link" data-title="Tokens">Register Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#domains" class="toc-h1 toc-link" data-title="Domains">Domains</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#adding-a-domain" class="toc-h2 toc-link" data-title="Domains">Adding a Domain</a>
+                  </li>
+                  <li>
+                    <a href="#domain-verification" class="toc-h2 toc-link" data-title="Domains">Domain Verification</a>
+                  </li>
+                  <li>
+                    <a href="#listing-all-domains" class="toc-h2 toc-link" data-title="Domains">Listing all Domains</a>
+                  </li>
+                  <li>
+                    <a href="#deleting-a-domain" class="toc-h2 toc-link" data-title="Domains">Deleting a Domain</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#scans" class="toc-h1 toc-link" data-title="Scans">Scans</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#starting-a-freescan" class="toc-h2 toc-link" data-title="Scans">Starting a Freescan</a>
+                  </li>
+                  <li>
+                    <a href="#starting-a-scan" class="toc-h2 toc-link" data-title="Scans">Starting a Scan</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-the-scan-status" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Status</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-the-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Report</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>This is the documentation for the <a href="https://github.com/SIWECOS/siwecos-business-layer">SIWECOS Business Layer API</a>.</p>
+<h1 id='users'>Users</h1><h2 id='user-registration'>User Registration</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/user <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "mail@siwecos.de",
+    "password": "abcd1234"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcd1234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A user can be registered in the database.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/v2/user</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><code>email</code></td>
+<td>The user&#39;s email address</td>
+</tr>
+<tr>
+<td>password</td>
+<td><code>password</code></td>
+<td>The user&#39;s password</td>
+</tr>
+<tr>
+<td><em>org_size</em></td>
+<td><em><code>integer</code></em></td>
+<td><em>The size of the user&#39;s organisation</em></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User created</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+After registration a verification mail will be sent to the user's email address.
+</aside>
+<h2 id='user-activation'>User Activation</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/user/activate/<span class="o">{</span>key<span class="o">}</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/user/activate/{key}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+</code></pre>
+<p>A user has to be activated via verification of his email address to use the service.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /api/v2/user/activate/{key}</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td><code>string</code></td>
+<td>The user&#39;s activation key that was sent via email address</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-2'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+<tr>
+<td>410</td>
+<td>User already activated</td>
+</tr>
+</tbody></table>
+<h2 id='resend-activation-mail'>Resend Activation Mail</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/user/activate/resend <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "mail@siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user/activate/resend</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The activation mail can be resend if requested.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mail sent."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /api/v2/user/activate/resend</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><code>email</code></td>
+<td>The user&#39;s email address</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-3'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Mail sent</td>
+</tr>
+<tr>
+<td>410</td>
+<td>User already activated</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='user-login'>User Login</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/user/login <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "mail@siwecos.de",
+    "password": "abcd1234"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user/login</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcd1234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The user can be logged in to SIWECOS.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /api/v2/user/login</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><code>email</code></td>
+<td>The user&#39;s email address</td>
+</tr>
+<tr>
+<td>password</td>
+<td><code>password</code></td>
+<td>The user&#39;s password</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-4'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User logged in</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Wrong credentials</td>
+</tr>
+<tr>
+<td>406</td>
+<td>User not activated</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='send-password-reset-mail'>Send Password Reset Mail</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/user/password/sendResetMail <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "mail@siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user/password/sendResetMail</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>An <a href="#user-activation">activated</a> user can reset his password.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"If the user exists in our records, the mail was sent."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /api/v2/user/password/sendResetMail</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><code>email</code></td>
+<td>The user&#39;s email address</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-5'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Password-Reset email was sent if the activated user exists in the database</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='reset-password'>Reset Password</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/user/password/reset <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "newpassword": "ABCD1234",
+    "reset_token": "zVgL1Aa5N57L9CEnrpH8xsmKH983Ip3u9ElnjYuED08YR449999Y0j551iFg80m36ybdn3JTJTz22DhNZL87R76pIDw8O95n"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user/password/reset</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"newpassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCD1234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reset_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zVgL1Aa5N57L9CEnrpH8xsmKH983Ip3u9ElnjYuED08YR449999Y0j551iFg80m36ybdn3JTJTz22DhNZL87R76pIDw8O95n"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The user can reset his password.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reset completed"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /api/v2/user/password/reset</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newpassword</td>
+<td><code>password</code></td>
+<td>The user&#39;s new password</td>
+</tr>
+<tr>
+<td>reset_token</td>
+<td><code>string</code></td>
+<td>The associated reset token that was sent by email</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-6'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Password reset completed</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='update-user-data'>Update User Data</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="se">\</span>
+  http://bla.local/api/v2/user <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "mail@siwecos.de",
+    "preferred_language": "en",
+    "newpassword": "ABCD1234"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/api/v2/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"newpassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCD1234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The user can update his details.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User updated"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>PATCH /api/v2/user</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>email</em></td>
+<td><em><code>email</code></em></td>
+<td><em>The user&#39;s new email address</em></td>
+</tr>
+<tr>
+<td><em>newpassword</em></td>
+<td><em><code>password</code></em></td>
+<td><em>The user&#39;s new password</em></td>
+</tr>
+<tr>
+<td><em>preferred_language</em></td>
+<td><em><code>string</code></em></td>
+<td><em>The user&#39;s preferred language for the app</em></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-7'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User updated</td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>SIWECOS-Token</code> not valid</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='user-deletion'>User Deletion</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="se">\</span>
+  http://bla.local/api/v2/user <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span> <span class="se">\</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v2/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+
+</code></pre>
+<p>The user can delete his account.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>DELETE /api/v2/user</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='response-status-codes-8'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User deleted</td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>SIWECOS-Token</code> not valid</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+After deletion the associated <code>Token</code> with all the registered <code>Domain</code>s and <code>Scan</code>s will also be deleted.
+</aside>
+<h1 id='tokens'>Tokens</h1>
+<p>In addition to Users the API can also work user-less while working only with Tokens.
+With this functionality a 3rd-Party Plugin can be created that will automate the registration process completly.</p>
+
+<aside class="notice">
+As there is no user registered with this tokens, no notifications can be sent by SIWECOS.
+</aside>
+<h2 id='register-token'>Register Token</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET http://bla.local/api/v2/token
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+
+</code></pre>
+<p>A SIWECOS Token can be registered instead of a User.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"w3JofJRDjGsj2MfOlrDivNMK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /api/v2/token</code></p>
+<h3 id='response-status-codes'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Token registered</td>
+</tr>
+</tbody></table>
+<h1 id='domains'>Domains</h1><h2 id='adding-a-domain'>Adding a Domain</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/domain <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "url":"https://siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/domain</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A new Domain can be added/registered to a Token.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/v2/domain</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td><code>url</code></td>
+<td>The url to the domain that should be registered</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Domain created</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Domain is already verified</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Domain was not created / could not be saved</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+After registration the domain has to be verified.
+</aside>
+<h2 id='domain-verification'>Domain Verification</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/domain/verify <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "url":"https://siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/domain/verify</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Verify the associated Domain for the given <code>url</code>.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/v2/domain/verify</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td><code>url</code></td>
+<td>The url to the domain that should be verified</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-2'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Domain verified</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Domain is already verified</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Domain could not be verified</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+The domain can either be verified by <code>&lt;meta&gt;</code>-Tag or HTML-Page. <a href="https://siwecos.de/wiki/Domain-Verification/EN" target="_blank">[Further information]</a>
+</aside>
+<h2 id='listing-all-domains'>Listing all Domains</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/domain <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/domain</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
+
+</code></pre>
+<p>Returning a list of <code>domains</code> for the specified <code>SIWECOS-Token</code>.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lednerb.eu"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lednerb.eu"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9r0Ei2ZG14PGXoN6T32BHid0GWCKiPP0R3LDZo7U8oE2z5JaBL80k5n1284Pql7I"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /api/v2/domain</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='response-status-codes-3'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>List of domains returned</td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>SIWECOS-Token</code> not valid</td>
+</tr>
+</tbody></table>
+<h2 id='deleting-a-domain'>Deleting a Domain</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="se">\</span>
+  http://bla.local/api/v2/domain <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "url": "https://siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v2/domain</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Domain can be deleted.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domain deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE /api/v2/domain</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td><code>url</code></td>
+<td>The url to the domain that should be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-4'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Domain deleted</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+After deletion all associated scans will also be deleted.
+</aside>
+<h1 id='scans'>Scans</h1><h2 id='starting-a-freescan'>Starting a Freescan</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/freescan <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "url": "https://siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/freescan</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Freescan can be started.</p>
+
+<aside class="notice">
+A Freescan is like a normal Scan but with a lower `dangerLevel` so it does not include all tests.
+</aside>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"scan_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/v2/freescan</code></p>
+
+<aside class="notice">
+A Freescan can be started by everyone and the reports can be getted by everyone, too.
+</aside>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td><code>url</code></td>
+<td>The url to the domain that should be scanned</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Scan started</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='starting-a-scan'>Starting a Scan</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/freescan <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "url": "https://siwecos.de"
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/scan</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A regular scan can be started for a registered domain.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"scan_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/v2/scan</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td><code>url</code></td>
+<td>The url to the domain that should be scanned</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-2'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-2'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Scan started</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='retrieving-the-scan-status'>Retrieving the Scan Status</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/scan/3913 <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/scan/3913</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre>
+<p>The scan status can be requested.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:43"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /api/v2/scan/{scan_id}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code>. It&#39;s returned when you request a scan start</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-3'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td>The status can be: <code>created</code>, <code>running</code>, <code>finished</code> or <code>failed</code></td>
+</tr>
+<tr>
+<td>has_error</td>
+<td><code>boolean</code></td>
+<td>Determines if the scan had an error</td>
+</tr>
+<tr>
+<td>started_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the start time (when the scan was dispatched to the Core-API)</td>
+</tr>
+<tr>
+<td>finished_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the finished time (when the result was received from the Core-API)</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-3'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Scan status retrieved</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Scan not found</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='retrieving-the-scan-report'>Retrieving the Scan Report</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/scan/3913/en <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/scan/3913/en</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre>
+<p>The scan report can be requested.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:43"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:58:55"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"report"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Core-API</span><span class="w"> </span><span class="err">Report</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">different</span><span class="w"> </span><span class="err">Scanners</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">documentation</span><span class="w"> </span><span class="err">purposes</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">siwecos/HSHS-DOMXSS-Scanner</span><span class="w"> </span><span class="err">results</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"scanner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Header Scanner"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"scanner_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEADER"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:56"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">documentation</span><span class="w"> </span><span class="err">purpose</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">test</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">here</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Check of HSTS protection"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your website can only be reached via the secure HTTPS protocol. Communication between your website and its visitors can not be intercepted or manipulated."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"result_details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"The value of 'max-age' is greater than 6 months."</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"result_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"solution_tips"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;If the connection to your page is not encrypted, all communication between your site and its users can be intercepted and manipulated. &lt;/p&gt;&lt;p&gt;max-age=63072000; includeSubdomains; HTTP Strict Transport Security (HSTS) is a web security policy mechanism that is easy to integrate. &lt;/p&gt; &lt;b&gt;--snip&lt;/b&gt;&lt;pre&gt; # Activate HTTP Strict Transport Security (HSTS) # Required: </span><span class="se">\"</span><span class="s2">max-age</span><span class="se">\"</span><span class="s2"> # Optional: </span><span class="se">\"</span><span class="s2">includeSubDomains</span><span class="se">\"</span><span class="s2">&lt;/pre&gt; &lt;pre&gt;  &lt;b&gt;Header set Strict-Transport-Security </span><span class="se">\"</span><span class="s2">max-age=31556926; includeSubDomains</span><span class="se">\"</span><span class="s2">&lt;/b&gt; &lt;/pre&gt; &lt;p&gt;&lt;b&gt;--snap&lt;/b&gt; &lt;/p&gt;&lt;p&gt;Here is an example of an .htaccess file which will set the &lt;b&gt;Header Scanner&lt;/b&gt; to green. (&lt;a target=</span><span class="se">\"</span><span class="s2">siwecos_wiki</span><span class="se">\"</span><span class="s2"> href=</span><span class="se">\"</span><span class="s2">https://siwecos.de/wiki/Htaccess/EN</span><span class="se">\"</span><span class="s2"> title=</span><span class="se">\"</span><span class="s2">Htaccess/EN</span><span class="se">\"</span><span class="s2">&gt;.htaccess example&lt;/a&gt;) &lt;/p&gt;"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"information_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de/wiki/No-Encryption-Found/EN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /api/v2/scan/{scan_id}/{language_code}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code>. It&#39;s returned when you request a scan start</td>
+</tr>
+<tr>
+<td><em>language_code</em></td>
+<td><em><code>string</code></em></td>
+<td><em>One of the supported language codes for translated results: <code>de</code> or <code>en</code></em></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-4'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td>The status can be: <code>finished</code></td>
+</tr>
+<tr>
+<td>has_error</td>
+<td><code>boolean</code></td>
+<td>Determines if the scan had an error</td>
+</tr>
+<tr>
+<td>started_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the start time (when the scan was dispatched to the Core-API)</td>
+</tr>
+<tr>
+<td>finished_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the finished time (when the result was received from the Core-API)</td>
+</tr>
+<tr>
+<td>report</td>
+<td><code>array</code></td>
+<td>Array of translated and formatted scan results that where delivered by the Core-API</td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-4'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Scan status retrieved</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Scan not found</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
