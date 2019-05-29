@@ -34,6 +34,9 @@ Route::prefix('v2')->group(function () {
         Route::delete('/user', 'UserController@delete');
     });
 
+    // Token
+    Route::get('/token', 'TokenController@registerNewToken');
+
     // Domain
     Route::middleware(['siwecosToken'])->group(function () {
         Route::get('/domain', 'DomainController@list');

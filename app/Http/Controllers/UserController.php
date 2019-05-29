@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create(CreateUserRequest $request)
     {
-        $regularToken = Token::create(['credits' => 50]);
+        $regularToken = Token::create(['credits' => config('siwecos.defaultTokenCredits')]);
 
         $user = User::make($request->all());
         $user->password = \Hash::make($request->json('password'));

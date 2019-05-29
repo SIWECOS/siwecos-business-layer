@@ -31,6 +31,28 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Token credits
+    |--------------------------------------------------------------------------
+    |
+    | You can set the amount of credits each user will get daily.
+    |
+    */
+    'defaultTokenCredits' => env('DEFAULT_TOKEN_CREDITS', 50),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | 3rd Party Token Credits
+    |--------------------------------------------------------------------------
+    |
+    | You can set the amount of credits the 3rd Party Tokens will get daily.
+    |
+    */
+    'thirdPartyTokenCredits' => env('THIRD_PARTY_TOKEN_CREDITS', 10),
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Technical Support E-Mail Address
     |--------------------------------------------------------------------------
     |
