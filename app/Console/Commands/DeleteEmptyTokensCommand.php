@@ -19,7 +19,7 @@ class DeleteEmptyTokensCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Delete all Tokens that have no asociated Domains within 24 hours.';
+    protected $description = 'Delete all external Tokens that have no asociated Domains within 24 hours.';
 
     /**
      * Create a new command instance.
@@ -38,7 +38,7 @@ class DeleteEmptyTokensCommand extends Command
      */
     public function handle()
     {
-        $tokens = Token::doesntHave('domains')->where('created_at', '<=', now()->subHours(24))->delete();
+        $tokens = Token::whereType('external')->doesntHave('domains')->where('created_at', '<=', now()->subHours(24))->delete();
 
         $this->info($tokens . ' Tokens were deleted.');
     }

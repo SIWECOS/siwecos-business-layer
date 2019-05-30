@@ -19,7 +19,7 @@ class TokenDeletionTest extends TestCase
         $knownDate = Carbon::create(2018, 2, 8, 13, 0, 0);
         Carbon::setTestNow($knownDate);
 
-        factory(Token::class, 5)->create();
+        factory(Token::class, 5)->create(['type' => 'external']);
 
         $this->artisan('siwecos:delete-empty-tokens')
             ->expectsOutput('0 Tokens were deleted.');
