@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('siwecos:delete-empty-tokens')->hourly();
+
+        $schedule->command('siwecos:trigger-daily-scans')->dailyAt('01:00');
     }
 
     /**
