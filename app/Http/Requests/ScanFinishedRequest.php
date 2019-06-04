@@ -30,7 +30,6 @@ class ScanFinishedRequest extends FormRequest
      */
     public function rules()
     {
-        // dd(request()->all());
         return [
             'results' => ['required', 'array'],
             'results.*' => ['array'],
