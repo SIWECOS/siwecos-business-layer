@@ -46,19 +46,6 @@ class ScanFinishedTest extends TestCase
     }
 
     /** @test */
-    public function there_is_a_config_option_to_enforce_an_authentication_token_from_the_coreApi_for_the_callback_url()
-    {
-        config(['siwecos.coreApiAuthenticationToken' => 'ABCD1234']);
-        $scan = $this->getStartedScan(['is_freescan' => true]);
-
-        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
-        $response->assertStatus(403);
-
-        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true), ['Authentication-Token' => 'ABCD1234']);
-        $response->assertStatus(200);
-    }
-
-    /** @test */
     public function the_siwecos_seals_are_generated_when_a_scan_is_finished()
     {
         $scan = $this->getStartedScan(['is_freescan' => false]);

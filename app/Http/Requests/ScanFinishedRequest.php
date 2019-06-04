@@ -15,10 +15,6 @@ class ScanFinishedRequest extends FormRequest
      */
     public function authorize()
     {
-        if (config('siwecos.coreApiAuthenticationToken')) {
-            return config('siwecos.coreApiAuthenticationToken') === request()->header('Authentication-Token');
-        }
-
         return true;
     }
 

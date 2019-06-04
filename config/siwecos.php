@@ -16,21 +16,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Core API Authentication Token
-    |--------------------------------------------------------------------------
-    |
-    | If you need to protect the Scan result's callback URL from unauthorized
-    | access, you can define an appropriate authentication token that's
-    | required in order to send the Scan's results.
-    |
-    | It's recommended to protect that route so no malicious user can send
-    | faked results for your Scans instead of the Core API.
-    |
-    */
-    'coreApiAuthenticationToken' => env('CORE_API_AUTHENTICATION_TOKEN'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Default Token credits
     |--------------------------------------------------------------------------
     |
