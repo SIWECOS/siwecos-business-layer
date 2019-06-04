@@ -24,7 +24,7 @@ class ScanFinishedTest extends TestCase
 
         $response = $this->json(
             'POST',
-            '/api/v2/scan/' . $scan->id,
+            '/api/v2/scan/finished/' . $scan->id,
             json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)
         );
 
@@ -36,12 +36,12 @@ class ScanFinishedTest extends TestCase
     public function already_finished_scans_can_not_be_overwritten()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
         $this->assertTrue($scan->refresh()->is_finished);
 
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
         $response->assertStatus(403);
     }
 
@@ -51,10 +51,10 @@ class ScanFinishedTest extends TestCase
         config(['siwecos.coreApiAuthenticationToken' => 'ABCD1234']);
         $scan = $this->getStartedScan(['is_freescan' => true]);
 
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
         $response->assertStatus(403);
 
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true), ['Authentication-Token' => 'ABCD1234']);
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true), ['Authentication-Token' => 'ABCD1234']);
         $response->assertStatus(200);
     }
 
@@ -62,7 +62,7 @@ class ScanFinishedTest extends TestCase
     public function the_siwecos_seals_are_generated_when_a_scan_is_finished()
     {
         $scan = $this->getStartedScan(['is_freescan' => false]);
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
         Storage::disk('gcs')->assertExists('example.org/d.m.y.svg');
@@ -73,7 +73,7 @@ class ScanFinishedTest extends TestCase
     public function the_siwecos_seals_are_not_generated_when_a_scan_is_a_freescan()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
-        $response = $this->json('POST', '/api/v2/scan/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
+        $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
         Storage::disk('gcs')->assertMissing('example.org/d.m.y.svg');

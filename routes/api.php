@@ -54,7 +54,7 @@ Route::prefix('v2')->group(function () {
     Route::post('/freescan', 'ScanController@startFreescan');
 
     // Callback URL for the SIWECOS/siwecos-core-api
-    Route::post('/scan/{scan}', 'ScanController@finished');
+    Route::post('/scan/finished/{scan}', 'ScanController@finished');
 });
 
 Route::prefix('v1')->group(function () {

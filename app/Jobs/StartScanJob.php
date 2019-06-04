@@ -45,7 +45,7 @@ class StartScanJob implements ShouldQueue
             'url' => $this->scan->domain->url,
             'dangerLevel' => $this->scan->danger_level,
             'callbackurls' => [
-                config('app.url') . '/api/v2/scan/' . $this->scan->id
+                config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
             ]
         ]]);
 
