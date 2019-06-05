@@ -40,26 +40,36 @@ class StartScanJob implements ShouldQueue
      */
     public function handle(HTTPClient $client)
     {
+        try {
+            $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
+                'url' => $this->scan->domain->url,
+                'dangerLevel' => $this->scan->danger_level,
+                'callbackurls' => [
+                    config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
+                ]
+            ]]);
 
-        $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
-            'url' => $this->scan->domain->url,
-            'dangerLevel' => $this->scan->danger_level,
-            'callbackurls' => [
-                config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
-            ]
-        ]]);
+            if ($response->getStatusCode() === 200) {
+                $this->scan->update(['started_at' => Carbon::now()]);
 
-        if ($response->getStatusCode() === 200) {
-            $this->scan->update(['started_at' => Carbon::now()]);
-
-            if (!$this->scan->domain->is_verified) {
-                $this->scan->token->reduceCredits();
+                if (!$this->scan->domain->is_verified) {
+                    $this->scan->token->reduceCredits();
+                }
+            } else {
+                Log::critical(
+                    'Failed to start scan for scan id: ' . $this->scan->id . PHP_EOL
+                        . 'HTTP-Status: ' . $response->getStatusCode() . PHP_EOL
+                        . 'Message: ' . $response->getBody()->getContents()
+                );
+                $this->scan->update([
+                    'has_error' => true,
+                    'finished_at' => Carbon::now()
+                ]);
             }
-        } else {
+        } catch (\Exception $e) {
             Log::critical(
                 'Failed to start scan for scan id: ' . $this->scan->id . PHP_EOL
-                    . 'HTTP-Status: ' . $response->getStatusCode() . PHP_EOL
-                    . 'Message: ' . $response->getBody()->getContents()
+                    . 'The following Exception was thrown: ' . PHP_EOL . $e
             );
             $this->scan->update([
                 'has_error' => true,

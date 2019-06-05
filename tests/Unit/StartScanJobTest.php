@@ -13,6 +13,8 @@ use TiMacDonald\Log\LogFake;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Token;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
 
 class StartScanJobTest extends TestCase
 {
@@ -61,6 +63,25 @@ class StartScanJobTest extends TestCase
         $this->assertTrue(Scan::first()->has_error);
         Log::assertLogged('critical', function ($message, $context) {
             return Str::contains($message, "Failed to start scan for scan id:");
+        });
+    }
+
+    /** @test */
+    public function when_the_scanJob_throws_an_curl_exception_the_scan_is_marked_with_error_and_finished()
+    {
+        Log::swap(new LogFake);
+
+        $scan = $this->getGeneratedScan(['is_freescan' => false]);
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
+            new RequestException('Could not connect to CoreAPI', new Request('POST', 'test'))
+        ]));
+
+        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at->toDateTimeString());
+        $this->assertTrue(Scan::first()->has_error);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Could not connect to CoreAPI");
         });
     }
 
