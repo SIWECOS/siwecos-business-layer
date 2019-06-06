@@ -35,8 +35,8 @@ class ScanReport
             $scannerReport->put('score', $scanner->get('score'));
             $scannerReport->put('has_error', $scanner->get('hasError'));
             $scannerReport->put('error_message', $scanner->get('errorMessage'));
-            $scannerReport->put('started_at', $scanner->get('started_at'));
-            $scannerReport->put('finished_at', $scanner->get('finished_at'));
+            $scannerReport->put('started_at', $scanner->get('startedAt'));
+            $scannerReport->put('finished_at', $scanner->get('finishedAt'));
 
             $scannerReport->put('tests', $this->getTranslatedTests($scanner->get('tests'), $scannerCode));
 

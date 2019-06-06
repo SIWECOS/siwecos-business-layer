@@ -34,8 +34,8 @@ class ScanFinishedRequest extends FormRequest
             'results' => ['required', 'array'],
             'results.*' => ['array'],
             'results.*.name' => ['required', 'string'],
-            'results.*.started_at' => ['required', 'string'],
-            'results.*.finished_at' => ['required', 'string'],
+            'results.*.startedAt' => ['required', 'string'],
+            'results.*.finishedAt' => ['required', 'string'],
             'results.*.hasError' => ['required', 'boolean'],
             'results.*.score' => ['required', 'integer'],
         ];
