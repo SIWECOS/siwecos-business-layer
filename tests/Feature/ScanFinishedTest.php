@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
+use TiMacDonald\Log\LogFake;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ScanFinishedTest extends TestCase
 {
@@ -30,6 +33,28 @@ class ScanFinishedTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertTrue($scan->refresh()->is_finished);
+    }
+
+    /** @test */
+    public function if_the_coreApi_sends_a_list_of_missing_results_the_scan_gets_hasErrorTrue_and_the_missing_scans_are_logged()
+    {
+        Log::swap(new LogFake);
+
+        $scan = $this->getStartedScan(['is_freescan' => true]);
+
+        $response = $this->json(
+            'POST',
+            '/api/v2/scan/finished/' . $scan->id,
+            json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResultsWithMissingScannerResults.json')), true)
+        );
+
+        $response->assertStatus(200);
+        $this->assertTrue($scan->refresh()->is_finished);
+        $this->assertTrue($scan->has_error);
+        Log::assertLogged('critical', function ($message, $context) use ($scan) {
+            return Str::contains($message, "Missing ScanResult for Scan with ID " . $scan->id .  PHP_EOL
+                . "Missing result from scanner: INI_S, HEADER");
+        });
     }
 
     /** @test */

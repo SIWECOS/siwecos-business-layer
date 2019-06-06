@@ -1,0 +1,52 @@
+{
+    "url": "https:\/\/example.org",
+    "dangerLevel": "0",
+    "startedAt": "2019-05-07 11:55:15",
+    "finishedAt": "2019-05-07 11:55:15",
+    "version": "2.0.0",
+    "withMissingScannerResults": [
+        "INI_S",
+        "HEADER"
+    ],
+    "results": [
+        {
+            "name": "DOMXSS",
+            "version": "1.5.0",
+            "startedAt": "2019-03-27 16:18:13",
+            "finishedAt": "2019-03-27 16:18:14",
+            "hasError": false,
+            "errorMessage": null,
+            "score": 50,
+            "tests": [
+                {
+                    "name": "SOURCES",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 100,
+                    "scoreType": "info",
+                    "testDetails": [
+                        {
+                            "translationStringId": "NO_SOURCES_FOUND",
+                            "placeholders": null
+                        }
+                    ]
+                },
+                {
+                    "name": "SINKS",
+                    "hasError": false,
+                    "errorMessage": null,
+                    "score": 0,
+                    "scoreType": "info",
+                    "testDetails": [
+                        {
+                            "translationStringId": "SINKS_FOUND",
+                            "placeholders": {
+                                "AMOUNT": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

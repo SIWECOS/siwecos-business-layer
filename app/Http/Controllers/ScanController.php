@@ -41,7 +41,6 @@ class ScanController extends Controller
     {
         $domain = Domain::whereUrl($request->json('url'))->first();
 
-        // Domain existiert nicht
         if (!$domain) {
             $domain = Token::create([
                 'type' => 'freescan',
@@ -83,6 +82,13 @@ class ScanController extends Controller
     {
         if (!$scan->is_finished) {
             $scan->results = $request->get('results');
+
+            if ($missing = $request->get('withMissingScannerResults')) {
+                $scan->has_error = true;
+
+                \Log::critical("Missing ScanResult for Scan with ID " . $scan->id .  PHP_EOL
+                    . "Missing result from scanner: " . implode(', ', $missing));
+            }
 
             if ($scan->save()) {
                 if (!$scan->is_freescan) {
