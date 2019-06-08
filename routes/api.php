@@ -35,7 +35,7 @@ Route::prefix('v2')->group(function () {
     });
 
     // Token
-    Route::get('/token', 'TokenController@registerNewToken')->middleware('throttle:60,1');
+    Route::post('/token', 'TokenController@registerNewToken')->middleware('throttle:60,1');
 
     // Domain
     Route::middleware(['siwecosToken'])->group(function () {

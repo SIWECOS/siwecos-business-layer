@@ -10,7 +10,8 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -d '{
     "email": "mail@siwecos.de",
-    "password": "abcd1234"
+    "password": "abcd1234",
+    "agb_check": true
 }'
 ```
 
@@ -21,7 +22,8 @@ Content-Type: application/json
 
 {
     "email": "mail@siwecos.de",
-    "password": "abcd1234"
+    "password": "abcd1234",
+    "agb_check": true
 }
 ```
 
@@ -44,11 +46,11 @@ A user can be registered in the database.
 
 ### Query Parameters
 
-| Parameter  | Type        | Description                           |
-| ---------- | ----------- | ------------------------------------- |
-| email      | `email`     | The user's email address              |
-| password   | `password`  | The user's password                   |
-| *org_size* | *`integer`* | *The size of the user's organisation* |
+| Parameter | Type       | Description                                                                                                             |
+| --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| email     | `email`    | The user's email address                                                                                                |
+| password  | `password` | The user's password                                                                                                     |
+| agb_check | `boolean`  | The user must accept the [General Terms and Conditions](https://siwecos.de/en/terms-and-conditions) to use this service |
 
 ### Response Status Codes
 

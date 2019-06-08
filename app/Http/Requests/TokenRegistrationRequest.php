@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Rules\IsSupportedLanguage;
 use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
 
-class CreateUserRequest extends FormRequest
+class TokenRegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,10 +32,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'         => ['required', 'email', 'unique:users'],
-            'password'      => ['required', 'min:8'],
             'agb_check'     => ['required', 'boolean', Rule::in([true]),],
-            'preferred_language' => new IsSupportedLanguage(),
         ];
     }
 

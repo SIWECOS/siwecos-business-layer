@@ -12,13 +12,22 @@ As there is no user registered with this tokens, no notifications can be sent by
 > The **Request** must have the following structure:
 
 ```shell
-curl -X GET http://bla.local/api/v2/token
+curl -X POST \
+  http://bla.local/api/v2/token \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "agb_check": true
+}'
 ```
 
 ```http
-GET /api/v2/token HTTP/1.1
+POST /api/v2/token HTTP/1.1
 Host: bla.local
+Content-Type: application/json
 
+{
+    "agb_check": true
+}
 ```
 
 A SIWECOS Token can be registered instead of a User.
@@ -33,11 +42,18 @@ A SIWECOS Token can be registered instead of a User.
 
 ### HTTP Request
 
-`GET /api/v2/token`
+`POST /api/v2/token`
+
+### Query Parameters
+
+| Parameter | Type      | Description                                                                                                             |
+| --------- | --------- | ----------------------------------------------------------------------------------------------------------------------- |
+| agb_check | `boolean` | The user must accept the [General Terms and Conditions](https://siwecos.de/en/terms-and-conditions) to use this service |
 
 
 ### Response Status Codes
 
-| Code | Meaning          |
-| ---- | ---------------- |
-| 200  | Token registered |
+| Code | Meaning           |
+| ---- | ----------------- |
+| 200  | Token registered  |
+| 422  | Validation failed |

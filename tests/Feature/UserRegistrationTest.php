@@ -24,8 +24,6 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function a_new_user_can_be_registered_via_api()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->registerUserRequest();
 
         $response->assertStatus(200);
@@ -38,6 +36,39 @@ class UserRegistrationTest extends TestCase
         $response = $this->json('POST', '/api/v2/user', ['password' => 'secret']);
 
         $response->assertStatus(422);
+    }
+
+    /** @test */
+    public function the_agbCheck_flag_must_be_true_in_order_to_register_a_new_user()
+    {
+        $response = $this->json('POST', '/api/v2/user', [
+            'email'        => 'mail@example.org',
+            'password' => 'secret1234'
+        ]);
+        $response->assertStatus(422);
+        $response->assertJson([
+            'agb_check' => ['validation.required']
+        ]);
+
+        $response = $this->json('POST', '/api/v2/user', [
+            'email'        => 'mail@example.org',
+            'password' => 'secret1234',
+            'agb_check' => 'yesIWantIt'
+        ]);
+        $response->assertStatus(422);
+        $response->assertJson([
+            'agb_check' => ['validation.boolean']
+        ]);
+
+        $response = $this->json('POST', '/api/v2/user', [
+            'email'        => 'mail@example.org',
+            'password' => 'secret1234',
+            'agb_check' => false
+        ]);
+        $response->assertStatus(422);
+        $response->assertJson([
+            'agb_check' => ['The user must accept the General Terms and Conditions to use this service.']
+        ]);
     }
 
     /** @test */
@@ -175,7 +206,7 @@ class UserRegistrationTest extends TestCase
     {
         $user = factory(User::class)->make();
 
-        return $this->json('POST', '/api/v2/user', array_merge($user->toArray(), ['password' => 'secret1234']));
+        return $this->json('POST', '/api/v2/user', array_merge($user->toArray(), ['password' => 'secret1234', 'agb_check' => true]));
     }
 
     /**
