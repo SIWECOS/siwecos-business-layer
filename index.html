@@ -312,7 +312,8 @@
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -d <span class="s1">'{
     "email": "mail@siwecos.de",
-    "password": "abcd1234"
+    "password": "abcd1234",
+    "agb_check": true
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
@@ -320,7 +321,8 @@
 
 <span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcd1234"</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcd1234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"agb_check"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A user can be registered in the database.</p>
@@ -355,9 +357,9 @@
 <td>The user&#39;s password</td>
 </tr>
 <tr>
-<td><em>org_size</em></td>
-<td><em><code>integer</code></em></td>
-<td><em>The size of the user&#39;s organisation</em></td>
+<td>agb_check</td>
+<td><code>boolean</code></td>
+<td>The user must accept the <a href="https://siwecos.de/en/terms-and-conditions">General Terms and Conditions</a> to use this service</td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes'>Response Status Codes</h3>
@@ -842,11 +844,20 @@ As there is no user registered with this tokens, no notifications can be sent by
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET http://bla.local/api/v2/token
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/token <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "agb_check": true
+}'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-</code></pre>
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"agb_check"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A SIWECOS Token can be registered instead of a User.</p>
 
 <blockquote>
@@ -856,7 +867,21 @@ As there is no user registered with this tokens, no notifications can be sent by
     </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"w3JofJRDjGsj2MfOlrDivNMK"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /api/v2/token</code></p>
+<p><code>POST /api/v2/token</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>agb_check</td>
+<td><code>boolean</code></td>
+<td>The user must accept the <a href="https://siwecos.de/en/terms-and-conditions">General Terms and Conditions</a> to use this service</td>
+</tr>
+</tbody></table>
 <h3 id='response-status-codes'>Response Status Codes</h3>
 <table><thead>
 <tr>
@@ -867,6 +892,10 @@ As there is no user registered with this tokens, no notifications can be sent by
 <tr>
 <td>200</td>
 <td>Token registered</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
 </tr>
 </tbody></table>
 <h1 id='domains'>Domains</h1><h2 id='adding-a-domain'>Adding a Domain</h2>
