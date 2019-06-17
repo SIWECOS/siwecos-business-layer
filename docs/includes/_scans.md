@@ -9,7 +9,7 @@ curl -X POST \
   http://bla.local/api/v2/freescan \
   -H 'Content-Type: application/json' \
   -d '{
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }'
 ```
 
@@ -19,7 +19,7 @@ Host: bla.local
 Content-Type: application/json
 
 {
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }
 ```
 
@@ -35,7 +35,7 @@ A Freescan is like a normal Scan but with a lower `dangerLevel` so it does not i
 
 ```json
 {
-    "scan_id": 6
+  "scan_id": 6
 }
 ```
 
@@ -49,14 +49,14 @@ A Freescan can be started by everyone and the reports can be getted by everyone,
 
 ### Query Parameters
 
-| Parameter | Type  | Description                                  |
-| --------- | ----- | -------------------------------------------- |
-| url       | `url` | The url to the domain that should be scanned |
+| Parameter | Type     | Description                       |
+| --------- | -------- | --------------------------------- |
+| domain    | `string` | The domain that should be scanned |
 
 ### Response Parameters
 
-| Parameter | Type      | Description      |
-| --------- | --------- | ---------------- |
+| Parameter | Type      | Description     |
+| --------- | --------- | --------------- |
 | scan_id   | `integer` | The scan's `id` |
 
 ### Response Status Codes
@@ -77,7 +77,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y' \
   -d '{
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }'
 ```
 
@@ -88,7 +88,7 @@ Content-Type: application/json
 SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y
 
 {
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }
 ```
 
@@ -112,14 +112,14 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 
 ### Query Parameters
 
-| Parameter | Type  | Description                                  |
-| --------- | ----- | -------------------------------------------- |
-| url       | `url` | The url to the domain that should be scanned |
+| Parameter | Type     | Description                       |
+| --------- | -------- | --------------------------------- |
+| domain    | `string` | The domain that should be scanned |
 
 ### Response Parameters
 
-| Parameter | Type      | Description      |
-| --------- | --------- | ---------------- |
+| Parameter | Type      | Description     |
+| --------- | --------- | --------------- |
 | scan_id   | `integer` | The scan's `id` |
 
 ### Response Status Codes
@@ -156,10 +156,10 @@ The scan status can be requested.
 
 ```json
 {
-    "status": "running",
-    "has_error": false,
-    "started_at": "2019-04-09 05:28:43",
-    "finished_at": null
+  "status": "running",
+  "has_error": false,
+  "started_at": "2019-04-09 05:28:43",
+  "finished_at": null
 }
 ```
 
@@ -173,8 +173,8 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 
 ### Query Parameters
 
-| Parameter | Type      | Description                                                   |
-| --------- | --------- | ------------------------------------------------------------- |
+| Parameter | Type      | Description                                                  |
+| --------- | --------- | ------------------------------------------------------------ |
 | scan_id   | `integer` | The scan's `id`. It's returned when you request a scan start |
 
 ### Response Parameters
@@ -182,7 +182,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 | Parameter   | Type      | Description                                                                            |
 | ----------- | --------- | -------------------------------------------------------------------------------------- |
 | status      | `string`  | The status can be: `created`, `running`, `finished` or `failed`                        |
-| has_error   | `boolean` | Determines if the scan had an error                                                   |
+| has_error   | `boolean` | Determines if the scan had an error                                                    |
 | started_at  | `date`    | DateTime String for the start time (when the scan was dispatched to the Core-API)      |
 | finished_at | `date`    | DateTime String for the finished time (when the result was received from the Core-API) |
 
@@ -269,7 +269,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 
 | Parameter       | Type       | Description                                                                |
 | --------------- | ---------- | -------------------------------------------------------------------------- |
-| scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start              |
+| scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start               |
 | *language_code* | *`string`* | *One of the supported language codes for translated results: `de` or `en`* |
 
 ### Response Parameters
@@ -277,7 +277,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 | Parameter   | Type      | Description                                                                            |
 | ----------- | --------- | -------------------------------------------------------------------------------------- |
 | status      | `string`  | The status can be: `finished`                                                          |
-| has_error   | `boolean` | Determines if the scan had an error                                                   |
+| has_error   | `boolean` | Determines if the scan had an error                                                    |
 | started_at  | `date`    | DateTime String for the start time (when the scan was dispatched to the Core-API)      |
 | finished_at | `date`    | DateTime String for the finished time (when the result was received from the Core-API) |
 | report      | `array`   | Array of translated and formatted scan results that where delivered by the Core-API    |

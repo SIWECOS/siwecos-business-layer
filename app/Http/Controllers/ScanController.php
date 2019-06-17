@@ -21,7 +21,7 @@ class ScanController extends Controller
     public function start(ScanStartRequest $request)
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
-        $domain = $token->domains()->whereUrl($request->json('url'))->whereIsVerified(true)->first();
+        $domain = $token->domains()->whereDomain($request->json('domain'))->whereIsVerified(true)->first();
 
         if ($domain) {
             $scan = $domain->scans()->create([
@@ -39,13 +39,13 @@ class ScanController extends Controller
 
     public function startFreescan(ScanStartRequest $request)
     {
-        $domain = Domain::whereUrl($request->json('url'))->first();
+        $domain = Domain::whereDomain($request->json('domain'))->first();
 
         if (!$domain) {
             $domain = Token::create([
                 'type' => 'freescan',
                 'credits' => 5
-            ])->domains()->create(['url' => $request->json('url')]);
+            ])->domains()->create(['domain' => $request->json('domain')]);
         }
 
         $scan = $domain->scans()->create([
@@ -111,15 +111,13 @@ class ScanController extends Controller
      */
     protected function generateSiwecosSeals(Domain $domain)
     {
-        $hostname = parse_url($domain->url, PHP_URL_HOST);
-
         $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        Storage::disk('gcs')->put($hostname . "/d.m.y.svg", $view);
+        Storage::disk('gcs')->put($domain->domain . "/d.m.y.svg", $view);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        Storage::disk('gcs')->put($hostname . "/y-m-d.svg", $view);
+        Storage::disk('gcs')->put($domain->domain . "/y-m-d.svg", $view);
     }
 
     /**

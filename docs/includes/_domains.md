@@ -10,7 +10,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc' \
   -d '{
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }'
 ```
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc
 
 {
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }
 ```
 
@@ -48,9 +48,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 
 ### Query Parameters
 
-| Parameter | Type  | Description                                     |
-| --------- | ----- | ----------------------------------------------- |
-| url       | `url` | The url to the domain that should be registered |
+| Parameter | Type     | Description                          |
+| --------- | -------- | ------------------------------------ |
+| domain    | `string` | The domain that should be registered |
 
 ### Response Status Codes
 
@@ -74,7 +74,7 @@ curl -X POST \
   http://bla.local/api/v2/domain/verify \
   -H 'Content-Type: application/json' \
   -d '{
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }'
 ```
 
@@ -84,11 +84,11 @@ Host: bla.local
 Content-Type: application/json
 
 {
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }
 ```
 
-Verify the associated Domain for the given `url`.
+Verify the associated Domain for the given `domain`.
 
 > The **Response** has the following structure:
 
@@ -108,9 +108,9 @@ Verify the associated Domain for the given `url`.
 
 ### Query Parameters
 
-| Parameter | Type  | Description                                   |
-| --------- | ----- | --------------------------------------------- |
-| url       | `url` | The url to the domain that should be verified |
+| Parameter | Type     | Description                        |
+| --------- | -------- | ---------------------------------- |
+| domain    | `string` | The domain that should be verified |
 
 ### Response Status Codes
 
@@ -193,7 +193,7 @@ curl -X DELETE \
   http://bla.local/api/v2/domain \
   -H 'Content-Type: application/json' \
   -d '{
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }'
 ```
 
@@ -203,7 +203,7 @@ Host: bla.local
 Content-Type: application/json
 
 {
-	"url": "https://siwecos.de"
+	"domain": "siwecos.de"
 }
 ```
 
@@ -227,9 +227,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 
 ### Query Parameters
 
-| Parameter | Type  | Description                                  |
-| --------- | ----- | -------------------------------------------- |
-| url       | `url` | The url to the domain that should be deleted |
+| Parameter | Type     | Description                       |
+| --------- | -------- | --------------------------------- |
+| domain    | `string` | The domain that should be deleted |
 
 ### Response Status Codes
 

@@ -17,8 +17,7 @@ class MapDomainParameterToUrlMiddleware
     {
         $url = $request->json('domain');
 
-        $request->replace(['domain' => '']);
-        $request->merge(['url' => $url]);
+        $request->merge(['domain' => parse_url($url, PHP_URL_HOST)]);
 
         return $next($request);
     }

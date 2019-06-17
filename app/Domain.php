@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class Domain extends Model
 {
-    protected $fillable = ['url', 'verification_token', 'is_verified'];
+    protected $fillable = ['domain', 'verification_token', 'is_verified'];
 
     protected $casts = [
         'is_verified' => 'boolean'
@@ -18,13 +18,18 @@ class Domain extends Model
         'id', 'token_id'
     ];
 
-    protected $appends = ['domain'];
+    protected $appends = ['url'];
 
     public function __construct(array $attributes = [])
     {
         $this->verification_token = Keygen::alphanum(64)->generate();
 
         parent::__construct($attributes);
+    }
+
+    public function getUrlAttribute()
+    {
+        return 'https://' . $this->domain;
     }
 
     /**
@@ -45,36 +50,6 @@ class Domain extends Model
     public function scans()
     {
         return $this->hasMany(Scan::class);
-    }
-
-    /**
-     * Returns the hostname for this domain's url
-     *
-     * @return string
-     */
-    public function getDomainAttribute()
-    {
-        return parse_url($this->url, PHP_URL_HOST);
-    }
-
-    /**
-     * Returns the scheme for this domain's url
-     *
-     * @return string
-     */
-    public function getSchemeAttribute()
-    {
-        return parse_url($this->url, PHP_URL_SCHEME);
-    }
-
-    /**
-     * Returns boolean if the URL is secure (HTTPS)
-     *
-     * @return boolean
-     */
-    public function getIsSecureAttribute()
-    {
-        return ($this->scheme === 'https');
     }
 
     public function delete()

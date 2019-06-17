@@ -17,7 +17,7 @@ class DomainListingTest extends TestCase
     {
         $token = factory(Token::class)->create();
         $domain1 = $token->domains()->create(factory(Domain::class)->make()->toArray());
-        $domain2 = $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+        $domain2 = $token->domains()->create(factory(Domain::class)->make(['domain' => 'siwecos.de'])->toArray());
 
         $response = $this->json('GET', '/api/v2/domain', [], ['SIWECOS-Token' => $token->token]);
 
@@ -45,7 +45,6 @@ class DomainListingTest extends TestCase
     public function only_a_valid_token_is_allowed_to_access_the_route()
     {
         $domain = $this->getRegisteredDomain();
-        $token = $domain->token;
 
         $response = $this->json('GET', '/api/v2/domain', [], ['SIWECOS-Token' => 'invalid']);
         $response->assertStatus(403);

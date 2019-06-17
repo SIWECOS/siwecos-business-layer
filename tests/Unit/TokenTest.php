@@ -31,7 +31,7 @@ class TokenTest extends TestCase
         $token->domains()->create(factory(Domain::class)->make()->toArray());
         $this->assertEquals(Domain::first(), Token::first()->domains()->first());
 
-        $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+        $token->domains()->create(factory(Domain::class)->make(['domain' => 'siwecos.de'])->toArray());
         $this->assertEquals(2, Token::first()->domains()->count());
     }
 
@@ -47,7 +47,7 @@ class TokenTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $token = $domain->token;
-        $token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+        $token->domains()->create(factory(Domain::class)->make(['domain' => 'siwecos.de'])->toArray());
 
         $this->assertCount(2, Domain::all());
 

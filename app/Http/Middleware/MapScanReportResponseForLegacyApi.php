@@ -30,7 +30,8 @@ class MapScanReportResponseForLegacyApi
         // get parameter via $domain was used by scan route (/api/v1/scan/result/{language?}?domain=http://example.com)
         if (!($scan instanceof Scan)) {
             $url = urldecode(substr($request->getQueryString(), 7));
-            $domain = Domain::whereUrl($url)->first();
+            $url = parse_url($url, PHP_URL_HOST);
+            $domain = Domain::whereDomain($url)->first();
 
             $scan = $domain->scans()->latest()->first();
         }

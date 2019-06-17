@@ -28,45 +28,28 @@ class DomainTest extends TestCase
     public function a_domain_can_not_be_created_without_a_token()
     {
         $this->expectException(\Illuminate\Database\QueryException::class);
-        Domain::create(['url' => 'https://example.org']);
+        Domain::create(['domain' => 'example.org']);
     }
 
+
     /** @test */
-    public function a_domain_has_the_calculated_parameter_domain()
+    public function a_domain_has_the_calculated_parameter_url_with_https_scheme()
     {
-        $domain = factory(Domain::class)->make(['url' => 'https://example.org']);
+        $domain = factory(Domain::class)->make(['domain' => 'example.org']);
 
-        $this->assertEquals('example.org', $domain->domain);
+        $this->assertEquals('https://example.org', $domain->url);
     }
 
     /** @test */
-    public function a_domain_has_the_calculated_parameter_scheme()
-    {
-        $domain = factory(Domain::class)->make(['url' => 'https://example.org']);
-
-        $this->assertEquals('https', $domain->scheme);
-    }
-
-    /** @test */
-    public function a_domain_has_the_calculated_parameter_isSecure()
-    {
-        $domain = factory(Domain::class)->make(['url' => 'https://example.org']);
-        $this->assertTrue($domain->isSecure);
-
-        $domain = factory(Domain::class)->make(['url' => 'http://example.org']);
-        $this->assertFalse($domain->isSecure);
-    }
-
-    /** @test */
-    public function a_domain_has_a_unique_url()
+    public function a_domain_is_unique_in_the_database()
     {
         $token1 = factory(Token::class)->create();
-        $token1->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
+        $token1->domains()->create(factory(Domain::class)->make(['domain' => 'https://example.org'])->toArray());
         $this->assertCount(1, Domain::all());
 
         $this->expectException(QueryException::class);
         $token2 = factory(Token::class)->create();
-        $token2->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
+        $token2->domains()->create(factory(Domain::class)->make(['domain' => 'https://example.org'])->toArray());
     }
 
     /** @test */

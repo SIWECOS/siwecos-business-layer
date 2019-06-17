@@ -18,7 +18,8 @@ class MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi
     public function handle($request, Closure $next)
     {
         $url = urldecode(substr($request->getQueryString(), 7));
-        $domain = Domain::whereUrl($url)->first();
+        $url = parse_url($url, PHP_URL_HOST);
+        $domain = Domain::whereDomain($url)->first();
 
         if ($domain && $scan = $domain->scans()->latest()->first()) {
             $request->merge(['scan' => $scan]);

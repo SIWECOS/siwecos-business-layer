@@ -3,14 +3,10 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain;
 use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Client;
 use App\Token;
 
 class DomainRegistrationTest extends TestCase
@@ -23,7 +19,7 @@ class DomainRegistrationTest extends TestCase
         $user = $this->getActivatedUser();
 
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'https://example.org'
+            'domain' => 'example.org'
         ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
@@ -31,23 +27,19 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function the_domain_is_saved_without_any_path_indications()
+    public function the_domain_can_not_be_saved_without_when_the_domain_is_no_valid_hostname()
     {
         $user = $this->getActivatedUser();
 
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'https://example.org/my/cool/path'
+            'domain' => 'example.org/my/cool/path'
         ], ['SIWECOS-Token' => $user->token->token]);
-
-        $response->assertStatus(200);
-        $this->assertEquals('https://example.org', Domain::find(1)->url);
+        $response->assertStatus(422);
 
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'http://example.org/'
+            'domain' => 'http://example.org/'
         ], ['SIWECOS-Token' => $user->token->token]);
-
-        $response->assertStatus(200);
-        $this->assertEquals('http://example.org', Domain::find(2)->url);
+        $response->assertStatus(422);
     }
 
     /** @test */
@@ -56,7 +48,7 @@ class DomainRegistrationTest extends TestCase
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(403);
@@ -82,7 +74,7 @@ class DomainRegistrationTest extends TestCase
 
         // Step 3: Send the verification request
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ]);
 
         // Step 4: Get the Domain successfully verified
@@ -96,7 +88,7 @@ class DomainRegistrationTest extends TestCase
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ]);
 
         $response->assertStatus(403);
@@ -115,7 +107,7 @@ class DomainRegistrationTest extends TestCase
         ]);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ]);
 
         $response->assertStatus(410);
@@ -131,12 +123,12 @@ class DomainRegistrationTest extends TestCase
         $response->assertStatus(422);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => 'not_a_valid_url'
+            'domain' => 'not_a_valid_domain'
         ]);
         $response->assertStatus(422);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
-            'url' => 'https://is-not-registered.de'
+            'domain' => 'is-not-registered.de'
         ]);
         $response->assertStatus(422);
     }
@@ -144,12 +136,13 @@ class DomainRegistrationTest extends TestCase
     /** @test */
     public function a_not_verified_domain_can_be_registered_by_another_token()
     {
+        $this->withoutExceptionHandling();
         $tokenA = factory(Token::class)->create();
         $tokenB = factory(Token::class)->create();
 
-        // TokenA registers Domain https://example.org but does not verify
+        // TokenA registers Domain example.org but does not verify
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'https://example.org'
+            'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenA->token]);
         $response->assertStatus(200);
         $this->assertCount(1, Token::whereToken($tokenA->token)->first()->domains);
@@ -157,7 +150,7 @@ class DomainRegistrationTest extends TestCase
 
         // TokenB wants to register the same domain
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'https://example.org'
+            'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenB->token]);
         $response->assertStatus(200);
         $this->assertCount(0, Token::whereToken($tokenA->token)->first()->domains);
@@ -171,12 +164,12 @@ class DomainRegistrationTest extends TestCase
         $tokenB = factory(Token::class)->create();
 
         $tokenA->domains()->create(factory(Domain::class)->make([
-            'url' => 'https://example.org',
+            'domain' => 'example.org',
             'is_verified' => true
         ])->toArray());
 
         $response = $this->json('POST', '/api/v2/domain', [
-            'url' => 'https://example.org'
+            'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenB->token]);
         $response->assertStatus(403);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use App\Rules\Hostname;
 
 class ScanStartRequest extends FormRequest
 {
@@ -31,7 +32,7 @@ class ScanStartRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url'
+            'domain' => ['required', 'string', new Hostname]
         ];
     }
 }

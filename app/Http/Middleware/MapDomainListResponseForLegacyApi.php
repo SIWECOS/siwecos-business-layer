@@ -27,7 +27,7 @@ class MapDomainListResponseForLegacyApi
             $newContent = collect();
 
             foreach ($json->domains as $domain) {
-                $domain = Domain::whereUrl($domain->url)->first();
+                $domain = Domain::whereDomain($domain->domain)->first();
                 $newContent->push([
                     "id" => $domain->id,
                     "domain" => $domain->url,

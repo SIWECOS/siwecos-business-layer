@@ -121,7 +121,7 @@ class DomainVerifierTest extends TestCase
         return '
         <!DOCTYPE html>
         <html lang="en">
-        <        $user = $this->getActivatedUser();head>
+        <head>
             <meta charset="UTF-8">
             <meta name="siwecostoken" value="' . $token . '"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -24,7 +24,7 @@ class MapDomainCreatedResponseForLegacyApi
         if ($response->getStatusCode() === 200) {
 
             $json = json_decode($response->content());
-            $domain = Domain::whereUrl($json->url)->first();
+            $domain = Domain::whereDomain($json->domain)->first();
 
             $response->setContent(json_encode([
                 'message' => 'Domain was created',

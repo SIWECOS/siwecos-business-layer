@@ -7,7 +7,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
-use App\Token;
 
 class FreeScanStartTest extends TestCase
 {
@@ -19,7 +18,7 @@ class FreeScanStartTest extends TestCase
         Queue::fake();
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'url' => 'https://example.org'
+            'domain' => 'example.org'
         ]);
 
         $response->assertStatus(200);
@@ -38,7 +37,7 @@ class FreeScanStartTest extends TestCase
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ]);
 
         $response->assertStatus(200);

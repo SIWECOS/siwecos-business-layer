@@ -25,7 +25,7 @@ class ScanStartTest extends TestCase
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/scan', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(200);
@@ -33,17 +33,17 @@ class ScanStartTest extends TestCase
     }
 
     /** @test */
-    public function a_scan_can_not_be_started_without_a_valid_token_or_without_the_url_parameter()
+    public function a_scan_can_not_be_started_without_a_valid_token_or_without_the_domain_parameter()
     {
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/scan', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ]);
         $response->assertStatus(403);
 
         $response = $this->json('POST', '/api/v2/scan', [
-            'url' => 'not_a_url'
+            'domain' => 'not_a_domain'
         ], ['SIWECOS-Token' => $domain->token->token]);
         $response->assertStatus(422);
 
@@ -57,7 +57,7 @@ class ScanStartTest extends TestCase
         $foreignToken = factory(Token::class)->create();
 
         $response = $this->json('POST', '/api/v2/scan', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ], ['SIWECOS-Token' => $foreignToken->token]);
 
         $response->assertStatus(403);
@@ -70,7 +70,7 @@ class ScanStartTest extends TestCase
         $domain = $this->getRegisteredDomain(['is_verified' => false]);
 
         $response = $this->json('POST', '/api/v2/scan', [
-            'url' => $domain->url
+            'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(403);

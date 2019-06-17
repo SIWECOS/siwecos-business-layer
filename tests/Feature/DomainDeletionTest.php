@@ -21,7 +21,7 @@ class DomainDeletionTest extends TestCase
         $this->assertCount(1, Domain::all());
 
         $response = $this->json('DELETE', '/api/v2/domain', [
-            'url' => Domain::first()->url
+            'domain' => Domain::first()->domain
         ], ['SIWECOS-Token' => $token->token]);
 
         $response->assertStatus(200);
@@ -37,7 +37,7 @@ class DomainDeletionTest extends TestCase
 
         $tokenB = factory(Token::class)->create();
         $response = $this->json('DELETE', '/api/v2/domain', [
-            'url' => Domain::first()->url
+            'domain' => Domain::first()->domain
         ], ['SIWECOS-Token' => $tokenB->token]);
 
         $response->assertStatus(403);

@@ -26,9 +26,9 @@ class DomainController extends Controller
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
 
-        $url = $request->json('url');
-        $url = parse_url($url)['scheme'] . '://' . parse_url($url)['host'];
-        $domain = Domain::whereUrl($url)->firstOrNew(['url' => $url]);
+        $domain = Domain::whereDomain($request->json('domain'))->firstOrNew([
+            'domain' => $request->json('domain')
+        ]);
 
         if (!$domain->is_verified) {
             $domain->verification_token = Keygen::alphanum(64)->generate();
@@ -46,7 +46,7 @@ class DomainController extends Controller
 
     public function verify(VerifyDomainRequest $request)
     {
-        $domain = Domain::whereUrl($request->json('url'))->first();
+        $domain = Domain::whereDomain($request->json('domain'))->first();
 
         if (!$domain->is_verified) {
             $verifier = new DomainVerifier($domain, $this->client);
@@ -72,7 +72,7 @@ class DomainController extends Controller
     public function delete(DeleteDomainRequest $request)
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
-        $domain = $token->domains()->whereUrl($request->json('url'))->first();
+        $domain = $token->domains()->whereDomain($request->json('domain'))->first();
 
         if ($domain && $domain->delete()) {
             return response()->json(new StatusResponse('Domain deleted'), 200);

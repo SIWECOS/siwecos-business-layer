@@ -24,7 +24,7 @@ class RecurrentScansTest extends TestCase
     public function for_every_verified_domain_a_daily_scan_will_be_performed()
     {
         $this->getRegisteredDomain(['is_verified' => true]);
-        $this->getRegisteredDomain(['url' => 'http://another-domain.url', 'is_verified' => false]);
+        $this->getRegisteredDomain(['domain' => 'another.domain', 'is_verified' => false]);
 
         $this->artisan('siwecos:trigger-daily-scans')
             ->expectsOutput('1 Scans were started.');

@@ -16,7 +16,7 @@ class CreateDomainsTable extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('token_id');
-            $table->string('url')->unique();
+            $table->string('domain')->unique();
             $table->boolean('is_verified')->default(false);
             $table->string('verification_token')->unique();
             $table->timestamps();

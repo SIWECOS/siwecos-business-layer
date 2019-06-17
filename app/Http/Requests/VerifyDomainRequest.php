@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Rules\Hostname;
 
 class VerifyDomainRequest extends FormRequest
 {
@@ -31,7 +32,7 @@ class VerifyDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url|exists:domains,url',
+            'domain' => ['required', 'string', 'exists:domains,domain', new Hostname],
         ];
     }
 }

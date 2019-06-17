@@ -101,14 +101,14 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         $user = factory(User::class)->create();
         $user->token->domains()->create(factory(Domain::class)->make()->toArray());
-        $user->token->domains()->create(factory(Domain::class)->make(['url' => 'https://siwecos.de'])->toArray());
+        $user->token->domains()->create(factory(Domain::class)->make(['domain' => 'siwecos.de'])->toArray());
 
         $response = $this->json('POST', '/api/v1/domains/listDomains', [], ['userToken' => $user->token->token]);
 
         $response->assertStatus(200);
 
-        $domain1 = Domain::whereUrl('https://example.org')->first();
-        $domain2 = Domain::whereUrl('https://siwecos.de')->first();
+        $domain1 = Domain::whereDomain('example.org')->first();
+        $domain2 = Domain::whereDomain('siwecos.de')->first();
 
         $response->assertExactJson([
             'message' => 'List of all domains',
