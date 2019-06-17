@@ -9,7 +9,6 @@ use App\Jobs\StartScanJob;
 use GuzzleHttp\Psr7\Response;
 use Carbon\Carbon;
 use App\Scan;
-use TiMacDonald\Log\LogFake;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Token;
@@ -50,8 +49,6 @@ class StartScanJobTest extends TestCase
     /** @test */
     public function when_the_scanJob_could_not_be_received_by_coreApi_the_scan_saves_the_error_and_is_marked_as_finished()
     {
-        Log::swap(new LogFake);
-
         $scan = $this->getGeneratedScan(['is_freescan' => false]);
         $job = new StartScanJob($scan);
 
@@ -69,8 +66,6 @@ class StartScanJobTest extends TestCase
     /** @test */
     public function when_the_scanJob_throws_an_curl_exception_the_scan_is_marked_with_error_and_finished()
     {
-        Log::swap(new LogFake);
-
         $scan = $this->getGeneratedScan(['is_freescan' => false]);
         $job = new StartScanJob($scan);
 

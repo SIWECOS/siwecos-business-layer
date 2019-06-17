@@ -13,6 +13,8 @@ use App\Scan;
 use App\Jobs\StartScanJob;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Notification;
+use TiMacDonald\Log\LogFake;
+use Illuminate\Support\Facades\Log;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -22,6 +24,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         Notification::fake();
+        Log::swap(new LogFake);
     }
 
     /**
