@@ -27,7 +27,20 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function the_domain_can_not_be_saved_without_when_the_domain_is_no_valid_hostname()
+    public function a_domain_with_umlauts_can_be_registered()
+    {
+        $user = $this->getActivatedUser();
+
+        $response = $this->json('POST', '/api/v2/domain', [
+            'domain' => 'cooles-ö.de'
+        ], ['SIWECOS-Token' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::all());
+    }
+
+    /** @test */
+    public function the_domain_can_not_be_saved_when_the_domain_is_no_valid_hostname()
     {
         $user = $this->getActivatedUser();
 
