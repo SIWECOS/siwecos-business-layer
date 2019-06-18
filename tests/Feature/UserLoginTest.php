@@ -16,20 +16,14 @@ class UserLoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        Notification::fake();
-    }
-
     /** @test */
     public function an_activated_user_can_login_to_siwecos_bla_with_correct_credentials()
     {
-        $user = $this->getActivatedUser(['password' => \Hash::make('abcd1234')]);
+        $user = $this->getActivatedUser();
 
         $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
-            'password' => 'abcd1234'
+            'password' => 'secret_password'
         ]);
 
         $response->assertStatus(200);
@@ -44,7 +38,7 @@ class UserLoginTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
-            'password' => 'secret'
+            'password' => 'secret_password'
         ]);
 
         $response->assertStatus(406);
@@ -66,7 +60,7 @@ class UserLoginTest extends TestCase
         $response->assertStatus(422);
 
 
-        $user = $this->getActivatedUser(['password' => \Hash::make('abcd1234')]);
+        $user = $this->getActivatedUser();
         $response = $this->json('POST', '/api/v2/user/login', [
             'email' => $user->email,
             'password' => 'wrong_password'

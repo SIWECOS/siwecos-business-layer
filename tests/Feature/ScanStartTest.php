@@ -13,12 +13,6 @@ class ScanStartTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        Queue::fake();
-    }
-
     /** @test */
     public function a_scan_can_be_started_by_a_valid_token_for_a_verified_associated_domain()
     {

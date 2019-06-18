@@ -27,7 +27,6 @@ class TokenRegistrationTest extends TestCase
     /** @test */
     public function the_agbCheck_flag_must_be_true_in_order_to_register_a_new_token()
     {
-        $this->withoutExceptionHandling();
         $response = $this->json('POST', '/api/v2/token', []);
         $response->assertStatus(422);
         $response->assertJson([

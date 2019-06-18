@@ -53,7 +53,7 @@ class UserModificationTest extends TestCase
     /** @test */
     public function a_user_can_change_his_password()
     {
-        $user = $this->getActivatedUser(['password' => \Hash::make('superSecretPassword')]);
+        $user = $this->getActivatedUser();
 
         $response = $this->json('PATCH', '/api/v2/user', [
             'newpassword' => 'abcd1234'

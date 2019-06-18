@@ -15,8 +15,6 @@ class FreeScanStartTest extends TestCase
     /** @test */
     public function a_free_scan_can_be_started_for_a_given_url()
     {
-        Queue::fake();
-
         $response = $this->json('POST', '/api/v2/freescan', [
             'domain' => 'example.org'
         ]);
@@ -32,8 +30,6 @@ class FreeScanStartTest extends TestCase
     /** @test */
     public function a_free_scan_can_also_be_started_for_an_registered_and_verified_domain()
     {
-        Queue::fake();
-
         $domain = $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/freescan', [

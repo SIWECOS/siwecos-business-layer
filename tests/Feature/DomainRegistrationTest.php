@@ -115,7 +115,7 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function a_registered_url_is_required_for_verification()
+    public function a_registered_domain_is_required_for_verification()
     {
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'data' => 'Not relevant'
@@ -136,7 +136,6 @@ class DomainRegistrationTest extends TestCase
     /** @test */
     public function a_not_verified_domain_can_be_registered_by_another_token()
     {
-        $this->withoutExceptionHandling();
         $tokenA = factory(Token::class)->create();
         $tokenB = factory(Token::class)->create();
 
@@ -145,16 +144,16 @@ class DomainRegistrationTest extends TestCase
             'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenA->token]);
         $response->assertStatus(200);
-        $this->assertCount(1, Token::whereToken($tokenA->token)->first()->domains);
-        $this->assertCount(0, Token::whereToken($tokenB->token)->first()->domains);
+        $this->assertCount(1, $tokenA->refresh()->domains);
+        $this->assertCount(0, $tokenB->refresh()->domains);
 
         // TokenB wants to register the same domain
         $response = $this->json('POST', '/api/v2/domain', [
             'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenB->token]);
         $response->assertStatus(200);
-        $this->assertCount(0, Token::whereToken($tokenA->token)->first()->domains);
-        $this->assertCount(1, Token::whereToken($tokenB->token)->first()->domains);
+        $this->assertCount(0, $tokenA->refresh()->domains);
+        $this->assertCount(1, $tokenB->refresh()->domains);
     }
 
     /** @test */

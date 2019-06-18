@@ -25,6 +25,7 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         Notification::fake();
         Log::swap(new LogFake);
+        \Queue::fake();
     }
 
     /**

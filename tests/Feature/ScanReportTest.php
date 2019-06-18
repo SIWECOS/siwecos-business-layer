@@ -12,14 +12,11 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_translated_and_reasonable_json_scan_report_can_be_retrieved_for_finished_scans()
     {
-        $this->withoutExceptionHandling();
-
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
-
         $response->assertJson([
             'started_at' => $scan->started_at->toDateTimeString(),
             'finished_at' => $scan->finished_at->toDateTimeString(),

@@ -44,7 +44,7 @@ class DomainListingTest extends TestCase
     /** @test */
     public function only_a_valid_token_is_allowed_to_access_the_route()
     {
-        $domain = $this->getRegisteredDomain();
+        $this->getRegisteredDomain();
 
         $response = $this->json('GET', '/api/v2/domain', [], ['SIWECOS-Token' => 'invalid']);
         $response->assertStatus(403);

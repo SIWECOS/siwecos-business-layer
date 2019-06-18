@@ -133,8 +133,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function a_scan_can_be_started()
     {
-        Queue::fake();
-
         $user = factory(User::class)->create();
         $domain = $user->token->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
 
@@ -156,8 +154,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_scan_report_can_be_retrieved_for_freescans()
     {
-        $this->withoutExceptionHandling();
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $this->getFinishedScan(['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
 
@@ -196,7 +193,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function only_for_existing_scans_a_report_can_be_requested()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
 
         $response->assertStatus(404);

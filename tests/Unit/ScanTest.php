@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Scan;
 use App\Domain;
-use function GuzzleHttp\json_encode;
 use Carbon\Carbon;
 
 class ScanTest extends TestCase

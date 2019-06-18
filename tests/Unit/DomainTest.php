@@ -44,12 +44,12 @@ class DomainTest extends TestCase
     public function a_domain_is_unique_in_the_database()
     {
         $token1 = factory(Token::class)->create();
-        $token1->domains()->create(factory(Domain::class)->make(['domain' => 'https://example.org'])->toArray());
+        $token1->domains()->create(factory(Domain::class)->make(['domain' => 'example.org'])->toArray());
         $this->assertCount(1, Domain::all());
 
         $this->expectException(QueryException::class);
         $token2 = factory(Token::class)->create();
-        $token2->domains()->create(factory(Domain::class)->make(['domain' => 'https://example.org'])->toArray());
+        $token2->domains()->create(factory(Domain::class)->make(['domain' => 'example.org'])->toArray());
     }
 
     /** @test */
@@ -62,10 +62,10 @@ class DomainTest extends TestCase
     /** @test */
     public function if_a_domain_gets_deleted_all_associated_scans_will_be_deleted_too()
     {
-        $scan1 = $this->getGeneratedScan();
-        $scan2 = $this->getStartedScan();
-        $scan3 = $this->getFinishedScan();
-        $scan4 = $this->getFailedScan();
+        $this->getGeneratedScan();
+        $this->getStartedScan();
+        $this->getFinishedScan();
+        $this->getFailedScan();
         $domain = Domain::first();
 
         $this->assertCount(4, $domain->scans);

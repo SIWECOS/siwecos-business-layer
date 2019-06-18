@@ -14,12 +14,6 @@ class RecurrentScansTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        Queue::fake();
-    }
-
     /** @test */
     public function for_every_verified_domain_a_daily_scan_will_be_performed()
     {

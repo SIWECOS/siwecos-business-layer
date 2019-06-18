@@ -15,12 +15,6 @@ class UserRegistrationTest extends TestCase
 
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        Notification::fake();
-    }
-
     /** @test */
     public function a_new_user_can_be_registered_via_api()
     {
@@ -84,7 +78,6 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function when_a_new_user_was_successfully_registered_the_defined_response_will_be_retrieved()
     {
-        $this->withoutExceptionHandling();
         $response = $this->registerUserRequest();
 
         $response->assertStatus(200);

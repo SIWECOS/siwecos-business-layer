@@ -17,7 +17,7 @@ class TokenTest extends TestCase
     /** @test */
     public function a_token_can_have_an_associated_user()
     {
-        $user = $this->getActivatedUser();
+        $this->getActivatedUser();
 
         $this->assertNotNull(Token::first()->user);
         $this->assertEquals(User::first(), Token::first()->user);

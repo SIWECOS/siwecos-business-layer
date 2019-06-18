@@ -21,7 +21,6 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function there_is_an_api_route_for_the_coreApi_to_send_the_scan_results_for_a_given_scan()
     {
-        $this->withoutExceptionHandling();
         $scan = $this->getStartedScan(['is_freescan' => true]);
 
         $response = $this->json(
