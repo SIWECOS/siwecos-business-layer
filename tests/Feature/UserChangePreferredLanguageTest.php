@@ -16,7 +16,7 @@ class UserChangePreferredLanguageTest extends TestCase
     {
         $user = $this->getActivatedUser();
 
-        $response = $this->patch('/api/v2/user', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'preferred_language' => 'en'
         ], ['SIWECOS-Token' => $user->token->token]);
 

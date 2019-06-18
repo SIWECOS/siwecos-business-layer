@@ -6,13 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\WpPasswordAuthentication;
+use Keygen\Keygen;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
     protected $fillable = [
-        'email', 'org_size', 'agb', 'preferred_language',
+        'email', 'preferred_language',
     ];
 
     protected $hidden = [
@@ -22,6 +23,12 @@ class User extends Authenticatable
     protected $casts = [
         'is_active' => 'boolean'
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->activation_key = Keygen::alphanum(96)->generate();
+    }
 
     /**
      * Returns the Eloquent Relationship for App\Token

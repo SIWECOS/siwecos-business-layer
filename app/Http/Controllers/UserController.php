@@ -17,6 +17,7 @@ use App\Http\Requests\SendPasswordResetMailRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Responses\UserTokenResponse;
 use App\Http\Responses\StatusResponse;
+use App\Notifications\ChangedMailNotification;
 
 class UserController extends Controller
 {
@@ -55,6 +56,15 @@ class UserController extends Controller
 
         if ($user) {
             if (!$user->is_active) {
+                // Check if user changed his account, so an oldUser owns the token
+                // if so, remove the association between the oldUser and the token
+                if ($user->token->user !== $user) {
+                    $oldUser = $user->token->user;
+                    $oldUser->token()->dissociate();
+                    $oldUser->save();
+                }
+
+
                 $user->is_active = true;
                 $user->save();
 
@@ -103,6 +113,10 @@ class UserController extends Controller
 
             if ($user->is_active === false) {
                 return response()->json(new StatusResponse('User not activated'), 406);
+            }
+
+            if ($user->token === null) {
+                return response()->json(new StatusResponse('User without associated token'), 406);
             }
 
             if ($user->verifyPassword($request->json('password'))) {
@@ -165,23 +179,34 @@ class UserController extends Controller
         $user = Token::whereToken($request->header('SIWECOS-Token'))->first()->user;
         $oldEmail = $user->email;
 
-        // update password
+        // password
         if ($newpassword = $request->json('newpassword')) {
             $user->password = \Hash::make($newpassword);
         }
 
-        // update user
-        $user->update($request->all());
-
-        // email was updated
-        if ($request->json('email') && $oldEmail != $request->json('email')) {
-            $user->activation_key = Keygen::alphanum(96)->generate();
-            $user->is_active = false;
-            $user->save();
-            $user->notify(new activationmail());
+        // preferred language
+        if ($preferred_language = $request->json('preferred_language')) {
+            $user->preferred_language = $preferred_language;
         }
 
-        return response()->json(new StatusResponse('User updated'));
+        // email
+        if ($request->json('email') && $oldEmail != $request->json('email')) {
+            $newUser = new User();
+            $newUser->email = $request->json('email');
+            $newUser->password = $user->password;
+            $newUser->activation_key = Keygen::alphanum(96)->generate();
+            $newUser->token()->associate($user->token);
+
+            $newUser->save();
+
+            $newUser->notify(new ChangedMailNotification());
+        }
+
+        if ($user->save()) {
+            return response()->json(new StatusResponse('User updated'));
+        }
+
+        return response()->json(new StatusResponse('User could not be updated'), 410);
     }
 
     /**

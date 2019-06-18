@@ -75,6 +75,21 @@ class UserLoginTest extends TestCase
     }
 
     /** @test */
+    public function login_is_not_possible_for_user_without_token()
+    {
+        $user = $this->getActivatedUser();
+        $user->token()->dissociate();
+        $user->save();
+
+        $response = $this->json('POST', '/api/v2/user/login', [
+            'email' => $user->email,
+            'password' => 'secret_password'
+        ]);
+
+        $response->assertStatus(406);
+    }
+
+    /** @test */
     public function if_an_old_password_hash_is_used_and_login_is_correct_the_password_hash_gets_updated()
     {
         $password = "abcd1234";

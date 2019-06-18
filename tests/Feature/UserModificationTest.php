@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\activationmail;
+use App\Notifications\ChangedMailNotification;
+use App\Token;
 
 class UserModificationTest extends TestCase
 {
@@ -51,8 +53,6 @@ class UserModificationTest extends TestCase
     /** @test */
     public function a_user_can_change_his_password()
     {
-
-        $this->withoutExceptionHandling();
         $user = $this->getActivatedUser(['password' => \Hash::make('superSecretPassword')]);
 
         $response = $this->json('PATCH', '/api/v2/user', [
@@ -64,19 +64,39 @@ class UserModificationTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_change_his_email_address_and_has_to_reactivate_his_account()
+    public function a_user_can_change_his_email_address_and_has_to_activate_the_new_account_while_the_old_stays_usable()
     {
-        Notification::fake();
         $user = $this->getActivatedUser();
+        $changedMailUser = factory(User::class)->make();
+        $changedMailUser->token()->associate($user->token);
+        $changedMailUser->save();
 
+        $this->assertCount(2, User::all());
+
+        $response = $this->get('/api/v2/user/activate/' . $changedMailUser->activation_key);
+
+        $response->assertStatus(200);
+        $this->assertTrue(User::find(2)->is_active);
+        $this->assertEquals(Token::find(1), User::find(2)->token);
+        $this->assertEquals(Token::find(1)->user, User::find(2));
+    }
+
+    /** @test */
+    public function when_a_user_activates_his_second_account_with_the_new_mail_address_the_old_account_will_be_deleted()
+    {
+        $user = $this->getActivatedUser();
         $response = $this->json('PATCH', '/api/v2/user', [
             'email' => 'another@email.address'
         ], ['SIWECOS-Token' => $user->token->token]);
 
         $response->assertStatus(200);
-        $this->assertEquals('another@email.address', User::first()->email);
-        Notification::assertSentTo($user, activationmail::class);
-        $this->assertFalse(User::first()->is_active);
+        $this->assertNotEquals('another@email.address', User::first()->email);
+        $this->assertTrue($user->is_active);
+
+        $newUser = User::whereEmail('another@email.address')->first();
+        $this->assertNotEmpty($newUser);
+        Notification::assertSentTo($newUser, ChangedMailNotification::class);
+        $this->assertFalse($newUser->is_active);
     }
 
     /** @test */

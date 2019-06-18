@@ -37,7 +37,6 @@ class UpdateUserRequest extends FormRequest
 
         return [
             'email' => ['email', Rule::unique('users')->ignore($user->id)],
-            'org_size'   => 'integer|min:0',
             'preferred_language' => new IsSupportedLanguage(),
             'newpassword' => 'string|min:8',
         ];

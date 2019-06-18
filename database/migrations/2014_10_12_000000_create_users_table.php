@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->string('activation_key', 191)->nullable();
             $table->string('passwordreset_token', 191)->nullable();
-            $table->unsignedInteger('token_id');
+            $table->unsignedInteger('token_id')->nullable();
 
             $table->timestamps();
         });
