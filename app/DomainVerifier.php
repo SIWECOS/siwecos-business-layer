@@ -28,7 +28,7 @@ class DomainVerifier
 
     public function checkHtmlPage()
     {
-        $response = $this->client->get($this->domain->url . "/" . $this->domain->verification_token . ".html");
+        $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->domain->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
             if (Str::is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
@@ -41,7 +41,7 @@ class DomainVerifier
 
     public function checkMetaTag()
     {
-        $response = $this->client->get($this->domain->url);
+        $response = $this->client->get('http://' . $this->domain->domain);
 
         if ($response->getStatusCode() === 200) {
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
