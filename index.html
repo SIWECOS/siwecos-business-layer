@@ -907,7 +907,7 @@ As there is no user registered with this tokens, no notifications can be sent by
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/domain</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
@@ -915,7 +915,7 @@ As there is no user registered with this tokens, no notifications can be sent by
 <span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://siwecos.de"</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A new Domain can be added/registered to a Token.</p>
@@ -944,9 +944,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td><code>url</code></td>
-<td>The url to the domain that should be registered</td>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain that should be registered</td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes'>Response Status Codes</h3>
@@ -985,17 +985,17 @@ After registration the domain has to be verified.
   http://bla.local/api/v2/domain/verify <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "url":"https://siwecos.de"
+    "domain": "siwecos.de"
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/domain/verify</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://siwecos.de"</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Verify the associated Domain for the given <code>url</code>.</p>
+<p>Verify the associated Domain for the given <code>domain</code>.</p>
 
 <blockquote>
 <p>The <strong>Response</strong> has the following structure:</p>
@@ -1017,9 +1017,9 @@ After registration the domain has to be verified.
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td><code>url</code></td>
-<td>The url to the domain that should be verified</td>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain that should be verified</td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes-2'>Response Status Codes</h3>
@@ -1113,14 +1113,14 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
   http://bla.local/api/v2/domain <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "url": "https://siwecos.de"
+    "domain": "siwecos.de"
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v2/domain</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A Domain can be deleted.</p>
@@ -1146,9 +1146,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td><code>url</code></td>
-<td>The url to the domain that should be deleted</td>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain that should be deleted</td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes-4'>Response Status Codes</h3>
@@ -1183,14 +1183,14 @@ After deletion all associated scans will also be deleted.
   http://bla.local/api/v2/freescan <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "url": "https://siwecos.de"
+    "domain": "siwecos.de"
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/freescan</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A Freescan can be started.</p>
@@ -1203,7 +1203,7 @@ A Freescan is like a normal Scan but with a lower `dangerLevel` so it does not i
 <p>The <strong>Response</strong> has the following structure:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"scan_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+  </span><span class="s2">"scan_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /api/v2/freescan</code></p>
@@ -1220,9 +1220,9 @@ A Freescan can be started by everyone and the reports can be getted by everyone,
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td><code>url</code></td>
-<td>The url to the domain that should be scanned</td>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain that should be scanned</td>
 </tr>
 </tbody></table>
 <h3 id='response-parameters'>Response Parameters</h3>
@@ -1264,7 +1264,7 @@ A Freescan can be started by everyone and the reports can be getted by everyone,
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "url": "https://siwecos.de"
+    "domain": "siwecos.de"
 }'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/scan</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
@@ -1272,7 +1272,7 @@ A Freescan can be started by everyone and the reports can be getted by everyone,
 <span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A regular scan can be started for a registered domain.</p>
@@ -1298,9 +1298,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td><code>url</code></td>
-<td>The url to the domain that should be scanned</td>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain that should be scanned</td>
 </tr>
 </tbody></table>
 <h3 id='response-parameters-2'>Response Parameters</h3>
@@ -1353,10 +1353,10 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <p>The <strong>Response</strong> has the following structure:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:43"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09 05:28:43"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/v2/scan/{scan_id}</code></p>
