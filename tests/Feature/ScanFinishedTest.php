@@ -15,7 +15,7 @@ class ScanFinishedTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        Storage::fake('gcs');
+        Storage::fake('local');
     }
 
     /** @test */
@@ -73,8 +73,8 @@ class ScanFinishedTest extends TestCase
         $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
-        Storage::disk('gcs')->assertExists('example.org/d.m.y.svg');
-        Storage::disk('gcs')->assertExists('example.org/y-m-d.svg');
+        Storage::assertExists('example.org/d.m.y.svg');
+        Storage::assertExists('example.org/y-m-d.svg');
     }
 
     /** @test */
@@ -84,8 +84,8 @@ class ScanFinishedTest extends TestCase
         $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
-        Storage::disk('gcs')->assertMissing('example.org/d.m.y.svg');
-        Storage::disk('gcs')->assertMissing('example.org/y-m-d.svg');
+        Storage::assertMissing('example.org/d.m.y.svg');
+        Storage::assertMissing('example.org/y-m-d.svg');
     }
 
     /** @test */

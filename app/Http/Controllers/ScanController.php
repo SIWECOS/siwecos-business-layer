@@ -113,11 +113,11 @@ class ScanController extends Controller
     {
         $date = $this->getScanDateSVG(Carbon::now()->format('d.m.Y'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        Storage::disk('gcs')->put($domain->domain . "/d.m.y.svg", $view);
+        Storage::put($domain->domain . "/d.m.y.svg", $view);
 
         $date = $this->getScanDateSVG(Carbon::now()->format('Y-m-d'));
         $view = view('siwecos-siegel')->withDate($date)->render();
-        Storage::disk('gcs')->put($domain->domain . "/y-m-d.svg", $view);
+        Storage::put($domain->domain . "/y-m-d.svg", $view);
     }
 
     /**
