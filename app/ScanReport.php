@@ -38,7 +38,11 @@ class ScanReport
             $scannerReport->put('started_at', $scanner->get('startedAt'));
             $scannerReport->put('finished_at', $scanner->get('finishedAt'));
 
-            $scannerReport->put('tests', $this->getTranslatedTests($scanner->get('tests'), $scannerCode));
+            if ($scanner->get('tests')) {
+                $scannerReport->put('tests', $this->getTranslatedTests($scanner->get('tests'), $scannerCode));
+            } else {
+                $scannerReport->put('tests', []);
+            }
 
             $report->push($scannerReport);
         }

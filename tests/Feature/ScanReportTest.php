@@ -215,4 +215,19 @@ class ScanReportTest extends TestCase
         ]);
         $response->assertStatus(200);
     }
+
+    /** @test */
+    public function a_scan_report_can_be_retrieved_even_when_the_scan_results_had_connection_erros()
+    {
+        $this->withoutExceptionHandling();
+        $scan = $this->getStartedScan();
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithConnectionError.json')), true);
+        $scan->save();
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+
+        $response->assertStatus(200);
+    }
 }
