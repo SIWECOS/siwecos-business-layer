@@ -123,7 +123,7 @@ class DomainRegistrationTest extends TestCase
             'domain' => $domain->domain
         ]);
 
-        $response->assertStatus(410);
+        $response->assertStatus(404);
         $this->assertFalse(Domain::first()->is_verified);
     }
 

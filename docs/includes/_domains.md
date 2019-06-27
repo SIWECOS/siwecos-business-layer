@@ -114,15 +114,21 @@ Verify the associated Domain for the given `domain`.
 
 ### Response Status Codes
 
-| Code | Meaning                      |
-| ---- | ---------------------------- |
-| 200  | Domain verified              |
-| 403  | Domain is already verified   |
-| 410  | Domain could not be verified |
-| 422  | Validation failed            |
+| Code | Meaning                       |
+| ---- | ----------------------------- |
+| 200  | Domain verified               |
+| 403  | Domain is already verified    |
+| 404  | Domain could not be verified  |
+| 409  | Domain verification exception |
+| 422  | Validation failed             |
 
 <aside class="notice">
 The domain can either be verified by <code>&lt;meta&gt;</code>-Tag or HTML-Page. <a href="https://siwecos.de/wiki/Domain-Verification/EN" target="_blank">[Further information]</a>
+</aside>
+
+<aside class="notice">
+The HTTP error code <code>404</code> will be returned if the verification token could not be found.<br>
+The HTTP error code <code>409</code> will be returned if the domain host could not be reached [Connection Issues, TLS-Problems, HTTP-Responses with 5xx codes, etc.]
 </aside>
 
 

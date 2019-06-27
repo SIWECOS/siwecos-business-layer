@@ -5,6 +5,12 @@ namespace App;
 use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
 use Illuminate\Support\Str;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\TooManyRedirectsException;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\TransferException;
 
 class DomainVerifier
 {
@@ -18,11 +24,25 @@ class DomainVerifier
         $this->client = $client ?: new HTTPClient();
     }
 
+    /**
+     * Verifies a given domain by its verification_token
+     *
+     * @return boolean|\Illuminate\Http\Response
+     */
     public function verify()
     {
-        if ($this->checkHtmlPage() || $this->checkMetaTag()) {
-            return true;
+        try {
+            if ($this->checkHtmlPage() || $this->checkMetaTag()) {
+                return true;
+            }
+        } catch (TransferException $e) {
+            \Log::warning('Validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            return response(__('siwecos.' . strtoupper(class_basename($e))), 409);
+        } catch (\Exception $e) {
+            \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            return response(__('siwecos.EXCEPTION'), 409);
         }
+
         return false;
     }
 

@@ -7,6 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\DomainVerifier;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\TooManyRedirectsException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\ClientException;
+
 
 class DomainVerifierTest extends TestCase
 {
@@ -48,26 +56,61 @@ class DomainVerifierTest extends TestCase
     }
 
     /** @test */
-    public function the_domainVerifier_can_verify_a_token_meta_tag()
+    public function the_domainVerifier_can_verify_a_token_meta_tag_successfully()
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
             new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token)),
-
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->verification_token)),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token . " something-behind")),
-            new Response(403),
-            new Response(301),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->verification_token))
         ]);
 
         $verifier = new DomainVerifier($domain, $client);
 
         $this->assertTrue($verifier->checkMetaTag());
+    }
+
+    /** @test */
+    public function the_domainVerifier_can_verify_a_token_meta_tag_only_without_additional_chars()
+    {
+        $domain = $this->getRegisteredDomain();
+        $client = $this->getMockedHttpClient([
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->verification_token)),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token . " something-behind")),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->verification_token))
+        ]);
+
+        $verifier = new DomainVerifier($domain, $client);
 
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
+    }
+
+    /** @test */
+    public function the_domainVerifier_can_verify_a_token_meta_tag_client_error_as_false()
+    {
+        $domain = $this->getRegisteredDomain();
+        $client = $this->getMockedHttpClient([
+            new Response(403),
+            new Response(404),
+        ]);
+
+        $verifier = new DomainVerifier($domain, $client);
+
+        $this->assertFalse($verifier->checkMetaTag());
+        $this->assertFalse($verifier->checkMetaTag());
+    }
+
+    /** @test */
+    public function the_domainVerifier_can_verify_a_token_meta_tag_redirect_as_false()
+    {
+        $domain = $this->getRegisteredDomain();
+        $client = $this->getMockedHttpClient([
+            new Response(301),
+            new Response(302),
+        ]);
+
+        $verifier = new DomainVerifier($domain, $client);
+
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
     }
@@ -109,6 +152,45 @@ class DomainVerifierTest extends TestCase
         $this->assertFalse($verifier->verify());
     }
 
+    /** @test */
+    public function the_domainVerifier_catches_exceptions_and_delivers_useful_information_for_the_user()
+    {
+        $domain = $this->getRegisteredDomain();
+
+        $client = $this->getMockedHttpClient([
+            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->url)),
+            new TooManyRedirectsException('Too many redirects occured', new Request('GET', $domain->url)),
+            new BadResponseException('Failure 500: Internal server error', new Request('GET', $domain->url)),
+            new ClientException('A client error 4xx occured.', new Request('GET', $domain->url)),
+            new ServerException('A server error 5xx occured.', new Request('GET', $domain->url)),
+            new \Exception('Unexpectd!')
+        ]);
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.CONNECTEXCEPTION', $response->content());
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.TOOMANYREDIRECTSEXCEPTION', $response->content());
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.BADRESPONSEEXCEPTION', $response->content());
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.CLIENTEXCEPTION', $response->content());
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.SERVEREXCEPTION', $response->content());
+
+        $response = (new DomainVerifier($domain, $client))->verify();
+        $this->assertEquals(409, $response->getStatusCode());
+        $this->assertEquals('siwecos.EXCEPTION', $response->content());
+    }
+
     /**
      * Returns an dummy HTML page with the SIWECOS Meta Tag with the given $token.
      *
@@ -129,11 +211,13 @@ class DomainVerifierTest extends TestCase
             <title>Test-Website</title>
         </head>
         <body>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil deleniti nemo eaque, consequatur dolores dolorem quasi soluta ipsam magnam possimus quibusdam, ab mollitia recusandae id in esse delectus et accusamus.
-            <br><br>
-            ' . $body . '
-        </body>
-        </html>
-        ';
+                Lorem ipsum,
+            dolor sit amet consectetur a dipisicing elit. Nihil deleniti nemo eaque,
+            consequatur dolores dolorem quasi soluta ipsam magnam possimus quibusdam,
+            ab mollitia recusanda e  id   i n  esse delectus et accusamus.
+                  <br><br>
+                   ' . $body . '
+                </body>
+                </html>';
     }
 }
