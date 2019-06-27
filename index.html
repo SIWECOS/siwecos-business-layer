@@ -1038,8 +1038,12 @@ After registration the domain has to be verified.
 <td>Domain is already verified</td>
 </tr>
 <tr>
-<td>410</td>
+<td>404</td>
 <td>Domain could not be verified</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Domain verification exception</td>
 </tr>
 <tr>
 <td>422</td>
@@ -1049,6 +1053,11 @@ After registration the domain has to be verified.
 
 <aside class="notice">
 The domain can either be verified by <code>&lt;meta&gt;</code>-Tag or HTML-Page. <a href="https://siwecos.de/wiki/Domain-Verification/EN" target="_blank">[Further information]</a>
+</aside>
+
+<aside class="notice">
+The HTTP error code <code>404</code> will be returned if the verification token could not be found.<br>
+The HTTP error code <code>409</code> will be returned if the domain host could not be reached [Connection Issues, TLS-Problems, HTTP-Responses with 5xx codes, etc.]
 </aside>
 <h2 id='listing-all-domains'>Listing all Domains</h2>
 <blockquote>
