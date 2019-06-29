@@ -79,15 +79,27 @@ class Scan extends Model
     {
         $score = 0;
         $amountResults = 0;
+        $hasCritical = false;
 
-        foreach ($this->results as $scannerResult) {
-            if ($scannerResult['score'] !== null) {
-                $score += $scannerResult['score'];
+        foreach ($this->results as $result) {
+            $result = collect($result)->recursive();
+            if ($result->get('score')) {
+                $score += $result->get('score');
                 $amountResults++;
             }
+
+            if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
+                $hasCritical = true;
+            };
         }
 
-        return $amountResults ? ceil($score / $amountResults) : 0;
+        $score = $amountResults ? ceil($score / $amountResults) : 0;
+
+        if ($score > 20 && $hasCritical) {
+            $score = 20;
+        }
+
+        return $score;
     }
 
     /**
