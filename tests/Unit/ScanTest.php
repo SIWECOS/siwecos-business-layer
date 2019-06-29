@@ -109,7 +109,7 @@ class ScanTest extends TestCase
 
         $scan = $this->getFinishedScan();
         $this->assertNotNull($scan->finished_at);
-        $this->assertEquals(Carbon::now()->toDateTimeString(), $scan->finished_at->toDateTimeString());
+        $this->assertEquals(Carbon::now()->toIso8601ZuluString(), $scan->finished_at->toIso8601ZuluString());
     }
 
     /** @test */

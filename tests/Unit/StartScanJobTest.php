@@ -43,7 +43,7 @@ class StartScanJobTest extends TestCase
             new Response(200)
         ]));
 
-        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->started_at);
+        $this->assertEquals(Carbon::now()->toIso8601ZuluString(), Scan::first()->started_at->toIso8601ZuluString());
     }
 
     /** @test */
@@ -56,7 +56,7 @@ class StartScanJobTest extends TestCase
             new Response(500)
         ]));
 
-        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at->toDateTimeString());
+        $this->assertEquals(Carbon::now()->toIso8601ZuluString(), Scan::first()->finished_at->toIso8601ZuluString());
         $this->assertTrue(Scan::first()->has_error);
         Log::assertLogged('critical', function ($message, $context) {
             return Str::contains($message, "Failed to start scan for scan id:");
@@ -73,7 +73,7 @@ class StartScanJobTest extends TestCase
             new RequestException('Could not connect to CoreAPI', new Request('POST', 'test'))
         ]));
 
-        $this->assertEquals(Carbon::now()->toDateTimeString(), Scan::first()->finished_at->toDateTimeString());
+        $this->assertEquals(Carbon::now()->toIso8601ZuluString(), Scan::first()->finished_at->toIso8601ZuluString());
         $this->assertTrue(Scan::first()->has_error);
         Log::assertLogged('critical', function ($message, $context) {
             return Str::contains($message, "Could not connect to CoreAPI");

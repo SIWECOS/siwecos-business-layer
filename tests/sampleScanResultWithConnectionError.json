@@ -1,7 +1,7 @@
 [
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:26:05",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:05Z",
         "name": "DOMXSS",
         "version": "1.6.0",
         "hasError": true,
@@ -13,8 +13,8 @@
         "tests": []
     },
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:26:11",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:11Z",
         "name": "INFOLEAK",
         "version": "2.0.8",
         "hasError": true,
@@ -28,8 +28,8 @@
         "tests": []
     },
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:26:07",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:07Z",
         "name": "HEADER",
         "version": "1.6.0",
         "hasError": true,
@@ -41,8 +41,8 @@
         "tests": []
     },
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:25:54",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:54Z",
         "name": "PORT",
         "version": "1.0",
         "hasError": true,
@@ -58,8 +58,8 @@
         "tests": []
     },
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:25:55",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:55Z",
         "name": "HTTPS",
         "version": "3.0.0",
         "hasError": true,
@@ -75,8 +75,8 @@
         "tests": []
     },
     {
-        "startedAt": "2019-06-19 10:25:49",
-        "finishedAt": "2019-06-19 10:25:56",
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:56Z",
         "name": "CMSVERSION",
         "version": "1.0.0",
         "hasError": true,
@@ -89,8 +89,8 @@
         "score": 0
     },
     {
-        "startedAt": "2019-06-19 10:25:50",
-        "finishedAt": "2019-06-19 10:25:50",
+        "startedAt": "2019-06-19T10:25:50Z",
+        "finishedAt": "2019-06-19T10:25:50Z",
         "name": "INI_S",
         "version": "3.0.0",
         "hasError": false,

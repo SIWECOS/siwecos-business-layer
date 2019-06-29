@@ -1,8 +1,8 @@
 {
     "url": "https://siwecos.de",
     "dangerLevel": "0",
-    "startedAt": "2019-03-27 16:18:13",
-    "finishedAt": "2019-03-27 16:18:41",
+    "startedAt": "2019-03-27T16:18:13Z",
+    "finishedAt": "2019-03-27T16:18:41Z",
     "version": "2.0.0",
     "results": [
         {
@@ -10,8 +10,8 @@
             "version": "1.0.0",
             "hasError": false,
             "errorMessage": null,
-            "startedAt": "2019-03-27 16:18:13",
-            "finishedAt": "2019-03-27 16:18:13",
+            "startedAt": "2019-03-27T16:18:13Z",
+            "finishedAt": "2019-03-27T16:18:13Z",
             "score": 100,
             "tests": [
                 {
@@ -43,8 +43,8 @@
         {
             "name": "DOMXSS",
             "version": "1.5.0",
-            "startedAt": "2019-03-27 16:18:13",
-            "finishedAt": "2019-03-27 16:18:14",
+            "startedAt": "2019-03-27T16:18:13Z",
+            "finishedAt": "2019-03-27T16:18:14Z",
             "hasError": false,
             "errorMessage": null,
             "score": 50,
@@ -82,8 +82,8 @@
         {
             "name": "TLS",
             "version": "2.5",
-            "startedAt": "2019-03-27 16:18:13",
-            "finishedAt": "2019-03-27 16:18:41",
+            "startedAt": "2019-03-27T16:18:13Z",
+            "finishedAt": "2019-03-27T16:18:41Z",
             "hasError": false,
             "errorMessage": null,
             "score": 100,
@@ -221,8 +221,8 @@
         {
             "name": "HEADER",
             "version": "1.5.0",
-            "startedAt": "2019-03-27 16:18:14",
-            "finishedAt": "2019-03-27 16:18:15",
+            "startedAt": "2019-03-27T16:18:14Z",
+            "finishedAt": "2019-03-27T16:18:15Z",
             "hasError": false,
             "errorMessage": null,
             "score": 85,
@@ -357,8 +357,8 @@
         {
             "name": "INFOLEAK",
             "version": "1.0.2",
-            "startedAt": "2019-03-27 16:18:14",
-            "finishedAt": "2019-03-27 16:18:15",
+            "startedAt": "2019-03-27T16:18:14Z",
+            "finishedAt": "2019-03-27T16:18:15Z",
             "hasError": false,
             "errorMessage": null,
             "score": 100,

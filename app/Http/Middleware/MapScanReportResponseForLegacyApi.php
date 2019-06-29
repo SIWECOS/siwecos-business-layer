@@ -84,13 +84,13 @@ class MapScanReportResponseForLegacyApi
 
             $response->setContent(json_encode([
                 'scanStarted' => [
-                    // 'date' => $scan->started_at->toDateTimeString() . '.000000',
+                    // 'date' => $scan->started_at->toIso8601ZuluString() . '.000000',
                     'date' => $json->started_at . '.000000',
                     'timezone_type' => 3,
                     'timezone' => 'UTC'
                 ],
                 'scanFinished' => [
-                    'date' => $scan->finished_at->toDateTimeString() . '.000000',
+                    'date' => $scan->finished_at->toIso8601ZuluString() . '.000000',
                     'timezone_type' => 3,
                     'timezone' => 'UTC'
                 ],

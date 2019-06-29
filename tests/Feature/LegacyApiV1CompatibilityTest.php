@@ -203,13 +203,13 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         return [
             'scanStarted' => [
-                'date' => Carbon::now()->toDateTimeString() . '.000000',
+                'date' => Carbon::now()->toIso8601ZuluString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
             'scanFinished' => [
-                // 'date' => '2019-03-27 16:18:13.000000',
-                'date' => Carbon::now()->toDateTimeString() . '.000000',
+                // 'date' => '2019-03-27T16:18:13Z.000000',
+                'date' => Carbon::now()->toIso8601ZuluString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
@@ -257,8 +257,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'success',
                         ]
                     ],
-                    'created_at' => '2019-03-27 16:18:13',
-                    'updated_at' => '2019-03-27 16:18:13',
+                    'created_at' => '2019-03-27T16:18:13Z',
+                    'updated_at' => '2019-03-27T16:18:13Z',
                     'total_score' => 100,
                     'has_error' => false,
                     'score' => 100,
@@ -301,8 +301,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'info'
                         ]
                     ],
-                    'created_at' => '2019-03-27 16:18:13',
-                    'updated_at' => '2019-03-27 16:18:14',
+                    'created_at' => '2019-03-27T16:18:13Z',
+                    'updated_at' => '2019-03-27T16:18:14Z',
                     'total_score' => 50,
                     'has_error' => false,
                     'score' => 50,

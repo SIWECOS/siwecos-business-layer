@@ -44,7 +44,7 @@ class ScanStatusTest extends TestCase
         $response->assertExactJson([
             'status' => 'running',
             'has_error' => false,
-            'started_at' => Carbon::now()->toDateTimeString(),
+            'started_at' => Carbon::now()->toIso8601ZuluString(),
             'finished_at' => null
         ]);
     }
@@ -60,7 +60,7 @@ class ScanStatusTest extends TestCase
             'status' => 'failed',
             'has_error' => true,
             'started_at' => null,
-            'finished_at' => Carbon::now()->toDateTimeString()
+            'finished_at' => Carbon::now()->toIso8601ZuluString()
         ]);
     }
 
@@ -74,8 +74,8 @@ class ScanStatusTest extends TestCase
         $response->assertJson([
             'status' => 'finished',
             'has_error' => false,
-            'started_at' => Carbon::now()->toDateTimeString(),
-            'finished_at' => Carbon::now()->toDateTimeString(),
+            'started_at' => Carbon::now()->toIso8601ZuluString(),
+            'finished_at' => Carbon::now()->toIso8601ZuluString(),
         ]);
     }
 

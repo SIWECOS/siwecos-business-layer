@@ -158,7 +158,7 @@ The scan status can be requested.
 {
   "status": "running",
   "has_error": false,
-  "started_at": "2019-04-09 05:28:43",
+  "started_at": "2019-04-09T05:28:43Z",
   "finished_at": null
 }
 ```
@@ -222,10 +222,10 @@ The scan report can be requested.
 
 ```json
 {
-  "status": "running",
+  "status": "finished",
   "has_error": false,
-  "started_at": "2019-04-09 05:28:43",
-  "finished_at": "2019-04-09 05:58:55",
+  "started_at": "2019-04-09T05:28:43Z",
+  "finished_at": "2019-04-09T05:58:55Z",
   "report": [
     // Core-API Report for different Scanners
     // For documentation purposes only the siwecos/HSHS-DOMXSS-Scanner results are listed here
@@ -235,8 +235,8 @@ The scan report can be requested.
       "score": 85,
       "has_error": false,
       "error_message": null,
-      "started_at": "2019-04-09 05:28:50",
-      "finished_at": "2019-04-09 05:28:56",
+      "started_at": "2019-04-09T05:28:50Z",
+      "finished_at": "2019-04-09T05:28:56Z",
       "tests": [
         // for documentation purpose only one test is listed here
         {

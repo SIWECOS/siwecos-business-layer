@@ -18,8 +18,8 @@ class ScanReportTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJson([
-            'started_at' => $scan->started_at->toDateTimeString(),
-            'finished_at' => $scan->finished_at->toDateTimeString(),
+            'started_at' => $scan->started_at->toIso8601ZuluString(),
+            'finished_at' => $scan->finished_at->toIso8601ZuluString(),
             'has_error' => false,
             'status' => 'finished',
             'report' => [
@@ -29,8 +29,8 @@ class ScanReportTest extends TestCase
                     'has_error' => false,
                     'error_message' => null,
                     'score' => 100,
-                    'started_at' => '2019-03-27 16:18:13',
-                    'finished_at' => '2019-03-27 16:18:13',
+                    'started_at' => '2019-03-27T16:18:13Z',
+                    'finished_at' => '2019-03-27T16:18:13Z',
                     'tests' => [
                         [
                             'headline' => 'Überprüfung auf mögliche <a target="siwecos_wiki" href="https://siwecos.de/wiki/Phishing-Inhalte/DE" title="Phishing-Inhalte/DE">Phishing-Inhalte</a>',
@@ -70,8 +70,8 @@ class ScanReportTest extends TestCase
                     'has_error' => false,
                     'error_message' => null,
                     'score' => 50,
-                    'started_at' => '2019-03-27 16:18:13',
-                    'finished_at' => '2019-03-27 16:18:14',
+                    'started_at' => '2019-03-27T16:18:13Z',
+                    'finished_at' => '2019-03-27T16:18:14Z',
                     'tests' => [
                         [
                             'headline' => 'Überprüfung des JavaScript-Codes nach DOMXSS-Sources',
