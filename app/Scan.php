@@ -14,7 +14,7 @@ class Scan extends Model
         'is_freescan' => 'boolean',
         'is_recurrent' => 'boolean',
         'score' => 'integer',
-        'results' => 'array',
+        'results' => 'collection',
     ];
 
     protected $dates = [
@@ -77,23 +77,23 @@ class Scan extends Model
 
     public function calculateScore()
     {
-        $score = 0;
-        $amountResults = 0;
         $hasCritical = false;
+        $score = 0;
+        $totalScannerWeight = 0;
 
         foreach ($this->results as $result) {
             $result = collect($result)->recursive();
-            if ($result->get('score')) {
-                $score += $result->get('score');
-                $amountResults++;
-            }
+
+            $scannerWeight = config('siwecos.scanner_weight.' . $result->get('name'), 1);
+            $score += $result->get('score') * $scannerWeight;
+            $totalScannerWeight += $scannerWeight;
 
             if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
                 $hasCritical = true;
             };
         }
 
-        $score = $amountResults ? ceil($score / $amountResults) : 0;
+        $score = $totalScannerWeight ? ceil($score / $totalScannerWeight) : 0;
 
         if ($score > 20 && $hasCritical) {
             $score = 20;

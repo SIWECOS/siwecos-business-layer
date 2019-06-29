@@ -20,4 +20,26 @@ class CalculateScoreTest extends TestCase
 
         $this->assertEquals(20, Scan::first()->score);
     }
+
+    /** @test */
+    public function by_default_every_scanner_has_a_score_weight_of_1()
+    {
+        $this->getFinishedScan();
+
+        $this->assertEquals(87, Scan::first()->score);
+    }
+
+    /** @test */
+    public function the_scanners_score_weight_can_be_configured()
+    {
+        config([
+            'siwecos.scanner_weight.DOMXSS' => 0,
+            'siwecos.scanner_weight.INFOLEAK' => 0.25,
+            'siwecos.scanner_weight.TLS' => 5.0,
+        ]);
+
+        $this->getFinishedScan();
+
+        $this->assertEquals(98, Scan::first()->score);
+    }
 }

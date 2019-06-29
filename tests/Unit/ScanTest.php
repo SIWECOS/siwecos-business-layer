@@ -57,16 +57,17 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function the_results_field_is_retrieved_saved_as_an_array()
+    public function the_results_field_is_retrieved_saved_as_an_collection()
     {
         $scan = $this->getGeneratedScan();
         // JSON String
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)['results'];
         $scan->save();
 
-        // Array
-        $this->assertIsArray(Scan::first()->results);
+        // Collection
+        $this->assertIsIterable(Scan::first()->results);
         $this->assertNotNull(Scan::first()->results);
+        $this->assertEquals('Collection', class_basename(Scan::first()->results));
     }
 
     /** @test */

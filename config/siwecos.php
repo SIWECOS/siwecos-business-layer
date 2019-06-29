@@ -12,7 +12,8 @@ return [
     | scans.
     |
     */
-    'coreApiScanStartUrl'              => env('CORE_API_SCAN_START_URL'),
+    'coreApiScanStartUrl' => env('CORE_API_SCAN_START_URL'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +46,8 @@ return [
     | can be notified if you define an appropriate mail address.
     |
     */
-    'technicalSupportMail'    => env('TECHNICAL_SUPPORT_MAIL'),
+    'technicalSupportMail' => env('TECHNICAL_SUPPORT_MAIL'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -58,6 +60,7 @@ return [
     */
     'activation_redirect_uri' => env('ACTIVATIONREDIRECTURI', 'https://siwecos.de/willkommen-bei-siwecos/'),
 
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset URL
@@ -67,7 +70,8 @@ return [
     | URL the User will be redirected to change his password.
     |
     */
-    'password_reset_uri'      => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/'),
+    'password_reset_uri' => env('PASSWORDRESETURI', 'https://siwecos.de/app/#processreset/'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -77,5 +81,29 @@ return [
     | The main SIWECOS URL. It is used for the header information in mails.
     |
     */
-    'main_url'                => env('MAINURL', 'https://siwecos.de/'),
+    'main_url' => env('MAINURL', 'https://siwecos.de/'),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Scanner weight for total score rating
+    |--------------------------------------------------------------------------
+    |
+    | Some scanners are more powerful or critical than others.
+    | You can define how much an individual scanner score should influence the
+    | total score.
+    |
+    | If you want to ignore a specific scanner, you can also set the weight to
+    | zero.
+    |
+    */
+    'scanner_weight' => [
+        'CMSVERSION' => env('SCANNER_SCORE_WEIGHT_CMSVERSION', 1.0),
+        'DOMXSS' => env('SCANNER_SCORE_WEIGHT_DOMXSS', 1.0),
+        'HSHS' => env('SCANNER_SCORE_WEIGHT_HSHS', 1.0),
+        'INFOLEAK' => env('SCANNER_SCORE_WEIGHT_INFOLEAK', 1.0),
+        'INI_S' => env('SCANNER_SCORE_WEIGHT_INI_S', 1.0),
+        'PORT' => env('SCANNER_SCORE_WEIGHT_PORT', 1.0),
+        'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
+    ],
 ];
