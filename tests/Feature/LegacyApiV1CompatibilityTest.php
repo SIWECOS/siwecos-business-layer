@@ -50,7 +50,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     public function a_domain_can_be_verified()
     {
         $user = $this->getActivatedUser();
-        $user->token->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
+        $user->token->domains()->create(factory(Domain::class)->make(['domain' => 'example.org'])->toArray());
 
         //  Mock the HTTPClient
         $client = $this->getMockedHttpClient([
@@ -62,7 +62,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         // Send the verification request via old API
         $response = $this->json('POST', '/api/v1/domains/verifyDomain', [
-            'domain' => Domain::first()->url
+            'domain' => Domain::first()->mainUrl
         ], ['userToken' => $user->token->token]);
 
         // Get the Domain successfully verified
@@ -84,7 +84,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $this->assertCount(1, Domain::all());
 
         $response = $this->json('POST', '/api/v1/domains/deleteDomain', [
-            'domain' => Domain::first()->url
+            'domain' => Domain::first()->mainUrl
         ], ['userToken' => $user->token->token]);
 
         $response->assertStatus(200);
@@ -116,13 +116,13 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'domains' => [
                 [
                     'id' => $domain1->id,
-                    'domain' => $domain1->url,
+                    'domain' => $domain1->mainUrl,
                     'verificationStatus' => $domain1->is_verified,
                     'domainToken' => $domain1->verification_token
                 ],
                 [
                     'id' => $domain2->id,
-                    'domain' => $domain2->url,
+                    'domain' => $domain2->mainUrl,
                     'verificationStatus' => $domain2->is_verified,
                     'domainToken' => $domain2->verification_token
                 ]
@@ -137,7 +137,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $domain = $user->token->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
 
         $response = $this->json('POST', '/api/v1/scan/start', [
-            'domain' => $domain->url
+            'domain' => $domain->mainUrl
         ], ['userToken' => $user->token->token]);
 
         $response->assertStatus(200);

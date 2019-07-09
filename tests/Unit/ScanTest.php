@@ -91,7 +91,7 @@ class ScanTest extends TestCase
     {
         $scan = $this->getGeneratedScan();
 
-        $this->assertEquals('https://example.org', $scan->domain->url);
+        $this->assertEquals('https://example.org', $scan->domain->mainUrl);
     }
 
     /** @test */
