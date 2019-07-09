@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Domain;
+use App\Http\Requests\CrawlerFinishedRequest;
 
 class CrawlerController extends Controller
 {
-    public function finished(Request $request)
+    public function finished(CrawlerFinishedRequest $request)
     {
         $domain = Domain::whereDomain($request->json('result.domain'))->firstOrFail();
 
