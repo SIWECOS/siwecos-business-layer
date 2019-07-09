@@ -7,7 +7,7 @@ return [
     | Core API URL
     |--------------------------------------------------------------------------
     |
-    | This value determines the URL to your running instance of
+    | This value determines the URL to the running instance of
     | SIWECOS/siwecos-core-api. The Core API is responsible for the actual site
     | scans.
     |
@@ -17,10 +17,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Crawler Start URL
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the URL to the running instance of
+    | SIWECOS/siwecos-crawler. The Crawler is responsible for the actual site
+    | scans.
+    |
+    */
+    'crawlerStartUrl' => env('CRAWLER_START_URL'),
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Default Token credits
     |--------------------------------------------------------------------------
     |
-    | You can set the amount of credits each user will get daily.
+    | The amount of credits each user will get daily.
     |
     */
     'defaultTokenCredits' => env('DEFAULT_TOKEN_CREDITS', 50),
@@ -31,7 +44,7 @@ return [
     | 3rd Party Token Credits
     |--------------------------------------------------------------------------
     |
-    | You can set the amount of credits the 3rd Party Tokens will get daily.
+    | The amount of credits the 3rd Party Tokens will get daily.
     |
     */
     'thirdPartyTokenCredits' => env('THIRD_PARTY_TOKEN_CREDITS', 10),
@@ -43,7 +56,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | If the application detects serious problems the technical support team
-    | can be notified if you define an appropriate mail address.
+    | can be notified if an appropriate mail address is defined.
     |
     */
     'technicalSupportMail' => env('TECHNICAL_SUPPORT_MAIL'),
@@ -54,7 +67,7 @@ return [
     | Redirect URL When An User Activates His Account
     |--------------------------------------------------------------------------
     |
-    | You can define to which site the user should be redirected when the
+    | The URL for the site the user should be redirected to when the
     | related activation button in the verification mail was clicked.
     |
     */
@@ -90,11 +103,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some scanners are more powerful or critical than others.
-    | You can define how much an individual scanner score should influence the
+    | Definition how much an individual scanner score should influence the
     | total score.
     |
-    | If you want to ignore a specific scanner, you can also set the weight to
-    | zero.
+    | The weight can be set to zero if the scanner should not influence the
+    | score.
     |
     */
     'scanner_weight' => [

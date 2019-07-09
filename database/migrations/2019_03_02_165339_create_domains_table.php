@@ -17,6 +17,7 @@ class CreateDomainsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('token_id');
             $table->string('domain')->unique();
+            $table->json('urls')->nullable()->default(null);
             $table->boolean('is_verified')->default(false);
             $table->string('verification_token')->unique();
             $table->timestamps();

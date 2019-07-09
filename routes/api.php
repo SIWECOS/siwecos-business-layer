@@ -55,6 +55,8 @@ Route::prefix('v2')->group(function () {
 
     // Callback URL for the SIWECOS/siwecos-core-api
     Route::post('/scan/finished/{scan}', 'ScanController@finished');
+    // Callback URL for the SIWECOS/siwecos-crawler
+    Route::post('/crawler/finished', 'CrawlerController@finished');
 });
 
 Route::prefix('v1')->group(function () {
