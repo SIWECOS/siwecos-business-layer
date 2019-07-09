@@ -14,6 +14,7 @@ use App\Http\Requests\DeleteDomainRequest;
 use App\Http\Responses\DomainListResponse;
 use App\Http\Responses\StatusResponse;
 use App\Http\Responses\DomainResponse;
+use App\Jobs\StartCrawlerJob;
 
 class DomainController extends Controller
 {
@@ -53,6 +54,7 @@ class DomainController extends Controller
 
             if ($verifier->verify()) {
                 if ($domain->update(['is_verified' => true])) {
+                    $this->dispatch(new StartCrawlerJob($domain));
                     return response()->json(new DomainResponse($domain), 200);
                 }
             }
