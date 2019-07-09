@@ -11,10 +11,11 @@ class Domain extends Model
 {
     use Iso8601Serialization;
 
-    protected $fillable = ['domain', 'verification_token', 'is_verified'];
+    protected $fillable = ['domain', 'urls', 'verification_token', 'is_verified'];
 
     protected $casts = [
-        'is_verified' => 'boolean'
+        'is_verified' => 'boolean',
+        'urls' => 'collection',
     ];
 
     protected $hidden = [

@@ -56,6 +56,10 @@ Route::prefix('v2')->group(function () {
     Route::middleware(['siwecosToken'])->group(function () {
         Route::post('/scan', 'ScanController@start');
     });
+
+    // Callback URL for the SIWECOS/siwecos-crawler
+    Route::post('/crawler/finished', 'CrawlerController@finished');
+
     // Callback URL for the SIWECOS/siwecos-core-api
     Route::post('/scan/finished/{scan}', 'ScanController@finished');
 

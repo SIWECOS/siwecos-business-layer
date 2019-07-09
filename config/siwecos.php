@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Crawler Start URL
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the URL to the running instance of
+    | SIWECOS/siwecos-crawler. The Crawler is responsible for the actual site
+    | scans.
+    |
+    */
+    'crawlerStartUrl' => env('CRAWLER_START_URL'),
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Default Token credits
     |--------------------------------------------------------------------------
     |
@@ -99,11 +112,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some scanners are more powerful or critical than others.
-    | You can define how much an individual scanner score should influence the
+    | Definition how much an individual scanner score should influence the
     | total score.
     |
-    | The weight can be set to zero, if the scanner should not influence the
-    | total score.
+    | The weight can be set to zero if the scanner should not influence the
+    | score.
     |
     */
     'scanner_weight' => [
