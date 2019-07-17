@@ -3,6 +3,7 @@ FROM siwecos/dockered-laravel:7.2
 LABEL maintainer="Sascha Brendel <mail@lednerb.eu>"
 
 ENV ARTISAN_MIGRATE true
+ENV USE_SCHEDULER true
 
 # Copy application
 COPY . .
