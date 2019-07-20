@@ -38,7 +38,7 @@ class DeleteEmptyTokensCommand extends Command
      */
     public function handle()
     {
-        $tokens = Token::whereType('external')->doesntHave('domains')->where('created_at', '<=', now()->subHours(24))->delete();
+        $tokens = Token::whereType('external')->doesntHave('domains')->whereDate('created_at', '<=', now()->subHours(24))->delete();
 
         $this->info($tokens . ' Tokens were deleted.');
     }
