@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Iso8601Serialization;
 
 class Scan extends Model
 {
     use \Znck\Eloquent\Traits\BelongsToThrough;
+    use Iso8601Serialization;
 
     protected $casts = [
         'is_finished' => 'boolean',
@@ -20,8 +22,6 @@ class Scan extends Model
     protected $dates = [
         'started_at', 'finished_at'
     ];
-
-    protected $dateFormat = 'Y-m-d\TH:i:s\Z';
 
     protected $guarded = ['score', 'is_finished', 'status', 'results'];
 

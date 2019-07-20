@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Keygen\Keygen;
 use Illuminate\Support\Facades\Log;
+use App\Traits\Iso8601Serialization;
 
 class Domain extends Model
 {
-    protected $fillable = ['domain', 'verification_token', 'is_verified'];
+    use Iso8601Serialization;
 
-    protected $dateFormat = 'Y-m-d\TH:i:s\Z';
+    protected $fillable = ['domain', 'verification_token', 'is_verified'];
 
     protected $casts = [
         'is_verified' => 'boolean'
