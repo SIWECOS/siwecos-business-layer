@@ -37,13 +37,6 @@ class Scan extends Model
             if ($scan->results !== null && $scan->finished_at === null) {
                 $scan->score = $scan->calculateScore();
                 $scan->finished_at = now();
-
-                // send result to logstash for further analytics
-                \Log::channel('logstash')->info(collect([
-                    'scan' => $scan,
-                    'domain' => $scan->domain,
-                    'token' => $scan->token
-                ]));
             }
         });
     }
