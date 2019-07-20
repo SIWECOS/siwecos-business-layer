@@ -3,13 +3,20 @@ language: php
 php:
   - "7.2"
 
+services:
+  - elasticsearch
+
 cache:
   directories:
     - "./vendor"
 
 dist: trusty
 
+env:
+  - ELASTICSEARCH_HOST=127.0.0.1
+
 before_script:
+  - sleep 10
   - composer selfupdate
   - composer install
 
