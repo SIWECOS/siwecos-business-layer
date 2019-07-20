@@ -35,8 +35,8 @@ class Scan extends Model
         parent::boot();
 
         static::updating(function ($scan) {
-            // if scan ist finished by this update
-            if ($scan->results !== null && $scan->finished_at === null) {
+            // if scan is finished by this update
+            if (collect($scan->results)->isNotEmpty() && $scan->finished_at === null) {
                 $scan->score = $scan->calculateScore();
                 $scan->finished_at = now();
             }

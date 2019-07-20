@@ -14,6 +14,9 @@ class PushScanToElasticsearchJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+
+    public $scan;
+
     /**
      * Create a new job instance.
      *
@@ -32,8 +35,6 @@ class PushScanToElasticsearchJob implements ShouldQueue
     public function handle()
     {
         try {
-            $hasResults = $this->scan->results()->reverse()->isNotEmpty();
-
             $data = [
                 'body' => [
                     'scan' => array_merge(
@@ -42,7 +43,7 @@ class PushScanToElasticsearchJob implements ShouldQueue
                             'token' => $this->scan->token,
                             'domain' => $this->scan->domain,
                             // overwrite scan.results for correct indexing
-                            'results' => $hasResults ? $this->scan->results->reverse()->mapWithKeys(function ($item) {
+                            'results' => $this->scan->results->isNotEmpty() ? $this->scan->results->reverse()->mapWithKeys(function ($item) {
                                 return [$item['name'] => $item];
                             }) : null,
                         ]
@@ -53,10 +54,10 @@ class PushScanToElasticsearchJob implements ShouldQueue
                 'type' => 'json'
             ];
             if (Elasticsearch::index($data)) {
-                \Log::debug('Scan was sent to elasticsearch.');
+                \Log::info('Scan with id ' . $this->scan->id . ' was sent to elasticsearch.');
             };
         } catch (\Exception $e) {
-            \Log::critical('Scan could not be sent to elasticsearch!' . PHP_EOL . $e);
+            \Log::critical('Scan with id ' . $this->scan->id . ' could not be sent to elasticsearch!' . PHP_EOL . $e);
         }
     }
 }
