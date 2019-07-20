@@ -10,6 +10,8 @@ class Domain extends Model
 {
     protected $fillable = ['domain', 'verification_token', 'is_verified'];
 
+    protected $dateFormat = 'Y-m-d\TH:i:s\Z';
+
     protected $casts = [
         'is_verified' => 'boolean'
     ];

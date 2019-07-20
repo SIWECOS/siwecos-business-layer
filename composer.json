@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "barryvdh/laravel-cors": "^0.11.0",
+        "cviebrock/laravel-elasticsearch": "^3.6",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
         "gladcodes/keygen": "^1.1",

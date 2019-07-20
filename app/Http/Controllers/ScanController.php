@@ -15,6 +15,7 @@ use App\Http\Responses\ScanReportResponse;
 use App\Http\Requests\ScanFinishedRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\PushScanToElasticsearchJob;
 
 class ScanController extends Controller
 {
@@ -91,6 +92,9 @@ class ScanController extends Controller
             }
 
             if ($scan->save()) {
+
+                $this->dispatch(new PushScanToElasticsearchJob($scan));
+
                 if (!$scan->is_freescan) {
                     $this->generateSiwecosSeals($scan->domain);
                 }

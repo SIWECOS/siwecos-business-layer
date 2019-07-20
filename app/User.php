@@ -24,6 +24,8 @@ class User extends Authenticatable
         'is_active' => 'boolean'
     ];
 
+    protected $dateFormat = 'Y-m-d\TH:i:s\Z';
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

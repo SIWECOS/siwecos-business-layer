@@ -11,6 +11,8 @@ class Token extends Model
 {
     protected $fillable = ['credits', 'token', 'type'];
 
+    protected $dateFormat = 'Y-m-d\TH:i:s\Z';
+
     protected $table = 'tokens';
 
     public function __construct(array $attributes = [])
