@@ -41,11 +41,11 @@ return [
 
             'hosts' => [
                 [
-                    'host'       => env('ELASTICSEARCH_HOST', 'localhost'),
+                    'host'       => env('ELASTICSEARCH_HOST', 'elasticsearch'),
                     'port'       => env('ELASTICSEARCH_PORT', 9200),
-                    'scheme'     => env('ELASTICSEARCH_SCHEME', null),
-                    'user'       => env('ELASTICSEARCH_USER', null),
-                    'pass'       => env('ELASTICSEARCH_PASS', null),
+                    'scheme'     => env('ELASTICSEARCH_SCHEME', 'http'),
+                    'user'       => env('ELASTICSEARCH_USER', 'elastic'),
+                    'pass'       => env('ELASTICSEARCH_PASS', 'changeme'),
 
                     // If you are connecting to an Elasticsearch instance on AWS, you will need these values as well
                     'aws'        => env('AWS_ELASTICSEARCH_ENABLED', false),
