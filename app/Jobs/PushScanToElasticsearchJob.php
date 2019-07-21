@@ -49,7 +49,7 @@ class PushScanToElasticsearchJob implements ShouldQueue
                         ]
                     )
                 ],
-                'index' => 'scans',
+                'index' => 'scans-' . config('app.env'),
                 'id' => $this->scan->id,
                 'type' => 'json'
             ];
