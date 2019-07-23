@@ -116,7 +116,7 @@ class ScanTest extends TestCase
     /** @test */
     public function a_scan_knows_his_status()
     {
-        $scan = $this->getGeneratedScan(['has_error' => true]);
+        $scan = $this->getFailedScan();
         $this->assertEquals('failed', $scan->status);
 
         $scan = $this->getGeneratedScan();
