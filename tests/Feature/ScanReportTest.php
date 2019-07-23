@@ -113,9 +113,7 @@ class ScanReportTest extends TestCase
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
-        $response->assertJsonMissing([
-            'report'
-        ]);
+        $this->assertNull($response->json('report'));
     }
 
     /** @test */
@@ -126,13 +124,11 @@ class ScanReportTest extends TestCase
         $response = $this->get('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
-        $response->assertJsonMissing([
-            'report'
-        ]);
+        $this->assertNull($response->json('report'));
     }
 
     /** @test */
-    public function when_a_test_has_an_error_message_the_report_should_be_null_and_the_errorMessage_should_be_translated()
+    public function when_a_test_has_an_errorMessage_the_report_should_be_null_and_the_errorMessage_should_be_translated()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json')), true);
@@ -229,5 +225,9 @@ class ScanReportTest extends TestCase
         ]);
 
         $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'has_error' => true
+        ]);
+        $this->assertNotNull($response->json('report'));
     }
 }

@@ -14,7 +14,7 @@ class ScanReportResponse
         $this->started_at = $scan->started_at ? $scan->started_at->toIso8601ZuluString() : null;
         $this->finished_at = $scan->finished_at ? $scan->finished_at->toIso8601ZuluString() : null;
 
-        if ($scan->is_finished && !$scan->has_error) {
+        if ($scan->is_finished && $scan->status !== 'failed') {
             $this->report = (new ScanReport($scan))->report;
         }
     }
