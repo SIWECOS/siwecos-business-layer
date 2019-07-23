@@ -4,7 +4,6 @@
     "startedAt": "2019-05-07T11:55:15Z",
     "finishedAt": "2019-05-07T11:55:15Z",
     "version": "2.0.0",
-    "hasError": true,
     "withMissingScannerResults": [
         "INI_S",
         "HEADER"
