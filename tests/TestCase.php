@@ -52,6 +52,31 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+     * Returns a registered and validated Domain with some crawledUrls.
+     *
+     * @param array $urls
+     * @return Domain
+     */
+    protected function getDomainWithCrawledUrls(array $urls = [])
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        if (count($urls) === 0) {
+            $domain->crawledUrls()->create([
+                'url' => $domain->mainUrl . '/blog'
+            ]);
+        } else {
+            foreach ($urls as $url) {
+                $domain->crawledUrls()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        return $domain;
+    }
+
+    /**
      * Returns a generated Scan.
      *
      * @param array $attributes

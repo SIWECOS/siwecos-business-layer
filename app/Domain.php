@@ -14,8 +14,7 @@ class Domain extends Model
     protected $fillable = ['domain', 'urls', 'verification_token', 'is_verified'];
 
     protected $casts = [
-        'is_verified' => 'boolean',
-        'urls' => 'collection',
+        'is_verified' => 'boolean'
     ];
 
     protected $hidden = [
@@ -54,6 +53,26 @@ class Domain extends Model
     public function token()
     {
         return $this->belongsTo(Token::class);
+    }
+
+    /**
+     * Returns the Eloquent Relationship for App\CrawledUrl
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function crawledUrls()
+    {
+        return $this->hasMany(CrawledUrl::class);
+    }
+
+    /**
+     * Returns the Eloquent Relationship for App\MailDomain
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mailDomains()
+    {
+        return $this->hasMany(MailDomains::class);
     }
 
     /**

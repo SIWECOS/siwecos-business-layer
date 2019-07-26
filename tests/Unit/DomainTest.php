@@ -9,6 +9,8 @@ use App\Token;
 use App\Domain;
 use Illuminate\Database\QueryException;
 use App\Scan;
+use App\CrawledUrl;
+use App\MailDomains;
 
 class DomainTest extends TestCase
 {
@@ -30,7 +32,6 @@ class DomainTest extends TestCase
         $this->expectException(\Illuminate\Database\QueryException::class);
         Domain::create(['domain' => 'example.org']);
     }
-
 
     /** @test */
     public function a_domain_has_the_calculated_parameter_mainUrl_with_https_scheme()
@@ -57,6 +58,28 @@ class DomainTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $this->assertCount(0, $domain->scans);
+    }
+
+    /** @test */
+    public function a_domain_can_have_many_crawledUrls()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->crawledUrls()->create([
+            'url' => 'https://example.org/shop'
+        ]);
+
+        $this->assertCount(1, CrawledUrl::all());
+    }
+
+    /** @test */
+    public function a_domain_can_have_many_mailDomains()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->mailDomains()->create([
+            'domain' => 'mx.example.org'
+        ]);
+
+        $this->assertCount(1, MailDomains::all());
     }
 
     /** @test */

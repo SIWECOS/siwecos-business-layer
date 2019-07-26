@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDomainsTable extends Migration
+class CreateMailDomainsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('domains', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('token_id');
-            $table->string('domain')->unique();
-            $table->boolean('is_verified')->default(false);
-            $table->string('verification_token')->unique();
+        Schema::create('mail_domains', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('domain_id');
+            $table->string('domain');
             $table->timestamps();
+
+            $table->foreign('domain_id')->references('id')->on('domains');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domains');
+        Schema::dropIfExists('mail_domains');
     }
 }
