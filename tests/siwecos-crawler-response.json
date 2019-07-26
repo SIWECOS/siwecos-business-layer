@@ -1,21 +1,28 @@
 {
-    "name": "SIWECOS-CRAWLER",
-    "version": "1.3",
+    "name": "Validator",
     "hasError": false,
-    "errorMessage": null,
-    "result": {
-        "domain": "siwecos.de",
-        "urls": [
-            "https://siwecos.de/cms",
-            "https://siwecos.de/app",
-            "https://siwecos.de/impressum",
-            "https://siwecos.de/news",
-            "https://siwecos.de/ueber-das-projekt",
-            "https://siwecos.de/support",
-            "https://siwecos.de/presse",
-            "https://siwecos.de/en/",
-            "https://siwecos.de/service-fuer-webhoster",
-            "https://siwecos.de/agb"
-        ]
-    }
+    "domain": "siwecos.de",
+    "originalUrl": "http://siwecos.de",
+    "urlToScan": "https://siwecos.de/",
+    "urlIsSyntacticalOk": true,
+    "dnsResolves": true,
+    "httpRedirect": true,
+    "mailServerDomainList": [
+        "mx02.hosting.de",
+        "mx03.hosting.de",
+        "mx01.hosting.de",
+        "mxbackup.hosting.de"
+    ],
+    "crawledUrls": [
+        "https://siwecos.de/presse/pressedownloads",
+        "https://siwecos.de/cms/drupal",
+        "https://siwecos.de/cms",
+        "https://siwecos.de/cms/umbraco",
+        "https://siwecos.de/ueber-das-projekt/kontakt",
+        "https://siwecos.de/app",
+        "https://siwecos.de/cms/contao",
+        "https://siwecos.de/cms/typo3",
+        "https://siwecos.de/en/press/press-downloads",
+        "https://siwecos.de/cms/wordpress"
+    ]
 }

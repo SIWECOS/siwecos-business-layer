@@ -25,10 +25,11 @@ class CrawlerFinishedRequest extends FormRequest
     public function rules()
     {
         return [
-            'result' => ['required', 'array'],
-            'result.domain' => ['required', 'string', new Hostname, 'exists:domains,domain'],
-            'result.urls' => ['required', 'array'],
-            'result.urls.*' => ['url']
+            'domain' => ['required', 'string', new Hostname, 'exists:domains,domain'],
+            'crawledUrls' => ['array'],
+            'crawledUrls.*' => ['url'],
+            'mailServerDomainList' => ['array'],
+            'mailServerDomainList.*' => [new Hostname],
         ];
     }
 }

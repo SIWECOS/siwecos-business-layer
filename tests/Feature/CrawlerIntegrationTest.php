@@ -13,85 +13,114 @@ class CrawlerIntegrationTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function the_crawler_callback_response_will_be_saved_in_the_associated_domain_model()
+    public function the_crawler_response_will_be_saved_in_the_associated_models()
     {
+        $this->withoutExceptionHandling();
+
         $domain = $this->getRegisteredDomain(['domain' => 'siwecos.de', 'is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', collect(json_decode(file_get_contents(base_path('tests/siwecos-crawler-response.json'))))->toArray());
 
         $response->assertStatus(200);
-        $this->assertInstanceOf(Collection::class, Domain::first()->urls);
-        $this->assertCount(10, Domain::first()->urls);
+        $this->assertCount(10, Domain::first()->crawledUrls);
+        $this->assertCount(4, Domain::first()->mailDomains);
     }
 
     /** @test */
-    public function the_crawler_callback_response_must_have_a_defined_structure()
+    public function if_the_minimal_required_structure_for_crawledUrls_is_missing_the_wrong_format_will_be_logged_and_the_proper_httpStatusCode_will_be_sent()
     {
         $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
-            'result' => [
-                'domain' => 'example.org',
-                'urls' => [
-                    'https://example.org/blog',
-                    'https://example.org/shop',
-                ]
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                'not-a-url',
+                'https://example.org/shop',
             ]
         ]);
+        $response->assertStatus(422);
+        $this->assertCount(0, Domain::first()->crawledUrls);
 
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'not-a-valid-hostname',
+            'crawledUrls' => [
+                'https://example.org/shop',
+            ]
+        ]);
+        $response->assertStatus(422);
+        $this->assertCount(0, Domain::first()->crawledUrls);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'is-not-registered.de',
+            'crawledUrls' => [
+                'https://example.org/shop',
+            ]
+        ]);
+        $response->assertStatus(422);
+        $this->assertCount(0, Domain::first()->crawledUrls);
+    }
+
+    /** @test */
+    public function its_allowed_that_the_crawledUrls_response_is_empty()
+    {
+        $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                // empty
+            ]
+        ]);
         $response->assertStatus(200);
-        $this->assertInstanceOf(Collection::class, Domain::first()->urls);
-        $this->assertCount(2, Domain::first()->urls);
+        $this->assertCount(0, Domain::first()->crawledUrls);
     }
 
     /** @test */
-    public function if_the_minimal_required_structure_is_missing_the_wrong_format_will_be_logged_and_the_proper_httpStatusCode_will_be_sent()
+    public function if_the_minimal_required_structure_for_mailServerDomainList_is_missing_the_wrong_format_will_be_logged_and_the_proper_httpStatusCode_will_be_sent()
     {
         $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
-            'result' => [
-                'domain' => 'example.org',
-                'urls' => [
-                    'not-a-url',
-                    'https://example.org/shop',
-                ]
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'not-a-domain',
+                'mx2.example.org',
             ]
         ]);
         $response->assertStatus(422);
-        $this->assertNull(Domain::first()->urls);
+        $this->assertCount(0, Domain::first()->mailDomains);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
-            'result' => [
-                'domain' => 'example.org',
-                'urls' => [
-                    // empty
-                ]
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'https://url-but-not-domain.com',
             ]
         ]);
         $response->assertStatus(422);
-        $this->assertNull(Domain::first()->urls);
+        $this->assertCount(0, Domain::first()->mailDomains);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
-            'result' => [
-                'domain' => 'not-a-valid-hostname',
-                'urls' => [
-                    'https://example.org/shop',
-                ]
+            'domain' => 'is-not-registered.de',
+            'mailServerDomainList' => [
+                'example.org',
             ]
         ]);
         $response->assertStatus(422);
-        $this->assertNull(Domain::first()->urls);
+        $this->assertCount(0, Domain::first()->mailDomains);
+    }
+
+    /** @test */
+    public function its_allowed_that_the_mailServerDomainList_response_is_empty()
+    {
+        $this->getRegisteredDomain(['is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
-            'result' => [
-                'domain' => 'is-not-registered.de',
-                'urls' => [
-                    'https://example.org/shop',
-                ]
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                // empty
             ]
         ]);
-        $response->assertStatus(422);
-        $this->assertNull(Domain::first()->urls);
+        $response->assertStatus(200);
+        $this->assertCount(0, Domain::first()->mailDomains);
     }
 }
