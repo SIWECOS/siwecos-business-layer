@@ -50,10 +50,10 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function a_scan_has_a_result_field_thats_null_by_default()
+    public function a_scan_has_a_result_field_thats_casted_to_a_collection_and_is_empty_by_default()
     {
         $this->getGeneratedScan();
-        $this->assertNull(Scan::first()->results);
+        $this->assertTrue(Scan::first()->results->isEmpty());
     }
 
     /** @test */
@@ -116,7 +116,7 @@ class ScanTest extends TestCase
     /** @test */
     public function a_scan_knows_his_status()
     {
-        $scan = $this->getGeneratedScan(['has_error' => true]);
+        $scan = $this->getFailedScan();
         $this->assertEquals('failed', $scan->status);
 
         $scan = $this->getGeneratedScan();

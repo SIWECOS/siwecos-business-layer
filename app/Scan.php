@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Iso8601Serialization;
 
 class Scan extends Model
 {
     use \Znck\Eloquent\Traits\BelongsToThrough;
+    use Iso8601Serialization;
 
     protected $casts = [
         'is_finished' => 'boolean',
@@ -33,17 +35,10 @@ class Scan extends Model
         parent::boot();
 
         static::updating(function ($scan) {
-            // if scan ist finished by this update
-            if ($scan->results !== null && $scan->finished_at === null) {
+            // if scan is finished by this update
+            if (collect($scan->results)->isNotEmpty() && $scan->finished_at === null) {
                 $scan->score = $scan->calculateScore();
                 $scan->finished_at = now();
-
-                // send result to logstash for further analytics
-                \Log::channel('logstash')->info(collect([
-                    'scan' => $scan,
-                    'domain' => $scan->domain,
-                    'token' => $scan->token
-                ]));
             }
         });
     }
@@ -60,9 +55,9 @@ class Scan extends Model
 
     public function getStatusAttribute()
     {
-        if ($this->has_error)
+        if ($this->is_finished && $this->started_at === null)
             return 'failed';
-        if ($this->is_finished)
+        if ($this->is_finished && $this->results !== null)
             return 'finished';
         if ($this->started_at)
             return 'running';

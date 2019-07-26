@@ -15,6 +15,7 @@ use App\Http\Responses\ScanReportResponse;
 use App\Http\Requests\ScanFinishedRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\PushScanToElasticsearchJob;
 
 class ScanController extends Controller
 {
@@ -82,15 +83,18 @@ class ScanController extends Controller
     {
         if (!$scan->is_finished) {
             $scan->results = $request->get('results');
+            $scan->has_error = $request->get('hasError');
 
             if ($missing = $request->get('withMissingScannerResults')) {
-                $scan->has_error = true;
 
                 \Log::critical("Missing ScanResult for Scan with ID " . $scan->id .  PHP_EOL
                     . "Missing result from scanner: " . implode(', ', $missing));
             }
 
             if ($scan->save()) {
+
+                $this->dispatch(new PushScanToElasticsearchJob($scan));
+
                 if (!$scan->is_freescan) {
                     $this->generateSiwecosSeals($scan->domain);
                 }

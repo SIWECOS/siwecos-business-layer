@@ -52,13 +52,6 @@ return [
             'ignore_exceptions' => false,
         ],
 
-        'logstash' => [
-            'driver' => 'custom',
-            'via'    => \App\LogstashLogger::class,
-            'host'   => env('LOGSTASH_HOST', '127.0.0.1'),
-            'port'   => env('LOGSTASH_PORT', 5000),
-        ],
-
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

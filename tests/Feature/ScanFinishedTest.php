@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use App\Jobs\PushScanToElasticsearchJob;
 
 class ScanFinishedTest extends TestCase
 {
@@ -89,7 +90,7 @@ class ScanFinishedTest extends TestCase
     }
 
     /** @test */
-    public function when_a_scan_is_finished_the_results_will_be_send_to_logstash()
+    public function when_a_scan_is_finished_the_results_will_be_send_to_elasticsearch()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
         $response = $this->json(
@@ -100,8 +101,6 @@ class ScanFinishedTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertTrue($scan->refresh()->is_finished);
-        Log::channel('logstash')->assertLogged('info', function ($message, $context) use ($scan) {
-            return Str::contains($message, 'SINKS_FOUND') && Str::contains($message, $scan->domain->verification_token);
-        });
+        \Queue::assertPushed(PushScanToElasticsearchJob::class);
     }
 }

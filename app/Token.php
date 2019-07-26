@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Keygen\Keygen;
 use App\Events\TokenDeleted;
+use App\Traits\Iso8601Serialization;
 
 class Token extends Model
 {
+    use Iso8601Serialization;
+
     protected $fillable = ['credits', 'token', 'type'];
 
     protected $table = 'tokens';

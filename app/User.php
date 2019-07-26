@@ -7,10 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\WpPasswordAuthentication;
 use Keygen\Keygen;
+use App\Traits\Iso8601Serialization;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Iso8601Serialization;
 
     protected $fillable = [
         'email', 'preferred_language',
