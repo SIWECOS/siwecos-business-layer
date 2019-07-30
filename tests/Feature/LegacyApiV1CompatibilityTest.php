@@ -21,7 +21,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         parent::setUp();
 
-        $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15);
+        $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
     }
 
@@ -203,13 +203,12 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         return [
             'scanStarted' => [
-                'date' => Carbon::now()->toIso8601ZuluString() . '.000000',
+                'date' => Carbon::now('UTC')->toDateTimeString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
             'scanFinished' => [
-                // 'date' => '2019-03-27T16:18:13Z.000000',
-                'date' => Carbon::now()->toIso8601ZuluString() . '.000000',
+                'date' => Carbon::now('UTC')->toDateTimeString() . '.000000',
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
