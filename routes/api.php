@@ -9,6 +9,7 @@ use App\Http\Middleware\MapScanReportResponseForLegacyApi;
 use App\Http\Middleware\MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi;
 use App\Http\Middleware\MapDomainUrlParameterToDomainForLegacyApi;
 use App\Http\Middleware\MapUserTokenToSiwecosTokenForLegacyApi;
+use App\Http\Middleware\MapScanStatusResponseForLegacyApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/users/login', 'UserController@login');
 
     Route::post('/getFreeScanStart', 'ScanController@startFreescan')->middleware([MapScanStartedResponseForLegacyApi::class, MapDomainUrlParameterToDomainForLegacyApi::class]);
+    Route::get('/scan/status/free/{scan}', 'ScanController@report')->middleware([MapScanStatusResponseForLegacyApi::class]);
 
     Route::middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, 'siwecosToken', MapDomainUrlParameterToDomainForLegacyApi::class])->group(function () {
         Route::post('/domains/verifyDomain', 'DomainController@verify')->middleware(MapDomainVerifiedResponseForLegacyApi::class);

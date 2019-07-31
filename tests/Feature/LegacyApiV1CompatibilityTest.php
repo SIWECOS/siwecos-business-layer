@@ -46,6 +46,40 @@ class LegacyApiV1CompatibilityTest extends TestCase
     }
 
     /** @test */
+    public function the_status_of_a_running_freescan_can_be_requested()
+    {
+        $scan = $this->getStartedScan(['is_freescan' => true]);
+
+        $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            "progress" => 0,
+            "status" => 2,
+            "id" => $scan->id,
+            "hasFailed" => false,
+            "message" => ""
+        ]);
+    }
+
+    /** @test */
+    public function the_status_of_a_finished_freescan_can_be_requested()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            "progress" => 100,
+            "status" => 3,
+            "id" => $scan->id,
+            "hasFailed" => false,
+            "message" => ""
+        ]);
+    }
+
+    /** @test */
     public function a_new_domain_can_be_registered()
     {
         $user = $this->getActivatedUser();
