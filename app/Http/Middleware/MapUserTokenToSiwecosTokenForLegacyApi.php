@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Symfony\Component\HttpFoundation\HeaderBag;
 
-class MapUserTokenToSiwecosTokenMiddleware
+class MapUserTokenToSiwecosTokenForLegacyApi
 {
     /**
      * Handle an incoming request.
