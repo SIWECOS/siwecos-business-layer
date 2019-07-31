@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
 use Carbon\Carbon;
+use App\Scan;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
@@ -23,6 +24,25 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
+    }
+
+    /** @test */
+    public function a_freescan_can_be_started()
+    {
+        $response = $this->json('POST', '/api/v1/getFreeScanStart', [
+            'domain' => 'https://example.org'
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::all());
+        $this->assertCount(1, Scan::all());
+        $response->assertJson([
+            "progress" => 0,
+            "status" => 2,
+            "id" => 1,
+            "hasFailed" => false,
+            "message" => ""
+        ]);
     }
 
     /** @test */
