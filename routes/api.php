@@ -66,7 +66,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/users/login', 'UserController@login');
 
     Route::post('/getFreeScanStart', 'ScanController@startFreescan')->middleware([MapScanStartedResponseForLegacyApi::class, MapDomainUrlParameterToDomainForLegacyApi::class]);
-    Route::get('/scan/status/free/{scan}', 'ScanController@report')->middleware(['siwecosToken', MapScanStatusResponseForLegacyApi::class]);
+    Route::get('/scan/status/free/{scan}', 'ScanController@report')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapScanStatusResponseForLegacyApi::class]);
 
     Route::middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, 'siwecosToken', MapDomainUrlParameterToDomainForLegacyApi::class])->group(function () {
         Route::post('/domains/verifyDomain', 'DomainController@verify')->middleware(MapDomainVerifiedResponseForLegacyApi::class);
