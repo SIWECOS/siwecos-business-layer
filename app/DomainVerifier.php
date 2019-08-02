@@ -2,14 +2,8 @@
 
 namespace App;
 
-use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
 use Illuminate\Support\Str;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\TooManyRedirectsException;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\TransferException;
 
 class DomainVerifier
@@ -67,7 +61,7 @@ class DomainVerifier
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
             $tag = $dom->findOne('meta[name="siwecostoken"]');
 
-            if (Str::is($this->domain->verification_token, $tag->value)) {
+            if (Str::is($this->domain->verification_token, $tag->content)) {
                 return true;
             }
         }

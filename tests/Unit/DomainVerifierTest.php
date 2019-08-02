@@ -205,7 +205,7 @@ class DomainVerifierTest extends TestCase
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="siwecostoken" value="' . $token . '"></meta>
+            <meta name="siwecostoken" content="' . $token . '"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Test-Website</title>
