@@ -35,6 +35,22 @@ class PushScanToElasticsearchJob implements ShouldQueue
     public function handle()
     {
         try {
+            // Reformat $this->scan->results for correct elasticsearch indexing
+            // Map result:  scan.results.HEADER.tests.X_CONTENT_TYPE_OPTIONS.score
+            //                              |                   |
+            //                    First mapWithKeys   Second map and mapWithKeys
+            $reformattedResults = null;
+            if ($this->scan->results->isNotEmpty()) {
+                $reformattedResults = $this->scan->results->reverse()->mapWithKeys(function ($item) {
+                    return [$item['name'] => $item];
+                })->map(function ($scanner) {
+                    $scanner['tests'] = collect($scanner['tests'])->mapWithKeys(function ($item) {
+                        return [$item['name'] => $item];
+                    });
+                    return $scanner;
+                });
+            }
+
             $data = [
                 'body' => [
                     'scan' => array_merge(
@@ -43,9 +59,7 @@ class PushScanToElasticsearchJob implements ShouldQueue
                             'token' => $this->scan->token,
                             'domain' => $this->scan->domain,
                             // overwrite scan.results for correct indexing
-                            'results' => $this->scan->results->isNotEmpty() ? $this->scan->results->reverse()->mapWithKeys(function ($item) {
-                                return [$item['name'] => $item];
-                            }) : null,
+                            'results' =>  $reformattedResults,
                         ]
                     )
                 ],
