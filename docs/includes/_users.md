@@ -328,6 +328,51 @@ The user can reset his password.
 
 
 
+## Get User Data
+
+> The **Request** must have the following structure:
+
+```shell
+curl http://bla.local/api/v2/user \
+  -H 'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'
+```
+
+```http
+GET /api/v2/user HTTP/1.1
+Host: bla.local
+SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y
+
+```
+
+A logged in user can retrieve his user data.
+
+> The **Response** has the following structure:
+
+```json
+{
+  "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
+  "email": "mail@siwecos.de",
+  "preferred_language": "de",
+  "is_active": true
+}
+```
+
+### HTTP Request
+
+`GET /api/v2/user`
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+
+### Response Status Codes
+
+| Code | Meaning                      |
+| ---- | ---------------------------- |
+| 200  | User data                    |
+| 403  | User token invalid / missing |
+
+
 ## Update User Data
 
 > The **Request** must have the following structure:
