@@ -168,6 +168,17 @@ class UserController extends Controller
         return response()->json(new StatusResponse('User not Found'), 404);
     }
 
+    public function show(Request $request)
+    {
+        $user = Token::whereToken($request->header('SIWECOS-Token'))->first()->user;
+
+        if ($user) {
+            return response()->json(new UserTokenResponse($user));
+        }
+
+        return response()->json(new StatusResponse('User not Found'), 404);
+    }
+
     /**
      * Updates an user.
      *

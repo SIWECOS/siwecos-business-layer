@@ -28,7 +28,7 @@ class UserLoginTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertExactJson((array)(new UserTokenResponse(User::first())));
+        $response->assertExactJson((array) (new UserTokenResponse(User::first())));
     }
 
     /** @test */
@@ -97,7 +97,7 @@ class UserLoginTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertExactJson((array)(new UserTokenResponse(User::first())));
+        $response->assertExactJson((array) (new UserTokenResponse(User::first())));
 
         // Background information: Wordpress-Hash begins with $P$
         $this->assertEquals('$2y$10$', substr(User::first()->password, 0, 7));
@@ -178,5 +178,31 @@ class UserLoginTest extends TestCase
             'newpassword' => 'WXYZ0987'
         ]);
         $response->assertStatus(404);
+    }
+
+    /** @test */
+    public function a_loggedIn_user_can_retrieve_his_data()
+    {
+        $user = $this->getActivatedUser();
+
+        $response = $this->get('/api/v2/user', [
+            'SIWECOS-Token' => $user->token->token
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'token' => $user->token->token,
+            'is_active' => true
+        ]);
+    }
+
+    /** @test */
+    public function a_not_existing_user_or_user_with_wrong_token_will_get_a_403_response()
+    {
+        $response = $this->get('/api/v2/user', [
+            'SIWECOS-Token' => 'WRONG-TOKEN'
+        ]);
+
+        $response->assertStatus(403);
     }
 }

@@ -33,6 +33,7 @@ Route::prefix('v2')->group(function () {
     Route::post('/user/password/reset', 'UserController@resetPassword');
 
     Route::middleware(['userIsActivatedAndLoggedIn'])->group(function () {
+        Route::get('/user', 'UserController@show');
         Route::patch('/user', 'UserController@update');
         Route::delete('/user', 'UserController@delete');
     });
