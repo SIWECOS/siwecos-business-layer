@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'WebController@redirect');
+Route::fallback(function () {
+    return redirect()->away('https://siwecos.de');
+});
