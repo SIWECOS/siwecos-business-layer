@@ -244,6 +244,9 @@
                     <a href="#reset-password" class="toc-h2 toc-link" data-title="Users">Reset Password</a>
                   </li>
                   <li>
+                    <a href="#get-user-data" class="toc-h2 toc-link" data-title="Users">Get User Data</a>
+                  </li>
+                  <li>
                     <a href="#update-user-data" class="toc-h2 toc-link" data-title="Users">Update User Data</a>
                   </li>
                   <li>
@@ -703,6 +706,50 @@ After registration a verification mail will be sent to the user's email address.
 <td>Validation failed</td>
 </tr>
 </tbody></table>
+<h2 id='get-user-data'>Get User Data</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl http://bla.local/api/v2/user <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+
+</code></pre>
+<p>A logged in user can retrieve his user data.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /api/v2/user</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='response-status-codes-7'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User data</td>
+</tr>
+<tr>
+<td>403</td>
+<td>User token invalid / missing</td>
+</tr>
+</tbody></table>
 <h2 id='update-user-data'>Update User Data</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
@@ -735,7 +782,7 @@ After registration a verification mail will be sent to the user's email address.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User updated"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>PATCH /api/v2/user</code></p>
 
 <aside class="notice">
@@ -765,7 +812,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <td><em>The user&#39;s preferred language for the app</em></td>
 </tr>
 </tbody></table>
-<h3 id='response-status-codes-7'>Response Status Codes</h3>
+<h3 id='response-status-codes-8'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -807,13 +854,13 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User deleted"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-9'>HTTP Request</h3>
 <p><code>DELETE /api/v2/user</code></p>
 
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
-<h3 id='response-status-codes-8'>Response Status Codes</h3>
+<h3 id='response-status-codes-9'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
