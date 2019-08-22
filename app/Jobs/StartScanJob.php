@@ -52,7 +52,7 @@ class StartScanJob implements ShouldQueue
             if ($response->getStatusCode() === 200) {
                 $this->scan->update(['started_at' => Carbon::now()]);
 
-                if (!$this->scan->domain->is_verified) {
+                if (!$this->scan->is_freescan) {
                     $this->scan->token->reduceCredits();
                 }
             } else {

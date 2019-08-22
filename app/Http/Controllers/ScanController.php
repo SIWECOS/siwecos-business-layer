@@ -43,10 +43,14 @@ class ScanController extends Controller
         $domain = Domain::whereDomain($request->json('domain'))->first();
 
         if (!$domain) {
-            $domain = Token::create([
-                'type' => 'freescan',
-                'credits' => 5
-            ])->domains()->create(['domain' => $request->json('domain')]);
+            $domain = Token::firstOrCreate(['type' => 'freescan'], ['credits' => 10000])
+                ->domains()->create(['domain' => $request->json('domain')]);
+        }
+
+        $lastFreeScan = $domain->scans()->whereIsFreescan(true)->first();
+
+        if ($lastFreeScan && $lastFreeScan->finished_at->diffInHours() < config('siwecos.freeScanCashingHours')) {
+            return response()->json(new ScanStartedResponse($lastFreeScan));
         }
 
         $scan = $domain->scans()->create([

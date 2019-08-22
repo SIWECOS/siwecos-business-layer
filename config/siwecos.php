@@ -36,6 +36,15 @@ return [
     */
     'thirdPartyTokenCredits' => env('THIRD_PARTY_TOKEN_CREDITS', 10),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Free Scan Cashing Hours
+    |--------------------------------------------------------------------------
+    |
+    | You can set the amount of credits the 3rd Party Tokens will get daily.
+    |
+    */
+    'freeScanCashingHours' => env('FREE_SCAN_CASHING_HOURS', 12),
 
     /*
     |--------------------------------------------------------------------------
