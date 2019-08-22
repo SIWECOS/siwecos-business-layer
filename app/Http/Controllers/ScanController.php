@@ -47,9 +47,9 @@ class ScanController extends Controller
                 ->domains()->create(['domain' => $request->json('domain')]);
         }
 
-        $lastFreeScan = $domain->scans()->whereIsFreescan(true)->first();
+        $lastFreeScan = $domain->scans()->whereIsFreescan(true)->latest()->first();
 
-        if ($lastFreeScan && $lastFreeScan->finished_at->diffInHours() < config('siwecos.freeScanCashingHours')) {
+        if ($lastFreeScan && ($lastFreeScan->status == 'running' || ($lastFreeScan->finished_at && $lastFreeScan->finished_at->diffInHours() < config('siwecos.freeScanCashingHours')))) {
             return response()->json(new ScanStartedResponse($lastFreeScan));
         }
 
