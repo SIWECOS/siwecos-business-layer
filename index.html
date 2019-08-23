@@ -277,6 +277,9 @@
                   <li>
                     <a href="#deleting-a-domain" class="toc-h2 toc-link" data-title="Domains">Deleting a Domain</a>
                   </li>
+                  <li>
+                    <a href="#retrieving-the-latest-scan-report" class="toc-h2 toc-link" data-title="Domains">Retrieving the latest Scan Report</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1231,6 +1234,68 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <aside class="warning">
 After deletion all associated scans will also be deleted.
 </aside>
+<h2 id='retrieving-the-latest-scan-report'>Retrieving the latest Scan Report</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/domain/example.org/report/en <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/domain/example.org/report/en</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
+
+</code></pre>
+<p>Retrieving the latest Scan Report for the given Domain.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the same structure as the <a href="#retrieving-the-scan-report">Scan Report</a></p>
+</blockquote>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /api/v2/domain/{domain}/report/{language?}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-free Scans.
+</aside>
+
+<aside class="notice">
+If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
+</aside>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain the report is requested for</td>
+</tr>
+<tr>
+<td><em>language_code</em></td>
+<td><em><code>string</code></em></td>
+<td><em>One of the supported language codes for translated results: <code>de</code> or <code>en</code></em></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-5'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Latest Scan Report</td>
+</tr>
+<tr>
+<td>404</td>
+<td>No scan found</td>
+</tr>
+</tbody></table>
 <h1 id='scans'>Scans</h1><h2 id='starting-a-freescan'>Starting a Freescan</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
