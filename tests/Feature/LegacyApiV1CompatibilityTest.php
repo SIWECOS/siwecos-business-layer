@@ -234,7 +234,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $scan = $this->getFinishedScan(['is_freescan' => false]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
-        $response->assertStatus(403);
+        $response->assertStatus(404);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
             'userToken' => $scan->token->token

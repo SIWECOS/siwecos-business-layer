@@ -83,6 +83,14 @@ class DomainController extends Controller
 
     public function latestScanReport(Domain $domain, $language = 'de', Request $request)
     {
+        // For Legacy API Compatibility
+        if ($domain->domain == null) {
+            $domain = Domain::whereDomain($request->get('domain'))->first();
+            if ($domain === null) {
+                return response()->json(new StatusResponse('Domain Not Found'), 404);
+            }
+        }
+
         $scan = $domain->scans()->whereIsFreescan(true)->latest()->first();
 
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
@@ -93,6 +101,6 @@ class DomainController extends Controller
             return (new ScanController())->report($scan, $language);
         }
 
-        return response()->json(new StatusResponse('Not Found'), 404);
+        return response()->json(new StatusResponse('Scan Not Found'), 404);
     }
 }

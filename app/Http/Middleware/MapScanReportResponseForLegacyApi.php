@@ -24,20 +24,20 @@ class MapScanReportResponseForLegacyApi
          */
         $response = $next($request);
 
-        // $scan parameter was sent by freescan route (/api/v1/freescan/result/{scan}/{language?})
-        $scan = $request->route()->parameter('scan');
-
-        // $scan parameter was not sent
-        // get parameter via $domain was used by scan route (/api/v1/scan/result/{language?}?domain=http://example.com)
-        if (!($scan instanceof Scan)) {
-            $url = urldecode(substr($request->getQueryString(), 7));
-            $url = parse_url($url, PHP_URL_HOST);
-            $domain = Domain::whereDomain($url)->first();
-
-            $scan = $domain->scans()->latest()->first();
-        }
-
         if ($response->getStatusCode() === 200) {
+            // $scan parameter was sent by freescan route (/api/v1/freescan/result/{scan}/{language?})
+            $scan = $request->route()->parameter('scan');
+
+            // $scan parameter was not sent
+            // get parameter via $domain was used by scan route (/api/v1/scan/result/{language?}?domain=http://example.com)
+            if (!($scan instanceof Scan)) {
+                $url = urldecode(substr($request->getQueryString(), 7));
+                $url = parse_url($url, PHP_URL_HOST);
+                $domain = Domain::whereDomain($url)->first();
+
+                $scan = $domain->scans()->latest()->first();
+            }
+
             $json = json_decode($response->content());
 
             $scanners = collect();

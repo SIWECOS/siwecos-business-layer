@@ -78,6 +78,6 @@ Route::prefix('v1')->group(function () {
 
         Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
     });
-    Route::get('/scan/result/{language?}', 'ScanController@report')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi::class, MapScanReportResponseForLegacyApi::class]);
+    Route::get('/scan/result/{language?}', 'DomainController@latestScanReport')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi::class, MapScanReportResponseForLegacyApi::class]);
     Route::get('/freescan/result/{scan}/{language?}', 'ScanController@report')->middleware([MapScanReportResponseForLegacyApi::class]);
 });
