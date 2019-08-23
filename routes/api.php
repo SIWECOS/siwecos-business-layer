@@ -48,6 +48,7 @@ Route::prefix('v2')->group(function () {
         Route::delete('/domain', 'DomainController@delete');
     });
     Route::post('/domain/verify', 'DomainController@verify');
+    Route::get('/domain/{domain}/report/{language?}', 'DomainController@latestScanReport');
 
     // Scan
     Route::middleware(['siwecosToken'])->group(function () {

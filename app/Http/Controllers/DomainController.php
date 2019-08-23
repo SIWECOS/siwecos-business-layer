@@ -80,4 +80,19 @@ class DomainController extends Controller
 
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
+
+    public function latestScanReport(Domain $domain, $language = 'de', Request $request)
+    {
+        $scan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+
+        if ($domain->token->token == $request->header('SIWECOS-Token')) {
+            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first() ?: $scan;
+        }
+
+        if ($scan) {
+            return (new ScanController())->report($scan, $language);
+        }
+
+        return response()->json(new StatusResponse('Not Found'), 404);
+    }
 }

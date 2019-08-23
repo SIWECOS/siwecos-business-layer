@@ -30,6 +30,16 @@ class Domain extends Model
         parent::__construct($attributes);
     }
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'domain';
+    }
+
     public function getUrlAttribute()
     {
         return 'https://' . $this->domain;
