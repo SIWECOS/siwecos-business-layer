@@ -40,11 +40,12 @@ class ScanController extends Controller
 
     public function startFreescan(ScanStartRequest $request)
     {
-        $domain = Domain::whereDomain($request->json('domain'))->first();
+        $requestedDomain = strtolower($request->json('domain'));
+        $domain = Domain::whereDomain($requestedDomain)->first();
 
         if (!$domain) {
             $domain = Token::firstOrCreate(['type' => 'freescan'], ['credits' => 10000])
-                ->domains()->create(['domain' => $request->json('domain')]);
+                ->domains()->create(['domain' => $requestedDomain]);
         }
 
         $lastFreeScan = $domain->scans()->whereIsFreescan(true)->latest()->first();

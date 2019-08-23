@@ -56,6 +56,19 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
+    public function a_domain_will_always_be_registered_with_lowercase_characters()
+    {
+        $user = $this->getActivatedUser();
+
+        $response = $this->json('POST', '/api/v2/domain', [
+            'domain' => 'eXaMPle.ORG'
+        ], ['SIWECOS-Token' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertSame('example.org', Domain::first()->domain);
+    }
+
+    /** @test */
     public function a_domain_can_not_be_registered_twice()
     {
         $domain = $this->getRegisteredDomain(['is_verified' => true]);

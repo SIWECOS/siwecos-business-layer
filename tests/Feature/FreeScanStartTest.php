@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Domain;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -87,5 +88,16 @@ class FreeScanStartTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson(['scan_id' => 1]);
         Queue::assertNothingPushed();
+    }
+
+    /** @test */
+    public function a_domain_will_always_be_generated_with_lowercase_characters()
+    {
+        $response = $this->json('POST', '/api/v2/freescan', [
+            'domain' => 'eXaMPLe.ORg'
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertSame('example.org', Domain::first()->domain);
     }
 }

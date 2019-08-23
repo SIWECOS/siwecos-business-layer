@@ -25,9 +25,10 @@ class DomainController extends Controller
     public function create(CreateDomainRequest $request)
     {
         $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
+        $newDomain = strtolower($request->json('domain'));
 
-        $domain = Domain::whereDomain($request->json('domain'))->firstOrNew([
-            'domain' => $request->json('domain')
+        $domain = Domain::whereDomain($newDomain)->firstOrNew([
+            'domain' => $newDomain
         ]);
 
         if (!$domain->is_verified) {
