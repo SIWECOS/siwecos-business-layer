@@ -4,15 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- Leave those next 4 lines if you care about users using IE8 -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <link rel="stylesheet" href="{{ public_path('css/app.css') }}">
 
   <style>
     .col-print-1 {
@@ -82,31 +74,35 @@
     }
 
     div.fullscore div.percent {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="250%">{{$gauge['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$gauge['big_arc']}} 1 {{$gauge['score_x']}},{{$gauge['score_y']}}" stroke="{{$gauge['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
       width: 25mm;
       height: 25mm;
+      padding-left: 10mm;
+      padding-top: 10mm;
+      font-weight: bold;
     }
 
     div.percent {
       background-size: cover;
       background-repeat: no-repeat;
-      width: 13mm;
-      height: 13mm;
+      width: 16mm;
+      height: 16mm;
       float: right;
+      padding-left: 4.5mm;
+      padding-top: 5.5mm;
     }
 
     .siwecos-logo {
       height: 25mm;
     }
 
-    @foreach($data as $result) div.{{$result['scanner_code']}} {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="12%" dominant-baseline="central" text-anchor="middle" font-size="250%">{{$result['gauge']['score']}}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{$result['gauge']['big_arc']}} 1 {{$result['gauge']['score_x']}},{{$result['gauge']['score_y']}}" stroke="{{$result['gauge']['score_col']}}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
-    }
-
+    @foreach($gaugeData as $scannerCode => $gauge)
+      div.{{ $scannerCode }} {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" version="1.1"><g transform="translate(63,63)"><text x="0" y="0mm" dominant-baseline="central" text-anchor="middle" font-size="25em">{{ $gauge['score'] }}</text> <path d="M-35.35,35.36 A50,50 0 1 1 35.35,35.36" stroke="lightgrey" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M-35.35,35.36 A50,50 0 {{ $gauge['big_arc'] }} 1 {{ $gauge['score_x'] }},{{ $gauge['score_y'] }}" stroke="{{ $gauge['score_col'] }}" stroke-width="25" stroke-linecap="round" fill="none"/></g></svg>');
+      }
     @endforeach
-    div.row.list-item {
-      display: list-item;
-      list-style: disc outside;
+
+    li {
+      list-style: none ;
       margin-left: 2em;
     }
   </style>
@@ -117,37 +113,45 @@
   <div class="container">
     <div class="row">
       <div class="col-print-10">
-        <img src="{{URL::asset('img/siwecos-logo-big.png')}}" class="siwecos-logo" />
+        <img src="{{ public_path('img/siwecos-logo-big.png') }}" class="siwecos-logo" />
       </div>
       <div class="col-print-2 fullscore">
-        <div class="percent">&nbsp;</div>
+        <div class="percent total"> </div>
       </div>
     </div>
     <div class="row">
-      <h1>{{ __('siwecos.REPORT_FOR', ['domain' => $domain]) }}</h1>
-      <p>{{$date}}</p>
+      <h1>{{ __('SIWECOS.REPORT_FOR', ['domain' => $scan->domain->domain]) }}</h1>
+      <p>{{ $scan->finished_at->toDateTimeString() }}</p>
     </div>
-    @foreach ($data as $result)
+    @foreach ($report->report as $scanReport)
     <div class="row">
       <div class="col-print-10">
-        <h3>{{$result['scanner_type']}}</h3>
+        <h3>{{ $scanReport['scanner_name'] }}</h3>
       </div>
       <div class="col-print-2 score">
-        <div class="percent {{$result['scanner_code']}}">&nbsp;</div>
+        <div class="percent {{ $scanReport['scanner_code'] }}"></div>
       </div>
     </div>
     <ul>
-      @foreach ($result['result'] as $detail)
+      @foreach ($scanReport['tests'] as $test)
       <li>
         <div class="row">
           <div class="col-print-10">
-            {!! $detail['name'] !!}
-            @if (!$result['has_error'])
-            <p style="font-style: italic !important; font-size: smaller">{!! $detail['report'] !!}</p>
+            {!! $test['headline'] !!}
+            @if ($test['has_error'])
+            <p style="font-size: smaller; color: red">{!! $test['result'] !!}</p>
+            @else
+            <p style="font-size: smaller;">{!! $test['result'] !!}</p>
+            @endif
+
+            @if ($test['result_details'])
+              @foreach ($test['result_details'] as $resultDetail)
+              <p style="font-style: italic !important; font-size: smaller">{!! $resultDetail !!}</p>
+              @endforeach
             @endif
           </div>
           <div class="col-print-2" style="text-align: right;">
-            {{$detail['score']}}%
+            {{ $test['score'] }} / 100
           </div>
         </div>
       </li>

@@ -55,6 +55,7 @@ Route::prefix('v2')->group(function () {
         Route::post('/scan', 'ScanController@start');
     });
     Route::get('/scan/{scan}/{language?}', 'ScanController@report');
+    Route::get('/scan/{scan}/{language?}/pdf', 'ScanController@pdfReport');
 
     Route::post('/freescan', 'ScanController@startFreescan');
 

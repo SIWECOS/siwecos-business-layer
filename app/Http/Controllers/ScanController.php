@@ -16,6 +16,7 @@ use App\Http\Requests\ScanFinishedRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\PushScanToElasticsearchJob;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 
 class ScanController extends Controller
 {
@@ -63,7 +64,7 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function report(Scan $scan, $language = 'de')
+    public function report(Scan $scan, $language = 'de', $pdf = null)
     {
         /**
          * Additional statement for the API v1 compatibility;
@@ -78,10 +79,25 @@ class ScanController extends Controller
 
         if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
+
+            if($pdf) {
+                $pdf = SnappyPdf::loadView('pdf.report', [
+                    'scan' => $scan,
+                    'report' => new ScanReportResponse($scan),
+                    'gaugeData' => $this->getGaugeData($scan)
+                ]);
+                return $pdf->download('Scan Report.pdf');
+            }
+
             return response()->json(new ScanReportResponse($scan));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function pdfReport(Scan $scan, $language = 'de')
+    {
+        return $this->report($scan, $language, true);
     }
 
     public function finished(ScanFinishedRequest $request, Scan $scan)
@@ -161,5 +177,52 @@ class ScanController extends Controller
         }
 
         return $scandate;
+    }
+
+    /**
+     * Calculate data for SVG gauge in PDF Report
+     * Copied from :
+     * https://github.com/SIWECOS/siwecos-business-layer/blob/05e2dca540e98996b699d669b9c08ed437a31f00/app/Http/Controllers/SiwecosScanController.php#L240-L262
+     *
+     * @param integer $score
+     * @return array
+     */
+    protected function calculateGaugeData(int $score)
+    {
+        // Radius of gauge - Fixed! Scaling is done via CSS
+        $radius = 50;
+        // Start gauge at 180deg+45deg
+        $origin = pi() * 0.25;
+        // Spread 100% over 270deg
+        $factor = pi() * 1.5 / 100;
+        // Degrees for the percentage
+        $deg = $score * $factor;
+        // red part of color
+        $red = floor(min((100 - $score) / 25, 1) * 255);
+        // green part of color
+        $green = floor(min($score / 75, 1) * 255);
+        return [
+            'score' => $score,
+            'score_x' => -cos($deg - $origin) * $radius,
+            'score_y' => -sin($deg - $origin) * $radius,
+            'score_col' => sprintf('%%23%02x%02x%02x', $red, $green, 0),
+            'big_arc' => $deg > pi() ? 1 : 0,
+        ];
+    }
+
+    protected function getGaugeData(Scan $scan) {
+        $gaugeData = collect();
+
+        // Total Score
+        $gaugeData->put('total' , $this->calculateGaugeData($scan->score));
+
+        // Scanner Scores
+        foreach ($scan->results as $scannerResult) {
+            $scannerResult = collect($scannerResult)->recursive();
+
+            $gaugeData->put($scannerResult->get('name') , $this->calculateGaugeData($scannerResult->get('score')));
+        }
+
+        return $gaugeData;
     }
 }
