@@ -1696,13 +1696,9 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  http://bla.local/api/v2/scan/3913/en/pdf <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span>
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/scan/3913/en/pdf</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+  <span class="s2">"http://bla.local/api/v2/scan/3913/en/pdf?SIWECOS-Token=Y2jHgqtSVcz8eFqiV4eC0s5Y"</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/scan/3913/en/pdf?SIWECOS-Token=Y2jHgqtSVcz8eFqiV4eC0s5Y</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
-<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 </code></pre>
 <p>The scan report can be requested as a PDF file.</p>
@@ -1714,7 +1710,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <p><code>GET /api/v2/scan/{scan_id}/{language_code}/pdf</code></p>
 
 <aside class="notice">
-Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+Authentication via HTTP-GET-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
@@ -1733,6 +1729,11 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>language_code</td>
 <td><code>string</code></td>
 <td>One of the supported language codes for translated results: <code>de</code> or <code>en</code></td>
+</tr>
+<tr>
+<td><em>SIWECOS-Token</em></td>
+<td><em><code>string</code></em></td>
+<td><em>urlencoded SIWECOS-Token for non-freescans</em></td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes-5'>Response Status Codes</h3>
@@ -1753,6 +1754,10 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <tr>
 <td>404</td>
 <td>Scan not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Scan not finished</td>
 </tr>
 </tbody></table>
 
