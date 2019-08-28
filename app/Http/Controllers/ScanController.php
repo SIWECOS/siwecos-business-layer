@@ -64,7 +64,7 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($scan));
     }
 
-    public function report(Scan $scan, $language = 'de', $pdf = null)
+    public function report(Scan $scan, $language = 'de')
     {
         /**
          * Additional statement for the API v1 compatibility;
@@ -80,7 +80,18 @@ class ScanController extends Controller
         if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            if($pdf) {
+            return response()->json(new ScanReportResponse($scan));
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function pdfReport(Scan $scan, $language = 'de', Request $request)
+    {
+        if ($scan->is_freescan || $scan->token == Token::whereToken($request->get('SIWECOS-Token'))->first()) {
+
+            if ($scan->status === 'finished') {
+                \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $scan,
                     'report' => new ScanReportResponse($scan),
@@ -89,15 +100,10 @@ class ScanController extends Controller
                 return $pdf->download('Scan Report.pdf');
             }
 
-            return response()->json(new ScanReportResponse($scan));
+            return response()->json(new StatusResponse('Scan not finished'), 409);
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
-    }
-
-    public function pdfReport(Scan $scan, $language = 'de')
-    {
-        return $this->report($scan, $language, true);
     }
 
     public function finished(ScanFinishedRequest $request, Scan $scan)
@@ -210,17 +216,18 @@ class ScanController extends Controller
         ];
     }
 
-    protected function getGaugeData(Scan $scan) {
+    protected function getGaugeData(Scan $scan)
+    {
         $gaugeData = collect();
 
         // Total Score
-        $gaugeData->put('total' , $this->calculateGaugeData($scan->score));
+        $gaugeData->put('total', $this->calculateGaugeData($scan->score));
 
         // Scanner Scores
         foreach ($scan->results as $scannerResult) {
             $scannerResult = collect($scannerResult)->recursive();
 
-            $gaugeData->put($scannerResult->get('name') , $this->calculateGaugeData($scannerResult->get('score')));
+            $gaugeData->put($scannerResult->get('name'), $this->calculateGaugeData($scannerResult->get('score')));
         }
 
         return $gaugeData;
