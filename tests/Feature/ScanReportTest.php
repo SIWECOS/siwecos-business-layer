@@ -230,4 +230,19 @@ class ScanReportTest extends TestCase
         ]);
         $this->assertNotNull($response->json('report'));
     }
+
+    /** @test */
+    public function the_scan_report_generation_can_handle_a_missing_errorMessage()
+    {
+        $this->withoutExceptionHandling();
+        $scan = $this->getStartedScan();
+        $scan->results = json_decode(file_get_contents(base_path('tests/scanResultWithMissingErrorMessage.json')), true);
+        $scan->save();
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+
+        $response->assertStatus(200);
+    }
 }

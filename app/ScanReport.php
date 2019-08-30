@@ -131,7 +131,8 @@ class ScanReport
         }
 
         if ($test->get('hasError')) {
-            $details->push($this->getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
+            if ($test->get('errorMessage'))
+                $details->push($this->getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
         }
 
         return $details->count() ? $details : null;
