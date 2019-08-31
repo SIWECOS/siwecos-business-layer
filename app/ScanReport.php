@@ -135,7 +135,7 @@ class ScanReport
             if ($test->get('errorMessage')) {
                 $details->push(self::getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
             } else {
-                Log::critical('Scanner Interface Violation! Missing "errorMessage"');
+                Log::critical('Scanner Interface Violation! Missing "errorMessage" in scanner ' . $scannerCode . ' : ' . $test);
             }
         }
 
