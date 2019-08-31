@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class ScanReport
 {
@@ -126,13 +127,16 @@ class ScanReport
 
         if ($test->get('testDetails')) {
             foreach ($test->get('testDetails') as $translateableMessage) {
-                $details->push($this->getResolvedTranslateableMessage($translateableMessage, $scannerCode));
+                $details->push(self::getResolvedTranslateableMessage($translateableMessage, $scannerCode));
             }
         }
 
         if ($test->get('hasError')) {
-            if ($test->get('errorMessage'))
-                $details->push($this->getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
+            if ($test->get('errorMessage')) {
+                $details->push(self::getResolvedTranslateableMessage($test->get('errorMessage'), $scannerCode));
+            } else {
+                Log::critical('Scanner Interface Violation! Missing "errorMessage"');
+            }
         }
 
         return $details->count() ? $details : null;
@@ -145,11 +149,19 @@ class ScanReport
      * @param string $scannerCode
      * @return string
      */
-    public function getResolvedTranslateableMessage(Collection $message, string $scannerCode)
+    public static function getResolvedTranslateableMessage(Collection $message, string $scannerCode)
     {
-        if ($message->get('placeholders')) {
-            return __($scannerCode . "." . $message->get('translationStringId'), $message->get('placeholders')->toArray());
+        // Ensure all possible arrays are collections
+        $message = $message->recursive();
+
+        try {
+            if ($message->get('placeholders')) {
+                return __($scannerCode . "." . $message->get('translationStringId'), $message->get('placeholders')->toArray());
+            }
+        } catch (\Exception $e) {
+            Log::critical('Scanner Interface Violation! ' . $scannerCode . ' : ' . $message);
         }
+
         return __($scannerCode . "." . $message->get('translationStringId'));
     }
 }

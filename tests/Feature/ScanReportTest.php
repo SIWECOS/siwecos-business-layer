@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
+use Log;
 
 class ScanReportTest extends TestCase
 {
@@ -234,9 +236,8 @@ class ScanReportTest extends TestCase
     /** @test */
     public function the_scan_report_generation_can_handle_a_missing_errorMessage()
     {
-        $this->withoutExceptionHandling();
         $scan = $this->getStartedScan();
-        $scan->results = json_decode(file_get_contents(base_path('tests/scanResultWithMissingErrorMessage.json')), true);
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultsWithScannerInterfaceViolations.json')), true);
         $scan->save();
 
         $response = $this->get('/api/v2/scan/' . $scan->id, [
@@ -244,5 +245,25 @@ class ScanReportTest extends TestCase
         ]);
 
         $response->assertStatus(200);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Scanner Interface Violation!");
+        });
+    }
+
+    /** @test */
+    public function the_scan_report_can_handle_a_wrong_TranslatableMessage_format()
+    {
+        $scan = $this->getStartedScan();
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultsWithScannerInterfaceViolations.json')), true);
+        $scan->save();
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+
+        $response->assertStatus(200);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Scanner Interface Violation!");
+        });
     }
 }
