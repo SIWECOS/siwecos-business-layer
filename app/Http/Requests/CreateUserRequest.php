@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Rules\IsSupportedLanguage;
+use Illuminate\Validation\Rule;
 
 class CreateUserRequest extends FormRequest
 {
@@ -32,13 +33,22 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'salutation_id' => 'required|integer|min:1|max:2',
-            'email'         => 'email|required|unique:users',
-            'password'      => 'required|min:8',
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            'org_size_id'   => 'integer|min:1|max:7',
+            'email'         => ['required', 'email', 'unique:users'],
+            'password'      => ['required', 'min:8'],
+            'agb_check'     => ['required', 'boolean', Rule::in([true]),],
             'preferred_language' => new IsSupportedLanguage(),
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'agb_check.in' => 'The user must accept the General Terms and Conditions to use this service.'
         ];
     }
 }

@@ -1,0 +1,1732 @@
+{
+	"info": {
+		"_postman_id": "90905b73-0e24-4691-b9f0-cd00965589f4",
+		"name": "BLA",
+		"description": "# SIWECOS Business Layer API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserRequests",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": "Send json.",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mail@siwecos.de\",\n    \"password\": \"abcd1234\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user"
+							]
+						},
+						"description": "Registers an user"
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"description": "Send json.",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"mail@siwecos.de\",\n    \"password\": \"abcd1234\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 12:55:20 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"s2QiVYec4MvX08Z/lsgJkPrq\",\n    \"email\": \"mail@siwecos.de\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user/activate/30QyKrq94R1odZ0l99jlI95E7L9wOZr68U7484510n26EbX87fkyWeVU6a7vzy3XUOlDJ3DrRt3Eval7I07jD09SBdYLJ5UD",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								"activate",
+								"30QyKrq94R1odZ0l99jlI95E7L9wOZr68U7484510n26EbX87fkyWeVU6a7vzy3XUOlDJ3DrRt3Eval7I07jD09SBdYLJ5UD"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/user/activate/qWqtCM3F0GNpMtSSp2Y3T15o6sbA3sG6pk3xJ0ke1y34i9c4F9f1691N1xH1n2f83y5EbhdDdA8LagF0FyH8M1nkX6ZmV1xo",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user",
+										"activate",
+										"qWqtCM3F0GNpMtSSp2Y3T15o6sbA3sG6pk3xJ0ke1y34i9c4F9f1691N1xH1n2f83y5EbhdDdA8LagF0FyH8M1nkX6ZmV1xo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 15:38:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"mail@siwecos.de\",\n    \"org_size\": null,\n    \"active\": true,\n    \"preferred_language\": \"de\",\n    \"created_at\": \"2019-03-17 15:37:56\",\n    \"updated_at\": \"2019-03-17 15:38:07\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Resend Activation Mail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mail@siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user/activate/resend",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								"activate",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mail@siwecos.de\",\n\t\"password\": \"abcd1234\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user/login",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"mail@siwecos.de\",\n\t\"password\": \"abcd1234\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user/login",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 16:57:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "122"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"Y2jHgqtSVcz8eFqiV4eC0s5Y\",\n    \"email\": \"mail@siwecos.de\",\n    \"preferred_language\": \"de\",\n    \"active\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Password Mail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mail@siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user/password/sendResetMail",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								"password",
+								"sendResetMail"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Password Mail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"mail@siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user/password/sendResetMail",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user",
+										"password",
+										"sendResetMail"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 16:33:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"If the user exists in our records, the mail was sent.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"newpassword\": \"ABCD1234\",\n\t\"reset_token\": \"zVgL1Aa5N57L9CEnrpH8xsmKH983Ip3u9ElnjYuED08YR449999Y0j551iFg80m36ybdn3JTJTz22DhNZL87R76pIDw8O95n\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user/password/reset",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"newpassword\": \"ABCD1234\",\n\t\"reset_token\": \"zVgL1Aa5N57L9CEnrpH8xsmKH983Ip3u9ElnjYuED08YR449999Y0j551iFg80m36ybdn3JTJTz22DhNZL87R76pIDw8O95n\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user/password/reset",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user",
+										"password",
+										"reset"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 17:08:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Reset completed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"value": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mail@siwecos.de\",\n\t\"preferred_language\": \"en\",\n\t\"newpassword\": \"ABCD1234\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"mail@siwecos.de\",\n\t\"preferred_language\": \"en\",\n\t\"newpassword\": \"ABCD1234\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 17:22:59 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"value": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/user",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/user",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 17:35:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "TokenRequests",
+			"item": [
+				{
+					"name": "Register Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "Register Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://bla.local/api/v2/token",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 May 2019 14:06:37 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.15"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"5MpBFoyIz66IQQhPvkhbyW6y\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DomainRequests",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"value": "46rzR6TLJxtt7OrwLST+aTrc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/domain",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "46rzR6TLJxtt7OrwLST+aTrc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/domain",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"domain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Mar 2019 06:11:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"domain\": \"siwecos.de\",\n    \"url\": \"https://siwecos.de\",\n    \"verification_token\": \"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8\",\n    \"is_verified\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"type": "text",
+								"value": "46rzR6TLJxtt7OrwLST+aTrc"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/domain/verify",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domain",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Domains",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "List Domains",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "SIWECOS-Token",
+										"value": "46rzR6TLJxtt7OrwLST+aTrc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/domain",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"domain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Mar 2019 06:51:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"domains\": [\n        {\n            \"domain\": \"siwecos.de\",\n            \"url\": \"https://siwecos.de\",\n            \"verification_token\": \"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8\",\n            \"is_verified\": false\n        },\n        {\n            \"domain\": \"lednerb.eu\",\n            \"url\": \"https://lednerb.eu\",\n            \"verification_token\": \"9r0Ei2ZG14PGXoN6T32BHid0GWCKiPP0R3LDZo7U8oE2z5JaBL80k5n1284Pql7I\",\n            \"is_verified\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Domain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Domain",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "46rzR6TLJxtt7OrwLST+aTrc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"url\": \"https://siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/domain",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"domain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Mar 2019 07:36:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Domain deleted.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ScanRequests",
+			"item": [
+				{
+					"name": "Start Freescan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"url\": \"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/freescan",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"freescan"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Start Freescan",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"url\": \"https://siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/freescan",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"freescan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Apr 2019 16:56:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"scan_id\": 6\n}"
+						}
+					]
+				},
+				{
+					"name": "Start Scan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"url\": \"https://siwecos.de\"\n}"
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/scan",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"scan"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Start Freescan",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"url\": \"https://siwecos.de\"\n}"
+								},
+								"url": {
+									"raw": "http://bla.local/api/v2/freescan",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"freescan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Apr 2019 16:56:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"scan_id\": 6\n}"
+						}
+					]
+				},
+				{
+					"name": "Check ScanStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "SIWECOS-Token",
+								"value": "GLFx9YRzl3PFF5GqNtjrdSsH",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://bla.local/api/v2/scan/1",
+							"protocol": "http",
+							"host": [
+								"bla",
+								"local"
+							],
+							"path": [
+								"api",
+								"v2",
+								"scan",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check ScanStatus - Running Scan",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/scan/1",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"scan",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Apr 2019 05:29:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "106"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"running\",\n    \"has_error\": false,\n    \"started_at\": \"2019-04-09 05:28:43\",\n    \"finished_at\": null\n}"
+						},
+						{
+							"name": "Check ScanStatus - Unauthenticated Non-Freescan",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/scan/1",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"scan",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Apr 2019 05:32:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Status",
+									"value": "403 Forbidden"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden\"\n}"
+						},
+						{
+							"name": "Check ScanStatus - Authenticated SIWECOS-Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SIWECOS-Token",
+										"value": "GLFx9YRzl3PFF5GqNtjrdSsH",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/scan/1",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"scan",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Apr 2019 05:34:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "106"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"running\",\n    \"has_error\": false,\n    \"started_at\": \"2019-04-09 05:28:43\",\n    \"finished_at\": null\n}"
+						},
+						{
+							"name": "Check ScanStatus - Created Scan",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://bla.local/api/v2/scan/1",
+									"protocol": "http",
+									"host": [
+										"bla",
+										"local"
+									],
+									"path": [
+										"api",
+										"v2",
+										"scan",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Apr 2019 05:22:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"created\",\n    \"has_error\": false,\n    \"started_at\": null,\n    \"finished_at\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

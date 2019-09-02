@@ -1,5 +1,16 @@
 <?php
 
+use App\Http\Middleware\MapDomainCreatedResponseForLegacyApi;
+use App\Http\Middleware\MapDomainDeletedResponseForLegacyApi;
+use App\Http\Middleware\MapDomainListResponseForLegacyApi;
+use App\Http\Middleware\MapDomainVerifiedResponseForLegacyApi;
+use App\Http\Middleware\MapScanStartedResponseForLegacyApi;
+use App\Http\Middleware\MapScanReportResponseForLegacyApi;
+use App\Http\Middleware\MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi;
+use App\Http\Middleware\MapDomainUrlParameterToDomainForLegacyApi;
+use App\Http\Middleware\MapUserTokenToSiwecosTokenForLegacyApi;
+use App\Http\Middleware\MapScanStatusResponseForLegacyApi;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,50 +22,63 @@
 |
  */
 
+Route::prefix('v2')->group(function () {
+
+    // User
+    Route::post('/user', 'UserController@create');
+    Route::get('/user/activate/{key}', 'UserController@activate')->name('activateurl');
+    Route::post('/user/activate/resend', 'UserController@resendActivationMail');
+    Route::post('/user/login', 'UserController@login');
+    Route::post('/user/password/sendResetMail', 'UserController@sendPasswordResetMail');
+    Route::post('/user/password/reset', 'UserController@resetPassword');
+
+    Route::middleware(['userIsActivatedAndLoggedIn'])->group(function () {
+        Route::get('/user', 'UserController@show');
+        Route::patch('/user', 'UserController@update');
+        Route::delete('/user', 'UserController@delete');
+    });
+
+    // Token
+    Route::post('/token', 'TokenController@registerNewToken')->middleware('throttle:60,1');
+
+    // Domain
+    Route::middleware(['siwecosToken'])->group(function () {
+        Route::get('/domain', 'DomainController@list');
+        Route::post('/domain', 'DomainController@create');
+        Route::delete('/domain', 'DomainController@delete');
+    });
+    Route::post('/domain/verify', 'DomainController@verify');
+    Route::get('/domain/{domain}/report/{language?}', 'DomainController@latestScanReport');
+
+    // Scan
+    Route::middleware(['siwecosToken'])->group(function () {
+        Route::post('/scan', 'ScanController@start');
+    });
+    Route::get('/scan/{scan}/{language?}', 'ScanController@report');
+    Route::get('/scan/{scan}/{language?}/pdf', 'ScanController@pdfReport');
+
+    Route::post('/freescan', 'ScanController@startFreescan');
+
+    // Callback URL for the SIWECOS/siwecos-core-api
+    Route::post('/scan/finished/{scan}', 'ScanController@finished');
+});
+
 Route::prefix('v1')->group(function () {
-    Route::Post('/users/login', 'SiwecosUserController@loginUser');
-    Route::Get('/users/activate/{token}', 'SiwecosUserController@activateUserUrl')->name('activateurl');
-    Route::post('/users/activate/resend', 'SiwecosUserController@resendActivationMail');
-    Route::Post('/users/createCaptcha', 'SiwecosUserController@createCaptcha');
-    Route::Post('/users/password/sendForgotMail', 'SiwecosUserController@sendForgotPasswordMail');
-    Route::Post('/users/password/processReset', 'SiwecosUserController@processForgotPasswordRequest');
 
-    Route::Get('/freescan/result/{id}/{lang?}', 'SiwecosScanController@GetScanResultById');
-    Route::Get('/domainscan', 'SiwecosScanController@GetSimpleOutput');
+    // legacy compatibility with plugins
+    Route::post('/users/login', 'UserController@login');
 
-    Route::post('/report', 'SiwecosScanController@generateReport');
-    Route::post('/pdf', 'SiwecosScanController@generatePdf');
+    Route::post('/getFreeScanStart', 'ScanController@startFreescan')->middleware([MapScanStartedResponseForLegacyApi::class, MapDomainUrlParameterToDomainForLegacyApi::class]);
+    Route::get('/scan/status/free/{scan}', 'ScanController@report')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapScanStatusResponseForLegacyApi::class]);
 
-    Route::post('/scan/finished', 'SiwecosScanController@scanFinished');
+    Route::middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, 'siwecosToken', MapDomainUrlParameterToDomainForLegacyApi::class])->group(function () {
+        Route::post('/domains/verifyDomain', 'DomainController@verify')->middleware(MapDomainVerifiedResponseForLegacyApi::class);
+        Route::post('/domains/addNewDomain', 'DomainController@create')->middleware(MapDomainCreatedResponseForLegacyApi::class);
+        Route::post('/domains/deleteDomain', 'DomainController@delete')->middleware(MapDomainDeletedResponseForLegacyApi::class);
+        Route::post('/domains/listDomains', 'DomainController@list')->middleware(MapDomainListResponseForLegacyApi::class);
 
-    Route::middleware(['mastertoken'])->group(function () {
-        Route::Post('/users/create', 'SiwecosUserController@create');
-        Route::Post('/users/getToken', 'SiwecosUserController@getTokenByEmail');
-        Route::Post('/users/activateUser', 'SiwecosUserController@activateUser');
-        Route::Post('/users/updateTokenCredits', 'SiwecosUserController@updateCredits')->middleware('usertoken');
+        Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
     });
-    Route::middleware(['usertoken'])->group(function () {
-        Route::Post('/users/getUserData', 'SiwecosUserController@getUserInfoByToken');
-        Route::Post('/users/updateUserData', 'SiwecosUserController@updateUserInfo');
-        Route::Post('/users/deleteUserData', 'SiwecosUserController@deleteUserInformation');
-        Route::middleware(['activation'])->group(function () {
-            Route::Post('/users/getTokenCredits', 'SiwecosUserController@getUserCreditInfoByToken');
-            Route::Post('/domains/addNewDomain', 'SiwecosDomainController@createNewDomain');
-            Route::Post('/domains/deleteDomain', 'SiwecosDomainController@deleteDomain');
-            Route::Post('/domains/verifyDomain', 'SiwecosDomainController@verifyDomain');
-            Route::Post('/domains/listDomains', 'SiwecosDomainController@getDomainList');
-
-            Route::Post('/scan/start', 'SiwecosScanController@CreateNewScan');
-            Route::Get('/scan/resultRaw', 'SiwecosScanController@GetScanResultRaw');
-            Route::Get('/scan/result/{lang?}', 'SiwecosScanController@GetScanResult');
-        });
-    });
-
-    Route::get('/getSalutation', function () {
-        return \App\Salutation::all();
-    });
-
-    Route::get('/getOrgSizes', function () {
-        return \App\OrgSize::all();
-    });
+    Route::get('/scan/result/{language?}', 'DomainController@latestScanReport')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi::class, MapScanReportResponseForLegacyApi::class]);
+    Route::get('/freescan/result/{scan}/{language?}', 'ScanController@report')->middleware([MapScanReportResponseForLegacyApi::class]);
 });

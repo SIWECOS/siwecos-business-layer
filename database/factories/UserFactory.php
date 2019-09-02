@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Token;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,12 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name'           => $faker->name,
-        'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'email'        => $faker->email,
+        'password'     => $password ?: $password = bcrypt('secret_password'),
+
+        'is_active'       => false,
+        'token_id'     => function () {
+            return factory(Token::class)->create()->id;
+        },
     ];
 });

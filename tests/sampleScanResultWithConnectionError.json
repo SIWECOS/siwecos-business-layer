@@ -1,0 +1,126 @@
+[
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:05Z",
+        "name": "DOMXSS",
+        "version": "1.6.0",
+        "hasError": true,
+        "errorMessage": {
+            "translationStringId": "NO_HTTP_RESPONSE",
+            "placeholders": null
+        },
+        "score": 0,
+        "tests": []
+    },
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:11Z",
+        "name": "INFOLEAK",
+        "version": "2.0.8",
+        "hasError": true,
+        "errorMessage": {
+            "translationStringId": "CONNECT_ERROR",
+            "placeholders": {
+                "description": "cURL error 6: Could not resolve host: XXXXXXX"
+            }
+        },
+        "score": 0,
+        "tests": []
+    },
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:26:07Z",
+        "name": "HEADER",
+        "version": "1.6.0",
+        "hasError": true,
+        "errorMessage": {
+            "translationStringId": "NO_HTTP_RESPONSE",
+            "placeholders": null
+        },
+        "score": 0,
+        "tests": []
+    },
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:54Z",
+        "name": "PORT",
+        "version": "1.0",
+        "hasError": true,
+        "errorMessage": {
+            "placeholder": "HOST_ALIVE",
+            "values": [
+                {
+                    "host": "XXXXXXXXXXXXXX"
+                }
+            ]
+        },
+        "score": 0,
+        "tests": []
+    },
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:55Z",
+        "name": "HTTPS",
+        "version": "3.0.0",
+        "hasError": true,
+        "errorMessage": {
+            "placeholder": "PORT_NO_RESPONSE",
+            "values": [
+                {
+                    "host": "null:443"
+                }
+            ]
+        },
+        "score": 0,
+        "tests": []
+    },
+    {
+        "startedAt": "2019-06-19T10:25:49Z",
+        "finishedAt": "2019-06-19T10:25:56Z",
+        "name": "CMSVERSION",
+        "version": "1.0.0",
+        "hasError": true,
+        "errorMessage": {
+            "translationStringId": "INTERNAL_ERROR_OCCURED",
+            "placeholders": {
+                "EXCEPTION_MESSAGE": "cURL error 28: Resolving timed out after 5516 milliseconds (see http:\/\/curl.haxx.se\/libcurl\/c\/libcurl-errors.html)"
+            }
+        },
+        "score": 0
+    },
+    {
+        "startedAt": "2019-06-19T10:25:50Z",
+        "finishedAt": "2019-06-19T10:25:50Z",
+        "name": "INI_S",
+        "version": "3.0.0",
+        "hasError": false,
+        "errorMessage": null,
+        "score": 100,
+        "tests": [
+            {
+                "name": "MALWARE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            },
+            {
+                "name": "PHISHING",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            },
+            {
+                "name": "SPAM",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            }
+        ]
+    }
+]

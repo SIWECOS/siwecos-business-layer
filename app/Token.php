@@ -5,97 +5,69 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Keygen\Keygen;
+use App\Events\TokenDeleted;
+use App\Traits\Iso8601Serialization;
 
-/**
- * App\Token.
- *
- * @property int $id
- * @property string $token
- * @property int $credits
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereCredits($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereUpdatedAt($value)
- * @mixin \Eloquent
- *
- * @property int $acl_level
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Token whereAclLevel($value)
- */
 class Token extends Model
 {
-    protected $fillable = ['credits', 'token'];
+    use Iso8601Serialization;
+
+    protected $fillable = ['credits', 'token', 'type'];
 
     protected $table = 'tokens';
 
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
         // Generate token by package gladcodes/keygen
         $this->token = Keygen::token(24)->generate();
+
+        parent::__construct($attributes);
     }
 
     /**
-     * @param int $credits
+     * Returns the Eloquent Relationship for App\User
      *
-     * @return bool
+     * @return Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function setTokenCredits(int $credits)
+    public function user()
     {
-        $this->credits = $credits;
-
-        try {
-            $this->save();
-
-            return true;
-        } catch (QueryException $queryException) {
-            //TODO Log error to Papertrail with Token
-            return false;
-        }
+        return $this->hasOne(User::class);
     }
 
-    public function setAclLevel(int $aclLevel)
+    /**
+     * Returns the Eloquent Relationship for App\Domain
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function domains()
     {
-        $this->acl_level = $aclLevel;
+        return $this->hasMany(Domain::class);
     }
+
+    /**
+     * Returns the Eloquent Relationship for App\Scan
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function scans()
+    {
+        return $this->hasManyThrough(Scan::class, Domain::class);
+    }
+
 
     public function reduceCredits($amount = 1)
     {
         $this->credits -= $amount;
 
-        try {
-            $this->save();
-
-            return true;
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            // TODO: Log error to Papertrail with Token
-            return false;
-        }
+        return $this->save();
     }
 
-    public static function reduceToken(string $token, $amount = 1)
+    public function delete()
     {
-        $token = self::getTokenByString($token);
-        if ($token instanceof self) {
-            $token->credits -= $amount;
+        $this->domains->each(function ($domain) {
+            $domain->delete();
+        });
 
-            try {
-                $token->save();
-
-                return true;
-            } catch (\Illuminate\Database\QueryException $queryException) {
-                //TODO Log error to Papertrail with Token
-                return false;
-            }
-        }
-    }
-
-    public static function getTokenByString(string $token)
-    {
-        return self::where('token', $token)->first();
+        parent::delete();
     }
 }

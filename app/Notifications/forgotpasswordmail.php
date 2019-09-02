@@ -13,17 +13,6 @@ class forgotpasswordmail extends Notification
     public $token;
 
     /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct(string $token)
-    {
-        //
-        $this->token = $token;
-    }
-
-    /**
      * Get the notification's delivery channels.
      *
      * @param mixed $notifiable
@@ -46,26 +35,9 @@ class forgotpasswordmail extends Notification
     {
         return (new MailMessage())
             ->markdown('mail.forgotpassword', [
-            'reseturl'      => config('app.password_reset_uri').$this->token,
-            'email'         => $notifiable->email,
-            'first_name'    => $notifiable->first_name,
-            'last_name'     => $notifiable->last_name,
-            'salutation_id' => $notifiable->salutation_id,
-          ])
-            ->subject('[SIWECOS] Passwort vergessen');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param mixed $notifiable
-     *
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+                'reseturl'      => config('siwecos.password_reset_uri') . $notifiable->passwordreset_token,
+                'email'         => $notifiable->email
+            ])
+            ->subject('[SIWECOS] Passwort zurücksetzen');
     }
 }

@@ -1,63 +1,53 @@
 language: php
 
 php:
-  - "7.1"
+  - "7.2"
 
 services:
-  - mysql
+  - elasticsearch
 
 cache:
   directories:
-    - "$HOME/google-cloud-sdk/"
-
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
+    - "./vendor"
 
 dist: trusty
 
+env:
+  - ELASTICSEARCH_HOST=127.0.0.1
+
 before_script:
-  - composer self-update
-  - composer install --no-interaction
+  - sleep 10
+  - composer selfupdate
+  - composer install
 
 script:
-  - vendor/bin/phpunit
-
-  # Set env vars
-env:
-  global:
-    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
-    - PROJECT_NAME_PRD=glowing-thunder-215513
-    - CLUSTER_NAME_PRD=siwecoscluster
-    - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
-
-
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t "$DOCKER_IMAGE" .
-      - docker images
-      - docker tag "$DOCKER_IMAGE" "$DOCKER_REPO"/"$DOCKER_IMAGE":"$TRAVIS_BRANCH"
-      - docker push "$DOCKER_REPO"/"$DOCKER_IMAGE":"$TRAVIS_BRANCH"
+  - ./vendor/bin/phpunit
+  - curl -L -o /tmp/translation-files.zip https://gitreleases.dev/gh/SIWECOS/translations/latest/translation-files.zip
+  - unzip -o -d resources/lang /tmp/translation-files.zip
+  - docker build -t siwecos-business-layer .
 
 before_deploy:
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 deploy:
   - provider: script
-    script: chmod +x deploy-staging.sh && ./deploy-staging.sh
     skip_cleanup: true
     on:
       branch: develop
+    script: >-
+      docker tag siwecos-business-layer siwecos/siwecos-business-layer:develop &&
+      docker push siwecos/siwecos-business-layer:develop
   - provider: script
-    script: chmod +x deploy-master.sh && ./deploy-master.sh
     skip_cleanup: true
     on:
       branch: master
+    script: >-
+      docker tag siwecos-business-layer siwecos/siwecos-business-layer:latest &&
+      docker push siwecos/siwecos-business-layer:latest
+  - provider: script
+    skip_cleanup: true
+    on:
+      tags: true
+    script: >-
+      docker tag siwecos-business-layer siwecos/siwecos-business-layer:$TRAVIS_TAG &&
+      docker push siwecos/siwecos-business-layer:$TRAVIS_TAG

@@ -10,19 +10,6 @@ class activationmail extends Notification
 {
     use Queueable;
 
-    public $token;
-
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct(string $token)
-    {
-        //
-        $this->token = $token;
-    }
-
     /**
      * Get the notification's delivery channels.
      *
@@ -46,26 +33,9 @@ class activationmail extends Notification
     {
         return (new MailMessage())
             ->markdown('mail.registration', [
-            'activateurl'   => route('activateurl', ['token' => $this->token]),
-            'email'         => $notifiable->email,
-            'first_name'    => $notifiable->first_name,
-            'last_name'     => $notifiable->last_name,
-            'salutation_id' => $notifiable->salutation_id,
-          ])
+                'activateurl'   => route('activateurl', ['token' => $notifiable->activation_key]),
+                'email'         => $notifiable->email
+            ])
             ->subject('[SIWECOS] Willkommen');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param mixed $notifiable
-     *
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 }

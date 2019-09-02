@@ -6,6 +6,8 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Rules\IsSupportedLanguage;
+use Illuminate\Validation\Rule;
+use App\Token;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -31,23 +33,12 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $user = Token::whereToken($this->header('SIWECOS-Token'))->first()->user;
+
         return [
-            'salutation_id' => 'integer',
-            'email'         => 'email',
-            'first_name'    => 'string',
-            'last_name'     => 'string',
-            'address'       => '',
-            'plz'           => '',
-            'city'          => '',
-            'phone'         => '',
-            'org_name'      => '',
-            'org_address'   => '',
-            'org_plz'       => '',
-            'org_city'      => '',
-            'org_industry'  => '',
-            'org_phone'     => '',
-            'org_size_id'   => 'integer',
+            'email' => ['email', Rule::unique('users')->ignore($user->id)],
             'preferred_language' => new IsSupportedLanguage(),
+            'newpassword' => 'string|min:8',
         ];
     }
 }

@@ -2,41 +2,122 @@
 
 namespace Tests;
 
-use App\CoreAPI;
 use App\User;
-use Artisan;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
+use App\Token;
+use App\Domain;
+use App\HTTPClient;
+use App\Scan;
+use App\Jobs\StartScanJob;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Notification;
+use TiMacDonald\Log\LogFake;
+use Illuminate\Support\Facades\Log;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function getTestUser(bool $useTestToken = false)
+    public function setUp(): void
     {
-        // Create activated user
-        $user = new User([
-            'first_name'    => 'Marcel',
-            'last_name'     => 'Wege',
-            'salutation_id' => 1,
-            'email'         => 'mwege@byte5.de',
-            'address'       => 'Hanauer Landstraße 114',
-            'plz'           => '60314',
-            'city'          => 'Frankfurt',
-            'phone'         => '+4915154727353',
-            'org_name'      => 'byte5 digital media GmbH',
-            'org_address'   => 'Hanauer Landstraße 114',
-            'org_plz'       => '60314',
-            'org_industry'  => 'IT',
-            'org_phone'     => '+4915154727353',
-            'org_size_id'   => '1',
-            'acl_id'        => 1,
-            'org_city'      => 'Frankfurt',
-        ]);
-        $user->password = \Hash::make('secret');
-        $user->active = 1;
-        $user->token = $useTestToken ? 'TEST_CASE_DUMMY_TOKEN' : CoreAPI::generateUserToken(50);
-        $user->save();
+        parent::setUp();
+        Notification::fake();
+        Log::swap(new LogFake);
+        \Queue::fake();
+    }
 
-        return $user;
+    /**
+     * Returns an activated User.
+     *
+     * @param array $attributes
+     * @return \App\User
+     */
+    protected function getActivatedUser($attributes = [])
+    {
+        return factory(User::class)->create(array_merge($attributes, ['is_active' => true]));
+    }
+
+    /**
+     * Returns a registered Domain.
+     *
+     * @param array $attributes
+     * @return Domain
+     */
+    protected function getRegisteredDomain($attributes = [])
+    {
+        $token = factory(Token::class)->create(['type' => 'external']);
+        return $token->domains()->create(factory(Domain::class)->make($attributes)->toArray());
+    }
+
+    /**
+     * Returns a generated Scan.
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getGeneratedScan($scanAttributes = [], $domainAttributes = [])
+    {
+        $domain = Domain::first() ?: $this->getRegisteredDomain($domainAttributes);
+        return $domain->scans()->create(factory(Scan::class)->make($scanAttributes)->toArray());
+    }
+
+    /**
+     * Returns a generated and started scan
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getStartedScan($attributes = [])
+    {
+        $scan = $this->getGeneratedScan($attributes);
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(200)
+        ]));
+
+        return $scan;
+    }
+
+    /**
+     * Returns a generated and scan that could not be started
+     *
+     * @param array $attributes
+     * @return Scan
+     */
+    protected function getFailedScan($attributes = [])
+    {
+        $scan = $this->getGeneratedScan($attributes);
+        $job = new StartScanJob($scan);
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(500)
+        ]));
+
+        return $scan;
+    }
+
+    protected function getFinishedScan($attributes = [])
+    {
+        $scan = $this->getStartedScan($attributes);
+        $scan->results = json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)['results'];
+        $scan->save();
+
+        return $scan;
+    }
+
+    /**
+     * Returns a mocked HTTP-Client for testing purposes.
+     *
+     * @param array $mockedResponses
+     * @return HTTPClient HTTP Client
+     */
+    protected function getMockedHttpClient(array $mockedResponses)
+    {
+        $mock = new MockHandler($mockedResponses);
+        $handler = HandlerStack::create($mock);
+        return new HTTPClient(['handler' => $handler, 'http_errors' => false]);
     }
 }

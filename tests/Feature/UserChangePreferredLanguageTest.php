@@ -14,12 +14,11 @@ class UserChangePreferredLanguageTest extends TestCase
     /** @test */
     public function the_users_preferredLanguage_can_be_changed()
     {
-        $this->getTestUser(true);
-        $token = User::first()->token;
+        $user = $this->getActivatedUser();
 
-        $response = $this->post('/api/v1/users/updateUserData', [
+        $response = $this->json('PATCH', '/api/v2/user', [
             'preferred_language' => 'en'
-        ], ['userToken' => $token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('en', User::first()->preferred_language);
@@ -28,12 +27,11 @@ class UserChangePreferredLanguageTest extends TestCase
     /** @test */
     public function the_users_preferredLanguage_should_always_be_2_chars()
     {
-        $this->getTestUser(true);
-        $token = User::first()->token;
+        $user = $this->getActivatedUser();
 
-        $response = $this->post('/api/v1/users/updateUserData', [
+        $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'english'
-        ], ['userToken' => $token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(422, $response->getStatusCode());
         $this->assertEquals('de', User::first()->preferred_language);
@@ -42,12 +40,11 @@ class UserChangePreferredLanguageTest extends TestCase
     /** @test */
     public function only_supported_languages_are_accepted()
     {
-        $this->getTestUser(true);
-        $token = User::first()->token;
+        $user = $this->getActivatedUser();
 
-        $response = $this->post('/api/v1/users/updateUserData', [
+        $response = $this->patch('/api/v2/user', [
             'preferred_language' => 'xx'
-        ], ['userToken' => $token]);
+        ], ['SIWECOS-Token' => $user->token->token]);
 
         $this->assertEquals(422, $response->getStatusCode());
         $this->assertEquals('de', User::first()->preferred_language);

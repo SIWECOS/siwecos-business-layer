@@ -1,0 +1,374 @@
+[
+    {
+        "name": "INI_S",
+        "hasError": false,
+        "score": 100,
+        "errorMessage": null,
+        "tests": [
+            {
+                "name": "PHISHING",
+                "hasError": false,
+                "dangerlevel": 0,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            },
+            {
+                "name": "SPAM",
+                "hasError": false,
+                "dangerlevel": 0,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            },
+            {
+                "name": "MALWARE",
+                "hasError": false,
+                "dangerlevel": 0,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": []
+            }
+        ]
+    },
+    {
+        "name": "DOMXSS",
+        "version": "1.5.0",
+        "hasError": false,
+        "errorMessage": null,
+        "score": 0,
+        "tests": [
+            {
+                "name": "SOURCES",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "NO_CONTENT",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "info",
+                "testDetails": []
+            },
+            {
+                "name": "SINKS",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "NO_CONTENT",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "info",
+                "testDetails": []
+            }
+        ]
+    },
+    {
+        "name": "TLS",
+        "version": "2.4",
+        "hasError": false,
+        "errorMessage": null,
+        "score": 100,
+        "tests": [
+            {
+                "name": "CERTIFICATE_EXPIRED",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CERTIFICATE_NOT_VALID_YET",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CERTIFICATE_NOT_SENT_BY_SERVER",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "hidden",
+                "testDetails": null
+            },
+            {
+                "name": "CERTIFICATE_WEAK_HASH_FUNCTION",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITE_ANON",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITE_EXPORT",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITE_NULL",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITE_RC4",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITE_DES",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "SWEET32_VULNERABLE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "CIPHERSUITEORDER_ENFORCED",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "PROTOCOLVERSION_SSL2",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "PROTOCOLVERSION_SSL3",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "PROTOCOLVERSION_TLS13",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "bonus",
+                "testDetails": null
+            },
+            {
+                "name": "CRIME_VULNERABLE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            },
+            {
+                "name": "POODLE_VULNERABLE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "success",
+                "testDetails": null
+            }
+        ]
+    },
+    {
+        "name": "HEADER",
+        "version": "1.5.0",
+        "hasError": false,
+        "errorMessage": null,
+        "score": 33,
+        "tests": [
+            {
+                "name": "CONTENT_SECURITY_POLICY",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "warning",
+                "testDetails": []
+            },
+            {
+                "name": "CONTENT_TYPE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "warning",
+                "testDetails": [
+                    {
+                        "translationStringId": "CT_CORRECT",
+                        "placeholders": {
+                            "HEADER": "text\/html; charset=UTF-8"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "PUBLIC_KEY_PINS",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "bonus",
+                "testDetails": []
+            },
+            {
+                "name": "REFERRER_POLICY",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "bonus",
+                "testDetails": []
+            },
+            {
+                "name": "SET_COOKIE",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 0,
+                "scoreType": "hidden",
+                "testDetails": []
+            },
+            {
+                "name": "STRICT_TRANSPORT_SECURITY",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "warning",
+                "testDetails": [
+                    {
+                        "translationStringId": "HSTS_MORE_6",
+                        "placeholders": {
+                            "HEADER": "max-age=31536000"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "X_CONTENT_TYPE_OPTIONS",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "warning",
+                "testDetails": []
+            },
+            {
+                "name": "X_FRAME_OPTIONS",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "warning",
+                "testDetails": []
+            },
+            {
+                "name": "X_XSS_PROTECTION",
+                "hasError": true,
+                "errorMessage": {
+                    "translationStringId": "HEADER_NOT_SET",
+                    "placeholders": null
+                },
+                "score": 0,
+                "scoreType": "warning",
+                "testDetails": []
+            }
+        ]
+    },
+    {
+        "name": "INFOLEAK",
+        "version": "1.0.4",
+        "hasError": false,
+        "errorMessage": null,
+        "score": 99,
+        "tests": [
+            {
+                "name": "CMS",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "info",
+                "testDetails": null
+            },
+            {
+                "name": "CMS_PLUGINS",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "warning",
+                "testDetails": null
+            },
+            {
+                "name": "JS_LIB",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "warning",
+                "testDetails": null
+            },
+            {
+                "name": "EMAIL_ADDRESS",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 96,
+                "scoreType": "info",
+                "testDetails": [
+                    {
+                        "translationStringId": "EMAIL_FOUND",
+                        "placeholders": {
+                            "email_adress": "email@address.de"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "PHONE_NUMBER",
+                "hasError": false,
+                "errorMessage": null,
+                "score": 100,
+                "scoreType": "info",
+                "testDetails": null
+            }
+        ]
+    }
+]
