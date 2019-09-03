@@ -96,6 +96,21 @@ class StartScanJobTest extends TestCase
     }
 
     /** @test */
+    public function the_token_credits_will_not_be_reduced_by_reccurent_scans()
+    {
+        $scan = $this->getGeneratedScan(['is_recurrent' => true]);
+        $job = new StartScanJob($scan);
+
+        $tokensBeforeScan = Token::first()->credits;
+
+        $job->handle($this->getMockedHttpClient([
+            new Response(200)
+        ]));
+
+        $this->assertEquals($tokensBeforeScan, Scan::first()->token->credits);
+    }
+
+    /** @test */
     public function in_case_of_failure_the_token_credits_get_not_reduced()
     {
         $scan = $this->getGeneratedScan();

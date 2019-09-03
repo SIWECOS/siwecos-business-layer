@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('siwecos:delete-empty-tokens')->hourly();
 
         $schedule->command('siwecos:trigger-daily-scans')->dailyAt('01:00');
+
+        $schedule->command('siwecos:restock-credits')->dailyAt('02:00');
     }
 
     /**
