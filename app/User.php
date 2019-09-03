@@ -71,8 +71,8 @@ class User extends Authenticatable
 
     public function delete()
     {
-        $this->token->delete();
-
         parent::delete();
+
+        $this->token->delete();
     }
 }
