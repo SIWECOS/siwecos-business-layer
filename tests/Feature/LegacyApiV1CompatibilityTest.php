@@ -310,8 +310,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'success',
                         ]
                     ],
-                    'created_at' => '2019-03-27T16:18:13Z',
-                    'updated_at' => '2019-03-27T16:18:13Z',
+                    'created_at' => '2019-03-27 16:18:13.000000',
+                    'updated_at' => '2019-03-27 16:18:13.000000',
                     'total_score' => 100,
                     'has_error' => false,
                     'score' => 100,
@@ -354,8 +354,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'info'
                         ]
                     ],
-                    'created_at' => '2019-03-27T16:18:13Z',
-                    'updated_at' => '2019-03-27T16:18:14Z',
+                    'created_at' => '2019-03-27 16:18:13.000000',
+                    'updated_at' => '2019-03-27 16:18:14.000000',
                     'total_score' => 50,
                     'has_error' => false,
                     'score' => 50,
