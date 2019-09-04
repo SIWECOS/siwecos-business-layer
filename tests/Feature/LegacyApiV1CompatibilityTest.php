@@ -245,6 +245,24 @@ class LegacyApiV1CompatibilityTest extends TestCase
     }
 
     /** @test */
+    public function the_scan_report_can_be_retrieved_with_the_content_type_header_set_to_json_for_free_and_nonFree_scans()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
+            'userToken' => $scan->token->token,
+            'Content-Type' => 'application/json;charset=UTF-8'
+        ]);
+        $response->assertStatus(200);
+
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
+            'userToken' => $scan->token->token,
+            'Content-Type' => 'application/json;charset=UTF-8'
+        ]);
+        $response->assertStatus(200);
+    }
+
+    /** @test */
     public function only_for_existing_scans_a_report_can_be_requested()
     {
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
