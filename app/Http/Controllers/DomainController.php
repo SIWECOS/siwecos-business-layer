@@ -86,7 +86,7 @@ class DomainController extends Controller
     {
         // For Legacy API Compatibility
         if ($domain->domain == null) {
-            $domain = Domain::whereDomain($request->get('domain'))->first();
+            $domain = Domain::whereDomain($request->input('domain'))->first();
             if ($domain === null) {
                 return response()->json(new StatusResponse('Domain Not Found'), 404);
             }

@@ -245,6 +245,24 @@ class LegacyApiV1CompatibilityTest extends TestCase
     }
 
     /** @test */
+    public function the_scan_report_can_be_retrieved_with_the_content_type_header_set_to_json_for_free_and_nonFree_scans()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
+            'userToken' => $scan->token->token,
+            'Content-Type' => 'application/json;charset=UTF-8'
+        ]);
+        $response->assertStatus(200);
+
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
+            'userToken' => $scan->token->token,
+            'Content-Type' => 'application/json;charset=UTF-8'
+        ]);
+        $response->assertStatus(200);
+    }
+
+    /** @test */
     public function only_for_existing_scans_a_report_can_be_requested()
     {
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
@@ -310,8 +328,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'success',
                         ]
                     ],
-                    'created_at' => '2019-03-27T16:18:13Z',
-                    'updated_at' => '2019-03-27T16:18:13Z',
+                    'created_at' => '2019-03-27 16:18:13.000000',
+                    'updated_at' => '2019-03-27 16:18:13.000000',
                     'total_score' => 100,
                     'has_error' => false,
                     'score' => 100,
@@ -354,8 +372,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
                             'scoreTypeRaw' => 'info'
                         ]
                     ],
-                    'created_at' => '2019-03-27T16:18:13Z',
-                    'updated_at' => '2019-03-27T16:18:14Z',
+                    'created_at' => '2019-03-27 16:18:13.000000',
+                    'updated_at' => '2019-03-27 16:18:14.000000',
                     'total_score' => 50,
                     'has_error' => false,
                     'score' => 50,

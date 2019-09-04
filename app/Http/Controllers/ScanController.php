@@ -74,7 +74,7 @@ class ScanController extends Controller
          * Note: An injected $scan does not have a domain
          */
         if (!$scan->domain) {
-            $scan = request()->get('scan');
+            $scan = request()->input('scan');
         }
 
         if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
