@@ -69,9 +69,9 @@ abstract class TestCase extends BaseTestCase
      * @param array $attributes
      * @return Scan
      */
-    protected function getStartedScan($attributes = [])
+    protected function getStartedScan($attributes = [], $domainAttributes = [])
     {
-        $scan = $this->getGeneratedScan($attributes);
+        $scan = $this->getGeneratedScan($attributes, $domainAttributes);
         $job = new StartScanJob($scan);
 
         $job->handle($this->getMockedHttpClient([
@@ -87,7 +87,7 @@ abstract class TestCase extends BaseTestCase
      * @param array $attributes
      * @return Scan
      */
-    protected function getFailedScan($attributes = [])
+    protected function getFailedScan($attributes = [], $domainAttributes = [])
     {
         $scan = $this->getGeneratedScan($attributes);
         $job = new StartScanJob($scan);
@@ -99,9 +99,9 @@ abstract class TestCase extends BaseTestCase
         return $scan;
     }
 
-    protected function getFinishedScan($attributes = [])
+    protected function getFinishedScan($attributes = [], $domainAttributes = [])
     {
-        $scan = $this->getStartedScan($attributes);
+        $scan = $this->getStartedScan($attributes, $domainAttributes);
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)['results'];
         $scan->save();
 
