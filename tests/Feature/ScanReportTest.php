@@ -266,4 +266,21 @@ class ScanReportTest extends TestCase
             return Str::contains($message, "Scanner Interface Violation!");
         });
     }
+
+    /** @test */
+    public function if_a_scanner_has_a_global_error_the_errorMessage_will_be_translated()
+    {
+        $scan = $this->getStartedScan();
+        $scan->results = json_decode('[{"startedAt":"2019-09-05T09:50:46Z","finishedAt":"2019-09-05T09:50:52Z","name":"TLS","version":"3.1.0","hasError":true,"errorMessage":{"translationStringId":"REPORT_CONSTRUCTION","placeholders":{"errorMessage":null}},"score":0,"tests":[]}]', true);
+        $scan->save();
+
+        $response = $this->get('/api/v2/scan/' . $scan->id, [
+            'SIWECOS-Token' => $scan->token->token
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'error_message' => 'TLS.REPORT_CONSTRUCTION'
+        ]);
+    }
 }

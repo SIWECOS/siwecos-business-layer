@@ -49,6 +49,7 @@ Route::prefix('v2')->group(function () {
     });
     Route::post('/domain/verify', 'DomainController@verify');
     Route::get('/domain/{domain}/report/{language?}', 'DomainController@latestScanReport');
+    Route::get('/domain/{domain}/sealproof', 'DomainController@sealproof');
 
     // Scan
     Route::middleware(['siwecosToken'])->group(function () {
