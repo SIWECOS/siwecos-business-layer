@@ -104,4 +104,23 @@ class DomainController extends Controller
 
         return response()->json(new StatusResponse('Scan Not Found'), 404);
     }
+
+    public function sealproof(Domain $domain)
+    {
+        if ($domain->is_verified) {
+            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first();
+
+            if ($scan) {
+                return response()->json([
+                    'domain' => $domain->domain,
+                    'finished_at' => $scan->finished_at->toIso8601ZuluString(),
+                    'score' => $scan->score
+                ]);
+            }
+
+            return response()->json(new StatusResponse('No valid recurrent scan found.'), 404);
+        }
+
+        return response()->json(new StatusResponse('Domain is not verified by SIWECOS.'), 409);
+    }
 }

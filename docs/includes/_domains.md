@@ -296,3 +296,53 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
 | ---- | ------------------ |
 | 200  | Latest Scan Report |
 | 404  | No scan found      |
+
+## Retrieving the sealproof data
+
+> The **Request** must have the following structure:
+
+```shell
+curl -X GET \
+  "http://bla.local/api/v2/domain/example.org/sealproof"
+```
+
+```http
+GET /api/v2/domain/example.org/sealproof HTTP/1.1
+Host: bla.local
+
+```
+
+The data for the SIWECOS sealproof can be requested.
+
+> The **Response** has the following structure:
+
+```json
+{
+  "domain": "example.org",
+  "score": 82,
+  "finished_at": "2019-04-09T05:58:55Z"
+}
+```
+
+### HTTP Request
+
+`GET /api/v2/domain/{domain}/sealproof`
+
+<aside class="notice">
+In order to retrieve the data, a Domain must be verified and at least one non-free Scan must be finished.
+</aside>
+
+### Query Parameters
+
+| Parameter | Type     | Description                            |
+| --------- | -------- | -------------------------------------- |
+| domain    | `string` | The domain for the requested sealproof |
+
+
+### Response Status Codes
+
+| Code | Meaning             |
+| ---- | ------------------- |
+| 200  | OK                  |
+| 404  | Scan not found      |
+| 409  | Domain not verified |
