@@ -226,6 +226,7 @@ The scan report can be requested.
   "has_error": false,
   "started_at": "2019-04-09T05:28:43Z",
   "finished_at": "2019-04-09T05:58:55Z",
+  "score": 87,
   "report": [
     // Core-API Report for different Scanners
     // For documentation purposes only the siwecos/HSHS-DOMXSS-Scanner results are listed here

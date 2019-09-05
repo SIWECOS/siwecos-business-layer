@@ -283,4 +283,18 @@ class ScanReportTest extends TestCase
             'error_message' => 'TLS.REPORT_CONSTRUCTION'
         ]);
     }
+
+    /** @test */
+    public function the_total_scan_score_should_be_included_in_the_report()
+    {
+        $scan = $this->getFinishedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v2/scan/' . $scan->id);
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'score' => 87
+        ]);
+    }
 }
