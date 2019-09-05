@@ -35,7 +35,15 @@ class ScanReport
             $scannerReport->put('scanner_code', $scannerCode);
             $scannerReport->put('score', $scanner->get('score'));
             $scannerReport->put('has_error', $scanner->get('hasError'));
-            $scannerReport->put('error_message', $scanner->get('errorMessage'));
+
+            $errorMessage = collect($scanner->get('errorMessage'))->recursive();
+
+            if ($errorMessage->get('translationStringId')) {
+                $scannerReport->put('error_message', __($scannerCode . '.' . $errorMessage->get('translationStringId')));
+            } else {
+                $scannerReport->put('error_message', null);
+            }
+
             $scannerReport->put('started_at', $scanner->get('startedAt'));
             $scannerReport->put('finished_at', $scanner->get('finishedAt'));
 
