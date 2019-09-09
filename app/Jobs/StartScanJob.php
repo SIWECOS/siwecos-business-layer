@@ -43,7 +43,7 @@ class StartScanJob implements ShouldQueue
         try {
             $specificScanners = null;
             if ($this->scan->is_freescan) {
-                $specificScanners = ['DOMXSS', 'HEADER', 'INFO', 'INI_S', 'TLS'];
+                $specificScanners = ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'TLS'];
             }
 
             $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
