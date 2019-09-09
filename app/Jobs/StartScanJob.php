@@ -41,12 +41,18 @@ class StartScanJob implements ShouldQueue
     public function handle(HTTPClient $client)
     {
         try {
+            $specificScanners = null;
+            if ($this->scan->is_freescan) {
+                $specificScanners = ['DOMXSS', 'HEADER', 'INFO', 'INI_S', 'TLS'];
+            }
+
             $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
                 'url' => $this->scan->domain->url,
                 'dangerLevel' => $this->scan->danger_level,
                 'callbackurls' => [
                     config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
-                ]
+                ],
+                'scanners' => $specificScanners
             ]]);
 
             if ($response->getStatusCode() === 200) {
