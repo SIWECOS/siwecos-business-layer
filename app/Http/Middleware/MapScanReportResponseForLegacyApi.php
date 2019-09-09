@@ -78,6 +78,7 @@ class MapScanReportResponseForLegacyApi
                     'updated_at' => Carbon::create($scanner->finished_at)->toDateTimeString() . '.000000',
                     'total_score' => $scanner->score,
                     'has_error' => $scanner->has_error,
+                    'error_message' => $scanner->error_message,
                     'score' => $scanner->score,
                     'scanner_code' => $scanner->scanner_code
                 ]);

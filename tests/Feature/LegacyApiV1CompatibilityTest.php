@@ -270,6 +270,21 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $response->assertStatus(404);
     }
 
+    /** @test */
+    public function the_translated_errorMessage_will_be_included_if_a_scanner_has_a_global_error()
+    {
+        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan->results = json_decode('[{"startedAt":"2019-09-05T09:50:46Z","finishedAt":"2019-09-05T09:50:52Z","name":"TLS","version":"3.1.0","hasError":true,"errorMessage":{"translationStringId":"REPORT_CONSTRUCTION","placeholders":{"errorMessage":null}},"score":0,"tests":[]}]', true);
+        $scan->save();
+
+        $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'error_message' => 'TLS.REPORT_CONSTRUCTION'
+        ]);
+    }
 
     protected function getExampleLegacyScanReportJsonArray(string $token = 'NOTAVAILABLE')
     {
