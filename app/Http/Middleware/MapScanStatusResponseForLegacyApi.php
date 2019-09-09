@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Responses\StatusResponse;
 use Closure;
 
 class MapScanStatusResponseForLegacyApi
@@ -23,6 +24,10 @@ class MapScanStatusResponseForLegacyApi
         if ($response->getStatusCode() === 200) {
 
             $json = json_decode($response->content());
+
+            if ($json->status === 'failed') {
+                return response()->json(new StatusResponse('Scan failed'), 409);
+            }
 
             $status = 2;
             if ($json->status === 'finished')

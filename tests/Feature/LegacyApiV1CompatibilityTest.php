@@ -286,6 +286,17 @@ class LegacyApiV1CompatibilityTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function if_a_scan_failed_the_status_will_be_returned_correctly_by_the_status_endpoint()
+    {
+        $scan = $this->getFailedScan(['is_freescan' => true]);
+
+        $response = $this->get('/api/v1/scan/status/free/' . $scan->id);
+
+        $response->assertStatus(409);
+        $response->assertJsonFragment(['message' => 'Scan failed']);
+    }
+
     protected function getExampleLegacyScanReportJsonArray(string $token = 'NOTAVAILABLE')
     {
         return [
