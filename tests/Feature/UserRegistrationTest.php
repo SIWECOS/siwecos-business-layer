@@ -114,6 +114,7 @@ class UserRegistrationTest extends TestCase
 
         $response->assertRedirect(config('siwecos.activation_redirect_uri'));
         $this->assertTrue(User::first()->is_active);
+        $this->assertNotNull(User::first()->token);
     }
 
     /** @test */

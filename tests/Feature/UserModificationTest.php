@@ -77,6 +77,8 @@ class UserModificationTest extends TestCase
 
         $response->assertRedirect(config('siwecos.activation_redirect_uri'));
         $this->assertTrue(User::find(2)->is_active);
+        $this->assertNotNull(User::find(2)->token);
+        $this->assertNull(User::find(1)->token);
         $this->assertEquals(Token::find(1), User::find(2)->token);
         $this->assertEquals(Token::find(1)->user, User::find(2));
     }

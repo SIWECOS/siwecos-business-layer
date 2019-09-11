@@ -58,12 +58,11 @@ class UserController extends Controller
             if (!$user->is_active) {
                 // Check if user changed his account, so an oldUser owns the token
                 // if so, remove the association between the oldUser and the token
-                if ($user->token->user !== $user) {
-                    $oldUser = $user->token->user;
+                $oldUser = $user->token->user;
+                if ($oldUser && $oldUser->id !== $user->id) {
                     $oldUser->token()->dissociate();
                     $oldUser->save();
                 }
-
 
                 $user->is_active = true;
                 $user->save();
