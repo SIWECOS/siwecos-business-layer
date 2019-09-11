@@ -313,11 +313,10 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'hasFailed' => false,
             'hasCrit' => false,
             'message' => 'current state of requested token',
-            'token' => $token,
+            'token' => 'NOTAVAILABLE',
             'weightedMedia' => 87,
             'scanners' => [
                 [
-                    'scan_id' => 1,
                     'scanner_type' => 'Initiative-S Scanner',
                     'result' => [
                         [
@@ -362,7 +361,6 @@ class LegacyApiV1CompatibilityTest extends TestCase
                     'scanner_code' => 'INI_S'
                 ],
                 [
-                    'scan_id' => 1,
                     'scanner_type' => 'DOMXSS Scanner',
                     'result' => [
                         [

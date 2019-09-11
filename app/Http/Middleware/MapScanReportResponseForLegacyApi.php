@@ -3,9 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Scan;
-use App\Domain;
-use App\Http\Responses\StatusResponse;
 use Illuminate\Support\Carbon;
 
 class MapScanReportResponseForLegacyApi
@@ -25,19 +22,6 @@ class MapScanReportResponseForLegacyApi
         $response = $next($request);
 
         if ($response->getStatusCode() === 200) {
-            // $scan parameter was sent by freescan route (/api/v1/freescan/result/{scan}/{language?})
-            $scan = $request->route()->parameter('scan');
-
-            // $scan parameter was not sent
-            // get parameter via $domain was used by scan route (/api/v1/scan/result/{language?}?domain=http://example.com)
-            if (!($scan instanceof Scan)) {
-                $url = urldecode(substr($request->getQueryString(), 7));
-                $url = parse_url($url, PHP_URL_HOST);
-                $domain = Domain::whereDomain($url)->first();
-
-                $scan = $domain->scans()->latest()->first();
-            }
-
             $json = json_decode($response->content());
 
             $scanners = collect();
@@ -71,7 +55,6 @@ class MapScanReportResponseForLegacyApi
                 }
 
                 $scanners->push([
-                    'scan_id' => $scan->id,
                     'scanner_type' => $scanner->scanner_name,
                     'result' => $tests,
                     'created_at' => Carbon::create($scanner->started_at)->toDateTimeString() . '.000000',
@@ -91,16 +74,16 @@ class MapScanReportResponseForLegacyApi
                     'timezone' => 'UTC'
                 ],
                 'scanFinished' => [
-                    'date' => $scan->finished_at->toDateTimeString() . '.000000',
+                    'date' => Carbon::create($json->finished_at)->toDateTimeString() . '.000000',
                     'timezone_type' => 3,
                     'timezone' => 'UTC'
                 ],
                 'scanners' => $scanners,
-                'hasFailed' => $scan->has_error,
-                'hasCrit' => $scan->has_error,
+                'hasFailed' => $json->has_error,
+                'hasCrit' => $json->has_error,
                 'message' => 'current state of requested token',
-                'token' => $scan->is_freescan ? 'NOTAVAILABLE' : $scan->token->token,
-                'weightedMedia' => $scan->score,
+                'token' => 'NOTAVAILABLE',
+                'weightedMedia' => $json->score,
             ]));
         }
 
