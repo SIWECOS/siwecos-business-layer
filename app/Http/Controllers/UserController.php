@@ -68,7 +68,7 @@ class UserController extends Controller
                 $user->is_active = true;
                 $user->save();
 
-                return $user;
+                return redirect(config('siwecos.activation_redirect_uri'));
             }
 
             return response()->json(new StatusResponse('User already activated'), 410);
