@@ -92,10 +92,10 @@ class DomainController extends Controller
             }
         }
 
-        $scan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+        $scan = $domain->scans()->whereHasError(false)->whereIsFreescan(true)->latest()->first();
 
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
-            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first() ?: $scan;
+            $scan = $domain->scans()->whereHasError(false)->whereIsFreescan(false)->latest()->first() ?: $scan;
         }
 
         if ($scan) {
@@ -108,7 +108,7 @@ class DomainController extends Controller
     public function sealproof(Domain $domain)
     {
         if ($domain->is_verified) {
-            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first();
+            $scan = $domain->scans()->whereHasError(false)->whereIsFreescan(false)->latest()->first();
 
             if ($scan) {
                 return response()->json([
