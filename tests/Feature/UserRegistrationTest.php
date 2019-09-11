@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\activationmail;
-use App\Token;
 
 class UserRegistrationTest extends TestCase
 {
@@ -104,7 +103,7 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function the_user_can_be_activated_by_clicking_on_the_activation_link()
+    public function the_user_can_be_activated_by_clicking_on_the_activation_link_and_gets_redirected()
     {
         $this->registerUserRequest();
         $user = User::first();
@@ -113,17 +112,8 @@ class UserRegistrationTest extends TestCase
 
         $response = $this->get('/api/v2/user/activate/' . $user->activation_key);
 
-        $response->assertStatus(200);
+        $response->assertRedirect(config('siwecos.activation_redirect_uri'));
         $this->assertTrue(User::first()->is_active);
-    }
-
-    /** @test */
-    public function the_user_object_gets_returned_after_activating_the_user()
-    {
-        $response = $this->registerAndActivateUserRequest();
-
-        $response->assertStatus(200);
-        $response->assertJson(User::first()->toArray());
     }
 
     /** @test */
