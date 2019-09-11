@@ -107,12 +107,12 @@ return [
     |
     */
     'scanner_weight' => [
-        'CMSVERSION' => env('SCANNER_SCORE_WEIGHT_CMSVERSION', 1.0),
         'DOMXSS' => env('SCANNER_SCORE_WEIGHT_DOMXSS', 1.0),
         'HSHS' => env('SCANNER_SCORE_WEIGHT_HSHS', 1.0),
         'INFOLEAK' => env('SCANNER_SCORE_WEIGHT_INFOLEAK', 1.0),
         'INI_S' => env('SCANNER_SCORE_WEIGHT_INI_S', 1.0),
         'PORT' => env('SCANNER_SCORE_WEIGHT_PORT', 1.0),
         'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
+        'VERSION' => env('SCANNER_SCORE_WEIGHT_VERSION', 1.0),
     ],
 ];
