@@ -75,7 +75,7 @@ class UserModificationTest extends TestCase
 
         $response = $this->get('/api/v2/user/activate/' . $changedMailUser->activation_key);
 
-        $response->assertStatus(200);
+        $response->assertRedirect(config('siwecos.activation_redirect_uri'));
         $this->assertTrue(User::find(2)->is_active);
         $this->assertEquals(Token::find(1), User::find(2)->token);
         $this->assertEquals(Token::find(1)->user, User::find(2));
