@@ -49,8 +49,10 @@ class CheckScanTimeoutCommand extends Command
             $scan->update(['has_error' => true]);
         }
 
-        \Notification::route('mail', config('siwecos.technicalSupportMail'))
-            ->notify(new ScansTimedOutNotification($scans));
+        if (count($scans)) {
+            \Notification::route('mail', config('siwecos.technicalSupportMail'))
+                ->notify(new ScansTimedOutNotification($scans));
+        }
 
         $this->info(count($scans) . ' Scans timed out.');
     }

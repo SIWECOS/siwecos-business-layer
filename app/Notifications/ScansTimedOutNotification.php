@@ -47,7 +47,7 @@ class ScansTimedOutNotification extends Notification
             ->markdown('mail.scansTimedOut', [
                 'scans' => $this->scans,
             ])
-            ->subject('Missing Translation in ' . config('app.env'));
+            ->subject('Scans timed out in ' . config('app.env'));
     }
 
     /**
