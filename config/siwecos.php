@@ -115,4 +115,15 @@ return [
         'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
         'VERSION' => env('SCANNER_SCORE_WEIGHT_VERSION', 1.0),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Scan timeout threshold
+    |--------------------------------------------------------------------------
+    |
+    | Maximum amount of minutes after a running scan will be marked as failed.
+    |
+    */
+    'scan_timeout_threshold' => env('SCAN_TIMEOUT_THRESHOLD', 420),
+
 ];
