@@ -41,7 +41,7 @@ class StartScanJob implements ShouldQueue
     public function handle(HTTPClient $client)
     {
         try {
-            $specificScanners = null;
+            $specificScanners = ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION'];
             if ($this->scan->is_freescan) {
                 $specificScanners = ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'TLS'];
             }
