@@ -62,6 +62,7 @@ class UserController extends Controller
                 if ($oldUser && $oldUser->id !== $user->id) {
                     $oldUser->token()->dissociate();
                     $oldUser->save();
+                    $oldUser->delete();
                 }
 
                 $user->is_active = true;
