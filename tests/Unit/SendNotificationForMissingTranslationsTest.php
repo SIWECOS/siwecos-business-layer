@@ -31,4 +31,12 @@ class SendNotificationForMissingTranslationsTest extends TestCase
 
         Notification::assertSentToTimes(new AnonymousNotifiable, MissingTranslationFoundNotification::class, 1);
     }
+
+    /** @test */
+    public function missing_validation_strings_will_not_be_sent_via_mail()
+    {
+        __('validation.required');
+
+        Notification::assertNothingSent();
+    }
 }

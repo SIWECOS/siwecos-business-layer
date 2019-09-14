@@ -73,6 +73,8 @@ class User extends Authenticatable
     {
         parent::delete();
 
-        $this->token->delete();
+        if ($this->token) {
+            $this->token->delete();
+        }
     }
 }

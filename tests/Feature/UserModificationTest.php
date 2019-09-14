@@ -67,38 +67,40 @@ class UserModificationTest extends TestCase
     public function a_user_can_change_his_email_address_and_has_to_activate_the_new_account_while_the_old_stays_usable()
     {
         $user = $this->getActivatedUser();
-        $changedMailUser = factory(User::class)->make();
-        $changedMailUser->token()->associate($user->token);
-        $changedMailUser->save();
 
+        $response = $this->json('PATCH', '/api/v2/user', [
+            'email' => 'another@email.address'
+        ], ['SIWECOS-Token' => $user->token->token]);
+
+        $response->assertStatus(200);
+        $this->assertNotEquals('another@email.address', User::find(1)->email);
         $this->assertCount(2, User::all());
-
-        $response = $this->get('/api/v2/user/activate/' . $changedMailUser->activation_key);
-
-        $response->assertRedirect(config('siwecos.activation_redirect_uri'));
-        $this->assertTrue(User::find(2)->is_active);
-        $this->assertNotNull(User::find(2)->token);
-        $this->assertNull(User::find(1)->token);
-        $this->assertEquals(Token::find(1), User::find(2)->token);
-        $this->assertEquals(Token::find(1)->user, User::find(2));
+        Notification::assertSentTo(User::find(2), ChangedMailNotification::class);
+        $this->assertEquals(User::find(1)->token, Token::first());
+        $this->assertEquals(User::find(2)->token, Token::first());
+        $this->assertTrue(User::find(1)->is_active);
+        $this->assertFalse(User::find(2)->is_active);
     }
 
     /** @test */
     public function when_a_user_activates_his_second_account_with_the_new_mail_address_the_old_account_will_be_deleted()
     {
         $user = $this->getActivatedUser();
+
+        // change mail address
         $response = $this->json('PATCH', '/api/v2/user', [
             'email' => 'another@email.address'
         ], ['SIWECOS-Token' => $user->token->token]);
-
         $response->assertStatus(200);
-        $this->assertNotEquals('another@email.address', User::first()->email);
-        $this->assertTrue($user->is_active);
 
-        $newUser = User::whereEmail('another@email.address')->first();
-        $this->assertNotEmpty($newUser);
-        Notification::assertSentTo($newUser, ChangedMailNotification::class);
-        $this->assertFalse($newUser->is_active);
+        // activate new User
+        $response = $this->get('/api/v2/user/activate/' . User::find(2)->activation_key);
+        $response->assertRedirect(config('siwecos.activation_redirect_uri'));
+
+        // assert user1 is deleted
+        $this->assertCount(1, User::all());
+        $this->assertNull(User::find(1));
+        $this->assertCount(1, Token::all());
     }
 
     /** @test */

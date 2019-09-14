@@ -27,6 +27,10 @@ class TokenRegistrationTest extends TestCase
     /** @test */
     public function the_agbCheck_flag_must_be_true_in_order_to_register_a_new_token()
     {
+        // Set locale to a non-existing one so the test can check for validation.key
+        // instead of translated text
+        config(['app.locale' => 'XX']);
+
         $response = $this->json('POST', '/api/v2/token', []);
         $response->assertStatus(422);
         $response->assertJson([

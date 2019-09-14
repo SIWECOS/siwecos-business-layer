@@ -55,7 +55,7 @@ class Scan extends Model
 
     public function getStatusAttribute()
     {
-        if ($this->is_finished && $this->started_at === null)
+        if (($this->is_finished && $this->started_at === null) || (!$this->is_finished && $this->has_error))
             return 'failed';
         if ($this->is_finished && $this->results !== null)
             return 'finished';
