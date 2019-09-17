@@ -15,7 +15,7 @@ class PdfReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en/pdf');
+        $response = $this->post('/api/v2/scan/' . $scan->id . '/en/pdf');
 
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/pdf');
@@ -26,7 +26,7 @@ class PdfReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => false]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en/pdf', ['SIWECOS-Token' => $scan->token->token]);
+        $response = $this->post('/api/v2/scan/' . $scan->id . '/en/pdf', [], ['SIWECOS-Token' => $scan->token->token]);
 
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/pdf');
@@ -37,7 +37,7 @@ class PdfReportTest extends TestCase
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en/pdf');
+        $response = $this->post('/api/v2/scan/' . $scan->id . '/en/pdf');
 
         $response->assertStatus(409);
     }
