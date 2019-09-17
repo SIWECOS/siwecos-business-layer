@@ -57,10 +57,6 @@ class Handler extends ExceptionHandler
             return response()->json(['message' => 'Not found'], 404);
         }
 
-        if ($exception instanceof RuntimeException) {
-            return response()->json(['message' => 'Runtime error occured'], 500);
-        }
-
         return parent::render($request, $exception);
     }
 }

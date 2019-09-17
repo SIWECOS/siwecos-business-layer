@@ -23,6 +23,9 @@ class UserModificationTest extends TestCase
         ]);
 
         $response->assertStatus(403);
+        $response->assertJson([
+            'message' => 'Token not allowed'
+        ]);
     }
 
     /** @test */
@@ -61,6 +64,22 @@ class UserModificationTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertTrue(\Hash::check('abcd1234', User::first()->password));
+    }
+
+    /** @test */
+    public function a_proper_error_message_will_be_returned_if_the_request_type_is_incorrect()
+    {
+        $user = $this->getActivatedUser();
+
+        // PUT Request instead of PATCH
+        $response = $this->json('PUT', '/api/v2/user', [
+            'newpassword' => 'abcd1234'
+        ], ['SIWECOS-Token' => $user->token->token]);
+
+        $response->assertStatus(405);
+        $response->assertJson([
+            'message' => 'The PUT method is not supported for this route. Supported methods: GET, HEAD, POST, PATCH, DELETE.'
+        ]);
     }
 
     /** @test */
