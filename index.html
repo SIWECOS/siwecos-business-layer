@@ -1540,6 +1540,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <p>The <strong>Response</strong> has the following structure:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:28:43Z"</span><span class="p">,</span><span class="w">
@@ -1638,6 +1639,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <p>The <strong>Response</strong> has the following structure:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:28:43Z"</span><span class="p">,</span><span class="w">
@@ -1761,13 +1763,18 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+      "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+  }'</span> <span class="se">\</span>
   <span class="s2">"http://bla.local/api/v2/scan/3913/en/pdf"</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/scan/3913/en/pdf</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
-<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-</code></pre>
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"SIWECOS-Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>The scan report can be requested as a PDF file.</p>
 
 <blockquote>
@@ -1777,7 +1784,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <p><code>POST /api/v2/scan/{scan_id}/{language_code}/pdf</code></p>
 
 <aside class="notice">
-Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
@@ -1796,6 +1803,11 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>language_code</td>
 <td><code>string</code></td>
 <td>One of the supported language codes for translated results: <code>de</code> or <code>en</code></td>
+</tr>
+<tr>
+<td><em>SIWECOS-Token</em></td>
+<td><em><code>string</code></em></td>
+<td><em>SIWECOS-Token for non-freescans</em></td>
 </tr>
 </tbody></table>
 <h3 id='response-status-codes-5'>Response Status Codes</h3>
