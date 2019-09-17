@@ -156,6 +156,7 @@ The scan status can be requested.
 
 ```json
 {
+  "id": 1,
   "status": "running",
   "has_error": false,
   "started_at": "2019-04-09T05:28:43Z",
@@ -222,6 +223,7 @@ The scan report can be requested.
 
 ```json
 {
+  "id": 1,
   "status": "finished",
   "has_error": false,
   "started_at": "2019-04-09T05:28:43Z",

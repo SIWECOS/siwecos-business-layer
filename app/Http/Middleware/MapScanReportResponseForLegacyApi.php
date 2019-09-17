@@ -78,6 +78,7 @@ class MapScanReportResponseForLegacyApi
                     'timezone_type' => 3,
                     'timezone' => 'UTC'
                 ],
+                'id' => $json->id,
                 'scanners' => $scanners,
                 'hasFailed' => $json->has_error,
                 'hasCrit' => $json->has_error,

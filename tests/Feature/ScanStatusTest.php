@@ -27,6 +27,7 @@ class ScanStatusTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertExactJson([
+            'id' => 1,
             'status' => 'created',
             'has_error' => false,
             'started_at' => null,
@@ -42,6 +43,7 @@ class ScanStatusTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertExactJson([
+            'id' => 1,
             'status' => 'running',
             'has_error' => false,
             'started_at' => Carbon::now()->toIso8601ZuluString(),
@@ -57,6 +59,7 @@ class ScanStatusTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertExactJson([
+            'id' => 1,
             'status' => 'failed',
             'has_error' => true,
             'started_at' => null,
