@@ -310,6 +310,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
                 'timezone_type' => 3,
                 'timezone' => 'UTC'
             ],
+            'id' => 1,
             'hasFailed' => false,
             'hasCrit' => false,
             'message' => 'current state of requested token',

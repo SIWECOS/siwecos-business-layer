@@ -9,6 +9,7 @@ class ScanReportResponse
 {
     public function __construct(Scan $scan)
     {
+        $this->id = $scan->id;
         $this->status = $scan->status;
         $this->has_error = $scan->has_error;
         $this->started_at = $scan->started_at ? $scan->started_at->toIso8601ZuluString() : null;

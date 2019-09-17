@@ -55,13 +55,13 @@ Route::prefix('v2')->group(function () {
     Route::middleware(['siwecosToken'])->group(function () {
         Route::post('/scan', 'ScanController@start');
     });
-    Route::get('/scan/{scan}/{language?}', 'ScanController@report');
-    Route::get('/scan/{scan}/{language?}/pdf', 'ScanController@pdfReport');
-
-    Route::post('/freescan', 'ScanController@startFreescan');
-
     // Callback URL for the SIWECOS/siwecos-core-api
     Route::post('/scan/finished/{scan}', 'ScanController@finished');
+
+    Route::post('/scan/{scan}/{language?}', 'ScanController@report');
+    Route::post('/scan/{scan}/{language?}/pdf', 'ScanController@pdfReport');
+
+    Route::post('/freescan', 'ScanController@startFreescan');
 });
 
 Route::prefix('v1')->group(function () {
