@@ -88,7 +88,7 @@ class ScanController extends Controller
 
     public function pdfReport(Scan $scan, $language = 'de', Request $request)
     {
-        if ($scan->is_freescan || $scan->token == Token::whereToken($request->header('SIWECOS-Token'))->first()) {
+        if ($scan->is_freescan || $scan->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
 
             if ($scan->status === 'finished') {
                 \App::setLocale($language);

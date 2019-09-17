@@ -300,15 +300,20 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 ```shell
 curl -X POST \
   -H 'Content-Type: application/json' \
-  -H 'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y' \
+  -d '{
+	  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+  }' \
   "http://bla.local/api/v2/scan/3913/en/pdf"
 ```
 
 ```http
 POST /api/v2/scan/3913/en/pdf HTTP/1.1
 Host: bla.local
-SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y
+Content-Type: application/json
 
+{
+  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+}
 ```
 
 The scan report can be requested as a PDF file.
@@ -321,16 +326,16 @@ The scan report can be requested as a PDF file.
 `POST /api/v2/scan/{scan_id}/{language_code}/pdf`
 
 <aside class="notice">
-Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 
 ### Query Parameters
 
-| Parameter     | Type      | Description                                                              |
-| ------------- | --------- | ------------------------------------------------------------------------ |
-| scan_id       | `integer` | The scan's `id`. It's returned when you request a scan start             |
-| language_code | `string`  | One of the supported language codes for translated results: `de` or `en` |
-
+| Parameter       | Type       | Description                                                              |
+| --------------- | ---------- | ------------------------------------------------------------------------ |
+| scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start             |
+| language_code   | `string`   | One of the supported language codes for translated results: `de` or `en` |
+| *SIWECOS-Token* | *`string`* | *SIWECOS-Token for non-freescans*                                        |
 
 ### Response Status Codes
 
