@@ -26,7 +26,7 @@ class PdfReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => false]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en/pdf?SIWECOS-Token=' . urlencode($scan->token->token));
+        $response = $this->get('/api/v2/scan/' . $scan->id . '/en/pdf', ['SIWECOS-Token' => $scan->token->token]);
 
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/pdf');
