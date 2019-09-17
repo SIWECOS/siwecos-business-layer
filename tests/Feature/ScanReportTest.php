@@ -16,7 +16,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -112,7 +112,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $this->assertNull($response->json('report'));
@@ -123,7 +123,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFailedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $this->assertNull($response->json('report'));
@@ -136,7 +136,7 @@ class ScanReportTest extends TestCase
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json')), true);
         $scan->save();
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
 
@@ -163,7 +163,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
 
@@ -179,7 +179,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id . '/en');
+        $response = $this->post('/api/v2/scan/' . $scan->id . '/en');
 
         $response->assertStatus(200);
 
@@ -195,7 +195,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
     }
@@ -205,10 +205,10 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => false]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
         $response->assertStatus(403);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
         $response->assertStatus(200);
@@ -222,7 +222,7 @@ class ScanReportTest extends TestCase
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithConnectionError.json')), true);
         $scan->save();
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
 
@@ -240,7 +240,7 @@ class ScanReportTest extends TestCase
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultsWithScannerInterfaceViolations.json')), true);
         $scan->save();
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
 
@@ -257,7 +257,7 @@ class ScanReportTest extends TestCase
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultsWithScannerInterfaceViolations.json')), true);
         $scan->save();
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
 
@@ -274,7 +274,7 @@ class ScanReportTest extends TestCase
         $scan->results = json_decode('[{"startedAt":"2019-09-05T09:50:46Z","finishedAt":"2019-09-05T09:50:52Z","name":"TLS","version":"3.1.0","hasError":true,"errorMessage":{"translationStringId":"REPORT_CONSTRUCTION","placeholders":{"errorMessage":null}},"score":0,"tests":[]}]', true);
         $scan->save();
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
 
@@ -289,7 +289,7 @@ class ScanReportTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
 

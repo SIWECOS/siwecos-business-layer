@@ -23,7 +23,7 @@ class ScanStatusTest extends TestCase
     public function when_a_scan_was_not_started_yet_the_status_will_be_created()
     {
         $scan = $this->getGeneratedScan(['is_freescan' => true]);
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $response->assertExactJson([
@@ -38,7 +38,7 @@ class ScanStatusTest extends TestCase
     public function when_a_scan_is_not_finished_yet_the_result_will_be_a_waiting_status()
     {
         $scan = $this->getStartedScan(['is_freescan' => true]);
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $response->assertExactJson([
@@ -53,7 +53,7 @@ class ScanStatusTest extends TestCase
     public function when_a_scan_could_not_be_started_a_failed_message_is_returned()
     {
         $scan = $this->getFailedScan(['is_freescan' => true]);
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $response->assertExactJson([
@@ -68,7 +68,7 @@ class ScanStatusTest extends TestCase
     public function when_a_scan_is_finished_the_success_message_is_returned()
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -83,7 +83,7 @@ class ScanStatusTest extends TestCase
     public function the_status_of_a_freescan_can_be_retrieved_by_everyone()
     {
         $scan = $this->getFinishedScan(['is_freescan' => true]);
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
 
         $response->assertStatus(200);
     }
@@ -93,10 +93,10 @@ class ScanStatusTest extends TestCase
     {
         $scan = $this->getFinishedScan(['is_freescan' => false]);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id);
+        $response = $this->post('/api/v2/scan/' . $scan->id);
         $response->assertStatus(403);
 
-        $response = $this->get('/api/v2/scan/' . $scan->id, [
+        $response = $this->post('/api/v2/scan/' . $scan->id, [], [
             'SIWECOS-Token' => $scan->token->token
         ]);
         $response->assertStatus(200);

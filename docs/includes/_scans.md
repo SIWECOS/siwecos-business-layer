@@ -202,14 +202,14 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 > The **Request** must have the following structure:
 
 ```shell
-curl -X GET \
+curl -X POST \
   http://bla.local/api/v2/scan/3913/en \
   -H 'Content-Type: application/json' \
   -H 'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'
 ```
 
 ```http
-GET /api/v2/scan/3913/en HTTP/1.1
+POST /api/v2/scan/3913/en HTTP/1.1
 Host: bla.local
 SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y
 Content-Type: application/json
@@ -260,7 +260,7 @@ The scan report can be requested.
 
 ### HTTP Request
 
-`GET /api/v2/scan/{scan_id}/{language_code}`
+`POST /api/v2/scan/{scan_id}/{language_code}`
 
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
@@ -298,14 +298,22 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 > The **Request** must have the following structure:
 
 ```shell
-curl -X GET \
-  "http://bla.local/api/v2/scan/3913/en/pdf?SIWECOS-Token=Y2jHgqtSVcz8eFqiV4eC0s5Y"
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{
+	  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+  }' \
+  "http://bla.local/api/v2/scan/3913/en/pdf"
 ```
 
 ```http
-GET /api/v2/scan/3913/en/pdf?SIWECOS-Token=Y2jHgqtSVcz8eFqiV4eC0s5Y HTTP/1.1
+POST /api/v2/scan/3913/en/pdf HTTP/1.1
 Host: bla.local
+Content-Type: application/json
 
+{
+  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+}
 ```
 
 The scan report can be requested as a PDF file.
@@ -315,10 +323,10 @@ The scan report can be requested as a PDF file.
 
 ### HTTP Request
 
-`GET /api/v2/scan/{scan_id}/{language_code}/pdf`
+`POST /api/v2/scan/{scan_id}/{language_code}/pdf`
 
 <aside class="notice">
-Authentication via HTTP-GET-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
+Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 
 ### Query Parameters
@@ -327,7 +335,7 @@ Authentication via HTTP-GET-Parameter <code>SIWECOS-Token</code> is required for
 | --------------- | ---------- | ------------------------------------------------------------------------ |
 | scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start             |
 | language_code   | `string`   | One of the supported language codes for translated results: `de` or `en` |
-| *SIWECOS-Token* | *`string`* | *urlencoded SIWECOS-Token for non-freescans*                             |
+| *SIWECOS-Token* | *`string`* | *SIWECOS-Token for non-freescans*                                        |
 
 ### Response Status Codes
 

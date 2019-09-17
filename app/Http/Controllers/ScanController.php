@@ -88,7 +88,7 @@ class ScanController extends Controller
 
     public function pdfReport(Scan $scan, $language = 'de', Request $request)
     {
-        if ($scan->is_freescan || $scan->token == Token::whereToken($request->get('SIWECOS-Token'))->first()) {
+        if ($scan->is_freescan || $scan->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
 
             if ($scan->status === 'finished') {
                 \App::setLocale($language);
@@ -97,7 +97,7 @@ class ScanController extends Controller
                     'report' => new ScanReportResponse($scan),
                     'gaugeData' => $this->getGaugeData($scan)
                 ]);
-                return $pdf->download('Scan Report.pdf');
+                return $pdf->download('SIWECOS Scan Report.pdf');
             }
 
             return response()->json(new StatusResponse('Scan not finished'), 409);
