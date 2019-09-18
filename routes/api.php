@@ -44,6 +44,7 @@ Route::prefix('v2')->group(function () {
     // Domain
     Route::middleware(['siwecosToken'])->group(function () {
         Route::get('/domain', 'DomainController@list');
+        Route::get('/domain/{domain}', 'DomainController@show');
         Route::post('/domain', 'DomainController@create');
         Route::delete('/domain', 'DomainController@delete');
     });

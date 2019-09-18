@@ -52,4 +52,40 @@ class DomainListingTest extends TestCase
         $response = $this->json('GET', '/api/v2/domain');
         $response->assertStatus(403);
     }
+
+    /** @test */
+    public function the_details_for_a_given_single_domain_can_be_requested()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('GET', '/api/v2/domain/' . $domain->domain, [], ['SIWECOS-Token' => $domain->token->token]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'domain' => 'example.org',
+            'url' => 'https://example.org',
+            'is_verified' => true,
+            'verification_token' => $domain->verification_token,
+        ]);
+    }
+
+    /** @test */
+    public function if_a_domain_does_not_exists_a_proper_error_message_for_the_details_route_will_be_returned()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $response = $this->json('GET', '/api/v2/domain/not-existing.de', [], ['SIWECOS-Token' => $domain->token->token]);
+
+        $response->assertStatus(404);
+    }
+
+    /** @test */
+    public function the_domain_details_can_only_be_requested_by_the_correct_assigned_token()
+    {
+        $domain1 = $this->getRegisteredDomain(['domain' => 'example.org', 'is_verified' => true]);
+        $domain2 = $this->getRegisteredDomain(['domain' => 'beispiel.de', 'is_verified' => true]);
+
+        $response = $this->json('GET', '/api/v2/domain/' . $domain1->domain, [], ['SIWECOS-Token' => $domain2->token->token]);
+
+        $response->assertStatus(403);
+    }
 }
