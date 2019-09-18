@@ -275,6 +275,9 @@
                     <a href="#listing-all-domains" class="toc-h2 toc-link" data-title="Domains">Listing all Domains</a>
                   </li>
                   <li>
+                    <a href="#requesting-domain-details" class="toc-h2 toc-link" data-title="Domains">Requesting Domain Details</a>
+                  </li>
+                  <li>
                     <a href="#deleting-a-domain" class="toc-h2 toc-link" data-title="Domains">Deleting a Domain</a>
                   </li>
                   <li>
@@ -1170,6 +1173,55 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <td><code>SIWECOS-Token</code> not valid</td>
 </tr>
 </tbody></table>
+<h2 id='requesting-domain-details'>Requesting Domain Details</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/domain/siwecos.de <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/domain/siwecos.de</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
+
+</code></pre>
+<p>Returning the details for a specified <code>Domain</code>.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://siwecos.de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /api/v2/domain/{domain}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+<h3 id='response-status-codes-4'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Domain details returned</td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>SIWECOS-Token</code> not valid</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Domain not found</td>
+</tr>
+</tbody></table>
 <h2 id='deleting-a-domain'>Deleting a Domain</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
@@ -1196,7 +1248,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domain deleted"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE /api/v2/domain</code></p>
 
 <aside class="notice">
@@ -1216,7 +1268,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <td>The domain that should be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='response-status-codes-4'>Response Status Codes</h3>
+<h3 id='response-status-codes-5'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -1257,7 +1309,7 @@ After deletion all associated scans will also be deleted.
 <blockquote>
 <p>The <strong>Response</strong> has the same structure as the <a href="#retrieving-the-scan-report">Scan Report</a></p>
 </blockquote>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /api/v2/domain/{domain}/report/{language?}</code></p>
 
 <aside class="notice">
@@ -1286,7 +1338,7 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
 <td><em>One of the supported language codes for translated results: <code>de</code> or <code>en</code></em></td>
 </tr>
 </tbody></table>
-<h3 id='response-status-codes-5'>Response Status Codes</h3>
+<h3 id='response-status-codes-6'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -1322,7 +1374,7 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
   </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">82</span><span class="p">,</span><span class="w">
   </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:58:55Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /api/v2/domain/{domain}/sealproof</code></p>
 
 <aside class="notice">
@@ -1342,7 +1394,7 @@ In order to retrieve the data, a Domain must be verified and at least one non-fr
 <td>The domain for the requested sealproof</td>
 </tr>
 </tbody></table>
-<h3 id='response-status-codes-6'>Response Status Codes</h3>
+<h3 id='response-status-codes-7'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
