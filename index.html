@@ -353,7 +353,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /api/v2/user</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -419,7 +419,7 @@ After registration a verification mail will be sent to the user's email address.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v2/user/activate/{key}</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -481,7 +481,7 @@ After registration a verification mail will be sent to the user's email address.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /api/v2/user/activate/resend</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -548,7 +548,7 @@ After registration a verification mail will be sent to the user's email address.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/v2/user/login</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -619,7 +619,7 @@ After registration a verification mail will be sent to the user's email address.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /api/v2/user/password/sendResetMail</code></p>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -679,7 +679,7 @@ After registration a verification mail will be sent to the user's email address.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /api/v2/user/password/reset</code></p>
-<h3 id='query-parameters-6'>Query Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -800,7 +800,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
-<h3 id='query-parameters-7'>Query Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -927,7 +927,7 @@ As there is no user registered with this tokens, no notifications can be sent by
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /api/v2/token</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -994,7 +994,7 @@ As there is no user registered with this tokens, no notifications can be sent by
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1067,7 +1067,7 @@ After registration the domain has to be verified.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /api/v2/domain/verify</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1254,7 +1254,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1319,7 +1319,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <aside class="notice">
 If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
 </aside>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1380,7 +1380,7 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
 <aside class="notice">
 In order to retrieve the data, a Domain must be verified and at least one non-free Scan must be finished.
 </aside>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1450,7 +1450,7 @@ A Freescan is like a normal Scan but with a lower `dangerLevel` so it does not i
 <aside class="notice">
 A Freescan can be started by everyone and the reports can be getted by everyone, too.
 </aside>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1528,7 +1528,7 @@ A Freescan can be started by everyone and the reports can be getted by everyone,
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1608,7 +1608,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1736,7 +1736,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <aside class="notice">
 Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1842,7 +1842,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <aside class="notice">
 Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
