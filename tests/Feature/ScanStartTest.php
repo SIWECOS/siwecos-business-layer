@@ -54,7 +54,10 @@ class ScanStartTest extends TestCase
             'domain' => $domain->domain
         ], ['SIWECOS-Token' => $foreignToken->token]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(404);
+        $response->assertJson([
+            'message' => 'Associated Domain not found or unverified'
+        ]);
         Queue::assertNotPushed(StartScanJob::class);
     }
 
@@ -67,7 +70,10 @@ class ScanStartTest extends TestCase
             'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(404);
+        $response->assertJson([
+            'message' => 'Associated Domain not found or unverified'
+        ]);
         Queue::assertNotPushed(StartScanJob::class);
     }
 }
