@@ -119,7 +119,7 @@ class DomainController extends Controller
     public function sealproof(Domain $domain)
     {
         if ($domain->is_verified) {
-            $scan = $domain->scans()->whereHasError(false)->whereIsFreescan(false)->latest()->first();
+            $scan = $domain->scans()->whereHasError(false)->whereIsFreescan(false)->whereNotNull('finished_at')->latest()->first();
 
             if ($scan) {
                 return response()->json([
