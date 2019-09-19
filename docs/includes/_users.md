@@ -44,7 +44,7 @@ A user can be registered in the database.
 
 `POST /api/v2/user`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type       | Description                                                                                                             |
 | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -96,7 +96,7 @@ A user has to be activated via verification of his email address to use the serv
 
 `GET /api/v2/user/activate/{key}`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                                               |
 | --------- | -------- | --------------------------------------------------------- |
@@ -148,7 +148,7 @@ The activation mail can be resend if requested.
 
 `POST /api/v2/user/activate/resend`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type    | Description              |
 | --------- | ------- | ------------------------ |
@@ -204,7 +204,7 @@ The user can be logged in to SIWECOS.
 
 `POST /api/v2/user/login`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type       | Description              |
 | --------- | ---------- | ------------------------ |
@@ -258,7 +258,7 @@ An [activated](#user-activation) user can reset his password.
 
 `POST /api/v2/user/password/sendResetMail`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type    | Description              |
 | --------- | ------- | ------------------------ |
@@ -311,7 +311,7 @@ The user can reset his password.
 
 `POST /api/v2/user/password/reset`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter   | Type       | Description                                       |
 | ----------- | ---------- | ------------------------------------------------- |
@@ -420,7 +420,7 @@ The user can update his details.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter            | Type         | Description                                 |
 | -------------------- | ------------ | ------------------------------------------- |

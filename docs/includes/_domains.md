@@ -46,7 +46,7 @@ A new Domain can be added/registered to a Token.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                          |
 | --------- | -------- | ------------------------------------ |
@@ -106,7 +106,7 @@ Verify the associated Domain for the given `domain`.
 `POST /api/v2/domain/verify`
 
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                        |
 | --------- | -------- | ---------------------------------- |
@@ -279,7 +279,7 @@ A Domain can be deleted.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                       |
 | --------- | -------- | --------------------------------- |
@@ -331,7 +331,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter       | Type       | Description                                                                |
 | --------------- | ---------- | -------------------------------------------------------------------------- |
@@ -380,7 +380,7 @@ The data for the SIWECOS sealproof can be requested.
 In order to retrieve the data, a Domain must be verified and at least one non-free Scan must be finished.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                            |
 | --------- | -------- | -------------------------------------- |

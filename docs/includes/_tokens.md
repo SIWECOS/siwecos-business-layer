@@ -44,7 +44,7 @@ A SIWECOS Token can be registered instead of a User.
 
 `POST /api/v2/token`
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type      | Description                                                                                                             |
 | --------- | --------- | ----------------------------------------------------------------------------------------------------------------------- |
