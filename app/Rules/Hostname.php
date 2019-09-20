@@ -54,6 +54,6 @@ class Hostname implements Rule
      */
     public function message()
     {
-        return 'No valid hostname provided.';
+        return __('validation.hostname_invalid');
     }
 }
