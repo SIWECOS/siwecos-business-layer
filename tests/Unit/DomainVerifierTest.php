@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\DomainVerifier;
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
@@ -14,7 +15,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\ClientException;
-
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class DomainVerifierTest extends TestCase
 {
@@ -166,29 +167,68 @@ class DomainVerifierTest extends TestCase
             new \Exception('Unexpectd!')
         ]);
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.CONNECTEXCEPTION', $response->content());
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.TOOMANYREDIRECTSEXCEPTION', $response->content());
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+                "message": "siwecos.CONNECTEXCEPTION"
+            }', $response->getContent());
+        }
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.BADRESPONSEEXCEPTION', $response->content());
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+               "message": "siwecos.TOOMANYREDIRECTSEXCEPTION"
+            }', $response->getContent());
+        }
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.CLIENTEXCEPTION', $response->content());
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+               "message": "siwecos.BADRESPONSEEXCEPTION"
+            }', $response->getContent());
+        }
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.SERVEREXCEPTION', $response->content());
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+               "message": "siwecos.CLIENTEXCEPTION"
+            }', $response->getContent());
+        }
 
-        $response = (new DomainVerifier($domain, $client))->verify();
-        $this->assertEquals(409, $response->getStatusCode());
-        $this->assertEquals('siwecos.EXCEPTION', $response->content());
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+               "message": "siwecos.SERVEREXCEPTION"
+            }', $response->getContent());
+        }
+
+        try {
+            $response = (new DomainVerifier($domain, $client))->verify();
+        } catch (HttpResponseException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals(409, $response->getStatusCode());
+            $this->assertJsonStringEqualsJsonString('{
+               "message": "siwecos.EXCEPTION"
+            }', $response->getContent());
+        }
+
+        $this->assertFalse($domain->refresh()->is_verified);
     }
 
     /**
