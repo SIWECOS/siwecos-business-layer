@@ -47,7 +47,7 @@ A Freescan is like a normal Scan but with a lower `dangerLevel` so it does not i
 A Freescan can be started by everyone and the reports can be getted by everyone, too.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                       |
 | --------- | -------- | --------------------------------- |
@@ -110,7 +110,7 @@ A regular scan can be started for a registered domain.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                       |
 | --------- | -------- | --------------------------------- |
@@ -124,10 +124,11 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 
 ### Response Status Codes
 
-| Code | Meaning           |
-| ---- | ----------------- |
-| 200  | Scan started      |
-| 422  | Validation failed |
+| Code | Meaning                                   |
+| ---- | ----------------------------------------- |
+| 200  | Scan started                              |
+| 404  | Associated Domain not found or unverified |
+| 422  | Validation failed                         |
 
 
 
@@ -172,7 +173,7 @@ The scan status can be requested.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type      | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
@@ -268,7 +269,7 @@ The scan report can be requested.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter       | Type       | Description                                                                |
 | --------------- | ---------- | -------------------------------------------------------------------------- |
@@ -331,7 +332,7 @@ The scan report can be requested as a PDF file.
 Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter       | Type       | Description                                                              |
 | --------------- | ---------- | ------------------------------------------------------------------------ |

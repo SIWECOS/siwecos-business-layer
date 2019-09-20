@@ -21,7 +21,7 @@ class DomainVerifier
     /**
      * Verifies a given domain by its verification_token
      *
-     * @return boolean|\Illuminate\Http\Response
+     * @return boolean
      */
     public function verify()
     {
@@ -31,10 +31,10 @@ class DomainVerifier
             }
         } catch (TransferException $e) {
             \Log::warning('Validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
-            return response(__('siwecos.' . strtoupper(class_basename($e)), ['EXCEPTION' => $e]), 409);
+            abort(response()->json(['message' => __('siwecos.' . strtoupper(class_basename($e)), ['EXCEPTION' => $e])], 409));
         } catch (\Exception $e) {
             \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
-            return response(__('siwecos.EXCEPTION', ['EXCEPTION' => $e]), 409);
+            abort(response()->json(['message' => __('siwecos.EXCEPTION', ['EXCEPTION' => $e])], 409));
         }
 
         return false;

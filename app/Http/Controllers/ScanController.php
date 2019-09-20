@@ -36,7 +36,7 @@ class ScanController extends Controller
             return response()->json(new ScanStartedResponse($scan));
         }
 
-        return response()->json(new StatusResponse('Forbidden'), 403);
+        return response()->json(new StatusResponse('Associated Domain not found or unverified'), 404);
     }
 
     public function startFreescan(ScanStartRequest $request)

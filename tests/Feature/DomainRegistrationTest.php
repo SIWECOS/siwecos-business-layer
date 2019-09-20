@@ -8,6 +8,8 @@ use App\Domain;
 use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
 use App\Token;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Psr7\Request;
 
 class DomainRegistrationTest extends TestCase
 {
@@ -137,6 +139,24 @@ class DomainRegistrationTest extends TestCase
         ]);
 
         $response->assertStatus(404);
+        $this->assertFalse(Domain::first()->is_verified);
+    }
+
+    /** @test */
+    public function if_the_domain_does_not_exist_the_domain_will_not_be_verified_and_an_error_message_will_be_returned()
+    {
+        $domain = $this->getRegisteredDomain();
+
+        $this->mockHttpClientAndDomainController([
+            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->url)),
+        ]);
+
+        $response = $this->json('POST', '/api/v2/domain/verify', [
+            'domain' => $domain->domain
+        ]);
+
+        $response->assertStatus(409);
+        $response->assertJson(['message' => 'siwecos.CONNECTEXCEPTION']);
         $this->assertFalse(Domain::first()->is_verified);
     }
 

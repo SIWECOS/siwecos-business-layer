@@ -46,7 +46,7 @@ A new Domain can be added/registered to a Token.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                          |
 | --------- | -------- | ------------------------------------ |
@@ -106,7 +106,7 @@ Verify the associated Domain for the given `domain`.
 `POST /api/v2/domain/verify`
 
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                        |
 | --------- | -------- | ---------------------------------- |
@@ -190,6 +190,54 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 
 
 
+## Requesting Domain Details
+
+> The **Request** must have the following structure:
+
+```shell
+curl -X GET \
+  http://bla.local/api/v2/domain/siwecos.de \
+  -H 'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'
+```
+
+```http
+GET /api/v2/domain/siwecos.de HTTP/1.1
+Host: bla.local
+SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc
+
+```
+
+Returning the details for a specified `Domain`.
+
+> The **Response** has the following structure:
+
+```json
+{
+    "domain": "siwecos.de",
+    "url": "https://siwecos.de",
+    "verification_token": "QsMNH613iGPScan554n7v0f4V29s6W5p9kzPOfA8oECH1Drejv7jpUE53i323tU8",
+    "is_verified": false
+}
+```
+
+### HTTP Request
+
+`GET /api/v2/domain/{domain}`
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
+
+
+### Response Status Codes
+
+| Code | Meaning                   |
+| ---- | ------------------------- |
+| 200  | Domain details returned   |
+| 403  | `SIWECOS-Token` not valid |
+| 404  | Domain not found          |
+
+
 ## Deleting a Domain
 
 > The **Request** must have the following structure:
@@ -231,7 +279,7 @@ A Domain can be deleted.
 Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                       |
 | --------- | -------- | --------------------------------- |
@@ -283,7 +331,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter       | Type       | Description                                                                |
 | --------------- | ---------- | -------------------------------------------------------------------------- |
@@ -332,7 +380,7 @@ The data for the SIWECOS sealproof can be requested.
 In order to retrieve the data, a Domain must be verified and at least one non-free Scan must be finished.
 </aside>
 
-### Query Parameters
+### Request Parameters
 
 | Parameter | Type     | Description                            |
 | --------- | -------- | -------------------------------------- |
