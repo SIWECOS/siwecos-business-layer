@@ -17,7 +17,7 @@ class IsSupportedLanguage implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(in_array($value, $this->supportedLanguages))
+        if (in_array($value, $this->supportedLanguages))
             return true;
 
         return false;
@@ -30,6 +30,6 @@ class IsSupportedLanguage implements Rule
      */
     public function message()
     {
-        return 'The language you want to set is not supported.';
+        return __('validation.language_unsupported');
     }
 }

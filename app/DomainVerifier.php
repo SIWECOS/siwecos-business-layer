@@ -30,10 +30,10 @@ class DomainVerifier
                 return true;
             }
         } catch (TransferException $e) {
-            \Log::warning('Validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            \Log::warning('Validation Exception for domain:' . $this->domain->domain . $e);
             abort(response()->json(['message' => __('siwecos.' . strtoupper(class_basename($e)), ['EXCEPTION' => $e])], 409));
         } catch (\Exception $e) {
-            \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . $e);
             abort(response()->json(['message' => __('siwecos.EXCEPTION', ['EXCEPTION' => $e])], 409));
         }
 
@@ -59,10 +59,14 @@ class DomainVerifier
 
         if ($response->getStatusCode() === 200) {
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
-            $tag = $dom->findOne('meta[name="siwecostoken"]');
+            $tags = $dom->findMultiOrFalse('meta[name="siwecostoken"]');
 
-            if (Str::is($this->domain->verification_token, $tag->content)) {
-                return true;
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    if (Str::is($this->domain->verification_token, $tag->content)) {
+                        return true;
+                    }
+                }
             }
         }
 

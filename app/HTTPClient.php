@@ -12,7 +12,7 @@ class HTTPClient extends Client
             'http_errors' => false,
             'timeout' => 30,
             'headers' => [
-                'User-Agent' => config('app.userAgent'),
+                'User-Agent' => config('siwecos.userAgent'),
             ],
         ], $config));
     }

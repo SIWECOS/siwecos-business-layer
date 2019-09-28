@@ -231,6 +231,48 @@ class DomainVerifierTest extends TestCase
         $this->assertFalse($domain->refresh()->is_verified);
     }
 
+    /** @test */
+    public function if_there_are_multiple_siwecos_meta_tags_the_verifier_will_check_all_of_them()
+    {
+        $domain1 = $this->getRegisteredDomain(['domain' => 'example.org', 'is_verified' => false]);
+        $domain2 = $this->getRegisteredDomain(['domain' => 'beispiel.de', 'is_verified' => false]);
+
+        $sampleHtml = '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="siwecostoken" content="' . $domain1->verification_token . '"></meta>
+            <meta name="siwecostoken" content="' . $domain2->verification_token . '"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Test-Website</title>
+        </head>
+        <body>
+                Lorem ipsum,
+            dolor sit amet consectetur a dipisicing elit. Nihil deleniti nemo eaque,
+            consequatur dolores dolorem quasi soluta ipsam magnam possimus quibusdam,
+            ab mollitia recusanda e  id   i n  esse delectus et accusamus.
+                </body>
+                </html>';
+
+
+        $client = $this->getMockedHttpClient([
+            // $domain1
+            new Response(200),
+            new Response(200, [], $sampleHtml),
+            // $domain2
+            new Response(200),
+            new Response(200, [], $sampleHtml),
+        ]);
+
+        $verifier = new DomainVerifier($domain1, $client);
+        $this->assertTrue($verifier->verify());
+
+        $verifier = new DomainVerifier($domain2, $client);
+        $this->assertTrue($verifier->verify());
+    }
+
     /**
      * Returns an dummy HTML page with the SIWECOS Meta Tag with the given $token.
      *

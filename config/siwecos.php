@@ -126,4 +126,15 @@ return [
     */
     'scan_timeout_threshold' => env('SCAN_TIMEOUT_THRESHOLD', 420),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Agent String
+    |--------------------------------------------------------------------------
+    |
+    | The User-Agent that should be used for requests.
+    |
+    */
+    'userAgent' => env('USER_AGENT', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0'),
+
 ];
