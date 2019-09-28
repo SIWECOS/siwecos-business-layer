@@ -30,10 +30,10 @@ class DomainVerifier
                 return true;
             }
         } catch (TransferException $e) {
-            \Log::warning('Validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            \Log::warning('Validation Exception for domain:' . $this->domain->domain . $e);
             abort(response()->json(['message' => __('siwecos.' . strtoupper(class_basename($e)), ['EXCEPTION' => $e])], 409));
         } catch (\Exception $e) {
-            \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . PHP_EOL . $e);
+            \Log::critical('Unexpected validation Exception for domain:' . $this->domain->domain . $e);
             abort(response()->json(['message' => __('siwecos.EXCEPTION', ['EXCEPTION' => $e])], 409));
         }
 
