@@ -59,10 +59,14 @@ class DomainVerifier
 
         if ($response->getStatusCode() === 200) {
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
-            $tag = $dom->findOne('meta[name="siwecostoken"]');
+            $tags = $dom->findMultiOrFalse('meta[name="siwecostoken"]');
 
-            if (Str::is($this->domain->verification_token, $tag->content)) {
-                return true;
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    if (Str::is($this->domain->verification_token, $tag->content)) {
+                        return true;
+                    }
+                }
             }
         }
 
