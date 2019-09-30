@@ -87,14 +87,6 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function the_scan_knows_which_url_was_scanned()
-    {
-        $scan = $this->getGeneratedScan();
-
-        $this->assertEquals('https://example.org', $scan->domain->url);
-    }
-
-    /** @test */
     public function a_scan_has_a_statedAt_value_with_default_null()
     {
         $scan = $this->getGeneratedScan();

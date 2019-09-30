@@ -42,7 +42,7 @@ class Domain extends Model
 
     public function getUrlAttribute()
     {
-        return 'https://' . $this->domain;
+        return 'http://' . $this->domain;
     }
 
     /**
