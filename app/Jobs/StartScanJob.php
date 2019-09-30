@@ -47,7 +47,7 @@ class StartScanJob implements ShouldQueue
             }
 
             $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
-                'url' => $this->scan->domain->url,
+                'url' => $this->scan->domain->mainUrl,
                 'dangerLevel' => $this->scan->danger_level,
                 'callbackurls' => [
                     config('app.url') . '/api/v2/scan/finished/' . $this->scan->id

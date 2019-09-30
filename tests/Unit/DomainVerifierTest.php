@@ -159,11 +159,11 @@ class DomainVerifierTest extends TestCase
         $domain = $this->getRegisteredDomain();
 
         $client = $this->getMockedHttpClient([
-            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->url)),
-            new TooManyRedirectsException('Too many redirects occured', new Request('GET', $domain->url)),
-            new BadResponseException('Failure 500: Internal server error', new Request('GET', $domain->url)),
-            new ClientException('A client error 4xx occured.', new Request('GET', $domain->url)),
-            new ServerException('A server error 5xx occured.', new Request('GET', $domain->url)),
+            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->mainUrl)),
+            new TooManyRedirectsException('Too many redirects occured', new Request('GET', $domain->mainUrl)),
+            new BadResponseException('Failure 500: Internal server error', new Request('GET', $domain->mainUrl)),
+            new ClientException('A client error 4xx occured.', new Request('GET', $domain->mainUrl)),
+            new ServerException('A server error 5xx occured.', new Request('GET', $domain->mainUrl)),
             new \Exception('Unexpectd!')
         ]);
 

@@ -21,7 +21,7 @@ class Domain extends Model
         'id', 'token_id'
     ];
 
-    protected $appends = ['url'];
+    protected $appends = ['mainUrl'];
 
     public function __construct(array $attributes = [])
     {
@@ -40,7 +40,7 @@ class Domain extends Model
         return 'domain';
     }
 
-    public function getUrlAttribute()
+    public function getMainUrlAttribute()
     {
         return 'http://' . $this->domain;
     }
