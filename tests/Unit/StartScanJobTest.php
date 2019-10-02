@@ -27,7 +27,7 @@ class StartScanJobTest extends TestCase
         $job = new StartScanJob($scan);
 
         $this->assertInstanceOf(StartScanJob::class, $job);
-        $this->assertEquals('https://example.org', $job->scan->domain->url);
+        $this->assertEquals('http://example.org', $job->scan->domain->url);
         $this->assertEquals(true, $job->scan->is_freescan);
         $this->assertEquals(false, $job->scan->is_recurrent);
     }
