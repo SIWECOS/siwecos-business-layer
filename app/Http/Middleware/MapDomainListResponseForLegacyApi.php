@@ -32,7 +32,7 @@ class MapDomainListResponseForLegacyApi
                     "id" => $domain->id,
                     "domain" => $domain->url,
                     "verificationStatus" => $domain->is_verified,
-                    "domainToken" => $domain->verification_token
+                    "domainToken" => $domain->token->verification_token
                 ]);
             }
 

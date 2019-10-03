@@ -29,13 +29,13 @@ class DomainListingTest extends TestCase
                     'domain' => 'example.org',
                     'url' => 'https://example.org',
                     'is_verified' => false,
-                    'verification_token' => $domain1->verification_token
+                    'verification_token' => $token->verification_token
                 ],
                 [
                     'domain' => 'siwecos.de',
                     'url' => 'https://siwecos.de',
                     'is_verified' => false,
-                    'verification_token' => $domain2->verification_token
+                    'verification_token' => $token->verification_token
                 ]
             ]
         ]);
@@ -65,7 +65,7 @@ class DomainListingTest extends TestCase
             'domain' => 'example.org',
             'url' => 'https://example.org',
             'is_verified' => true,
-            'verification_token' => $domain->verification_token,
+            'verification_token' => $domain->token->verification_token,
         ]);
     }
 

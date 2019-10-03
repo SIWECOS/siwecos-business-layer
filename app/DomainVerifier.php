@@ -42,10 +42,10 @@ class DomainVerifier
 
     public function checkHtmlPage()
     {
-        $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->domain->verification_token . ".html");
+        $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->domain->token->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
-            if (Str::is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
+            if (Str::is($this->domain->token->verification_token, trim($response->getBody()->getContents()))) {
                 return true;
             }
         }
@@ -63,7 +63,7 @@ class DomainVerifier
 
             if ($tags) {
                 foreach ($tags as $tag) {
-                    if (Str::is($this->domain->verification_token, $tag->content)) {
+                    if (Str::is($this->domain->token->verification_token, $tag->content)) {
                         return true;
                     }
                 }

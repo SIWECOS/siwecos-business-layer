@@ -20,6 +20,7 @@ class Token extends Model
     {
         // Generate token by package gladcodes/keygen
         $this->token = Keygen::alphanum(42)->generate();
+        $this->verification_token = Keygen::alphanum(64)->generate();
 
         parent::__construct($attributes);
     }

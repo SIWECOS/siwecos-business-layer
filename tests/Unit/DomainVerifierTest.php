@@ -38,10 +38,10 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $domain->verification_token),
+            new Response(200, [], $domain->token->verification_token),
 
-            new Response(200, [], "something-before " . $domain->verification_token),
-            new Response(200, [], $domain->verification_token . " something-behind"),
+            new Response(200, [], "something-before " . $domain->token->verification_token),
+            new Response(200, [], $domain->token->verification_token . " something-behind"),
             new Response(403),
             new Response(301),
         ]);
@@ -61,7 +61,7 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token)),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token)),
         ]);
 
         $verifier = new DomainVerifier($domain, $client);
@@ -74,9 +74,9 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->verification_token)),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token . " something-behind")),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->verification_token))
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->token->verification_token)),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token . " something-behind")),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->token->verification_token))
         ]);
 
         $verifier = new DomainVerifier($domain, $client);
@@ -123,7 +123,7 @@ class DomainVerifierTest extends TestCase
 
         // verify preferred way with external HTML page
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $domain->verification_token)
+            new Response(200, [], $domain->token->verification_token)
         ]);
         $verifier = new DomainVerifier($domain, $client);
         $this->assertTrue($verifier->verify());
@@ -131,7 +131,7 @@ class DomainVerifierTest extends TestCase
         // verify meta Tag, needs 2 requests for testing
         $client = $this->getMockedHttpClient([
             new Response(200),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token))
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token))
         ]);
         $verifier = new DomainVerifier($domain, $client);
         $this->assertTrue($verifier->verify());
@@ -242,8 +242,8 @@ class DomainVerifierTest extends TestCase
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="siwecostoken" content="' . $domain1->verification_token . '"></meta>
-            <meta name="siwecostoken" content="' . $domain2->verification_token . '"></meta>
+            <meta name="siwecostoken" content="' . $domain1->token->verification_token . '"></meta>
+            <meta name="siwecostoken" content="' . $domain2->token->verification_token . '"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Test-Website</title>

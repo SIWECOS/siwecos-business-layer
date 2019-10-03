@@ -15,6 +15,13 @@ class DomainRegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Token::create(['type' => 'freescan', 'credits' => 100000]);
+    }
+
     /** @test */
     public function a_user_can_register_a_new_domain_to_his_token()
     {
@@ -79,7 +86,8 @@ class DomainRegistrationTest extends TestCase
             'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::all());
     }
 
     /** @test */
@@ -97,29 +105,17 @@ class DomainRegistrationTest extends TestCase
 
         // Step 2: Mock the HTTPClient
         $this->mockHttpClientAndDomainController([
-            new Response(200, [], $domain->verification_token),
+            new Response(200, [], $domain->token->verification_token),
         ]);
 
         // Step 3: Send the verification request
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'domain' => $domain->domain
-        ]);
+        ], ['SIWECOS-Token' => $domain->token->token]);
 
         // Step 4: Get the Domain successfully verified
         $response->assertStatus(200);
         $this->assertTrue($domain->refresh()->is_verified);
-    }
-
-    /** @test */
-    public function a_domain_can_not_be_verified_twice()
-    {
-        $domain = $this->getRegisteredDomain(['is_verified' => true]);
-
-        $response = $this->json('POST', '/api/v2/domain/verify', [
-            'domain' => $domain->domain
-        ]);
-
-        $response->assertStatus(403);
     }
 
     /** @test */
@@ -129,14 +125,14 @@ class DomainRegistrationTest extends TestCase
 
         $this->mockHttpClientAndDomainController([
             // File-Check
-            new Response(200, [], $domain->verification_token . "XYZ"),
+            new Response(200, [], $domain->token->verification_token . "XYZ"),
             // Meta-Check
             new Response(200, [], ""),
         ]);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'domain' => $domain->domain
-        ]);
+        ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(404);
         $this->assertFalse(Domain::first()->is_verified);
@@ -153,7 +149,7 @@ class DomainRegistrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'domain' => $domain->domain
-        ]);
+        ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(409);
         $response->assertJson(['message' => 'siwecos.CONNECTEXCEPTION']);
@@ -163,47 +159,51 @@ class DomainRegistrationTest extends TestCase
     /** @test */
     public function a_registered_domain_is_required_for_verification()
     {
+        $token = factory(Token::class)->create(['type' => 'external']);
+
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'data' => 'Not relevant'
-        ]);
+        ], ['SIWECOS-Token' => $token->token]);
         $response->assertStatus(422);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'domain' => 'not_a_valid_domain'
-        ]);
+        ], ['SIWECOS-Token' => $token->token]);
         $response->assertStatus(422);
 
         $response = $this->json('POST', '/api/v2/domain/verify', [
             'domain' => 'is-not-registered.de'
-        ]);
+        ], ['SIWECOS-Token' => $token->token]);
         $response->assertStatus(422);
     }
 
     /** @test */
-    public function a_not_verified_domain_can_be_registered_by_another_token()
-    {
-        $tokenA = factory(Token::class)->create();
-        $tokenB = factory(Token::class)->create();
+    // public function a_domain_can_be_registered_by_another_token()
+    // {
+    //     $tokenA = factory(Token::class)->create();
+    //     $tokenB = factory(Token::class)->create();
 
-        // TokenA registers Domain example.org but does not verify
-        $response = $this->json('POST', '/api/v2/domain', [
-            'domain' => 'example.org'
-        ], ['SIWECOS-Token' => $tokenA->token]);
-        $response->assertStatus(200);
-        $this->assertCount(1, $tokenA->refresh()->domains);
-        $this->assertCount(0, $tokenB->refresh()->domains);
+    //     // TokenA registers Domain example.org but does not verify
+    //     $response = $this->json('POST', '/api/v2/domain', [
+    //         'domain' => 'example.org'
+    //     ], ['SIWECOS-Token' => $tokenA->token]);
+    //     $response->assertStatus(200);
+    //     $this->assertCount(1, $tokenA->refresh()->domains);
+    //     $this->assertCount(0, $tokenB->refresh()->domains);
 
-        // TokenB wants to register the same domain
-        $response = $this->json('POST', '/api/v2/domain', [
-            'domain' => 'example.org'
-        ], ['SIWECOS-Token' => $tokenB->token]);
-        $response->assertStatus(200);
-        $this->assertCount(0, $tokenA->refresh()->domains);
-        $this->assertCount(1, $tokenB->refresh()->domains);
-    }
+    //     // TokenB wants to register the same domain
+    //     $response = $this->json('POST', '/api/v2/domain', [
+    //         'domain' => 'example.org'
+    //     ], ['SIWECOS-Token' => $tokenB->token]);
+    //     $response->assertStatus(200);
+    //     $this->assertCount(1, $tokenA->refresh()->domains);
+    //     $this->assertCount(0, $tokenB->refresh()->domains);
+
+    //     // TokenB
+    // }
 
     /** @test */
-    public function an_already_verified_domain_can_not_be_registered_to_another_token()
+    public function a_domain_can_be_registered_to_another_token()
     {
         $tokenA = factory(Token::class)->create();
         $tokenB = factory(Token::class)->create();
@@ -213,10 +213,21 @@ class DomainRegistrationTest extends TestCase
             'is_verified' => true
         ])->toArray());
 
+        // Get Domain Information With TokenA
+        $response = $this->getJson('/api/v2/domain/example.org', ['SIWECOS-Token' => $tokenA->token]);
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'verification_token' => $tokenA->verification_token
+            ]);
+
+        // Create Domain With TokenB
         $response = $this->json('POST', '/api/v2/domain', [
             'domain' => 'example.org'
         ], ['SIWECOS-Token' => $tokenB->token]);
-        $response->assertStatus(403);
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'verification_token' => $tokenB->verification_token
+            ]);
     }
 
     public function mockHttpClientAndDomainController(array $mockedResponses)

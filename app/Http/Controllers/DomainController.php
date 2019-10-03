@@ -24,43 +24,35 @@ class DomainController extends Controller
 
     public function create(CreateDomainRequest $request)
     {
-        $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
         $newDomain = strtolower($request->json('domain'));
 
-        $domain = Domain::whereDomain($newDomain)->firstOrNew([
-            'domain' => $newDomain
-        ]);
-
-        if (!$domain->is_verified) {
-            $domain->verification_token = Keygen::alphanum(64)->generate();
-            $domain->token()->associate($token);
-
-            if ($domain->save()) {
-                return response()->json(new DomainResponse($domain), 200);
-            }
-
-            return response()->json(new StatusResponse('Domain was not created'), 410);
+        $domain = Domain::whereDomain($newDomain)->first();
+        if (!$domain) {
+            $token = Token::whereType('freescan')->first();
+            $domain = $token->domains()->create([
+                'domain' => $newDomain
+            ]);
         }
 
-        return response()->json(new StatusResponse('Domain is already verified'), 403);
+        return response()->json(new DomainResponse($domain), 200);
     }
 
     public function verify(VerifyDomainRequest $request)
     {
         $domain = Domain::whereDomain($request->json('domain'))->first();
 
-        if (!$domain->is_verified) {
-            $verifier = new DomainVerifier($domain, $this->client);
+        $verifier = new DomainVerifier($domain, $this->client);
 
-            if ($verifier->verify()) {
-                if ($domain->update(['is_verified' => true])) {
-                    return response()->json(new DomainResponse($domain), 200);
-                }
-            }
-            return response()->json(new StatusResponse('Domain could not be verified'), 404);
+        if ($verifier->verify()) {
+            $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
+
+            $domain->is_verified = true;
+            $domain->token()->associate($token);
+            $domain->save();
+
+            return response()->json(new DomainResponse($domain), 200);
         }
-
-        return response()->json(new StatusResponse('Domain is already verified'), 403);
+        return response()->json(new StatusResponse('Domain could not be verified'), 404);
     }
 
     public function list(Request $request)
