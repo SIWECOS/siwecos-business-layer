@@ -134,7 +134,7 @@ class DomainRegistrationTest extends TestCase
             'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
-        $response->assertStatus(404);
+        $response->assertStatus(409);
         $this->assertFalse(Domain::first()->is_verified);
     }
 
@@ -178,29 +178,34 @@ class DomainRegistrationTest extends TestCase
     }
 
     /** @test */
-    // public function a_domain_can_be_registered_by_another_token()
-    // {
-    //     $tokenA = factory(Token::class)->create();
-    //     $tokenB = factory(Token::class)->create();
+    public function a_domain_can_be_registered_by_another_token()
+    {
+        $tokenA = factory(Token::class)->create();
+        $tokenB = factory(Token::class)->create();
 
-    //     // TokenA registers Domain example.org but does not verify
-    //     $response = $this->json('POST', '/api/v2/domain', [
-    //         'domain' => 'example.org'
-    //     ], ['SIWECOS-Token' => $tokenA->token]);
-    //     $response->assertStatus(200);
-    //     $this->assertCount(1, $tokenA->refresh()->domains);
-    //     $this->assertCount(0, $tokenB->refresh()->domains);
+        $tokenA->domains()->create([
+            'domain' => 'example.org',
+            'is_verified' => true
+        ]);
 
-    //     // TokenB wants to register the same domain
-    //     $response = $this->json('POST', '/api/v2/domain', [
-    //         'domain' => 'example.org'
-    //     ], ['SIWECOS-Token' => $tokenB->token]);
-    //     $response->assertStatus(200);
-    //     $this->assertCount(1, $tokenA->refresh()->domains);
-    //     $this->assertCount(0, $tokenB->refresh()->domains);
+        // TokenB wants to register the same domain
+        $response = $this->json('POST', '/api/v2/domain', [
+            'domain' => 'example.org'
+        ], ['SIWECOS-Token' => $tokenB->token]);
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['verification_token' => $tokenB->verification_token]);
+        $this->assertEquals(Domain::first()->token->token, $tokenA->token);
 
-    //     // TokenB
-    // }
+        // TokenB verifies ownership and gets the domain associated
+        $this->mockHttpClientAndDomainController([
+            new Response(200, [], $tokenB->verification_token),
+        ]);
+        $response = $this->json('POST', '/api/v2/domain/verify', [
+            'domain' => 'example.org'
+        ], ['SIWECOS-Token' => $tokenB->token]);
+        $response->assertStatus(200);
+        $this->assertEquals(Domain::first()->token->token, $tokenB->token);
+    }
 
     /** @test */
     public function a_domain_can_be_registered_to_another_token()
