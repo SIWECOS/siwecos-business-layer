@@ -134,7 +134,7 @@ class DomainRegistrationTest extends TestCase
             'domain' => $domain->domain
         ], ['SIWECOS-Token' => $domain->token->token]);
 
-        $response->assertStatus(409);
+        $response->assertStatus(404);
         $this->assertFalse(Domain::first()->is_verified);
     }
 

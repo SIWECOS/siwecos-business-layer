@@ -11,6 +11,7 @@ class UserTokenResponse
         $this->token = $user->token->token;
         $this->email = $user->email;
         $this->preferred_language = $user->preferred_language;
-        $this->is_active = (boolean)$user->is_active;
+        $this->is_active = (bool) $user->is_active;
+        $this->domain_verification_token = $user->token->verification_token;
     }
 }

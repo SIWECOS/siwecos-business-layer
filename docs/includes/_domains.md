@@ -105,6 +105,9 @@ Verify the associated Domain for the given `domain`.
 
 `POST /api/v2/domain/verify`
 
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
 
 ### Request Parameters
 

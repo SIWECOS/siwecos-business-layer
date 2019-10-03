@@ -53,7 +53,7 @@ class DomainController extends Controller
             return response()->json(new DomainResponse($domain), 200);
         }
 
-        return response()->json(new StatusResponse('Domain could not be verified'), 409);
+        return response()->json(new StatusResponse('Domain could not be verified'), 404);
     }
 
     public function list(Request $request)
