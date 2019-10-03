@@ -19,7 +19,7 @@ class Token extends Model
     public function __construct(array $attributes = [])
     {
         // Generate token by package gladcodes/keygen
-        $this->token = Keygen::token(24)->generate();
+        $this->token = Keygen::alphanum(42)->generate();
 
         parent::__construct($attributes);
     }
