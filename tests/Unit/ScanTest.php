@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Token;
 use App\Scan;
 use App\Domain;
+use App\SiwecosScan;
 use Carbon\Carbon;
 
 class ScanTest extends TestCase
@@ -15,20 +16,12 @@ class ScanTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_scan_belongsTo_a_domain()
+    public function a_scan_belongsTo_a_siwecosScan()
     {
         $this->getGeneratedScan();
 
         $this->assertCount(1, Scan::all());
-        $this->assertEquals(Domain::first(), Scan::first()->domain);
-    }
-
-    /** @test */
-    public function a_scan_belongs_to_a_token_through_domains()
-    {
-        $this->getGeneratedScan();
-
-        $this->assertEquals(Token::first(), Scan::first()->token);
+        $this->assertEquals(SiwecosScan::first(), Scan::first()->siwecosScan);
     }
 
     /** @test */
@@ -79,14 +72,6 @@ class ScanTest extends TestCase
     }
 
     /** @test */
-    public function the_scan_knows_which_domain_was_scanned()
-    {
-        $scan = $this->getGeneratedScan();
-
-        $this->assertEquals(Domain::first(), $scan->domain);
-    }
-
-    /** @test */
     public function a_scan_has_a_statedAt_value_with_default_null()
     {
         $scan = $this->getGeneratedScan();
@@ -119,15 +104,5 @@ class ScanTest extends TestCase
 
         $scan = $this->getFinishedScan();
         $this->assertEquals('finished', $scan->status);
-    }
-
-    /** @test */
-    public function a_scan_knows_its_dangerLevel()
-    {
-        $scan = $this->getGeneratedScan(['is_freescan' => true]);
-        $this->assertEquals(0, $scan->danger_level);
-
-        $scan = $this->getGeneratedScan(['is_freescan' => false]);
-        $this->assertEquals(10, $scan->danger_level);
     }
 }

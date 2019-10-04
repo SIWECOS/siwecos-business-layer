@@ -34,7 +34,7 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_has_the_calculated_parameter_mainUrl_with_https_scheme()
+    public function a_domain_has_the_calculated_parameter_mainUrl_with_http_scheme()
     {
         $domain = factory(Domain::class)->make(['domain' => 'example.org']);
 
@@ -54,10 +54,15 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_can_have_many_scans()
+    public function a_domain_can_have_many_siwecosScans()
     {
         $domain = $this->getRegisteredDomain();
-        $this->assertCount(0, $domain->scans);
+        $domain->siwecosScans()->create([
+            'is_freescan' => false,
+            'is_recurrent' => false
+        ]);
+
+        $this->assertCount(1, $domain->siwecosScans);
     }
 
     /** @test */
@@ -91,7 +96,7 @@ class DomainTest extends TestCase
         $this->getFailedScan();
         $domain = Domain::first();
 
-        $this->assertCount(4, $domain->scans);
+        $this->assertCount(4, Scan::all());
 
         $domain->delete();
         $this->assertCount(0, Domain::all());

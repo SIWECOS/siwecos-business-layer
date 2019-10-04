@@ -35,7 +35,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(1, Domain::all());
-        $this->assertCount(1, Scan::all());
+        Queue::assertPushed(StartScanJob::class);
         $response->assertJson([
             "progress" => 0,
             "status" => 2,

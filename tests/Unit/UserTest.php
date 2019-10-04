@@ -9,6 +9,7 @@ use App\User;
 use App\Token;
 use App\Domain;
 use App\Scan;
+use App\SiwecosScan;
 
 class UserTest extends TestCase
 {
@@ -36,16 +37,17 @@ class UserTest extends TestCase
     {
         $scan = $this->getFinishedScan();
         $user = $this->getActivatedUser();
-        $scan->domain->token()->associate($user->token)->save();
+        $scan->siwecosScan->domain->token()->associate($user->token)->save();
         Token::find(1)->delete(); // delete original $scan->token
 
         $this->assertCount(1, $user->refresh()->token->domains);
-        $this->assertCount(1, $user->token->domains()->first()->scans);
+        $this->assertCount(1, $user->token->domains()->first()->siwecosScans);
 
         $user->delete();
         $this->assertCount(0, User::all());
         $this->assertCount(0, Token::all());
         $this->assertCount(0, Domain::all());
+        $this->assertCount(0, SiwecosScan::all());
         $this->assertCount(0, Scan::all());
     }
 }

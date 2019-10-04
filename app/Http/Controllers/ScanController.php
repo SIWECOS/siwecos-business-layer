@@ -16,6 +16,7 @@ use App\Http\Requests\ScanFinishedRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\PushScanToElasticsearchJob;
+use App\SiwecosScan;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
 class ScanController extends Controller
@@ -26,14 +27,14 @@ class ScanController extends Controller
         $domain = $token->domains()->whereDomain($request->json('domain'))->whereIsVerified(true)->first();
 
         if ($domain) {
-            $scan = $domain->scans()->create([
+            $siwecosScan = $domain->siwecosScans()->create([
                 'is_freescan' => false,
                 'is_recurrent' => false
             ]);
 
-            StartScanJob::dispatch($scan);
+            $siwecosScan->dispatchScanJobs();
 
-            return response()->json(new ScanStartedResponse($scan));
+            return response()->json(new ScanStartedResponse($siwecosScan));
         }
 
         return response()->json(new StatusResponse('Associated Domain not found or unverified'), 404);
@@ -49,22 +50,23 @@ class ScanController extends Controller
                 ->domains()->create(['domain' => $requestedDomain]);
         }
 
-        $lastFreeScan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+        $lastFreeScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($lastFreeScan && ($lastFreeScan->status == 'running' || ($lastFreeScan->finished_at && $lastFreeScan->finished_at->diffInHours() < config('siwecos.freeScanCashingHours')))) {
             return response()->json(new ScanStartedResponse($lastFreeScan));
         }
 
-        $scan = $domain->scans()->create([
-            'is_freescan' => true
+        $siwecosScan = $domain->siwecosScans()->create([
+            'is_freescan' => true,
+            'is_recurrent' => false
         ]);
 
-        StartScanJob::dispatch(Scan::latest()->first());
+        $siwecosScan->dispatchScanJobs();
 
-        return response()->json(new ScanStartedResponse($scan));
+        return response()->json(new ScanStartedResponse($siwecosScan));
     }
 
-    public function report(Scan $scan, $language = 'de')
+    public function report(SiwecosScan $scan, $language = 'de')
     {
         /**
          * Additional statement for the API v1 compatibility;
@@ -77,7 +79,7 @@ class ScanController extends Controller
             $scan = request()->input('scan');
         }
 
-        if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+        if ($scan->is_freescan || $scan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
             return response()->json(new ScanReportResponse($scan));
@@ -122,9 +124,10 @@ class ScanController extends Controller
 
                 $this->dispatch(new PushScanToElasticsearchJob($scan));
 
-                if (!$scan->is_freescan) {
-                    $this->generateSiwecosSeals($scan->domain);
+                if (!$scan->siwecosScan->is_freescan) {
+                    $this->generateSiwecosSeals($scan->siwecosScan->domain);
                 }
+
                 return response()->json(new StatusResponse('OK'));
             }
 

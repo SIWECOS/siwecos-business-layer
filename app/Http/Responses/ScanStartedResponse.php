@@ -2,11 +2,11 @@
 
 namespace App\Http\Responses;
 
-use App\Scan;
+use App\SiwecosScan;
 
 class ScanStartedResponse
 {
-    public function __construct(Scan $scan)
+    public function __construct(SiwecosScan $scan)
     {
         $this->scan_id = $scan->id;
     }

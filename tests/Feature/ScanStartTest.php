@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Queue;
 use App\Jobs\StartScanJob;
+use App\SiwecosScan;
 use App\Token;
 
 class ScanStartTest extends TestCase
@@ -23,7 +24,7 @@ class ScanStartTest extends TestCase
         ], ['SIWECOS-Token' => $domain->token->token]);
 
         $response->assertStatus(200);
-        Queue::assertPushed(StartScanJob::class);
+        Queue::assertPushed(StartScanJob::class, 1);
     }
 
     /** @test */
@@ -75,5 +76,22 @@ class ScanStartTest extends TestCase
             'message' => 'Associated Domain not found or unverified'
         ]);
         Queue::assertNotPushed(StartScanJob::class);
+    }
+
+    /** @test */
+    public function all_needed_scans_are_started_for_a_given_domain_in_v3()
+    {
+        // Prepare Domain with 10 crawledUrls and 4 MX-Entries
+        $domain = $this->getRegisteredDomain(['domain' => 'siwecos.de', 'is_verified' => true]);
+        $response = $this->json('POST', '/api/v2/crawler/finished', collect(json_decode(file_get_contents(base_path('tests/siwecos-crawler-response.json'))))->toArray());
+        $response->assertStatus(200);
+
+        $response = $this->json('POST', '/api/v2/scan', [
+            'domain' => $domain->domain
+        ], ['SIWECOS-Token' => $domain->token->token]);
+
+        $this->assertCount(1, SiwecosScan::all());
+        // 1x mainUrl, 10x crawledUrls, 4x MX-Entries
+        Queue::assertPushed(StartScanJob::class, 15);
     }
 }

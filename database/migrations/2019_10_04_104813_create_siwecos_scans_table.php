@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCrawledUrlsTable extends Migration
+class CreateSiwecosScansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCrawledUrlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('crawled_urls', function (Blueprint $table) {
+        Schema::create('siwecos_scans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('domain_id');
-            $table->text('url');
-            $table->boolean('is_main_url')->default(false);
+            $table->boolean('is_freescan');
+            $table->boolean('is_recurrent');
+
             $table->timestamps();
 
             $table->foreign('domain_id')->references('id')->on('domains');
@@ -31,6 +32,6 @@ class CreateCrawledUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crawled_urls');
+        Schema::dropIfExists('siwecos_scans');
     }
 }

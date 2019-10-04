@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Keygen\Keygen;
-use Illuminate\Support\Facades\Log;
 use App\Traits\Iso8601Serialization;
 
 class Domain extends Model
@@ -76,18 +75,18 @@ class Domain extends Model
     }
 
     /**
-     * Returns the Eloquent Relationship for App\Scan
+     * Returns the Eloquent Relationship for App\SiwecosScan
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function scans()
+    public function siwecosScans()
     {
-        return $this->hasMany(Scan::class);
+        return $this->hasMany(SiwecosScan::class);
     }
 
     public function delete()
     {
-        $this->scans->each(function ($scan) {
+        $this->siwecosScans->each(function ($scan) {
             $scan->delete();
         });
 

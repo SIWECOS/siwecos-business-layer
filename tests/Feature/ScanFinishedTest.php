@@ -22,7 +22,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function there_is_an_api_route_for_the_coreApi_to_send_the_scan_results_for_a_given_scan()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json(
             'POST',
@@ -37,7 +37,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function if_the_coreApi_sends_a_list_of_missing_results_the_scan_gets_hasErrorTrue_and_the_missing_scans_are_logged()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json(
             'POST',
@@ -57,7 +57,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function already_finished_scans_can_not_be_overwritten()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
@@ -70,7 +70,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function the_siwecos_seals_are_generated_when_a_scan_is_finished()
     {
-        $scan = $this->getStartedScan(['is_freescan' => false]);
+        $scan = $this->getStartedScan([], ['is_freescan' => false]);
         $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
@@ -81,7 +81,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function the_siwecos_seals_are_not_generated_when_a_scan_is_a_freescan()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $response = $this->json('POST', '/api/v2/scan/finished/' . $scan->id, json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true));
 
         $response->assertStatus(200);
@@ -92,7 +92,7 @@ class ScanFinishedTest extends TestCase
     /** @test */
     public function when_a_scan_is_finished_the_results_will_be_send_to_elasticsearch()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $response = $this->json(
             'POST',
             '/api/v2/scan/finished/' . $scan->id,
@@ -102,5 +102,19 @@ class ScanFinishedTest extends TestCase
         $response->assertStatus(200);
         $this->assertTrue($scan->refresh()->is_finished);
         \Queue::assertPushed(PushScanToElasticsearchJob::class);
+    }
+
+    /** @test */
+    public function when_the_last_scan_is_finished_the_siwecosScan_will_also_be_marked_as_finished()
+    {
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
+        $response = $this->json(
+            'POST',
+            '/api/v2/scan/finished/' . $scan->id,
+            json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)
+        );
+
+        $response->assertStatus(200);
+        $this->assertTrue($scan->siwecosScan->is_finished);
     }
 }

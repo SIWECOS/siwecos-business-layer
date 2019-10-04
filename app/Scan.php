@@ -13,8 +13,6 @@ class Scan extends Model
     protected $casts = [
         'is_finished' => 'boolean',
         'has_error' => 'boolean',
-        'is_freescan' => 'boolean',
-        'is_recurrent' => 'boolean',
         'score' => 'integer',
         'results' => 'collection',
     ];
@@ -65,10 +63,6 @@ class Scan extends Model
         return 'created';
     }
 
-    public function getDangerLevelAttribute()
-    {
-        return $this->is_freescan ? 0 : 10;
-    }
 
     public function calculateScore()
     {
@@ -98,13 +92,13 @@ class Scan extends Model
     }
 
     /**
-     * Returns the Eloquent Relationship for App\Domain
+     * Returns the Eloquent Relationship for App\SiwecosScan
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function domain()
+    public function siwecosScan()
     {
-        return $this->belongsTo(Domain::class);
+        return $this->belongsTo(SiwecosScan::class);
     }
 
     /**
