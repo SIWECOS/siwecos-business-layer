@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 use App\Domain;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CrawlerIntegrationTest extends TestCase
 {
@@ -15,9 +17,7 @@ class CrawlerIntegrationTest extends TestCase
     /** @test */
     public function the_crawler_response_will_be_saved_in_the_associated_models()
     {
-        $this->withoutExceptionHandling();
-
-        $domain = $this->getRegisteredDomain(['domain' => 'siwecos.de', 'is_verified' => true]);
+        $this->getRegisteredDomain(['domain' => 'siwecos.de', 'is_verified' => true]);
 
         $response = $this->json('POST', '/api/v2/crawler/finished', collect(json_decode(file_get_contents(base_path('tests/siwecos-crawler-response.json'))))->toArray());
 
@@ -40,6 +40,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->crawledUrls);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: example.org");
+        });
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'domain' => 'not-a-valid-hostname',
@@ -49,6 +52,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->crawledUrls);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: not-a-valid-hostname");
+        });
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'domain' => 'is-not-registered.de',
@@ -58,6 +64,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->crawledUrls);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: is-not-registered.de");
+        });
     }
 
     /** @test */
@@ -89,6 +98,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->mailDomains);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: example.org");
+        });
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'domain' => 'example.org',
@@ -98,6 +110,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->mailDomains);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: example.org");
+        });
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'domain' => 'is-not-registered.de',
@@ -107,6 +122,9 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(422);
         $this->assertCount(0, Domain::first()->mailDomains);
+        Log::assertLogged('critical', function ($message, $context) {
+            return Str::contains($message, "Crawler response could not be processed for domain: is-not-registered.de");
+        });
     }
 
     /** @test */
