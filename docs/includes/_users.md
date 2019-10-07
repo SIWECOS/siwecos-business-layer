@@ -36,7 +36,8 @@ A user can be registered in the database.
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "is_active": false
+  "is_active": false,
+  "domain_verification_token": "p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"
 }
 ```
 
@@ -88,7 +89,8 @@ A user has to be activated via verification of his email address to use the serv
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "is_active": true
+  "is_active": true,
+  "domain_verification_token": "p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"
 }
 ```
 
@@ -196,7 +198,8 @@ The user can be logged in to SIWECOS.
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "is_active": false
+  "is_active": false,
+  "domain_verification_token": "p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"
 }
 ```
 
@@ -353,7 +356,8 @@ A logged in user can retrieve his user data.
   "token": "Y2jHgqtSVcz8eFqiV4eC0s5Y",
   "email": "mail@siwecos.de",
   "preferred_language": "de",
-  "is_active": true
+  "is_active": true,
+  "domain_verification_token": "p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"
 }
 ```
 

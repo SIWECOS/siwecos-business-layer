@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
 use Carbon\Carbon;
 use App\Scan;
+use App\Token;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
@@ -24,6 +25,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
+
+        Token::create(['type' => 'freescan', 'credits' => 100000]);
     }
 
     /** @test */
@@ -96,7 +99,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'hasFailed' => false,
             'domainId' => 1,
             'verificationStatus' => false,
-            'domainToken' => Domain::first()->verification_token
+            'domainToken' => Domain::first()->token->verification_token
         ]);
     }
 
@@ -108,7 +111,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         //  Mock the HTTPClient
         $client = $this->getMockedHttpClient([
-            new Response(200, [], Domain::first()->verification_token),
+            new Response(200, [], Domain::first()->token->verification_token),
         ]);
         $this->app->bind(DomainController::class, function ($app) use ($client) {
             return new DomainController($client);
@@ -172,13 +175,13 @@ class LegacyApiV1CompatibilityTest extends TestCase
                     'id' => $domain1->id,
                     'domain' => $domain1->mainUrl,
                     'verificationStatus' => $domain1->is_verified,
-                    'domainToken' => $domain1->verification_token
+                    'domainToken' => $domain1->token->verification_token
                 ],
                 [
                     'id' => $domain2->id,
                     'domain' => $domain2->mainUrl,
                     'verificationStatus' => $domain2->is_verified,
-                    'domainToken' => $domain2->verification_token
+                    'domainToken' => $domain2->token->verification_token
                 ]
             ]
         ]);

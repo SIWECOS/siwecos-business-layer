@@ -64,4 +64,12 @@ class TokenTest extends TestCase
         $this->assertCount(0, Token::all());
         $this->assertCount(0, Domain::all());
     }
+
+    /** @test */
+    public function a_token_has_a_unique_verificationToken()
+    {
+        $token = factory(Token::class)->create(['type' => 'external']);
+
+        $this->assertNotNull(Token::first()->verification_token);
+    }
 }

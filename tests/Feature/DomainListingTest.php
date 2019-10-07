@@ -29,13 +29,13 @@ class DomainListingTest extends TestCase
                     'domain' => 'example.org',
                     'url' => 'http://example.org',
                     'is_verified' => false,
-                    'verification_token' => $domain1->verification_token
+                    'verification_token' => $token->verification_token
                 ],
                 [
                     'domain' => 'siwecos.de',
                     'url' => 'http://siwecos.de',
                     'is_verified' => false,
-                    'verification_token' => $domain2->verification_token
+                    'verification_token' => $token->verification_token
                 ]
             ]
         ]);
@@ -65,7 +65,7 @@ class DomainListingTest extends TestCase
             'domain' => 'example.org',
             'url' => 'http://example.org',
             'is_verified' => true,
-            'verification_token' => $domain->verification_token,
+            'verification_token' => $domain->token->verification_token,
         ]);
     }
 
@@ -79,13 +79,16 @@ class DomainListingTest extends TestCase
     }
 
     /** @test */
-    public function the_domain_details_can_only_be_requested_by_the_correct_assigned_token()
+    public function the_domain_details_can_be_requested_by_the_every_valid_token()
     {
         $domain1 = $this->getRegisteredDomain(['domain' => 'example.org', 'is_verified' => true]);
         $domain2 = $this->getRegisteredDomain(['domain' => 'beispiel.de', 'is_verified' => true]);
 
         $response = $this->json('GET', '/api/v2/domain/' . $domain1->domain, [], ['SIWECOS-Token' => $domain2->token->token]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'verification_token' => $domain2->token->verification_token
+        ]);
     }
 }

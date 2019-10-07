@@ -47,8 +47,9 @@ Route::prefix('v2')->group(function () {
         Route::get('/domain/{domain}', 'DomainController@show');
         Route::post('/domain', 'DomainController@create');
         Route::delete('/domain', 'DomainController@delete');
+        Route::post('/domain/verify', 'DomainController@verify');
     });
-    Route::post('/domain/verify', 'DomainController@verify');
+
     Route::get('/domain/{domain}/report/{language?}', 'DomainController@latestScanReport');
     Route::get('/domain/{domain}/sealproof', 'DomainController@sealproof');
 

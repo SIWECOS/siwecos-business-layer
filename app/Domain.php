@@ -10,7 +10,7 @@ class Domain extends Model
 {
     use Iso8601Serialization;
 
-    protected $fillable = ['domain', 'urls', 'verification_token', 'is_verified'];
+    protected $fillable = ['domain', 'is_verified'];
 
     protected $casts = [
         'is_verified' => 'boolean'
@@ -21,13 +21,6 @@ class Domain extends Model
     ];
 
     protected $appends = ['mainUrl'];
-
-    public function __construct(array $attributes = [])
-    {
-        $this->verification_token = Keygen::alphanum(64)->generate();
-
-        parent::__construct($attributes);
-    }
 
     /**
      * Get the route key for the model.
