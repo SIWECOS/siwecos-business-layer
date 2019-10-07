@@ -105,10 +105,10 @@ class DomainController extends Controller
             }
         }
 
-        $scan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+        $scan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
-            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first() ?: $scan;
+            $scan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $scan;
         }
 
         if ($scan) {

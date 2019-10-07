@@ -48,7 +48,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_running_freescan_can_be_requested()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
 
@@ -65,7 +65,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_finished_freescan_can_be_requested()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
 
@@ -208,7 +208,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_scan_report_can_be_retrieved_for_freescans()
     {
-        $this->getFinishedScan(['is_freescan' => true]);
+        $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
 
@@ -220,7 +220,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_legacy_freescan_results_api_route_also_delivers_the_scan_report_for_freescans()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/freescan/result/' . $scan->id . '/de');
 
@@ -231,32 +231,32 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_scan_report_can_be_retrieved_for_non_freescans_if_user_is_authenticated()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => false]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
         $response->assertStatus(404);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token
+            'userToken' => $scan->siwecosScan->domain->token->token
         ]);
         $response->assertStatus(200);
 
-        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->token->token));
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->siwecosScan->domain->token->token));
     }
 
     /** @test */
     public function the_scan_report_can_be_retrieved_with_the_content_type_header_set_to_json_for_free_and_nonFree_scans()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => false]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token,
+            'userToken' => $scan->siwecosScan->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);
 
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token,
+            'userToken' => $scan->siwecosScan->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);
@@ -273,7 +273,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_translated_errorMessage_will_be_included_if_a_scanner_has_a_global_error()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $scan->results = json_decode('[{"startedAt":"2019-09-05T09:50:46Z","finishedAt":"2019-09-05T09:50:52Z","name":"TLS","version":"3.1.0","hasError":true,"errorMessage":{"translationStringId":"REPORT_CONSTRUCTION","placeholders":{"errorMessage":null}},"score":0,"tests":[]}]', true);
         $scan->save();
 
@@ -289,7 +289,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function if_a_scan_failed_the_status_will_be_returned_correctly_by_the_status_endpoint()
     {
-        $scan = $this->getFailedScan(['is_freescan' => true]);
+        $scan = $this->getFailedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/status/free/' . $scan->id);
 

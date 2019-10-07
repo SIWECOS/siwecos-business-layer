@@ -27,13 +27,13 @@ class DomainListingTest extends TestCase
             'domains' => [
                 [
                     'domain' => 'example.org',
-                    'url' => 'https://example.org',
+                    'url' => 'http://example.org',
                     'is_verified' => false,
                     'verification_token' => $domain1->verification_token
                 ],
                 [
                     'domain' => 'siwecos.de',
-                    'url' => 'https://siwecos.de',
+                    'url' => 'http://siwecos.de',
                     'is_verified' => false,
                     'verification_token' => $domain2->verification_token
                 ]
@@ -63,7 +63,7 @@ class DomainListingTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson([
             'domain' => 'example.org',
-            'url' => 'https://example.org',
+            'url' => 'http://example.org',
             'is_verified' => true,
             'verification_token' => $domain->verification_token,
         ]);

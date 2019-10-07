@@ -80,11 +80,12 @@ class FreeScanStartTest extends TestCase
     /** @test */
     public function if_a_free_scan_is_already_running_do_not_start_a_second_one()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'domain' => $scan->domain->domain
+            'domain' => $scan->siwecosScan->domain->domain
         ]);
+
         $response->assertStatus(200);
         $response->assertJson(['scan_id' => 1]);
         Queue::assertNothingPushed();

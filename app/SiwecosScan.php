@@ -79,6 +79,43 @@ class SiwecosScan extends Model
     }
 
     /**
+     * Returns the actual status
+     *
+     * @return string
+     */
+    public function getStatusAttribute()
+    {
+        if ($this->hasFailedScans()) {
+            return 'failed';
+        }
+
+        if ($this->isFinished) {
+            return 'finished';
+        }
+
+        if ($this->started_at)
+            return 'running';
+
+        return 'created';
+    }
+
+    /**
+     * Determines if the SiwecosScan has one or more failed Scan
+     *
+     * @return boolean
+     */
+    protected function hasFailedScans()
+    {
+        foreach ($this->scans as $scan) {
+            if ($scan->status === 'failed') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Returns the Eloquent Relationship for App\Domain
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo

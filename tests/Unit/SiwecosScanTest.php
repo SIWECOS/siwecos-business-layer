@@ -115,7 +115,7 @@ class SiwecosScanTest extends TestCase
     }
 
     /** @test */
-    public function a_siwecosScan_has_a_startedAt_attribute()
+    public function a_siwecosScan_has_a_calculated_startedAt_attribute()
     {
         $siwecosScan = $this->getGeneratedScan()->siwecosScan;
 
@@ -130,7 +130,7 @@ class SiwecosScanTest extends TestCase
     }
 
     /** @test */
-    public function a_siwecosScan_has_a_isFinished_attribute()
+    public function a_siwecosScan_has_a_calculated_isFinished_attribute()
     {
         $siwecosScan = $this->getGeneratedScan()->siwecosScan;
         $this->assertFalse($siwecosScan->isFinished);
@@ -140,5 +140,32 @@ class SiwecosScanTest extends TestCase
 
         $siwecosScan = $siwecosScan->scans()->create(['url' => 'https://example.org/blog']);
         $this->assertFalse($siwecosScan->isFinished);
+    }
+
+    /** @test */
+    public function a_siwecosScan_has_a_calculated_status_attribute()
+    {
+        $siwecosScan = $this->getGeneratedScan()->siwecosScan;
+
+        $this->assertNotNull($siwecosScan->status);
+        $this->assertEquals('created', $siwecosScan->status);
+
+        $siwecosScan = $this->getStartedScan()->siwecosScan;
+        $this->assertEquals('running', $siwecosScan->status);
+
+        $siwecosScan = $this->getFinishedScan()->siwecosScan;
+        $this->assertEquals('finished', $siwecosScan->status);
+
+        $siwecosScan = $this->getFailedScan()->siwecosScan;
+        $this->assertEquals('failed', $siwecosScan->status);
+
+        $siwecosScan = $this->getFinishedScan()->siwecosScan;
+        $siwecosScan->scans()->create(['url' => 'https://example.org/shop']);
+        $this->assertEquals('running', $siwecosScan->status);
+
+        $siwecosScan = $this->getFinishedScan()->siwecosScan;
+        $siwecosScan->scans()->create(['url' => 'https://example.org/shop']);
+        $siwecosScan->scans()->create(['url' => 'https://example.org/failed', 'has_error' => true, 'finished_at' => now()->subMinutes(5)]);
+        $this->assertEquals('failed', $siwecosScan->status);
     }
 }

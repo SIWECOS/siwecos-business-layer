@@ -14,7 +14,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_translated_and_reasonable_json_scan_report_can_be_retrieved_for_finished_scans()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 
@@ -110,7 +110,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_scan_report_can_only_be_retrieved_for_finished_scans()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 
@@ -121,7 +121,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_scan_report_can_only_be_retrieved_for_non_failed_scans()
     {
-        $scan = $this->getFailedScan(['is_freescan' => true]);
+        $scan = $this->getFailedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 
@@ -132,7 +132,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function when_a_test_has_an_errorMessage_the_report_should_be_null_and_the_errorMessage_should_be_translated()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithDOMXSSError.json')), true);
         $scan->save();
 
@@ -161,7 +161,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function the_default_language_is_german()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 
@@ -177,7 +177,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function the_language_can_be_changed_to_english_via_request_parameter()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id . '/en');
 
@@ -193,7 +193,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_freescan_report_can_be_requested_by_everyone_without_authentication()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 
@@ -203,13 +203,13 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_non_freescan_report_can_only_be_requested_by_the_associated_token()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => false]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
         $response->assertStatus(403);
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->token->token
+            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
         ]);
         $response->assertStatus(200);
     }
@@ -217,13 +217,12 @@ class ScanReportTest extends TestCase
     /** @test */
     public function a_scan_report_can_be_retrieved_even_when_the_scan_results_had_connection_erros()
     {
-        $this->withoutExceptionHandling();
         $scan = $this->getStartedScan();
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleScanResultWithConnectionError.json')), true);
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->token->token
+            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -241,7 +240,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->token->token
+            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -258,7 +257,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->token->token
+            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -275,7 +274,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->token->token
+            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -287,7 +286,7 @@ class ScanReportTest extends TestCase
     /** @test */
     public function the_total_scan_score_should_be_included_in_the_report()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->post('/api/v2/scan/' . $scan->id);
 

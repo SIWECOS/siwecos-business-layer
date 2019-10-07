@@ -5,10 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Scan;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
+use App\SiwecosScan;
 
 class RecurrentScansTest extends TestCase
 {
@@ -22,7 +21,7 @@ class RecurrentScansTest extends TestCase
 
         $this->artisan('siwecos:trigger-daily-scans')
             ->expectsOutput('1 Scans were started.');
-        $this->assertCount(1, Scan::all());
+        $this->assertCount(1, SiwecosScan::all());
 
         Queue::assertPushed(StartScanJob::class, 1);
     }
