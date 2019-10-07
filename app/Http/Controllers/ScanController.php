@@ -88,16 +88,16 @@ class ScanController extends Controller
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
 
-    public function pdfReport(Scan $scan, $language = 'de', Request $request)
+    public function pdfReport(SiwecosScan $scan, $language = 'de', Request $request)
     {
-        if ($scan->is_freescan || $scan->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
+        if ($scan->is_freescan || $scan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
 
             if ($scan->status === 'finished') {
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $scan,
                     'report' => new ScanReportResponse($scan),
-                    'gaugeData' => $this->getGaugeData($scan)
+                    'gaugeData' => $this->getGaugeData($scan->scans->first())
                 ]);
                 return $pdf->download('SIWECOS Scan Report.pdf');
             }
