@@ -79,13 +79,16 @@ class DomainListingTest extends TestCase
     }
 
     /** @test */
-    public function the_domain_details_can_only_be_requested_by_the_correct_assigned_token()
+    public function the_domain_details_can_be_requested_by_the_every_valid_token()
     {
         $domain1 = $this->getRegisteredDomain(['domain' => 'example.org', 'is_verified' => true]);
         $domain2 = $this->getRegisteredDomain(['domain' => 'beispiel.de', 'is_verified' => true]);
 
         $response = $this->json('GET', '/api/v2/domain/' . $domain1->domain, [], ['SIWECOS-Token' => $domain2->token->token]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'verification_token' => $domain2->token->verification_token
+        ]);
     }
 }

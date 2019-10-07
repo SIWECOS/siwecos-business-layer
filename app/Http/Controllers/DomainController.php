@@ -65,13 +65,7 @@ class DomainController extends Controller
 
     public function show(Domain $domain, Request $request)
     {
-        $token = Token::whereToken($request->header('SIWECOS-Token'))->first();
-
-        if ($token && $token == $domain->token) {
-            return response()->json(new DomainResponse($domain));
-        }
-
-        return response()->json(new StatusResponse('Forbidden'), 403);
+        return response()->json(new DomainResponse($domain));
     }
 
     public function delete(DeleteDomainRequest $request)
