@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Keygen\Keygen;
 use App\Traits\Iso8601Serialization;
 
 class Domain extends Model
@@ -13,7 +12,8 @@ class Domain extends Model
     protected $fillable = ['domain', 'is_verified'];
 
     protected $casts = [
-        'is_verified' => 'boolean'
+        'is_verified' => 'boolean',
+        'is_main_url' => 'boolean',
     ];
 
     protected $hidden = [

@@ -4,13 +4,11 @@ namespace App\Http\Responses;
 
 use App\Scan;
 use App\ScanReport;
-use App\SiwecosScan;
 
 class ScanReportResponse
 {
-    public function __construct(SiwecosScan $scan)
+    public function __construct(Scan $scan)
     {
-        $scan = $scan->scans->first();
         $this->id = $scan->id;
         $this->status = $scan->status;
         $this->has_error = $scan->has_error;

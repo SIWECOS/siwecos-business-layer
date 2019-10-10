@@ -13,6 +13,7 @@ use App\Scan;
 use App\Http\Responses\ScanStatusResponse;
 use App\Http\Responses\ScanReportResponse;
 use App\Http\Requests\ScanFinishedRequest;
+use App\Http\Responses\SiwecosScanReportResponse;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\PushScanToElasticsearchJob;
@@ -66,23 +67,34 @@ class ScanController extends Controller
         return response()->json(new ScanStartedResponse($siwecosScan));
     }
 
-    public function report(SiwecosScan $scan, $language = 'de')
+    public function report(Scan $scan, $language = 'de')
     {
         /**
          * Additional statement for the API v1 compatibility;
          * If the v1 route is used, no $scan gets injected by route model binding
          * Therefore the MapScanReportResponseForLegacyApi Middleware transforms the `domain` parameter and delivers the $scan
          *
-         * Note: An injected $scan does not have a domain
+         * Note: An injected $scan does not have a siwecosScan
          */
-        if (!$scan->domain) {
+        if (!$scan->siwecosScan) {
             $scan = request()->input('scan');
         }
 
-        if ($scan->is_freescan || $scan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+        if ($scan->siwecosScan->is_freescan || $scan->siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
             return response()->json(new ScanReportResponse($scan));
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function reportV3(SiwecosScan $siwecosScan, $language = 'de')
+    {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+            \App::setLocale($language);
+
+            return response()->json(new SiwecosScanReportResponse($siwecosScan));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);

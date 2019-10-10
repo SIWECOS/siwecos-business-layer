@@ -85,7 +85,7 @@ class SiwecosScan extends Model
      */
     public function getStatusAttribute()
     {
-        if ($this->hasFailedScans()) {
+        if ($this->isFailed) {
             return 'failed';
         }
 
@@ -104,7 +104,7 @@ class SiwecosScan extends Model
      *
      * @return boolean
      */
-    protected function hasFailedScans()
+    public function getIsFailedAttribute()
     {
         foreach ($this->scans as $scan) {
             if ($scan->status === 'failed') {

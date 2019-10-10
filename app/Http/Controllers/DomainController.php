@@ -92,14 +92,14 @@ class DomainController extends Controller
             }
         }
 
-        $scan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
+        $siwecosScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
-            $scan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $scan;
+            $siwecosScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $siwecosScan;
         }
 
-        if ($scan) {
-            return (new ScanController())->report($scan, $language);
+        if ($siwecosScan) {
+            return (new ScanController())->report($siwecosScan->scans()->whereUrl($domain->mainUrl)->first(), $language);
         }
 
         return response()->json(new StatusResponse('Scan Not Found'), 404);
