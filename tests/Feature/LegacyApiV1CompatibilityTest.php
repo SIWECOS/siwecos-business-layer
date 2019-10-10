@@ -51,15 +51,15 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_running_freescan_can_be_requested()
     {
-        $scan = $this->getStartedScan([], ['is_freescan' => true]);
+        $siwecosScan = $this->getStartedScan([], ['is_freescan' => true])->siwecosScan;
 
-        $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
+        $response = $this->json('GET', '/api/v1/scan/status/free/' . $siwecosScan->id);
 
         $response->assertStatus(200);
         $response->assertJson([
             "progress" => 0,
             "status" => 2,
-            "id" => $scan->id,
+            "id" => $siwecosScan->id,
             "hasFailed" => false,
             "message" => ""
         ]);

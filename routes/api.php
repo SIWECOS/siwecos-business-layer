@@ -64,8 +64,8 @@ Route::prefix('v2')->group(function () {
     // Callback URL for the SIWECOS/siwecos-core-api
     Route::post('/scan/finished/{scan}', 'ScanController@finished');
 
-    Route::post('/scan/{scan}/{language?}', 'ScanController@report');
-    Route::post('/scan/{scan}/{language?}/pdf', 'ScanController@pdfReport');
+    Route::post('/scan/{siwecosScan}/{language?}', 'ScanController@report');
+    Route::post('/scan/{siwecosScan}/{language?}/pdf', 'ScanController@pdfReport');
     Route::post('/siwecosScan/{siwecosScan}/{language?}', 'ScanController@reportV3');
 
     Route::post('/freescan', 'ScanController@startFreescan');
@@ -77,7 +77,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/users/login', 'UserController@login');
 
     Route::post('/getFreeScanStart', 'ScanController@startFreescan')->middleware([MapScanStartedResponseForLegacyApi::class, MapDomainUrlParameterToDomainForLegacyApi::class]);
-    Route::get('/scan/status/free/{scan}', 'ScanController@report')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapScanStatusResponseForLegacyApi::class]);
+    Route::get('/scan/status/free/{siwecosScan}', 'ScanController@report')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapScanStatusResponseForLegacyApi::class]);
 
     Route::middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, 'siwecosToken', MapDomainUrlParameterToDomainForLegacyApi::class])->group(function () {
         Route::post('/domains/verifyDomain', 'DomainController@verify')->middleware(MapDomainVerifiedResponseForLegacyApi::class);
@@ -88,5 +88,5 @@ Route::prefix('v1')->group(function () {
         Route::post('/scan/start', 'ScanController@start')->middleware(MapScanStartedResponseForLegacyApi::class);
     });
     Route::get('/scan/result/{language?}', 'DomainController@latestScanReport')->middleware([MapUserTokenToSiwecosTokenForLegacyApi::class, MapGetDomainQueryStringToScanForACorrectReportRequestForLegacyApi::class, MapScanReportResponseForLegacyApi::class]);
-    Route::get('/freescan/result/{scan}/{language?}', 'ScanController@report')->middleware([MapScanReportResponseForLegacyApi::class]);
+    Route::get('/freescan/result/{siwecosScan}/{language?}', 'ScanController@report')->middleware([MapScanReportResponseForLegacyApi::class]);
 });

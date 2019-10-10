@@ -99,7 +99,7 @@ class DomainController extends Controller
         }
 
         if ($siwecosScan) {
-            return (new ScanController())->report($siwecosScan->scans()->whereUrl($domain->mainUrl)->first(), $language);
+            return (new ScanController())->report($siwecosScan, $language);
         }
 
         return response()->json(new StatusResponse('Scan Not Found'), 404);

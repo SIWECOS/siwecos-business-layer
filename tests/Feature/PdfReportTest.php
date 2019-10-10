@@ -13,9 +13,9 @@ class PdfReportTest extends TestCase
     /** @test */
     public function a_pdfReport_can_be_retrieved_for_a_finished_freescan_scan()
     {
-        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
+        $siwecosScan = $this->getFinishedScan([], ['is_freescan' => true])->siwecosScan;
 
-        $response = $this->post('/api/v2/scan/' . $scan->id . '/en/pdf');
+        $response = $this->post('/api/v2/scan/' . $siwecosScan->id . '/en/pdf');
 
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/pdf');
