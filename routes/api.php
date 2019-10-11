@@ -67,6 +67,7 @@ Route::prefix('v2')->group(function () {
     Route::post('/scan/{siwecosScan}/{language?}', 'ScanController@report');
     Route::post('/scan/{siwecosScan}/{language?}/pdf', 'ScanController@pdfReport');
     Route::post('/siwecosScan/{siwecosScan}/{language?}', 'ScanController@reportV3');
+    Route::post('/siwecosScan/{siwecosScan}/{language?}/pdf', 'ScanController@pdfReportV3');
 
     Route::post('/freescan', 'ScanController@startFreescan');
 });

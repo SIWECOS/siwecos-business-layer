@@ -120,6 +120,35 @@ class ScanController extends Controller
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
 
+    public function pdfReportV3(SiwecosScan $siwecosScan, $language = 'de', Request $request)
+    {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
+
+            if ($siwecosScan->status === 'finished') {
+                \App::setLocale($language);
+
+                $parts = collect();
+                foreach ($siwecosScan->scans as $scan) {
+                    $parts->push([
+                        'scan' => $scan,
+                        'report' => new ScanReportResponse($scan),
+                        'gaugeData' => $this->getGaugeData($scan)
+                    ]);
+                }
+
+                $pdf = SnappyPdf::loadView('pdf.reportV3', [
+                    'siwecosScan' => $siwecosScan,
+                    'parts' => $parts
+                ]);
+                return $pdf->download('SIWECOS Scan Report - Full.pdf');
+            }
+
+            return response()->json(new StatusResponse('Scan not finished'), 409);
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
     public function finished(ScanFinishedRequest $request, Scan $scan)
     {
         if (!$scan->is_finished) {
