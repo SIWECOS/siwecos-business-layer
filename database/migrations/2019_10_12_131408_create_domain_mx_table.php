@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMailDomainsTable extends Migration
+class CreateDomainMxTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMailDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mail_domains', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('domain')->unique();
-            $table->timestamps();
+        Schema::create('domain_mx', function (Blueprint $table) {
+            $table->bigInteger('domain_id');
+            $table->bigInteger('mail_domain_id');
+
+            $table->index(['domain_id', 'mail_domain_id']);
         });
     }
 
@@ -27,6 +28,6 @@ class CreateMailDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mail_domains');
+        Schema::dropIfExists('domains_mx');
     }
 }

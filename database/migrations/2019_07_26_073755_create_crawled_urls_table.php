@@ -15,8 +15,8 @@ class CreateCrawledUrlsTable extends Migration
     {
         Schema::create('crawled_urls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('domain_id');
-            $table->text('url');
+            $table->unsignedBigInteger('domain_id')->nullable();
+            $table->text('url')->unique();
             $table->boolean('is_main_url')->default(false);
             $table->timestamps();
 

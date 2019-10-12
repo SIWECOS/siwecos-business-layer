@@ -10,7 +10,7 @@ use App\Domain;
 use Illuminate\Database\QueryException;
 use App\Scan;
 use App\CrawledUrl;
-use App\MailDomains;
+use App\MailDomain;
 
 class DomainTest extends TestCase
 {
@@ -84,7 +84,7 @@ class DomainTest extends TestCase
             'domain' => 'mx.example.org'
         ]);
 
-        $this->assertCount(1, MailDomains::all());
+        $this->assertCount(1, MailDomain::all());
     }
 
     /** @test */

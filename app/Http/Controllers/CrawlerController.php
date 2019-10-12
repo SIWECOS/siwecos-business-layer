@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CrawledUrl;
 use App\Domain;
 use App\Http\Requests\CrawlerFinishedRequest;
+use App\MailDomain;
 
 class CrawlerController extends Controller
 {
@@ -11,17 +13,22 @@ class CrawlerController extends Controller
     {
         $domain = Domain::whereDomain($request->json('domain'))->firstOrFail();
         $crawledUrls = $request->json('crawledUrls');
-        $mailDomains = $request->json('mailServerDomainList');
+        $mailServerDomainList = $request->json('mailServerDomainList');
+
+        $domain->crawledUrls()->update(['domain_id' => null]);
+        $domain->mailDomains()->detach();
 
         if ($crawledUrls) {
             foreach ($crawledUrls as $url) {
-                $domain->crawledUrls()->firstOrCreate(['url' => $url]);
+                $crawledUrl = CrawledUrl::whereUrl($url)->firstOrCreate(['url' => $url]);
+                $crawledUrl->domain()->associate($domain)->save();
             }
         }
 
-        if ($mailDomains) {
-            foreach ($mailDomains as $mailDomain) {
-                $domain->mailDomains()->firstOrCreate(['domain' => $mailDomain]);
+        if ($mailServerDomainList) {
+            foreach ($mailServerDomainList as $mailServerEntry) {
+                $mailDomain = MailDomain::whereDomain($mailServerEntry)->firstOrCreate(['domain' => $mailServerEntry]);
+                $domain->mailDomains()->attach($mailDomain);
             }
         }
     }

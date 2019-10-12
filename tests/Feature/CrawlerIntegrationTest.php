@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\CrawledUrl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 use App\Domain;
+use App\MailDomain;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -140,5 +142,84 @@ class CrawlerIntegrationTest extends TestCase
         ]);
         $response->assertStatus(200);
         $this->assertCount(0, Domain::first()->mailDomains);
+    }
+
+    /** @test */
+    public function old_mailServer_entries_will_be_detached_if_the_crawler_updates_the_list()
+    {
+        $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'mx1.example.org',
+                'mx2.example.org'
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(2, Domain::first()->mailDomains);
+        $this->assertCount(2, MailDomain::all());
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'mx1.example.org',
+                'mx2.example.org',
+                'mx3.example.org'
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(3, Domain::first()->mailDomains);
+        $this->assertCount(3, MailDomain::all());
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'mx1.example.org',
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::first()->mailDomains);
+        $this->assertCount(3, MailDomain::all());
+    }
+
+    /** @test */
+    public function old_crawledUrl_entries_will_be_deleted_if_the_crawler_updates_the_list()
+    {
+        $this->withoutExceptionHandling();
+        $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                'https://example.org/shop',
+                'https://example.org/blog'
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(2, Domain::first()->crawledUrls);
+        $this->assertCount(2, CrawledUrl::all());
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                'https://example.org/shop',
+                'https://example.org/blog',
+                'https://example.org/admin'
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(3, Domain::first()->crawledUrls);
+        $this->assertCount(3, CrawledUrl::all());
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                'https://example.org/admin'
+            ],
+        ]);
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::first()->crawledUrls);
+        $this->assertCount(3, CrawledUrl::all());
     }
 }

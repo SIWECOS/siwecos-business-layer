@@ -64,7 +64,7 @@ class Domain extends Model
      */
     public function mailDomains()
     {
-        return $this->hasMany(MailDomains::class);
+        return $this->belongsToMany(MailDomain::class, 'domain_mx', 'domain_id', 'mail_domain_id');
     }
 
     /**
