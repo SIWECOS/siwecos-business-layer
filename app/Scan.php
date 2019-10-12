@@ -22,7 +22,7 @@ class Scan extends Model
 
     protected $guarded = ['score', 'is_finished', 'status', 'results'];
 
-    protected $hidden = ['id', 'domain_id'];
+    protected $hidden = ['id'];
 
     protected $appends = ['is_finished', 'status'];
 
