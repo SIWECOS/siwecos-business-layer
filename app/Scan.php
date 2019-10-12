@@ -7,7 +7,6 @@ use App\Traits\Iso8601Serialization;
 
 class Scan extends Model
 {
-    use \Znck\Eloquent\Traits\BelongsToThrough;
     use Iso8601Serialization;
 
     protected $casts = [
@@ -99,15 +98,5 @@ class Scan extends Model
     public function siwecosScan()
     {
         return $this->belongsTo(SiwecosScan::class);
-    }
-
-    /**
-     * Returns the Eloquent Relationship for App\Token
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function token()
-    {
-        return $this->belongsToThrough(Token::class, Domain::class);
     }
 }

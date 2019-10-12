@@ -20,7 +20,6 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-sftp": "^1.0",
-        "staudenmeir/belongs-to-through": "^2.4",
         "stevegrunwell/lost-in-translation": "dev-fix/monolog-use-files",
         "voku/simple_html_dom": "^4.3"
     },
