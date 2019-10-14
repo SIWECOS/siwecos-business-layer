@@ -18,11 +18,11 @@ class SealScanProofTest extends TestCase
     {
         $scan = $this->getFinishedScan([], ['is_freescan' => false], ['is_verified' => true]);
 
-        $response = $this->get('/api/v2/domain/' . $scan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->get('/api/v2/domain/' . $scan->siwecosScans->first()->domain->domain . '/sealproof');
 
         $response->assertStatus(200);
         $response->assertJson([
-            'domain' => $scan->siwecosScan->domain->domain,
+            'domain' => $scan->siwecosScans->first()->domain->domain,
             'finished_at' => $scan->finished_at->toIso8601ZuluString(),
             'score' => $scan->score
         ]);
@@ -33,7 +33,7 @@ class SealScanProofTest extends TestCase
     {
         $scan = $this->getFinishedScan([], ['is_freescan' => true], ['is_verified' => true]);
 
-        $response = $this->get('/api/v2/domain/' . $scan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->get('/api/v2/domain/' . $scan->siwecosScans->first()->domain->domain . '/sealproof');
 
         $response->assertStatus(404);
     }
@@ -43,7 +43,7 @@ class SealScanProofTest extends TestCase
     {
         $scan = $this->getFinishedScan([], ['is_freescan' => false], ['is_verified' => false]);
 
-        $response = $this->get('/api/v2/domain/' . $scan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->get('/api/v2/domain/' . $scan->siwecosScans->first()->domain->domain . '/sealproof');
 
         $response->assertStatus(409);
     }
@@ -60,7 +60,7 @@ class SealScanProofTest extends TestCase
 
         $newScan = $this->getFinishedScan([], ['is_freescan' => false]);
 
-        $response = $this->get('/api/v2/domain/' . $oldScan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->get('/api/v2/domain/' . $oldScan->siwecosScans->first()->domain->domain . '/sealproof');
 
         $response->assertStatus(200);
         $response->assertJsonFragment([
@@ -79,7 +79,7 @@ class SealScanProofTest extends TestCase
 
         $scan = $this->getStartedScan([], ['is_freescan' => false], ['is_verified' => true]);
 
-        $response = $this->getJson('/api/v2/domain/' . $scan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->getJson('/api/v2/domain/' . $scan->siwecosScans->first()->domain->domain . '/sealproof');
         $response->assertStatus(404);
         $response->assertJson([
             'message' => 'No valid recurrent scan found.'
@@ -92,7 +92,7 @@ class SealScanProofTest extends TestCase
         $scan->finished_at = now();
         $scan->save();
 
-        $response = $this->get('/api/v2/domain/' . $scan->siwecosScan->domain->domain . '/sealproof');
+        $response = $this->get('/api/v2/domain/' . $scan->siwecosScans->first()->domain->domain . '/sealproof');
         $response->assertStatus(200);
         $response->assertJsonFragment([
             'finished_at' => "2019-02-08T16:30:15Z"

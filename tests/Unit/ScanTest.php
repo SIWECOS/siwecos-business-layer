@@ -16,12 +16,12 @@ class ScanTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_scan_belongsTo_a_siwecosScan()
+    public function a_scan_can_be_associated_with_multiple_siwecosScan()
     {
         $this->getGeneratedScan();
 
         $this->assertCount(1, Scan::all());
-        $this->assertEquals(SiwecosScan::first(), Scan::first()->siwecosScan);
+        $this->assertEquals(SiwecosScan::first()->id, Scan::first()->siwecosScans->first()->id);
     }
 
     /** @test */

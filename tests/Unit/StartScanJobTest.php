@@ -22,7 +22,7 @@ class StartScanJobTest extends TestCase
     /** @test */
     public function the_startScanJob_accepts_needed_parameters()
     {
-        $siwecosScan = $this->getGeneratedScan([], ['is_freescan' => true])->siwecosScan;
+        $siwecosScan = $this->getGeneratedScan([], ['is_freescan' => true])->siwecosScans->first();
 
         $job = new StartScanJob($siwecosScan, $siwecosScan->domain->mainUrl, ['HEADER']);
 

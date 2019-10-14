@@ -115,6 +115,6 @@ class ScanFinishedTest extends TestCase
         );
 
         $response->assertStatus(200);
-        $this->assertTrue($scan->siwecosScan->is_finished);
+        $this->assertTrue($scan->siwecosScans->first()->is_finished);
     }
 }

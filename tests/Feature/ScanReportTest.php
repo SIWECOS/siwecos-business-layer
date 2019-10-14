@@ -209,7 +209,7 @@ class ScanReportTest extends TestCase
         $response->assertStatus(403);
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
+            'SIWECOS-Token' => $scan->siwecosScans->first()->domain->token->token
         ]);
         $response->assertStatus(200);
     }
@@ -222,7 +222,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
+            'SIWECOS-Token' => $scan->siwecosScans->first()->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -240,7 +240,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
+            'SIWECOS-Token' => $scan->siwecosScans->first()->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -257,7 +257,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
+            'SIWECOS-Token' => $scan->siwecosScans->first()->domain->token->token
         ]);
 
         $response->assertStatus(200);
@@ -274,7 +274,7 @@ class ScanReportTest extends TestCase
         $scan->save();
 
         $response = $this->post('/api/v2/scan/' . $scan->id, [], [
-            'SIWECOS-Token' => $scan->siwecosScan->domain->token->token
+            'SIWECOS-Token' => $scan->siwecosScans->first()->domain->token->token
         ]);
 
         $response->assertStatus(200);

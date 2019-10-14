@@ -93,10 +93,10 @@ class Scan extends Model
     /**
      * Returns the Eloquent Relationship for App\SiwecosScan
      *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function siwecosScan()
+    public function siwecosScans()
     {
-        return $this->belongsTo(SiwecosScan::class);
+        return $this->belongsToMany(SiwecosScan::class)->withTimestamps();
     }
 }

@@ -20,4 +20,9 @@ class MailDomain extends Model
     {
         return $this->belongsToMany(Domain::class, 'domain_mx', 'mail_domain_id', 'domain_id');
     }
+
+    public function getLatestScanAttribute()
+    {
+        return Scan::whereUrl($this->domain)->latest()->first();
+    }
 }

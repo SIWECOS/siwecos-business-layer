@@ -51,7 +51,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_running_freescan_can_be_requested()
     {
-        $siwecosScan = $this->getStartedScan([], ['is_freescan' => true])->siwecosScan;
+        $siwecosScan = $this->getStartedScan([], ['is_freescan' => true])->siwecosScans->first();
 
         $response = $this->json('GET', '/api/v1/scan/status/free/' . $siwecosScan->id);
 
@@ -240,11 +240,11 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $response->assertStatus(404);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->siwecosScan->domain->token->token
+            'userToken' => $scan->siwecosScans->first()->domain->token->token
         ]);
         $response->assertStatus(200);
 
-        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->siwecosScan->domain->token->token));
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->siwecosScans->first()->domain->token->token));
     }
 
     /** @test */
@@ -252,14 +252,14 @@ class LegacyApiV1CompatibilityTest extends TestCase
     {
         $scan = $this->getFinishedScan([], ['is_freescan' => false]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->siwecosScan->domain->token->token,
+            'userToken' => $scan->siwecosScans->first()->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);
 
         $scan = $this->getFinishedScan([], ['is_freescan' => true]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->siwecosScan->domain->token->token,
+            'userToken' => $scan->siwecosScans->first()->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);

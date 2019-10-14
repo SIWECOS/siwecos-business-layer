@@ -53,7 +53,7 @@ class FreeScanStartTest extends TestCase
         $knownDate = Carbon::create(2019, 2, 8, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
 
-        $siwecosScan = $this->getFinishedScan([], ['is_freescan' => true])->siwecosScan;
+        $siwecosScan = $this->getFinishedScan([], ['is_freescan' => true])->siwecosScans->first();
 
         $knownDate->addHours(3);
         Carbon::setTestNow($knownDate);
@@ -83,7 +83,7 @@ class FreeScanStartTest extends TestCase
         $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'domain' => $scan->siwecosScan->domain->domain
+            'domain' => $scan->siwecosScans->first()->domain->domain
         ]);
 
         $response->assertStatus(200);

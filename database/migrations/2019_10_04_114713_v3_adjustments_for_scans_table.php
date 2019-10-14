@@ -17,7 +17,6 @@ class V3AdjustmentsForScansTable extends Migration
 
         Schema::create('scans', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('siwecos_scan_id');
             $table->string('url');
 
             $table->boolean('has_error')->default(false);
@@ -28,8 +27,6 @@ class V3AdjustmentsForScansTable extends Migration
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('siwecos_scan_id')->references('id')->on('scans');
         });
     }
 

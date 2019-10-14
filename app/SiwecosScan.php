@@ -128,11 +128,11 @@ class SiwecosScan extends Model
     /**
      * Returns the Eloquent Relationship for App\Scans
      *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function scans()
     {
-        return $this->hasMany(Scan::class);
+        return $this->belongsToMany(Scan::class)->withTimestamps();
     }
 
     /**
@@ -152,7 +152,12 @@ class SiwecosScan extends Model
             }
 
             foreach ($this->domain->mailDomains as $mailDomain) {
-                StartScanJob::dispatch($this, $mailDomain, ['IMAP', 'IMAPS', 'POP3', 'POP3S', 'SMTP', 'SMTPS']);
+                $latestScan = $mailDomain->latestScan;
+                if ($latestScan && $latestScan->created_at->gte(now()->subHours(6))) {
+                    $latestScan->siwecosScans()->attach($this);
+                } else {
+                    StartScanJob::dispatch($this, $mailDomain, ['IMAP', 'IMAPS', 'POP3', 'POP3S', 'SMTP', 'SMTPS']);
+                }
             }
         }
     }
@@ -165,7 +170,11 @@ class SiwecosScan extends Model
     public function delete()
     {
         $this->scans->each(function ($scan) {
-            $scan->delete();
+            if (count($scan->siwecosScans) == 1) {
+                $scan->delete();
+            } else {
+                $scan->siwecosScans()->detach([$this->id]);
+            }
         });
 
         return parent::delete();

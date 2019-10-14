@@ -37,7 +37,7 @@ class UserTest extends TestCase
     {
         $scan = $this->getFinishedScan();
         $user = $this->getActivatedUser();
-        $scan->siwecosScan->domain->token()->associate($user->token)->save();
+        $scan->siwecosScans->first()->domain->token()->associate($user->token)->save();
         Token::find(1)->delete(); // delete original $scan->token
 
         $this->assertCount(1, $user->refresh()->token->domains);
