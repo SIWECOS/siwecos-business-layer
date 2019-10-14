@@ -127,6 +127,12 @@ return [
         'PORT' => env('SCANNER_SCORE_WEIGHT_PORT', 1.0),
         'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
         'VERSION' => env('SCANNER_SCORE_WEIGHT_VERSION', 1.0),
+        'POP3_TLS' => env('SCANNER_SCORE_WEIGHT_POP3_TLS', 1.0),
+        'POP3S_TLS' => env('SCANNER_SCORE_WEIGHT_POP3S_TLS', 1.0),
+        'IMAP_TLS' => env('SCANNER_SCORE_WEIGHT_IMAP_TLS', 1.0),
+        'IMAPS_TLS' => env('SCANNER_SCORE_WEIGHT_IMAPS_TLS', 1.0),
+        'SMTP_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_TLS', 1.0),
+        'SMTPS_TLS' => env('SCANNER_SCORE_WEIGHT_SMTPS_TLS', 1.0),
     ],
 
     /*
