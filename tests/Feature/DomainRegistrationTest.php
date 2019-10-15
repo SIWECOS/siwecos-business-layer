@@ -17,13 +17,6 @@ class DomainRegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Token::create(['type' => 'freescan', 'credits' => 100000]);
-    }
-
     /** @test */
     public function a_user_can_register_a_new_domain_to_his_token()
     {
