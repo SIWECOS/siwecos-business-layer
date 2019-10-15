@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Domain;
-use App\Jobs\StartScanJob;
 
 class TriggerDailyScansCommand extends Command
 {
@@ -43,12 +42,13 @@ class TriggerDailyScansCommand extends Command
         $domains = Domain::whereIsVerified(true)->get();
 
         foreach ($domains as $domain) {
-            $scan = $domain->scans()->create([
+            $siwecosScan = $domain->siwecosScans()->create([
                 'is_freescan' => false,
                 'is_recurrent' => true
             ]);
 
-            StartScanJob::dispatch($scan);
+            $siwecosScan->dispatchScanJobs();
+
             $this->startedScans++;
         }
 

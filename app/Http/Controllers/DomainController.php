@@ -14,6 +14,7 @@ use App\Http\Requests\DeleteDomainRequest;
 use App\Http\Responses\DomainListResponse;
 use App\Http\Responses\StatusResponse;
 use App\Http\Responses\DomainResponse;
+use App\Jobs\StartCrawlerJob;
 
 class DomainController extends Controller
 {
@@ -50,6 +51,7 @@ class DomainController extends Controller
             $domain->token()->associate($token);
             $domain->save();
 
+            $this->dispatch(new StartCrawlerJob($domain));
             return response()->json(new DomainResponse($domain), 200);
         }
 
@@ -90,14 +92,14 @@ class DomainController extends Controller
             }
         }
 
-        $scan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+        $siwecosScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
-            $scan = $domain->scans()->whereIsFreescan(false)->latest()->first() ?: $scan;
+            $siwecosScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $siwecosScan;
         }
 
-        if ($scan) {
-            return (new ScanController())->report($scan, $language);
+        if ($siwecosScan) {
+            return (new ScanController())->report($siwecosScan, $language);
         }
 
         return response()->json(new StatusResponse('Scan Not Found'), 404);
@@ -106,13 +108,21 @@ class DomainController extends Controller
     public function sealproof(Domain $domain)
     {
         if ($domain->is_verified) {
-            $scan = $domain->scans()->whereIsFreescan(false)->whereNotNull('finished_at')->latest()->first();
+            $siwecosScan = $domain->siwecosScans()
+                ->whereIsFreescan(false)
+                ->latest()
+                ->take(10)
+                ->get()
+                ->filter(function ($siwecosScan) {
+                    return $siwecosScan->isFinished;
+                })
+                ->first();
 
-            if ($scan) {
+            if ($siwecosScan) {
                 return response()->json([
                     'domain' => $domain->domain,
-                    'finished_at' => $scan->finished_at->toIso8601ZuluString(),
-                    'score' => $scan->score
+                    'finished_at' => $siwecosScan->finished_at->toIso8601ZuluString(),
+                    'score' => $siwecosScan->score
                 ]);
             }
 

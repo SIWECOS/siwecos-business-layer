@@ -15,6 +15,7 @@ class DomainDeletionTest extends TestCase
     /** @test */
     public function a_domain_can_be_deleted()
     {
+        $this->withoutExceptionHandling();
         $token = factory(Token::class)->create();
         $token->domains()->create(factory(Domain::class)->make()->toArray());
 

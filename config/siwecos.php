@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Crawler Start URL
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the URL to the running instance of
+    | SIWECOS/siwecos-crawler. The Crawler is responsible for the actual site
+    | scans.
+    |
+    */
+    'crawlerStartUrl' => env('CRAWLER_START_URL'),
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Default Token credits
     |--------------------------------------------------------------------------
     |
@@ -99,11 +112,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some scanners are more powerful or critical than others.
-    | You can define how much an individual scanner score should influence the
+    | Definition how much an individual scanner score should influence the
     | total score.
     |
-    | The weight can be set to zero, if the scanner should not influence the
-    | total score.
+    | The weight can be set to zero if the scanner should not influence the
+    | score.
     |
     */
     'scanner_weight' => [
@@ -114,6 +127,12 @@ return [
         'PORT' => env('SCANNER_SCORE_WEIGHT_PORT', 1.0),
         'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
         'VERSION' => env('SCANNER_SCORE_WEIGHT_VERSION', 1.0),
+        'POP3_TLS' => env('SCANNER_SCORE_WEIGHT_POP3_TLS', 1.0),
+        'POP3S_TLS' => env('SCANNER_SCORE_WEIGHT_POP3S_TLS', 1.0),
+        'IMAP_TLS' => env('SCANNER_SCORE_WEIGHT_IMAP_TLS', 1.0),
+        'IMAPS_TLS' => env('SCANNER_SCORE_WEIGHT_IMAPS_TLS', 1.0),
+        'SMTP_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_TLS', 1.0),
+        'SMTPS_TLS' => env('SCANNER_SCORE_WEIGHT_SMTPS_TLS', 1.0),
     ],
 
     /*

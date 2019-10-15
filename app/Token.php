@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Keygen\Keygen;
-use App\Events\TokenDeleted;
 use App\Traits\Iso8601Serialization;
 
 class Token extends Model
@@ -43,16 +42,6 @@ class Token extends Model
     public function domains()
     {
         return $this->hasMany(Domain::class);
-    }
-
-    /**
-     * Returns the Eloquent Relationship for App\Scan
-     *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function scans()
-    {
-        return $this->hasManyThrough(Scan::class, Domain::class);
     }
 
 

@@ -53,13 +53,13 @@ class FreeScanStartTest extends TestCase
         $knownDate = Carbon::create(2019, 2, 8, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
 
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $siwecosScan = $this->getFinishedScan([], ['is_freescan' => true])->siwecosScans->first();
 
         $knownDate->addHours(3);
         Carbon::setTestNow($knownDate);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'domain' => $scan->domain->domain
+            'domain' => $siwecosScan->domain->domain
         ]);
         $response->assertStatus(200);
         $response->assertJson(['scan_id' => 1]);
@@ -70,7 +70,7 @@ class FreeScanStartTest extends TestCase
         Carbon::setTestNow($knownDate);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'domain' => $scan->domain->domain
+            'domain' => $siwecosScan->domain->domain
         ]);
         $response->assertStatus(200);
         $response->assertJson(['scan_id' => 2]);
@@ -80,11 +80,12 @@ class FreeScanStartTest extends TestCase
     /** @test */
     public function if_a_free_scan_is_already_running_do_not_start_a_second_one()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
 
         $response = $this->json('POST', '/api/v2/freescan', [
-            'domain' => $scan->domain->domain
+            'domain' => $scan->siwecosScans->first()->domain->domain
         ]);
+
         $response->assertStatus(200);
         $response->assertJson(['scan_id' => 1]);
         Queue::assertNothingPushed();

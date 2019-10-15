@@ -7,14 +7,11 @@ use App\Traits\Iso8601Serialization;
 
 class Scan extends Model
 {
-    use \Znck\Eloquent\Traits\BelongsToThrough;
     use Iso8601Serialization;
 
     protected $casts = [
         'is_finished' => 'boolean',
         'has_error' => 'boolean',
-        'is_freescan' => 'boolean',
-        'is_recurrent' => 'boolean',
         'score' => 'integer',
         'results' => 'collection',
     ];
@@ -25,7 +22,7 @@ class Scan extends Model
 
     protected $guarded = ['score', 'is_finished', 'status', 'results'];
 
-    protected $hidden = ['id', 'domain_id'];
+    protected $hidden = ['id'];
 
     protected $appends = ['is_finished', 'status'];
 
@@ -65,10 +62,6 @@ class Scan extends Model
         return 'created';
     }
 
-    public function getDangerLevelAttribute()
-    {
-        return $this->is_freescan ? 0 : 10;
-    }
 
     public function calculateScore()
     {
@@ -98,22 +91,12 @@ class Scan extends Model
     }
 
     /**
-     * Returns the Eloquent Relationship for App\Domain
+     * Returns the Eloquent Relationship for App\SiwecosScan
      *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function domain()
+    public function siwecosScans()
     {
-        return $this->belongsTo(Domain::class);
-    }
-
-    /**
-     * Returns the Eloquent Relationship for App\Token
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function token()
-    {
-        return $this->belongsToThrough(Token::class, Domain::class);
+        return $this->belongsToMany(SiwecosScan::class)->withTimestamps();
     }
 }

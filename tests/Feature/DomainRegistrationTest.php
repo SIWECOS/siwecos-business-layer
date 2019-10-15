@@ -10,6 +10,8 @@ use GuzzleHttp\Psr7\Response;
 use App\Token;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\StartCrawlerJob;
 
 class DomainRegistrationTest extends TestCase
 {
@@ -116,6 +118,9 @@ class DomainRegistrationTest extends TestCase
         // Step 4: Get the Domain successfully verified
         $response->assertStatus(200);
         $this->assertTrue($domain->refresh()->is_verified);
+
+        // Step 5: The Crawler will be started
+        Queue::assertPushed(StartCrawlerJob::class);
     }
 
     /** @test */

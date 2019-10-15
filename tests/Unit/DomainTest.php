@@ -9,6 +9,8 @@ use App\Token;
 use App\Domain;
 use Illuminate\Database\QueryException;
 use App\Scan;
+use App\CrawledUrl;
+use App\MailDomain;
 
 class DomainTest extends TestCase
 {
@@ -31,13 +33,12 @@ class DomainTest extends TestCase
         Domain::create(['domain' => 'example.org']);
     }
 
-
     /** @test */
-    public function a_domain_has_the_calculated_parameter_url_with_http_scheme()
+    public function a_domain_has_the_calculated_parameter_mainUrl_with_http_scheme()
     {
         $domain = factory(Domain::class)->make(['domain' => 'example.org']);
 
-        $this->assertEquals('http://example.org', $domain->url);
+        $this->assertEquals('http://example.org', $domain->mainUrl);
     }
 
     /** @test */
@@ -53,10 +54,37 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_can_have_many_scans()
+    public function a_domain_can_have_many_siwecosScans()
     {
         $domain = $this->getRegisteredDomain();
-        $this->assertCount(0, $domain->scans);
+        $domain->siwecosScans()->create([
+            'is_freescan' => false,
+            'is_recurrent' => false
+        ]);
+
+        $this->assertCount(1, $domain->siwecosScans);
+    }
+
+    /** @test */
+    public function a_domain_can_have_many_crawledUrls()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->crawledUrls()->create([
+            'url' => 'https://example.org/shop'
+        ]);
+
+        $this->assertCount(1, CrawledUrl::all());
+    }
+
+    /** @test */
+    public function a_domain_can_have_many_mailDomains()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->mailDomains()->create([
+            'domain' => 'mx.example.org'
+        ]);
+
+        $this->assertCount(1, MailDomain::all());
     }
 
     /** @test */
@@ -68,7 +96,7 @@ class DomainTest extends TestCase
         $this->getFailedScan();
         $domain = Domain::first();
 
-        $this->assertCount(4, $domain->scans);
+        $this->assertCount(4, Scan::all());
 
         $domain->delete();
         $this->assertCount(0, Domain::all());
