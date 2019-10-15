@@ -13,13 +13,24 @@ class MigrateIdsToBigIntegers extends Migration
      */
     public function up()
     {
-        Schema::table('tokens', function (Blueprint $table) {
-            $table->bigIncrements('id')->change();
-        });
+        if (env('APP_ENV') !== 'testing') {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropForeign(['token_id']);
+            });
+
+            Schema::table('scans', function (Blueprint $table) {
+                $table->dropForeign(['domain_id']);
+            });
+        }
 
         Schema::table('users', function (Blueprint $table) {
             $table->bigIncrements('id')->change();
             $table->unsignedBigInteger('token_id')->nullable()->change();
+        });
+
+        Schema::table('scans', function (Blueprint $table) {
+            $table->bigIncrements('id')->change();
+            $table->unsignedBigInteger('domain_id')->change();
         });
 
         Schema::table('domains', function (Blueprint $table) {
@@ -27,9 +38,8 @@ class MigrateIdsToBigIntegers extends Migration
             $table->unsignedBigInteger('token_id')->change();
         });
 
-        Schema::table('scans', function (Blueprint $table) {
+        Schema::table('tokens', function (Blueprint $table) {
             $table->bigIncrements('id')->change();
-            $table->unsignedBigInteger('domain_id')->change();
         });
     }
 
