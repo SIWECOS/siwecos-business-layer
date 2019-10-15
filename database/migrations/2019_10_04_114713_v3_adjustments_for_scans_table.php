@@ -16,7 +16,7 @@ class V3AdjustmentsForScansTable extends Migration
         Schema::dropIfExists('scans');
 
         Schema::create('scans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('url');
 
             $table->boolean('has_error')->default(false);
