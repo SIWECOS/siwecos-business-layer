@@ -2,14 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Scan;
+use App\SiwecosScan;
+use App\Token;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Token;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
-
-class TokenDeletionTest extends TestCase
+class DatabaseCleanupTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -30,5 +31,26 @@ class TokenDeletionTest extends TestCase
         $this->artisan('siwecos:delete-empty-tokens')
             ->expectsOutput('5 Tokens were deleted.');
         $this->assertCount(0, Token::all());
+    }
+
+    /** @test */
+    public function siwecosScans_older_than_30_days_will_be_deleted()
+    {
+        $knownDate = Carbon::create(2018, 2, 8, 13, 0, 0);
+        Carbon::setTestNow($knownDate);
+
+        $this->getFailedScan();
+        $this->getFinishedScan();
+
+        $this->assertCount(2, SiwecosScan::all());
+
+        Carbon::setTestNow($knownDate->addDays(31));
+
+        $this->getFinishedScan();
+
+        $this->artisan('siwecos:delete-old-scans')
+            ->expectsOutput('2 Scans were deleted.');
+        $this->assertCount(1, SiwecosScan::all());
+        $this->assertCount(1, Scan::all());
     }
 }

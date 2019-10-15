@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('siwecos:delete-empty-tokens')->hourly();
 
+        $schedule->command('siwecos:delete-old-scans')->hourly();
+
         $schedule->command('siwecos:check-scan-timeout')->everyTenMinutes();
 
         $schedule->command('siwecos:trigger-daily-scans')->dailyAt('01:00');
