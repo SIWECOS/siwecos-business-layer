@@ -15,6 +15,8 @@ class StartCrawlerJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $domain;
+
     /**
      * Create a new job instance.
      *
@@ -39,7 +41,12 @@ class StartCrawlerJob implements ShouldQueue
             }
 
             $response = $client->request('POST', config('siwecos.crawlerStartUrl'), ['json' => [
-                'url' => 'http://' . $this->domain->domain,
+                "domain" => $this->domain->domain,
+                "crawl" => true,
+                "maxCount" => 10,
+                "maxDepth" => 2,
+                "userAgent" => config('siwecos.userAgent'),
+                "allowSubdomains" => false,
                 'callbackurls' => [
                     config('app.url') . '/api/v2/crawler/finished'
                 ]
