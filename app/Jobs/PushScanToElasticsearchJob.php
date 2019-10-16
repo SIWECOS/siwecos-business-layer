@@ -56,7 +56,6 @@ class PushScanToElasticsearchJob implements ShouldQueue
                     'scan' => array_merge(
                         $this->scan->toArray(),
                         [
-                            'token' => $this->scan->token,
                             'domain' => parse_url($this->scan->url, PHP_URL_HOST),
                             // overwrite scan.results for correct indexing
                             'results' =>  $reformattedResults,
