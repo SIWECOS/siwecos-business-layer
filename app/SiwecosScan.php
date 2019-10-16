@@ -147,8 +147,8 @@ class SiwecosScan extends Model
         } else {
             StartScanJob::dispatch($this, $this->domain->mainUrl, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION']);
 
-            foreach ($this->domain->crawledUrls as $url) {
-                StartScanJob::dispatch($this, $url, ['DOMXSS', 'HEADER', 'INFOLEAK']);
+            foreach ($this->domain->crawledUrls as $crawledUrl) {
+                StartScanJob::dispatch($this, $crawledUrl->url, ['DOMXSS', 'HEADER', 'INFOLEAK']);
             }
 
             foreach ($this->domain->mailDomains as $mailDomain) {
@@ -156,7 +156,7 @@ class SiwecosScan extends Model
                 if ($latestScan && $latestScan->created_at->gte(now()->subHours(6))) {
                     $latestScan->siwecosScans()->attach($this);
                 } else {
-                    StartScanJob::dispatch($this, $mailDomain, ['IMAP', 'IMAPS', 'POP3', 'POP3S', 'SMTP', 'SMTPS']);
+                    StartScanJob::dispatch($this, $mailDomain->domain, ['IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS']);
                 }
             }
         }
