@@ -34,6 +34,7 @@ class CrawlerFinishedRequest extends FormRequest
     public function rules()
     {
         return [
+            'hasError' => ['required', 'boolean'],
             'domain' => ['required', 'string', new Hostname, 'exists:domains,domain'],
             'crawledUrls' => ['array'],
             'crawledUrls.*' => ['url'],
