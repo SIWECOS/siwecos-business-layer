@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('siwecos:delete-empty-tokens')->hourly();
 
         $schedule->command('siwecos:delete-old-scans')->hourly();
+        $schedule->command('siwecos:delete-old-crawledUrls')->hourly();
+        $schedule->command('siwecos:delete-old-mailDomains')->hourly();
 
         $schedule->command('siwecos:check-scan-timeout')->everyTenMinutes();
 
