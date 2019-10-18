@@ -147,7 +147,7 @@ class SiwecosScan extends Model
         } else {
             StartScanJob::dispatch($this, $this->domain->mainUrl, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION']);
 
-            foreach ($this->domain->crawledUrls as $crawledUrl) {
+            foreach ($this->domain->crawledUrls()->whereIsMainUrl(false)->get() as $crawledUrl) {
                 StartScanJob::dispatch($this, $crawledUrl->url, ['DOMXSS', 'HEADER', 'INFOLEAK']);
             }
 

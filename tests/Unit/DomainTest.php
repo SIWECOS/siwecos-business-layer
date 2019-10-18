@@ -34,11 +34,13 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_has_the_calculated_parameter_mainUrl_with_http_scheme()
+    public function a_domain_has_the_calculated_parameter_mainUrl_with_http_scheme_or_crawled_mainUrl()
     {
-        $domain = factory(Domain::class)->make(['domain' => 'example.org']);
-
+        $domain = $this->getRegisteredDomain();
         $this->assertEquals('http://example.org', $domain->mainUrl);
+
+        $domain->crawledUrls()->create(['url' => 'https://example.org', 'is_main_url' => true]);
+        $this->assertEquals('https://example.org', $domain->mainUrl);
     }
 
     /** @test */

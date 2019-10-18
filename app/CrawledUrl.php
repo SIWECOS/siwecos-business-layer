@@ -11,6 +11,9 @@ class CrawledUrl extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'is_main_url' => 'boolean'
+    ];
 
     /**
      * Returns the Eloquent Relationship for App\Domain

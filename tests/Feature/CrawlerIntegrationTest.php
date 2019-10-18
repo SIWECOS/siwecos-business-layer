@@ -24,7 +24,8 @@ class CrawlerIntegrationTest extends TestCase
         $response = $this->json('POST', '/api/v2/crawler/finished', collect(json_decode(file_get_contents(base_path('tests/siwecos-crawler-response.json'))))->toArray());
 
         $response->assertStatus(200);
-        $this->assertCount(10, Domain::first()->crawledUrls);
+        $this->assertCount(11, Domain::first()->crawledUrls);
+        $this->assertCount(1, CrawledUrl::whereIsMainUrl(true)->get());
         $this->assertCount(4, Domain::first()->mailDomains);
     }
 

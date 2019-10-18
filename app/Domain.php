@@ -34,6 +34,12 @@ class Domain extends Model
 
     public function getMainUrlAttribute()
     {
+        $crawledMainUrl = $this->crawledUrls()->whereIsMainUrl(true)->get()->first();
+
+        if ($crawledMainUrl) {
+            return $crawledMainUrl->url;
+        }
+
         return 'http://' . $this->domain;
     }
 
