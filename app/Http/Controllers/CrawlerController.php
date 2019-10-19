@@ -20,6 +20,8 @@ class CrawlerController extends Controller
             $domain->crawledUrls()->update(['domain_id' => null]);
             $domain->mailDomains()->detach();
 
+            $domain->touch();
+
             if ($mainUrl) {
                 $domain->crawledUrls()->firstOrCreate([
                     'url' => $mainUrl,

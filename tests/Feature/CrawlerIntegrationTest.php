@@ -6,11 +6,13 @@ use App\CrawledUrl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Collection;
 use App\Domain;
+use App\Jobs\StartCrawlerJob;
 use App\MailDomain;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Queue;
 
 class CrawlerIntegrationTest extends TestCase
 {
@@ -19,7 +21,10 @@ class CrawlerIntegrationTest extends TestCase
     /** @test */
     public function the_crawler_response_will_be_saved_in_the_associated_models()
     {
+        $knownDate = Carbon::create(2019, 2, 8, 8, 30, 15, 'UTC');
+        Carbon::setTestNow($knownDate);
         $this->getRegisteredDomain(['domain' => 'siwecos.de', 'is_verified' => true]);
+        Carbon::setTestNow($knownDate->addDay());
 
         $response = $this->json('POST', '/api/v2/crawler/finished', collect(json_decode(file_get_contents(base_path('tests/siwecos-crawler-response.json'))))->toArray());
 
@@ -27,6 +32,8 @@ class CrawlerIntegrationTest extends TestCase
         $this->assertCount(11, Domain::first()->crawledUrls);
         $this->assertCount(1, CrawledUrl::whereIsMainUrl(true)->get());
         $this->assertCount(4, Domain::first()->mailDomains);
+
+        $this->assertEquals(Domain::first()->updated_at->toDateTimeString(), '2019-02-09 08:30:15');
     }
 
     /** @test */
@@ -280,5 +287,24 @@ class CrawlerIntegrationTest extends TestCase
         $response->assertStatus(200);
         $this->assertCount(1, Domain::first()->mailDomains);
         $this->assertCount(1, Domain::first()->crawledUrls);
+    }
+
+    /** @test */
+    public function the_crawler_will_be_started_periodically_to_update_a_domain()
+    {
+        $knownDate = Carbon::create(2019, 2, 8, 8, 30, 15, 'UTC');
+        Carbon::setTestNow($knownDate);
+
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        $this->artisan('siwecos:trigger-crawler')
+            ->expectsOutput('0 CrawlerJobs were started.');
+        Queue::assertNothingPushed();
+
+        Carbon::setTestNow($knownDate->addDays(7));
+
+        $this->artisan('siwecos:trigger-crawler')
+            ->expectsOutput('1 CrawlerJobs were started.');
+        Queue::assertPushed(StartCrawlerJob::class);
     }
 }
