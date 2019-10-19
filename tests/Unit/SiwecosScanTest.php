@@ -94,7 +94,7 @@ class SiwecosScanTest extends TestCase
         $this->assertEquals(2, $this->crawledUrlCounter);
 
         Queue::assertPushed(StartScanJob::class, function ($job) {
-            if (['IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS'] === $job->scanners)
+            if (['INI_S', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS'] === $job->scanners)
                 $this->mailDomainCounter++;
             return $this->mailDomainCounter >= 1;
         });
@@ -121,7 +121,7 @@ class SiwecosScanTest extends TestCase
         // Assert that 2 of the 3 MailDomain Scans will be triggered
         $this->mailDomainCounter = 0;
         Queue::assertPushed(StartScanJob::class, function ($job) {
-            if (['IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS'] === $job->scanners)
+            if (['INI_S', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS'] === $job->scanners)
                 $this->mailDomainCounter++;
             return $this->mailDomainCounter >= 1;
         });
