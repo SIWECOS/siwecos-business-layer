@@ -23,10 +23,8 @@ class CrawlerController extends Controller
             $domain->touch();
 
             if ($mainUrl) {
-                $domain->crawledUrls()->firstOrCreate([
-                    'url' => $mainUrl,
-                    'is_main_url' => true
-                ]);
+                $crawledUrl = CrawledUrl::whereUrl($mainUrl)->firstOrCreate(['url' => $mainUrl, 'is_main_url' => true]);
+                $crawledUrl->domain()->associate($domain)->save();
             }
 
             if ($crawledUrls) {
