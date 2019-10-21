@@ -209,4 +209,65 @@ class SiwecosScanTest extends TestCase
         $siwecosScan->scans()->create(['url' => 'https://example.org/failed', 'has_error' => true, 'finished_at' => now()->subMinutes(5)]);
         $this->assertEquals('failed', $siwecosScan->status);
     }
+
+    /** @test */
+    public function a_siwecosScan_can_return_the_average_scannerScores_as_a_collection()
+    {
+        $siwecosScan = $this->getFinishedScan()->siwecosScans->first();
+        $additionalScan = $this->getFinishedScan(['url' => 'https://example.org/shop']);
+        $additionalScan->results = $additionalScan->results->map(function ($scanner) {
+            $scanner['score'] = 0;
+            return $scanner;
+        });
+        $additionalScan->save();
+        $siwecosScan->scans()->attach($additionalScan);
+
+        $this->assertCount(2, $siwecosScan->scans);
+
+        $expectedCollection = collect([
+            'DOMXSS' => 25, // (50 + 0) / 2
+            'HEADER' => 42.5, // (85 + 0) / 2
+            'INFOLEAK' => 50, // (100 + 0 ) / 2
+            'INI_S' => 50, // (100 + 0 ) / 2
+            'TLS' => 50 // (100 + 0 ) / 2
+        ]);
+
+        $this->assertEquals($expectedCollection, $siwecosScan->getAverageScannerScores());
+    }
+
+    /** @test */
+    public function a_siwecosScan_as_a_calculated_total_score_as_an_weighted_average()
+    {
+        config(['siwecos.scannerWeight.TLS' => 3]);
+        config(['siwecos.scannerWeight.DOMXSS' => 0]);
+
+        $siwecosScan = $this->getFinishedScan()->siwecosScans->first();
+        $additionalScan = $this->getFinishedScan(['url' => 'https://example.org/shop']);
+        $additionalScan->results = $additionalScan->results->map(function ($scanner) {
+            $scanner['score'] = 0;
+            return $scanner;
+        });
+        $additionalScan->save();
+        $siwecosScan->scans()->attach($additionalScan);
+
+        $this->assertCount(2, $siwecosScan->scans);
+
+        $this->assertEquals(49, $siwecosScan->score);
+    }
+
+    /** @test */
+    public function if_a_scan_has_at_least_one_scoreTypeCritical_than_the_total_score_will_be_capped_at_20()
+    {
+        $scan = $this->getFinishedScan();
+
+        $this->assertEquals(87, $scan->siwecosScans->first()->score);
+
+        $scan->results = $scan->results->transform(function ($scanner) {
+            $scanner['tests'][0]['scoreType'] = 'critical';
+            return $scanner;
+        });
+        $scan->save();
+
+        $this->assertEquals(20, $scan->refresh()->siwecosScans->first()->score);
+    }
 }

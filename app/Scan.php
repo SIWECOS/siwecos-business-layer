@@ -75,19 +75,27 @@ class Scan extends Model
             $scannerWeight = config('siwecos.scanner_weight.' . $result->get('name'), 1);
             $score += $result->get('score') * $scannerWeight;
             $totalScannerWeight += $scannerWeight;
-
-            if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
-                $hasCritical = true;
-            };
         }
 
         $score = $totalScannerWeight ? ceil($score / $totalScannerWeight) : 0;
 
-        if ($score > 20 && $hasCritical) {
+        if ($score > 20 && $this->hasCritical()) {
             $score = 20;
         }
 
         return $score;
+    }
+
+    public function hasCritical()
+    {
+        foreach ($this->results as $result) {
+            $result = collect($result)->recursive();
+            if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
+                return true;
+            };
+        }
+
+        return false;
     }
 
     /**

@@ -35,7 +35,47 @@ class SiwecosScan extends Model
      */
     public function getScoreAttribute()
     {
-        return $this->scans->avg('score');
+        $totalScore = 0;
+        $totalWeight = 0;
+
+        foreach ($this->getAverageScannerScores() as $scanner => $score) {
+            $weight = config('siwecos.scannerWeight.' . $scanner, 1.0);
+            $totalWeight += $weight;
+            $totalScore +=  $weight * $score;
+        }
+
+        $totalScore = ceil($totalScore / $totalWeight);
+
+        if ($totalScore > 20 && $this->hasCriticalScans()) {
+            $totalScore = 20;
+        }
+
+        return (int) $totalScore;
+    }
+
+    public function getAverageScannerScores()
+    {
+        $resultScores = collect();
+        foreach ($this->scans as $scan) {
+            foreach ($scan->results as $result) {
+                $resultScores->push(['name' => $result['name'], 'score' => $result['score']]);
+            }
+        }
+
+        return $resultScores->groupBy('name')->map(function ($scanner) {
+            return $scanner->avg('score');
+        });
+    }
+
+    public function hasCriticalScans()
+    {
+        foreach ($this->scans as $scan) {
+            if ($scan->hasCritical()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
