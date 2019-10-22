@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Jobs\PushScanToElasticsearchJob;
 use App\SiwecosScan;
 use Barryvdh\Snappy\Facades\SnappyPdf;
-use Illuminate\Support\Facades\Cache;
 
 class ScanController extends Controller
 {
@@ -84,10 +83,7 @@ class ScanController extends Controller
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            $scan = $siwecosScan->scans->first();
-            return response()->json(Cache::rememberForever('scan-' . $scan->id, function () use ($scan) {
-                return new ScanReportResponse($scan);
-            }));
+            return response()->json(new ScanReportResponse($siwecosScan->scans->first()));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
@@ -98,9 +94,7 @@ class ScanController extends Controller
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            return response()->json(Cache::rememberForever('siwecosScan-' . $siwecosScan->id, function () use ($siwecosScan) {
-                return new SiwecosScanReportResponse($siwecosScan);
-            }));
+            return response()->json(new SiwecosScanReportResponse($siwecosScan));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
@@ -114,9 +108,7 @@ class ScanController extends Controller
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $siwecosScan,
-                    'report' => Cache::rememberForever('scan-' . $siwecosScan->scans->first(), function () use ($siwecosScan) {
-                        return new ScanReportResponse($siwecosScan->scans->first());
-                    }),
+                    'report' => new ScanReportResponse($siwecosScan->scans->first()),
                     'gaugeData' => $this->getGaugeData($siwecosScan->scans->first())
                 ]);
                 return $pdf->download('SIWECOS Scan Report.pdf');
@@ -139,9 +131,7 @@ class ScanController extends Controller
                 foreach ($siwecosScan->scans as $scan) {
                     $parts->push([
                         'scan' => $scan,
-                        'report' => Cache::rememberForever('scan-' . $scan->id, function () use ($scan) {
-                            return new ScanReportResponse($scan);
-                        }),
+                        'report' => new ScanReportResponse($scan),
                         'gaugeData' => $this->getGaugeData($scan)
                     ]);
                 }
