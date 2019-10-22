@@ -301,10 +301,16 @@
                     <a href="#retrieving-the-scan-status" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Status</a>
                   </li>
                   <li>
-                    <a href="#retrieving-the-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Report</a>
+                    <a href="#retrieving-the-main-url-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-Url Scan Report</a>
                   </li>
                   <li>
-                    <a href="#retrieving-the-scan-report-as-pdf" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Report as PDF</a>
+                    <a href="#retrieving-the-main-url-scan-report-as-pdf" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-Url Scan Report as PDF</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-the-full-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Full Scan Report</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-the-full-scan-report-as-pdf" class="toc-h2 toc-link" data-title="Scans">Retrieving the Full Scan Report as PDF</a>
                   </li>
               </ul>
           </li>
@@ -349,7 +355,8 @@
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain_verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /api/v2/user</code></p>
@@ -415,7 +422,8 @@ After registration a verification mail will be sent to the user's email address.
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain_verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v2/user/activate/{key}</code></p>
@@ -544,7 +552,8 @@ After registration a verification mail will be sent to the user's email address.
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain_verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/v2/user/login</code></p>
@@ -738,7 +747,8 @@ After registration a verification mail will be sent to the user's email address.
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail@siwecos.de"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain_verification_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p522893XyZYSu5riyZ7PRCQ1ynOTyrfsYfx0NNUjbB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /api/v2/user</code></p>
@@ -1067,6 +1077,10 @@ After registration the domain has to be verified.
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /api/v2/domain/verify</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
+</aside>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -1675,7 +1689,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>Validation failed</td>
 </tr>
 </tbody></table>
-<h2 id='retrieving-the-scan-report'>Retrieving the Scan Report</h2>
+<h2 id='retrieving-the-main-url-scan-report'>Retrieving the Main-Url Scan Report</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
@@ -1813,7 +1827,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>Validation failed</td>
 </tr>
 </tbody></table>
-<h2 id='retrieving-the-scan-report-as-pdf'>Retrieving the Scan Report as PDF</h2>
+<h2 id='retrieving-the-main-url-scan-report-as-pdf'>Retrieving the Main-Url Scan Report as PDF</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
@@ -1867,6 +1881,222 @@ Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required fo
 </tr>
 </tbody></table>
 <h3 id='response-status-codes-5'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>PDF Report</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Scan not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Scan not finished</td>
+</tr>
+</tbody></table>
+<h2 id='retrieving-the-full-scan-report'>Retrieving the Full Scan Report</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://bla.local/api/v2/siwecosScan/3913/en <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/siwecosScan/3913/en</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">Y2jHgqtSVcz8eFqiV4eC0s5Y</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre>
+<p>The scan report can be requested.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the following structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:28:43Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:58:55Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scanner_scores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"DOMXSS"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"HEADER"</span><span class="p">:</span><span class="w"> </span><span class="mf">42.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"INFOLEAK"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"INI_S"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TLS"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"reports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Arrays</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">report</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">scanned</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">oder</span><span class="w"> </span><span class="err">MailDomain</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Structure</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">identical</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">`report`</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">section</span><span class="w"> </span><span class="err">Retrieving</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">Main-Url</span><span class="w"> </span><span class="err">Scan</span><span class="w"> </span><span class="err">Report</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">ScanReport</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">Main-URL</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">ScanReport</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">first</span><span class="w"> </span><span class="err">crawledUrl</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">ScanReport</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">first</span><span class="w"> </span><span class="err">MailDomain</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /api/v2/siwecosScan/{scan_id}/{language_code}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+<h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code>. It&#39;s returned when you request a scan start</td>
+</tr>
+<tr>
+<td><em>language_code</em></td>
+<td><em><code>string</code></em></td>
+<td><em>One of the supported language codes for translated results: <code>de</code> or <code>en</code></em></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-5'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td>The status can be: <code>finished</code></td>
+</tr>
+<tr>
+<td>has_error</td>
+<td><code>boolean</code></td>
+<td>Determines if the scan had an error</td>
+</tr>
+<tr>
+<td>started_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the start time (when the scan was dispatched to the Core-API)</td>
+</tr>
+<tr>
+<td>finished_at</td>
+<td><code>date</code></td>
+<td>DateTime String for the finished time (when the result was received from the Core-API)</td>
+</tr>
+<tr>
+<td>score</td>
+<td><code>integer</code></td>
+<td>Calculated weighted total score for the scan</td>
+</tr>
+<tr>
+<td>scanner_scores</td>
+<td><code>array</code></td>
+<td>Average score by scanner</td>
+</tr>
+<tr>
+<td>reports</td>
+<td><code>array</code></td>
+<td>Array of translated and formatted scan reports for each scanned <code>URL</code> or <code>MailDomain</code></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-6'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Scan status retrieved</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Scan not found</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation failed</td>
+</tr>
+</tbody></table>
+<h2 id='retrieving-the-full-scan-report-as-pdf'>Retrieving the Full Scan Report as PDF</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+      "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+  }'</span> <span class="se">\</span>
+  <span class="s2">"http://bla.local/api/v2/siwecosScan/3913/en/pdf"</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v2/siwecosScan/3913/en/pdf</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"SIWECOS-Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y2jHgqtSVcz8eFqiV4eC0s5Y"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The scan report can be requested as a PDF file.</p>
+
+<blockquote>
+<p>A PDF file will be downloaded.</p>
+</blockquote>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /api/v2/siwecosScan/{scan_id}/{language_code}/pdf</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+<h3 id='request-parameters-7'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_id</td>
+<td><code>integer</code></td>
+<td>The scan&#39;s <code>id</code>. It&#39;s returned when you request a scan start</td>
+</tr>
+<tr>
+<td>language_code</td>
+<td><code>string</code></td>
+<td>One of the supported language codes for translated results: <code>de</code> or <code>en</code></td>
+</tr>
+<tr>
+<td><em>SIWECOS-Token</em></td>
+<td><em><code>string</code></em></td>
+<td><em>SIWECOS-Token for non-freescans</em></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-7'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
