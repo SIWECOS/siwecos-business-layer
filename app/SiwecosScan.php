@@ -196,7 +196,7 @@ class SiwecosScan extends Model
                 if ($latestScan && $latestScan->created_at->gte(now()->subHours(6))) {
                     $latestScan->siwecosScans()->attach($this);
                 } else {
-                    StartScanJob::dispatch($this, $mailDomain->domain, ['INI_S', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS']);
+                    StartScanJob::dispatch($this, $mailDomain->domain, ['INI_S', 'PORT', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS']);
                 }
             }
         }
