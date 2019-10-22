@@ -85,9 +85,9 @@ class Domain extends Model
 
     public function delete()
     {
-        $this->siwecosScans->each(function ($scan) {
-            $scan->delete();
-        });
+        $this->siwecosScans->each->delete();
+        $this->crawledUrls->each->delete();
+        $this->mailDomains()->detach();
 
         return parent::delete();
     }

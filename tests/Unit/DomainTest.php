@@ -11,6 +11,7 @@ use Illuminate\Database\QueryException;
 use App\Scan;
 use App\CrawledUrl;
 use App\MailDomain;
+use App\SiwecosScan;
 
 class DomainTest extends TestCase
 {
@@ -90,19 +91,30 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function if_a_domain_gets_deleted_all_associated_scans_will_be_deleted_too()
+    public function if_a_domain_gets_deleted_all_associated_models_will_be_deleted_too()
     {
         $this->getGeneratedScan();
         $this->getStartedScan();
         $this->getFinishedScan();
         $this->getFailedScan();
         $domain = Domain::first();
+        $domain->crawledUrls()->createMany([
+            ['url' => 'https://example.org/shop'],
+            ['url' => 'https://example.org/blog']
+        ]);
+        $domain->mailDomains()->createMany([
+            ['domain' => 'mx1.example.org'],
+            ['domain' => 'mx2.example.org']
+        ]);
 
         $this->assertCount(4, Scan::all());
 
         $domain->delete();
-        $this->assertCount(0, Domain::all());
+        $this->assertCount(0, CrawledUrl::all());
+        $this->assertCount(0, $domain->mailDomains);
+        $this->assertCount(0, SiwecosScan::all());
         $this->assertCount(0, Scan::all());
+        $this->assertCount(0, Domain::all());
     }
 
     /** @test */
