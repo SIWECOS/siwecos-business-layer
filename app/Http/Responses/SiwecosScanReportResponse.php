@@ -17,6 +17,7 @@ class SiwecosScanReportResponse
 
         if ($siwecosScan->is_finished) {
             $this->score = $siwecosScan->score;
+            $this->scanner_scores = $siwecosScan->getAverageScannerScores();
 
             $reports = collect();
             foreach ($siwecosScan->scans as $scan) {

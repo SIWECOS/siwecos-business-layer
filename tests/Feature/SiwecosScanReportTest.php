@@ -12,7 +12,7 @@ class SiwecosScanReportTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_siwecosScan_report_will_return_the_results_as_an_array()
+    public function a_siwecosScanReport_will_return_the_results_as_an_array()
     {
         $siwecosScan = $this->getFinishedScan()->siwecosScans->first();
         $secondScan = $siwecosScan->scans()->create([
@@ -31,6 +31,37 @@ class SiwecosScanReportTest extends TestCase
             'reports' => [
                 'http://example.org' => [],
                 'http://example.org/shop' => [],
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function a_siwecosScanReport_contains_the_average_scanner_score_statistics()
+    {
+        config(['siwecos.scannerWeight.TLS' => 3]);
+        config(['siwecos.scannerWeight.DOMXSS' => 0]);
+
+        $siwecosScan = $this->getFinishedScan()->siwecosScans->first();
+        $additionalScan = $this->getFinishedScan(['url' => 'https://example.org/shop']);
+        $additionalScan->results = $additionalScan->results->map(function ($scanner) {
+            $scanner['score'] = 0;
+            return $scanner;
+        });
+        $additionalScan->save();
+        $siwecosScan->scans()->attach($additionalScan);
+
+        $response = $this->postJson('/api/v2/siwecosScan/' . $siwecosScan->id, [], [
+            'SIWECOS-Token' => Token::first()->token
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'scanner_scores' => [
+                'DOMXSS' => 25,
+                'HEADER' => 42.5,
+                'INFOLEAK' => 50,
+                'INI_S' => 50,
+                'TLS' => 50
             ]
         ]);
     }
