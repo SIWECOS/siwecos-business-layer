@@ -199,7 +199,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 
 
 
-## Retrieving the Scan Report
+## Retrieving the Main-Url Scan Report
 
 > The **Request** must have the following structure:
 
@@ -296,7 +296,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 | 422  | Validation failed     |
 
 
-## Retrieving the Scan Report as PDF
+## Retrieving the Main-Url Scan Report as PDF
 
 > The **Request** must have the following structure:
 
@@ -349,3 +349,150 @@ Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required fo
 | 404  | Scan not found    |
 | 409  | Scan not finished |
 
+
+## Retrieving the Full Scan Report
+
+
+> The **Request** must have the following structure:
+
+```shell
+curl -X POST \
+  http://bla.local/api/v2/siwecosScan/3913/en \
+  -H 'Content-Type: application/json' \
+  -H 'SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y'
+```
+
+```http
+POST /api/v2/siwecosScan/3913/en HTTP/1.1
+Host: bla.local
+SIWECOS-Token: Y2jHgqtSVcz8eFqiV4eC0s5Y
+Content-Type: application/json
+
+```
+
+The scan report can be requested.
+
+> The **Response** has the following structure:
+
+```json
+{
+  "id": 1,
+  "status": "finished",
+  "has_error": false,
+  "started_at": "2019-04-09T05:28:43Z",
+  "finished_at": "2019-04-09T05:58:55Z",
+  "score": 87,
+  "scanner_scores": [
+    "DOMXSS": 25,
+    "HEADER": 42.5,
+    "INFOLEAK": 50,
+    "INI_S": 50,
+    "TLS": 50
+  ],
+  "reports": [
+    // Arrays with one report for each scanned URL oder MailDomain
+    // Structure is identical with `report` in section Retrieving the Main-Url Scan Report
+    [
+      // ScanReport for Main-URL
+    ],
+    [
+      // ScanReport for first crawledUrl, ...
+    ],
+    [
+      // ScanReport for first MailDomain, ...
+    ],
+    [
+      // ...
+    ]
+  ]
+}
+```
+
+### HTTP Request
+
+`POST /api/v2/siwecosScan/{scan_id}/{language_code}`
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+
+### Request Parameters
+
+| Parameter       | Type       | Description                                                                |
+| --------------- | ---------- | -------------------------------------------------------------------------- |
+| scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start               |
+| *language_code* | *`string`* | *One of the supported language codes for translated results: `de` or `en`* |
+
+### Response Parameters
+
+| Parameter      | Type      | Description                                                                            |
+| -------------- | --------- | -------------------------------------------------------------------------------------- |
+| status         | `string`  | The status can be: `finished`                                                          |
+| has_error      | `boolean` | Determines if the scan had an error                                                    |
+| started_at     | `date`    | DateTime String for the start time (when the scan was dispatched to the Core-API)      |
+| finished_at    | `date`    | DateTime String for the finished time (when the result was received from the Core-API) |
+| score          | `integer` | Calculated weighted total score for the scan                                           |
+| scanner_scores | `array`   | Average score by scanner                                                               |
+| reports        | `array`   | Array of translated and formatted scan reports for each scanned `URL` or `MailDomain`  |
+
+### Response Status Codes
+
+| Code | Meaning               |
+| ---- | --------------------- |
+| 200  | Scan status retrieved |
+| 403  | Forbidden             |
+| 404  | Scan not found        |
+| 422  | Validation failed     |
+
+
+## Retrieving the Full Scan Report as PDF
+
+
+```shell
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{
+	  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+  }' \
+  "http://bla.local/api/v2/siwecosScan/3913/en/pdf"
+```
+
+```http
+POST /api/v2/siwecosScan/3913/en/pdf HTTP/1.1
+Host: bla.local
+Content-Type: application/json
+
+{
+  "SIWECOS-Token": "Y2jHgqtSVcz8eFqiV4eC0s5Y"
+}
+```
+
+The scan report can be requested as a PDF file.
+
+> A PDF file will be downloaded.
+
+
+### HTTP Request
+
+`POST /api/v2/siwecosScan/{scan_id}/{language_code}/pdf`
+
+<aside class="notice">
+Authentication via HTTP-Post-Parameter <code>SIWECOS-Token</code> is required for non-freescans.
+</aside>
+
+### Request Parameters
+
+| Parameter       | Type       | Description                                                              |
+| --------------- | ---------- | ------------------------------------------------------------------------ |
+| scan_id         | `integer`  | The scan's `id`. It's returned when you request a scan start             |
+| language_code   | `string`   | One of the supported language codes for translated results: `de` or `en` |
+| *SIWECOS-Token* | *`string`* | *SIWECOS-Token for non-freescans*                                        |
+
+### Response Status Codes
+
+| Code | Meaning           |
+| ---- | ----------------- |
+| 200  | PDF Report        |
+| 403  | Forbidden         |
+| 404  | Scan not found    |
+| 409  | Scan not finished |
