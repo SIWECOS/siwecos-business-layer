@@ -390,18 +390,17 @@ The scan report can be requested.
     "TLS": 50
   ],
   "reports": [
-    // Arrays with one report for each scanned URL oder MailDomain
-    // Structure is identical with `report` in section Retrieving the Main-Url Scan Report
-    [
+    // Arrays with one report for each scanned URL or MailDomain
+    "https://example.org": [
       // ScanReport for Main-URL
     ],
-    [
+    "https://example.org/blog": [
       // ScanReport for first crawledUrl, ...
     ],
-    [
+    "mx1.example.org": [
       // ScanReport for first MailDomain, ...
     ],
-    [
+    "...": [
       // ...
     ]
   ]
