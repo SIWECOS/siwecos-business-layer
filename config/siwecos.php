@@ -133,6 +133,7 @@ return [
         'IMAPS_TLS' => env('SCANNER_SCORE_WEIGHT_IMAPS_TLS', 1.0),
         'SMTP_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_TLS', 1.0),
         'SMTPS_TLS' => env('SCANNER_SCORE_WEIGHT_SMTPS_TLS', 1.0),
+        'SMTP_MSA_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_MSA_TLS', 1.0),
     ],
 
     /*
