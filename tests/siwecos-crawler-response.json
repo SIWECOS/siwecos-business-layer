@@ -7,6 +7,8 @@
     "urlIsSyntacticalOk": true,
     "dnsResolves": true,
     "httpRedirect": true,
+    "httpCouldConnect": true,
+    "httpStatusCode": 200,
     "mailServerDomainList": [
         "mx02.hosting.de",
         "mx03.hosting.de",

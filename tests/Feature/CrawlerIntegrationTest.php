@@ -56,6 +56,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 'not-a-url',
@@ -70,6 +71,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'not-a-valid-hostname',
             'crawledUrls' => [
                 'https://example.org/shop',
@@ -83,6 +85,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'is-not-registered.de',
             'crawledUrls' => [
                 'https://example.org/shop',
@@ -102,6 +105,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 // empty
@@ -118,6 +122,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'not-a-domain',
@@ -132,6 +137,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'https://url-but-not-domain.com',
@@ -145,6 +151,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'is-not-registered.de',
             'mailServerDomainList' => [
                 'example.org',
@@ -164,6 +171,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 // empty
@@ -180,6 +188,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'mx1.example.org',
@@ -192,6 +201,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'mx1.example.org',
@@ -205,6 +215,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'mx1.example.org',
@@ -222,6 +233,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 'https://example.org/shop',
@@ -234,6 +246,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 'https://example.org/shop',
@@ -247,6 +260,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 'https://example.org/admin'
@@ -264,6 +278,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => false,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'mailServerDomainList' => [
                 'mx1.example.org'

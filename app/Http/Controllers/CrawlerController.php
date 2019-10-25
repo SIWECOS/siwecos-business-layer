@@ -16,7 +16,7 @@ class CrawlerController extends Controller
         $crawledUrls = $request->json('crawledUrls');
         $mailServerDomainList = $request->json('mailServerDomainList');
 
-        if ($request->json('hasError') === false) {
+        if ($request->json('hasError') === false && $request->json('httpCouldConnect') === true) {
             $domain->crawledUrls()->update(['domain_id' => null]);
             $domain->mailDomains()->detach();
 
