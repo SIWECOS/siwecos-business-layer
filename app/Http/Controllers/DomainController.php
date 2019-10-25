@@ -15,6 +15,7 @@ use App\Http\Responses\DomainListResponse;
 use App\Http\Responses\StatusResponse;
 use App\Http\Responses\DomainResponse;
 use App\Jobs\StartCrawlerJob;
+use Cache;
 
 class DomainController extends Controller
 {
@@ -55,6 +56,8 @@ class DomainController extends Controller
             $domain->save();
 
             $this->dispatch(new StartCrawlerJob($domain));
+            Cache::forget('domain-' . $domain->id . '-couldNotCrawl');
+
             return response()->json(new DomainResponse($domain), 200);
         }
 

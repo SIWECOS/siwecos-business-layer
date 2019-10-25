@@ -9,7 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain;
 use App\Jobs\StartCrawlerJob;
 use App\MailDomain;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Queue;
@@ -293,6 +295,7 @@ class CrawlerIntegrationTest extends TestCase
 
         $response = $this->json('POST', '/api/v2/crawler/finished', [
             'hasError' => true,
+            'httpCouldConnect' => true,
             'domain' => 'example.org',
             'crawledUrls' => [
                 'https://example.org/shop',
@@ -321,5 +324,63 @@ class CrawlerIntegrationTest extends TestCase
         $this->artisan('siwecos:trigger-crawler')
             ->expectsOutput('1 CrawlerJobs were started.');
         Queue::assertPushed(StartCrawlerJob::class);
+    }
+
+    /** @test */
+    public function if_a_domain_could_not_be_crawled_7_times_the_domain_will_be_marked_as_unverified()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        for ($i = 0; $i < 7; $i++) {
+            $this->assertTrue($domain->refresh()->is_verified);
+
+            $response = $this->json('POST', '/api/v2/crawler/finished', [
+                'hasError' => false,
+                'httpCouldConnect' => false,
+                'domain' => 'example.org',
+                'crawledUrls' => [],
+            ]);
+            $response->assertStatus(200);
+        }
+
+        $this->assertFalse($domain->refresh()->is_verified);
+    }
+
+    /** @test */
+    public function if_a_domain_can_be_crawled_again_the_cache_will_be_reset()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        Cache::put('domain-' . $domain->id . '-couldNotCrawl', 4);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'hasError' => false,
+            'httpCouldConnect' => true,
+            'domain' => 'example.org',
+            'crawledUrls' => [
+                'https://example.org/shop'
+            ],
+        ]);
+        $response->assertStatus(200);
+
+        $this->assertNull(Cache::get('domain-' . $domain->id . '-couldNotCrawl'));
+    }
+
+    /** @test */
+    public function if_a_domain_is_verified_again_after_the_crawler_failed_7_times_the_cache_will_be_reset()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => false]);
+        Cache::put('domain-' . $domain->id . '-couldNotCrawl', 7);
+
+        // verify domain
+        $this->mockHttpClientAndDomainController([
+            new Response(200, [], $domain->token->verification_token),
+        ]);
+        $response = $this->json('POST', '/api/v2/domain/verify', [
+            'domain' => $domain->domain
+        ], ['SIWECOS-Token' => $domain->token->token]);
+        $response->assertStatus(200);
+
+        $this->assertTrue($domain->refresh()->is_verified);
+        $this->assertNull(Cache::get('domain-' . $domain->id . '-couldNotCrawl'));
     }
 }

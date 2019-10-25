@@ -6,6 +6,7 @@ use App\CrawledUrl;
 use App\Domain;
 use App\Http\Requests\CrawlerFinishedRequest;
 use App\MailDomain;
+use Illuminate\Support\Facades\Cache;
 
 class CrawlerController extends Controller
 {
@@ -39,6 +40,15 @@ class CrawlerController extends Controller
                     $mailDomain = MailDomain::whereDomain($mailServerEntry)->firstOrCreate(['domain' => $mailServerEntry]);
                     $domain->mailDomains()->attach($mailDomain);
                 }
+            }
+
+            Cache::forget('domain-' . $domain->id . '-couldNotCrawl');
+        }
+
+        if ($request->json('hasError') === false && $request->json('httpCouldConnect') === false) {
+            Cache::increment('domain-' . $domain->id . '-couldNotCrawl');
+            if (Cache::get('domain-' . $domain->id . '-couldNotCrawl') === 7) {
+                $domain->update(['is_verified' => false]);
             }
         }
     }
