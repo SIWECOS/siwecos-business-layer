@@ -83,7 +83,7 @@ class ScanController extends Controller
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            if ($scan = $siwecosScan->scans->first()) {
+            if ($scan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first()) {
                 return response()->json(new ScanReportResponse($scan));
             }
 
@@ -112,8 +112,8 @@ class ScanController extends Controller
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $siwecosScan,
-                    'report' => new ScanReportResponse($siwecosScan->scans->first()),
-                    'gaugeData' => $this->getGaugeData($siwecosScan->scans->first())
+                    'report' => new ScanReportResponse($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first()),
+                    'gaugeData' => $this->getGaugeData($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first())
                 ]);
                 return $pdf->download('SIWECOS Scan Report.pdf');
             }
