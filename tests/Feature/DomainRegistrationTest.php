@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain;
-use App\Http\Controllers\DomainController;
 use GuzzleHttp\Psr7\Response;
 use App\Token;
 use GuzzleHttp\Exception\ConnectException;
@@ -231,13 +230,5 @@ class DomainRegistrationTest extends TestCase
             ->assertJsonFragment([
                 'verification_token' => $tokenB->verification_token
             ]);
-    }
-
-    public function mockHttpClientAndDomainController(array $mockedResponses)
-    {
-        $client = $this->getMockedHttpClient($mockedResponses);
-        $this->app->bind(DomainController::class, function ($app) use ($client) {
-            return new DomainController($client);
-        });
     }
 }

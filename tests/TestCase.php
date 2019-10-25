@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
 use App\Token;
 use App\Domain;
+use App\Http\Controllers\DomainController;
 use App\HTTPClient;
 use App\Scan;
 use App\SiwecosScan;
@@ -128,6 +129,20 @@ abstract class TestCase extends BaseTestCase
         $scan->save();
 
         return $scan;
+    }
+
+    /**
+     * Mockl DomainController and HTTPClient for simulating a DomainVerify-Process
+     *
+     * @param array $mockedResponses
+     * @return void
+     */
+    public function mockHttpClientAndDomainController(array $mockedResponses)
+    {
+        $client = $this->getMockedHttpClient($mockedResponses);
+        $this->app->bind(DomainController::class, function ($app) use ($client) {
+            return new DomainController($client);
+        });
     }
 
     /**
