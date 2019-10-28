@@ -85,7 +85,7 @@ class ScanController extends Controller
 
             $mainUrlScan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first();
             if ($mainUrlScan && $mainUrlScan->is_finished) {
-                return response()->json(new ScanReportResponse($mainUrlScan));
+                return response()->json(new ScanReportResponse($mainUrlScan, $siwecosScan->id));
             }
 
             return response()->json(new SiwecosScanReportResponse($siwecosScan));
@@ -113,7 +113,7 @@ class ScanController extends Controller
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $siwecosScan,
-                    'report' => new ScanReportResponse($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first()),
+                    'report' => new ScanReportResponse($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first(), $siwecosScan->id),
                     'gaugeData' => $this->getGaugeData($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first())
                 ]);
                 return $pdf->download('SIWECOS Scan Report.pdf');
@@ -136,7 +136,7 @@ class ScanController extends Controller
                 foreach ($siwecosScan->scans as $scan) {
                     $parts->push([
                         'scan' => $scan,
-                        'report' => new ScanReportResponse($scan),
+                        'report' => new ScanReportResponse($scan, $siwecosScan->id),
                         'gaugeData' => $this->getGaugeData($scan)
                     ]);
                 }
