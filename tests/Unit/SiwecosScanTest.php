@@ -270,4 +270,12 @@ class SiwecosScanTest extends TestCase
 
         $this->assertEquals(20, $scan->refresh()->siwecosScans->first()->score);
     }
+
+    /** @test */
+    public function if_a_siwecosScan_does_not_have_any_scans_yet_the_core_will_be_0()
+    {
+        $siwecosScan = Domain::first()->siwecosScans()->create(['is_freescan' => true, 'is_recurrent' => false]);
+
+        $this->assertEquals(0, $siwecosScan->score);
+    }
 }

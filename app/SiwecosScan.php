@@ -44,7 +44,7 @@ class SiwecosScan extends Model
             $totalScore +=  $weight * $score;
         }
 
-        $totalScore = ceil($totalScore / $totalWeight);
+        $totalScore = $totalWeight ? ceil($totalScore / $totalWeight) : 0;
 
         if ($totalScore > 20 && $this->hasCriticalScans()) {
             $totalScore = 20;
