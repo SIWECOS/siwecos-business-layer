@@ -21,7 +21,7 @@ class SiwecosScanReportResponse
 
             $reports = collect();
             foreach ($siwecosScan->scans as $scan) {
-                $reports->put($scan->url, (new ScanReportResponse($scan))->report);
+                $reports->put($scan->url, new ScanReportResponse($scan));
             }
 
             $this->reports = $reports;

@@ -83,8 +83,9 @@ class ScanController extends Controller
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            if ($scan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first()) {
-                return response()->json(new ScanReportResponse($scan));
+            $mainUrlScan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first();
+            if ($mainUrlScan && $mainUrlScan->is_finished) {
+                return response()->json(new ScanReportResponse($mainUrlScan));
             }
 
             return response()->json(new SiwecosScanReportResponse($siwecosScan));
