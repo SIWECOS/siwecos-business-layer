@@ -9,7 +9,10 @@ class ScanReportResponse
 {
     public function __construct(Scan $scan)
     {
-        $this->id = $scan->id;
+        // A standard APIv2 Scan will always be the mainUrl Scan.
+        // Consequential there will always be only one SiwecosScan
+        $this->id = $scan->siwecosScans()->first()->id;
+
         $this->status = $scan->status;
         $this->has_error = $scan->has_error;
         $this->started_at = $scan->started_at ? $scan->started_at->toIso8601ZuluString() : null;
