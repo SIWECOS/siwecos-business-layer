@@ -11,7 +11,7 @@ class Token extends Model
 {
     use Iso8601Serialization;
 
-    protected $fillable = ['credits', 'token', 'type'];
+    protected $fillable = ['token', 'type'];
 
     protected $table = 'tokens';
 
@@ -42,14 +42,6 @@ class Token extends Model
     public function domains()
     {
         return $this->hasMany(Domain::class);
-    }
-
-
-    public function reduceCredits($amount = 1)
-    {
-        $this->credits -= $amount;
-
-        return $this->save();
     }
 
     public function delete()

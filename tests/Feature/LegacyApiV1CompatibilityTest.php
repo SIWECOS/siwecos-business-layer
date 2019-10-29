@@ -26,7 +26,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
 
-        Token::create(['type' => 'freescan', 'credits' => 100000]);
+        Token::create(['type' => 'freescan']);
     }
 
     /** @test */

@@ -32,7 +32,6 @@ class DomainController extends Controller
         if (!$domain) {
             $token = Token::whereType('freescan')->firstOrCreate([
                 'type' => 'freescan',
-                'credits' => 100000
             ]);
             $domain = $token->domains()->create([
                 'domain' => $newDomain

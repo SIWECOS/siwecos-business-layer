@@ -35,8 +35,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('siwecos:trigger-crawler')->dailyAt('23:00');
         $schedule->command('siwecos:trigger-daily-scans')->dailyAt('01:00');
-
-        $schedule->command('siwecos:restock-credits')->dailyAt('02:00');
     }
 
     /**

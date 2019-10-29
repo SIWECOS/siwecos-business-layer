@@ -47,7 +47,7 @@ class ScanController extends Controller
         $domain = Domain::whereDomain($requestedDomain)->first();
 
         if (!$domain) {
-            $domain = Token::firstOrCreate(['type' => 'freescan'], ['credits' => 10000])
+            $domain = Token::firstOrCreate(['type' => 'freescan'])
                 ->domains()->create(['domain' => $requestedDomain]);
         }
 

@@ -30,31 +30,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Token credits
-    |--------------------------------------------------------------------------
-    |
-    | The amount of credits each user will get daily.
-    |
-    */
-    'defaultTokenCredits' => env('DEFAULT_TOKEN_CREDITS', 50),
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | 3rd Party Token Credits
-    |--------------------------------------------------------------------------
-    |
-    | The amount of credits the 3rd Party Tokens will get daily.
-    |
-    */
-    'thirdPartyTokenCredits' => env('THIRD_PARTY_TOKEN_CREDITS', 10),
-
-    /*
-    |--------------------------------------------------------------------------
     | Free Scan Cashing Hours
     |--------------------------------------------------------------------------
     |
-    | You can set the amount of credits the 3rd Party Tokens will get daily.
+    | You can set the amount of hours free-scans will be cached.
     |
     */
     'freeScanCashingHours' => env('FREE_SCAN_CASHING_HOURS', 12),
