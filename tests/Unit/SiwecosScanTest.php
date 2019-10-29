@@ -128,8 +128,7 @@ class SiwecosScanTest extends TestCase
         $this->assertEquals(2, $this->mailDomainCounter);
 
         // Assert that the old MailDomain Scan will be attached to the SiwecosScan
-        $this->assertCount(1, $siwecosScan->scans);
-        $this->assertEquals($oldScan->id, $siwecosScan->scans->first()->id);
+        $this->assertNotNull($siwecosScan->scans()->find($oldScan->id));
     }
 
     /** @test */
@@ -157,6 +156,8 @@ class SiwecosScanTest extends TestCase
             return $this->mailDomainCounter >= 1;
         });
         $this->assertEquals(3, $this->mailDomainCounter);
+
+        $this->assertNull($siwecosScan->scans()->find($oldScan->id));
     }
 
     /** @test */

@@ -16,8 +16,8 @@ class StartScanJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $siwecosScan;
-    public $url;
+    public $scan;
+    public $dangerLevel;
     public $scanners;
 
     /**
@@ -25,10 +25,10 @@ class StartScanJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(SiwecosScan $siwecosScan, string $url, array $scanners)
+    public function __construct(Scan $scan, int $dangerLevel, array $scanners)
     {
-        $this->siwecosScan = $siwecosScan;
-        $this->url = $url;
+        $this->scan = $scan;
+        $this->dangerLevel = $dangerLevel;
         $this->scanners = $scanners;
     }
 
@@ -39,14 +39,10 @@ class StartScanJob implements ShouldQueue
      */
     public function handle(HTTPClient $client)
     {
-        $this->scan = $this->siwecosScan->scans()->create([
-            'url' => $this->url
-        ]);
-
         try {
             $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
-                'url' => $this->url,
-                'dangerLevel' => $this->siwecosScan->danger_level,
+                'url' => $this->scan->url,
+                'dangerLevel' => $this->dangerLevel,
                 'callbackurls' => [
                     config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
                 ],
@@ -55,14 +51,9 @@ class StartScanJob implements ShouldQueue
 
             if ($response->getStatusCode() === 200) {
                 $this->scan->update(['started_at' => now()]);
-
-                if (!$this->siwecosScan->is_freescan && !$this->siwecosScan->is_recurrent) {
-                    $this->siwecosScan->domain->token->reduceCredits();
-                }
             } else {
                 Log::critical(
                     'Failed to start scan for scan id: ' . $this->scan->id
-                        . 'SiwecosScan: ' . $this->siwecosScan->id
                         . 'HTTP-Status: ' . $response->getStatusCode()
                         . 'Message: ' . $response->getBody()->getContents()
                 );
@@ -74,7 +65,6 @@ class StartScanJob implements ShouldQueue
         } catch (\Exception $e) {
             Log::critical(
                 'Failed to start scan for scan id: ' . $this->scan->id
-                    . 'SiwecosScan: ' . $this->siwecosScan->id
                     . 'The following Exception was thrown: ' .  $e
             );
             $this->scan->update([

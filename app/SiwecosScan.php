@@ -183,12 +183,15 @@ class SiwecosScan extends Model
     public function dispatchScanJobs()
     {
         if ($this->is_freescan) {
-            StartScanJob::dispatch($this, $this->domain->mainUrl, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'TLS']);
+            $scan = $this->scans()->create(['url' => $this->domain->mainUrl]);
+            StartScanJob::dispatch($scan, 0, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'TLS']);
         } else {
-            StartScanJob::dispatch($this, $this->domain->mainUrl, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION']);
+            $scan = $this->scans()->create(['url' => $this->domain->mainUrl]);
+            StartScanJob::dispatch($scan, 10, ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION']);
 
             foreach ($this->domain->crawledUrls()->whereIsMainUrl(false)->get() as $crawledUrl) {
-                StartScanJob::dispatch($this, $crawledUrl->url, ['DOMXSS', 'HEADER', 'INFOLEAK']);
+                $scan = $this->scans()->create(['url' => $crawledUrl]);
+                StartScanJob::dispatch($scan, 10, ['DOMXSS', 'HEADER', 'INFOLEAK']);
             }
 
             foreach ($this->domain->mailDomains as $mailDomain) {
@@ -196,7 +199,8 @@ class SiwecosScan extends Model
                 if ($latestScan && !$latestScan->has_error && $latestScan->created_at->gte(now()->subHours(6))) {
                     $latestScan->siwecosScans()->attach($this);
                 } else {
-                    StartScanJob::dispatch($this, $mailDomain->domain, ['INI_S', 'PORT', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS', 'SMTP_MSA_TLS']);
+                    $scan = $this->scans()->create(['url' => $mailDomain]);
+                    StartScanJob::dispatch($scan, 0, ['INI_S', 'PORT', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS', 'SMTP_MSA_TLS']);
                 }
             }
         }
