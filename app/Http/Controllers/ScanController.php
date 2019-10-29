@@ -109,14 +109,16 @@ class ScanController extends Controller
     {
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
 
-            if ($siwecosScan->status === 'finished') {
+            $mainUrlScan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first();
+
+            if ($mainUrlScan && $mainUrlScan->status === 'finished') {
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
                     'scan' => $siwecosScan,
-                    'report' => new ScanReportResponse($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first(), $siwecosScan->id),
-                    'gaugeData' => $this->getGaugeData($siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first())
+                    'report' => new ScanReportResponse($mainUrlScan, $siwecosScan->id),
+                    'gaugeData' => $this->getGaugeData($mainUrlScan)
                 ]);
-                return $pdf->download('SIWECOS Scan Report.pdf');
+                return $pdf->download('Scan Report.pdf');
             }
 
             return response()->json(new StatusResponse('Scan not finished'), 409);
