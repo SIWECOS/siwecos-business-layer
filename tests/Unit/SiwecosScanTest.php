@@ -133,6 +133,33 @@ class SiwecosScanTest extends TestCase
     }
 
     /** @test */
+    public function if_a_mailDomain_has_a_failed_scan_in_the_last_6_hours_a_new_scan_will_be_dispatched_and_attached()
+    {
+        $knownDate = Carbon::create(2019, 2, 8, 8, 30, 15, 'UTC');
+        Carbon::setTestNow($knownDate);
+
+        $oldScan = $this->getFailedScan(['url' => 'mx2.example.org']);
+
+        Carbon::setTestNow($knownDate->addMinutes(5));
+
+        $siwecosScan = $this->domain->siwecosScans()->create([
+            'is_freescan' => false,
+            'is_recurrent' => false
+        ]);
+
+        $siwecosScan->dispatchScanJobs();
+
+        // Assert that 3 of the 3 MailDomain Scans will be triggered
+        $this->mailDomainCounter = 0;
+        Queue::assertPushed(StartScanJob::class, function ($job) {
+            if (['INI_S', 'PORT', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS', 'SMTP_MSA_TLS'] === $job->scanners)
+                $this->mailDomainCounter++;
+            return $this->mailDomainCounter >= 1;
+        });
+        $this->assertEquals(3, $this->mailDomainCounter);
+    }
+
+    /** @test */
     public function if_a_siwecosScan_will_be_deleted_all_associated_scans_will_only_be_deleted_if_they_are_not_attached_to_another_siwecosScan()
     {
         $siwecosScan = $this->getFinishedScan()->siwecosScans->first();

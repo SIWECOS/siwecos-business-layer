@@ -193,7 +193,7 @@ class SiwecosScan extends Model
 
             foreach ($this->domain->mailDomains as $mailDomain) {
                 $latestScan = $mailDomain->latestScan;
-                if ($latestScan && $latestScan->created_at->gte(now()->subHours(6))) {
+                if ($latestScan && !$latestScan->has_error && $latestScan->created_at->gte(now()->subHours(6))) {
                     $latestScan->siwecosScans()->attach($this);
                 } else {
                     StartScanJob::dispatch($this, $mailDomain->domain, ['INI_S', 'PORT', 'IMAP_TLS', 'IMAPS_TLS', 'POP3_TLS', 'POP3S_TLS', 'SMTP_TLS', 'SMTPS_TLS', 'SMTP_MSA_TLS']);
