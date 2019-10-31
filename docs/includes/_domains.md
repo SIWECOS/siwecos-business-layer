@@ -300,7 +300,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 After deletion all associated scans will also be deleted.
 </aside>
 
-## Retrieving the latest Scan Report
+## Retrieving the latest Main-URL Scan Report
 
 > The **Request** must have the following structure:
 
@@ -347,6 +347,55 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
 | ---- | ------------------ |
 | 200  | Latest Scan Report |
 | 404  | No scan found      |
+
+## Retrieving the latest Full Scan Report
+
+> The **Request** must have the following structure:
+
+```shell
+curl -X GET \
+  http://bla.local/api/v2/domain/example.org/fullreport/en \
+  -H 'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'
+```
+
+```http
+GET /api/v2/domain/example.org/fullreport/en HTTP/1.1
+Host: bla.local
+SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc
+
+```
+
+Retrieving the latest SiwecosScan Report for the given Domain.
+
+> The **Response** has the same structure as the [Full Scan Report](#retrieving-the-full-scan-report)
+
+
+### HTTP Request
+
+`GET /api/v2/domain/{domain}/fullreport/{language?}`
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-free Scans.
+</aside>
+
+<aside class="notice">
+If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
+</aside>
+
+### Request Parameters
+
+| Parameter       | Type       | Description                                                                |
+| --------------- | ---------- | -------------------------------------------------------------------------- |
+| domain          | `string`   | The domain the report is requested for                                     |
+| *language_code* | *`string`* | *One of the supported language codes for translated results: `de` or `en`* |
+
+### Response Status Codes
+
+| Code | Meaning            |
+| ---- | ------------------ |
+| 200  | Latest Scan Report |
+| 404  | No scan found      |
+
 
 ## Retrieving the sealproof data
 

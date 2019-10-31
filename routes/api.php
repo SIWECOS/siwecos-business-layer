@@ -51,6 +51,7 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::get('/domain/{domain}/report/{language?}', 'DomainController@latestScanReport');
+    Route::get('/domain/{domain}/fullreport/{language?}', 'DomainController@latestScanReportV3');
     Route::get('/domain/{domain}/sealproof', 'DomainController@sealproof');
 
     // Scan
@@ -66,7 +67,6 @@ Route::prefix('v2')->group(function () {
 
     Route::post('/scan/{siwecosScan}/{language?}', 'ScanController@report');
     Route::post('/scan/{siwecosScan}/{language?}/pdf', 'ScanController@pdfReport');
-    Route::post('/latestSiwecosScan/{domain}/{language?}', 'ScanController@latestScanReport');
     Route::post('/siwecosScan/{siwecosScan}/{language?}', 'ScanController@reportV3');
     Route::post('/siwecosScan/{siwecosScan}/{language?}/pdf', 'ScanController@pdfReportV3');
 

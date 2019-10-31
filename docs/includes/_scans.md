@@ -199,7 +199,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 
 
 
-## Retrieving the Main-Url Scan Report
+## Retrieving the Main-URL Scan Report
 
 > The **Request** must have the following structure:
 
@@ -296,7 +296,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 | 422  | Validation failed     |
 
 
-## Retrieving the Main-Url Scan Report as PDF
+## Retrieving the Main-URL Scan Report as PDF
 
 > The **Request** must have the following structure:
 
