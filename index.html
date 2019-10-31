@@ -281,7 +281,10 @@
                     <a href="#deleting-a-domain" class="toc-h2 toc-link" data-title="Domains">Deleting a Domain</a>
                   </li>
                   <li>
-                    <a href="#retrieving-the-latest-scan-report" class="toc-h2 toc-link" data-title="Domains">Retrieving the latest Scan Report</a>
+                    <a href="#retrieving-the-latest-main-url-scan-report" class="toc-h2 toc-link" data-title="Domains">Retrieving the latest Main-URL Scan Report</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-the-latest-full-scan-report" class="toc-h2 toc-link" data-title="Domains">Retrieving the latest Full Scan Report</a>
                   </li>
                   <li>
                     <a href="#retrieving-the-sealproof-data" class="toc-h2 toc-link" data-title="Domains">Retrieving the sealproof data</a>
@@ -301,10 +304,10 @@
                     <a href="#retrieving-the-scan-status" class="toc-h2 toc-link" data-title="Scans">Retrieving the Scan Status</a>
                   </li>
                   <li>
-                    <a href="#retrieving-the-main-url-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-Url Scan Report</a>
+                    <a href="#retrieving-the-main-url-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-URL Scan Report</a>
                   </li>
                   <li>
-                    <a href="#retrieving-the-main-url-scan-report-as-pdf" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-Url Scan Report as PDF</a>
+                    <a href="#retrieving-the-main-url-scan-report-as-pdf" class="toc-h2 toc-link" data-title="Scans">Retrieving the Main-URL Scan Report as PDF</a>
                   </li>
                   <li>
                     <a href="#retrieving-the-full-scan-report" class="toc-h2 toc-link" data-title="Scans">Retrieving the Full Scan Report</a>
@@ -1306,7 +1309,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> required.
 <aside class="warning">
 After deletion all associated scans will also be deleted.
 </aside>
-<h2 id='retrieving-the-latest-scan-report'>Retrieving the latest Scan Report</h2>
+<h2 id='retrieving-the-latest-main-url-scan-report'>Retrieving the latest Main-URL Scan Report</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
@@ -1368,6 +1371,68 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
 <td>No scan found</td>
 </tr>
 </tbody></table>
+<h2 id='retrieving-the-latest-full-scan-report'>Retrieving the latest Full Scan Report</h2>
+<blockquote>
+<p>The <strong>Request</strong> must have the following structure:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  http://bla.local/api/v2/domain/example.org/fullreport/en <span class="se">\</span>
+  -H <span class="s1">'SIWECOS-Token: 46rzR6TLJxtt7OrwLST+aTrc'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/domain/example.org/fullreport/en</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">bla.local</span>
+<span class="na">SIWECOS-Token</span><span class="p">:</span> <span class="s">46rzR6TLJxtt7OrwLST+aTrc</span>
+
+</code></pre>
+<p>Retrieving the latest SiwecosScan Report for the given Domain.</p>
+
+<blockquote>
+<p>The <strong>Response</strong> has the same structure as the <a href="#retrieving-the-full-scan-report">Full Scan Report</a></p>
+</blockquote>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /api/v2/domain/{domain}/fullreport/{language?}</code></p>
+
+<aside class="notice">
+Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-free Scans.
+</aside>
+
+<aside class="notice">
+If no non-free Scan was found but a free Scan, the free Scan will be returned instead.
+</aside>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>domain</td>
+<td><code>string</code></td>
+<td>The domain the report is requested for</td>
+</tr>
+<tr>
+<td><em>language_code</em></td>
+<td><em><code>string</code></em></td>
+<td><em>One of the supported language codes for translated results: <code>de</code> or <code>en</code></em></td>
+</tr>
+</tbody></table>
+<h3 id='response-status-codes-7'>Response Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Latest Scan Report</td>
+</tr>
+<tr>
+<td>404</td>
+<td>No scan found</td>
+</tr>
+</tbody></table>
 <h2 id='retrieving-the-sealproof-data'>Retrieving the sealproof data</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
@@ -1388,13 +1453,13 @@ If no non-free Scan was found but a free Scan, the free Scan will be returned in
   </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">82</span><span class="p">,</span><span class="w">
   </span><span class="s2">"finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-09T05:58:55Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /api/v2/domain/{domain}/sealproof</code></p>
 
 <aside class="notice">
 In order to retrieve the data, a Domain must be verified and at least one non-free Scan must be finished.
 </aside>
-<h3 id='request-parameters-5'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1408,7 +1473,7 @@ In order to retrieve the data, a Domain must be verified and at least one non-fr
 <td>The domain for the requested sealproof</td>
 </tr>
 </tbody></table>
-<h3 id='response-status-codes-7'>Response Status Codes</h3>
+<h3 id='response-status-codes-8'>Response Status Codes</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -1689,7 +1754,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>Validation failed</td>
 </tr>
 </tbody></table>
-<h2 id='retrieving-the-main-url-scan-report'>Retrieving the Main-Url Scan Report</h2>
+<h2 id='retrieving-the-main-url-scan-report'>Retrieving the Main-URL Scan Report</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
@@ -1827,7 +1892,7 @@ Authentication via HTTP-Header <code>SIWECOS-Token</code> is required for non-fr
 <td>Validation failed</td>
 </tr>
 </tbody></table>
-<h2 id='retrieving-the-main-url-scan-report-as-pdf'>Retrieving the Main-Url Scan Report as PDF</h2>
+<h2 id='retrieving-the-main-url-scan-report-as-pdf'>Retrieving the Main-URL Scan Report as PDF</h2>
 <blockquote>
 <p>The <strong>Request</strong> must have the following structure:</p>
 </blockquote>
