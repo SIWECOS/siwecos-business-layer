@@ -87,8 +87,20 @@ class DomainController extends Controller
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
 
+
     public function latestScanReport(Domain $domain, $language = 'de', Request $request)
     {
+        $siwecosScan= getSiwecosScanForDomain($domain, $request);
+
+        if ($siwecosScan) {
+            return (new ScanController())->report($siwecosScan, $language);
+        }
+
+        return response()->json(new StatusResponse('Scan Not Found'), 404);
+    }
+
+
+    private function getSiwecosScanForDomain(Domain $domain, Request $request) {
         // For Legacy API Compatibility
         if ($domain->domain == null) {
             $domain = Domain::whereDomain($request->input('domain'))->first();
@@ -102,13 +114,21 @@ class DomainController extends Controller
         if ($domain->token->token == $request->header('SIWECOS-Token')) {
             $siwecosScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $siwecosScan;
         }
+        return $siwecosScan;
+    }
+
+    
+    public function latestScanReportV3(Domain $domain, $language = 'de', Request $request)
+    {
+        $siwecosScan= getSiwecosScanForDomain($domain, $request);
 
         if ($siwecosScan) {
-            return (new ScanController())->report($siwecosScan, $language);
+            return (new ScanController())->reportV3($siwecosScan, $language);
         }
 
         return response()->json(new StatusResponse('Scan Not Found'), 404);
     }
+
 
     public function sealproof(Domain $domain)
     {
