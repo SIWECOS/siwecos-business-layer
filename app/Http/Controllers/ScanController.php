@@ -105,6 +105,28 @@ class ScanController extends Controller
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
 
+    public function latestScanReport(Domain $domain, $language = 'de', Request $request)
+    {
+        if ($domain->domain == null) {
+            $domain = Domain::whereDomain($request->input('domain'))->first();
+            if ($domain === null) {
+                return response()->json(new StatusResponse('Domain Not Found'), 404);
+            }
+        }
+
+        $siwecosScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
+
+        if ($domain->token->token == $request->header('SIWECOS-Token')) {
+            $siwecosScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $siwecosScan;
+        }
+
+        if ($siwecosScan) {
+            return (new ScanController())->reportV3($siwecosScan, $language);
+        }
+
+        return response()->json(new StatusResponse('Scan Not Found'), 404);
+    }
+
     public function pdfReport(SiwecosScan $siwecosScan, $language = 'de', Request $request)
     {
         if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
