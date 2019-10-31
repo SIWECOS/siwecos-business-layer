@@ -215,6 +215,7 @@ class SiwecosScan extends Model
     {
         $this->scans->each(function ($scan) {
             if (count($scan->siwecosScans) == 1) {
+                $scan->siwecosScans()->detach([$this->id]);
                 $scan->delete();
             } else {
                 $scan->siwecosScans()->detach([$this->id]);

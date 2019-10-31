@@ -176,11 +176,15 @@ class SiwecosScanTest extends TestCase
         $this->assertCount(1, $additionalScan->refresh()->siwecosScans);
         $this->assertCount(1, Scan::all());
         $this->assertCount(1, SiwecosScan::all());
+        // Assert correct relationships in database
+        $this->assertCount(1, \DB::select('select * from scan_siwecos_scan'));
 
         SiwecosScan::first()->delete();
 
         $this->assertCount(0, Scan::all());
         $this->assertCount(0, SiwecosScan::all());
+        // Assert correct relationships in database
+        $this->assertCount(0, \DB::select('select * from scan_siwecos_scan'));
     }
 
     /** @test */
