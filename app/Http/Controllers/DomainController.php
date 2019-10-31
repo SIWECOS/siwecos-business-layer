@@ -90,17 +90,6 @@ class DomainController extends Controller
 
     public function latestScanReport(Domain $domain, $language = 'de', Request $request)
     {
-        $siwecosScan= getSiwecosScanForDomain($domain, $request);
-
-        if ($siwecosScan) {
-            return (new ScanController())->report($siwecosScan, $language);
-        }
-
-        return response()->json(new StatusResponse('Scan Not Found'), 404);
-    }
-
-
-    private function getSiwecosScanForDomain(Domain $domain, Request $request) {
         // For Legacy API Compatibility
         if ($domain->domain == null) {
             $domain = Domain::whereDomain($request->input('domain'))->first();
@@ -111,16 +100,25 @@ class DomainController extends Controller
 
         $siwecosScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
-        if ($domain->token->token == $request->header('SIWECOS-Token')) {
-            $siwecosScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first() ?: $siwecosScan;
+        if ($siwecosScan) {
+            return (new ScanController())->report($siwecosScan, $language);
         }
-        return $siwecosScan;
+
+        return response()->json(new StatusResponse('Scan Not Found'), 404);
     }
 
-    
+
     public function latestScanReportV3(Domain $domain, $language = 'de', Request $request)
     {
-        $siwecosScan= getSiwecosScanForDomain($domain, $request);
+        // For Legacy API Compatibility
+        if ($domain->domain == null) {
+            $domain = Domain::whereDomain($request->input('domain'))->first();
+            if ($domain === null) {
+                return response()->json(new StatusResponse('Domain Not Found'), 404);
+            }
+        }
+
+        $siwecosScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($siwecosScan) {
             return (new ScanController())->reportV3($siwecosScan, $language);
