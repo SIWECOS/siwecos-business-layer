@@ -58,4 +58,24 @@ class RecurrentScansTest extends TestCase
 
         Queue::assertPushed(StartScanJob::class, 4);
     }
+
+    /** @test */
+    public function assert_that_no_errors_occur_when_the_scans_are_dispatched_even_if_a_mail_domain_is_attached_multiple_times_to_the_domain()
+    {
+        $this->getRegisteredDomain(['domain' => 'beispiel.de', 'is_verified' => true]);
+
+        $domain1 = $this->getRegisteredDomain(['is_verified' => true]);
+        $mailDomain = $domain1->mailDomains()->create([
+            'domain' => 'mx.example.org'
+        ]);
+
+        // Attaching the mailDomain a second time lead to a DatabaseException within the command
+        // when dispatching the StartScanJobs
+        $domain1->mailDomains()->attach($mailDomain);
+
+        $this->assertCount(2, $domain1->mailDomains);
+
+        $this->artisan('siwecos:trigger-daily-scans')
+            ->expectsOutput('2 Scans were started.');
+    }
 }

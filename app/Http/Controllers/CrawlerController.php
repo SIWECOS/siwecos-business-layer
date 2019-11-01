@@ -38,7 +38,7 @@ class CrawlerController extends Controller
             if ($mailServerDomainList) {
                 foreach ($mailServerDomainList as $mailServerEntry) {
                     $mailDomain = MailDomain::whereDomain($mailServerEntry)->firstOrCreate(['domain' => $mailServerEntry]);
-                    $domain->mailDomains()->attach($mailDomain);
+                    $domain->mailDomains()->syncWithoutDetaching($mailDomain);
                 }
             }
 

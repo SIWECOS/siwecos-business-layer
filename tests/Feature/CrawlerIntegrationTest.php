@@ -229,6 +229,26 @@ class CrawlerIntegrationTest extends TestCase
     }
 
     /** @test */
+    public function mailDomains_will_not_be_attached_multiple_times_even_if_the_mxRecord_is_set_so()
+    {
+        $this->getRegisteredDomain(['is_verified' => true]);
+
+        $response = $this->json('POST', '/api/v2/crawler/finished', [
+            'hasError' => false,
+            'httpCouldConnect' => true,
+            'domain' => 'example.org',
+            'mailServerDomainList' => [
+                'mail.example.org',
+                'mail.example.org'
+            ],
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertCount(1, Domain::first()->mailDomains);
+        $this->assertCount(1, MailDomain::all());
+    }
+
+    /** @test */
     public function old_crawledUrl_entries_will_be_detached_if_the_crawler_updates_the_list()
     {
         $this->getRegisteredDomain(['is_verified' => true]);
