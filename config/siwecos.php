@@ -17,31 +17,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Token credits
+    | Crawler Start URL
     |--------------------------------------------------------------------------
     |
-    | The amount of credits each user will get daily.
+    | This value determines the URL to the running instance of
+    | SIWECOS/siwecos-crawler. The Crawler is responsible for the actual site
+    | scans.
     |
     */
-    'defaultTokenCredits' => env('DEFAULT_TOKEN_CREDITS', 50),
+    'crawlerStartUrl' => env('CRAWLER_START_URL'),
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | 3rd Party Token Credits
-    |--------------------------------------------------------------------------
-    |
-    | The amount of credits the 3rd Party Tokens will get daily.
-    |
-    */
-    'thirdPartyTokenCredits' => env('THIRD_PARTY_TOKEN_CREDITS', 10),
 
     /*
     |--------------------------------------------------------------------------
     | Free Scan Cashing Hours
     |--------------------------------------------------------------------------
     |
-    | You can set the amount of credits the 3rd Party Tokens will get daily.
+    | You can set the amount of hours free-scans will be cached.
     |
     */
     'freeScanCashingHours' => env('FREE_SCAN_CASHING_HOURS', 12),
@@ -99,11 +91,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some scanners are more powerful or critical than others.
-    | You can define how much an individual scanner score should influence the
+    | Definition how much an individual scanner score should influence the
     | total score.
     |
-    | The weight can be set to zero, if the scanner should not influence the
-    | total score.
+    | The weight can be set to zero if the scanner should not influence the
+    | score.
     |
     */
     'scanner_weight' => [
@@ -114,6 +106,13 @@ return [
         'PORT' => env('SCANNER_SCORE_WEIGHT_PORT', 1.0),
         'TLS' => env('SCANNER_SCORE_WEIGHT_TLS', 1.0),
         'VERSION' => env('SCANNER_SCORE_WEIGHT_VERSION', 1.0),
+        'POP3_TLS' => env('SCANNER_SCORE_WEIGHT_POP3_TLS', 1.0),
+        'POP3S_TLS' => env('SCANNER_SCORE_WEIGHT_POP3S_TLS', 1.0),
+        'IMAP_TLS' => env('SCANNER_SCORE_WEIGHT_IMAP_TLS', 1.0),
+        'IMAPS_TLS' => env('SCANNER_SCORE_WEIGHT_IMAPS_TLS', 1.0),
+        'SMTP_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_TLS', 1.0),
+        'SMTPS_TLS' => env('SCANNER_SCORE_WEIGHT_SMTPS_TLS', 1.0),
+        'SMTP_MSA_TLS' => env('SCANNER_SCORE_WEIGHT_SMTP_MSA_TLS', 1.0),
     ],
 
     /*

@@ -1,0 +1,30 @@
+{
+    "name": "Validator",
+    "hasError": false,
+    "domain": "siwecos.de",
+    "originalUrl": "http://siwecos.de",
+    "urlToScan": "https://siwecos.de/",
+    "urlIsSyntacticalOk": true,
+    "dnsResolves": true,
+    "httpRedirect": true,
+    "httpCouldConnect": true,
+    "httpStatusCode": 200,
+    "mailServerDomainList": [
+        "mx02.hosting.de",
+        "mx03.hosting.de",
+        "mx01.hosting.de",
+        "mxbackup.hosting.de"
+    ],
+    "crawledUrls": [
+        "https://siwecos.de/presse/pressedownloads",
+        "https://siwecos.de/cms/drupal",
+        "https://siwecos.de/cms",
+        "https://siwecos.de/cms/umbraco",
+        "https://siwecos.de/ueber-das-projekt/kontakt",
+        "https://siwecos.de/app",
+        "https://siwecos.de/cms/contao",
+        "https://siwecos.de/cms/typo3",
+        "https://siwecos.de/en/press/press-downloads",
+        "https://siwecos.de/cms/wordpress"
+    ]
+}

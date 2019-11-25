@@ -27,11 +27,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('siwecos:delete-empty-tokens')->hourly();
 
+        $schedule->command('siwecos:delete-old-scans')->hourly();
+        $schedule->command('siwecos:delete-old-crawledUrls')->hourly();
+        $schedule->command('siwecos:delete-old-mailDomains')->hourly();
+
         $schedule->command('siwecos:check-scan-timeout')->everyTenMinutes();
 
+        $schedule->command('siwecos:trigger-crawler')->dailyAt('23:00');
         $schedule->command('siwecos:trigger-daily-scans')->dailyAt('01:00');
-
-        $schedule->command('siwecos:restock-credits')->dailyAt('02:00');
     }
 
     /**

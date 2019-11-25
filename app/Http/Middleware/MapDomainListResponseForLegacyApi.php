@@ -30,9 +30,9 @@ class MapDomainListResponseForLegacyApi
                 $domain = Domain::whereDomain($domain->domain)->first();
                 $newContent->push([
                     "id" => $domain->id,
-                    "domain" => $domain->url,
+                    "domain" => $domain->mainUrl,
                     "verificationStatus" => $domain->is_verified,
-                    "domainToken" => $domain->verification_token
+                    "domainToken" => $domain->token->verification_token
                 ]);
             }
 

@@ -3,32 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Keygen\Keygen;
-use Illuminate\Support\Facades\Log;
 use App\Traits\Iso8601Serialization;
 
 class Domain extends Model
 {
     use Iso8601Serialization;
 
-    protected $fillable = ['domain', 'verification_token', 'is_verified'];
+    protected $fillable = ['domain', 'is_verified'];
 
     protected $casts = [
-        'is_verified' => 'boolean'
+        'is_verified' => 'boolean',
+        'is_main_url' => 'boolean',
     ];
 
     protected $hidden = [
         'id', 'token_id'
     ];
 
-    protected $appends = ['url'];
-
-    public function __construct(array $attributes = [])
-    {
-        $this->verification_token = Keygen::alphanum(64)->generate();
-
-        parent::__construct($attributes);
-    }
+    protected $appends = ['mainUrl'];
 
     /**
      * Get the route key for the model.
@@ -40,8 +32,14 @@ class Domain extends Model
         return 'domain';
     }
 
-    public function getUrlAttribute()
+    public function getMainUrlAttribute()
     {
+        $crawledMainUrl = $this->crawledUrls()->whereIsMainUrl(true)->get()->first();
+
+        if ($crawledMainUrl) {
+            return $crawledMainUrl->url;
+        }
+
         return 'http://' . $this->domain;
     }
 
@@ -56,20 +54,40 @@ class Domain extends Model
     }
 
     /**
-     * Returns the Eloquent Relationship for App\Scan
+     * Returns the Eloquent Relationship for App\CrawledUrl
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function scans()
+    public function crawledUrls()
     {
-        return $this->hasMany(Scan::class);
+        return $this->hasMany(CrawledUrl::class);
+    }
+
+    /**
+     * Returns the Eloquent Relationship for App\MailDomain
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mailDomains()
+    {
+        return $this->belongsToMany(MailDomain::class, 'domain_mx', 'domain_id', 'mail_domain_id');
+    }
+
+    /**
+     * Returns the Eloquent Relationship for App\SiwecosScan
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function siwecosScans()
+    {
+        return $this->hasMany(SiwecosScan::class);
     }
 
     public function delete()
     {
-        $this->scans->each(function ($scan) {
-            $scan->delete();
-        });
+        $this->siwecosScans->each->delete();
+        $this->crawledUrls->each->delete();
+        $this->mailDomains()->detach();
 
         return parent::delete();
     }

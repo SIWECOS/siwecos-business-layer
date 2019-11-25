@@ -5,21 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Keygen\Keygen;
-use App\Events\TokenDeleted;
 use App\Traits\Iso8601Serialization;
 
 class Token extends Model
 {
     use Iso8601Serialization;
 
-    protected $fillable = ['credits', 'token', 'type'];
+    protected $fillable = ['token', 'type'];
 
     protected $table = 'tokens';
 
     public function __construct(array $attributes = [])
     {
         // Generate token by package gladcodes/keygen
-        $this->token = Keygen::token(24)->generate();
+        $this->token = Keygen::alphanum(42)->generate();
+        $this->verification_token = Keygen::alphanum(64)->generate();
 
         parent::__construct($attributes);
     }
@@ -42,24 +42,6 @@ class Token extends Model
     public function domains()
     {
         return $this->hasMany(Domain::class);
-    }
-
-    /**
-     * Returns the Eloquent Relationship for App\Scan
-     *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function scans()
-    {
-        return $this->hasManyThrough(Scan::class, Domain::class);
-    }
-
-
-    public function reduceCredits($amount = 1)
-    {
-        $this->credits -= $amount;
-
-        return $this->save();
     }
 
     public function delete()

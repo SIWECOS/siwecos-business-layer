@@ -9,6 +9,9 @@ use App\Token;
 use App\Domain;
 use Illuminate\Database\QueryException;
 use App\Scan;
+use App\CrawledUrl;
+use App\MailDomain;
+use App\SiwecosScan;
 
 class DomainTest extends TestCase
 {
@@ -31,13 +34,14 @@ class DomainTest extends TestCase
         Domain::create(['domain' => 'example.org']);
     }
 
-
     /** @test */
-    public function a_domain_has_the_calculated_parameter_url_with_http_scheme()
+    public function a_domain_has_the_calculated_parameter_mainUrl_with_http_scheme_or_crawled_mainUrl()
     {
-        $domain = factory(Domain::class)->make(['domain' => 'example.org']);
+        $domain = $this->getRegisteredDomain();
+        $this->assertEquals('http://example.org', $domain->mainUrl);
 
-        $this->assertEquals('http://example.org', $domain->url);
+        $domain->crawledUrls()->create(['url' => 'https://example.org', 'is_main_url' => true]);
+        $this->assertEquals('https://example.org', $domain->mainUrl);
     }
 
     /** @test */
@@ -53,26 +57,64 @@ class DomainTest extends TestCase
     }
 
     /** @test */
-    public function a_domain_can_have_many_scans()
+    public function a_domain_can_have_many_siwecosScans()
     {
         $domain = $this->getRegisteredDomain();
-        $this->assertCount(0, $domain->scans);
+        $domain->siwecosScans()->create([
+            'is_freescan' => false,
+            'is_recurrent' => false
+        ]);
+
+        $this->assertCount(1, $domain->siwecosScans);
     }
 
     /** @test */
-    public function if_a_domain_gets_deleted_all_associated_scans_will_be_deleted_too()
+    public function a_domain_can_have_many_crawledUrls()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->crawledUrls()->create([
+            'url' => 'https://example.org/shop'
+        ]);
+
+        $this->assertCount(1, CrawledUrl::all());
+    }
+
+    /** @test */
+    public function a_domain_can_have_many_mailDomains()
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+        $domain->mailDomains()->create([
+            'domain' => 'mx.example.org'
+        ]);
+
+        $this->assertCount(1, MailDomain::all());
+    }
+
+    /** @test */
+    public function if_a_domain_gets_deleted_all_associated_models_will_be_deleted_too()
     {
         $this->getGeneratedScan();
         $this->getStartedScan();
         $this->getFinishedScan();
         $this->getFailedScan();
         $domain = Domain::first();
+        $domain->crawledUrls()->createMany([
+            ['url' => 'https://example.org/shop'],
+            ['url' => 'https://example.org/blog']
+        ]);
+        $domain->mailDomains()->createMany([
+            ['domain' => 'mx1.example.org'],
+            ['domain' => 'mx2.example.org']
+        ]);
 
-        $this->assertCount(4, $domain->scans);
+        $this->assertCount(4, Scan::all());
 
         $domain->delete();
-        $this->assertCount(0, Domain::all());
+        $this->assertCount(0, CrawledUrl::all());
+        $this->assertCount(0, $domain->mailDomains);
+        $this->assertCount(0, SiwecosScan::all());
         $this->assertCount(0, Scan::all());
+        $this->assertCount(0, Domain::all());
     }
 
     /** @test */

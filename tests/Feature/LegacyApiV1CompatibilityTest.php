@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use App\Jobs\StartScanJob;
 use Carbon\Carbon;
 use App\Scan;
+use App\Token;
 
 class LegacyApiV1CompatibilityTest extends TestCase
 {
@@ -24,6 +25,8 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $knownDate = Carbon::create(2019, 4, 15, 8, 30, 15, 'UTC');
         Carbon::setTestNow($knownDate);
+
+        Token::create(['type' => 'freescan']);
     }
 
     /** @test */
@@ -35,7 +38,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(1, Domain::all());
-        $this->assertCount(1, Scan::all());
+        Queue::assertPushed(StartScanJob::class);
         $response->assertJson([
             "progress" => 0,
             "status" => 2,
@@ -48,15 +51,15 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_running_freescan_can_be_requested()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $siwecosScan = $this->getStartedScan([], ['is_freescan' => true])->siwecosScans->first();
 
-        $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
+        $response = $this->json('GET', '/api/v1/scan/status/free/' . $siwecosScan->id);
 
         $response->assertStatus(200);
         $response->assertJson([
             "progress" => 0,
             "status" => 2,
-            "id" => $scan->id,
+            "id" => $siwecosScan->id,
             "hasFailed" => false,
             "message" => ""
         ]);
@@ -65,7 +68,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_status_of_a_finished_freescan_can_be_requested()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->json('GET', '/api/v1/scan/status/free/' . $scan->id);
 
@@ -96,7 +99,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'hasFailed' => false,
             'domainId' => 1,
             'verificationStatus' => false,
-            'domainToken' => Domain::first()->verification_token
+            'domainToken' => Domain::first()->token->verification_token
         ]);
     }
 
@@ -104,11 +107,11 @@ class LegacyApiV1CompatibilityTest extends TestCase
     public function a_domain_can_be_verified()
     {
         $user = $this->getActivatedUser();
-        $user->token->domains()->create(factory(Domain::class)->make(['url' => 'https://example.org'])->toArray());
+        $user->token->domains()->create(factory(Domain::class)->make(['domain' => 'example.org'])->toArray());
 
         //  Mock the HTTPClient
         $client = $this->getMockedHttpClient([
-            new Response(200, [], Domain::first()->verification_token),
+            new Response(200, [], Domain::first()->token->verification_token),
         ]);
         $this->app->bind(DomainController::class, function ($app) use ($client) {
             return new DomainController($client);
@@ -116,7 +119,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
 
         // Send the verification request via old API
         $response = $this->json('POST', '/api/v1/domains/verifyDomain', [
-            'domain' => Domain::first()->url
+            'domain' => Domain::first()->mainUrl
         ], ['userToken' => $user->token->token]);
 
         // Get the Domain successfully verified
@@ -138,7 +141,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $this->assertCount(1, Domain::all());
 
         $response = $this->json('POST', '/api/v1/domains/deleteDomain', [
-            'domain' => Domain::first()->url
+            'domain' => Domain::first()->mainUrl
         ], ['userToken' => $user->token->token]);
 
         $response->assertStatus(200);
@@ -170,15 +173,15 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'domains' => [
                 [
                     'id' => $domain1->id,
-                    'domain' => $domain1->url,
+                    'domain' => $domain1->mainUrl,
                     'verificationStatus' => $domain1->is_verified,
-                    'domainToken' => $domain1->verification_token
+                    'domainToken' => $domain1->token->verification_token
                 ],
                 [
                     'id' => $domain2->id,
-                    'domain' => $domain2->url,
+                    'domain' => $domain2->mainUrl,
                     'verificationStatus' => $domain2->is_verified,
-                    'domainToken' => $domain2->verification_token
+                    'domainToken' => $domain2->token->verification_token
                 ]
             ]
         ]);
@@ -191,7 +194,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
         $domain = $user->token->domains()->create(factory(Domain::class)->make(['is_verified' => true])->toArray());
 
         $response = $this->json('POST', '/api/v1/scan/start', [
-            'domain' => $domain->url
+            'domain' => $domain->mainUrl
         ], ['userToken' => $user->token->token]);
 
         $response->assertStatus(200);
@@ -208,7 +211,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_scan_report_can_be_retrieved_for_freescans()
     {
-        $this->getFinishedScan(['is_freescan' => true]);
+        $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
 
@@ -220,7 +223,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_legacy_freescan_results_api_route_also_delivers_the_scan_report_for_freescans()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/freescan/result/' . $scan->id . '/de');
 
@@ -231,32 +234,32 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_scan_report_can_be_retrieved_for_non_freescans_if_user_is_authenticated()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => false]);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org');
         $response->assertStatus(404);
 
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token
+            'userToken' => $scan->siwecosScans->first()->domain->token->token
         ]);
         $response->assertStatus(200);
 
-        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->token->token));
+        $response->assertJson($this->getExampleLegacyScanReportJsonArray($scan->siwecosScans->first()->domain->token->token));
     }
 
     /** @test */
     public function the_scan_report_can_be_retrieved_with_the_content_type_header_set_to_json_for_free_and_nonFree_scans()
     {
-        $scan = $this->getFinishedScan(['is_freescan' => false]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => false]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token,
+            'userToken' => $scan->siwecosScans->first()->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);
 
-        $scan = $this->getFinishedScan(['is_freescan' => true]);
+        $scan = $this->getFinishedScan([], ['is_freescan' => true]);
         $response = $this->get('/api/v1/scan/result/de?domain=https://example.org', [
-            'userToken' => $scan->token->token,
+            'userToken' => $scan->siwecosScans->first()->domain->token->token,
             'Content-Type' => 'application/json;charset=UTF-8'
         ]);
         $response->assertStatus(200);
@@ -273,7 +276,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function the_translated_errorMessage_will_be_included_if_a_scanner_has_a_global_error()
     {
-        $scan = $this->getStartedScan(['is_freescan' => true]);
+        $scan = $this->getStartedScan([], ['is_freescan' => true]);
         $scan->results = json_decode('[{"startedAt":"2019-09-05T09:50:46Z","finishedAt":"2019-09-05T09:50:52Z","name":"TLS","version":"3.1.0","hasError":true,"errorMessage":{"translationStringId":"REPORT_CONSTRUCTION","placeholders":{"errorMessage":null}},"score":0,"tests":[]}]', true);
         $scan->save();
 
@@ -289,7 +292,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
     /** @test */
     public function if_a_scan_failed_the_status_will_be_returned_correctly_by_the_status_endpoint()
     {
-        $scan = $this->getFailedScan(['is_freescan' => true]);
+        $scan = $this->getFailedScan([], ['is_freescan' => true]);
 
         $response = $this->get('/api/v1/scan/status/free/' . $scan->id);
 

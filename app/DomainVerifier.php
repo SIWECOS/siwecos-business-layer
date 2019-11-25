@@ -10,12 +10,14 @@ class DomainVerifier
 {
     protected $domain = null;
     protected $client = null;
+    protected $token = null;
 
 
-    public function __construct(Domain $domain, HTTPClient $client = null)
+    public function __construct(Domain $domain, HTTPClient $client = null, Token $token = null)
     {
         $this->domain = $domain;
         $this->client = $client ?: new HTTPClient();
+        $this->token = Token::whereToken(request()->header('SIWECOS-Token'))->first() ?: $token;
     }
 
     /**
@@ -42,10 +44,10 @@ class DomainVerifier
 
     public function checkHtmlPage()
     {
-        $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->domain->verification_token . ".html");
+        $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->token->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
-            if (Str::is($this->domain->verification_token, trim($response->getBody()->getContents()))) {
+            if (Str::is($this->token->verification_token, trim($response->getBody()->getContents()))) {
                 return true;
             }
         }
@@ -63,7 +65,7 @@ class DomainVerifier
 
             if ($tags) {
                 foreach ($tags as $tag) {
-                    if (Str::is($this->domain->verification_token, $tag->content)) {
+                    if (Str::is($this->domain->token->verification_token, $tag->content)) {
                         return true;
                     }
                 }

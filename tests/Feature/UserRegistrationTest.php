@@ -74,7 +74,6 @@ class UserRegistrationTest extends TestCase
         $this->registerUserRequest();
 
         $this->assertNotNull(User::first()->token);
-        $this->assertEquals(50, User::first()->token->credits);
         $this->assertEquals('regular', User::first()->token->type);
     }
 

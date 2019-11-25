@@ -13,9 +13,11 @@ use App\Scan;
 use App\Http\Responses\ScanStatusResponse;
 use App\Http\Responses\ScanReportResponse;
 use App\Http\Requests\ScanFinishedRequest;
+use App\Http\Responses\SiwecosScanReportResponse;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\PushScanToElasticsearchJob;
+use App\SiwecosScan;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
 class ScanController extends Controller
@@ -26,14 +28,14 @@ class ScanController extends Controller
         $domain = $token->domains()->whereDomain($request->json('domain'))->whereIsVerified(true)->first();
 
         if ($domain) {
-            $scan = $domain->scans()->create([
+            $siwecosScan = $domain->siwecosScans()->create([
                 'is_freescan' => false,
                 'is_recurrent' => false
             ]);
 
-            StartScanJob::dispatch($scan);
+            $siwecosScan->dispatchScanJobs();
 
-            return response()->json(new ScanStartedResponse($scan));
+            return response()->json(new ScanStartedResponse($siwecosScan));
         }
 
         return response()->json(new StatusResponse('Associated Domain not found or unverified'), 404);
@@ -45,59 +47,107 @@ class ScanController extends Controller
         $domain = Domain::whereDomain($requestedDomain)->first();
 
         if (!$domain) {
-            $domain = Token::firstOrCreate(['type' => 'freescan'], ['credits' => 10000])
+            $domain = Token::firstOrCreate(['type' => 'freescan'])
                 ->domains()->create(['domain' => $requestedDomain]);
         }
 
-        $lastFreeScan = $domain->scans()->whereIsFreescan(true)->latest()->first();
+        $lastFreeScan = $domain->siwecosScans()->whereIsFreescan(true)->latest()->first();
 
         if ($lastFreeScan && ($lastFreeScan->status == 'running' || ($lastFreeScan->finished_at && $lastFreeScan->finished_at->diffInHours() < config('siwecos.freeScanCashingHours')))) {
             return response()->json(new ScanStartedResponse($lastFreeScan));
         }
 
-        $scan = $domain->scans()->create([
-            'is_freescan' => true
+        $siwecosScan = $domain->siwecosScans()->create([
+            'is_freescan' => true,
+            'is_recurrent' => false
         ]);
 
-        StartScanJob::dispatch(Scan::latest()->first());
+        $siwecosScan->dispatchScanJobs();
 
-        return response()->json(new ScanStartedResponse($scan));
+        return response()->json(new ScanStartedResponse($siwecosScan));
     }
 
-    public function report(Scan $scan, $language = 'de')
+    public function report(SiwecosScan $siwecosScan, $language = 'de')
     {
         /**
          * Additional statement for the API v1 compatibility;
-         * If the v1 route is used, no $scan gets injected by route model binding
-         * Therefore the MapScanReportResponseForLegacyApi Middleware transforms the `domain` parameter and delivers the $scan
+         * If the v1 route is used, no $siwecosScan gets injected by route model binding
+         * Therefore the MapScanReportResponseForLegacyApi Middleware transforms the `domain` parameter and delivers the $siwecosScan
          *
-         * Note: An injected $scan does not have a domain
+         * Note: An injected $siwecosScan does not have a siwecosScan
          */
-        if (!$scan->domain) {
-            $scan = request()->input('scan');
+        if (!$siwecosScan) {
+            $siwecosScan = request()->input('scan');
         }
 
-        if ($scan->is_freescan || $scan->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
             \App::setLocale($language);
 
-            return response()->json(new ScanReportResponse($scan));
+            $mainUrlScan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first();
+            if ($mainUrlScan && $mainUrlScan->is_finished) {
+                return response()->json(new ScanReportResponse($mainUrlScan, $siwecosScan->id));
+            }
+
+            return response()->json(new SiwecosScanReportResponse($siwecosScan));
         }
 
         return response()->json(new StatusResponse('Forbidden'), 403);
     }
 
-    public function pdfReport(Scan $scan, $language = 'de', Request $request)
+    public function reportV3(SiwecosScan $siwecosScan, $language = 'de')
     {
-        if ($scan->is_freescan || $scan->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken(request()->header('SIWECOS-Token'))->first()) {
+            \App::setLocale($language);
 
-            if ($scan->status === 'finished') {
+            return response()->json(new SiwecosScanReportResponse($siwecosScan));
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function pdfReport(SiwecosScan $siwecosScan, $language = 'de', Request $request)
+    {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
+
+            $mainUrlScan = $siwecosScan->scans()->whereUrl($siwecosScan->domain->mainUrl)->first();
+
+            if ($mainUrlScan && $mainUrlScan->status === 'finished') {
                 \App::setLocale($language);
                 $pdf = SnappyPdf::loadView('pdf.report', [
-                    'scan' => $scan,
-                    'report' => new ScanReportResponse($scan),
-                    'gaugeData' => $this->getGaugeData($scan)
+                    'scan' => $siwecosScan,
+                    'report' => new ScanReportResponse($mainUrlScan, $siwecosScan->id),
+                    'gaugeData' => $this->getGaugeData($mainUrlScan)
                 ]);
-                return $pdf->download('SIWECOS Scan Report.pdf');
+                return $pdf->download('Scan Report.pdf');
+            }
+
+            return response()->json(new StatusResponse('Scan not finished'), 409);
+        }
+
+        return response()->json(new StatusResponse('Forbidden'), 403);
+    }
+
+    public function pdfReportV3(SiwecosScan $siwecosScan, $language = 'de', Request $request)
+    {
+        if ($siwecosScan->is_freescan || $siwecosScan->domain->token == Token::whereToken($request->post('SIWECOS-Token'))->first()) {
+
+            if ($siwecosScan->status === 'finished') {
+                \App::setLocale($language);
+
+                $parts = collect();
+                foreach ($siwecosScan->scans as $scan) {
+                    $parts->push([
+                        'scan' => $scan,
+                        'report' => new ScanReportResponse($scan, $siwecosScan->id),
+                        'gaugeData' => $this->getGaugeData($scan)
+                    ]);
+                }
+
+                $pdf = SnappyPdf::loadView('pdf.reportV3', [
+                    'siwecosScan' => $siwecosScan,
+                    'parts' => $parts
+                ]);
+                return $pdf->download('SIWECOS Scan Report - Full.pdf');
             }
 
             return response()->json(new StatusResponse('Scan not finished'), 409);
@@ -122,9 +172,12 @@ class ScanController extends Controller
 
                 $this->dispatch(new PushScanToElasticsearchJob($scan));
 
-                if (!$scan->is_freescan) {
-                    $this->generateSiwecosSeals($scan->domain);
+                foreach ($scan->siwecosScans as $siwecosScan) {
+                    if (!$siwecosScan->is_freescan && $siwecosScan->isFinished) {
+                        $this->generateSiwecosSeals($siwecosScan->domain);
+                    }
                 }
+
                 return response()->json(new StatusResponse('OK'));
             }
 

@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\DomainVerifier;
+use App\Token;
 use Exception;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
@@ -38,15 +39,15 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $domain->verification_token),
+            new Response(200, [], $domain->token->verification_token),
 
-            new Response(200, [], "something-before " . $domain->verification_token),
-            new Response(200, [], $domain->verification_token . " something-behind"),
+            new Response(200, [], "something-before " . $domain->token->verification_token),
+            new Response(200, [], $domain->token->verification_token . " something-behind"),
             new Response(403),
             new Response(301),
         ]);
 
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
 
         $this->assertTrue($verifier->checkHtmlPage());
 
@@ -61,7 +62,7 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token)),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token)),
         ]);
 
         $verifier = new DomainVerifier($domain, $client);
@@ -74,9 +75,9 @@ class DomainVerifierTest extends TestCase
     {
         $domain = $this->getRegisteredDomain();
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->verification_token)),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token . " something-behind")),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->verification_token))
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag("something-before " . $domain->token->verification_token)),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token . " something-behind")),
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->token->verification_token))
         ]);
 
         $verifier = new DomainVerifier($domain, $client);
@@ -123,17 +124,17 @@ class DomainVerifierTest extends TestCase
 
         // verify preferred way with external HTML page
         $client = $this->getMockedHttpClient([
-            new Response(200, [], $domain->verification_token)
+            new Response(200, [], $domain->token->verification_token)
         ]);
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
         $this->assertTrue($verifier->verify());
 
         // verify meta Tag, needs 2 requests for testing
         $client = $this->getMockedHttpClient([
             new Response(200),
-            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->verification_token))
+            new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token))
         ]);
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
         $this->assertTrue($verifier->verify());
 
         // do not verify a 301 response, needs also 2 requests testing
@@ -141,7 +142,7 @@ class DomainVerifierTest extends TestCase
             new Response(301),
             new Response(301)
         ]);
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
         $this->assertFalse($verifier->verify());
 
         // do not verify 2 empty success responses
@@ -149,7 +150,7 @@ class DomainVerifierTest extends TestCase
             new Response(200),
             new Response(200)
         ]);
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
         $this->assertFalse($verifier->verify());
     }
 
@@ -159,16 +160,16 @@ class DomainVerifierTest extends TestCase
         $domain = $this->getRegisteredDomain();
 
         $client = $this->getMockedHttpClient([
-            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->url)),
-            new TooManyRedirectsException('Too many redirects occured', new Request('GET', $domain->url)),
-            new BadResponseException('Failure 500: Internal server error', new Request('GET', $domain->url)),
-            new ClientException('A client error 4xx occured.', new Request('GET', $domain->url)),
-            new ServerException('A server error 5xx occured.', new Request('GET', $domain->url)),
+            new ConnectException('cURL error 28: Could not resolve host', new Request('GET', $domain->mainUrl)),
+            new TooManyRedirectsException('Too many redirects occured', new Request('GET', $domain->mainUrl)),
+            new BadResponseException('Failure 500: Internal server error', new Request('GET', $domain->mainUrl)),
+            new ClientException('A client error 4xx occured.', new Request('GET', $domain->mainUrl)),
+            new ServerException('A server error 5xx occured.', new Request('GET', $domain->mainUrl)),
             new \Exception('Unexpectd!')
         ]);
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
 
@@ -179,7 +180,7 @@ class DomainVerifierTest extends TestCase
         }
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
             $this->assertEquals(409, $response->getStatusCode());
@@ -189,7 +190,7 @@ class DomainVerifierTest extends TestCase
         }
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
             $this->assertEquals(409, $response->getStatusCode());
@@ -199,7 +200,7 @@ class DomainVerifierTest extends TestCase
         }
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
             $this->assertEquals(409, $response->getStatusCode());
@@ -209,7 +210,7 @@ class DomainVerifierTest extends TestCase
         }
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
             $this->assertEquals(409, $response->getStatusCode());
@@ -219,7 +220,7 @@ class DomainVerifierTest extends TestCase
         }
 
         try {
-            $response = (new DomainVerifier($domain, $client))->verify();
+            $response = (new DomainVerifier($domain, $client, $domain->token))->verify();
         } catch (HttpResponseException $e) {
             $response = $e->getResponse();
             $this->assertEquals(409, $response->getStatusCode());
@@ -242,8 +243,8 @@ class DomainVerifierTest extends TestCase
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="siwecostoken" content="' . $domain1->verification_token . '"></meta>
-            <meta name="siwecostoken" content="' . $domain2->verification_token . '"></meta>
+            <meta name="siwecostoken" content="' . $domain1->token->verification_token . '"></meta>
+            <meta name="siwecostoken" content="' . $domain2->token->verification_token . '"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Test-Website</title>
@@ -266,10 +267,10 @@ class DomainVerifierTest extends TestCase
             new Response(200, [], $sampleHtml),
         ]);
 
-        $verifier = new DomainVerifier($domain1, $client);
+        $verifier = new DomainVerifier($domain1, $client, $domain1->token);
         $this->assertTrue($verifier->verify());
 
-        $verifier = new DomainVerifier($domain2, $client);
+        $verifier = new DomainVerifier($domain2, $client, $domain2->token);
         $this->assertTrue($verifier->verify());
     }
 

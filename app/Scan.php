@@ -7,14 +7,11 @@ use App\Traits\Iso8601Serialization;
 
 class Scan extends Model
 {
-    use \Znck\Eloquent\Traits\BelongsToThrough;
     use Iso8601Serialization;
 
     protected $casts = [
         'is_finished' => 'boolean',
         'has_error' => 'boolean',
-        'is_freescan' => 'boolean',
-        'is_recurrent' => 'boolean',
         'score' => 'integer',
         'results' => 'collection',
     ];
@@ -25,7 +22,7 @@ class Scan extends Model
 
     protected $guarded = ['score', 'is_finished', 'status', 'results'];
 
-    protected $hidden = ['id', 'domain_id'];
+    protected $hidden = ['id'];
 
     protected $appends = ['is_finished', 'status'];
 
@@ -65,10 +62,6 @@ class Scan extends Model
         return 'created';
     }
 
-    public function getDangerLevelAttribute()
-    {
-        return $this->is_freescan ? 0 : 10;
-    }
 
     public function calculateScore()
     {
@@ -82,38 +75,36 @@ class Scan extends Model
             $scannerWeight = config('siwecos.scanner_weight.' . $result->get('name'), 1);
             $score += $result->get('score') * $scannerWeight;
             $totalScannerWeight += $scannerWeight;
-
-            if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
-                $hasCritical = true;
-            };
         }
 
         $score = $totalScannerWeight ? ceil($score / $totalScannerWeight) : 0;
 
-        if ($score > 20 && $hasCritical) {
+        if ($score > 20 && $this->hasCritical()) {
             $score = 20;
         }
 
         return $score;
     }
 
-    /**
-     * Returns the Eloquent Relationship for App\Domain
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function domain()
+    public function hasCritical()
     {
-        return $this->belongsTo(Domain::class);
+        foreach ($this->results as $result) {
+            $result = collect($result)->recursive();
+            if ($result->get('tests') && $result->get('tests')->contains('scoreType', 'critical')) {
+                return true;
+            };
+        }
+
+        return false;
     }
 
     /**
-     * Returns the Eloquent Relationship for App\Token
+     * Returns the Eloquent Relationship for App\SiwecosScan
      *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function token()
+    public function siwecosScans()
     {
-        return $this->belongsToThrough(Token::class, Domain::class);
+        return $this->belongsToMany(SiwecosScan::class)->withTimestamps();
     }
 }

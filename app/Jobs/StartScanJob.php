@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\HTTPClient;
 use App\Scan;
-use Carbon\Carbon;
+use App\SiwecosScan;
 use Illuminate\Support\Facades\Log;
 
 class StartScanJob implements ShouldQueue
@@ -17,20 +17,19 @@ class StartScanJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $scan;
+    public $dangerLevel;
+    public $scanners;
 
     /**
      * Create a new job instance.
      *
-     * @param string $url
-     * @param boolean $is_freescan
-     * @param boolean $is_recurrent
-     * @param HTTPClient $client
-     *
      * @return void
      */
-    public function __construct(Scan $scan)
+    public function __construct(Scan $scan, int $dangerLevel, array $scanners)
     {
         $this->scan = $scan;
+        $this->dangerLevel = $dangerLevel;
+        $this->scanners = $scanners;
     }
 
     /**
@@ -41,45 +40,36 @@ class StartScanJob implements ShouldQueue
     public function handle(HTTPClient $client)
     {
         try {
-            $specificScanners = ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'PORT', 'TLS', 'VERSION'];
-            if ($this->scan->is_freescan) {
-                $specificScanners = ['DOMXSS', 'HEADER', 'INFOLEAK', 'INI_S', 'TLS'];
-            }
-
             $response = $client->request('POST', config('siwecos.coreApiScanStartUrl'), ['json' => [
-                'url' => $this->scan->domain->url,
-                'dangerLevel' => $this->scan->danger_level,
+                'url' => $this->scan->url,
+                'dangerLevel' => $this->dangerLevel,
                 'callbackurls' => [
                     config('app.url') . '/api/v2/scan/finished/' . $this->scan->id
                 ],
-                'scanners' => $specificScanners
+                'scanners' => $this->scanners
             ]]);
 
             if ($response->getStatusCode() === 200) {
-                $this->scan->update(['started_at' => Carbon::now()]);
-
-                if (!$this->scan->is_freescan && !$this->scan->is_recurrent) {
-                    $this->scan->token->reduceCredits();
-                }
+                $this->scan->update(['started_at' => now()]);
             } else {
                 Log::critical(
-                    'Failed to start scan for scan id: ' . $this->scan->id . PHP_EOL
-                        . 'HTTP-Status: ' . $response->getStatusCode() . PHP_EOL
+                    'Failed to start scan for scan id: ' . $this->scan->id
+                        . 'HTTP-Status: ' . $response->getStatusCode()
                         . 'Message: ' . $response->getBody()->getContents()
                 );
                 $this->scan->update([
                     'has_error' => true,
-                    'finished_at' => Carbon::now()
+                    'finished_at' => now()
                 ]);
             }
         } catch (\Exception $e) {
             Log::critical(
-                'Failed to start scan for scan id: ' . $this->scan->id . PHP_EOL
-                    . 'The following Exception was thrown: ' . PHP_EOL . $e
+                'Failed to start scan for scan id: ' . $this->scan->id
+                    . 'The following Exception was thrown: ' .  $e
             );
             $this->scan->update([
                 'has_error' => true,
-                'finished_at' => Carbon::now()
+                'finished_at' => now()
             ]);
         }
     }

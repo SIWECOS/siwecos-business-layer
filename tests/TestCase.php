@@ -8,10 +8,10 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
 use App\Token;
 use App\Domain;
+use App\Http\Controllers\DomainController;
 use App\HTTPClient;
 use App\Scan;
-use App\Jobs\StartScanJob;
-use GuzzleHttp\Psr7\Response;
+use App\SiwecosScan;
 use Illuminate\Support\Facades\Notification;
 use TiMacDonald\Log\LogFake;
 use Illuminate\Support\Facades\Log;
@@ -52,15 +52,43 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+     * Returns a registered and validated Domain with some crawledUrls.
+     *
+     * @param array $urls
+     * @return Domain
+     */
+    protected function getDomainWithCrawledUrls(array $urls = [])
+    {
+        $domain = $this->getRegisteredDomain(['is_verified' => true]);
+
+        if (count($urls) === 0) {
+            $domain->crawledUrls()->create([
+                'url' => $domain->mainUrl . '/blog'
+            ]);
+        } else {
+            foreach ($urls as $url) {
+                $domain->crawledUrls()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        return $domain;
+    }
+
+    /**
      * Returns a generated Scan.
      *
      * @param array $attributes
      * @return Scan
      */
-    protected function getGeneratedScan($scanAttributes = [], $domainAttributes = [])
+    protected function getGeneratedScan(array $scanAttributes = [], array $siwecosScanAttributes = [], array $domainAttributes = [])
     {
         $domain = Domain::first() ?: $this->getRegisteredDomain($domainAttributes);
-        return $domain->scans()->create(factory(Scan::class)->make($scanAttributes)->toArray());
+        $siwecosScan = $domain->siwecosScans()->create(factory(SiwecosScan::class)->make($siwecosScanAttributes)->toArray());
+        $scan = $siwecosScan->scans()->create(factory(Scan::class)->make(array_merge(['url' => $siwecosScan->domain->mainUrl], $scanAttributes))->toArray());
+
+        return $scan;
     }
 
     /**
@@ -69,14 +97,11 @@ abstract class TestCase extends BaseTestCase
      * @param array $attributes
      * @return Scan
      */
-    protected function getStartedScan($attributes = [], $domainAttributes = [])
+    protected function getStartedScan(array $scanAttributes = [], array $siwecosScanAttributes = [], array $domainAttributes = [])
     {
-        $scan = $this->getGeneratedScan($attributes, $domainAttributes);
-        $job = new StartScanJob($scan);
-
-        $job->handle($this->getMockedHttpClient([
-            new Response(200)
-        ]));
+        $scan = $this->getGeneratedScan($scanAttributes, $siwecosScanAttributes, $domainAttributes);
+        $scan->started_at = now();
+        $scan->save();
 
         return $scan;
     }
@@ -87,25 +112,37 @@ abstract class TestCase extends BaseTestCase
      * @param array $attributes
      * @return Scan
      */
-    protected function getFailedScan($attributes = [], $domainAttributes = [])
+    protected function getFailedScan(array $scanAttributes = [], array $siwecosScanAttributes = [], array $domainAttributes = [])
     {
-        $scan = $this->getGeneratedScan($attributes);
-        $job = new StartScanJob($scan);
-
-        $job->handle($this->getMockedHttpClient([
-            new Response(500)
-        ]));
+        $scan = $this->getGeneratedScan($scanAttributes, $siwecosScanAttributes, $domainAttributes);
+        $scan->has_error = true;
+        $scan->finished_at = now();
+        $scan->save();
 
         return $scan;
     }
 
-    protected function getFinishedScan($attributes = [], $domainAttributes = [])
+    protected function getFinishedScan(array $scanAttributes = [], array $siwecosScanAttributes = [], array $domainAttributes = [])
     {
-        $scan = $this->getStartedScan($attributes, $domainAttributes);
+        $scan = $this->getStartedScan($scanAttributes, $siwecosScanAttributes, $domainAttributes);
         $scan->results = json_decode(file_get_contents(base_path('tests/sampleFreeScanCoreApiResults.json')), true)['results'];
         $scan->save();
 
         return $scan;
+    }
+
+    /**
+     * Mockl DomainController and HTTPClient for simulating a DomainVerify-Process
+     *
+     * @param array $mockedResponses
+     * @return void
+     */
+    public function mockHttpClientAndDomainController(array $mockedResponses)
+    {
+        $client = $this->getMockedHttpClient($mockedResponses);
+        $this->app->bind(DomainController::class, function ($app) use ($client) {
+            return new DomainController($client);
+        });
     }
 
     /**

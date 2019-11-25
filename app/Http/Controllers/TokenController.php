@@ -11,7 +11,6 @@ class TokenController extends Controller
     public function registerNewToken(TokenRegistrationRequest $request)
     {
         $token = Token::create([
-            'credits' => config('siwecos.thirdPartyTokenCredits'),
             'type' => 'external'
         ]);
 

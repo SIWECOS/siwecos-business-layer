@@ -7,9 +7,9 @@ use App\ScanReport;
 
 class ScanReportResponse
 {
-    public function __construct(Scan $scan)
+    public function __construct(Scan $scan, int $siwecosScanId)
     {
-        $this->id = $scan->id;
+        $this->id = $siwecosScanId;
         $this->status = $scan->status;
         $this->has_error = $scan->has_error;
         $this->started_at = $scan->started_at ? $scan->started_at->toIso8601ZuluString() : null;

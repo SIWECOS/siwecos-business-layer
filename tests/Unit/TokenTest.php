@@ -51,13 +51,6 @@ class TokenTest extends TestCase
     }
 
     /** @test */
-    public function a_token_has_many_scans_through_domains()
-    {
-        $token = factory(Token::class)->create(['type' => 'external']);
-        $this->assertCount(0, $token->scans);
-    }
-
-    /** @test */
     public function if_a_token_gets_deleted_all_associated_domains_will_be_deleted_too()
     {
         $domain = $this->getRegisteredDomain();
@@ -70,5 +63,13 @@ class TokenTest extends TestCase
 
         $this->assertCount(0, Token::all());
         $this->assertCount(0, Domain::all());
+    }
+
+    /** @test */
+    public function a_token_has_a_unique_verificationToken()
+    {
+        $token = factory(Token::class)->create(['type' => 'external']);
+
+        $this->assertNotNull(Token::first()->verification_token);
     }
 }

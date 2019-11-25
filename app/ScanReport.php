@@ -70,17 +70,19 @@ class ScanReport
     {
         $output = collect();
         foreach ($tests as $test) {
-            $output->push([
-                'headline' => __($scannerCode . "." . $test->get('name') . "_HEADLINE"),
-                'score' => $test->get('score'),
-                'score_type' => $test->get('scoreType'),
-                'has_error' => $test->get('hasError'),
-                'result' => $this->getTranslatedResult($test, $scannerCode),
-                'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),
-                'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
-                'solution_tips' => __($scannerCode . "." . $test->get('name') . "_SOLUTION_TIPS"),
-                'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
-            ]);
+            if ($test->get('scoreType') !== 'hidden') {
+                $output->push([
+                    'headline' => __($scannerCode . "." . $test->get('name') . "_HEADLINE"),
+                    'score' => $test->get('score'),
+                    'score_type' => $test->get('scoreType'),
+                    'has_error' => $test->get('hasError'),
+                    'result' => $this->getTranslatedResult($test, $scannerCode),
+                    'result_details' => $this->getTranslatedTestDetails($test, $scannerCode),
+                    'result_description' => $this->getAdditionalResultDescriptionWhenScore100IsNotReached($test, $scannerCode),
+                    'solution_tips' => __($scannerCode . "." . $test->get('name') . "_SOLUTION_TIPS"),
+                    'information_link' => __($scannerCode . "." . $test->get('name') . "_LINK"),
+                ]);
+            }
         }
 
         return $output;
