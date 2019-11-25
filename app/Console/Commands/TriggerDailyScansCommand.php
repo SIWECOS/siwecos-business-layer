@@ -12,7 +12,8 @@ class TriggerDailyScansCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'siwecos:trigger-daily-scans';
+    protected $signature = 'siwecos:trigger-daily-scans
+                            {--force : Start the Crawler for all verified Domains, even if there exists a successful nonfree-SiwecosScan today}';
 
     /**
      * The console command description.
@@ -42,6 +43,15 @@ class TriggerDailyScansCommand extends Command
         $domains = Domain::whereIsVerified(true)->get();
 
         foreach ($domains as $domain) {
+
+            if (!$this->option('force')) {
+                $latestNonfreeScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first();
+
+                if ($latestNonfreeScan && $latestNonfreeScan->finished_at->isToday() && !$latestNonfreeScan->isFailed) {
+                    continue;
+                };
+            }
+
             $siwecosScan = $domain->siwecosScans()->create([
                 'is_freescan' => false,
                 'is_recurrent' => true
