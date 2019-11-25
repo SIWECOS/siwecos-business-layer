@@ -71,4 +71,15 @@ class TriggerDailyScansCommandTest extends TestCase
 
         \Queue::assertPushed(StartScanJob::class, 1);
     }
+
+    /** @test */
+    public function there_will_no_error_be_thrown_if_the_latest_scan_was_not_finished_yet()
+    {
+        $this->getStartedScan([], ['is_freescan' => false], ['is_verified' => true]);
+
+        $this->artisan('siwecos:trigger-daily-scans')
+            ->expectsOutput('1 Scans were started.');
+
+        \Queue::assertPushed(StartScanJob::class, 1);
+    }
 }

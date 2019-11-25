@@ -47,7 +47,7 @@ class TriggerDailyScansCommand extends Command
             if (!$this->option('force')) {
                 $latestNonfreeScan = $domain->siwecosScans()->whereIsFreescan(false)->latest()->first();
 
-                if ($latestNonfreeScan && $latestNonfreeScan->finished_at->isToday() && !$latestNonfreeScan->isFailed) {
+                if ($latestNonfreeScan && $latestNonfreeScan->finished_at && $latestNonfreeScan->finished_at->isToday() && !$latestNonfreeScan->isFailed) {
                     continue;
                 };
             }
