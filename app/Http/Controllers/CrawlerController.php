@@ -45,7 +45,7 @@ class CrawlerController extends Controller
             Cache::forget('domain-' . $domain->id . '-couldNotCrawl');
         } else {
             Cache::increment('domain-' . $domain->id . '-couldNotCrawl');
-            if (Cache::get('domain-' . $domain->id . '-couldNotCrawl') === 2) {
+            if (Cache::get('domain-' . $domain->id . '-couldNotCrawl') === 7) {
                 $domain->update(['is_verified' => false]);
             }
         }
