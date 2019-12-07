@@ -43,11 +43,9 @@ class CrawlerController extends Controller
             }
 
             Cache::forget('domain-' . $domain->id . '-couldNotCrawl');
-        }
-
-        if ($request->json('hasError') === false && $request->json('httpCouldConnect') === false) {
+        } else {
             Cache::increment('domain-' . $domain->id . '-couldNotCrawl');
-            if (Cache::get('domain-' . $domain->id . '-couldNotCrawl') === 7) {
+            if (Cache::get('domain-' . $domain->id . '-couldNotCrawl') === 2) {
                 $domain->update(['is_verified' => false]);
             }
         }
