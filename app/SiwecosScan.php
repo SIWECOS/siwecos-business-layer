@@ -196,7 +196,7 @@ class SiwecosScan extends Model
 
             foreach ($this->domain->mailDomains as $mailDomain) {
                 $latestScan = $mailDomain->latestScan;
-                if ($latestScan && !$latestScan->has_error && $latestScan->created_at->gte(now()->subHours(6))) {
+                if ($latestScan && !$latestScan->has_error && $latestScan->created_at->gte(now()->subWeek())) {
                     $this->scans()->syncWithoutDetaching($latestScan);
                 } else {
                     $scan = $this->scans()->create(['url' => $mailDomain->domain]);
