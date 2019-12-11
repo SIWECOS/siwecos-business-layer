@@ -41,7 +41,7 @@ class SiwecosScanTest extends TestCase
         ]);
 
         $this->assertCount(1, SiwecosScan::all());
-        $this->assertEquals(Domain::first(), SiwecosScan::first()->domain);
+        $this->assertEquals(Domain::first()->domain, SiwecosScan::first()->domain->domain);
     }
 
     /** @test */
