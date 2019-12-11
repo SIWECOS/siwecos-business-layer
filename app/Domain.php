@@ -22,6 +22,8 @@ class Domain extends Model
 
     protected $appends = ['mainUrl'];
 
+    protected $with = ['siwecosScans', 'token', 'mailDomains', 'crawledUrls'];
+
     /**
      * Get the route key for the model.
      *
@@ -85,8 +87,8 @@ class Domain extends Model
 
     public function delete()
     {
-        $this->siwecosScans->each->delete();
-        $this->crawledUrls->each->delete();
+        $this->siwecosScans()->get()->each->delete();
+        $this->crawledUrls()->get()->each->delete();
         $this->mailDomains()->detach();
 
         return parent::delete();
