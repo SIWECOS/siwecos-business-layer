@@ -6,6 +6,7 @@ use App\Domain;
 use App\Jobs\StartScanJob;
 use App\Scan;
 use App\SiwecosScan;
+use DB;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -309,5 +310,15 @@ class SiwecosScanTest extends TestCase
         $siwecosScan = Domain::first()->siwecosScans()->create(['is_freescan' => true, 'is_recurrent' => false]);
 
         $this->assertEquals(0, $siwecosScan->score);
+    }
+
+    /** @test */
+    public function the_scan_siwecos_scan_table_will_be_cleaned_if_a_siwecosScan_gets_deleted()
+    {
+        $siwecosScan = $this->getFinishedScan()->siwecosScans->first();
+        $this->assertCount(1, DB::table('scan_siwecos_scan')->get());
+
+        $siwecosScan->delete();
+        $this->assertCount(0, DB::table('scan_siwecos_scan')->get());
     }
 }

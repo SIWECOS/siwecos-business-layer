@@ -10,6 +10,7 @@ use App\Scan;
 use App\Domain;
 use App\SiwecosScan;
 use Carbon\Carbon;
+use DB;
 
 class ScanTest extends TestCase
 {
@@ -104,5 +105,15 @@ class ScanTest extends TestCase
 
         $scan = $this->getFinishedScan();
         $this->assertEquals('finished', $scan->status);
+    }
+
+    /** @test */
+    public function the_scan_siwecos_scan_table_will_be_cleaned_if_a_scan_gets_deleted()
+    {
+        $scan = $this->getFinishedScan();
+        $this->assertCount(1, DB::table('scan_siwecos_scan')->get());
+
+        $scan->delete();
+        $this->assertCount(0, DB::table('scan_siwecos_scan')->get());
     }
 }
