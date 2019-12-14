@@ -107,4 +107,13 @@ class Scan extends Model
     {
         return $this->belongsToMany(SiwecosScan::class)->withTimestamps();
     }
+
+    public function delete()
+    {
+        $this->siwecosScans->each(function ($siwecosScan) {
+            $siwecosScan->scans()->detach([$this->id]);
+        });
+
+        return parent::delete();
+    }
 }
