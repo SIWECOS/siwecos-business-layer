@@ -38,11 +38,8 @@ class DeleteOldScansCommand extends Command
      */
     public function handle()
     {
-        $scans = SiwecosScan::where('created_at', '<=', now()->subDays(30)->toDateTimeString())
-            ->get()
-            ->each(function ($siwecosScan) {
-                $siwecosScan->delete();
-            });
+        $scans = SiwecosScan::where('created_at', '<=', now()->subDays(3)->toDateTimeString())
+            ->get()->each->delete();
 
         $this->info($scans->count() . ' Scans were deleted.');
     }
