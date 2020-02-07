@@ -27,8 +27,12 @@ class DomainVerifier
      */
     public function verify()
     {
+        \Log::info('Performing verification for domain:' . $this->domain->domain);
+
         try {
             if ($this->checkHtmlPage() || $this->checkMetaTag()) {
+                \Log::info('Verification for domain ' . $this->domain->domain . ' succeeded');
+
                 return true;
             }
         } catch (TransferException $e) {
@@ -39,6 +43,8 @@ class DomainVerifier
             abort(response()->json(['message' => __('siwecos.EXCEPTION', ['EXCEPTION' => $e])], 409));
         }
 
+        \Log::info('Verification for domain ' . $this->domain->domain . ' failed');
+
         return false;
     }
 
@@ -47,10 +53,24 @@ class DomainVerifier
         $response = $this->client->get('http://' . $this->domain->domain . "/" . $this->token->verification_token . ".html");
 
         if ($response->getStatusCode() === 200) {
+            \Log::info('HTML-page validation for domain ' . $this->domain->domain . ' returns a 200');
+
+            \Log::info(
+                'HTML-page validation for domain ' . $this->domain->domain
+                . ' will compare strings '
+                . $this->token->verification_token
+                . ' and '
+                . trim($response->getBody()->getContents())
+            );
+
             if (Str::is($this->token->verification_token, trim($response->getBody()->getContents()))) {
+                \Log::info('HTML-page validation for domain ' . $this->domain->domain . ' succeeded');
+
                 return true;
             }
         }
+
+        \Log::info('HTML-page validation for domain ' . $this->domain->domain . ' failed');
 
         return false;
     }
@@ -60,17 +80,36 @@ class DomainVerifier
         $response = $this->client->get('http://' . $this->domain->domain);
 
         if ($response->getStatusCode() === 200) {
+            \Log::info('Meta-Token validation for domain ' . $this->domain->domain . ' returns a 200');
+
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
             $tags = $dom->findMultiOrFalse('meta[name="siwecostoken"]');
 
             if ($tags) {
+                \Log::info(
+                    'Meta-Token validation for domain '
+                    . $this->domain->domain . ' found ' . count($tags) . ' tags'
+                );
+
                 foreach ($tags as $tag) {
+                    \Log::info(
+                        'HTML-page validation for domain ' . $this->domain->domain
+                        . ' will compare strings '
+                        . $this->token->verification_token
+                        . ' and '
+                        . $tag->content
+                    );
+
                     if (Str::is($this->domain->token->verification_token, $tag->content)) {
+                        \Log::info('Meta-Token validation for domain ' . $this->domain->domain . ' succeeded');
+
                         return true;
                     }
                 }
             }
         }
+
+        \Log::info('Meta-Token validation for domain ' . $this->domain->domain . ' failed');
 
         return false;
     }
