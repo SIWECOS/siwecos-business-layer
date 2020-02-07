@@ -80,7 +80,7 @@ class DomainVerifier
         $response = $this->client->get('http://' . $this->domain->domain);
 
         if ($response->getStatusCode() === 200) {
-            \Log::info('Meta-Token validation for domain ' . $this->domain->domain . ' returns a 200');
+            \Log::info('Meta-Token validation for domain ' . $this->token->verification_token . ' returns a 200');
 
             $dom = HtmlDomParser::str_get_html($response->getBody()->getContents());
             $tags = $dom->findMultiOrFalse('meta[name="siwecostoken"]');
@@ -100,7 +100,7 @@ class DomainVerifier
                         . $tag->content
                     );
 
-                    if (Str::is($this->domain->token->verification_token, $tag->content)) {
+                    if (Str::is($this->token->verification_token, $tag->content)) {
                         \Log::info('Meta-Token validation for domain ' . $this->domain->domain . ' succeeded');
 
                         return true;
