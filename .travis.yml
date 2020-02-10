@@ -22,7 +22,7 @@ before_script:
 
 script:
   - ./vendor/bin/phpunit
-  - curl -L -o /tmp/translation-files.zip https://gitreleases.dev/gh/SIWECOS/translations/latest/translation-files.zip
+  - curl -L -o /tmp/translation-files.zip https://github.com/SIWECOS/translations/releases/download/latest/translation-files.zip
   - unzip -o -d resources/lang /tmp/translation-files.zip
   - docker build -t siwecos-business-layer .
 
