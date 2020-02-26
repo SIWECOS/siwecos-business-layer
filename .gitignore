@@ -20,3 +20,6 @@ deployment*.yaml
 secret*.yaml
 docs/build
 .phpunit.result.cache
+docker-compose.yml
+phpdocker
+devdb
