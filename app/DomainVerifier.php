@@ -65,7 +65,7 @@ class DomainVerifier
 
             if ($tags) {
                 foreach ($tags as $tag) {
-                    if (Str::is($this->domain->token->verification_token, $tag->content)) {
+                    if (Str::is($this->token->verification_token, $tag->content)) {
                         return true;
                     }
                 }

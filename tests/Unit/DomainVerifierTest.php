@@ -65,7 +65,7 @@ class DomainVerifierTest extends TestCase
             new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag($domain->token->verification_token)),
         ]);
 
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
 
         $this->assertTrue($verifier->checkMetaTag());
     }
@@ -80,7 +80,7 @@ class DomainVerifierTest extends TestCase
             new Response(200, [], $this->getDummyHtmlWithSIWECOSMetaTag(null, $domain->token->verification_token))
         ]);
 
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
 
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
@@ -96,7 +96,7 @@ class DomainVerifierTest extends TestCase
             new Response(404),
         ]);
 
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
 
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
@@ -111,7 +111,7 @@ class DomainVerifierTest extends TestCase
             new Response(302),
         ]);
 
-        $verifier = new DomainVerifier($domain, $client);
+        $verifier = new DomainVerifier($domain, $client, $domain->token);
 
         $this->assertFalse($verifier->checkMetaTag());
         $this->assertFalse($verifier->checkMetaTag());
