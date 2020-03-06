@@ -143,10 +143,19 @@ class ScanController extends Controller
                     ]);
                 }
 
+                $scannerGauges = collect();
+
+                foreach ($siwecosScan->getAverageScannerScores() as $scannerCode => $scannerScore) {
+                    $scannerGauges->put($scannerCode, $this->calculateGaugeData($scannerScore));
+                }
+
                 $pdf = SnappyPdf::loadView('pdf.reportV3', [
                     'siwecosScan' => $siwecosScan,
-                    'parts' => $parts
+                    'parts' => $parts,
+                    'globalGauge' => $this->calculateGaugeData($siwecosScan->score),
+                    'globalScannerGauges' => $scannerGauges
                 ]);
+
                 return $pdf->download('SIWECOS Scan Report - Full.pdf');
             }
 
