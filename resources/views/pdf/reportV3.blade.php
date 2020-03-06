@@ -31,9 +31,6 @@
       page-break-inside: avoid;
     }
   </style>
-
-
-
 </head>
 
 <body>
