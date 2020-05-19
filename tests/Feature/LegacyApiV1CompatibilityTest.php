@@ -99,7 +99,7 @@ class LegacyApiV1CompatibilityTest extends TestCase
             'hasFailed' => false,
             'domainId' => 1,
             'verificationStatus' => false,
-            'domainToken' => Domain::first()->token->verification_token
+            'domainToken' => $user->token->verification_token
         ]);
     }
 
