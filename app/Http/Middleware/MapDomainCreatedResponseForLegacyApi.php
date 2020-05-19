@@ -31,7 +31,7 @@ class MapDomainCreatedResponseForLegacyApi
                 'hasFailed' => false,
                 'domainId' => $domain->id,
                 'verificationStatus' => $domain->is_verified,
-                'domainToken' => $domain->token->verification_token
+                'domainToken' => $json->verification_token
             ]));
         }
 
