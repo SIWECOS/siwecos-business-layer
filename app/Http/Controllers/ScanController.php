@@ -182,7 +182,7 @@ class ScanController extends Controller
                 $this->dispatch(new PushScanToElasticsearchJob($scan));
 
                 foreach ($scan->siwecosScans as $siwecosScan) {
-                    if (!$siwecosScan->is_freescan && $siwecosScan->isFinished) {
+                    if (!$siwecosScan->is_freescan) {
                         $this->generateSiwecosSeals($siwecosScan->domain);
                     }
                 }
