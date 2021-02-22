@@ -266,9 +266,9 @@ class ScanController extends Controller
         // Degrees for the percentage
         $deg = $score * $factor;
         // red part of color
-        $red = floor(min((100 - $score) / 25, 1) * 255);
+        $red = floor(min((100 - $score) / 49, 1) * 255);
         // green part of color
-        $green = floor(min($score / 75, 1) * 255);
+        $green = floor(min($score / 74, 1) * 255);
         return [
             'score' => $score,
             'score_x' => -cos($deg - $origin) * $radius,
