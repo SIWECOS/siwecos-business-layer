@@ -28,7 +28,11 @@ class DomainVerifier
     public function verify()
     {
         try {
-            if ($this->checkDnsRecord() || $this->checkHtmlPage() || $this->checkMetaTag()) {
+            if ($this->checkDnsRecord()
+                || $this->checkResponseHeaders()
+                || $this->checkHtmlPage()
+                || $this->checkMetaTag()
+            ) {
                 return true;
             }
         } catch (TransferException $e) {
@@ -88,6 +92,23 @@ class DomainVerifier
                     if (Str::is($this->token->verification_token, $token)) {
                         return true;
                     }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function checkResponseHeaders()
+    {
+        $response = $this->client->head('http://' . $this->domain->domain);
+
+        if ($response->getStatusCode() === 200) {
+            $headers = $response->getHeader('siwecostoken');
+
+            foreach ($headers as $token) {
+                if (Str::is($this->token->verification_token, $token)) {
+                    return true;
                 }
             }
         }
