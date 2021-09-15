@@ -28,7 +28,7 @@ class DomainVerifier
     public function verify()
     {
         try {
-            if ($this->checkHtmlPage() || $this->checkMetaTag()) {
+            if ($this->checkDnsRecord() || $this->checkHtmlPage() || $this->checkMetaTag()) {
                 return true;
             }
         } catch (TransferException $e) {
@@ -66,6 +66,26 @@ class DomainVerifier
             if ($tags) {
                 foreach ($tags as $tag) {
                     if (Str::is($this->token->verification_token, $tag->content)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function checkDnsRecord()
+    {
+        $records = dns_get_record($this->domain->domain,  DNS_TXT);
+
+        if ($records) {
+            foreach ($records as $record) {
+                if (isset($record['txt'])
+                    && strpos($record['txt'], 'siwecostoken=') === 0
+                ) {
+                    $token = explode('=', $record['txt'])[1];
+                    if (Str::is($this->token->verification_token, $token)) {
                         return true;
                     }
                 }
