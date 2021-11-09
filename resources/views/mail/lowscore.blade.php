@@ -8,7 +8,7 @@ Guten Tag,
 
 Mit dieser Mail informieren wir Sie über das aktuelle Scan Ergebnis für Ihre Webseite.
 
-Eine detaillierte Aufstellung der einzelnen Tests und den ausführlichen Sicherheitsbericht für Ihre Webseite finden Sie in der beigefügten PDF Datei.
+Eine detaillierte Aufstellung der einzelnen Tests und den ausführlichen Sicherheitsbericht für Ihre Webseite finden Sie in der beigefügten PDF-Datei.
 
 
 Mit freundlichen Grüßen,
