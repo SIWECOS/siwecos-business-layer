@@ -22,7 +22,7 @@ class CreateScansTable extends Migration
             $table->boolean('is_recurrent')->default(false);
             $table->boolean('is_freescan')->default(false);
 
-            $table->json('results')->default('[]');
+            $table->json('results')->default('[]')->nullable(true);
 
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
