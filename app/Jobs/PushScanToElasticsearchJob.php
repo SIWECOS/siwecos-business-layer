@@ -34,6 +34,10 @@ class PushScanToElasticsearchJob implements ShouldQueue
      */
     public function handle()
     {
+        if (!env('ELASTICSEARCH_HOST', 'elasticsearch')) {
+            return;
+        }
+
         try {
             // Reformat $this->scan->results for correct elasticsearch indexing
             // Map result:  scan.results.HEADER.tests.X_CONTENT_TYPE_OPTIONS.score
